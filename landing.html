@@ -237,68 +237,76 @@
             to { transform: rotate(360deg); }
         }
         
-        .paisley {
-            position: absolute;
-            width: 60px;
-            height: 100px;
-            animation: drift 20s infinite ease-in-out;
-            filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.08));
-            mix-blend-mode: multiply;
-            opacity: 0.6;
-
-        }
-        
-        .paisley-1 {
-            top: 20%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-        
-        .paisley-2 {
-            top: 60%;
-            right: 15%;
-            animation-delay: 0s;
-        }
-        
-        .paisley-3 {
-            bottom: 25%;
-            left: 20%;
-            animation-delay: 0s;
-        }
-
-        .paisley-4 {
-  top: 40%;
-  left: 70%;
-  animation-delay: 0s;
-  transform: rotate(15deg);
+        .rangoli-flower {
+  position: fixed;
+  width: 80px;
+  height: 80px;
+  opacity: 0.85;
+  z-index: 1;
+  pointer-events: none;
+  animation: slowSpin 30s linear infinite, pulseGlow 5s ease-in-out infinite;
+}
+.rangoli-flower.edge-top {
+  top: 0;
+  left: 48%;
+  
 }
 
-.paisley-5 {
-  top: 10%;
-  right: 20%;
-  animation-delay: 0s;
-  transform: rotate(-10deg);
+.rangoli-flower.edge-bottom {
+  bottom: 0;
+  left: 48%;
+
 }
 
-.paisley-6 {
-  bottom: 20%;
-  right: 25%;
-  animation-delay: 0s;
-  transform: rotate(8deg);
+.rangoli-flower.edge-left {
+  left: 20px;
+  top: 50%;
+  
 }
 
-.paisley-7 {
-  top: 75%;
-  left: 5%;
-  animation-delay: 0s;
-  transform: rotate(-6deg);
+.rangoli-flower.edge-right {
+  right: 20px;
+  top: 50%;
+ 
 }
 
-.paisley-8 {
-  top: 35%;
-  right: 5%;
-  animation-delay: 0s;
-  transform: rotate(12deg);
+.rangoli-flower.top-left {
+  top: 20px;
+  left: 20px;
+}
+
+.rangoli-flower.top-right {
+  top: 20px;
+  right: 20px;
+  transform: rotate(90deg);
+}
+
+.rangoli-flower.bottom-left {
+  bottom: 20px;
+  left: 20px;
+  transform: rotate(-90deg);
+}
+
+.rangoli-flower.bottom-right {
+  bottom: 20px;
+  right: 20px;
+  transform: rotate(180deg);
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 4px rgba(255, 153, 51, 0.2));
+    opacity: 0.85;
+  }
+  50% {
+    filter: drop-shadow(0 0 12px rgba(255, 153, 51, 0.5));
+    opacity: 1;
+  }
+}
+
+@keyframes slowSpin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
         
         @keyframes drift {
@@ -625,54 +633,167 @@
         </svg>
         
         <!-- Paisley patterns -->
-        <svg class="paisley paisley-1" viewBox="0 0 60 100">
-            <path d="M30,10 Q45,25 45,50 Q45,75 30,90 Q15,75 15,50 Q15,35 25,25 Q30,20 30,10 Z"
-                  fill="#B8860B" opacity="0.3"/> <!-- Rich Gold -->
-            <path d="M25,20 Q35,30 35,45 Q35,60 25,70 Q20,65 20,50 Q20,40 25,35 Q25,30 25,20 Z"
-                  fill="#A9A9A9" opacity="0.2"/> <!-- Visible Silver -->
-          </svg>
-          <svg class="paisley paisley-2" viewBox="0 0 60 100">
-            <path d="M30,10 Q45,25 45,50 Q45,75 30,90 Q15,75 15,50 Q15,35 25,25 Q30,20 30,10 Z"
-                  fill="#B8860B" opacity="0.3"/> <!-- Rich Gold -->
-            <path d="M25,20 Q35,30 35,45 Q35,60 25,70 Q20,65 20,50 Q20,40 25,35 Q25,30 25,20 Z"
-                  fill="#A9A9A9" opacity="0.2"/> <!-- Visible Silver -->
-          </svg>
-          <svg class="paisley paisley-3" viewBox="0 0 60 100">
-            <path d="M30,10 Q45,25 45,50 Q45,75 30,90 Q15,75 15,50 Q15,35 25,25 Q30,20 30,10 Z"
-                  fill="#B8860B" opacity="0.3"/> <!-- Rich Gold -->
-            <path d="M25,20 Q35,30 35,45 Q35,60 25,70 Q20,65 20,50 Q20,40 25,35 Q25,30 25,20 Z"
-                  fill="#A9A9A9" opacity="0.2"/> <!-- Visible Silver -->
-          </svg>
-          <svg class="paisley paisley-4" viewBox="0 0 60 100">
-            <path d="M30,10 Q45,25 45,50 Q45,75 30,90 Q15,75 15,50 Q15,35 25,25 Q30,20 30,10 Z"
-                  fill="#B8860B" opacity="0.3"/> <!-- Rich Gold -->
-            <path d="M25,20 Q35,30 35,45 Q35,60 25,70 Q20,65 20,50 Q20,40 25,35 Q25,30 25,20 Z"
-                  fill="#A9A9A9" opacity="0.2"/> <!-- Visible Silver -->
-          </svg>
-          <svg class="paisley paisley-5" viewBox="0 0 60 100">
-            <path d="M30,10 Q45,25 45,50 Q45,75 30,90 Q15,75 15,50 Q15,35 25,25 Q30,20 30,10 Z"
-                  fill="#B8860B" opacity="0.3"/> <!-- Rich Gold -->
-            <path d="M25,20 Q35,30 35,45 Q35,60 25,70 Q20,65 20,50 Q20,40 25,35 Q25,30 25,20 Z"
-                  fill="#A9A9A9" opacity="0.2"/> <!-- Visible Silver -->
-          </svg>
-          <svg class="paisley paisley-6" viewBox="0 0 60 100">
-            <path d="M30,10 Q45,25 45,50 Q45,75 30,90 Q15,75 15,50 Q15,35 25,25 Q30,20 30,10 Z"
-                  fill="#B8860B" opacity="0.3"/> <!-- Rich Gold -->
-            <path d="M25,20 Q35,30 35,45 Q35,60 25,70 Q20,65 20,50 Q20,40 25,35 Q25,30 25,20 Z"
-                  fill="#A9A9A9" opacity="0.2"/> <!-- Visible Silver -->
-          </svg>
-          <svg class="paisley paisley-7" viewBox="0 0 60 100">
-            <path d="M30,10 Q45,25 45,50 Q45,75 30,90 Q15,75 15,50 Q15,35 25,25 Q30,20 30,10 Z"
-                  fill="#B8860B" opacity="0.3"/> <!-- Rich Gold -->
-            <path d="M25,20 Q35,30 35,45 Q35,60 25,70 Q20,65 20,50 Q20,40 25,35 Q25,30 25,20 Z"
-                  fill="#A9A9A9" opacity="0.2"/> <!-- Visible Silver -->
-          </svg>
-          <svg class="paisley paisley-8" viewBox="0 0 60 100">
-            <path d="M30,10 Q45,25 45,50 Q45,75 30,90 Q15,75 15,50 Q15,35 25,25 Q30,20 30,10 Z"
-                  fill="#B8860B" opacity="0.3"/> <!-- Rich Gold -->
-            <path d="M25,20 Q35,30 35,45 Q35,60 25,70 Q20,65 20,50 Q20,40 25,35 Q25,30 25,20 Z"
-                  fill="#A9A9A9" opacity="0.2"/> <!-- Visible Silver -->
-          </svg>
+        <!-- Decorative Lotus Petals on Corners -->
+<!-- Rangoli Corners -->
+<!-- TOP LEFT -->
+<svg class="rangoli-flower edge-right" viewBox="0 0 200 200">
+    <defs>
+        <radialGradient id="petalGradientTL" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#FFD700"/>
+          <stop offset="100%" stop-color="#FF9933"/>
+        </radialGradient>
+      </defs>
+      <g fill="url(#petalGradientTL)" stroke="#9B111E" stroke-width="2">
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(0,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(45,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(90,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(135,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(180,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(225,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(270,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(315,100,100)"/>
+      </g>
+      <circle cx="100" cy="100" r="12" fill="#9B111E" stroke="#FFD700" stroke-width="3"/>
+  </svg>
+  <svg class="rangoli-flower edge-top" viewBox="0 0 200 200">
+    <defs>
+        <radialGradient id="petalGradientTL" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#FFD700"/>
+          <stop offset="100%" stop-color="#FF9933"/>
+        </radialGradient>
+      </defs>
+      <g fill="url(#petalGradientTL)" stroke="#9B111E" stroke-width="2">
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(0,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(45,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(90,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(135,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(180,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(225,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(270,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(315,100,100)"/>
+      </g>
+      <circle cx="100" cy="100" r="12" fill="#9B111E" stroke="#FFD700" stroke-width="3"/>
+  </svg>
+  <svg class="rangoli-flower edge-left" viewBox="0 0 200 200">
+    <defs>
+        <radialGradient id="petalGradientTL" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#FFD700"/>
+          <stop offset="100%" stop-color="#FF9933"/>
+        </radialGradient>
+      </defs>
+      <g fill="url(#petalGradientTL)" stroke="#9B111E" stroke-width="2">
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(0,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(45,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(90,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(135,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(180,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(225,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(270,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(315,100,100)"/>
+      </g>
+      <circle cx="100" cy="100" r="12" fill="#9B111E" stroke="#FFD700" stroke-width="3"/>
+  </svg>
+  <svg class="rangoli-flower edge-bottom" viewBox="0 0 200 200">
+    <defs>
+        <radialGradient id="petalGradientTL" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#FFD700"/>
+          <stop offset="100%" stop-color="#FF9933"/>
+        </radialGradient>
+      </defs>
+      <g fill="url(#petalGradientTL)" stroke="#9B111E" stroke-width="2">
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(0,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(45,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(90,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(135,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(180,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(225,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(270,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(315,100,100)"/>
+      </g>
+      <circle cx="100" cy="100" r="12" fill="#9B111E" stroke="#FFD700" stroke-width="3"/>
+  </svg>
+<svg class="rangoli-flower top-left" viewBox="0 0 200 200">
+    <defs>
+      <radialGradient id="petalGradientTL" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#FFD700"/>
+        <stop offset="100%" stop-color="#FF9933"/>
+      </radialGradient>
+    </defs>
+    <g fill="url(#petalGradientTL)" stroke="#9B111E" stroke-width="2">
+      <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(0,100,100)"/>
+      <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(45,100,100)"/>
+      <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(90,100,100)"/>
+      <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(135,100,100)"/>
+      <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(180,100,100)"/>
+      <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(225,100,100)"/>
+      <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(270,100,100)"/>
+      <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(315,100,100)"/>
+    </g>
+    <circle cx="100" cy="100" r="12" fill="#9B111E" stroke="#FFD700" stroke-width="3"/>
+  </svg>
+  
+  <!-- TOP RIGHT -->
+  <svg class="rangoli-flower top-right" viewBox="0 0 200 200">
+    <defs>
+        <radialGradient id="petalGradientTL" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#FFD700"/>
+          <stop offset="100%" stop-color="#FF9933"/>
+        </radialGradient>
+      </defs>
+      <g fill="url(#petalGradientTL)" stroke="#9B111E" stroke-width="2">
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(0,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(45,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(90,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(135,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(180,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(225,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(270,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(315,100,100)"/>
+      </g>
+      <circle cx="100" cy="100" r="12" fill="#9B111E" stroke="#FFD700" stroke-width="3"/>
+  </svg>
+  
+  <!-- BOTTOM LEFT -->
+  <svg class="rangoli-flower bottom-left" viewBox="0 0 200 200">
+    <defs>
+        <radialGradient id="petalGradientTL" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#FFD700"/>
+          <stop offset="100%" stop-color="#FF9933"/>
+        </radialGradient>
+      </defs>
+      <g fill="url(#petalGradientTL)" stroke="#9B111E" stroke-width="2">
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(0,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(45,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(90,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(135,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(180,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(225,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(270,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(315,100,100)"/>
+      </g>
+      <circle cx="100" cy="100" r="12" fill="#9B111E" stroke="#FFD700" stroke-width="3"/>
+  </svg>
+  
+  <!-- BOTTOM RIGHT -->
+  <svg class="rangoli-flower bottom-right" viewBox="0 0 200 200">
+    <defs>
+        <radialGradient id="petalGradientTL" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#FFD700"/>
+          <stop offset="100%" stop-color="#FF9933"/>
+        </radialGradient>
+      </defs>
+      <g fill="url(#petalGradientTL)" stroke="#9B111E" stroke-width="2">
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(0,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(45,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(90,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(135,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(180,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(225,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(270,100,100)"/>
+        <path d="M100,20 Q115,60 100,100 Q85,60 100,20 Z" transform="rotate(315,100,100)"/>
+      </g>
+      <circle cx="100" cy="100" r="12" fill="#9B111E" stroke="#FFD700" stroke-width="3"/>
+  </svg>
         
         <!-- Lotus overlay -->
         <div class="lotus-overlay"></div>
