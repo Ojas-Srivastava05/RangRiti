@@ -247,13 +247,13 @@
   animation: slowSpin 30s linear infinite, pulseGlow 5s ease-in-out infinite;
 }
 .rangoli-flower.edge-top {
-  top: 0;
+  top: 20px;
   left: 48%;
   
 }
 
 .rangoli-flower.edge-bottom {
-  bottom: 0;
+  bottom: 20px;
   left: 48%;
 
 }
@@ -337,31 +337,92 @@
             66% { opacity: 0.9; }
         }
         
-        .traditional-border {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 15px solid transparent;
-            border-image: linear-gradient(45deg, 
-                rgba(255, 153, 51, 0.15), 
-                rgba(155, 17, 30, 0.12), 
-                rgba(34, 139, 34, 0.12), 
-                rgba(245, 222, 179, 0.2),
-                rgba(255, 153, 51, 0.15)
-            ) 1;
-            animation: borderGlow 12s infinite ease-in-out;
-        }
-        
-        @keyframes borderGlow {
-            0%, 100% { 
-                filter: brightness(1) hue-rotate(0deg); 
-            }
-            50% { 
-                filter: brightness(1.3) hue-rotate(5deg); 
-            }
-        }
+        .ornamental-border .border-piece {
+  position: absolute;
+  background-image: url('static/rotating-border-tile.svg'); /* replace with actual path */
+  background-repeat: repeat;
+  background-size: 60px;
+  animation: borderRotate 60s linear infinite;
+  opacity: 0.4;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Positioning the 4 edges */
+.border-piece {
+  position: absolute;
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0.5;
+  background-repeat: repeat;
+  background-size: 60px 60px;
+  mix-blend-mode: multiply;
+}
+
+/* Top border */
+.border-piece.top {
+  top: -20px;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-image: url('static/rotating-border-tile.svg');
+  background-repeat: repeat-x;
+  background-size: 60px auto;
+  animation: scrollHorizontal 5s linear infinite;
+}
+
+/* Bottom border */
+.border-piece.bottom {
+  bottom: -20px;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-image: url('static/rotating-border-tile.svg');
+  background-repeat: repeat-x;
+  background-size: 60px auto;
+  animation: scrollHorizontal 5s linear infinite reverse;
+}
+
+/* Left border */
+.border-piece.left {
+  top: 0;
+  left: -20px;
+  width: 60px;
+  height: 100%;
+  background-image: url('static/rotating-border-tile-vertical.svg');
+  background-repeat: repeat-y;
+  background-size: auto 60px;
+  animation: scrollVertical 5s linear infinite;
+}
+
+/* Right border */
+.border-piece.right {
+  top: 0;
+  right: -20px;
+  width: 60px;
+  height: 100%;
+  background-image: url('static/rotating-border-tile-vertical.svg');
+  background-repeat: repeat-y;
+  background-size: auto 60px;
+  animation: scrollVertical 5s linear infinite reverse;
+}
+
+/* Animations */
+@keyframes scrollHorizontal {
+  0% { background-position-x: 0; }
+  100% { background-position-x: 60px; }
+}
+
+@keyframes scrollVertical {
+  0% { background-position-y: 0; }
+  100% { background-position-y: 60px; }
+}
+
+/* Animation */
+@keyframes borderRotate {
+  0% { background-position: 0 0; }
+  100% { background-position: 360px 360px; }
+}
         
         .solid{
             position: absolute;
@@ -496,6 +557,12 @@
     </style>
 </head>
 <body>
+    <div class="ornamental-border">
+        <div class="border-piece top"></div>
+        <div class="border-piece right"></div>
+        <div class="border-piece bottom"></div>
+        <div class="border-piece left"></div>
+      </div>
     <img src="static/Download RangRitiLogo-bg-removed-fixed.png" alt="Logo" class="logo" />
     <img src="static/modern-highdefinition-background-beautiful-background-wallpaper_636537-393691.avif" alt="" class="solid">
     <div class="mandala-container">
@@ -835,7 +902,7 @@
         }
         
         // Create petals continuously
-        setInterval(createFloatingPetal, 100);
+        setInterval(createFloatingPetal, 60);
         
         // Create initial batch of petals
         for (let i = 0; i < 30; i++) {
