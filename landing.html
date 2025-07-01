@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Sumana:wght@400;700&display=swap" rel="stylesheet">
+    <title>Indian Heritage Dynamic Background</title>
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #F5DEB3;
+            overflow: hidden;
+            height: 100vh;
+            position: relative;
+        }
+        
+        .mandala-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .floating-petal {
+            position: absolute;
+            animation: floatPetal 15s infinite linear;
+            opacity: 0;
+        }
+        
+        .flower-particle {
+            width: 40px;
+            height: 40px;
+            position: relative;
+        }
+        
+        .flower-particle::before,
+        .flower-particle::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-radius: 50% 20% 50% 20%;
+            top: 50%;
+            left: 50%;
+            transform-origin: 50% 80%;
+            box-shadow: inset 0 0 4px rgba(0,0,0,0.1);
+        }
+        
+        .flower-particle::before {
+            background: radial-gradient(ellipse at 30% 30%, #FF9933, #FF6600);
+            transform: translate(-50%, -50%) rotate(0deg);
+        }
+        
+        .flower-particle::after {
+            background: radial-gradient(ellipse at 30% 30%, #9B111E, #800000);
+            transform: translate(-50%, -50%) rotate(90deg);
+        }
+        
+        .flower-particle.marigold::before {
+            background: radial-gradient(ellipse at 30% 30%, #FF9933, #FFB347);
+        }
+        .flower-particle.marigold::after {
+            background: radial-gradient(ellipse at 30% 30%, #FFA500, #FF7F00);
+        }
+        
+        .flower-particle.rose::before {
+            background: radial-gradient(ellipse at 30% 30%, #9B111E, #DC143C);
+        }
+        .flower-particle.rose::after {
+            background: radial-gradient(ellipse at 30% 30%, #B22222, #8B0000);
+        }
+        
+        .flower-particle.jasmine::before {
+            background: radial-gradient(ellipse at 30% 30%, #F5F5DC, #FFFACD);
+            opacity: 0.9;
+        }
+        .flower-particle.jasmine::after {
+            background: radial-gradient(ellipse at 30% 30%, #FFFEF0, #FFF8DC);
+            opacity: 0.8;
+        }
+        
+        .flower-particle.lotus::before {
+            background: radial-gradient(ellipse at 30% 30%, #FFB6C1, #FF69B4);
+        }
+        .flower-particle.lotus::after {
+            background: radial-gradient(ellipse at 30% 30%, #DDA0DD, #DA70D6);
+        }
+        
+        /* Add center dot for flowers */
+        .flower-particle.marigold {
+            background: radial-gradient(circle at center, #8B4513 0%, #8B4513 20%, transparent 21%);
+        }
+        .flower-particle.rose {
+            background: radial-gradient(circle at center, #2F4F2F 0%, #2F4F2F 20%, transparent 21%);
+        }
+        .flower-particle.jasmine {
+            background: radial-gradient(circle at center, #DAA520 0%, #DAA520 20%, transparent 21%);
+        }
+        .flower-particle.lotus {
+            background: radial-gradient(circle at center, #FFD700 0%, #FFD700 20%, transparent 21%);
+        }
+        
+        @keyframes floatPetal {
+            0% {
+                transform: translateY(100vh) rotate(0deg) scale(0.3);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(-100px) rotate(720deg) scale(0.8);
+                opacity: 0;
+            }
+        }
+        
+        .logo {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 300px;
+        height: auto;
+        z-index: 100;
+    }
+
+        .mandala-large {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            opacity: 0.08;
+            animation: rotateSlow 60s infinite linear;
+        }
+        
+        .mandala-medium {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            opacity: 0.06;
+            animation: rotateReverse 45s infinite linear;
+        }
+        
+        .mandala-small {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            opacity: 0.04;
+            animation: rotateFast 30s infinite linear;
+        }
+
+        @keyframes rotateSlow {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        @keyframes rotateReverse {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(-360deg); }
+        }
+        
+        @keyframes rotateFast {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .paisley {
+            position: absolute;
+            width: 60px;
+            height: 100px;
+            opacity: 0.1;
+            animation: drift 20s infinite ease-in-out;
+        }
+        
+        .paisley-1 {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .paisley-2 {
+            top: 60%;
+            right: 15%;
+            animation-delay: 7s;
+        }
+        
+        .paisley-3 {
+            bottom: 25%;
+            left: 20%;
+            animation-delay: 14s;
+        }
+        
+        @keyframes drift {
+            0%, 100% { transform: translateX(0) translateY(0) rotate(0deg); }
+            25% { transform: translateX(30px) translateY(-20px) rotate(90deg); }
+            50% { transform: translateX(-15px) translateY(15px) rotate(180deg); }
+            75% { transform: translateX(25px) translateY(-10px) rotate(270deg); }
+        }
+        
+        .lotus-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(255, 153, 51, 0.02) 0%, transparent 30%),
+                radial-gradient(circle at 75% 25%, rgba(155, 17, 30, 0.02) 0%, transparent 30%),
+                radial-gradient(circle at 25% 75%, rgba(34, 139, 34, 0.02) 0%, transparent 30%),
+                radial-gradient(circle at 75% 75%, rgba(255, 153, 51, 0.02) 0%, transparent 30%);
+        }
+        
+        .traditional-border {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 20px solid transparent;
+            border-image: linear-gradient(45deg, 
+                rgba(255, 153, 51, 0.1), 
+                rgba(155, 17, 30, 0.1), 
+                rgba(34, 139, 34, 0.1), 
+                rgba(255, 153, 51, 0.1)
+            ) 1;
+            animation: borderGlow 8s infinite ease-in-out;
+        }
+        
+        .solid{
+            position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 150px;
+        height: auto;
+        z-index: 50;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
+        }
+    </style>
+</head>
+<body>
+    <img src="static/Download RangRitiLogo-bg-removed-fixed.png" alt="Logo" class="logo" />
+    <img src="static/modern-highdefinition-background-beautiful-background-wallpaper_636537-393691.avif" alt="" class="solid">
+    <div class="mandala-container">
+        <!-- Large central mandala -->
+        <svg class="mandala-large" viewBox="0 0 400 400">
+            <defs>
+                <radialGradient id="petalGrad" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+                    <stop offset="30%" style="stop-color:#FF9933;stop-opacity:0.9" />
+                    <stop offset="70%" style="stop-color:#9B111E;stop-opacity:0.7" />
+                    <stop offset="100%" style="stop-color:#228B22;stop-opacity:0.5" />
+                </radialGradient>
+                <radialGradient id="petalGrad2" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" style="stop-color:#9B111E;stop-opacity:1" />
+                    <stop offset="50%" style="stop-color:#DC143C;stop-opacity:0.8" />
+                    <stop offset="100%" style="stop-color:#8B0000;stop-opacity:0.6" />
+                </radialGradient>
+                <radialGradient id="petalGrad3" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" style="stop-color:#228B22;stop-opacity:1" />
+                    <stop offset="50%" style="stop-color:#32CD32;stop-opacity:0.8" />
+                    <stop offset="100%" style="stop-color:#006400;stop-opacity:0.6" />
+                </radialGradient>
+                <filter id="softGlow">
+                    <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                    <feMerge>
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+            </defs>
+            
+
+            
+            <!-- Outer ring of petals -->
+            <g transform="translate(200,200)" filter="url(#softGlow)">
+                <!-- 16 large petals with better shape -->
+                <g id="outerPetals">
+                    <path d="M0,-160 Q25,-135 15,-100 Q0,-110 -15,-100 Q-25,-135 0,-160" fill="url(#petalGrad)" stroke="#D4AF37" stroke-width="0.5" transform="rotate(0)"/>
+                    <path d="M0,-160 Q25,-135 15,-100 Q0,-110 -15,-100 Q-25,-135 0,-160" fill="url(#petalGrad)" stroke="#D4AF37" stroke-width="0.5" transform="rotate(22.5)"/>
+                    <path d="M0,-160 Q25,-135 15,-100 Q0,-110 -15,-100 Q-25,-135 0,-160" fill="url(#petalGrad)" stroke="#D4AF37" stroke-width="0.5" transform="rotate(45)"/>
+                    <path d="M0,-160 Q25,-135 15,-100 Q0,-110 -15,-100 Q-25,-135 0,-160" fill="url(#petalGrad)" stroke="#D4AF37" stroke-width="0.5" transform="rotate(67.5)"/>
+                    <path d="M0,-160 Q25,-135 15,-100 Q0,-110 -15,-100 Q-25,-135 0,-160" fill="url(#petalGrad)" stroke="#D4AF37" stroke-width="0.5" transform="rotate(90)"/>
+                    <path d="M0,-160 Q25,-135 15,-100 Q0,-110 -15,-100 Q-25,-135 0,-160" fill="url(#petalGrad)" stroke="#D4AF37" stroke-width="0.5" transform="rotate(112.5)"/>
+                    <path d="M0,-160 Q25,-135 15,-100 Q0,-110 -15,-100 Q-25,-135 0,-160" fill="url(#petalGrad)" stroke="#D4AF37" stroke-width="0.5" transform="rotate(135)"/>
+                    <path d="M0,-160 Q25,-135 15,-100 Q0,-110 -15,-100 Q-25,-135 0,-160" fill="url(#petalGrad)" stroke="#D4AF37" stroke-width="0.5" transform="rotate(157.5)"/>
+                    <path d="M0,-160 Q25,-135 15,-100 Q0,-110 -15,-100 Q-25,-135 0,-160" fill="url(#petalGrad)" stroke="#D4AF37" stroke-width="0.5" transform="rotate(180)"/>
+                    <path d="M0,-160 Q25,-135 15,-100 Q0,-110 -15,-100 Q-25,-135 0,-160" fill="url(#petalGrad)" stroke="#D4AF37" stroke-width="0.5" transform="rotate(202.5)"/>
+                    <path d="M0,-160 Q25,-135 15,-100 Q0,-110 -15,-100 Q-25,-135 0,-160" fill="url(#petalGrad)" stroke="#D4AF37" stroke-width="0.5" transform="rotate(225)"/>
+                    <path d="M0,-160 Q25,-135 15,-100 Q0,-110 -15,-100 Q-25,-135 0,-160" fill="url(#petalGrad)" stroke="#D4AF37" stroke-width="0.5" transform="rotate(247.5)"/>
+                    <path d="M0,-160 Q25,-135 15,-100 Q0,-110 -15,-100 Q-25,-135 0,-160" fill="url(#petalGrad)" stroke="#D4AF37" stroke-width="0.5" transform="rotate(270)"/>
+                    <path d="M0,-160 Q25,-135 15,-100 Q0,-110 -15,-100 Q-25,-135 0,-160" fill="url(#petalGrad)" stroke="#D4AF37" stroke-width="0.5" transform="rotate(292.5)"/>
+                    <path d="M0,-160 Q25,-135 15,-100 Q0,-110 -15,-100 Q-25,-135 0,-160" fill="url(#petalGrad)" stroke="#D4AF37" stroke-width="0.5" transform="rotate(315)"/>
+                    <path d="M0,-160 Q25,-135 15,-100 Q0,-110 -15,-100 Q-25,-135 0,-160" fill="url(#petalGrad)" stroke="#D4AF37" stroke-width="0.5" transform="rotate(337.5)"/>
+                </g>
+                
+                <!-- Middle ring with enhanced petals -->
+                <g id="middlePetals">
+                    <path d="M0,-110 Q18,-90 10,-70 Q0,-75 -10,-70 Q-18,-90 0,-110" fill="url(#petalGrad2)" stroke="#8B0000" stroke-width="0.3" transform="rotate(0)"/>
+                    <path d="M0,-110 Q18,-90 10,-70 Q0,-75 -10,-70 Q-18,-90 0,-110" fill="url(#petalGrad2)" stroke="#8B0000" stroke-width="0.3" transform="rotate(30)"/>
+                    <path d="M0,-110 Q18,-90 10,-70 Q0,-75 -10,-70 Q-18,-90 0,-110" fill="url(#petalGrad2)" stroke="#8B0000" stroke-width="0.3" transform="rotate(60)"/>
+                    <path d="M0,-110 Q18,-90 10,-70 Q0,-75 -10,-70 Q-18,-90 0,-110" fill="url(#petalGrad2)" stroke="#8B0000" stroke-width="0.3" transform="rotate(90)"/>
+                    <path d="M0,-110 Q18,-90 10,-70 Q0,-75 -10,-70 Q-18,-90 0,-110" fill="url(#petalGrad2)" stroke="#8B0000" stroke-width="0.3" transform="rotate(120)"/>
+                    <path d="M0,-110 Q18,-90 10,-70 Q0,-75 -10,-70 Q-18,-90 0,-110" fill="url(#petalGrad2)" stroke="#8B0000" stroke-width="0.3" transform="rotate(150)"/>
+                    <path d="M0,-110 Q18,-90 10,-70 Q0,-75 -10,-70 Q-18,-90 0,-110" fill="url(#petalGrad2)" stroke="#8B0000" stroke-width="0.3" transform="rotate(180)"/>
+                    <path d="M0,-110 Q18,-90 10,-70 Q0,-75 -10,-70 Q-18,-90 0,-110" fill="url(#petalGrad2)" stroke="#8B0000" stroke-width="0.3" transform="rotate(210)"/>
+                    <path d="M0,-110 Q18,-90 10,-70 Q0,-75 -10,-70 Q-18,-90 0,-110" fill="url(#petalGrad2)" stroke="#8B0000" stroke-width="0.3" transform="rotate(240)"/>
+                    <path d="M0,-110 Q18,-90 10,-70 Q0,-75 -10,-70 Q-18,-90 0,-110" fill="url(#petalGrad2)" stroke="#8B0000" stroke-width="0.3" transform="rotate(270)"/>
+                    <path d="M0,-110 Q18,-90 10,-70 Q0,-75 -10,-70 Q-18,-90 0,-110" fill="url(#petalGrad2)" stroke="#8B0000" stroke-width="0.3" transform="rotate(300)"/>
+                    <path d="M0,-110 Q18,-90 10,-70 Q0,-75 -10,-70 Q-18,-90 0,-110" fill="url(#petalGrad2)" stroke="#8B0000" stroke-width="0.3" transform="rotate(330)"/>
+                </g>
+                
+                <!-- Inner ring with detailed petals -->
+                <g id="innerPetals">
+                    <path d="M0,-55 Q12,-45 8,-35 Q0,-38 -8,-35 Q-12,-45 0,-55" fill="url(#petalGrad3)" stroke="#006400" stroke-width="0.2" transform="rotate(0)"/>
+                    <path d="M0,-55 Q12,-45 8,-35 Q0,-38 -8,-35 Q-12,-45 0,-55" fill="url(#petalGrad3)" stroke="#006400" stroke-width="0.2" transform="rotate(45)"/>
+                    <path d="M0,-55 Q12,-45 8,-35 Q0,-38 -8,-35 Q-12,-45 0,-55" fill="url(#petalGrad3)" stroke="#006400" stroke-width="0.2" transform="rotate(90)"/>
+                    <path d="M0,-55 Q12,-45 8,-35 Q0,-38 -8,-35 Q-12,-45 0,-55" fill="url(#petalGrad3)" stroke="#006400" stroke-width="0.2" transform="rotate(135)"/>
+                    <path d="M0,-55 Q12,-45 8,-35 Q0,-38 -8,-35 Q-12,-45 0,-55" fill="url(#petalGrad3)" stroke="#006400" stroke-width="0.2" transform="rotate(180)"/>
+                    <path d="M0,-55 Q12,-45 8,-35 Q0,-38 -8,-35 Q-12,-45 0,-55" fill="url(#petalGrad3)" stroke="#006400" stroke-width="0.2" transform="rotate(225)"/>
+                    <path d="M0,-55 Q12,-45 8,-35 Q0,-38 -8,-35 Q-12,-45 0,-55" fill="url(#petalGrad3)" stroke="#006400" stroke-width="0.2" transform="rotate(270)"/>
+                    <path d="M0,-55 Q12,-45 8,-35 Q0,-38 -8,-35 Q-12,-45 0,-55" fill="url(#petalGrad3)" stroke="#006400" stroke-width="0.2" transform="rotate(315)"/>
+                </g>
+                
+                <!-- Enhanced center with multiple layers -->
+                <circle cx="0" cy="0" r="25" fill="url(#petalGrad)" opacity="0.9" stroke="#D4AF37" stroke-width="1"/>
+                <circle cx="0" cy="0" r="18" fill="#F5DEB3" opacity="0.9" stroke="#FF9933" stroke-width="0.5"/>
+                <circle cx="0" cy="0" r="12" fill="#9B111E" opacity="1" stroke="#FFD700" stroke-width="0.3"/>
+                <circle cx="0" cy="0" r="6" fill="#FFD700" opacity="1"/>
+            </g>
+        </svg>
+        
+        <!-- Medium mandalas -->
+        <svg class="mandala-medium" style="top: 15%; left: 15%;" viewBox="0 0 200 200">
+            <g transform="translate(100,100)">
+                <path d="M0,-60 Q12,-45 0,-30 Q-12,-45 0,-60" fill="#FF9933" opacity="0.3" transform="rotate(0)"/>
+                <path d="M0,-60 Q12,-45 0,-30 Q-12,-45 0,-60" fill="#FF9933" opacity="0.3" transform="rotate(60)"/>
+                <path d="M0,-60 Q12,-45 0,-30 Q-12,-45 0,-60" fill="#FF9933" opacity="0.3" transform="rotate(120)"/>
+                <path d="M0,-60 Q12,-45 0,-30 Q-12,-45 0,-60" fill="#FF9933" opacity="0.3" transform="rotate(180)"/>
+                <path d="M0,-60 Q12,-45 0,-30 Q-12,-45 0,-60" fill="#FF9933" opacity="0.3" transform="rotate(240)"/>
+                <path d="M0,-60 Q12,-45 0,-30 Q-12,-45 0,-60" fill="#FF9933" opacity="0.3" transform="rotate(300)"/>
+                <circle cx="0" cy="0" r="15" fill="#9B111E" opacity="0.4"/>
+            </g>
+        </svg>
+        
+        <svg class="mandala-medium" style="top: 70%; right: 20%;" viewBox="0 0 200 200">
+            <g transform="translate(100,100)">
+                <path d="M0,-60 Q12,-45 0,-30 Q-12,-45 0,-60" fill="#228B22" opacity="0.3" transform="rotate(0)"/>
+                <path d="M0,-60 Q12,-45 0,-30 Q-12,-45 0,-60" fill="#228B22" opacity="0.3" transform="rotate(45)"/>
+                <path d="M0,-60 Q12,-45 0,-30 Q-12,-45 0,-60" fill="#228B22" opacity="0.3" transform="rotate(90)"/>
+                <path d="M0,-60 Q12,-45 0,-30 Q-12,-45 0,-60" fill="#228B22" opacity="0.3" transform="rotate(135)"/>
+                <path d="M0,-60 Q12,-45 0,-30 Q-12,-45 0,-60" fill="#228B22" opacity="0.3" transform="rotate(180)"/>
+                <path d="M0,-60 Q12,-45 0,-30 Q-12,-45 0,-60" fill="#228B22" opacity="0.3" transform="rotate(225)"/>
+                <path d="M0,-60 Q12,-45 0,-30 Q-12,-45 0,-60" fill="#228B22" opacity="0.3" transform="rotate(270)"/>
+                <path d="M0,-60 Q12,-45 0,-30 Q-12,-45 0,-60" fill="#228B22" opacity="0.3" transform="rotate(315)"/>
+                <circle cx="0" cy="0" r="15" fill="#FF9933" opacity="0.4"/>
+            </g>
+        </svg>
+        
+        <!-- Small mandalas -->
+        <svg class="mandala-small" style="top: 30%; right: 10%;" viewBox="0 0 100 100">
+            <g transform="translate(50,50)">
+                <path d="M0,-30 Q8,-22 0,-15 Q-8,-22 0,-30" fill="#9B111E" opacity="0.2" transform="rotate(0)"/>
+                <path d="M0,-30 Q8,-22 0,-15 Q-8,-22 0,-30" fill="#9B111E" opacity="0.2" transform="rotate(72)"/>
+                <path d="M0,-30 Q8,-22 0,-15 Q-8,-22 0,-30" fill="#9B111E" opacity="0.2" transform="rotate(144)"/>
+                <path d="M0,-30 Q8,-22 0,-15 Q-8,-22 0,-30" fill="#9B111E" opacity="0.2" transform="rotate(216)"/>
+                <path d="M0,-30 Q8,-22 0,-15 Q-8,-22 0,-30" fill="#9B111E" opacity="0.2" transform="rotate(288)"/>
+                <circle cx="0" cy="0" r="8" fill="#228B22" opacity="0.3"/>
+            </g>
+        </svg>
+        
+        <!-- Paisley patterns -->
+        <svg class="paisley paisley-1" viewBox="0 0 60 100">
+            <path d="M30,10 Q45,25 45,50 Q45,75 30,90 Q15,75 15,50 Q15,35 25,25 Q30,20 30,10 Z" 
+                  fill="#FF9933" opacity="0.15"/>
+            <path d="M25,20 Q35,30 35,45 Q35,60 25,70 Q20,65 20,50 Q20,40 25,35 Q25,30 25,20 Z" 
+                  fill="#9B111E" opacity="0.1"/>
+        </svg>
+        
+        <svg class="paisley paisley-2" viewBox="0 0 60 100">
+            <path d="M30,10 Q45,25 45,50 Q45,75 30,90 Q15,75 15,50 Q15,35 25,25 Q30,20 30,10 Z" 
+                  fill="#228B22" opacity="0.15"/>
+            <path d="M25,20 Q35,30 35,45 Q35,60 25,70 Q20,65 20,50 Q20,40 25,35 Q25,30 25,20 Z" 
+                  fill="#FF9933" opacity="0.1"/>
+        </svg>
+        
+        <svg class="paisley paisley-3" viewBox="0 0 60 100">
+            <path d="M30,10 Q45,25 45,50 Q45,75 30,90 Q15,75 15,50 Q15,35 25,25 Q30,20 30,10 Z" 
+                  fill="#9B111E" opacity="0.15"/>
+            <path d="M25,20 Q35,30 35,45 Q35,60 25,70 Q20,65 20,50 Q20,40 25,35 Q25,30 25,20 Z" 
+                  fill="#228B22" opacity="0.1"/>
+        </svg>
+        
+        <!-- Lotus overlay -->
+        <div class="lotus-overlay"></div>
+        
+        <!-- Traditional border -->
+        <div class="traditional-border"></div>
+    </div>
+
+    <script>
+        // Create floating petals
+        function createFloatingPetal() {
+            const petal = document.createElement('div');
+            petal.className = 'floating-petal';
+            
+            const flowerTypes = ['marigold', 'rose', 'jasmine', 'lotus'];
+            const randomType = flowerTypes[Math.floor(Math.random() * flowerTypes.length)];
+            
+            const flower = document.createElement('div');
+            flower.className = `flower-particle ${randomType}`;
+            
+            petal.appendChild(flower);
+            
+            // Random starting position
+            petal.style.left = Math.random() * 100 + '%';
+            petal.style.animationDelay = Math.random() * 3 + 's';
+            petal.style.animationDuration = (12 + Math.random() * 8) + 's';
+            
+            // Random size variation
+            const scale = 0.8 + Math.random() * 0.6;
+            flower.style.transform = `scale(${scale})`;
+            
+            document.querySelector('.mandala-container').appendChild(petal);
+            
+            // Remove petal after animation
+            setTimeout(() => {
+                if (petal.parentNode) {
+                    petal.parentNode.removeChild(petal);
+                }
+            }, 25000);
+        }
+        
+        // Create petals continuously
+        setInterval(createFloatingPetal, 600);
+        
+        // Create initial batch of petals
+        for (let i = 0; i < 15; i++) {
+            setTimeout(createFloatingPetal, i * 300);
+        }
+        
+        // Add subtle breathing effect to main mandala
+        const mainMandala = document.querySelector('.mandala-large');
+        let breatheScale = 1;
+        let breatheDirection = 1;
+        
+        setInterval(() => {
+            breatheScale += breatheDirection * 0.002;
+            if (breatheScale > 1.05) breatheDirection = -1;
+            if (breatheScale < 0.95) breatheDirection = 1;
+            
+            mainMandala.style.transform = `translate(-50%, -50%) scale(${breatheScale}) rotate(${Date.now() * 0.01}deg)`;
+        }, 50);
+        
+        // Parallax effect on scroll (if content is added later)
+        window.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            document.querySelectorAll('.paisley').forEach((paisley, index) => {
+                const speed = (index + 1) * 0.5;
+                paisley.style.transform = `translate(${mouseX * speed}px, ${mouseY * speed}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
