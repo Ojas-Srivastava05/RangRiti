@@ -117,6 +117,56 @@
         .flower-particle.lotus {
             background: radial-gradient(circle at center, #FFD700 0%, #FFD700 20%, transparent 21%);
         }
+
+        .flower-particle.hibiscus::before {
+  background: radial-gradient(ellipse at 30% 30%, #B22222, #FF2400);
+}
+.flower-particle.hibiscus::after {
+  background: radial-gradient(ellipse at 30% 30%, #8B0000, #990000);
+}
+.flower-particle.hibiscus {
+  background: radial-gradient(circle at center, #4B0000 0%, #4B0000 20%, transparent 21%);
+}
+
+.flower-particle.bougainvillea::before {
+  background: radial-gradient(ellipse at 30% 30%, #C71585, #FF1493);
+}
+.flower-particle.bougainvillea::after {
+  background: radial-gradient(ellipse at 30% 30%, #DB7093, #FF69B4);
+}
+.flower-particle.bougainvillea {
+  background: radial-gradient(circle at center, #800040 0%, #800040 20%, transparent 21%);
+}
+
+.flower-particle.tulsi::before {
+  background: radial-gradient(ellipse at 30% 30%, #A2C523, #6B8E23);
+}
+.flower-particle.tulsi::after {
+  background: radial-gradient(ellipse at 30% 30%, #556B2F, #3B5323);
+}
+.flower-particle.tulsi {
+  background: radial-gradient(circle at center, #3E4D1E 0%, #3E4D1E 20%, transparent 21%);
+}
+
+.flower-particle.tulsi::before {
+  background: radial-gradient(ellipse at 30% 30%, #A2C523, #6B8E23);
+}
+.flower-particle.tulsi::after {
+  background: radial-gradient(ellipse at 30% 30%, #556B2F, #3B5323);
+}
+.flower-particle.tulsi {
+  background: radial-gradient(circle at center, #3E4D1E 0%, #3E4D1E 20%, transparent 21%);
+}
+
+.flower-particle.midlotus::before {
+  background: radial-gradient(ellipse at 30% 30%, #483D8B, #6A5ACD);
+}
+.flower-particle.midlotus::after {
+  background: radial-gradient(ellipse at 30% 30%, #8A2BE2, #4B0082);
+}
+.flower-particle.midlotus {
+  background: radial-gradient(circle at center, #DAA520 0%, #DAA520 20%, transparent 21%);
+}
         
         @keyframes floatPetal {
             0% {
@@ -191,8 +241,11 @@
             position: absolute;
             width: 60px;
             height: 100px;
-            opacity: 0.1;
             animation: drift 20s infinite ease-in-out;
+            filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.08));
+            mix-blend-mode: multiply;
+            opacity: 0.6;
+
         }
         
         .paisley-1 {
@@ -204,14 +257,49 @@
         .paisley-2 {
             top: 60%;
             right: 15%;
-            animation-delay: 7s;
+            animation-delay: 0s;
         }
         
         .paisley-3 {
             bottom: 25%;
             left: 20%;
-            animation-delay: 14s;
+            animation-delay: 0s;
         }
+
+        .paisley-4 {
+  top: 40%;
+  left: 70%;
+  animation-delay: 0s;
+  transform: rotate(15deg);
+}
+
+.paisley-5 {
+  top: 10%;
+  right: 20%;
+  animation-delay: 0s;
+  transform: rotate(-10deg);
+}
+
+.paisley-6 {
+  bottom: 20%;
+  right: 25%;
+  animation-delay: 0s;
+  transform: rotate(8deg);
+}
+
+.paisley-7 {
+  top: 75%;
+  left: 5%;
+  animation-delay: 0s;
+  transform: rotate(-6deg);
+}
+
+.paisley-8 {
+  top: 35%;
+  right: 5%;
+  animation-delay: 0s;
+  transform: rotate(12deg);
+}
         
         @keyframes drift {
             0%, 100% { transform: translateX(0) translateY(0) rotate(0deg); }
@@ -278,131 +366,125 @@
         }
 
         .heritage-button {
-            position: absolute;
-            top: 65%;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 200;
-            padding: 0;
-            border: none;
-            background: transparent;
-            cursor: pointer;
-            font-family: 'Noto Sans Devanagari', 'Sumana', serif;
-            font-size: 22px;
-            font-weight: 600;
-            color: #FF9933;
-            text-shadow: 0 0 10px rgba(255, 153, 51, 0.3);
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            animation: pulseGlow 3s ease-in-out infinite;
-        }
-        
-        .heritage-button::before {
-            content: '';
-            position: absolute;
-            top: -12px;
-            left: -20px;
-            right: -20px;
-            bottom: -12px;
-            background: transparent;
-            border: 2px solid #FF9933;
-            border-radius: 50px;
-            opacity: 0.6;
-            transition: all 0.4s ease;
-            animation: rotateBorder 8s linear infinite;
-            background: linear-gradient(45deg, 
-                rgba(255, 153, 51, 0.05), 
-                rgba(155, 17, 30, 0.03), 
-                rgba(34, 139, 34, 0.03), 
-                rgba(255, 153, 51, 0.05));
-        }
-        
-        .heritage-button::after {
-            content: '';
-            position: absolute;
-            top: -8px;
-            left: -16px;
-            right: -16px;
-            bottom: -8px;
-            background: radial-gradient(circle, 
-                rgba(255, 153, 51, 0.1) 0%, 
-                rgba(155, 17, 30, 0.05) 30%, 
-                rgba(34, 139, 34, 0.05) 60%, 
-                transparent 100%);
-            border-radius: 45px;
-            opacity: 0;
-            transition: all 0.4s ease;
-            animation: floatShadow 4s ease-in-out infinite;
-        }
-        
-        .heritage-button:hover {
-            color: #9B111E;
-            text-shadow: 0 0 15px rgba(155, 17, 30, 0.5), 0 0 25px rgba(255, 153, 51, 0.3);
-            transform: translateX(-50%) translateY(-3px) scale(1.05);
-        }
-        
-        .heritage-button:hover::before {
-            border-color: #9B111E;
-            opacity: 1;
-            box-shadow: 
-                0 0 20px rgba(155, 17, 30, 0.3),
-                inset 0 0 20px rgba(255, 153, 51, 0.1);
-            animation: rotateBorder 4s linear infinite, expandBorder 0.4s ease forwards;
-        }
-        
-        .heritage-button:hover::after {
-            opacity: 1;
-            transform: scale(1.1);
-        }
-        
-        .heritage-button:active {
-            transform: translateX(-50%) translateY(-1px) scale(1.02);
-        }
-        
-        .heritage-button .button-text {
-            position: relative;
-            z-index: 10;
-            display: block;
-            padding: 12px 24px;
-            background: linear-gradient(135deg, 
-                rgba(255, 153, 51, 0.1) 0%, 
-                rgba(245, 222, 179, 0.2) 50%, 
-                rgba(255, 153, 51, 0.1) 100%);
-            border-radius: 30px;
-            backdrop-filter: blur(5px);
-            transition: all 0.3s ease;
-        }
-        
-        .heritage-button:hover .button-text {
-            background: linear-gradient(135deg, 
-                rgba(155, 17, 30, 0.15) 0%, 
-                rgba(245, 222, 179, 0.25) 50%, 
-                rgba(34, 139, 34, 0.1) 100%);
-        }
-        
-        @keyframes pulseGlow {
-            0%, 100% { 
-                text-shadow: 0 0 10px rgba(255, 153, 51, 0.3);
-            }
-            50% { 
-                text-shadow: 0 0 20px rgba(255, 153, 51, 0.5), 0 0 30px rgba(255, 153, 51, 0.3);
-            }
-        }
-        
-        @keyframes expandBorder {
-            0% { transform: scale(1) rotate(0deg); }
-            100% { transform: scale(1.05) rotate(0deg); }
-        }
-        
-        @keyframes floatShadow {
-            0%, 100% { 
-                transform: translateY(0px) scale(1);
-                opacity: 0;
-            }
-            50% { 
-                transform: translateY(-2px) scale(1.02);
-                opacity: 0.3;
-            }
-        }
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: 'Noto Sans Devanagari', 'Sumana', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #680404;
+  text-shadow: 0 0 8px rgba(255, 153, 51, 0.4);
+  transition: all 0.4s ease;
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+.heritage-button::before {
+  content: '';
+  position: absolute;
+  top: -14px;
+  left: -24px;
+  right: -24px;
+  bottom: -14px;
+  background: transparent;
+  border: 2px solid #680404;
+  border-radius: 60px;
+  opacity: 0.5;
+  box-shadow: 0 0 20px rgba(255, 153, 51, 0.15);
+  transition: all 0.4s ease;
+  z-index: 0;
+  animation: softGlow 5s ease-in-out infinite;
+}
+
+.heritage-button::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -16px;
+  right: -16px;
+  bottom: -8px;
+  background: radial-gradient(circle,
+      rgba(255, 153, 51, 0.05),
+      rgba(155, 17, 30, 0.05),
+      rgba(34, 139, 34, 0.05),
+      transparent);
+  border-radius: 45px;
+  opacity: 0.15;
+  z-index: 0;
+  transition: all 0.4s ease;
+  animation: floatShadow 4s ease-in-out infinite;
+}
+
+.heritage-button .button-text {
+  position: relative;
+  z-index: 2;
+  display: block;
+  padding: 14px 28px;
+  border-radius: 40px;
+  background: linear-gradient(135deg, 
+      rgba(255, 153, 51, 0.08), 
+      rgba(245, 222, 179, 0.2), 
+      rgba(255, 153, 51, 0.08));
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.heritage-button:hover {
+  transform: translateX(-50%) translateY(-3px) scale(1.05);
+  text-shadow: 0 0 14px rgba(255, 153, 51, 0.5);
+}
+
+.heritage-button:hover::before {
+  opacity: 0.8;
+  border-color: #680404;
+  box-shadow: 0 0 30px rgba(255, 153, 51, 0.25);
+}
+
+.heritage-button:hover .button-text {
+  background: linear-gradient(135deg, 
+      rgba(155, 17, 30, 0.08),
+      rgba(245, 222, 179, 0.25), 
+      rgba(34, 139, 34, 0.08));
+}
+
+.heritage-button:active {
+  transform: translateX(-50%) translateY(-1px) scale(1.02);
+}
+
+/* Animations */
+@keyframes pulseGlow {
+  0%, 100% {
+    text-shadow: 0 0 8px rgba(255, 153, 51, 0.4);
+  }
+  50% {
+    text-shadow: 0 0 16px rgba(255, 153, 51, 0.6);
+  }
+}
+
+@keyframes softGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 153, 51, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(255, 153, 51, 0.25);
+  }
+}
+
+@keyframes floatShadow {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.15;
+  }
+  50% {
+    transform: translateY(-3px) scale(1.02);
+    opacity: 0.3;
+  }
+} 
     </style>
 </head>
 <body>
@@ -544,25 +626,53 @@
         
         <!-- Paisley patterns -->
         <svg class="paisley paisley-1" viewBox="0 0 60 100">
-            <path d="M30,10 Q45,25 45,50 Q45,75 30,90 Q15,75 15,50 Q15,35 25,25 Q30,20 30,10 Z" 
-                  fill="#FF9933" opacity="0.15"/>
-            <path d="M25,20 Q35,30 35,45 Q35,60 25,70 Q20,65 20,50 Q20,40 25,35 Q25,30 25,20 Z" 
-                  fill="#9B111E" opacity="0.1"/>
-        </svg>
-        
-        <svg class="paisley paisley-2" viewBox="0 0 60 100">
-            <path d="M30,10 Q45,25 45,50 Q45,75 30,90 Q15,75 15,50 Q15,35 25,25 Q30,20 30,10 Z" 
-                  fill="#228B22" opacity="0.15"/>
-            <path d="M25,20 Q35,30 35,45 Q35,60 25,70 Q20,65 20,50 Q20,40 25,35 Q25,30 25,20 Z" 
-                  fill="#FF9933" opacity="0.1"/>
-        </svg>
-        
-        <svg class="paisley paisley-3" viewBox="0 0 60 100">
-            <path d="M30,10 Q45,25 45,50 Q45,75 30,90 Q15,75 15,50 Q15,35 25,25 Q30,20 30,10 Z" 
-                  fill="#9B111E" opacity="0.15"/>
-            <path d="M25,20 Q35,30 35,45 Q35,60 25,70 Q20,65 20,50 Q20,40 25,35 Q25,30 25,20 Z" 
-                  fill="#228B22" opacity="0.1"/>
-        </svg>
+            <path d="M30,10 Q45,25 45,50 Q45,75 30,90 Q15,75 15,50 Q15,35 25,25 Q30,20 30,10 Z"
+                  fill="#B8860B" opacity="0.3"/> <!-- Rich Gold -->
+            <path d="M25,20 Q35,30 35,45 Q35,60 25,70 Q20,65 20,50 Q20,40 25,35 Q25,30 25,20 Z"
+                  fill="#A9A9A9" opacity="0.2"/> <!-- Visible Silver -->
+          </svg>
+          <svg class="paisley paisley-2" viewBox="0 0 60 100">
+            <path d="M30,10 Q45,25 45,50 Q45,75 30,90 Q15,75 15,50 Q15,35 25,25 Q30,20 30,10 Z"
+                  fill="#B8860B" opacity="0.3"/> <!-- Rich Gold -->
+            <path d="M25,20 Q35,30 35,45 Q35,60 25,70 Q20,65 20,50 Q20,40 25,35 Q25,30 25,20 Z"
+                  fill="#A9A9A9" opacity="0.2"/> <!-- Visible Silver -->
+          </svg>
+          <svg class="paisley paisley-3" viewBox="0 0 60 100">
+            <path d="M30,10 Q45,25 45,50 Q45,75 30,90 Q15,75 15,50 Q15,35 25,25 Q30,20 30,10 Z"
+                  fill="#B8860B" opacity="0.3"/> <!-- Rich Gold -->
+            <path d="M25,20 Q35,30 35,45 Q35,60 25,70 Q20,65 20,50 Q20,40 25,35 Q25,30 25,20 Z"
+                  fill="#A9A9A9" opacity="0.2"/> <!-- Visible Silver -->
+          </svg>
+          <svg class="paisley paisley-4" viewBox="0 0 60 100">
+            <path d="M30,10 Q45,25 45,50 Q45,75 30,90 Q15,75 15,50 Q15,35 25,25 Q30,20 30,10 Z"
+                  fill="#B8860B" opacity="0.3"/> <!-- Rich Gold -->
+            <path d="M25,20 Q35,30 35,45 Q35,60 25,70 Q20,65 20,50 Q20,40 25,35 Q25,30 25,20 Z"
+                  fill="#A9A9A9" opacity="0.2"/> <!-- Visible Silver -->
+          </svg>
+          <svg class="paisley paisley-5" viewBox="0 0 60 100">
+            <path d="M30,10 Q45,25 45,50 Q45,75 30,90 Q15,75 15,50 Q15,35 25,25 Q30,20 30,10 Z"
+                  fill="#B8860B" opacity="0.3"/> <!-- Rich Gold -->
+            <path d="M25,20 Q35,30 35,45 Q35,60 25,70 Q20,65 20,50 Q20,40 25,35 Q25,30 25,20 Z"
+                  fill="#A9A9A9" opacity="0.2"/> <!-- Visible Silver -->
+          </svg>
+          <svg class="paisley paisley-6" viewBox="0 0 60 100">
+            <path d="M30,10 Q45,25 45,50 Q45,75 30,90 Q15,75 15,50 Q15,35 25,25 Q30,20 30,10 Z"
+                  fill="#B8860B" opacity="0.3"/> <!-- Rich Gold -->
+            <path d="M25,20 Q35,30 35,45 Q35,60 25,70 Q20,65 20,50 Q20,40 25,35 Q25,30 25,20 Z"
+                  fill="#A9A9A9" opacity="0.2"/> <!-- Visible Silver -->
+          </svg>
+          <svg class="paisley paisley-7" viewBox="0 0 60 100">
+            <path d="M30,10 Q45,25 45,50 Q45,75 30,90 Q15,75 15,50 Q15,35 25,25 Q30,20 30,10 Z"
+                  fill="#B8860B" opacity="0.3"/> <!-- Rich Gold -->
+            <path d="M25,20 Q35,30 35,45 Q35,60 25,70 Q20,65 20,50 Q20,40 25,35 Q25,30 25,20 Z"
+                  fill="#A9A9A9" opacity="0.2"/> <!-- Visible Silver -->
+          </svg>
+          <svg class="paisley paisley-8" viewBox="0 0 60 100">
+            <path d="M30,10 Q45,25 45,50 Q45,75 30,90 Q15,75 15,50 Q15,35 25,25 Q30,20 30,10 Z"
+                  fill="#B8860B" opacity="0.3"/> <!-- Rich Gold -->
+            <path d="M25,20 Q35,30 35,45 Q35,60 25,70 Q20,65 20,50 Q20,40 25,35 Q25,30 25,20 Z"
+                  fill="#A9A9A9" opacity="0.2"/> <!-- Visible Silver -->
+          </svg>
         
         <!-- Lotus overlay -->
         <div class="lotus-overlay"></div>
@@ -577,7 +687,7 @@
             const petal = document.createElement('div');
             petal.className = 'floating-petal';
             
-            const flowerTypes = ['marigold', 'rose', 'jasmine', 'lotus'];
+            const flowerTypes = ['marigold', 'rose', 'jasmine', 'lotus','hibiscus','champa','bougainvillea','tulsi','midlotus'];
             const randomType = flowerTypes[Math.floor(Math.random() * flowerTypes.length)];
             
             const flower = document.createElement('div');
@@ -601,14 +711,14 @@
                 if (petal.parentNode) {
                     petal.parentNode.removeChild(petal);
                 }
-            }, 25000);
+            }, 10000000);
         }
         
         // Create petals continuously
-        setInterval(createFloatingPetal, 600);
+        setInterval(createFloatingPetal, 30);
         
         // Create initial batch of petals
-        for (let i = 0; i < 15; i++) {
+        for (let i = 0; i < 30; i++) {
             setTimeout(createFloatingPetal, i * 300);
         }
         
