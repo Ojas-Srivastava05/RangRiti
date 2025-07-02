@@ -567,10 +567,10 @@
     <img src="static/modern-highdefinition-background-beautiful-background-wallpaper_636537-393691.avif" alt="" class="solid">
     <div class="mandala-container">
     
-        <a href="./public/index.html">
-          <button class="heritage-button">
-            <span class="button-text">विरासत का द्वार |</span>
-        </button></a>
+        
+      <a href="/public/index.html">
+        <button class="heritage-button button-text">विरासत का द्वार</button>
+      </a>
 
         
         <svg class="mandala-large" viewBox="0 0 400 400">
@@ -1781,20 +1781,136 @@ function showDoorOverlayAndOpen() {
   }, 1000); // slight delay for effect
 }
 
+function showTraditionalOverlayTransition() {
+  const overlay = document.createElement('div');
+  overlay.id = 'transition-overlay';
+  overlay.innerHTML = `
+    <div class="overlay-container">
+      <svg class="animated-mandala" viewBox="0 0 200 200">
+        <defs>
+          <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#FFD700" stop-opacity="0.8"/>
+            <stop offset="60%" stop-color="#FF9933" stop-opacity="0.3"/>
+            <stop offset="100%" stop-color="transparent" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <g transform="translate(100,100)">
+          <!-- Inner glowing circle -->
+          <circle r="16" fill="url(#centerGlow)">
+            <animate attributeName="r" values="10;16;10" dur="3s" repeatCount="indefinite" />
+          </circle>
+
+          <!-- Rotating petals -->
+          ${[...Array(12)].map((_, i) => `
+            <path d="M0,-50 Q10,-30 0,-20 Q-10,-30 0,-50 Z"
+              transform="rotate(${i * 30})"
+              fill="#FF9933"
+              stroke="#D4AF37"
+              stroke-width="0.4"
+              opacity="0.25">
+              <animateTransform attributeName="transform" type="rotate" values="${i * 30};${i * 30 + 360}" dur="15s" repeatCount="indefinite"/>
+            </path>
+          `).join('')}
+
+          <!-- Static ornamental ring -->
+          ${[...Array(24)].map((_, i) => `
+            <circle r="1.5" fill="#9B111E" cx="${Math.cos((i * 15) * Math.PI / 180) * 75}" cy="${Math.sin((i * 15) * Math.PI / 180) * 75}" />
+          `).join('')}
+        </g>
+      </svg>
+      <div class="lotus-outline"></div>
+      <div class="radiant-flare"></div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+
+  const style = document.createElement('style');
+  style.textContent = `
+    #transition-overlay {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at center, #F5DEB3 0%, #EDD5B7 40%, #F5DEB3 100%);
+      z-index: 99999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeOutOverlay 1.4s ease-in-out 1.4s forwards;
+    }
+
+    .overlay-container {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      animation: scaleUp 1.2s ease-in-out;
+    }
+
+    .animated-mandala {
+      width: 100%;
+      height: 100%;
+    }
+
+    .lotus-outline {
+      position: absolute;
+      inset: 0;
+      border: 3px double rgba(155, 17, 30, 0.3);
+      border-radius: 50%;
+      animation: pulseRing 3s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .radiant-flare {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 153, 51, 0.2), transparent 70%);
+      animation: flickerGlow 2.8s ease-in-out infinite;
+    }
+
+    @keyframes fadeOutOverlay {
+      to { opacity: 0; pointer-events: none; }
+    }
+
+    @keyframes scaleUp {
+      0% { transform: scale(0.7); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes pulseRing {
+      0%, 100% { transform: scale(1); opacity: 0.4; }
+      50% { transform: scale(1.08); opacity: 0.6; }
+    }
+
+    @keyframes flickerGlow {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.5; }
+    }
+  `;
+  document.head.appendChild(style);
+
+  setTimeout(() => {
+    overlay.remove();
+    style.remove();
+  }, 3000);
+}
+
+// Call this on button click after door animation
 // Attach to button
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const btn = document.querySelector('.heritage-button');
   if (btn) {
-    btn.addEventListener('click', function(e) {
+    btn.addEventListener('click', function (e) {
       e.preventDefault();
-      showDoorOverlayAndOpen();
-      // After animation, go to link if inside <a>
+
+      // Trigger animation
+      showTraditionalOverlayTransition();
+
+      // Redirect after animation
       const link = btn.closest('a');
       setTimeout(() => {
         if (link && link.href) {
           window.location.href = link.href;
         }
-      }, 2300); // 1.5s open + 0.7s fade
+      }, 2300);
     });
   }
 });
