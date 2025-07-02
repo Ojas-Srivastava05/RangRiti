@@ -567,9 +567,10 @@
     <img src="static/modern-highdefinition-background-beautiful-background-wallpaper_636537-393691.avif" alt="" class="solid">
     <div class="mandala-container">
     
-        <button class="heritage-button">
+        <a href="other_page.html">
+          <button class="heritage-button">
             <span class="button-text">विरासत का द्वार |</span>
-        </button>
+        </button></a>
 
         
         <svg class="mandala-large" viewBox="0 0 400 400">
@@ -868,6 +869,93 @@
         <div class="traditional-border"></div>
     </div>
 
+    <!-- Opening Door Overlay -->
+<div id="door-overlay">
+  <div class="door left-door"></div>
+  <div class="door right-door"></div>
+  <div class="door-glow"></div>
+</div>
+<!-- Door Animation Styles and Script -->
+<style>
+  #door-overlay {
+    position: fixed;
+    z-index: 99999;
+    inset: 0;
+    background: linear-gradient(135deg, #F5DEB3 0%, #F0E6D2 25%, #F5DEB3 50%, #EDD5B7 75%, #F5DEB3 100%);
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+    overflow: hidden;
+    transition: opacity 0.7s cubic-bezier(.77,0,.18,1);
+  }
+  #door-overlay .door {
+    flex: 1 1 0;
+    background: linear-gradient(135deg, #FFD700 0%, #FF9933 60%, #9B111E 100%);
+    box-shadow: 0 0 40px 0 rgba(155,17,30,0.10) inset, 0 0 60px 0 rgba(255,153,51,0.08) inset;
+    border: none;
+    will-change: transform;
+    transition: transform 1.4s cubic-bezier(.77,0,.18,1);
+    position: relative;
+  }
+  #door-overlay .left-door {
+    border-right: 2px solid #D4AF37;
+    box-shadow: 8px 0 24px -8px #FFD70044 inset;
+    transform-origin: left center;
+    transform: perspective(1200px) rotateY(0deg);
+    border-top-left-radius: 24px;
+    border-bottom-left-radius: 24px;
+  }
+  #door-overlay .right-door {
+    border-left: 2px solid #D4AF37;
+    box-shadow: -8px 0 24px -8px #FFD70044 inset;
+    transform-origin: right center;
+    transform: perspective(1200px) rotateY(0deg);
+    border-top-right-radius: 24px;
+    border-bottom-right-radius: 24px;
+  }
+  #door-overlay .door-glow {
+    position: absolute;
+    left: 50%; top: 0; bottom: 0; width: 60px;
+    transform: translateX(-50%);
+    background: radial-gradient(ellipse at center, #fffbe6 0%, #FFD70044 60%, transparent 100%);
+    opacity: 0.7;
+    pointer-events: none;
+    filter: blur(6px);
+    z-index: 2;
+    transition: opacity 1.2s cubic-bezier(.77,0,.18,1);
+  }
+  #door-overlay.open .left-door {
+    transform: perspective(1200px) rotateY(-100deg);
+  }
+  #door-overlay.open .right-door {
+    transform: perspective(1200px) rotateY(100deg);
+  }
+  #door-overlay.open .door-glow {
+    opacity: 0;
+  }
+  #door-overlay.fade-out {
+    opacity: 0;
+    pointer-events: none;
+  }
+</style>
+<script>
+  // Wait for everything to load
+  window.addEventListener('load', function() {
+    const overlay = document.getElementById('door-overlay');
+    // Start door opening after a short delay for effect
+    setTimeout(() => {
+      overlay.classList.add('open');
+      // Fade out overlay after doors finish opening
+      setTimeout(() => {
+        overlay.classList.add('fade-out');
+        // Remove from DOM after fade
+        setTimeout(() => {
+          overlay.parentNode && overlay.parentNode.removeChild(overlay);
+        }, 700);
+      }, 1500); // match door open transition
+    }, 400); // initial pause before opening
+  });
+</script>
     <script>
         // Create floating petals
         function createFloatingPetal() {
@@ -933,5 +1021,118 @@
             });
         });
     </script>
+    <!-- Door Animation Overlay: Only on Button Click -->
+<script>
+function showDoorOverlayAndOpen() {
+  // Prevent multiple overlays
+  if (document.getElementById('door-overlay')) return;
+
+  // Create overlay HTML
+  const overlay = document.createElement('div');
+  overlay.id = 'door-overlay';
+  overlay.innerHTML = `
+    <div class="door left-door"></div>
+    <div class="door right-door"></div>
+    <div class="door-glow"></div>
+  `;
+  document.body.appendChild(overlay);
+
+  // Add styles
+  const style = document.createElement('style');
+  style.textContent = `
+    #door-overlay {
+      position: fixed;
+      z-index: 99999;
+      inset: 0;
+      background: linear-gradient(135deg, #F5DEB3 0%, #F0E6D2 25%, #F5DEB3 50%, #EDD5B7 75%, #F5DEB3 100%);
+      display: flex;
+      align-items: stretch;
+      justify-content: stretch;
+      overflow: hidden;
+      transition: opacity 0.7s cubic-bezier(.77,0,.18,1);
+    }
+    #door-overlay .door {
+      flex: 1 1 0;
+      background: linear-gradient(135deg, #FFD700 0%, #FF9933 60%, #9B111E 100%);
+      box-shadow: 0 0 40px 0 rgba(155,17,30,0.10) inset, 0 0 60px 0 rgba(255,153,51,0.08) inset;
+      border: none;
+      will-change: transform;
+      transition: transform 1.4s cubic-bezier(.77,0,.18,1);
+      position: relative;
+    }
+    #door-overlay .left-door {
+      border-right: 2px solid #D4AF37;
+      box-shadow: 8px 0 24px -8px #FFD70044 inset;
+      transform-origin: left center;
+      transform: perspective(1200px) rotateY(0deg);
+      border-top-left-radius: 24px;
+      border-bottom-left-radius: 24px;
+    }
+    #door-overlay .right-door {
+      border-left: 2px solid #D4AF37;
+      box-shadow: -8px 0 24px -8px #FFD70044 inset;
+      transform-origin: right center;
+      transform: perspective(1200px) rotateY(0deg);
+      border-top-right-radius: 24px;
+      border-bottom-right-radius: 24px;
+    }
+    #door-overlay .door-glow {
+      position: absolute;
+      left: 50%; top: 0; bottom: 0; width: 60px;
+      transform: translateX(-50%);
+      background: radial-gradient(ellipse at center, #fffbe6 0%, #FFD70044 60%, transparent 100%);
+      opacity: 0.7;
+      pointer-events: none;
+      filter: blur(6px);
+      z-index: 2;
+      transition: opacity 1.2s cubic-bezier(.77,0,.18,1);
+    }
+    #door-overlay.open .left-door {
+      transform: perspective(1200px) rotateY(-100deg);
+    }
+    #door-overlay.open .right-door {
+      transform: perspective(1200px) rotateY(100deg);
+    }
+    #door-overlay.open .door-glow {
+      opacity: 0;
+    }
+    #door-overlay.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Animate doors open, then fade out and remove overlay
+  setTimeout(() => {
+    overlay.classList.add('open');
+    setTimeout(() => {
+      overlay.classList.add('fade-out');
+      setTimeout(() => {
+        overlay.remove();
+        style.remove();
+      }, 700);
+    }, 1500);
+  }, 100); // slight delay for effect
+}
+
+// Attach to button
+document.addEventListener('DOMContentLoaded', function() {
+  const btn = document.querySelector('.heritage-button');
+  if (btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      showDoorOverlayAndOpen();
+      // After animation, go to link if inside <a>
+      const link = btn.closest('a');
+      setTimeout(() => {
+        if (link && link.href) {
+          window.location.href = link.href;
+        }
+      }, 2300); // 1.5s open + 0.7s fade
+    });
+  }
+});
+</script>
 </body>
 </html>
