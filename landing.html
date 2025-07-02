@@ -3,9 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Sumana:wght@400;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
     <title>RangRiti</title>
     <style>
+      
+  .elegant-hindi {
+    font-family: 'Tiro Devanagari Hindi', serif;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+  }
+
+
         
         * {
             margin: 0;
@@ -436,7 +446,7 @@
 
         .heritage-button {
   position: absolute;
-  top: 65%;
+  top: 60%;
   left: 50%;
   transform: translateX(-50%);
   z-index: 200;
@@ -445,11 +455,14 @@
   background: transparent;
   cursor: pointer;
   font-family: 'Noto Sans Devanagari', 'Sumana', serif;
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 700;
-  color: #680404;
-  text-shadow: 0 0 8px rgba(255, 153, 51, 0.4);
-  transition: all 0.4s ease;
+  color: #6B0F0F;
+  letter-spacing: 1px;
+  text-shadow:
+    1px 1px 2px #FFF8DC,
+    0 0 6px rgba(255, 153, 51, 0.35);
+  transition: all 0.35s ease-in-out;
   animation: pulseGlow 3s ease-in-out infinite;
 }
 
@@ -460,11 +473,11 @@
   left: -24px;
   right: -24px;
   bottom: -14px;
-  background: transparent;
-  border: 2px solid #680404;
   border-radius: 60px;
-  opacity: 0.5;
-  box-shadow: 0 0 20px rgba(255, 153, 51, 0.15);
+  border: 2px solid rgba(104, 4, 4, 0.4);
+  opacity: 0.3;
+  box-shadow: 0 0 18px rgba(255, 153, 51, 0.1);
+  backdrop-filter: blur(3px);
   transition: all 0.4s ease;
   z-index: 0;
   animation: softGlow 5s ease-in-out infinite;
@@ -473,19 +486,19 @@
 .heritage-button::after {
   content: '';
   position: absolute;
-  top: -8px;
-  left: -16px;
-  right: -16px;
-  bottom: -8px;
+  top: -10px;
+  left: -18px;
+  right: -18px;
+  bottom: -10px;
+  border-radius: 50px;
   background: radial-gradient(circle,
-      rgba(255, 153, 51, 0.05),
-      rgba(155, 17, 30, 0.05),
-      rgba(34, 139, 34, 0.05),
+      rgba(255, 153, 51, 0.06),
+      rgba(155, 17, 30, 0.04),
+      rgba(34, 139, 34, 0.03),
       transparent);
-  border-radius: 45px;
-  opacity: 0.15;
+  opacity: 0.12;
   z-index: 0;
-  transition: all 0.4s ease;
+  pointer-events: none;
   animation: floatShadow 4s ease-in-out infinite;
 }
 
@@ -499,7 +512,11 @@
       rgba(255, 153, 51, 0.08), 
       rgba(245, 222, 179, 0.2), 
       rgba(255, 153, 51, 0.08));
-  backdrop-filter: blur(5px);
+  /* Remove this to get rid of blur */
+  /* backdrop-filter: blur(5px); */
+  box-shadow:
+    0 0 8px rgba(212, 175, 55, 0.15),
+    inset 0 0 4px rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
 }
 
@@ -509,7 +526,7 @@
 }
 
 .heritage-button:hover::before {
-  opacity: 0.8;
+  opacity: 0.6;
   border-color: #680404;
   box-shadow: 0 0 30px rgba(255, 153, 51, 0.25);
 }
@@ -526,34 +543,34 @@
 }
 
 /* Animations */
-@keyframes pulseGlow {
-  0%, 100% {
-    text-shadow: 0 0 8px rgba(255, 153, 51, 0.4);
-  }
-  50% {
-    text-shadow: 0 0 16px rgba(255, 153, 51, 0.6);
-  }
-}
-
 @keyframes softGlow {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(255, 153, 51, 0.15);
+    box-shadow: 0 0 20px rgba(255, 153, 51, 0.2);
   }
   50% {
-    box-shadow: 0 0 35px rgba(255, 153, 51, 0.25);
+    box-shadow: 0 0 28px rgba(255, 153, 51, 0.35);
   }
 }
 
 @keyframes floatShadow {
   0%, 100% {
     transform: translateY(0px) scale(1);
-    opacity: 0.15;
+    opacity: 0.1;
   }
   50% {
-    transform: translateY(-3px) scale(1.02);
-    opacity: 0.3;
+    transform: translateY(-3px) scale(1.01);
+    opacity: 0.2;
   }
-} 
+}
+.sanskrit-subline {
+  margin-top: 8px;
+  font-size: 1.1rem;
+  font-family: 'Tiro Devanagari Sanskrit', serif;
+  color: #9B111E;
+  text-shadow: 0 1px 1px #f5deb3aa;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
     </style>
 </head>
 <body>
@@ -569,7 +586,8 @@
     
         
       <a href="/public/index.html">
-        <button class="heritage-button button-text">विरासत का द्वार</button>
+        <button class="heritage-button button-text elegant-hindi">रंगरीतौ तव स्वागतं |</button>
+       
       </a>
 
         
