@@ -871,8 +871,62 @@
 
     <!-- Opening Door Overlay -->
 <div id="door-overlay">
-  <div class="door left-door"></div>
-  <div class="door right-door"></div>
+  <div class="door left-door">
+    <div class="door-art">
+      <!-- Ornate border pattern -->
+      <div class="border-pattern top"></div>
+      <div class="border-pattern bottom"></div>
+      <div class="border-pattern left"></div>
+      <div class="border-pattern right"></div>
+      
+      <!-- Central medallion -->
+      <div class="central-medallion">
+        <div class="medallion-outer"></div>
+        <div class="medallion-inner"></div>
+        <div class="medallion-center"></div>
+      </div>
+      
+      <!-- Decorative corners -->
+      <div class="corner-ornament top-left"></div>
+      <div class="corner-ornament top-right"></div>
+      <div class="corner-ornament bottom-left"></div>
+      <div class="corner-ornament bottom-right"></div>
+      
+      <!-- Flowing vine patterns -->
+      <div class="vine-pattern vine-1"></div>
+      <div class="vine-pattern vine-2"></div>
+      <div class="vine-pattern vine-3"></div>
+      <div class="vine-pattern vine-4"></div>
+    </div>
+  </div>
+  <div class="door right-door">
+    <div class="door-art">
+      <!-- Ornate border pattern -->
+      <div class="border-pattern top"></div>
+      <div class="border-pattern bottom"></div>
+      <div class="border-pattern left"></div>
+      <div class="border-pattern right"></div>
+      
+      <!-- Central medallion -->
+      <div class="central-medallion">
+        <div class="medallion-outer"></div>
+        <div class="medallion-inner"></div>
+        <div class="medallion-center"></div>
+      </div>
+      
+      <!-- Decorative corners -->
+      <div class="corner-ornament top-left"></div>
+      <div class="corner-ornament top-right"></div>
+      <div class="corner-ornament bottom-left"></div>
+      <div class="corner-ornament bottom-right"></div>
+      
+      <!-- Flowing vine patterns -->
+      <div class="vine-pattern vine-1"></div>
+      <div class="vine-pattern vine-2"></div>
+      <div class="vine-pattern vine-3"></div>
+      <div class="vine-pattern vine-4"></div>
+    </div>
+  </div>
   <div class="door-glow"></div>
 </div>
 <!-- Door Animation Styles and Script -->
@@ -888,38 +942,42 @@
     overflow: hidden;
     transition: opacity 0.7s cubic-bezier(.77,0,.18,1);
   }
+  
   #door-overlay .door {
-  flex: 1 1 0;
-  background: linear-gradient(
-    135deg,
-    #F5DEB3 0%,
-    #EBCBA5 30%,
-    #E4B77C 60%,
-    #D6A96A 85%,
-    #C79A5B 100%
-  );
-  box-shadow: 0 0 40px 0 rgba(155,17,30,0.10) inset, 0 0 60px 0 rgba(255,153,51,0.08) inset;
-  border: none;
-  will-change: transform;
-  transition: transform 1.4s cubic-bezier(.77,0,.18,1);
-  position: relative;
-}
+    flex: 1 1 0;
+    background: linear-gradient(
+      135deg,
+      #F5DEB3 0%,
+      #EBCBA5 30%,
+      #E4B77C 60%,
+      #D6A96A 85%,
+      #C79A5B 100%
+    );
+    box-shadow: 0 0 40px 0 rgba(155,17,30,0.10) inset, 0 0 60px 0 rgba(255,153,51,0.08) inset;
+    border: none;
+    will-change: transform;
+    transition: transform 1.4s cubic-bezier(.77,0,.18,1);
+    position: relative;
+  }
+  
   #door-overlay .left-door {
     border-right: 2px solid #D4AF37;
     box-shadow: 8px 0 24px -8px #FFD70044 inset;
     transform-origin: left center;
-    transform: perspective(1200px) rotateY(0deg);
+    transform: translateX(0%);
     border-top-left-radius: 24px;
     border-bottom-left-radius: 24px;
   }
+  
   #door-overlay .right-door {
     border-left: 2px solid #D4AF37;
     box-shadow: -8px 0 24px -8px #FFD70044 inset;
     transform-origin: right center;
-    transform: perspective(1200px) rotateY(0deg);
+    transform: translateX(0%);
     border-top-right-radius: 24px;
     border-bottom-right-radius: 24px;
   }
+  
   #door-overlay .door-glow {
     position: absolute;
     left: 50%; top: 0; bottom: 0; width: 60px;
@@ -931,18 +989,285 @@
     z-index: 2;
     transition: opacity 1.2s cubic-bezier(.77,0,.18,1);
   }
+  
   #door-overlay.open .left-door {
-    transform: perspective(1200px) rotateY(-100deg);
+    transform: translateX(-100%);
   }
+  
   #door-overlay.open .right-door {
-    transform: perspective(1200px) rotateY(100deg);
+    transform: translateX(100%);
   }
+  
   #door-overlay.open .door-glow {
     opacity: 0;
   }
+  
   #door-overlay.fade-out {
     opacity: 0;
     pointer-events: none;
+  }
+
+  /* Traditional Art Patterns */
+  .door-art {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  /* Ornate Border Patterns */
+  .border-pattern {
+    position: absolute;
+    background: repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 8px,
+      rgba(212, 175, 55, 0.6) 8px,
+      rgba(212, 175, 55, 0.6) 12px,
+      transparent 12px,
+      transparent 20px,
+      rgba(212, 175, 55, 0.4) 20px,
+      rgba(212, 175, 55, 0.4) 24px
+    );
+  }
+
+  .border-pattern.top {
+    top: 20px;
+    left: 30px;
+    right: 30px;
+    height: 8px;
+    border-radius: 4px;
+  }
+
+  .border-pattern.bottom {
+    bottom: 20px;
+    left: 30px;
+    right: 30px;
+    height: 8px;
+    border-radius: 4px;
+  }
+
+  .border-pattern.left {
+    left: 20px;
+    top: 40px;
+    bottom: 40px;
+    width: 8px;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 8px,
+      rgba(212, 175, 55, 0.6) 8px,
+      rgba(212, 175, 55, 0.6) 12px,
+      transparent 12px,
+      transparent 20px,
+      rgba(212, 175, 55, 0.4) 20px,
+      rgba(212, 175, 55, 0.4) 24px
+    );
+    border-radius: 4px;
+  }
+
+  .border-pattern.right {
+    right: 20px;
+    top: 40px;
+    bottom: 40px;
+    width: 8px;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 8px,
+      rgba(212, 175, 55, 0.6) 8px,
+      rgba(212, 175, 55, 0.6) 12px,
+      transparent 12px,
+      transparent 20px,
+      rgba(212, 175, 55, 0.4) 20px,
+      rgba(212, 175, 55, 0.4) 24px
+    );
+    border-radius: 4px;
+  }
+
+  /* Central Medallion */
+  .central-medallion {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
+  }
+
+  .medallion-outer {
+    position: absolute;
+    inset: 0;
+    border: 3px solid rgba(212, 175, 55, 0.7);
+    border-radius: 50%;
+    background: radial-gradient(circle, transparent 30%, rgba(212, 175, 55, 0.1) 70%);
+  }
+
+  .medallion-inner {
+    position: absolute;
+    inset: 15px;
+    border: 2px solid rgba(212, 175, 55, 0.5);
+    border-radius: 50%;
+    background: repeating-conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      rgba(212, 175, 55, 0.2) 45deg,
+      transparent 90deg
+    );
+  }
+
+  .medallion-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgba(212, 175, 55, 0.8);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.3) 0%, transparent 70%);
+  }
+
+  /* Corner Ornaments */
+  .corner-ornament {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(212, 175, 55, 0.6) 0%,
+      rgba(212, 175, 55, 0.3) 50%,
+      transparent 100%
+    );
+    border: 1px solid rgba(212, 175, 55, 0.4);
+  }
+
+  .corner-ornament.top-left {
+    top: 40px;
+    left: 40px;
+    border-radius: 0 0 100% 0;
+    background: radial-gradient(
+      ellipse at bottom right,
+      rgba(212, 175, 55, 0.6) 0%,
+      rgba(212, 175, 55, 0.3) 50%,
+      transparent 100%
+    );
+  }
+
+  .corner-ornament.top-right {
+    top: 40px;
+    right: 40px;
+    border-radius: 0 0 0 100%;
+    background: radial-gradient(
+      ellipse at bottom left,
+      rgba(212, 175, 55, 0.6) 0%,
+      rgba(212, 175, 55, 0.3) 50%,
+      transparent 100%
+    );
+  }
+
+  .corner-ornament.bottom-left {
+    bottom: 40px;
+    left: 40px;
+    border-radius: 0 100% 0 0;
+    background: radial-gradient(
+      ellipse at top right,
+      rgba(212, 175, 55, 0.6) 0%,
+      rgba(212, 175, 55, 0.3) 50%,
+      transparent 100%
+    );
+  }
+
+  .corner-ornament.bottom-right {
+    bottom: 40px;
+    right: 40px;
+    border-radius: 100% 0 0 0;
+    background: radial-gradient(
+      ellipse at top left,
+      rgba(212, 175, 55, 0.6) 0%,
+      rgba(212, 175, 55, 0.3) 50%,
+      transparent 100%
+    );
+  }
+
+  /* Flowing Vine Patterns */
+  .vine-pattern {
+    position: absolute;
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    background: linear-gradient(90deg, transparent 40%, rgba(212, 175, 55, 0.2) 50%, transparent 60%);
+  }
+
+  .vine-1 {
+    top: 25%;
+    left: 15%;
+    width: 70%;
+    height: 2px;
+    border-radius: 2px;
+    transform: rotate(-5deg);
+  }
+
+  .vine-2 {
+    top: 35%;
+    left: 20%;
+    width: 60%;
+    height: 2px;
+    border-radius: 2px;
+    transform: rotate(3deg);
+  }
+
+  .vine-3 {
+    top: 65%;
+    left: 18%;
+    width: 64%;
+    height: 2px;
+    border-radius: 2px;
+    transform: rotate(-2deg);
+  }
+
+  .vine-4 {
+    top: 75%;
+    left: 15%;
+    width: 70%;
+    height: 2px;
+    border-radius: 2px;
+    transform: rotate(4deg);
+  }
+
+  /* Add subtle animation to the art elements */
+  .central-medallion {
+    animation: gentle-pulse 4s ease-in-out infinite;
+  }
+
+  .vine-pattern {
+    animation: subtle-sway 6s ease-in-out infinite;
+  }
+
+  .vine-1 { animation-delay: 0s; }
+  .vine-2 { animation-delay: 1.5s; }
+  .vine-3 { animation-delay: 3s; }
+  .vine-4 { animation-delay: 4.5s; }
+
+  .corner-ornament {
+    animation: soft-glow 5s ease-in-out infinite;
+  }
+
+  .corner-ornament.top-left { animation-delay: 0s; }
+  .corner-ornament.top-right { animation-delay: 1.25s; }
+  .corner-ornament.bottom-left { animation-delay: 2.5s; }
+  .corner-ornament.bottom-right { animation-delay: 3.75s; }
+
+  @keyframes gentle-pulse {
+    0%, 100% { opacity: 0.8; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.02); }
+  }
+
+  @keyframes subtle-sway {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 0.9; }
+  }
+
+  @keyframes soft-glow {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
   }
 </style>
 <script>
