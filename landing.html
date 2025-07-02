@@ -889,14 +889,21 @@
     transition: opacity 0.7s cubic-bezier(.77,0,.18,1);
   }
   #door-overlay .door {
-    flex: 1 1 0;
-    background: linear-gradient(135deg, #FFD700 0%, #FF9933 60%, #9B111E 100%);
-    box-shadow: 0 0 40px 0 rgba(155,17,30,0.10) inset, 0 0 60px 0 rgba(255,153,51,0.08) inset;
-    border: none;
-    will-change: transform;
-    transition: transform 1.4s cubic-bezier(.77,0,.18,1);
-    position: relative;
-  }
+  flex: 1 1 0;
+  background: linear-gradient(
+    135deg,
+    #F5DEB3 0%,
+    #EBCBA5 30%,
+    #E4B77C 60%,
+    #D6A96A 85%,
+    #C79A5B 100%
+  );
+  box-shadow: 0 0 40px 0 rgba(155,17,30,0.10) inset, 0 0 60px 0 rgba(255,153,51,0.08) inset;
+  border: none;
+  will-change: transform;
+  transition: transform 1.4s cubic-bezier(.77,0,.18,1);
+  position: relative;
+}
   #door-overlay .left-door {
     border-right: 2px solid #D4AF37;
     box-shadow: 8px 0 24px -8px #FFD70044 inset;
