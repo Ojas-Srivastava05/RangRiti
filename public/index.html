@@ -242,6 +242,56 @@
             box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
         }
 
+        /* Dropdown styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: rgba(0, 0, 0, 0.9);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: 10px;
+    padding: 10px 0;
+    display: none;
+    flex-direction: column;
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    z-index: 1001;
+}
+
+.dropdown-item {
+    font-family: 'EB Garamond', serif;
+    color: #FAF3E0;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: block;
+    transition: all 0.3s ease;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.dropdown-item:hover {
+    background: rgba(255, 215, 0, 0.2);
+    color: var(--primary-gold);
+}
+
+.dropdown:hover .dropdown-menu {
+    display: flex;
+}
+
+.dropdown-arrow {
+    font-size: 0.8em;
+    margin-left: 5px;
+    display: inline-block; /* Ensure it's on the same line */
+}
+
         /* Gallery section */
         .gallery-section {
             padding: 100px 0;
@@ -662,7 +712,20 @@
         <button class="nav-btn">Artists</button>
         <button class="nav-btn">Workshops</button>
         <button class="nav-btn">Calendar</button>
-        <button class="nav-btn">Heritage</button>
+
+        <!-- Heritage Dropdown -->
+        <div class="dropdown">
+            <button class="nav-btn dropdown-toggle">
+                Heritage <span class="dropdown-arrow">&#9660;</span>
+            </button>
+            <div class="dropdown-menu">
+                <a href="#" class="dropdown-item">Traditional Painting Styles</a>
+                <a href="#" class="dropdown-item">Textile Arts</a>
+                <a href="#" class="dropdown-item">Performing Arts</a>
+                <a href="#" class="dropdown-item">Handicrafts & Sculpture</a>
+            </div>
+        </div>
+
         <button class="nav-btn">Connect</button>
     </nav>
 
