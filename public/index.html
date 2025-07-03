@@ -1,1 +1,720 @@
-Hello World!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RangRiti</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gold: #FFD700;
+            --deep-gold: #B8860B;
+            --rich-amber: #FFBF00;
+            --sandalwood: #C19A6B;
+            --deep-wood: #8B4513;
+            --midnight: #0A0A0A;
+            --charcoal: #1A1A1A;
+            --ivory: #FFFEF7;
+            --warm-white: #FAF9F6;
+            --crimson: #DC143C;
+            --emerald: #50C878;
+            --royal-blue: #4169E1;
+            --purple: #9932CC;
+        }
+
+        body {
+            font-family: 'EB Garamond', serif; /* Elegant and classic serif font */
+            background: linear-gradient(135deg, #4A443A 0%, #544D44 50%, #5E564D 100%);
+            color: var(--ivory);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Animated background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(245, 222, 179, 0.04) 0%, transparent 50%), /* Sandalwood Beige */
+                radial-gradient(circle at 80% 80%, rgba(139, 69, 19, 0.04) 0%, transparent 50%), /* Deep Wood */
+                radial-gradient(circle at 40% 60%, rgba(255, 215, 0, 0.03) 0%, transparent 50%); /* Primary Gold */
+            animation: backgroundShift 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { transform: translateX(0) translateY(0); }
+            25% { transform: translateX(10px) translateY(-10px); }
+            50% { transform: translateX(-10px) translateY(10px); }
+            75% { transform: translateX(10px) translateY(10px); }
+        }
+
+        /* Floating particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            animation: float 15s linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Main container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Header with parallax */
+        .header {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(45deg, transparent 30%, rgba(255, 215, 0, 0.1) 50%, transparent 70%),
+                linear-gradient(-45deg, transparent 30%, rgba(220, 20, 60, 0.08) 50%, transparent 70%);
+            animation: headerGlow 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes headerGlow {
+            0% { opacity: 0.3; transform: scale(1); }
+            100% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .main-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(4rem, 12vw, 10rem);
+            font-weight: 900;
+            background: linear-gradient(45deg, var(--primary-gold), var(--rich-amber), var(--primary-gold));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+            text-shadow: 0 0 50px rgba(255, 215, 0, 0.5);
+            margin-bottom: 2rem;
+            letter-spacing: 0.1em;
+        }
+
+        @keyframes titleGlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        .subtitle {
+            font-family: 'EB Garamond', serif;
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: var(--ivory);
+            margin-bottom: 1rem;
+            opacity: 0.9;
+            animation: fadeInUp 2s ease-out 0.5s both;
+        }
+
+        .heritage-quote {
+            font-family: 'EB Garamond', serif;
+            font-size: clamp(1rem, 2vw, 1.4rem);
+            font-style: italic;
+            color: var(--sandalwood);
+            margin-bottom: 3rem;
+            animation: fadeInUp 2s ease-out 1s both;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Navigation */
+        .nav-container {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            z-index: 1000;
+            animation: slideDown 1s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateX(-50%) translateY(-100px); opacity: 0; }
+            to { transform: translateX(-50%) translateY(0); opacity: 1; }
+        }
+
+        .nav-btn {
+            font-family: 'EB Garamond', serif;
+            background: transparent;
+            color: var(--ivory);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: navBtnFadeIn 1s ease-out forwards; /* Added animation */
+        }
+
+        @keyframes navBtnFadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .nav-btn:hover::before {
+            left: 100%;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Gallery section */
+        .gallery-section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 80px;
+            background: linear-gradient(45deg, var(--primary-gold), var(--ivory));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
+            animation: lineGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes lineGlow {
+            0% { box-shadow: 0 0 5px rgba(255, 215, 0, 0.5); }
+            100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }
+        }
+
+        /* Gallery grid */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-bottom: 100px;
+        }
+
+        .art-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .art-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                rgba(255, 215, 0, 0.1) 0%, 
+                transparent 50%, 
+                rgba(220, 20, 60, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .art-card:hover::before {
+            opacity: 1;
+        }
+
+        .art-card:hover {
+            transform: translateY(-20px) scale(1.02);
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.4),
+                0 0 100px rgba(255, 215, 0, 0.3);
+            border-color: var(--primary-gold);
+        }
+
+        .art-image {
+            width: 100%;
+            height: 280px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .art-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .art-card:hover .art-image img {
+            transform: scale(1.1);
+        }
+
+        /* Madhubani Animation */
+        .madhubani-animation {
+            background: linear-gradient(45deg, #FF6B6B, #FFD93D, #6BCF7F);
+            background-size: 200% 200%;
+            animation: madhubaniGlow 5s ease infinite;
+        }
+
+        @keyframes madhubaniGlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Pattachitra Animation */
+        .pattachitra-animation {
+            background: linear-gradient(45deg, #8B4513, #DAA520, #DC143C);
+            background-size: 300% 300%;
+            animation: pattachitraShift 8s ease infinite;
+        }
+
+        @keyframes pattachitraShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Kathakali Animation */
+        .kathakali-animation {
+            background: linear-gradient(45deg, #FF4500, #FFD700, #32CD32, #4169E1);
+            background-size: 400% 400%;
+            animation: kathakaliDance 12s ease infinite;
+        }
+
+        @keyframes kathakaliDance {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 100% 50%; }
+            50% { background-position: 0% 50%; }
+            75% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Gond Animation */
+        .gond-animation {
+            background: repeating-radial-gradient(circle at center,
+                rgba(255, 215, 0, 0.5) 0%,
+                rgba(255, 99, 71, 0.3) 10%,
+                transparent 20%
+            );
+            animation: gondPulse 6s linear infinite;
+        }
+
+        @keyframes gondPulse {
+            0% { background-size: 100%; }
+            100% { background-size: 150%; }
+        }
+
+        /* Chhau Animation */
+        .chhau-animation {
+            background: linear-gradient(45deg, #FFD700, #FF4500, #DC143C, #8B4513, #4B0082);
+            background-size: 500% 500%;
+            animation: chhauRotate 15s ease infinite;
+        }
+
+        @keyframes chhauRotate {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .art-image svg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .art-card:hover .art-image svg {
+            transform: scale(1.1);
+        }
+
+        .art-content {
+            padding: 30px;
+            position: relative;
+        }
+
+        .art-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, var(--primary-gold), var(--ivory));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .art-description {
+            font-family: 'EB Garamond', serif;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+        }
+
+        .art-region {
+            display: inline-block;
+            padding: 8px 16px;
+            background: linear-gradient(45deg, var(--primary-gold), var(--deep-gold));
+            color: var(--midnight);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Scroll animations */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 80px 0 40px;
+            margin-top: 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
+            animation: footerGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes footerGlow {
+            0% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
+            100% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.8); }
+        }
+
+        .footer-content {
+            text-align: center;
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .footer-nav a {
+            font-family: 'EB Garamond', serif;
+            color: var(--ivory);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 10px 0;
+        }
+
+        .footer-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--primary-gold);
+            transition: width 0.3s ease;
+        }
+
+        .footer-nav a:hover::after {
+            width: 100%;
+        }
+
+        .footer-nav a:hover {
+            color: var(--primary-gold);
+            transform: translateY(-2px);
+        }
+
+        .footer-text {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-style: italic;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .nav-container {
+                flex-wrap: wrap;
+                gap: 5px;
+                padding: 10px 15px;
+            }
+            
+            .nav-btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating particles -->
+    <div class="particles"></div>
+
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <button class="nav-btn">Artists</button>
+        <button class="nav-btn">Workshops</button>
+        <button class="nav-btn">Calendar</button>
+        <button class="nav-btn">Heritage</button>
+        <button class="nav-btn">Connect</button>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <h1 class="main-title">RangRiti</h1>
+            <p class="subtitle">भारतीय पारंपरिक कला धरोहर</p>
+            <p class="heritage-quote">"कला हमारी संस्कृति की आत्मा है - Art is the soul of our culture"</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Gallery Section -->
+        <section class="gallery-section">
+            <h2 class="section-title scroll-reveal">Sacred Art Forms</h2>
+            
+            <div class="gallery">
+                <div class="art-card scroll-reveal">
+                    <div class="art-image madhubani-image">
+                    </div>
+                </div>
+
+                <div class="art-card scroll-reveal">
+                    <div class="art-image pattachitra-image">
+                        <img src="path/to/pattachitra-image.jpg" alt="Pattachitra Art">
+                    </div>
+                    <div class="art-content">
+                        <h3 class="art-title">Pattachitra</h3>
+                        <p class="art-description">Ancient cloth scrolls telling epic tales of Lord Jagannath and Krishna, painted with natural pigments on handwoven canvas by master artisans.</p>
+                        <div class="art-region">Odisha • Puri</div>
+                    </div>
+                </div>
+
+                <div class="art-card scroll-reveal">
+                    <div class="art-image kathakali-image">
+                        <img src="path/to/kathakali-image.jpg" alt="Kathakali Art">
+                    </div>
+                    <div class="art-content">
+                        <h3 class="art-title">Kathakali</h3>
+                        <p class="art-description">Classical dance-drama where gods and demons come alive through elaborate masks, intricate movements, and centuries-old storytelling traditions.</p>
+                        <div class="art-region">Kerala • Malabar</div>
+                    </div>
+                </div>
+
+                <div class="art-card scroll-reveal">
+                    <div class="art-image gond-image">
+                        <img src="path/to/gond-image.jpg" alt="Gond Art">
+                    </div>
+                    <div class="art-content">
+                        <h3 class="art-title">Gond Tribal Art</h3>
+                        <p class="art-description">Indigenous forest art celebrating the sacred connection between humans and nature, painted with natural pigments and filled with spiritual symbols.</p>
+                        <div class="art-region">Madhya Pradesh • Tribal</div>
+                    </div>
+                </div>
+
+                <div class="art-card scroll-reveal">
+                    <div class="art-image chhau-image">
+                        <img src="path/to/chhau-image.jpg" alt="Chhau Dance">
+                    </div>
+                    <div class="art-content">
+                        <h3 class="art-title">Chhau Dance</h3>
+                        <p class="art-description">A martial arts-inspired dance form where performers wear elaborate masks to portray mythological characters in dynamic movements.</p>
+                        <div class="art-region">West Bengal • Purulia</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <nav class="footer-nav">
+                <a href="#">About</a>
+                <a href="#">Artists</a>
+                <a href="#">Workshops</a>
+                <a href="#">Calendar</a>
+                <a href="#">Heritage</a>
+                <a href="#">Connect</a>
+            </nav>
+            <p class="footer-text">&copy; 2024 Itihasya. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        /* Floating particles */
+        const particleColors = [
+            '#800000', // Deep Maroon
+            '#680404', // Wine
+            '#3B3B98', // Indigo
+            '#2C2C80', // Royal Blue
+            '#B22222', // Crimson Red
+            '#228B22', // Emerald Green
+            '#FF9933', // Saffron Orange
+            '#FF6F00', // Saffron Orange (alt)
+            '#FFD700', // Turmeric Yellow
+            '#F9A602'  // Turmeric Yellow (alt)
+        ];
+
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.animationDuration = Math.random() * 15 + 10 + 's';
+
+            // Randomly select a color from the array
+            const randomColor = particleColors[Math.floor(Math.random() * particleColors.length)];
+            particle.style.background = randomColor;
+
+            document.querySelector('.particles').appendChild(particle);
+
+            particle.addEventListener('animationend', () => {
+                particle.remove();
+            });
+        }
+
+        setInterval(createParticle, 30);
+
+        /* Scroll reveal with throttling */
+        let ticking = false;
+
+        function reveal() {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    var reveals = document.querySelectorAll(".scroll-reveal");
+                    for (let i = 0; i < reveals.length; i++) {
+                        var windowHeight = window.innerHeight;
+                        var elementTop = reveals[i].getBoundingClientRect().top;
+                        var elementVisible = 150;
+                        if (elementTop < windowHeight - elementVisible) {
+                            reveals[i].classList.add("revealed");
+                        } else {
+                            reveals[i].classList.remove("revealed");
+                        }
+                    }
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+
+        window.addEventListener("scroll", reveal, { passive: true });
+        reveal();
+    </script>
+</body>
+</html>
