@@ -564,6 +564,90 @@
                 font-size: 0.8rem;
             }
         }
+
+        /* Full Screen Cards Section */
+.full-screen-cards-section {
+    position: relative;
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    width: 100%;
+}
+
+.full-screen-card {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    scroll-snap-align: start;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: #FAF3E0;
+}
+
+.full-screen-card img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.full-screen-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 2;
+}
+
+.full-screen-card .card-content {
+    position: relative;
+    z-index: 3;
+    padding: 20px;
+    width: 40%;
+    margin-left: 5%;
+}
+
+.full-screen-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.full-screen-card p {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.explore-btn, .quiz-btn {
+    background: #D4AF37;
+    color: #4B1E10;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-right: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.explore-btn:hover, .quiz-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
     </style>
 </head>
 <body>
@@ -589,64 +673,45 @@
     </header>
 
     <div class="container">
-        <!-- Gallery Section -->
-        <section class="gallery-section">
-            <h2 class="section-title scroll-reveal">Sacred Art Forms</h2>
-            
-            <div class="gallery">
-                <div class="art-card scroll-reveal">
-                    <div class="art-image madhubani-image">
-                        <img src="path/to/madhubani-image.jpg" alt="Madhubani Art">
-                    </div>
-                    <div class="art-content">
-                        <h3 class="art-title">Madhubani</h3>
-                        <p class="art-description">Sacred folk art from Mithila, where women artists paint stories of gods and nature with fingers and twigs, creating vibrant worlds of divine beauty.</p>
-                        <div class="art-region">Bihar • Mithila</div>
-                    </div>
+        <!-- Full Screen Cards Section -->
+        <section class="full-screen-cards-section">
+            <div class="full-screen-card" id="painting-card">
+                <img src="path/to/painting-background.jpg" alt="Traditional Painting Styles">
+                <div class="card-content">
+                    <h2>Traditional Painting Styles</h2>
+                    <p>Explore the vibrant world of Indian paintings, from ancient murals to delicate miniatures.</p>
+                    <button class="explore-btn">Explore</button>
+                    <button class="quiz-btn">Quiz</button>
                 </div>
-
-                <div class="art-card scroll-reveal">
-                    <div class="art-image pattachitra-image">
-                        <img src="path/to/pattachitra-image.jpg" alt="Pattachitra Art">
-                    </div>
-                    <div class="art-content">
-                        <h3 class="art-title">Pattachitra</h3>
-                        <p class="art-description">Ancient cloth scrolls telling epic tales of Lord Jagannath and Krishna, painted with natural pigments on handwoven canvas by master artisans.</p>
-                        <div class="art-region">Odisha • Puri</div>
-                    </div>
+            </div>
+    
+            <div class="full-screen-card" id="textile-card">
+                <img src="path/to/textile-background.jpg" alt="Textile Arts and Embroidery">
+                <div class="card-content">
+                    <h2>Textile Arts and Embroidery</h2>
+                    <p>Discover the rich textures and intricate designs of Indian textiles and embroidery.</p>
+                    <button class="explore-btn">Explore</button>
+                    <button class="quiz-btn">Quiz</button>
                 </div>
-
-                <div class="art-card scroll-reveal">
-                    <div class="art-image kathakali-image">
-                        <img src="path/to/kathakali-image.jpg" alt="Kathakali Art">
-                    </div>
-                    <div class="art-content">
-                        <h3 class="art-title">Kathakali</h3>
-                        <p class="art-description">Classical dance-drama where gods and demons come alive through elaborate masks, intricate movements, and centuries-old storytelling traditions.</p>
-                        <div class="art-region">Kerala • Malabar</div>
-                    </div>
+            </div>
+    
+            <div class="full-screen-card" id="performing-arts-card">
+                <img src="path/to/performing-arts-background.jpg" alt="Performing Arts">
+                <div class="card-content">
+                    <h2>Performing Arts</h2>
+                    <p>Experience the dynamic energy of Indian dance, music, and theater traditions.</p>
+                    <button class="explore-btn">Explore</button>
+                    <button class="quiz-btn">Quiz</button>
                 </div>
-
-                <div class="art-card scroll-reveal">
-                    <div class="art-image gond-image">
-                        <img src="path/to/gond-image.jpg" alt="Gond Art">
-                    </div>
-                    <div class="art-content">
-                        <h3 class="art-title">Gond Tribal Art</h3>
-                        <p class="art-description">Indigenous forest art celebrating the sacred connection between humans and nature, painted with natural pigments and filled with spiritual symbols.</p>
-                        <div class="art-region">Madhya Pradesh • Tribal</div>
-                    </div>
-                </div>
-
-                <div class="art-card scroll-reveal">
-                    <div class="art-image chhau-image">
-                        <img src="path/to/chhau-image.jpg" alt="Chhau Dance">
-                    </div>
-                    <div class="art-content">
-                        <h3 class="art-title">Chhau Dance</h3>
-                        <p class="art-description">A martial arts-inspired dance form where performers wear elaborate masks to portray mythological characters in dynamic movements.</p>
-                        <div class="art-region">West Bengal • Purulia</div>
-                    </div>
+            </div>
+    
+            <div class="full-screen-card" id="handicrafts-card">
+                <img src="path/to/handicrafts-background.jpg" alt="Handicrafts and Sculpture">
+                <div class="card-content">
+                    <h2>Handicrafts and Sculpture</h2>
+                    <p>Admire the skill and artistry of Indian artisans in wood, metal, clay, and stone.</p>
+                    <button class="explore-btn">Explore</button>
+                    <button class="quiz-btn">Quiz</button>
                 </div>
             </div>
         </section>
