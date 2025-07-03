@@ -677,7 +677,7 @@
     <!-- Full Screen Cards Section -->
     <section class="full-screen-cards-section">
         <div class="full-screen-card" id="painting-card">
-            <img src="../static/TraditionalPaintingWithbgindex.png" alt="Traditional Painting Styles">
+            <img src="../static/herotraditionalpainting.png" alt="Traditional Painting Styles">
             <div class="card-content">
                 <h2>Traditional Painting Styles</h2>
                 <p>Explore the vibrant world of Indian paintings, from ancient murals to delicate miniatures.</p>
@@ -687,7 +687,7 @@
         </div>
 
         <div class="full-screen-card" id="textile-card">
-            <img src="path/to/textile-background.jpg" alt="Textile Arts and Embroidery">
+            <img src="../static/heroTextilearts.png" alt="Textile Arts and Embroidery">
             <div class="card-content">
                 <h2>Textile Arts and Embroidery</h2>
                 <p>Discover the rich textures and intricate designs of Indian textiles and embroidery.</p>
@@ -697,7 +697,7 @@
         </div>
 
         <div class="full-screen-card" id="performing-arts-card">
-            <img src="path/to/performing-arts-background.jpg" alt="Performing Arts">
+            <img src="../static/heroperformingarts.png" alt="Performing Arts">
             <div class="card-content">
                 <h2>Performing Arts</h2>
                 <p>Experience the dynamic energy of Indian dance, music, and theater traditions.</p>
@@ -707,7 +707,7 @@
         </div>
 
         <div class="full-screen-card" id="handicrafts-card">
-            <img src="path/to/handicrafts-background.jpg" alt="Handicrafts and Sculpture">
+            <img src="../static/herohandicrafts.png" alt="Handicrafts and Sculpture">
             <div class="card-content">
                 <h2>Handicrafts and Sculpture</h2>
                 <p>Admire the skill and artistry of Indian artisans in wood, metal, clay, and stone.</p>
@@ -793,37 +793,48 @@
         reveal();
 
         /* Scroll snap */
-        const cardSection = document.querySelector('.full-screen-cards-section');
         const cards = document.querySelectorAll('.full-screen-card');
+let snapTimeout = null;
 
-        function snapToCard() {
-            let closestCard = null;
-            let closestDistance = Infinity;
+function isSnapped(card) {
+    // Check if the card's top is at the top of the viewport (with a small tolerance)
+    const tolerance = 2;
+    return Math.abs(window.scrollY - card.offsetTop) < tolerance;
+}
 
-            cards.forEach(card => {
-                const cardTop = card.offsetTop;
-                const scrollPosition = window.scrollY || document.documentElement.scrollTop;
-                const distance = Math.abs(cardTop - scrollPosition);
+function snapToCard() {
+    // If already snapped to a card, do nothing
+    for (let i = 0; i < cards.length; i++) {
+        if (isSnapped(cards[i])) return;
+    }
 
-                if (distance < closestDistance) {
-                    closestDistance = distance;
-                    closestCard = card;
-                }
-            });
+    const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+    const viewportCenter = scrollPosition + window.innerHeight / 2;
+    let closestCardIndex = 0;
+    let minDistance = Infinity;
 
-            if (closestCard) {
-                window.scrollTo({
-                    top: closestCard.offsetTop,
-                    behavior: 'smooth'
-                });
-            }
+    for (let i = 0; i < cards.length; i++) {
+        const card = cards[i];
+        const cardTop = card.offsetTop;
+        const cardHeight = card.offsetHeight;
+        const cardCenter = cardTop + cardHeight / 2;
+        const distance = Math.abs(cardCenter - viewportCenter);
+        if (distance < minDistance) {
+            minDistance = distance;
+            closestCardIndex = i;
         }
+    }
 
-        let timeout;
-        window.addEventListener('scroll', () => {
-            clearTimeout(timeout);
-            timeout = setTimeout(snapToCard, 100);
-        });
+    window.scrollTo({
+        top: cards[closestCardIndex].offsetTop,
+        behavior: 'smooth'
+    });
+}
+
+window.addEventListener('scroll', () => {
+    if (snapTimeout) clearTimeout(snapTimeout);
+    snapTimeout = setTimeout(snapToCard, 120);
+});
     </script>
 </body>
 </html>
