@@ -35,6 +35,7 @@
     color: #4B1E10; /* Deep Brown for body text */
     overflow-x: hidden;
     scroll-behavior: smooth;
+    scroll-snap-type: y mandatory; /* Enable vertical scroll snapping */
 }
 
         /* Animated background */
@@ -91,9 +92,9 @@
 
         /* Main container */
         .container {
-            max-width: 1400px;
+            /* max-width: 1400px; */ /* Remove max-width */
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0; /* Remove padding */
             position: relative;
             z-index: 10;
         }
@@ -570,19 +571,20 @@
     position: relative;
     width: 100%;
     /* Remove height and overflow-y */
+    scroll-snap-type: y mandatory; /* Enable vertical scroll snapping */
 }
 
 .full-screen-card {
     position: relative;
     width: 100%;
     height: 100vh; /* Set height to viewport height */
-    /* Remove scroll-snap-align */
+    scroll-snap-align: start; /* Snap to the start of the card */
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: flex-start;
     color: #FAF3E0;
-    margin-bottom: 20px; /* Add some spacing between cards */
+    /* Remove margin-bottom */
 }
 
 .full-screen-card img {
@@ -789,6 +791,39 @@
 
         window.addEventListener("scroll", reveal, { passive: true });
         reveal();
+
+        /* Scroll snap */
+        const cardSection = document.querySelector('.full-screen-cards-section');
+        const cards = document.querySelectorAll('.full-screen-card');
+
+        function snapToCard() {
+            let closestCard = null;
+            let closestDistance = Infinity;
+
+            cards.forEach(card => {
+                const cardTop = card.offsetTop;
+                const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+                const distance = Math.abs(cardTop - scrollPosition);
+
+                if (distance < closestDistance) {
+                    closestDistance = distance;
+                    closestCard = card;
+                }
+            });
+
+            if (closestCard) {
+                window.scrollTo({
+                    top: closestCard.offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        let timeout;
+        window.addEventListener('scroll', () => {
+            clearTimeout(timeout);
+            timeout = setTimeout(snapToCard, 100);
+        });
     </script>
 </body>
 </html>
