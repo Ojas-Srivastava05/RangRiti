@@ -748,7 +748,7 @@
             <div class="card-content">
                 <h2>Traditional Painting Styles</h2>
                 <p>Explore the vibrant world of Indian paintings, from ancient murals to delicate miniatures.</p>
-                <button class="explore-btn">Explore</button>
+                <button class="explore-btn" onclick="window.location.href = ''">Explore</button>
                 <button class="quiz-btn">Quiz</button>
             </div>
         </div>
@@ -870,35 +870,35 @@ function snapToCard() {
     const windowHeight = window.innerHeight;
 
     // Iterate through cards to find the closest one
-    cards.forEach(card => {
-        const cardTop = card.offsetTop;
-        const cardBottom = cardTop + card.offsetHeight;
+//     cards.forEach(card => {
+//         const cardTop = card.offsetTop;
+//         const cardBottom = cardTop + card.offsetHeight;
 
-        // Check if the card is within the viewport
-        if (cardTop <= scrollPosition + windowHeight && cardBottom >= scrollPosition) {
-            const distance = Math.abs(cardTop + card.offsetHeight / 2 - (scrollPosition + windowHeight / 2));
+//         // Check if the card is within the viewport
+//         if (cardTop <= scrollPosition + windowHeight && cardBottom >= scrollPosition) {
+//             const distance = Math.abs(cardTop + card.offsetHeight / 2 - (scrollPosition + windowHeight / 2));
 
-            if (distance < closestDistance) {
-                closestDistance = distance;
-                closestCard = card;
-            }
-        }
-    });
+//             if (distance < closestDistance) {
+//                 closestDistance = distance;
+//                 closestCard = card;
+//             }
+//         }
+//     });
 
-    // Explicitly check if the 4th card is the closest
-    const fourthCard = cards[4];
-    if (fourthCard && scrollPosition + windowHeight >= fourthCard.offsetTop + fourthCard.offsetHeight / 2) {
-        closestCard = fourthCard;
-    }
+//     // Explicitly check if the 4th card is the closest
+//     const fourthCard = cards[4];
+//     if (fourthCard && scrollPosition + windowHeight >= fourthCard.offsetTop + fourthCard.offsetHeight / 2) {
+//         closestCard = fourthCard;
+//     }
 
-    // Snap to the closest card
-    if (closestCard) {
-        window.scrollTo({
-            top: closestCard.offsetTop,
-            behavior: 'smooth'
-        });
-    }
-}
+//     // Snap to the closest card
+//     if (closestCard) {
+//         window.scrollTo({
+//             top: closestCard.offsetTop,
+//             behavior: 'smooth'
+//         });
+//     }
+// }
 
 let timeout;
 window.addEventListener('scroll', () => {
