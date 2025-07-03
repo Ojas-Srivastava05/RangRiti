@@ -472,12 +472,14 @@
 
         /* Footer */
         .footer {
-            background: rgba(0, 0, 0, 0.9);
-            padding: 80px 0 40px;
-            margin-top: 100px;
-            position: relative;
-            overflow: hidden;
-        }
+    background: rgba(0, 0, 0, 0.9);
+    padding: 80px 0 40px;
+    /* margin-top: 100px; */ /* Remove margin-top */
+    position: relative;
+    overflow: hidden;
+    /* Add height to fill the remaining space */
+    height: calc(100vh - (4 * 100vh)); /* 100vh - (number of cards * card height) */
+}
 
         .footer::before {
             content: '';
@@ -819,7 +821,7 @@ function snapToCard() {
     });
 
     // Explicitly check if the 4th card is the closest
-    const fourthCard = cards[3];
+    const fourthCard = cards[4];
     if (fourthCard && scrollPosition + windowHeight >= fourthCard.offsetTop + fourthCard.offsetHeight / 2) {
         closestCard = fourthCard;
     }
