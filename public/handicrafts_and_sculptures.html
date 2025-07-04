@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performing Arts - Indian Traditional Art Museum</title>
+    <style>
+        /* Base Colors and Fonts */
+        :root {
+            --kathakali-green: #3B8B2A;
+            --kathakali-deep-green: #1A4314;
+            --kathakali-black: #1C1C1C;
+            --kathakali-red: #8B4513;
+            --kathakali-gold: #D4AF37;
+            --kathakali-yellow: #FFD54F;
+            --text-light: #F5F5F5;
+            --text-gold: #FFD700;
+            --crimson-red: #8B4513;
+            --face-yellow: #FFD54F;
+            --sacred-white: #F5F5F5;
+            --gold-ornate: #D4AF37;
+            --black-kohl: #1C1C1C;
+            --sandalwood-beige: #F5DEB3;
+            --text-color: #333;
+            --card-background: rgba(255, 255, 255, 0.85);
+            --hover-shadow: rgba(0, 0, 0, 0.3);
+            --border-radius: 8px;
+            --font-family-serif: 'Playfair Display', serif;
+            --font-family-sans: 'Roboto', sans-serif;
+            --card-gradient-1: linear-gradient(135deg, 
+                rgba(139, 69, 19, 0.95),
+                rgba(160, 82, 45, 0.98)
+            );
+            --card-gradient-2: linear-gradient(45deg, 
+                rgba(139, 69, 19, 0.95),
+                rgba(160, 82, 45, 0.98)
+            );
+            --card-border: linear-gradient(to right, #D4AF37, #FFD700, #D4AF37);
+            --description-font: 'EB Garamond', serif;
+            --gold-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+            --bg-gradient: linear-gradient(135deg,
+                var(--kathakali-black) 0%,
+                var(--kathakali-deep-green) 50%,
+                var(--kathakali-black) 100%
+            );
+            --kathakali-maroon: #8B4513;
+            --kathakali-deep-maroon: #A0522D;
+            /* Add these new color variables */
+            --sandalwood-light: #F5DEB3;
+            --sandalwood-medium: #DEB887;
+            --sandalwood-dark: #D2B48C;
+            --maroon-light: #8B4513;
+            --maroon-medium: #A0522D;
+            --maroon-dark: #6B4226;
+            --maroon-deep: #5C4033;
+            --gold-accent: rgba(212, 175, 55, 0.8);
+        }
+
+        /* Google Fonts Import */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-family-sans);
+            color: var(--text-color);
+            overflow-x: hidden;
+            background: transparent; /* Remove the previous background */
+        }
+        /* Footer */
+        .footer {
+            background: rgba(125, 74, 20, 0.9);
+            color: #d6c5a0;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            position:relative;
+        }
+
+        .footer::before {
+            content: '';
+            position:absolute;
+            top: 0;
+            bottom:0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #9d7716, transparent);
+        }
+        .pot-particle {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+    opacity: 0.6;
+    filter: drop-shadow(0 0 5px rgba(0,0,0,0.3));
+}
+
+
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: linear-gradient(135deg, 
+                var(--sandalwood-light) 0%,
+                var(--sandalwood-medium) 50%,
+                var(--sandalwood-dark) 100%
+            );
+            background-size: 400% 400%;
+            animation: gradientFlow 20s ease infinite;
+        }
+
+        @keyframes gradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .dance-figures-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .dance-figure {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            opacity: 0.15;
+            filter: drop-shadow(0 0 10px var(--kathakali-gold));
+            will-change: transform;
+        }
+
+        /* Add these dance figure styles */
+        .dance-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, var(--sandalwood-beige), var(--face-yellow), var(--gold-ornate));
+            background-size: 400% 400%;
+            animation: gradientFlow 20s ease infinite;
+        }
+
+        .dancer {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            opacity: 0.15;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.3));
+        }
+
+        /* Define specific positions and animations for each figure */
+        /* Main Content Wrapper */
+        .content {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+
+        /* Navigation */
+        .nav-container {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            backdrop-filter: blur(20px);
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            z-index: 1000;
+            animation: slideDown 1s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateX(-50%) translateY(-100px); opacity: 0; }
+            to { transform: translateX(-50%) translateY(0); opacity: 1; }
+        }
+
+        .nav-btn {
+    font-family: 'EB Garamond', serif;
+    background: transparent;
+    color: #000000; /* Light Ivory */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Soft shadow */
+    border: none;
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    animation: navBtnFadeIn 1s ease-out forwards; /* Added animation */
+}
+
+        @keyframes navBtnFadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .nav-btn:hover::before {
+            left: 100%;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Dropdown styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: rgba(0, 0, 0, 0.9);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: 10px;
+    padding: 10px 0;
+    display: none;
+    flex-direction: column;
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    z-index: 1001;
+}
+
+.dropdown-item {
+    font-family: 'EB Garamond', serif;
+    color: #FAF3E0;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: block;
+    transition: all 0.3s ease;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.dropdown-item:hover {
+    background: rgba(255, 215, 0, 0.2);
+    color: var(--primary-gold);
+}
+
+.dropdown:hover .dropdown-menu {
+    display: flex;
+}
+
+.dropdown-arrow {
+    font-size: 0.8em;
+    margin-left: 5px;
+    display: inline-block; /* Ensure it's on the same line */
+}
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(245, 222, 179, 0.0); /* More transparent */
+            margin-bottom: 30px;
+            margin-top: 100px; /* Add margin-top to avoid overlap with navbar */
+        }
+
+        .central-image {
+            max-width: 70%; /* Slightly smaller */
+            height: auto;
+            border-radius: var(--border-radius);
+            box-shadow: 0 8px 16px var(--hover-shadow);
+            margin-bottom: 20px;
+            border: 5px solid rgba(255, 255, 255, 0.5); /* More subtle frame */
+        }
+
+        .page-header h1 {
+            font-family: var(--font-family-serif);
+            font-size: 3.2em; /* Slightly larger */
+            color: #8B4513 ;
+            margin-top: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Stronger shadow */
+        }
+        
+
+        /* Arts Grid Layout */
+        .arts-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 600px); /* Match card width exactly */
+            gap: 80px;
+            justify-content: center;
+            padding: 50px 8%;
+            margin: 0 auto;
+            max-width: 1600px;
+        }
+
+        /* Art Card Styling */
+        .art-card {
+            background: linear-gradient(135deg, 
+                var(--maroon-dark) 0%,
+                var(--maroon-medium) 50%,
+                var(--maroon-deep) 100%
+            );
+            border: 1px solid var(--gold-accent);
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 1;
+            padding: 5px;  /* Changed from 3px */
+            height: 650px;  /* Increased from 600px */
+            width: 600px;   /* Reduced from 600px */
+            margin: 0; /* Remove margin auto */
+            justify-self: center; /* Center in grid cell */
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transform-origin: center;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .art-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg,
+                var(--kathakali-maroon),
+                var(--kathakali-deep-maroon)
+            );
+            opacity: 0.8;
+        }
+
+        .art-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg,
+                var(--kathakali-gold),
+                var(--text-gold)
+            );
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .art-card:nth-child(even) {
+            background: linear-gradient(135deg, 
+                var(--maroon-dark) 0%,
+                var(--maroon-medium) 50%,
+                var(--maroon-deep) 100%
+            );
+        }
+
+        .art-card img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            margin: 0;  /* Remove any margin */
+            display: block;  /* Remove any inline spacing */
+            transition: all 0.4s ease;
+        }
+
+        .art-card h2,
+        .art-card .short-description {
+            position: relative;
+            background: transparent;
+            margin: 0;
+            padding: 20px;
+            transition: all 0.4s ease;
+        }
+
+        .art-card .full-description,
+        .art-card:nth-child(even) .full-description {
+            background: linear-gradient(135deg,
+                rgba(139, 69, 19, 0.95),
+                rgba(107, 66, 38, 0.98)
+            );
+            color: rgba(255, 248, 220, 0.95); /* Light cream text for all cards */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Remove the different styling for even cards */
+        .art-card:nth-child(even) .full-description {
+            background: linear-gradient(135deg,
+                rgba(139, 69, 19, 0.95),
+                rgba(107, 66, 38, 0.98)
+            );
+            color: rgba(255, 248, 220, 0.95);
+        }
+
+        /* Ensure text is readable in the description */
+        .art-card .full-description p {
+            color: inherit;
+            text-shadow: inherit;
+        }
+
+        .art-card .full-description {
+            position: absolute;
+            top: 350px; /* Start after the image */
+            height: calc(100% - 350px); /* Take remaining space */
+            background: linear-gradient(135deg,
+                rgba(139, 69, 19, 0.95),
+                rgba(107, 66, 38, 0.98)
+            );
+            color: rgba(255, 248, 220, 0.95);
+            padding: 25px; /* Increased padding */
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(0.95); /* Less scaling */
+            transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease; /* Smoother transition */
+            border-radius: var(--border-radius);
+            text-align: left;
+            font-family: var(--description-font);
+            font-size: 1.25em; /* Increased font size */
+            line-height: 1.8;
+            letter-spacing: 0.3px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .art-card:nth-child(even) .full-description {
+            background: linear-gradient(135deg,
+                rgba(139, 69, 19, 0.95),
+                rgba(107, 66, 38, 0.98)
+            );
+            color: rgba(255, 248, 220, 0.95);
+        }
+
+        .art-card .full-description p {
+            margin: 0;
+            padding-top: 20px; /* More space */
+            text-align: justify;
+            text-shadow: none; /* Remove text shadow for better readability */
+        }
+
+        .art-card h2 {
+            font-family: var(--font-family-serif);
+            font-size: 2.2em; /* Increased font size */
+            font-weight: 700;
+            margin: 20px 15px 10px; /* Adjusted margins */
+            color: var(--kathakali-gold);
+            background: transparent;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: var(--kathakali-gold);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            position: relative; /* For animation positioning */
+            overflow: hidden; /* Clip the animation */
+            z-index: 2;
+        }
+
+        /* Add animation to the h2 background */
+        .art-card h2::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.4), transparent);
+            transition: left 0.75s ease-in-out;
+            z-index: -1; /* Place behind the text */
+        }
+
+        .art-card:hover h2::before {
+            left: 0; /* Move the gradient into view on hover */
+        }
+
+        .art-card .short-description {
+            font-family: var(--description-font);
+            font-size: 1.2em; /* Increased font size */
+            color: rgba(255, 248, 220, 0.9);
+            padding: 0 20px 20px; /* Wider padding */
+            line-height: 1.8;
+            letter-spacing: 0.3px;
+            flex-grow: 1;
+            font-weight: 500;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            background: transparent;
+        }
+
+        /* Hover Effects */
+        .art-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 
+                0 10px 20px rgba(155, 17, 30, 0.4),
+                0 6px 6px rgba(0, 0, 0, 0.3),
+                inset 0 0 10px rgba(212, 175, 55, 0.2);
+            border-color: var(--gold-accent);
+            background-color: rgba(255, 255, 255, 0.7); /* Almost fully opaque */
+        }
+
+        .art-card:hover img {
+            transform: scale(1.08); /* More zoom */
+        }
+
+        .art-card:hover .short-description,
+        .art-card:hover h2 {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        .art-card:hover .full-description {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+        }
+
+        .art-card::before,
+        .art-card::after {
+            content: none; /* Remove the decorative corners */
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 1200px) {
+            .arts-grid {
+                grid-template-columns: repeat(2, minmax(350px, 1fr));
+                gap: 60px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .arts-grid {
+                grid-template-columns: minmax(400px, 1fr);
+                gap: 50px;
+            }
+            .art-card img {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5em;
+            }
+            .arts-grid {
+                padding: 0 4%;
+            }
+            .central-image {
+                max-width: 90%;
+            }
+            .art-card {
+                min-height: auto;
+            }
+            .art-card .full-description {
+                padding: 20px;
+                font-size: 1.1em;
+            }
+            .nav-container{
+                flex-wrap: wrap;
+                width: 75vw;
+                top: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header {
+                padding: 30px 15px;
+            }
+            .page-header h1 {
+                font-size: 2em;
+            }
+            .art-card h2 {
+                font-size: 1.7em;
+            }
+            .art-card .short-description {
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 1400px) {
+            .arts-grid {
+                grid-template-columns: 600px; /* Single column */
+                gap: 60px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .arts-grid {
+                grid-template-columns: 1fr; /* Full width on small screens */
+                padding: 30px 20px;
+            }
+            
+            .art-card {
+                width: 100%;
+                height: auto;
+                min-height: 600px;
+            }
+        }
+
+        /* Specific Theme Colors */
+        .art-card[data-art="kathakali"] {
+            border-bottom: 6px solid var(--kathakali-green);
+        }
+        .art-card[data-art="kuchipudi"] {
+            border-bottom: 6px solid var(--gold-ornate);
+        }
+        .art-card[data-art="bharatanatyam"] {
+            border-bottom: 6px solid var(--crimson-red);
+        }
+        .art-card[data-art="odissi"] {
+            border-bottom: 6px solid var(--face-yellow);
+        }
+        .art-card[data-art="mohiniyattam"] {
+            border-bottom: 6px solid var(--sacred-white);
+        }
+        .art-card[data-art="yakshagana"] {
+            border-bottom: 6px solid var(--black-kohl);
+        }
+
+        /* Keyframe Animations */
+        @keyframes subtle-pan {
+            0% {
+                transform: translateX(-10%) translateY(-5%) scale(1.1);
+            }
+            50% {
+                transform: translateX(10%) translateY(5%) scale(1.2);
+            }
+            100% {
+                transform: translateX(-10%) translateY(-5%) scale(1.1);
+            }
+        }
+
+        @keyframes subtle-rotate {
+            0% {
+                transform: rotate(2deg) scale(1.1);
+            }
+            50% {
+                transform: rotate(-2deg) scale(1.2);
+            }
+            100% {
+                transform: rotate(2deg) scale(1.1);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes borderFlow {
+            0% { border-image-source: linear-gradient(45deg, var(--gold-ornate), transparent); }
+            50% { border-image-source: linear-gradient(180deg, var(--gold-ornate), transparent); }
+            100% { border-image-source: linear-gradient(225deg, var(--gold-ornate), transparent); }
+        }
+
+        /* Remove the existing dance-figure related styles and add these new styles */
+        .animated-bg {
+            background: linear-gradient(135deg, 
+                var(--sandalwood-light) 0%,
+                var(--sandalwood-medium) 50%,
+                var(--sandalwood-dark) 100%
+            );
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+        }
+
+        /* Add stars */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            background: var(--kathakali-gold);
+            border-radius: 50%;
+            animation: twinkle var(--twinkle-duration) infinite;
+        }
+
+        /* Generate 50 stars with different sizes and positions */
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+
+        /* Add flowing fabric effect */
+        .fabric {
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                rgba(210, 180, 140, 0.1) 0%,
+                rgba(245, 222, 179, 0.1) 10%,
+                rgba(210, 180, 140, 0.1) 20%
+            );
+            animation: fabricFlow 30s linear infinite;
+            z-index: -1;
+            transform-origin: center;
+        }
+
+        @keyframes fabricFlow {
+            0% {
+                transform: rotate(0deg) scale(1);
+            }
+            50% {
+                transform: rotate(180deg) scale(1.1);
+            }
+            100% {
+                transform: rotate(360deg) scale(1);
+            }
+        }
+
+        /* Remove all morph animations and add particle styles */
+        .particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: linear-gradient(135deg, var(--kathakali-gold), var(--text-gold));
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.3;
+        }
+
+        /* Add these flower particle styles */
+        .flower-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .flower-particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: radial-gradient(circle at 30% 30%,
+                var(--kathakali-gold) 0%,
+                rgba(212, 175, 55, 0.8) 50%,
+                rgba(255, 213, 79, 0.4) 100%
+            );
+            border-radius: 50%;
+            filter: blur(1px) drop-shadow(0 0 2px rgba(212, 175, 55, 0.3));
+        }
+
+        .flower-particle::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            border-radius: inherit;
+            transform: rotate(45deg);
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.8;
+            }
+            80% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translate(var(--moveX), var(--moveY)) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .enhanced-particle {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            filter: blur(1px);
+            mix-blend-mode: screen;
+        }
+
+        .particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" aria-hidden="true" focusable="false">
+        <defs>
+            <symbol id="bharatanatyam" viewBox="0 0 100 100">
+                <path d="M50,20 C40,10 30,15 25,25 C20,35 25,45 35,50 C45,55 55,45 60,35 C65,25 60,15 50,20 M35,60 L50,80 L65,60" />
+            </symbol>
+            <symbol id="kathakali" viewBox="0 0 100 100">
+                <path d="M50,15 C35,15 25,25 30,40 C35,55 45,60 50,60 C55,60 65,55 70,40 C75,25 65,15 50,15 M30,70 L50,90 L70,70" />
+            </symbol>
+            <symbol id="odissi" viewBox="0 0 100 100">
+                <path d="M45,20 C35,20 30,30 35,40 C40,50 50,55 60,50 C70,45 75,35 70,25 C65,15 55,20 45,20 M40,60 L55,80 L70,60" />
+            </symbol>
+        </defs>
+    </svg>
+    <div class="animated-bg"></div>
+    <div class="dance-background"></div>
+    <div class="dance-figures-container">
+        <div class="dance-figure"></div>
+        <div class="dance-figure"></div>
+        <div class="dance-figure"></div>
+        <div class="dance-figure"></div>
+        <div class="dance-figure"></div>
+        <div class="dance-figure"></div>
+        <div class="dance-figure"></div>
+        <div class="dance-figure"></div>
+    </div>
+    <nav class="nav-container">
+        <button class="nav-btn">Artists</button>
+        <button class="nav-btn">Workshops</button>
+        <button class="nav-btn">Calendar</button>
+
+        <!-- Heritage Dropdown -->
+        <div class="dropdown">
+            <button class="nav-btn dropdown-toggle">
+                Heritage <span class="dropdown-arrow">&#9660;</span>
+            </button>
+            <div class="dropdown-menu">
+                <a href="#" class="dropdown-item">Traditional Painting Styles</a>
+                <a href="#" class="dropdown-item">Textile Arts</a>
+                <a href="#" class="dropdown-item">Performing Arts</a>
+                <a href="#" class="dropdown-item">Handicrafts & Sculpture</a>
+            </div>
+        </div>
+
+        <button class="nav-btn">Connect</button>
+    </nav>
+
+    <div class="content">
+        <header class="page-header">
+            <img src="handicrafts&sculpturesmainimage.png" alt="Central Performing Arts Image" class="central-image">
+            <h1>The Beauty of Indian <br>Handicrafts and Sculptures</h1>
+        </header>
+
+        <main class="arts-grid">
+            <div class="art-card" data-art="kathakali">
+                <img src="terracotta-main.png" alt="Kathakali Performance">
+                <h2>Terracotta Art </h2>
+                <p class="short-description">Sculpted from river clay, terracotta art features divine figures, horses, and everyday scenes.</p>
+                <div class="full-description">
+                    <p>Terracotta art is one of India’s oldest forms of sculpture, molded from river clay and sun-baked or kiln-fired. It depicts deities, animals (especially horses), village life, and mythological scenes. Commonly seen in temples and tribal communities, this art form reflects a deep connection with nature and the earth. Bishnupur in West Bengal and Panchmura are notable centers of this craft.</p>
+                </div>
+            </div>
+
+            <div class="art-card" data-art="kuchipudi">
+                <img src="bidriware-main.png" alt="Kuchipudi Performance">
+                <h2>Bidriware</h2>
+                <p class="short-description">A regal craft of blackened metal inlaid with fine silver patterns, originally from Bidar.</p>
+                <div class="full-description">
+                    <p>Originating from Bidar, Bidriware is a unique metal craft made from a zinc-copper alloy, darkened through a traditional process and inlaid with pure silver. The motifs are influenced by Persian and Mughal designs—floral vines, jali patterns, and calligraphy. This regal art was once favored in royal courts and still exudes an aura of elegance and luxury. Its rich black-and-silver contrast gives it timeless appeal.</p>
+                </div>
+            </div>
+
+            <div class="art-card" data-art="bharatanatyam">
+                <img src="bluepottery-main.png" alt="Bharatanatyam Performance">
+                <h2>Blue Pottery </h2>
+                <p class="short-description">Known for its Persian-origin designs, this non-clay pottery is glazed in vibrant cobalt blue.</p>
+                <div class="full-description">
+                    <p>Blue Pottery is a non-clay ceramic craft known for its vivid blue glaze, derived from Persian and Central Asian styles. Unlike terracotta, it uses quartz and glass powder, making it delicate yet durable. Designs include floral patterns, birds, and geometric borders often painted in cobalt blue, turquoise, and white. Jaipur is the main hub for this art, blending Mughal aesthetics with Rajasthani tradition.</p>
+                </div>
+            </div>
+
+            <div class="art-card" data-art="odissi">
+                <img src="dhokra-main.png" alt="Odissi Performance">
+                <h2>Dhokra Art </h2>
+                <p class="short-description">Crafted by tribal artisans using the ancient lost-wax casting method in bronze and brass.</p>
+                <div class="full-description">
+                    <p>Dhokra is an ancient tribal art form based on the lost-wax casting technique, dating back over 4,000 years. Artisans create intricate brass or bronze sculptures of animals, human forms, ritual scenes, and ornaments. The rugged textures, coiled lines, and folk expressions give each piece a distinct ethnic identity. Practiced by nomadic tribes like the Ghantaras and Ojhas, it embodies raw creativity and heritage.</p>
+                </div>
+            </div>
+
+            <div class="art-card" data-art="mohiniyattam">
+                <img src="marbleinlay-main.png" alt="Mohiniyattam Performance">
+                <h2>Marble Inlay Work </h2>
+                <p class="short-description">A refined art form involving semi-precious stones inlaid into marble, seen in the Taj Mahal.</p>
+                <div class="full-description">
+                    <p>This refined craft involves embedding semi-precious stones like lapis lazuli, malachite, and carnelian into white marble surfaces. Seen most famously in the Taj Mahal, it reflects Mughal opulence and symmetry. Floral arabesques, vines, and geometric motifs are carved into marble and carefully filled with colorful stones. The art is highly labor-intensive and requires master precision, centered in Agra.</p>
+                </div>
+            </div>
+
+            <div class="art-card" data-art="yakshagana">
+                <img src="sandalwood-main.png" alt="Yakshagana Performance">
+                <h2>Sandalwood Carving</h2>
+                <p class="short-description">Exquisite hand-carving on fragrant sandalwood used for idols, boxes, and ornaments.</p>
+                <div class="full-description">
+                    <p>Sandalwood carving is a sacred art where artisans transform aromatic sandalwood into detailed sculptures, idols, and decorative objects. Common themes include deities, mythological tales, and natural elements like flowers and animals. This art is especially revered in temple architecture and spiritual homes. The fine grain and soothing fragrance of the wood enhance both visual and sensory appeal.</p>
+                </div>
+            </div>
+        </main>
+        <footer class="footer">
+            <p>&copy; 2025 Traditional Indian Art Heritage. Preserving culture through digital storytelling.</p>
+        </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const artCards = document.querySelectorAll('.art-card');
+
+            artCards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    const fullDesc = card.querySelector('.full-description');
+                    fullDesc.style.opacity = '1';
+                    fullDesc.style.visibility = 'visible';
+                    fullDesc.style.transform = 'scale(1)';
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    const fullDesc = card.querySelector('.full-description');
+                    fullDesc.style.opacity = '0';
+                    fullDesc.style.visibility = 'hidden';
+                    fullDesc.style.transform = 'scale(0.95)';
+                });
+            });
+
+            // GSAP Timeline for Background Animation
+            gsap.to('.animated-bg', {
+                duration: 20,
+                backgroundPosition: '100% 50%',
+                repeat: -1,
+                ease: 'none'
+            });
+
+            // Dance poses data
+            const dancePoses = {
+                bharatanatyam: [
+                    "M50,20 c-20,-10 -40,0 -30,20 c5,10 15,15 25,15 c15,0 25,-10 25,-25 c0,-15 -10,-20 -20,-10 z",
+                    "M50,20 c-15,-15 -35,0 -25,20 c5,10 20,15 30,10 c10,-5 15,-20 10,-30 c-5,-10 -15,-10 -15,0 z",
+                    "M50,15 c-20,-5 -35,10 -25,25 c5,10 20,10 30,5 c10,-5 15,-15 10,-25 c-5,-10 -15,-10 -15,-5 z"
+                ],
+                kathakali: [
+                    "M45,15 c-15,0 -25,15 -20,30 c5,15 20,20 35,15 c15,-5 20,-20 15,-35 c-5,-15 -20,-15 -30,-10 z",
+                    "M40,20 c-10,5 -15,20 -10,30 c5,10 15,15 25,10 c10,-5 15,-15 10,-25 c-5,-10 -15,-15 -25,-15 z",
+                    "M50,10 c-20,0 -30,20 -20,35 c10,15 25,15 35,5 c10,-10 10,-25 0,-35 c-10,-10 -20,-10 -15,-5 z"
+                ]
+            };
+
+            const container = document.createElement('div');
+            container.className = 'dance-background';
+            document.body.prepend(container);
+
+            // Create dancers
+            const createDancer = (poseSet, index) => {
+                const dancer = document.createElement('div');
+                dancer.className = 'dancer';
+                container.appendChild(dancer);
+
+                // Initial position
+                gsap.set(dancer, {
+                    x: Math.random() * window.innerWidth,
+                    y: Math.random() * window.innerHeight,
+                    rotation: Math.random() * 360
+                });
+
+                // Animate position
+                gsap.to(dancer, {
+                    duration: 20 + Math.random() * 10,
+                    x: `+=${Math.random() * 200 - 100}`,
+                    y: `+=${Math.random() * 200 - 100}`,
+                    rotation: Math.random() * 720 - 360,
+                    ease: "sine.inOut",
+                    repeat: -1,
+                    yoyo: true
+                });
+
+                // Animate pose changes
+                let currentPose = 0;
+                const morphPoses = () => {
+                    currentPose = (currentPose + 1) % poseSet.length;
+                    dancer.style.clipPath = `path('${poseSet[currentPose]}')`;
+                };
+
+                setInterval(morphPoses, 2000 + Math.random() * 1000);
+            };
+
+            // Create multiple dancers
+            Object.values(dancePoses).forEach((poseSet, index) => {
+                for (let i = 0; i < 3; i++) {
+                    createDancer(poseSet, index);
+                }
+            });
+        });
+
+        // Add this script after your existing scripts
+ document.addEventListener('DOMContentLoaded', () => {
+        const particlesContainer = document.createElement('div');
+        particlesContainer.className = 'particles-container';
+        document.body.appendChild(particlesContainer);
+
+        const potImageURL = "https://www.google.com/imgres?q=small%20image%20of%20traditional%20pot%20in%20blue&imgurl=https%3A%2F%2F5.imimg.com%2Fdata5%2FLE%2FMP%2FHK%2FSELLER-29139778%2Fblue-pottery-pot-with-lid.JPG&imgrefurl=https%3A%2F%2Fwww.indiamart.com%2Fproddetail%2Fblue-pottery-pot-with-lid-13856266155.html%3Fsrsltid%3DAfmBOoqhVX6MM-qwwtihf5FnRXx_5vTeyIsTuKNMEDEklsH8gbBFhU-u&docid=_jnhhb5BbmbOmM&tbnid=Lkw3HSFwIv4b3M&vet=12ahUKEwilmcHE1aOOAxUYh68BHSyCOKgQM3oECBwQAA..i&w=666&h=1000&hcb=2&ved=2ahUKEwilmcHE1aOOAxUYh68BHSyCOKgQM3oECBwQAA"; // You can replace this with your own
+
+        class PotParticle {
+            constructor() {
+                this.element = document.createElement('div');
+                this.element.className = 'pot-particle';
+                this.element.style.backgroundImage = `url(${potImageURL})`;
+                this.reset();
+                particlesContainer.appendChild(this.element);
+            }
+
+            reset() {
+                this.x = Math.random() * window.innerWidth;
+                this.y = Math.random() * window.innerHeight;
+                this.vx = Math.random() * 1.5 - 0.75;
+                this.vy = Math.random() * 1.5 - 0.75;
+                this.opacity = Math.random() * 0.5 + 0.3;
+                this.element.style.opacity = this.opacity;
+                this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                // Bounce
+                if (this.x < 0 || this.x > window.innerWidth) this.vx *= -1;
+                if (this.y < 0 || this.y > window.innerHeight) this.vy *= -1;
+
+                this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;
+            }
+        }
+
+        const potParticles = Array.from({ length: 30 }, () => new PotParticle());
+
+        function animate() {
+            potParticles.forEach(p => p.update());
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        window.addEventListener('resize', () => {
+            potParticles.forEach(p => p.reset());
+        });
+    });
+       
+        // Add this to your existing DOMContentLoaded event listener
+        document.addEventListener('DOMContentLoaded', () => {
+            // Create flower particles container
+            const flowerContainer = document.createElement('div');
+            flowerContainer.className = 'flower-particles';
+            document.body.appendChild(flowerContainer);
+
+            function createFlowerParticle() {
+                const particle = document.createElement('div');
+                particle.className = 'flower-particle';
+
+                // Random starting position
+                const startX = Math.random() * window.innerWidth;
+                const startY = Math.random() * window.innerHeight;
+
+                // Random movement distance
+                const moveX = (Math.random() - 0.5) * 200;
+                const moveY = (Math.random() - 0.5) * 200;
+
+                // Random size
+                const size = 5 + Math.random() * 15;
+                
+                // Random color variation
+                //const colors = [
+                 //   'rgba(255, 213, 79, 0.8)',  // Gold (Marigold)
+                 //   'rgba(255, 100, 100, 0.8)',  // Red (Hibiscus)
+                 //   'rgba(255, 255, 240, 0.8)',  // White (Jasmine)
+                 //   'rgba(255, 182, 193, 0.8)'   // Pink (Lotus)
+                //];
+                const colors = [
+    'rgba(198, 106, 51, 0.6)',   // Terracotta (#C66A33)
+    'rgba(139, 69, 19, 0.6)',    // Dhokra brass tone
+    'rgba(0, 112, 192, 0.6)',    // Blue pottery cobalt
+    'rgba(255, 255, 255, 0.6)',  // Marble inlay white
+    'rgba(222, 184, 135, 0.6)',  // Sandalwood beige
+    'rgba(192, 192, 192, 0.6)'   // Silver (Bidriware)
+];
+
+                
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+
+                particle.style.cssText = `
+                    left: ${startX}px;
+                    top: ${startY}px;
+                    width: ${size}px;
+                    height: ${size}px;
+                    background: radial-gradient(circle at 30% 30%,
+                        ${randomColor} 0%,
+                        ${randomColor.replace('0.8', '0.4')} 50%,
+                        ${randomColor.replace('0.8', '0.1')} 100%
+                    );
+                    --moveX: ${moveX}px;
+                    --moveY: ${moveY}px;
+                    animation: floatParticle ${3 + Math.random() * 4}s ease-in-out forwards;
+                `;
+
+                flowerContainer.appendChild(particle);
+
+                // Remove particle after animation
+                setTimeout(() => {
+                    if (particle.parentNode) {
+                        particle.parentNode.removeChild(particle);
+                    }
+                }, 7000);
+            }
+
+            // Create particles continuously
+            setInterval(createFlowerParticle, 100);
+
+            // Create initial batch
+            for (let i = 0; i < 50; i++) {
+                setTimeout(createFlowerParticle, i * 100);
+            }
+        });
+
+        class EnhancedParticle {
+            constructor(container) {
+                this.element = document.createElement('div');
+                this.element.className = 'enhanced-particle';
+                this.container = container;
+                this.reset();
+                container.appendChild(this.element);
+            }
+
+            reset() {
+                const colors = [
+                    'rgba(255, 213, 79, 0.6)',  // Gold (Marigold)
+                    'rgba(255, 100, 100, 0.6)',  // Red (Hibiscus)
+                    'rgba(255, 255, 240, 0.6)',  // White (Jasmine)
+                    'rgba(255, 182, 193, 0.6)',  // Pink (Lotus)
+                    'rgba(148, 0, 211, 0.6)',    // Purple
+                    'rgba(255, 140, 0, 0.6)',    // Dark Orange
+                    'rgba(0, 191, 255, 0.6)'     // Deep Sky Blue
+                ];
+
+                this.size = Math.random() * 8 + 4;
+                this.x = Math.random() * window.innerWidth;
+                this.y = Math.random() * window.innerHeight;
+                this.vx = (Math.random() - 0.5) * 2;
+                this.vy = (Math.random() - 0.5) * 2;
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.mergeTimer = 0;
+                this.canMerge = true;
+
+                this.element.style.cssText = `
+                    width: ${this.size}px;
+                    height: ${this.size}px;
+                    background: radial-gradient(circle at 30% 30%,
+                        ${this.color} 0%,
+                        ${this.color.replace('0.6', '0.3')} 50%,
+                        ${this.color.replace('0.6', '0.1')} 100%
+                    );
+                    box-shadow: 0 0 ${this.size * 2}px ${this.color};
+                    transition: all 0.3s ease;
+                `;
+            }
+
+            update(particles) {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                // Bounce off edges
+                if (this.x < 0 || this.x > window.innerWidth) this.vx *= -1;
+                if (this.y < 0 || this.y > window.innerHeight) this.vy *= -1;
+
+                // Check for collisions and merge
+                if (this.canMerge) {
+                    particles.forEach(other => {
+                        if (other !== this && other.canMerge) {
+                            const dx = this.x - other.x;
+                            const dy = this.y - other.y;
+                            const distance = Math.sqrt(dx * dx + dy * dy);
+
+                            if (distance < (this.size + other.size) / 2) {
+                                this.merge(other);
+                            }
+                        }
+                    });
+                }
+
+                // Split large particles
+                if (this.size > 20 && Math.random() < 0.01) {
+                    this.split();
+                }
+
+                this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;
+            }
+
+            merge(other) {
+                if (!this.canMerge || !other.canMerge) return;
+                
+                this.size = Math.min(this.size + other.size, 25);
+                this.vx = (this.vx + other.vx) / 2;
+                this.vy = (this.vy + other.vy) / 2;
+                this.canMerge = false;
+                
+                setTimeout(() => { this.canMerge = true; }, 1000);
+
+                this.element.style.width = `${this.size}px`;
+                this.element.style.height = `${this.size}px`;
+                this.element.style.boxShadow = `0 0 ${this.size * 2}px ${this.color}`;
+                
+                other.remove();
+            }
+
+            split() {
+                const newSize = this.size / 2;
+                this.size = newSize;
+                
+                const newParticle = new EnhancedParticle(this.container);
+                newParticle.x = this.x;
+                newParticle.y = this.y;
+                newParticle.size = newSize;
+                newParticle.vx = -this.vx + (Math.random() - 0.5);
+                newParticle.vy = -this.vy + (Math.random() - 0.5);
+                
+                this.element.style.width = `${this.size}px`;
+                this.element.style.height = `${this.size}px`;
+            }
+
+            remove() {
+                this.element.remove();
+                this.removed = true;
+            }
+        }
+
+        // Initialize the enhanced particle system
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.createElement('div');
+            container.className = 'particles-container';
+            document.body.appendChild(container);
+
+            let particles = Array.from({ length: 100 }, () => new EnhancedParticle(container));
+
+            function animate() {
+                particles = particles.filter(p => !p.removed);
+                
+                if (particles.length < 100) {
+                    particles.push(new EnhancedParticle(container));
+                }
+                
+                particles.forEach(particle => particle.update(particles));
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+        });
+    </script>
+</body>
+</html>
