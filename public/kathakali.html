@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kathakali Art Showcase</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --kathakali-red: #9B111E;
+      --kathakali-green: #3B8B2A;
+      --kathakali-black: #000000;
+      --kathakali-yellow: #FFD700;
+      --kathakali-orange: #FF8C00;
+      --kathakali-white: #FFFFFF;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'EB Garamond', serif;
+      background-color: var(--kathakali-black);
+      color: var(--kathakali-yellow);
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Dynamic Background with Motifs and Gradients */
+    .background-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+      background: linear-gradient(135deg, 
+        var(--warm-beige) 0%, 
+        var(--sandalwood) 25%, 
+        var(--cream) 50%, 
+        var(--warm-beige) 75%, 
+        var(--sandalwood) 100%);
+      animation: gradientShift 20s ease-in-out infinite;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { 
+        background: linear-gradient(135deg, 
+          var(--warm-beige) 0%, 
+          var(--sandalwood) 25%, 
+          var(--cream) 50%, 
+          var(--warm-beige) 75%, 
+          var(--sandalwood) 100%);
+      }
+      25% { 
+        background: linear-gradient(225deg, 
+          var(--cream) 0%, 
+          var(--warm-beige) 25%, 
+          var(--sandalwood) 50%, 
+          var(--cream) 75%, 
+          var(--warm-beige) 100%);
+      }
+      50% { 
+        background: linear-gradient(315deg, 
+          var(--sandalwood) 0%, 
+          var(--cream) 25%, 
+          var(--warm-beige) 50%, 
+          var(--sandalwood) 75%, 
+          var(--cream) 100%);
+      }
+      75% { 
+        background: linear-gradient(45deg, 
+          var(--warm-beige) 0%, 
+          var(--sandalwood) 25%, 
+          var(--cream) 50%, 
+          var(--warm-beige) 75%, 
+          var(--sandalwood) 100%);
+      }
+    }
+
+    .floating-motif {
+      position: absolute;
+      animation: float 15s ease-in-out infinite;
+      opacity: 0.15;
+      color: var(--kathakali-red);
+      filter: drop-shadow(0 0 10px rgba(218, 165, 32, 0.3));
+    }
+
+    .motif-1 {
+      top: 10%;
+      left: 80%;
+      animation-delay: 0s;
+      animation-duration: 18s;
+    }
+
+    .motif-2 {
+      top: 60%;
+      left: 5%;
+      animation-delay: 6s;
+      animation-duration: 22s;
+    }
+
+    .motif-3 {
+      top: 30%;
+      left: 40%;
+      animation-delay: 12s;
+      animation-duration: 16s;
+    }
+
+    .motif-4 {
+      top: 80%;
+      left: 70%;
+      animation-delay: 3s;
+      animation-duration: 20s;
+    }
+
+    .motif-5 {
+      top: 15%;
+      left: 15%;
+      animation-delay: 9s;
+      animation-duration: 24s;
+    }
+
+    .motif-6 {
+      top: 45%;
+      left: 85%;
+      animation-delay: 15s;
+      animation-duration: 14s;
+    }
+
+    @keyframes float {
+      0%, 100% { 
+        transform: translateY(0vh) rotate(0deg) scale(1);
+        opacity: 0.15;
+      }
+      25% { 
+        transform: translateY(-30px) rotate(5deg) scale(1.1);
+        opacity: 0.25;
+      }
+      50% { 
+        transform: translateY(-60px) rotate(0deg) scale(1.2);
+        opacity: 0.3;
+      }
+      75% { 
+        transform: translateY(-30px) rotate(-5deg) scale(1.1);
+        opacity: 0.25;
+      }
+    }
+
+    /* Additional decorative elements */
+    .background-pattern {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 25% 25%, rgba(218, 165, 32, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(248, 230, 211, 0.1) 0%, transparent 50%);
+      animation: patternMove 30s linear infinite;
+    }
+
+    @keyframes patternMove {
+      0% { transform: translateX(0) translateY(0); }
+      25% { transform: translateX(-20px) translateY(-10px); }
+      50% { transform: translateX(-40px) translateY(-20px); }
+      75% { transform: translateX(-20px) translateY(-10px); }
+      100% { transform: translateX(0) translateY(0); }
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 7);
+      border-bottom: 0.27vh solid var(--kathakali-yellow);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      padding: 1.35vh 0;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2.7vh;
+    }
+
+    .logo {
+      font-family: 'EB Garamond', serif;
+      font-size: 2.7vh;
+      font-weight: 700;
+      color: var(--deep-brown);
+      text-decoration: none;
+      letter-spacing: 0.27vh;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2.7vh;
+    }
+
+    .nav-menu a {
+      color: var(--kathakali-yellow);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav-menu a:hover {
+      color: var(--kathakali-orange);
+    }
+
+    .nav-menu a::after {
+      content: '';
+      position: absolute;
+      bottom: -0.67vh;
+      left: 0;
+      width: 0;
+      height: 0.27vh;
+      background: var(--golden);
+      transition: width 0.3s ease;
+    }
+
+    .nav-menu a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/static/kathakali-art.jpg');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      filter: brightness(50%);
+    }
+
+    .hero-content {
+      width: 80vw;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      filter: brightness(100%);
+      z-index: 1000;
+      animation: fadeInUp 1s ease-out;
+      position: relative;
+      top: -50vh;
+    }
+
+    .hero-content h1 {
+      font-family: 'EB Garamond', serif;
+      font-size: 6.7vh;
+      margin-bottom: 1.35vh;
+      color: var(--kathakali-yellow);
+      text-shadow: 0.27vh 0.27vh 0.54vh var(--kathakali-black);
+    }
+
+    .hero-content p {
+      font-size: 3.37vh;
+      font-style: italic;
+      color: var(--kathakali-white);
+      text-shadow: 0.13vh 0.13vh 0.27vh var(--kathakali-black);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Sections */
+    .section {
+      padding: 5.4vh 0;
+      max-width: 100%;
+      margin: 0 auto;
+      height: auto;
+      padding-left: 2.7vh;
+      padding-right: 2.7vh;
+      background-color: rgba(0, 0, 0, 0.3);
+      border-radius: 2.7vh;
+      padding: 4.05vh;
+      margin: 2.7vh 0;
+    }
+
+    .section h2 {
+      font-family: 'EB Garamond', serif;
+      font-size: 4.5vh;
+      margin-bottom: 2.7vh;
+      color: var(--kathakali-yellow);
+      text-align: center;
+      position: relative;
+    }
+
+    .section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -1.35vh;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 13.5vh;
+      height: 0.4vh;
+      background: var(--golden);
+    }
+
+    /* About Section */
+    .about {
+      background: var(--cream);
+      border-radius: 2.7vh;
+      padding: 4.05vh;
+      margin: 2.7vh 0;
+      border: 0.4vh solid var(--golden);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about::before {
+      content: '';
+      position: absolute;
+      top: -6.75vh;
+      right: -6.75vh;
+      width: 27vh;
+      height: 27vh;
+      background: var(--golden);
+      opacity: 0.1;
+      border-radius: 50%;
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.7vh;
+      align-items: center;
+    }
+
+    .about-text {
+      font-size: 2.2vh;
+      line-height: 2.9vh;
+    }
+
+    .about-image {
+      text-align: center;
+    }
+
+    .decorative-border {
+      border: 0.67vh solid var(--golden);
+      border-radius: 2.02vh;
+      padding: 1.35vh;
+      background: white;
+      box-shadow: 0 1.35vh 4.05vh rgba(0,0,0,0.1);
+    }
+
+    /* Stories Section */
+    .stories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.7vh;
+      margin-top: 2.7vh;
+    }
+
+    .story-card {
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 0.27vh solid var(--kathakali-yellow);
+      border-radius: 2.02vh;
+      padding: 2.7vh;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .story-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 0.67vh;
+      background: linear-gradient(90deg, var (--golden), var(--muted-gold));
+    }
+
+    .story-card:hover {
+      transform: translateY(-0.67vh);
+      box-shadow: 0 2.02vh 5.4vh rgba(0,0,0,0.1);
+    }
+
+    .story-card h3 {
+      font-family: 'EB Garamond', serif;
+      font-size: 2.02vh;
+      color: var(--kathakali-yellow);
+      margin-bottom: 1.35vh;
+    }
+
+    /* Videos Section */
+    .videos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2.7vh;
+      margin-top: 2.7vh;
+    }
+
+    .video-card {
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 0.27vh solid var(--kathakali-yellow);
+      border-radius: 2.02vh;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .video-card:hover {
+      transform: scale(1.02);
+    }
+
+    .video-placeholder {
+      width: 100%;
+      height: 27vh;
+      background: linear-gradient(135deg, var(--sandalwood), var(--golden));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.62vh;
+    }
+
+    .video-info {
+      padding: 2.02vh;
+    }
+
+    .video-info h3 {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.75vh;
+      color: var(--kathakali-yellow);
+      margin-bottom: 0.67vh;
+    }
+
+    /* Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(650px, 13fr));
+      height: 150vh; /* Adjusted minmax value */
+      gap: 5vh; /* Adjusted gap for better spacing */
+      margin-top: 2.7vh;
+      padding: 0 2vh; /* Added padding to the grid container */
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 2vh;
+      overflow: hidden;
+      border: 0.3vh solid var(--kathakali-yellow);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      width: 100%;
+      box-shadow: 0 0.5vh 1vh rgba(0, 0, 0, 0.2); /* Added subtle shadow for depth */
+    }
+
+    .gallery-placeholder {
+      width: 100%;
+      height: 30vh; /* Adjusted height for better proportions */
+      background: linear-gradient(45deg, var(--sandalwood), var(--warm-beige));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--deep-brown);
+      font-weight: 600;
+      font-size: 2vh; /* Adjusted font size for better readability */
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+      color: var(--kathakali-yellow);
+      padding: 1.5vh;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+      font-size: 1.6vh; /* Adjusted font size for overlay text */
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      transform: translateY(0);
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+
+    .lightbox-content {
+      max-width: 90%;
+      max-height: 90%;
+      background: white;
+      border-radius: 1.35vh;
+      padding: 2.7vh;
+      position: relative;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1.35vh;
+      right: 2.02vh;
+      font-size: 2.7vh;
+      cursor: pointer;
+      color: var(--deep-brown);
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--kathakali-black);
+      color: var(--kathakali-yellow);
+      padding: 4.05vh 0;
+      text-align: center;
+      position: relative;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2.7vh;
+    }
+
+    .footer-ornament {
+      font-size: 2.7vh;
+      color: var(--golden);
+      margin-bottom: 1.35vh;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 3.37vh;
+      }
+
+      .hero p {
+        font-size: 1.62vh;
+      }
+
+      .about-content {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    /* Scroll animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <!-- Dynamic Background with Motifs and Color Gradients -->
+  <div class="background-animation">
+    <div class="background-pattern"></div>
+
+    <!-- Traditional Kathakali Motifs -->
+    <div class="floating-motif motif-1">
+      <svg width="120" height="120" viewBox="0 0 120 120">
+        <!-- Kathakali Face Design -->
+        <path d="M60 20 Q80 30 90 50 Q85 70 60 65 Q35 70 30 50 Q40 30 60 20 Z" fill="currentColor" opacity="0.6"/>
+        <path d="M60 65 Q70 80 60 95 Q50 80 60 65" fill="currentColor" opacity="0.4"/>
+        <circle cx="50" cy="40" r="3" fill="currentColor" opacity="0.8"/>
+        <path d="M60 20 Q65 15 70 20 Q75 25 70 30 Q65 25 60 20" fill="currentColor" opacity="0.5"/>
+      </svg>
+    </div>
+
+    <div class="floating-motif motif-2">
+      <svg width="100" height="100" viewBox="0 0 100 100">
+        <!-- Kathakali Eye Design -->
+        <path d="M50 80 Q30 60 20 40 Q30 20 50 25 Q70 20 80 40 Q70 60 50 80" fill="currentColor" opacity="0.5"/>
+        <path d="M50 25 Q60 15 70 25 Q60 35 50 30 Q40 35 30 25 Q40 15 50 25" fill="currentColor" opacity="0.4"/>
+        <circle cx="50" cy="50" r="8" fill="currentColor" opacity="0.6"/>
+        <path d="M50 30 L45 45 L55 45 Z" fill="currentColor" opacity="0.3"/>
+      </svg>
+    </div>
+
+    <div class="floating-motif motif-3">
+      <svg width="140" height="140" viewBox="0 0 140 140">
+        <!-- Kathakali Ornament Design -->
+        <path d="M20 70 Q40 50 70 60 Q100 70 120 70 Q100 80 70 80 Q40 90 20 70" fill="currentColor" opacity="0.5"/>
+        <path d="M120 70 L130 60 L140 70 L130 80 Z" fill="currentColor" opacity="0.6"/>
+        <circle cx="50" cy="70" r="4" fill="currentColor" opacity="0.8"/>
+        <path d="M70 60 Q80 50 90 60 Q80 70 70 60" fill="currentColor" opacity="0.4"/>
+      </svg>
+    </div>
+
+    <div class="floating-motif motif-4">
+      <svg width="80" height="80" viewBox="0 0 80 80">
+        <!-- Kathakali Crown Design -->
+        <path d="M40 70 L40 30 Q30 20 20 30 Q30 40 40 30 Q50 40 60 30 Q50 20 40 30" fill="currentColor" opacity="0.5"/>
+        <path d="M40 70 L35 80 L45 80 Z" fill="currentColor" opacity="0.6"/>
+        <circle cx="25" cy="25" r="3" fill="currentColor" opacity="0.4"/>
+        <circle cx="55" cy="25" r="3" fill="currentColor" opacity="0.4"/>
+        <path d="M40 40 Q45 35 50 40 Q45 45 40 40" fill="currentColor" opacity="0.3"/>
+      </svg>
+    </div>
+
+    <div class="floating-motif motif-5">
+      <svg width="110" height="110" viewBox="0 0 110 110">
+        <!-- Kathakali Face Paint Design -->
+        <circle cx="55" cy="55" r="25" fill="currentColor" opacity="0.4"/>
+        <path d="M55 10 L58 25 L55 30 L52 25 Z" fill="currentColor" opacity="0.5"/>
+        <path d="M100 55 L85 58 L80 55 L85 52 Z" fill="currentColor" opacity="0.5"/>
+        <path d="M55 100 L52 85 L55 80 L58 85 Z" fill="currentColor" opacity="0.5"/>
+        <path d="M10 55 L25 52 L30 55 L25 58 Z" fill="currentColor" opacity="0.5"/>
+        <path d="M85 25 L75 35 L70 30 L80 20 Z" fill="currentColor" opacity="0.4"/>
+        <path d="M85 85 L80 90 L75 75 L85 80 Z" fill="currentColor" opacity="0.4"/>
+        <path d="M25 85 L35 75 L40 80 L30 90 Z" fill="currentColor" opacity="0.4"/>
+        <path d="M25 25 L30 30 L35 25 L30 20 Z" fill="currentColor" opacity="0.4"/>
+      </svg>
+    </div>
+
+    <div class="floating-motif motif-6">
+      <svg width="90" height="90" viewBox="0 0 90 90">
+        <!-- Kathakali Costume Pattern -->
+        <path d="M10 10 L80 10 L80 80 L10 80 Z" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/>
+        <path d="M20 20 L70 20 L70 70 L20 70 Z" fill="none" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+        <path d="M30 30 L60 30 L60 60 L30 60 Z" fill="currentColor" opacity="0.2"/>
+        <circle cx="45" cy="45" r="8" fill="currentColor" opacity="0.5"/>
+        <path d="M45 25 L50 35 L40 35 Z" fill="currentColor" opacity="0.3"/>
+        <path d="M45 65 L40 55 L50 55 Z" fill="currentColor" opacity="0.3"/>
+        <path d="M25 45 L35 40 L35 50 Z" fill="currentColor" opacity="0.3"/>
+        <path d="M65 45 L55 50 L55 40 Z" fill="currentColor" opacity="0.3"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <a href="#" class="logo">RangRiti</a>
+      <ul class="nav-menu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About Kathakali</a></li>
+        <li><a href="#stories">Stories</a></li>
+        <li><a href="#videos">Videos</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero" style="background-image: url(/static/kathakali-art.jpg);">
+  </section>
+  <div class="hero-content">
+    <h1>The Theatrical Dance of Kerala</h1>
+    <p>– Experience the vibrant world of Kathakali –</p>
+  </div>
+
+  <!-- About Section -->
+  <section id="about" class="section">
+    <h2>About Kathakali</h2>
+    <div class="about fade-in">
+      <div class="about-content">
+        <div class="about-text">
+          <p>Kathakali, originating from Kerala, is a classical Indian dance-drama characterized by elaborate makeup, costumes, and storytelling through gestures and expressions.</p>
+
+          <p>Performances typically depict tales from Hindu epics and Puranas, emphasizing the eternal battle between good and evil. The dancers, all male, undergo rigorous training to master the complex movements and facial expressions that convey the narrative.</p>
+
+          <p>Key elements of Kathakali include:</p>
+
+          <ul style="margin: 1rem 0; padding-left: 2rem;">
+            <li><strong>Makeup:</strong> Distinctive facial makeup that signifies the character's nature</li>
+            <li><strong>Costumes:</strong> Elaborate and colorful attire that enhances the visual spectacle</li>
+            <li><strong>Music:</strong> Traditional percussion instruments that set the rhythm and mood</li>
+            <li><strong>Gestures:</strong> Highly stylized hand gestures (mudras) that communicate the story</li>
+          </ul>
+
+          <p>Kathakali is not just a dance form but a complete theatrical experience that immerses the audience in a world of myth and legend.</p>
+        </div>
+        <div class="about-image">
+          <div class="decorative-border">
+            <img src="/static/kathakali-2.jpg" style="width: 30vw;" alt="Kathakali Performance">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stories Section -->
+  <section id="stories" class="section">
+    <h2>Sacred Stories</h2>
+    <div class="stories-grid">
+      <div class="story-card fade-in">
+        <h3>The Story of Narakasura</h3>
+        <p>Kathakali often portrays the tale of Narakasura, a demon king defeated by Lord Krishna. The performance highlights the triumph of good over evil through intense battle scenes and vivid expressions.</p>
+      </div>
+      <div class="story-card fade-in">
+        <h3>The Legend of Daksha Yaga</h3>
+        <p>The story of Daksha Yaga, where Lord Shiva's consort Sati immolates herself, is a powerful narrative in Kathakali. The performance showcases the intensity of grief and the cosmic repercussions of disrespect.</p>
+      </div>
+      <div class="story-card fade-in">
+        <h3>The Battle of Kiratamarjuniyam</h3>
+        <p>The epic encounter between Arjuna and Lord Shiva disguised as a hunter is a popular Kathakali theme. The performance emphasizes the themes of devotion, strength, and divine intervention.</p>
+      </div>
+      <div class="story-card fade-in">
+        <h3>The Tale of Keechaka Vadham</h3>
+        <p>The story of Keechaka Vadham, where Bhima avenges Draupadi's humiliation, is a thrilling Kathakali narrative. The performance showcases the themes of justice, revenge, and the power of righteousness.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Videos Section -->
+  <section id="videos" class="section">
+    <h2>Watch & Learn</h2>
+    <div class="videos-grid">
+      <div class="video-card fade-in">
+        <div class="video-placeholder">
+          🎬 Documentary Preview
+        </div>
+        <div class="video-info">
+          <h3>Kathakali: The Dance of Gods</h3>
+          <p>A documentary exploring the history, techniques, and cultural significance of Kathakali</p>
+          <small>Duration: 52 minutes</small>
+        </div>
+      </div>
+      <div class="video-card fade-in">
+        <div class="video-placeholder">
+          🎨 Makeup Tutorial
+        </div>
+        <div class="video-info">
+          <h3>The Art of Kathakali Makeup</h3>
+          <p>Step-by-step guide to creating the elaborate facial makeup of Kathakali performers</p>
+          <small>Duration: 35 minutes</small>
+        </div>
+      </div>
+      <div class="video-card fade-in">
+        <div class="video-placeholder">
+          🎭 Performance Highlights
+        </div>
+        <div class="video-info">
+          <h3>Kathakali: A Glimpse into the Theatre</h3>
+          <p>Highlights from various Kathakali performances showcasing the dance, music, and storytelling</p>
+          <small>Duration: 40 minutes</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="section">
+    <h2>Gallery</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item fade-in" onclick="openLightbox('Green Face', 'Kalamandalam Gopi', 'A Pachcha character portraying nobility and virtue')">
+        <div class="gallery-placeholder">🎭 Green Face</div>
+        <div class="gallery-overlay">
+          <h4>Green Face</h4>
+          <p>by Kalamandalam Gopi</p>
+        </div>
+      </div>
+      <div class="gallery-item fade-in" onclick="openLightbox('Red Beard', 'Kottakkal Sivaraman', 'A Thadi character representing aggression and evil')">
+        <div class="gallery-placeholder">👹 Red Beard</div>
+        <div class="gallery-overlay">
+          <h4>Red Beard</h4>
+          <p>by Kottakkal Sivaraman</p>
+        </div>
+      </div>
+      <div class="gallery-item fade-in" onclick="openLightbox('Black Beard', 'Kalamandalam Ramachandran Unnithan', 'A Kari character symbolizing forest dwellers and demons')">
+        <div class="gallery-placeholder">😈 Black Beard</div>
+        <div class="gallery-overlay">
+          <h4>Black Beard</h4>
+          <p>by Kalamandalam Ramachandran Unnithan</p>
+        </div>
+      </div>
+      <div class="gallery-item fade-in" onclick="openLightbox('Minukku', 'Kalamandalam Vasu Pisharody', 'A character representing women and sages, known for its gentle expressions')">
+        <div class="gallery-placeholder">🌸 Minukku</div>
+        <div class="gallery-overlay">
+          <h4>Minukku</h4>
+          <p>by Kalamandalam Vasu Pisharody</p>
+        </div>
+      </div>
+      <div class="gallery-item fade-in" onclick="openLightbox('Yellow Face', 'Kalamandalam Kesavan', 'A Pazhukka character symbolizing Brahmins and priests')">
+        <div class="gallery-placeholder">💛 Yellow Face</div>
+        <div class="gallery-overlay">
+          <h4>Yellow Face</h4>
+          <p>by Kalamandalam Kesavan</p>
+        </div>
+      </div>
+      <div class="gallery-item fade-in" onclick="openLightbox('Vellathadi', 'Kalamandalam Krishnakumar', 'A white beard character representing Hanuman')">
+        <div class="gallery-placeholder">🐒 Vellathadi</div>
+        <div class="gallery-overlay">
+          <h4>Vellathadi</h4>
+          <p>by Kalamandalam Krishnakumar</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox">
+    <div class="lightbox-content">
+      <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+      <h3 id="lightbox-title"></h3>
+      <p id="lightbox-artist"></p>
+      <div style="height: 300px; background: linear-gradient(45deg, #E8D5B7, #F5E6D3); display: flex; align-items: center; justify-content: center; margin: 1rem 0; border-radius: 10px;">
+        <span style="font-size: 4rem;">🎨</span>
+      </div>
+      <p id="lightbox-description"></p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="footer-content">
+      <div class="footer-ornament">❋ ❋ ❋</div>
+      <h3>Connect with RangRiti</h3>
+      <p>Email: info@rangriti.com</p>
+      <p>Follow us on social media for more cultural stories</p>
+      <div style="margin-top: 2rem;">
+        <p>&copy; 2025 RangRiti. Celebrating the timeless art of Kathakali.</p>
+        <p style="font-size: 0.9rem; margin-top: 1rem;">All artwork showcased with respect to the original artists and cultural heritage.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Fade in animation on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Lightbox functionality
+    function openLightbox(title, artist, description) {
+      document.getElementById('lightbox-title').textContent = title;
+      document.getElementById('lightbox-artist').textContent = `Artist: ${artist}`;
+      document.getElementById('lightbox-description').textContent = description;
+      document.getElementById('lightbox').style.display = 'flex';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+
+    // Close lightbox when clicking outside
+    document.getElementById('lightbox').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeLightbox();
+      }
+    });
+
+    // Parallax effect for hero section
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const hero = document.querySelector('.hero');
+      if (hero) {
+        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+      }
+    });
+
+    // Enhanced dynamic background animation
+    function createFloatingElements() {
+      const container = document.querySelector('.background-animation');
+
+      // Create additional floating elements with varied motifs
+      const motifTypes = [
+        // Bird motif
+        `<svg width="70" height="70" viewBox="0 0 70 70">
+          <path d="M35 15 Q45 25 35 35 Q25 25 35 15" fill="currentColor" opacity="0.4"/>
+          <path d="M35 35 Q40 45 35 55 Q30 45 35 35" fill="currentColor" opacity="0.3"/>
+          <circle cx="30" cy="25" r="2" fill="currentColor" opacity="0.6"/>
+        </svg>`,
+
+        // Flower motif
+        `<svg width="60" height="60" viewBox="0 0 60 60">
+          <circle cx="30" cy="30" r="20" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+          <path d="M30 10 Q40 20 30 30 Q20 20 30 10" fill="currentColor" opacity="0.4"/>
+          <path d="M50 30 Q40 40 30 30 Q40 20 50 30" fill="currentColor" opacity="0.4"/>
+          <path d="M30 50 Q20 40 30 30 Q40 40 30 50" fill="currentColor" opacity="0.4"/>
+          <path d="M10 30 Q20 20 30 30 Q20 40 10 30" fill="currentColor" opacity="0.4"/>
+        </svg>`,
+
+        // Geometric pattern
+        `<svg width="50" height="50" viewBox="0 0 50 50">
+          <path d="M25 5 L45 25 L25 45 L5 25 Z" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+          <circle cx="25" cy="25" r="8" fill="currentColor" opacity="0.2"/>
+          <path d="M25 15 L30 20 L25 25 L20 20 Z" fill="currentColor" opacity="0.4"/>
+        </svg>`
+      ];
+
+      for (let i = 0; i < 8; i++) {
+        const element = document.createElement('div');
+        element.className = 'floating-motif';
+        element.style.top = Math.random() * 100 + '%';
+        element.style.left = Math.random() * 100 + '%';
+        element.style.animationDelay = Math.random() * 20 + 's';
+        element.style.animationDuration = (12 + Math.random() * 12) + 's';
+        element.style.opacity = 0.1 + Math.random() * 0.15;
+
+        // Assign random motif type
+        const motifIndex = Math.floor(Math.random() * motifTypes.length);
+        element.innerHTML = motifTypes[motifIndex];
+
+        container.appendChild(element);
+      }
+    }
+
+    // Color gradient animation for background
+    function animateBackgroundGradient() {
+      const backgroundEl = document.querySelector('.background-animation');
+      let hue = 0;
+
+      setInterval(() => {
+        hue = (hue + 0.5) % 360;
+        const lightness1 = 85 + Math.sin(hue * 0.1) * 5;
+        const lightness2 = 90 + Math.cos(hue * 0.1) * 5;
+        const lightness3 = 95 + Math.sin(hue * 0.05) * 3;
+
+        backgroundEl.style.filter = `hue-rotate(${hue * 0.1}deg) brightness(${0.98 + Math.sin(hue * 0.02) * 0.02})`;
+      }, 100);
+    }
+
+    // Initialize enhanced background
+    createFloatingElements();
+    animateBackgroundGradient();
+  </script>
+</body>
+</html>

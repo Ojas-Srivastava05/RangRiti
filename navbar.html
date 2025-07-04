@@ -7,7 +7,13 @@
 </head>
 <body>
     <style>
-                .nav-container {
+        :root {
+            --kathakali-gold: #D4AF37;
+            --text-gold: #FFD700;
+            --text-light: rgba(255, 248, 220, 0.9);
+        }
+
+        .nav-container {
             position: fixed;
             top: 30px;
             left: 50%;
@@ -20,8 +26,6 @@
             border: 1px solid rgba(255, 215, 0, 0.3);
             z-index: 1000;
             animation: slideDown 1s ease-out;
-            background: rgba(28, 28, 28, 0.8);
-            border-color: var(--kathakali-gold);
         }
 
         @keyframes slideDown {
@@ -30,21 +34,21 @@
         }
 
         .nav-btn {
-            font-family: 'EB Garamond', serif;
-            background: transparent;
-            color: var(--text-gold);
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Soft shadow */
-            border: none;
-            padding: 8px 16px;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            animation: navBtnFadeIn 1s ease-out forwards; /* Added animation */
-        }
+    font-family: 'EB Garamond', serif;
+    background: transparent;
+    color: #000000; /* Light Ivory */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Soft shadow */
+    border: none;
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    animation: navBtnFadeIn 1s ease-out forwards; /* Added animation */
+}
 
         @keyframes navBtnFadeIn {
             from { opacity: 0; transform: translateY(-10px); }
@@ -73,55 +77,55 @@
         }
 
         /* Dropdown styles */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
 
-        .dropdown-toggle {
-            cursor: pointer;
-        }
+.dropdown-toggle {
+    cursor: pointer;
+}
 
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: rgba(28, 28, 28, 0.95);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 10px;
-            padding: 10px 0;
-            display: none;
-            flex-direction: column;
-            min-width: 200px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-            z-index: 1001;
-            border-color: var(--kathakali-gold);
-        }
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: rgba(0, 0, 0, 0.9);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: 10px;
+    padding: 10px 0;
+    display: none;
+    flex-direction: column;
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    z-index: 1001;
+}
 
-        .dropdown-item {
-            font-family: 'EB Garamond', serif;
-            color: var(--text-light);
-            text-decoration: none;
-            padding: 10px 20px;
-            display: block;
-            transition: all 0.3s ease;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-        }
+.dropdown-item {
+    font-family: 'EB Garamond', serif;
+    color: #FAF3E0;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: block;
+    transition: all 0.3s ease;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
 
-        .dropdown-item:hover {
-            background: rgba(212, 175, 55, 0.2);
-            color: var(--kathakali-gold);
-        }
+.dropdown-item:hover {
+    background: rgba(255, 215, 0, 0.2);
+    color: var(--primary-gold);
+}
 
-        .dropdown:hover .dropdown-menu {
-            display: flex;
-        }
+.dropdown:hover .dropdown-menu {
+    display: flex;
+}
 
-        .dropdown-arrow {
-            font-size: 0.8em;
-            margin-left: 5px;
-            display: inline-block; /* Ensure it's on the same line */
-        }
+.dropdown-arrow {
+    font-size: 0.8em;
+    margin-left: 5px;
+    display: inline-block; /* Ensure it's on the same line */
+}
+
 
     </style>
     <nav class="nav-container">
