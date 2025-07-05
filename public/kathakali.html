@@ -456,10 +456,11 @@
     /* Gallery */
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Adjusted minmax value */
-      gap: 3vh; /* Adjusted gap for better spacing */
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* Adjusted minmax value */
+      gap: 3vh;
       margin-top: 2.7vh;
-      padding: 0 2vh; /* Added padding to the grid container */
+      padding: 0 2vh;
+      justify-content: center; /* Center the grid items horizontally */
     }
 
     .gallery-item {
@@ -469,8 +470,10 @@
       border: 0.3vh solid var(--kathakali-yellow);
       transition: transform 0.3s ease;
       cursor: pointer;
-      width: 100%;
-      box-shadow: 0 0.5vh 1vh rgba(0, 0, 0, 0.2); /* Added subtle shadow for depth */
+      width: auto; /* Allow content to determine width */
+      max-width: 90%; /* Ensure items don't exceed this width */
+      box-shadow: 0 0.5vh 1vh rgba(0, 0, 0, 0.2);
+      margin: 0 auto; /* Center the item horizontally within its cell */
     }
 
     .gallery-placeholder {
