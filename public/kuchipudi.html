@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kathakali - The Grandeur of Kerala's Dance-Drama</title>
+    <title>Kuchipudi - The Dance of Andhra Pradesh</title>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Kathakali Inspired Color Palette */
-            --katha-green: #004D00; /* Pacha - Deep Green for noble characters */
-            --katha-red: #B22222; /* Chuvanna - Vibrant Red for evil/aggressive characters */
-            --katha-white: #F8F8FF; /* Thadi - Pure White for pure characters */
-            --katha-black: #1A1A1A; /* Kari - Stark Black for hunters/forest dwellers */
-            --katha-yellow: #FFD700; /* Minukku - Golden Yellow for female/sages */
-            --katha-orange: #FF8C00; /* Bright Orange for accents */
-            --katha-dark-contrast: #000000; /* Very dark for strong contrast/text */
+            /* Kuchipudi Inspired Color Palette */
+            --primary-red: #A30000; /* Deep Red */
+            --golden-yellow: #FFD700; /* Bright Gold */
+            --peacock-blue: #005F6B; /* Deep Teal/Blue */
+            --emerald-green: #006400; /* Dark Green */
+            --cream-base: #FFFDD0; /* Soft Cream */
+            --accent-orange: #FF8C00; /* Vibrant Orange */
+            --dark-contrast: #2F1700; /* Very Dark Brown */
         }
 
         * {
@@ -26,7 +26,7 @@
         body {
             font-family: 'Crimson Text', serif;
             background: transparent;
-            color: var(--katha-dark-contrast);
+            color: var(--dark-contrast);
             overflow-x: hidden;
             position: relative;
         }
@@ -41,46 +41,46 @@
             z-index: -1;
             overflow: hidden;
             background: linear-gradient(135deg, 
-                var(--katha-white) 0%, 
-                #FFFACD 25%, /* Lighter yellow-white */
-                var(--katha-white) 50%, 
-                #FFFACD 75%, 
-                var(--katha-white) 100%);
+                var(--cream-base) 0%, 
+                #FFEFD5 25%, /* Lighter cream */
+                var(--cream-base) 50%, 
+                #FFEFD5 75%, 
+                var(--cream-base) 100%);
             animation: gradientShift 20s ease-in-out infinite;
         }
 
         @keyframes gradientShift {
             0%, 100% { 
                 background: linear-gradient(135deg, 
-                    var(--katha-white) 0%, 
-                    #FFFACD 25%, 
-                    var(--katha-white) 50%, 
-                    #FFFACD 75%, 
-                    var(--katha-white) 100%);
+                    var(--cream-base) 0%, 
+                    #FFEFD5 25%, 
+                    var(--cream-base) 50%, 
+                    #FFEFD5 75%, 
+                    var(--cream-base) 100%);
             }
             25% { 
                 background: linear-gradient(225deg, 
-                    #FFFACD 0%, 
-                    var(--katha-white) 25%, 
-                    #FFFACD 50%, 
-                    var(--katha-white) 75%, 
-                    #FFFACD 100%);
+                    #FFEFD5 0%, 
+                    var(--cream-base) 25%, 
+                    #FFEFD5 50%, 
+                    var(--cream-base) 75%, 
+                    #FFEFD5 100%);
             }
             50% { 
                 background: linear-gradient(315deg, 
-                    var(--katha-white) 0%, 
-                    #FFFACD 25%, 
-                    var(--katha-white) 50%, 
-                    #FFFACD 75%, 
-                    var(--katha-white) 100%);
+                    var(--cream-base) 0%, 
+                    #FFEFD5 25%, 
+                    var(--cream-base) 50%, 
+                    #FFEFD5 75%, 
+                    var(--cream-base) 100%);
             }
             75% { 
                 background: linear-gradient(45deg, 
-                    #FFFACD 0%, 
-                    var(--katha-white) 25%, 
-                    #FFFACD 50%, 
-                    var(--katha-white) 75%, 
-                    #FFFACD 100%);
+                    #FFEFD5 0%, 
+                    var(--cream-base) 25%, 
+                    #FFEFD5 50%, 
+                    var(--cream-base) 75%, 
+                    #FFEFD5 100%);
             }
         }
 
@@ -88,7 +88,7 @@
             position: absolute;
             animation: float 15s ease-in-out infinite;
             opacity: 0.2;
-            color: var(--katha-yellow);
+            color: var(--golden-yellow);
             filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.4));
         }
 
@@ -160,8 +160,8 @@
             height: 100%;
             background-image: 
                 radial-gradient(circle at 25% 25%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 75% 75%, rgba(0, 77, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 50% 50%, rgba(248, 248, 255, 0.1) 0%, transparent 50%);
+                radial-gradient(circle at 75% 75%, rgba(0, 95, 107, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(255, 253, 208, 0.1) 0%, transparent 50%);
             animation: patternMove 30s linear infinite;
         }
 
@@ -178,11 +178,11 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(248, 248, 255, 0.95); /* White base with transparency */
+            background: rgba(255, 253, 208, 0.95); /* Cream base with transparency */
             backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 1rem 0;
-            border-bottom: 2px solid var(--katha-red);
+            border-bottom: 2px solid var(--primary-red);
         }
 
         .nav-container {
@@ -198,7 +198,7 @@
             font-family: 'EB Garamond', serif;
             font-size: 2rem;
             font-weight: 700;
-            color: var(--katha-green);
+            color: var(--peacock-blue);
             text-decoration: none;
             letter-spacing: 2px;
         }
@@ -210,7 +210,7 @@
         }
 
         .nav-menu a {
-            color: var(--katha-dark-contrast);
+            color: var(--dark-contrast);
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
@@ -218,7 +218,7 @@
         }
 
         .nav-menu a:hover {
-            color: var(--katha-red);
+            color: var(--primary-red);
         }
 
         .nav-menu a::after {
@@ -228,7 +228,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--katha-red);
+            background: var(--primary-red);
             transition: width 0.3s ease;
         }
 
@@ -240,7 +240,7 @@
         .hero {
             height: 100vh;
             /* Background image will be replaced by AI generated image */
-            background-image: url('../static/performingarts-specific/kathakalihero.png');
+            background-image: url('../static/performingarts-specific/Kuchipudihero.png');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -255,20 +255,21 @@
             z-index: 2;
             animation: fadeInUp 1s ease-out;
         }
+        
 
         .hero h1 {
             font-family: 'EB Garamond', serif;
             font-size: 4rem;
             margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
-            color: var(--katha-yellow); /* Hero heading in gold */
+            color: var(--golden-yellow); /* Hero heading in gold */
         }
 
         .hero p {
             font-size: 1.5rem;
             font-style: italic;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-            color: var(--katha-white);
+            color: var(--cream-base);
         }
 
         @keyframes fadeInUp {
@@ -294,7 +295,7 @@
         .section h2 {
             font-family: 'EB Garamond', serif;
             font-size: 2.5rem;
-            color: var(--katha-red);
+            color: var(--primary-red);
             margin-bottom: 2rem;
             text-align: center;
             position: relative;
@@ -308,16 +309,16 @@
             transform: translateX(-50%);
             width: 100px;
             height: 3px;
-            background: var(--katha-green); /* Underline for heading */
+            background: var(--peacock-blue); /* Underline for heading */
         }
 
         /* About Section */
         .about {
-            background: var(--katha-white);
+            background: var(--cream-base);
             border-radius: 20px;
             padding: 3rem;
             margin: 2rem 0;
-            border: 3px solid var(--katha-green); /* Border color changed */
+            border: 3px solid var(--peacock-blue); /* Border color changed */
             position: relative;
             overflow: hidden;
         }
@@ -329,7 +330,7 @@
             right: -50px;
             width: 200px;
             height: 200px;
-            background: var(--katha-orange); /* Changed accent */
+            background: var(--accent-orange); /* Changed accent */
             opacity: 0.1;
             border-radius: 50%;
         }
@@ -344,7 +345,7 @@
         .about-text {
             font-size: 1.1rem;
             line-height: 1.8;
-            color: var(--katha-dark-contrast);
+            color: var(--dark-contrast);
         }
 
         .about-image {
@@ -352,7 +353,7 @@
         }
 
         .decorative-border {
-            border: 5px solid var(--katha-yellow); /* Gold border for image */
+            border: 5px solid var(--golden-yellow); /* Gold border for image */
             border-radius: 15px;
             padding: 1rem;
             background: white;
@@ -371,7 +372,7 @@
             background: white;
             border-radius: 15px;
             padding: 2rem;
-            border: 2px solid var(--katha-green); /* Green border for stories */
+            border: 2px solid var(--emerald-green); /* Green border for stories */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
             overflow: hidden;
@@ -387,7 +388,7 @@
             left: 0;
             right: 0;
             height: 5px;
-            background: linear-gradient(90deg, var(--katha-red), var(--katha-orange));
+            background: linear-gradient(90deg, var(--primary-red), var(--accent-orange));
         }
 
         .story-card:hover {
@@ -398,7 +399,7 @@
         .story-card h3 {
             font-family: 'EB Garamond', serif;
             font-size: 1.5rem;
-            color: var(--katha-black);
+            color: var(--peacock-blue);
             margin-bottom: 1rem;
         }
 
@@ -414,7 +415,7 @@
             background: white;
             border-radius: 15px;
             overflow: hidden;
-            border: 2px solid var(--katha-red); /* Red border for videos */
+            border: 2px solid var(--primary-red); /* Red border for videos */
             transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add box-shadow to transition */
             /* Animation for cards */
             animation: cardPopIn 0.8s ease-out forwards;
@@ -429,7 +430,7 @@
         .video-placeholder {
             width: 100%;
             height: 200px;
-            background: linear-gradient(135deg, var(--katha-orange), var(--katha-yellow));
+            background: linear-gradient(135deg, var(--accent-orange), var(--golden-yellow));
             display: flex;
             align-items: center;
             justify-content: center;
@@ -444,7 +445,7 @@
         .video-info h3 {
             font-family: 'EB Garamond', serif;
             font-size: 1.3rem;
-            color: var(--katha-dark-contrast);
+            color: var(--dark-contrast);
             margin-bottom: 0.5rem;
         }
 
@@ -460,7 +461,7 @@
             position: relative;
             border-radius: 15px;
             overflow: hidden;
-            border: 3px solid var(--katha-green); /* Green border for gallery */
+            border: 3px solid var(--peacock-blue); /* Blue border for gallery */
             transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add box-shadow to transition */
             cursor: pointer;
             /* Animation for cards */
@@ -476,11 +477,11 @@
         .gallery-placeholder {
             width: 100%;
             height: 250px;
-            background: linear-gradient(45deg, var(--katha-yellow), var(--katha-orange)); /* Gradient for placeholder */
+            background: linear-gradient(45deg, var(--golden-yellow), var(--accent-orange)); /* Gradient for placeholder */
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--katha-dark-contrast);
+            color: var(--dark-contrast);
             font-weight: 600;
         }
 
@@ -517,7 +518,7 @@
         .lightbox-content {
             max-width: 90%;
             max-height: 90%;
-            background: var(--katha-white);
+            background: var(--cream-base);
             border-radius: 10px;
             padding: 2rem;
             position: relative;
@@ -530,13 +531,13 @@
             right: 15px;
             font-size: 2rem;
             cursor: pointer;
-            color: var(--katha-red);
+            color: var(--primary-red);
         }
 
         /* Footer */
         footer {
-            background: var(--katha-green); /* Darker green for footer */
-            color: var(--katha-white);
+            background: var(--peacock-blue); /* Darker blue for footer */
+            color: var(--cream-base);
             padding: 3rem 0;
             text-align: center;
             position: relative;
@@ -550,7 +551,7 @@
 
         .footer-ornament {
             font-size: 2rem;
-            color: var(--katha-yellow);
+            color: var(--golden-yellow);
             margin-bottom: 1rem;
         }
 
@@ -642,56 +643,61 @@
     <div class="background-animation">
         <div class="background-pattern"></div>
         
-        <!-- Kathakali Inspired Motifs -->
+        <!-- Kuchipudi Inspired Motifs (color adapted to Kuchipudi theme) -->
         <div class="floating-motif motif-1">
             <svg width="120" height="120" viewBox="0 0 120 120">
-                <!-- Stylized eye (Katakhali eye makeup) -->
-                <path d="M60 40 Q80 20 100 40 Q80 60 60 40 Z" fill="currentColor" opacity="0.6"/>
-                <circle cx="60" cy="40" r="10" fill="currentColor" opacity="0.8"/>
-                <path d="M60 40 Q40 20 20 40 Q40 60 60 40 Z" fill="currentColor" opacity="0.6"/>
+                <!-- Dancer pose outline -->
+                <path d="M60 20 L70 40 L65 60 L80 70 L70 90 L60 80 L50 90 L40 70 L55 60 L50 40 Z" fill="currentColor" opacity="0.6"/>
+                <circle cx="60" cy="15" r="5" fill="currentColor" opacity="0.8"/>
+                <path d="M60 80 Q70 95 60 110 Q50 95 60 80" fill="currentColor" opacity="0.4"/>
             </svg>
         </div>
         
         <div class="floating-motif motif-2">
             <svg width="100" height="100" viewBox="0 0 100 100">
-                <!-- Mudra (hand gesture) -->
-                <path d="M30 30 Q40 20 50 30 Q60 20 70 30 L70 70 Q60 80 50 70 Q40 80 30 70 Z" fill="currentColor" opacity="0.5"/>
-                <circle cx="50" cy="50" r="15" fill="currentColor" opacity="0.6"/>
+                <!-- Lotus flower -->
+                <path d="M50 10 L60 30 L85 35 L65 50 L75 75 L50 60 L25 75 L35 50 L15 35 L40 30 Z" fill="currentColor" opacity="0.5"/>
+                <circle cx="50" cy="50" r="10" fill="currentColor" opacity="0.6"/>
             </svg>
         </div>
         
         <div class="floating-motif motif-3">
             <svg width="140" height="140" viewBox="0 0 140 140">
-                <!-- Headgear element -->
-                <path d="M70 10 L80 40 L70 130 L60 40 Z" fill="currentColor" opacity="0.5"/>
-                <path d="M70 10 Q90 20 100 40 Q110 60 70 10 L70 10 Z" fill="currentColor" opacity="0.6"/>
-                <path d="M70 10 Q50 20 40 40 Q30 60 70 10 L70 10 Z" fill="currentColor" opacity="0.6"/>
+                <!-- Veena (musical instrument) -->
+                <path d="M70 10 L75 30 L70 100 L65 30 Z" fill="currentColor" opacity="0.5"/>
+                <circle cx="70" cy="10" r="8" fill="currentColor" opacity="0.6"/>
+                <path d="M60 100 Q70 110 80 100 Q70 90 60 100" fill="currentColor" opacity="0.4"/>
+                <rect x="68" y="35" width="4" height="60" fill="currentColor" opacity="0.3"/>
             </svg>
         </div>
         
         <div class="floating-motif motif-4">
             <svg width="80" height="80" viewBox="0 0 80 80">
-                <!-- Stylized costume pattern -->
-                <rect x="10" y="10" width="60" height="60" fill="none" stroke="currentColor" stroke-width="2" opacity="0.5"/>
-                <line x1="10" y1="40" x2="70" y2="40" stroke="currentColor" stroke-width="1" opacity="0.4"/>
-                <line x1="40" y1="10" x2="40" y2="70" stroke="currentColor" stroke-width="1" opacity="0.4"/>
-                <circle cx="40" cy="40" r="10" fill="currentColor" opacity="0.3"/>
+                <!-- Traditional jewelry motif -->
+                <circle cx="40" cy="40" r="25" fill="none" stroke="currentColor" stroke-width="2" opacity="0.5"/>
+                <circle cx="40" cy="40" r="15" fill="currentColor" opacity="0.3"/>
+                <path d="M40 15 L45 25 L35 25 Z" fill="currentColor" opacity="0.4"/>
+                <path d="M40 65 L45 55 L35 55 Z" fill="currentColor" opacity="0.4"/>
+                <path d="M15 40 L25 45 L25 35 Z" fill="currentColor" opacity="0.4"/>
+                <path d="M65 40 L55 45 L55 35 Z" fill="currentColor" opacity="0.4"/>
             </svg>
         </div>
         
         <div class="floating-motif motif-5">
             <svg width="110" height="110" viewBox="0 0 110 110">
-                <!-- Facial makeup swirl -->
-                <path d="M55 10 C80 20 90 60 55 100 C20 60 30 20 55 10 Z" fill="currentColor" opacity="0.4"/>
-                <circle cx="55" cy="55" r="15" fill="currentColor" opacity="0.5"/>
+                <!-- Stylized flame/lamp -->
+                <path d="M55 10 Q65 30 55 50 Q45 30 55 10 Z" fill="currentColor" opacity="0.4"/>
+                <path d="M50 50 L60 50 L55 100 Z" fill="currentColor" opacity="0.3"/>
+                <circle cx="55" cy="50" r="5" fill="currentColor" opacity="0.5"/>
             </svg>
         </div>
         
         <div class="floating-motif motif-6">
             <svg width="90" height="90" viewBox="0 0 90 90">
-                <!-- Simple geometric pattern -->
-                <path d="M45 5 L85 45 L45 85 L5 45 Z" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/>
-                <circle cx="45" cy="45" r="10" fill="currentColor" opacity="0.2"/>
+                <!-- Simple border pattern -->
+                <rect x="10" y="10" width="70" height="70" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/>
+                <line x1="10" y1="45" x2="80" y2="45" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+                <line x1="45" y1="10" x2="45" y2="80" stroke="currentColor" stroke-width="1" opacity="0.4"/>
             </svg>
         </div>
     </div>
@@ -699,13 +705,13 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <a href="#home" class="logo">Kathakali Kala</a>
+            <a href="#home" class="logo">Kuchipudi Kala</a>
             <ul class="nav-menu">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#about">About Kathakali</a></li>
-                <li><a href="#stories">Epic Narratives</a></li>
-                <li><a href="#videos">Kathakali Performances</a></li>
-                <li><a href="#gallery">Visual Spectacle</a></li>
+                <li><a href="#about">About Kuchipudi</a></li>
+                <li><a href="#stories">Mythology in Motion</a></li>
+                <li><a href="#videos">Kuchipudi in Action</a></li>
+                <li><a href="#gallery">Vibrant Expressions</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -714,37 +720,38 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1>Experience the Drama of Kathakali</h1>
-            <p>– Where ancient tales come alive through vibrant art –</p>
+
+            <h1>Embrace the Grace of Kuchipudi</h1>
+            <p>– A captivating journey through dance and devotion –</p>
         </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="section">
-        <h2>About Kathakali</h2>
+        <h2>About Kuchipudi</h2>
         <div class="about fade-in">
             <div class="about-content">
                 <div class="about-text">
-                    <B>Kathakali</B> is a highly stylized classical Indian dance-drama form that originated in Kerala, South India. It is renowned for its elaborate makeup, intricate costumes, and detailed gestures.<br>
-                    <B>Origin</B>: Developed in the 17th century, evolving from ancient temple and folk arts of Kerala.<br>
-                    <B>Meaning</B>: "Katha" means story or play, and "Kali" means performance or art. Thus, Kathakali means "story-play".<br>
-                    <B>Characteristics</B>: Features towering headgear, painted faces (Chutti), expressive mudras (hand gestures), and dramatic facial expressions (Navarasas). Performances are long, often lasting all night, and tell stories through a combination of dance, music, and acting.<br>
-                    <B>Themes</B>: Primarily based on Hindu epics like the Mahabharata, Ramayana, and ancient Puranas, depicting divine, heroic, and demonic characters.<br>
-                    <B>Music</B>: Accompanied by traditional Kerala percussion instruments like Chenda, Maddalam, and Ilathalam (cymbals), along with vocalists singing in Sopanam style.<br>
-                    <B>Costumes & Makeup</B>: Characters are categorized by their makeup colors (Pacha for noble, Kathi for villainous, Kari for forest dwellers, Minukku for female/sages), which are meticulously applied over several hours.<br>
-                    <B>Cultural Role</B>: Traditionally performed in temple premises and noble households, it is now a global art form, preserving ancient narratives and artistic traditions.<br>
-                    <B>Sustainability</B>: Taught in gurukulams (traditional schools) where students undergo rigorous training for years to master the art form.<br>
-                    <B>Symbolism</B>: Each aspect, from makeup to gesture, is symbolic, conveying complex emotions and narratives without spoken dialogue.
+                    <B>Kuchipudi</B> is one of the ten major Indian classical dances. It originated in a village named Kuchipudi in the Indian state of Andhra Pradesh.<br>
+                    <B>Origin</B>: Traces its roots to ancient Hindu Sanskrit texts and was developed as a dance-drama performance art in the 17th century by Siddhendra Yogi.<br>
+                    <B>Meaning</B>: Named after the village Kuchipudi, where it flourished.<br>
+                    <B>Characteristics</B>: Known for its swift, intricate footwork, dramatic expressions (abhinaya), graceful body movements, and vibrant costumes. It often includes a unique feature called "Tarangam," where the dancer performs on a brass plate with a pot of water on their head.<br>
+                    <B>Themes</B>: Primarily devotional, narrating stories from Hindu mythology, Puranas, and spiritual texts, especially those related to Krishna and Vishnu.<br>
+                    <B>Music</B>: Performed to Carnatic music, accompanied by instruments like mridangam, violin, flute, and tanpura.<br>
+                    <B>Costumes</B>: Elaborate and colorful, typically featuring a sari-like drape, traditional jewelry, and distinct makeup.<br>
+                    <B>Cultural Role</B>: Traditionally performed by male Brahmin dancers, it later evolved to include female dancers and gained prominence as a solo art form.<br>
+                    <B>Sustainability</B>: Continues to be a living tradition, preserved and promoted through dance schools and performances worldwide.<br>
+                    <B>Symbolism</B>: Represents a harmonious blend of Nritta (pure dance), Nritya (expressive dance), and Natya (drama), conveying spiritual messages and aesthetic beauty.
                 </div>
                 <div class="about-image">
                     <div class="decorative-border">
-                        <!-- Placeholder for an image related to Kathakali -->
+                        <!-- Placeholder for an image related to Kuchipudi -->
                         <svg width="300" height="200" viewBox="0 0 300 200">
-                            <rect fill="var(--katha-white)" width="300" height="200"/>
-                            <g fill="var(--katha-yellow)">
+                            <rect fill="var(--cream-base)" width="300" height="200"/>
+                            <g fill="var(--golden-yellow)">
                                 <path d="M150 20 L180 80 L120 80 Z" fill="currentColor" opacity="0.6"/>
                                 <circle cx="150" cy="120" r="40" fill="currentColor" opacity="0.4"/>
-                                <path d="M100 150 Q150 180 200 150 Q150 120 100 150" stroke="var(--katha-green)" stroke-width="3" fill="none"/>
+                                <path d="M100 150 Q150 180 200 150 Q150 120 100 150" stroke="var(--peacock-blue)" stroke-width="3" fill="none"/>
                             </g>
                         </svg>
                     </div>
@@ -755,43 +762,43 @@
 
     <!-- Stories Section -->
     <section id="stories" class="section">
-        <h2>Epic Narratives</h2>
+        <h2>Mythology in Motion</h2>
         <div class="stories-grid">
             <div class="story-card fade-in">
-                <h3>Nalacharitam</h3>
-                <p>A celebrated Kathakali play, it depicts the poignant love story of King Nala and Damayanti, their separation, and eventual reunion, filled with divine interventions and human emotions.</p>
+                <h3>Bhama Kalapam</h3>
+                <p>One of the most popular Kuchipudi dance-dramas, it tells the story of Satyabhama, Krishna's proud queen, her separation from him, and her eventual reunion after humbling herself. It's known for its lyrical beauty and emotional depth.</p>
             </div>
             <div class="story-card fade-in">
-                <h3>Kalyanasougandhikam</h3>
-                <p>This popular play focuses on Bhima's journey to find the mythical Saugandhika flower for Draupadi, encountering Hanuman along the way. It showcases humor, strength, and devotion.</p>
+                <h3>Krishna Leela Tarangini</h3>
+                <p>This composition vividly portrays various episodes from Lord Krishna's life, from his mischievous childhood to his divine love stories. Dancers often perform the "Tarangam" piece on a brass plate, symbolizing Krishna's playful nature.</p>
             </div>
             <div class="story-card fade-in">
-                <h3>Duryodhana Vadham</h3>
-                <p>A dramatic and intense play from the Mahabharata, depicting the final battle between Bhima and Duryodhana, culminating in Duryodhana's defeat and death, highlighting themes of justice and retribution.</p>
+                <h3>Prahlada Charitam</h3>
+                <p>Based on the Bhagavata Purana, this narrative depicts the unwavering devotion of Prahlada, a child devotee of Vishnu, despite his demon father Hiranyakashipu's attempts to kill him. It culminates in the appearance of Narasimha, the man-lion avatar of Vishnu.</p>
             </div>
             <div class="story-card fade-in">
-                <h3>Kiratham</h3>
-                <p>This play narrates the story of Arjuna's penance to obtain the Pasupatastra from Lord Shiva, who appears disguised as a hunter (Kirata). It culminates in a fierce battle and Shiva revealing his true form.</p>
+                <h3>Usha Parinayam</h3>
+                <p>This dance-drama recounts the love story of Usha, daughter of Banasura, and Aniruddha, Krishna's grandson. It's filled with romantic sequences, divine interventions, and dramatic confrontations.</p>
             </div>
             <div class="story-card fade-in">
-                <h3>Dakshayagam</h3>
-                <p>Based on the Shiva Purana, this tells the story of Daksha's sacrifice, Sati's self-immolation, and Shiva's destructive dance (Raudra Tandava), leading to the creation of the Shakti Peethas.</p>
+                <h3>Mohini Bhasmasura</h3>
+                <p>A popular solo item, this depicts the story of the demon Bhasmasura, who obtains a boon to turn anyone he touches into ashes. Lord Vishnu takes the form of the enchanting Mohini to trick Bhasmasura into touching his own head, leading to his demise.</p>
             </div>
             <div class="story-card fade-in">
-                <h3>Subhadraharanam</h3>
-                <p>An enchanting play depicting the abduction of Subhadra by Arjuna, with the assistance of Lord Krishna. It's a romantic narrative filled with strategic planning and divine blessings.</p>
+                <h3>Golla Kalapam</h3>
+                <p>A philosophical dance-drama that uses the metaphor of a milkmaid (Gollabhama) to discuss philosophical concepts, the nature of the soul, and the human condition, often with a touch of humor and wit.</p>
             </div>
         </div>
     </section>
 
     <!-- Videos Section -->
     <section id="videos" class="section">
-        <h2>Kathakali Performances</h2>
+        <h2>Kuchipudi in Action</h2>
         <div class="videos-grid">
             <div class="video-card fade-in">
                 <div style="position: relative; width: 100%; padding-bottom: 56.25%; overflow: hidden; max-width: 600px;">
                     <iframe src="#"
-                        title="Kathakali Video 1"
+                        title="Kuchipudi Video 1"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
@@ -799,15 +806,15 @@
                     </iframe>
                 </div>
                 <div class="video-info">
-                    <h3>Kathakali Makeup Process</h3>
-                    <p>A fascinating look into the elaborate makeup (Chutti) application.</p>
+                    <h3>Introduction to Kuchipudi</h3>
+                    <p>An overview of the history and basic techniques of Kuchipudi.</p>
                     <small>Duration: [To be added]</small>
                 </div>
             </div>
             <div class="video-card fade-in">
                 <div style="position: relative; width: 100%; padding-bottom: 56.25%; overflow: hidden; max-width: 600px;">
                     <iframe src="#"
-                        title="Kathakali Video 2"
+                        title="Kuchipudi Video 2"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-write; encrypted-media; gyroscope; picture-in-picture"
                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
@@ -815,8 +822,8 @@
                     </iframe>
                 </div>
                 <div class="video-info">
-                    <h3>Mudras and Expressions</h3>
-                    <p>Understanding the language of Kathakali hand gestures and facial expressions.</p>
+                    <h3>Kuchipudi Performance Highlight</h3>
+                    <p>Watch a captivating performance showcasing the beauty of Kuchipudi.</p>
                     <small>Duration: [To be added]</small>
                 </div>
             </div>
@@ -831,8 +838,8 @@
                     </iframe>
                 </div>
                 <div class="video-info">
-                    <h3>A Glimpse of a Full Performance</h3>
-                    <p>Highlights from a traditional Kathakali night performance.</p>
+                    <h3>Learning Kuchipudi Footwork</h3>
+                    <p>A tutorial on fundamental footwork (jati) in Kuchipudi.</p>
                     <small>Duration: [To be added]</small>
                 </div>
             </div>
@@ -841,48 +848,48 @@
 
     <!-- Gallery Section -->
     <section id="gallery" class="section">
-        <h2>Visual Spectacle</h2>
+        <h2>Vibrant Expressions</h2>
         <div class="gallery-grid">
-            <div class="gallery-item fade-in" onclick="openLightbox('Pacha Character', 'Kerala', 'A noble character (Pacha) with green makeup and elaborate costume.', 'https://placehold.co/400x300/004D00/F8F8FF?text=Image+1')">
-                <div class="gallery-placeholder">Pacha Character</div>
+            <div class="gallery-item fade-in" onclick="openLightbox('Graceful Pose', 'Andhra Pradesh', 'A dancer striking a classical Kuchipudi pose.', 'https://placehold.co/400x300/FFD700/005F6B?text=Image+1')">
+                <div class="gallery-placeholder">Graceful Pose</div>
                 <div class="gallery-overlay">
-                    <h4>Pacha Character</h4>
-                    <P>Kerala</P>
+                    <h4>Graceful Pose</h4>
+                    <P>Andhra Pradesh</P>
                 </div>
             </div>
-            <div class="gallery-item fade-in" onclick="openLightbox('Kathi Character', 'Kerala', 'A villainous character (Kathi) with distinctive knife-like makeup.', 'https://placehold.co/400x300/B22222/F8F8FF?text=Image+2')">
-                <div class="gallery-placeholder">Kathi Character</div>
+            <div class="gallery-item fade-in" onclick="openLightbox('Traditional Attire', 'Andhra Pradesh', 'Close-up of a dancer in traditional Kuchipudi costume and jewelry.', 'https://placehold.co/400x300/A30000/FFFDD0?text=Image+2')">
+                <div class="gallery-placeholder">Traditional Attire</div>
                 <div class="gallery-overlay">
-                    <h4>Kathi Character</h4>
-                    <p>Kerala</p>
+                    <h4>Traditional Attire</h4>
+                    <p>Andhra Pradesh</p>
                 </div>
             </div>
-            <div class="gallery-item fade-in" onclick="openLightbox('Kari Character', 'Kerala', 'A black-faced character (Kari) representing forest dwellers or demons.', 'https://placehold.co/400x300/1A1A1A/FFD700?text=Image+3')">
-                <div class="gallery-placeholder">Kari Character</div>
+            <div class="gallery-item fade-in" onclick="openLightbox('Tarangam Performance', 'Andhra Pradesh', 'A dancer performing on a brass plate (Tarangam).', 'https://placehold.co/400x300/005F6B/FFD700?text=Image+3')">
+                <div class="gallery-placeholder">Tarangam Performance</div>
                 <div class="gallery-overlay">
-                    <h4>Kari Character</h4>
-                    <p>Kerala</p>
+                    <h4>Tarangam Performance</h4>
+                    <p>Andhra Pradesh</p>
                 </div>
             </div>
-            <div class="gallery-item fade-in" onclick="openLightbox('Minukku Makeup', 'Kerala', 'A female character or sage (Minukku) with subtle, glowing makeup.', 'https://placehold.co/400x300/FFD700/1A1A1A?text=Image+4')">
-                <div class="gallery-placeholder">Minukku Makeup</div>
+            <div class="gallery-item fade-in" onclick="openLightbox('Group Synchrony', 'Andhra Pradesh', 'Multiple dancers performing in perfect synchrony.', 'https://placehold.co/400x300/006400/FFFDD0?text=Image+4')">
+                <div class="gallery-placeholder">Group Synchrony</div>
                 <div class="gallery-overlay">
-                    <h4>Minukku Makeup</h4>
-                    <p>Kerala</p>
+                    <h4>Group Synchrony</h4>
+                    <p>Andhra Pradesh</p>
                 </div>
             </div>
-            <div class="gallery-item fade-in" onclick="openLightbox('Mudras in Detail', 'Kerala', 'Close-up of intricate hand gestures (mudras) conveying meaning.', 'https://placehold.co/400x300/FF8C00/004D00?text=Image+5')">
-                <div class="gallery-placeholder">Mudras in Detail</div>
+            <div class="gallery-item fade-in" onclick="openLightbox('Expressive Abhinaya', 'Andhra Pradesh', 'A close-up highlighting the expressive facial gestures (abhinaya).', 'https://placehold.co/400x300/FF8C00/2F1700?text=Image+5')">
+                <div class="gallery-placeholder">Expressive Abhinaya</div>
                 <div class="gallery-overlay">
-                    <h4>Mudras in Detail</h4>
-                    <p>Kerala</p>
+                    <h4>Expressive Abhinaya</h4>
+                    <p>Andhra Pradesh</p>
                 </div>
             </div>
-            <div class="gallery-item fade-in" onclick="openLightbox('Elaborate Headgear', 'Kerala', 'A stunning example of Kathakali headgear (Kireedam).', 'https://placehold.co/400x300/000000/FFD700?text=Image+6')">
-                <div class="gallery-placeholder">Elaborate Headgear</div>
+            <div class="gallery-item fade-in" onclick="openLightbox('Temple Sculpture Influence', 'Andhra Pradesh', 'A pose inspired by ancient temple sculptures.', 'https://placehold.co/400x300/2F1700/FFD700?text=Image+6')">
+                <div class="gallery-placeholder">Temple Sculpture Influence</div>
                 <div class="gallery-overlay">
-                    <h4>Elaborate Headgear</h4>
-                    <p>Kerala</p>
+                    <h4>Temple Sculpture Influence</h4>
+                    <p>Andhra Pradesh</p>
                 </div>
             </div>
         </div>
@@ -892,14 +899,14 @@
     <div id="lightbox" class="lightbox">
         <div class="lightbox-content">
             <span class="lightbox-close" onclick="closeLightbox()">×</span>
-            <h2 id="lightbox-title" style="color:var(--katha-red)"></h2>
-            <p id="lightbox-state" style="color:var(--katha-green)"></p>
+            <h2 id="lightbox-title" style="color:var(--primary-red)"></h2>
+            <p id="lightbox-state" style="color:var(--peacock-blue)"></p>
 
-            <div style="height: auto; background: linear-gradient(45deg, var(--katha-yellow), var(--katha-orange)); display: flex; align-items: center; justify-content: center; margin: 1rem 0; border-radius: 10px; padding: 10px;">
-                <img id="lightbox-image" src="" alt="Kathakali Art" style="max-width: 100%; max-height: 300px; border-radius: 8px;" />
+            <div style="height: auto; background: linear-gradient(45deg, var(--golden-yellow), var(--accent-orange)); display: flex; align-items: center; justify-content: center; margin: 1rem 0; border-radius: 10px; padding: 10px;">
+                <img id="lightbox-image" src="" alt="Kuchipudi Art" style="max-width: 100%; max-height: 300px; border-radius: 8px;" />
             </div>
 
-            <p id="lightbox-description" style="color:var(--katha-dark-contrast)"></p>
+            <p id="lightbox-description" style="color:var(--dark-contrast)"></p>
         </div>
     </div>
 
@@ -908,10 +915,10 @@
     <footer id="contact">
         <div class="footer-content">
             <div class="footer-ornament">❋ ❋ ❋</div>
-            <h3>Connect with Kathakali Kala</h3>
-            <p>Explore the vibrant world of Kathakali.</p>
+            <h3>Connect with Kuchipudi Kala</h3>
+            <p>Explore the rich heritage of Kuchipudi dance.</p>
             <div style="margin-top: 2rem;">
-                <p>© 2025 Kathakali Kala. Celebrating the majestic art of Kathakali.</p>
+                <p>© 2025 Kuchipudi Kala. Celebrating the timeless art of Kuchipudi.</p>
                 <p style="font-size: 0.9rem; margin-top: 1rem;">All performances and art showcased with respect to the original artists and cultural heritage.</p>
             </div>
         </div>
@@ -992,23 +999,26 @@
             
             // Create additional floating elements with varied motifs
             const motifTypes = [
-                // Stylized Kathakali eye
+                // Stylized dancer pose
                 `<svg width="70" height="70" viewBox="0 0 70 70">
-                    <path d="M35 20 Q50 10 65 20 Q50 30 35 20 Z" fill="currentColor" opacity="0.4"/>
-                    <circle cx="35" cy="20" r="5" fill="currentColor" opacity="0.6"/>
+                    <path d="M35 10 Q45 20 35 30 Q25 20 35 10 Z" fill="currentColor" opacity="0.4"/>
+                    <path d="M35 30 L40 50 L35 60 L30 50 Z" fill="currentColor" opacity="0.3"/>
+                    <circle cx="35" cy="5" r="3" fill="currentColor" opacity="0.6"/>
                 </svg>`,
                 
-                // Mudra (hand gesture)
+                // Lotus flower
                 `<svg width="60" height="60" viewBox="0 0 60 60">
-                    <path d="M30 10 Q40 20 30 30 Q20 20 30 10 Z" fill="currentColor" opacity="0.4"/>
-                    <path d="M30 30 L35 50 L30 55 L25 50 Z" fill="currentColor" opacity="0.3"/>
-                    <circle cx="30" cy="5" r="3" fill="currentColor" opacity="0.6"/>
+                    <circle cx="30" cy="30" r="20" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+                    <path d="M30 10 Q40 20 30 30 Q20 20 30 10" fill="currentColor" opacity="0.4"/>
+                    <path d="M50 30 Q40 40 30 30 Q40 20 50 30" fill="currentColor" opacity="0.4"/>
+                    <path d="M30 50 Q20 40 30 30 Q40 40 30 50" fill="currentColor" opacity="0.4"/>
+                    <path d="M10 30 Q20 20 30 30 Q20 40 10 30" fill="currentColor" opacity="0.4"/>
                 </svg>`,
                 
-                // Headgear element (abstract)
+                // Peacock feather
                 `<svg width="50" height="50" viewBox="0 0 50 50">
-                    <path d="M25 5 L45 25 L25 45 L5 25 Z" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3"/>
-                    <path d="M25 15 L30 20 L25 25 L20 20 Z" fill="currentColor" opacity="0.4"/>
+                    <path d="M25 5 L35 20 L25 45 L15 20 Z" fill="currentColor" opacity="0.3"/>
+                    <circle cx="25" cy="20" r="5" fill="currentColor" opacity="0.5"/>
                 </svg>`
             ];
             

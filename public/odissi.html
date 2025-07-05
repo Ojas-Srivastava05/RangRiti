@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kathakali - The Grandeur of Kerala's Dance-Drama</title>
+    <title>Odissi - The Graceful Dance of Odisha</title>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Kathakali Inspired Color Palette */
-            --katha-green: #004D00; /* Pacha - Deep Green for noble characters */
-            --katha-red: #B22222; /* Chuvanna - Vibrant Red for evil/aggressive characters */
-            --katha-white: #F8F8FF; /* Thadi - Pure White for pure characters */
-            --katha-black: #1A1A1A; /* Kari - Stark Black for hunters/forest dwellers */
-            --katha-yellow: #FFD700; /* Minukku - Golden Yellow for female/sages */
-            --katha-orange: #FF8C00; /* Bright Orange for accents */
-            --katha-dark-contrast: #000000; /* Very dark for strong contrast/text */
+            /* Odissi Inspired Color Palette */
+            --od-saffron: #FF6600; /* Bright Saffron */
+            --od-deep-red: #A00000; /* Deep Red */
+            --od-royal-blue: #0000A0; /* Strong Royal Blue (Jagannath Blue) */
+            --od-golden-yellow: #FFC107; /* Radiant Golden Yellow */
+            --od-white-cream: #F8F8F8; /* Soft Off-White/Cream */
+            --od-green-accent: #008000; /* Vibrant Green Accent */
+            --od-dark-brown: #4F352A; /* Dark Brown for contrast */
         }
 
         * {
@@ -26,7 +26,7 @@
         body {
             font-family: 'Crimson Text', serif;
             background: transparent;
-            color: var(--katha-dark-contrast);
+            color: var(--od-dark-brown);
             overflow-x: hidden;
             position: relative;
         }
@@ -41,46 +41,46 @@
             z-index: -1;
             overflow: hidden;
             background: linear-gradient(135deg, 
-                var(--katha-white) 0%, 
-                #FFFACD 25%, /* Lighter yellow-white */
-                var(--katha-white) 50%, 
-                #FFFACD 75%, 
-                var(--katha-white) 100%);
+                var(--od-white-cream) 0%, 
+                #F0F0F0 25%, /* Lighter cream */
+                var(--od-white-cream) 50%, 
+                #F0F0F0 75%, 
+                var(--od-white-cream) 100%);
             animation: gradientShift 20s ease-in-out infinite;
         }
 
         @keyframes gradientShift {
             0%, 100% { 
                 background: linear-gradient(135deg, 
-                    var(--katha-white) 0%, 
-                    #FFFACD 25%, 
-                    var(--katha-white) 50%, 
-                    #FFFACD 75%, 
-                    var(--katha-white) 100%);
+                    var(--od-white-cream) 0%, 
+                    #F0F0F0 25%, 
+                    var(--od-white-cream) 50%, 
+                    #F0F0F0 75%, 
+                    var(--od-white-cream) 100%);
             }
             25% { 
                 background: linear-gradient(225deg, 
-                    #FFFACD 0%, 
-                    var(--katha-white) 25%, 
-                    #FFFACD 50%, 
-                    var(--katha-white) 75%, 
-                    #FFFACD 100%);
+                    #F0F0F0 0%, 
+                    var(--od-white-cream) 25%, 
+                    #F0F0F0 50%, 
+                    var(--od-white-cream) 75%, 
+                    #F0F0F0 100%);
             }
             50% { 
                 background: linear-gradient(315deg, 
-                    var(--katha-white) 0%, 
-                    #FFFACD 25%, 
-                    var(--katha-white) 50%, 
-                    #FFFACD 75%, 
-                    var(--katha-white) 100%);
+                    var(--od-white-cream) 0%, 
+                    #F0F0F0 25%, 
+                    var(--od-white-cream) 50%, 
+                    #F0F0F0 75%, 
+                    var(--od-white-cream) 100%);
             }
             75% { 
                 background: linear-gradient(45deg, 
-                    #FFFACD 0%, 
-                    var(--katha-white) 25%, 
-                    #FFFACD 50%, 
-                    var(--katha-white) 75%, 
-                    #FFFACD 100%);
+                    #F0F0F0 0%, 
+                    var(--od-white-cream) 25%, 
+                    #F0F0F0 50%, 
+                    var(--od-white-cream) 75%, 
+                    #F0F0F0 100%);
             }
         }
 
@@ -88,8 +88,8 @@
             position: absolute;
             animation: float 15s ease-in-out infinite;
             opacity: 0.2;
-            color: var(--katha-yellow);
-            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.4));
+            color: var(--od-golden-yellow);
+            filter: drop-shadow(0 0 10px rgba(255, 193, 7, 0.4));
         }
 
         .motif-1 {
@@ -159,9 +159,9 @@
             width: 100%;
             height: 100%;
             background-image: 
-                radial-gradient(circle at 25% 25%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 75% 75%, rgba(0, 77, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 50% 50%, rgba(248, 248, 255, 0.1) 0%, transparent 50%);
+                radial-gradient(circle at 25% 25%, rgba(255, 193, 7, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(0, 0, 160, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(248, 248, 248, 0.1) 0%, transparent 50%);
             animation: patternMove 30s linear infinite;
         }
 
@@ -178,11 +178,11 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(248, 248, 255, 0.95); /* White base with transparency */
+            background: rgba(248, 248, 248, 0.95); /* Creamy white base with transparency */
             backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 1rem 0;
-            border-bottom: 2px solid var(--katha-red);
+            border-bottom: 2px solid var(--od-deep-red);
         }
 
         .nav-container {
@@ -198,7 +198,7 @@
             font-family: 'EB Garamond', serif;
             font-size: 2rem;
             font-weight: 700;
-            color: var(--katha-green);
+            color: var(--od-royal-blue);
             text-decoration: none;
             letter-spacing: 2px;
         }
@@ -210,7 +210,7 @@
         }
 
         .nav-menu a {
-            color: var(--katha-dark-contrast);
+            color: var(--od-dark-brown);
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
@@ -218,7 +218,7 @@
         }
 
         .nav-menu a:hover {
-            color: var(--katha-red);
+            color: var(--od-deep-red);
         }
 
         .nav-menu a::after {
@@ -228,7 +228,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--katha-red);
+            background: var(--od-deep-red);
             transition: width 0.3s ease;
         }
 
@@ -240,7 +240,6 @@
         .hero {
             height: 100vh;
             /* Background image will be replaced by AI generated image */
-            background-image: url('../static/performingarts-specific/kathakalihero.png');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -261,14 +260,14 @@
             font-size: 4rem;
             margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
-            color: var(--katha-yellow); /* Hero heading in gold */
+            color: var(--od-golden-yellow); /* Hero heading in golden yellow */
         }
 
         .hero p {
             font-size: 1.5rem;
             font-style: italic;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-            color: var(--katha-white);
+            color: var(--od-white-cream);
         }
 
         @keyframes fadeInUp {
@@ -294,7 +293,7 @@
         .section h2 {
             font-family: 'EB Garamond', serif;
             font-size: 2.5rem;
-            color: var(--katha-red);
+            color: var(--od-deep-red);
             margin-bottom: 2rem;
             text-align: center;
             position: relative;
@@ -308,16 +307,16 @@
             transform: translateX(-50%);
             width: 100px;
             height: 3px;
-            background: var(--katha-green); /* Underline for heading */
+            background: var(--od-royal-blue); /* Underline for heading */
         }
 
         /* About Section */
         .about {
-            background: var(--katha-white);
+            background: var(--od-white-cream);
             border-radius: 20px;
             padding: 3rem;
             margin: 2rem 0;
-            border: 3px solid var(--katha-green); /* Border color changed */
+            border: 3px solid var(--od-royal-blue); /* Border color changed */
             position: relative;
             overflow: hidden;
         }
@@ -329,7 +328,7 @@
             right: -50px;
             width: 200px;
             height: 200px;
-            background: var(--katha-orange); /* Changed accent */
+            background: var(--od-saffron); /* Changed accent */
             opacity: 0.1;
             border-radius: 50%;
         }
@@ -344,7 +343,7 @@
         .about-text {
             font-size: 1.1rem;
             line-height: 1.8;
-            color: var(--katha-dark-contrast);
+            color: var(--od-dark-brown);
         }
 
         .about-image {
@@ -352,7 +351,7 @@
         }
 
         .decorative-border {
-            border: 5px solid var(--katha-yellow); /* Gold border for image */
+            border: 5px solid var(--od-golden-yellow); /* Golden yellow border for image */
             border-radius: 15px;
             padding: 1rem;
             background: white;
@@ -371,7 +370,7 @@
             background: white;
             border-radius: 15px;
             padding: 2rem;
-            border: 2px solid var(--katha-green); /* Green border for stories */
+            border: 2px solid var(--od-royal-blue); /* Blue border for stories */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
             overflow: hidden;
@@ -387,7 +386,7 @@
             left: 0;
             right: 0;
             height: 5px;
-            background: linear-gradient(90deg, var(--katha-red), var(--katha-orange));
+            background: linear-gradient(90deg, var(--od-deep-red), var(--od-saffron));
         }
 
         .story-card:hover {
@@ -398,7 +397,7 @@
         .story-card h3 {
             font-family: 'EB Garamond', serif;
             font-size: 1.5rem;
-            color: var(--katha-black);
+            color: var(--od-dark-brown);
             margin-bottom: 1rem;
         }
 
@@ -414,7 +413,7 @@
             background: white;
             border-radius: 15px;
             overflow: hidden;
-            border: 2px solid var(--katha-red); /* Red border for videos */
+            border: 2px solid var(--od-deep-red); /* Red border for videos */
             transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add box-shadow to transition */
             /* Animation for cards */
             animation: cardPopIn 0.8s ease-out forwards;
@@ -429,7 +428,7 @@
         .video-placeholder {
             width: 100%;
             height: 200px;
-            background: linear-gradient(135deg, var(--katha-orange), var(--katha-yellow));
+            background: linear-gradient(135deg, var(--od-saffron), var(--od-golden-yellow));
             display: flex;
             align-items: center;
             justify-content: center;
@@ -444,7 +443,7 @@
         .video-info h3 {
             font-family: 'EB Garamond', serif;
             font-size: 1.3rem;
-            color: var(--katha-dark-contrast);
+            color: var(--od-dark-brown);
             margin-bottom: 0.5rem;
         }
 
@@ -460,7 +459,7 @@
             position: relative;
             border-radius: 15px;
             overflow: hidden;
-            border: 3px solid var(--katha-green); /* Green border for gallery */
+            border: 3px solid var(--od-royal-blue); /* Blue border for gallery */
             transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add box-shadow to transition */
             cursor: pointer;
             /* Animation for cards */
@@ -476,11 +475,11 @@
         .gallery-placeholder {
             width: 100%;
             height: 250px;
-            background: linear-gradient(45deg, var(--katha-yellow), var(--katha-orange)); /* Gradient for placeholder */
+            background: linear-gradient(45deg, var(--od-golden-yellow), var(--od-saffron)); /* Gradient for placeholder */
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--katha-dark-contrast);
+            color: var(--od-dark-brown);
             font-weight: 600;
         }
 
@@ -517,7 +516,7 @@
         .lightbox-content {
             max-width: 90%;
             max-height: 90%;
-            background: var(--katha-white);
+            background: var(--od-white-cream);
             border-radius: 10px;
             padding: 2rem;
             position: relative;
@@ -530,13 +529,13 @@
             right: 15px;
             font-size: 2rem;
             cursor: pointer;
-            color: var(--katha-red);
+            color: var(--od-deep-red);
         }
 
         /* Footer */
         footer {
-            background: var(--katha-green); /* Darker green for footer */
-            color: var(--katha-white);
+            background: var(--od-royal-blue); /* Deep royal blue for footer */
+            color: var(--od-white-cream);
             padding: 3rem 0;
             text-align: center;
             position: relative;
@@ -550,7 +549,7 @@
 
         .footer-ornament {
             font-size: 2rem;
-            color: var(--katha-yellow);
+            color: var(--od-golden-yellow);
             margin-bottom: 1rem;
         }
 
@@ -642,56 +641,57 @@
     <div class="background-animation">
         <div class="background-pattern"></div>
         
-        <!-- Kathakali Inspired Motifs -->
+        <!-- Odissi Inspired Motifs -->
         <div class="floating-motif motif-1">
             <svg width="120" height="120" viewBox="0 0 120 120">
-                <!-- Stylized eye (Katakhali eye makeup) -->
-                <path d="M60 40 Q80 20 100 40 Q80 60 60 40 Z" fill="currentColor" opacity="0.6"/>
-                <circle cx="60" cy="40" r="10" fill="currentColor" opacity="0.8"/>
-                <path d="M60 40 Q40 20 20 40 Q40 60 60 40 Z" fill="currentColor" opacity="0.6"/>
+                <!-- Tribhanga pose abstract -->
+                <path d="M60 20 Q75 30 80 50 Q70 70 60 65 Q50 70 40 50 Q45 30 60 20 Z" fill="currentColor" opacity="0.6"/>
+                <circle cx="60" cy="15" r="5" fill="currentColor" opacity="0.8"/>
+                <path d="M60 65 Q70 80 60 95 Q50 80 60 65" fill="currentColor" opacity="0.4"/>
             </svg>
         </div>
         
         <div class="floating-motif motif-2">
             <svg width="100" height="100" viewBox="0 0 100 100">
-                <!-- Mudra (hand gesture) -->
-                <path d="M30 30 Q40 20 50 30 Q60 20 70 30 L70 70 Q60 80 50 70 Q40 80 30 70 Z" fill="currentColor" opacity="0.5"/>
-                <circle cx="50" cy="50" r="15" fill="currentColor" opacity="0.6"/>
+                <!-- Konark Wheel element -->
+                <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" stroke-width="2" opacity="0.5"/>
+                <line x1="50" y1="10" x2="50" y2="90" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+                <line x1="18" y1="30" x2="82" y2="70" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+                <line x1="82" y1="30" x2="18" y2="70" stroke="currentColor" stroke-width="1" opacity="0.4"/>
             </svg>
         </div>
         
         <div class="floating-motif motif-3">
             <svg width="140" height="140" viewBox="0 0 140 140">
-                <!-- Headgear element -->
-                <path d="M70 10 L80 40 L70 130 L60 40 Z" fill="currentColor" opacity="0.5"/>
-                <path d="M70 10 Q90 20 100 40 Q110 60 70 10 L70 10 Z" fill="currentColor" opacity="0.6"/>
-                <path d="M70 10 Q50 20 40 40 Q30 60 70 10 L70 10 Z" fill="currentColor" opacity="0.6"/>
+                <!-- Lotus flower -->
+                <path d="M70 10 L80 40 L110 50 L90 70 L100 100 L70 80 L40 100 L50 70 L20 50 L50 40 Z" fill="currentColor" opacity="0.5"/>
+                <circle cx="70" cy="70" r="15" fill="currentColor" opacity="0.6"/>
             </svg>
         </div>
         
         <div class="floating-motif motif-4">
             <svg width="80" height="80" viewBox="0 0 80 80">
-                <!-- Stylized costume pattern -->
-                <rect x="10" y="10" width="60" height="60" fill="none" stroke="currentColor" stroke-width="2" opacity="0.5"/>
-                <line x1="10" y1="40" x2="70" y2="40" stroke="currentColor" stroke-width="1" opacity="0.4"/>
-                <line x1="40" y1="10" x2="40" y2="70" stroke="currentColor" stroke-width="1" opacity="0.4"/>
-                <circle cx="40" cy="40" r="10" fill="currentColor" opacity="0.3"/>
+                <!-- Peacock feather eye -->
+                <circle cx="40" cy="40" r="20" fill="currentColor" opacity="0.3"/>
+                <circle cx="40" cy="40" r="10" fill="currentColor" opacity="0.5"/>
+                <circle cx="40" cy="40" r="5" fill="currentColor" opacity="0.8"/>
             </svg>
         </div>
         
         <div class="floating-motif motif-5">
             <svg width="110" height="110" viewBox="0 0 110 110">
-                <!-- Facial makeup swirl -->
-                <path d="M55 10 C80 20 90 60 55 100 C20 60 30 20 55 10 Z" fill="currentColor" opacity="0.4"/>
-                <circle cx="55" cy="55" r="15" fill="currentColor" opacity="0.5"/>
+                <!-- Mardala (percussion instrument) abstract -->
+                <path d="M30 55 Q40 30 55 30 Q70 30 80 55 L80 80 Q70 100 55 100 Q40 100 30 80 Z" fill="currentColor" opacity="0.4"/>
+                <circle cx="55" cy="30" r="8" fill="currentColor" opacity="0.5"/>
+                <circle cx="55" cy="100" r="8" fill="currentColor" opacity="0.5"/>
             </svg>
         </div>
         
         <div class="floating-motif motif-6">
             <svg width="90" height="90" viewBox="0 0 90 90">
-                <!-- Simple geometric pattern -->
-                <path d="M45 5 L85 45 L45 85 L5 45 Z" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/>
-                <circle cx="45" cy="45" r="10" fill="currentColor" opacity="0.2"/>
+                <!-- Temple spire element -->
+                <path d="M45 5 L65 45 L45 85 L25 45 Z" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/>
+                <path d="M45 15 L55 35 L45 55 L35 35 Z" fill="currentColor" opacity="0.2"/>
             </svg>
         </div>
     </div>
@@ -699,13 +699,13 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <a href="#home" class="logo">Kathakali Kala</a>
+            <a href="#home" class="logo">Odissi Nritya</a>
             <ul class="nav-menu">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#about">About Kathakali</a></li>
-                <li><a href="#stories">Epic Narratives</a></li>
-                <li><a href="#videos">Kathakali Performances</a></li>
-                <li><a href="#gallery">Visual Spectacle</a></li>
+                <li><a href="#about">About Odissi</a></li>
+                <li><a href="#stories">Mythological Tales</a></li>
+                <li><a href="#videos">Odissi in Motion</a></li>
+                <li><a href="#gallery">Artistic Expressions</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -714,37 +714,37 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1>Experience the Drama of Kathakali</h1>
-            <p>– Where ancient tales come alive through vibrant art –</p>
+            <h1>Discover the Soulful Art of Odissi</h1>
+            <p>– Poetic movements inspired by temple sculptures –</p>
         </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="section">
-        <h2>About Kathakali</h2>
+        <h2>About Odissi</h2>
         <div class="about fade-in">
             <div class="about-content">
                 <div class="about-text">
-                    <B>Kathakali</B> is a highly stylized classical Indian dance-drama form that originated in Kerala, South India. It is renowned for its elaborate makeup, intricate costumes, and detailed gestures.<br>
-                    <B>Origin</B>: Developed in the 17th century, evolving from ancient temple and folk arts of Kerala.<br>
-                    <B>Meaning</B>: "Katha" means story or play, and "Kali" means performance or art. Thus, Kathakali means "story-play".<br>
-                    <B>Characteristics</B>: Features towering headgear, painted faces (Chutti), expressive mudras (hand gestures), and dramatic facial expressions (Navarasas). Performances are long, often lasting all night, and tell stories through a combination of dance, music, and acting.<br>
-                    <B>Themes</B>: Primarily based on Hindu epics like the Mahabharata, Ramayana, and ancient Puranas, depicting divine, heroic, and demonic characters.<br>
-                    <B>Music</B>: Accompanied by traditional Kerala percussion instruments like Chenda, Maddalam, and Ilathalam (cymbals), along with vocalists singing in Sopanam style.<br>
-                    <B>Costumes & Makeup</B>: Characters are categorized by their makeup colors (Pacha for noble, Kathi for villainous, Kari for forest dwellers, Minukku for female/sages), which are meticulously applied over several hours.<br>
-                    <B>Cultural Role</B>: Traditionally performed in temple premises and noble households, it is now a global art form, preserving ancient narratives and artistic traditions.<br>
-                    <B>Sustainability</B>: Taught in gurukulams (traditional schools) where students undergo rigorous training for years to master the art form.<br>
-                    <B>Symbolism</B>: Each aspect, from makeup to gesture, is symbolic, conveying complex emotions and narratives without spoken dialogue.
+                    <B>Odissi</B> is one of the oldest surviving classical dance forms of India, originating from the temples of Odisha. It is characterized by its unique 'Tribhanga' (three-bend) posture and graceful movements.<br>
+                    <B>Origin</B>: Rooted in ancient Hindu temples, particularly those dedicated to Lord Jagannath in Puri, and performed by 'Maharis' (temple dancers) and 'Gotipuas' (boy dancers).<br>
+                    <B>Meaning</B>: Named after its place of origin, Odisha.<br>
+                    <B>Characteristics</B>: Emphasizes fluid torso movements, intricate footwork, and expressive hand gestures (mudras). The Tribhanga pose, where the body is deflected at the neck, torso, and knee, is central to its aesthetic.<br>
+                    <B>Themes</B>: Primarily devotional, focusing on the worship of Lord Jagannath (an incarnation of Vishnu) and stories from the Bhagavad Purana, particularly those depicting the love of Radha and Krishna.<br>
+                    <B>Music</B>: Performed to Odissi music, a distinct genre of Indian classical music, using instruments like the Mardala (percussion), flute, sitar, and violin.<br>
+                    <B>Costumes & Jewelry</B>: Dancers wear vibrant silk saris, often in bright colors like red, orange, and blue, adorned with elaborate silver filigree jewelry unique to Odisha.<br>
+                    <B>Cultural Role</B>: Historically a temple dance, it has evolved into a sophisticated classical art form, preserving the spiritual and artistic heritage of Odisha.<br>
+                    <B>Sustainability</B>: Continuously taught and performed globally, maintaining its traditional purity while adapting to contemporary stages.<br>
+                    <B>Symbolism</B>: The dance is a moving sculpture, drawing inspiration from the sensuous carvings of the Konark Sun Temple and other ancient temples of Odisha, embodying devotion and lyrical beauty.
                 </div>
                 <div class="about-image">
                     <div class="decorative-border">
-                        <!-- Placeholder for an image related to Kathakali -->
+                        <!-- Placeholder for an image related to Odissi -->
                         <svg width="300" height="200" viewBox="0 0 300 200">
-                            <rect fill="var(--katha-white)" width="300" height="200"/>
-                            <g fill="var(--katha-yellow)">
-                                <path d="M150 20 L180 80 L120 80 Z" fill="currentColor" opacity="0.6"/>
-                                <circle cx="150" cy="120" r="40" fill="currentColor" opacity="0.4"/>
-                                <path d="M100 150 Q150 180 200 150 Q150 120 100 150" stroke="var(--katha-green)" stroke-width="3" fill="none"/>
+                            <rect fill="var(--od-white-cream)" width="300" height="200"/>
+                            <g fill="var(--od-golden-yellow)">
+                                <path d="M150 20 Q180 80 150 120 Q120 80 150 20 Z" fill="currentColor" opacity="0.6"/>
+                                <circle cx="150" cy="150" r="30" fill="currentColor" opacity="0.4"/>
+                                <path d="M100 150 Q150 180 200 150 Q150 120 100 150" stroke="var(--od-royal-blue)" stroke-width="3" fill="none"/>
                             </g>
                         </svg>
                     </div>
@@ -755,43 +755,43 @@
 
     <!-- Stories Section -->
     <section id="stories" class="section">
-        <h2>Epic Narratives</h2>
+        <h2>Mythological Tales</h2>
         <div class="stories-grid">
             <div class="story-card fade-in">
-                <h3>Nalacharitam</h3>
-                <p>A celebrated Kathakali play, it depicts the poignant love story of King Nala and Damayanti, their separation, and eventual reunion, filled with divine interventions and human emotions.</p>
+                <h3>Gita Govinda</h3>
+                <p>Jayadeva's lyrical poem, Gita Govinda, is a cornerstone of Odissi repertoire. It beautifully describes the divine love play between Radha and Krishna, their separation, longing, and reunion, filled with rich poetic and emotional content.</p>
             </div>
             <div class="story-card fade-in">
-                <h3>Kalyanasougandhikam</h3>
-                <p>This popular play focuses on Bhima's journey to find the mythical Saugandhika flower for Draupadi, encountering Hanuman along the way. It showcases humor, strength, and devotion.</p>
+                <h3>Dashavatara</h3>
+                <p>This popular item depicts the ten incarnations of Lord Vishnu (Matsya, Kurma, Varaha, Narasimha, Vamana, Parashurama, Rama, Balarama/Krishna, Buddha, Kalki). Each avatar is portrayed through distinct movements and expressions, showcasing Vishnu's cosmic role.</p>
             </div>
             <div class="story-card fade-in">
-                <h3>Duryodhana Vadham</h3>
-                <p>A dramatic and intense play from the Mahabharata, depicting the final battle between Bhima and Duryodhana, culminating in Duryodhana's defeat and death, highlighting themes of justice and retribution.</p>
+                <h3>Battles of Durga</h3>
+                <p>Odissi often features powerful portrayals of Goddess Durga's victories over various demons, particularly Mahishasura. These pieces highlight her strength, divine fury, and triumph of good over evil, often with dynamic and energetic movements.</p>
             </div>
             <div class="story-card fade-in">
-                <h3>Kiratham</h3>
-                <p>This play narrates the story of Arjuna's penance to obtain the Pasupatastra from Lord Shiva, who appears disguised as a hunter (Kirata). It culminates in a fierce battle and Shiva revealing his true form.</p>
+                <h3>Krishna Leela</h3>
+                <p>Similar to other classical dances, Odissi includes various episodes from Krishna's life, from his childhood pranks (Bala Leela) to his youthful escapades with the Gopis. These are often imbued with a sense of playfulness and devotion.</p>
             </div>
             <div class="story-card fade-in">
-                <h3>Dakshayagam</h3>
-                <p>Based on the Shiva Purana, this tells the story of Daksha's sacrifice, Sati's self-immolation, and Shiva's destructive dance (Raudra Tandava), leading to the creation of the Shakti Peethas.</p>
+                <h3>Ardhanariswara</h3>
+                <p>This unique thematic presentation depicts the composite form of Lord Shiva and Goddess Parvati, symbolizing the union of masculine and feminine energies (Purusha and Prakriti). It allows the dancer to explore both vigorous (Tandava) and graceful (Lasya) aspects.</p>
             </div>
             <div class="story-card fade-in">
-                <h3>Subhadraharanam</h3>
-                <p>An enchanting play depicting the abduction of Subhadra by Arjuna, with the assistance of Lord Krishna. It's a romantic narrative filled with strategic planning and divine blessings.</p>
+                <h3>Shiva Stuti</h3>
+                <p>Devotional compositions praising Lord Shiva are common. These pieces often depict Shiva's cosmic dance, his attributes, and his role as the destroyer and regenerator, showcasing both his serene and fierce forms.</p>
             </div>
         </div>
     </section>
 
     <!-- Videos Section -->
     <section id="videos" class="section">
-        <h2>Kathakali Performances</h2>
+        <h2>Odissi in Motion</h2>
         <div class="videos-grid">
             <div class="video-card fade-in">
                 <div style="position: relative; width: 100%; padding-bottom: 56.25%; overflow: hidden; max-width: 600px;">
                     <iframe src="#"
-                        title="Kathakali Video 1"
+                        title="Odissi Video 1"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
@@ -799,15 +799,15 @@
                     </iframe>
                 </div>
                 <div class="video-info">
-                    <h3>Kathakali Makeup Process</h3>
-                    <p>A fascinating look into the elaborate makeup (Chutti) application.</p>
+                    <h3>The Grace of Tribhanga</h3>
+                    <p>Understanding the fundamental three-bend posture in Odissi.</p>
                     <small>Duration: [To be added]</small>
                 </div>
             </div>
             <div class="video-card fade-in">
                 <div style="position: relative; width: 100%; padding-bottom: 56.25%; overflow: hidden; max-width: 600px;">
                     <iframe src="#"
-                        title="Kathakali Video 2"
+                        title="Odissi Video 2"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-write; encrypted-media; gyroscope; picture-in-picture"
                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
@@ -815,8 +815,8 @@
                     </iframe>
                 </div>
                 <div class="video-info">
-                    <h3>Mudras and Expressions</h3>
-                    <p>Understanding the language of Kathakali hand gestures and facial expressions.</p>
+                    <h3>Odissi Temple Dance Revival</h3>
+                    <p>A documentary on the history and revival of Odissi as a classical art form.</p>
                     <small>Duration: [To be added]</small>
                 </div>
             </div>
@@ -831,8 +831,8 @@
                     </iframe>
                 </div>
                 <div class="video-info">
-                    <h3>A Glimpse of a Full Performance</h3>
-                    <p>Highlights from a traditional Kathakali night performance.</p>
+                    <h3>Odissi Music & Rhythm</h3>
+                    <p>An exploration of the unique musical elements that accompany Odissi dance.</p>
                     <small>Duration: [To be added]</small>
                 </div>
             </div>
@@ -841,48 +841,48 @@
 
     <!-- Gallery Section -->
     <section id="gallery" class="section">
-        <h2>Visual Spectacle</h2>
+        <h2>Artistic Expressions</h2>
         <div class="gallery-grid">
-            <div class="gallery-item fade-in" onclick="openLightbox('Pacha Character', 'Kerala', 'A noble character (Pacha) with green makeup and elaborate costume.', 'https://placehold.co/400x300/004D00/F8F8FF?text=Image+1')">
-                <div class="gallery-placeholder">Pacha Character</div>
+            <div class="gallery-item fade-in" onclick="openLightbox('Tribhanga Pose', 'Odisha', 'A dancer showcasing the iconic Tribhanga (three-bend) posture.', 'https://placehold.co/400x300/A00000/F8F8F8?text=Image+1')">
+                <div class="gallery-placeholder">Tribhanga Pose</div>
                 <div class="gallery-overlay">
-                    <h4>Pacha Character</h4>
-                    <P>Kerala</P>
+                    <h4>Tribhanga Pose</h4>
+                    <P>Odisha</P>
                 </div>
             </div>
-            <div class="gallery-item fade-in" onclick="openLightbox('Kathi Character', 'Kerala', 'A villainous character (Kathi) with distinctive knife-like makeup.', 'https://placehold.co/400x300/B22222/F8F8FF?text=Image+2')">
-                <div class="gallery-placeholder">Kathi Character</div>
+            <div class="gallery-item fade-in" onclick="openLightbox('Konark Influence', 'Odisha', 'A dance pose inspired by the sculptures of Konark Sun Temple.', 'https://placehold.co/400x300/0000A0/FFC107?text=Image+2')">
+                <div class="gallery-placeholder">Konark Influence</div>
                 <div class="gallery-overlay">
-                    <h4>Kathi Character</h4>
-                    <p>Kerala</p>
+                    <h4>Konark Influence</h4>
+                    <p>Odisha</p>
                 </div>
             </div>
-            <div class="gallery-item fade-in" onclick="openLightbox('Kari Character', 'Kerala', 'A black-faced character (Kari) representing forest dwellers or demons.', 'https://placehold.co/400x300/1A1A1A/FFD700?text=Image+3')">
-                <div class="gallery-placeholder">Kari Character</div>
+            <div class="gallery-item fade-in" onclick="openLightbox('Traditional Attire', 'Odisha', 'A dancer adorned in traditional Odissi costume and silver jewelry.', 'https://placehold.co/400x300/FFC107/4F352A?text=Image+3')">
+                <div class="gallery-placeholder">Traditional Attire</div>
                 <div class="gallery-overlay">
-                    <h4>Kari Character</h4>
-                    <p>Kerala</p>
+                    <h4>Traditional Attire</h4>
+                    <p>Odisha</p>
                 </div>
             </div>
-            <div class="gallery-item fade-in" onclick="openLightbox('Minukku Makeup', 'Kerala', 'A female character or sage (Minukku) with subtle, glowing makeup.', 'https://placehold.co/400x300/FFD700/1A1A1A?text=Image+4')">
-                <div class="gallery-placeholder">Minukku Makeup</div>
+            <div class="gallery-item fade-in" onclick="openLightbox('Expressive Mudras', 'Odisha', 'Close-up of intricate hand gestures (mudras) used in Odissi.', 'https://placehold.co/400x300/FF6600/F8F8F8?text=Image+4')">
+                <div class="gallery-placeholder">Expressive Mudras</div>
                 <div class="gallery-overlay">
-                    <h4>Minukku Makeup</h4>
-                    <p>Kerala</p>
+                    <h4>Expressive Mudras</h4>
+                    <p>Odisha</p>
                 </div>
             </div>
-            <div class="gallery-item fade-in" onclick="openLightbox('Mudras in Detail', 'Kerala', 'Close-up of intricate hand gestures (mudras) conveying meaning.', 'https://placehold.co/400x300/FF8C00/004D00?text=Image+5')">
-                <div class="gallery-placeholder">Mudras in Detail</div>
+            <div class="gallery-item fade-in" onclick="openLightbox('Group Harmony', 'Odisha', 'Multiple dancers performing in synchronized harmony.', 'https://placehold.co/400x300/008000/F8F8F8?text=Image+5')">
+                <div class="gallery-placeholder">Group Harmony</div>
                 <div class="gallery-overlay">
-                    <h4>Mudras in Detail</h4>
-                    <p>Kerala</p>
+                    <h4>Group Harmony</h4>
+                    <p>Odisha</p>
                 </div>
             </div>
-            <div class="gallery-item fade-in" onclick="openLightbox('Elaborate Headgear', 'Kerala', 'A stunning example of Kathakali headgear (Kireedam).', 'https://placehold.co/400x300/000000/FFD700?text=Image+6')">
-                <div class="gallery-placeholder">Elaborate Headgear</div>
+            <div class="gallery-item fade-in" onclick="openLightbox('Devotional Expression', 'Odisha', 'A dancer conveying deep devotion through facial expressions.', 'https://placehold.co/400x300/4F352A/FFC107?text=Image+6')">
+                <div class="gallery-placeholder">Devotional Expression</div>
                 <div class="gallery-overlay">
-                    <h4>Elaborate Headgear</h4>
-                    <p>Kerala</p>
+                    <h4>Devotional Expression</h4>
+                    <p>Odisha</p>
                 </div>
             </div>
         </div>
@@ -892,14 +892,14 @@
     <div id="lightbox" class="lightbox">
         <div class="lightbox-content">
             <span class="lightbox-close" onclick="closeLightbox()">×</span>
-            <h2 id="lightbox-title" style="color:var(--katha-red)"></h2>
-            <p id="lightbox-state" style="color:var(--katha-green)"></p>
+            <h2 id="lightbox-title" style="color:var(--od-deep-red)"></h2>
+            <p id="lightbox-state" style="color:var(--od-royal-blue)"></p>
 
-            <div style="height: auto; background: linear-gradient(45deg, var(--katha-yellow), var(--katha-orange)); display: flex; align-items: center; justify-content: center; margin: 1rem 0; border-radius: 10px; padding: 10px;">
-                <img id="lightbox-image" src="" alt="Kathakali Art" style="max-width: 100%; max-height: 300px; border-radius: 8px;" />
+            <div style="height: auto; background: linear-gradient(45deg, var(--od-golden-yellow), var(--od-saffron)); display: flex; align-items: center; justify-content: center; margin: 1rem 0; border-radius: 10px; padding: 10px;">
+                <img id="lightbox-image" src="" alt="Odissi Art" style="max-width: 100%; max-height: 300px; border-radius: 8px;" />
             </div>
 
-            <p id="lightbox-description" style="color:var(--katha-dark-contrast)"></p>
+            <p id="lightbox-description" style="color:var(--od-dark-brown)"></p>
         </div>
     </div>
 
@@ -908,10 +908,10 @@
     <footer id="contact">
         <div class="footer-content">
             <div class="footer-ornament">❋ ❋ ❋</div>
-            <h3>Connect with Kathakali Kala</h3>
-            <p>Explore the vibrant world of Kathakali.</p>
+            <h3>Connect with Odissi Nritya</h3>
+            <p>Explore the lyrical beauty of Odissi dance.</p>
             <div style="margin-top: 2rem;">
-                <p>© 2025 Kathakali Kala. Celebrating the majestic art of Kathakali.</p>
+                <p>© 2025 Odissi Nritya. Celebrating the timeless art of Odisha.</p>
                 <p style="font-size: 0.9rem; margin-top: 1rem;">All performances and art showcased with respect to the original artists and cultural heritage.</p>
             </div>
         </div>
@@ -992,23 +992,24 @@
             
             // Create additional floating elements with varied motifs
             const motifTypes = [
-                // Stylized Kathakali eye
+                // Tribhanga pose abstract
                 `<svg width="70" height="70" viewBox="0 0 70 70">
-                    <path d="M35 20 Q50 10 65 20 Q50 30 35 20 Z" fill="currentColor" opacity="0.4"/>
-                    <circle cx="35" cy="20" r="5" fill="currentColor" opacity="0.6"/>
+                    <path d="M35 10 Q45 20 35 30 Q25 20 35 10 Z" fill="currentColor" opacity="0.4"/>
+                    <path d="M35 30 L40 50 L35 60 L30 50 Z" fill="currentColor" opacity="0.3"/>
+                    <circle cx="35" cy="5" r="3" fill="currentColor" opacity="0.6"/>
                 </svg>`,
                 
-                // Mudra (hand gesture)
+                // Konark Wheel element
                 `<svg width="60" height="60" viewBox="0 0 60 60">
-                    <path d="M30 10 Q40 20 30 30 Q20 20 30 10 Z" fill="currentColor" opacity="0.4"/>
-                    <path d="M30 30 L35 50 L30 55 L25 50 Z" fill="currentColor" opacity="0.3"/>
-                    <circle cx="30" cy="5" r="3" fill="currentColor" opacity="0.6"/>
+                    <circle cx="30" cy="30" r="25" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+                    <line x1="30" y1="5" x2="30" y2="55" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+                    <line x1="10" y1="20" x2="50" y2="40" stroke="currentColor" stroke-width="1" opacity="0.4"/>
                 </svg>`,
                 
-                // Headgear element (abstract)
+                // Lotus flower
                 `<svg width="50" height="50" viewBox="0 0 50 50">
-                    <path d="M25 5 L45 25 L25 45 L5 25 Z" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3"/>
-                    <path d="M25 15 L30 20 L25 25 L20 20 Z" fill="currentColor" opacity="0.4"/>
+                    <path d="M25 5 L35 20 L25 45 L15 20 Z" fill="currentColor" opacity="0.3"/>
+                    <circle cx="25" cy="20" r="5" fill="currentColor" opacity="0.5"/>
                 </svg>`
             ];
             
