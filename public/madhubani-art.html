@@ -436,6 +436,11 @@
             color: white;
             font-size: 2.2vh;
         }
+        .video-placeholder iframe{
+            width: 370.35px;
+            height: 200px;
+
+        }
 
         .video-info {
             padding: 2.7vh;
@@ -472,7 +477,8 @@
         .gallery-placeholder {
             width: 100%;
             height: 250px;
-            background: linear-gradient(45deg, var(--sandalwood), var(--warm-beige));
+            background-size:cover;
+            background-position: center;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -746,32 +752,32 @@
         <div class="videos-grid">
             <div class="video-card fade-in">
                 <div class="video-placeholder">
-                    🎬 Documentary Preview
+    <iframe src="https://www.youtube.com/embed/HnogMBNBvCs?si=ytcRi6QivINgbfLG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
                 <div class="video-info">
-                    <h3>Masters of Mithila</h3>
+                    <h3>Story Behind Madhubani Paintings : A unique Art Painting | The Indianness</h3>
                     <p>A documentary exploring the lives and techniques of renowned Madhubani artists</p>
-                    <small>Duration: 45 minutes</small>
+                    <small>Duration: 5 minutes 21 seconds</small>
                 </div>
             </div>
             <div class="video-card fade-in">
                 <div class="video-placeholder">
-                    🎨 Painting Process
+    <iframe  src="https://www.youtube.com/embed/zIYd7K6DW9U?si=nokosDscKoxyMk5H" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
                 <div class="video-info">
                     <h3>Creating a Bharni Painting</h3>
                     <p>Step-by-step guide to creating traditional Madhubani art</p>
-                    <small>Duration: 28 minutes</small>
+                    <small>Duration: 19 minutes 53 seconds</small>
                 </div>
             </div>
             <div class="video-card fade-in">
                 <div class="video-placeholder">
-                    👩‍🎨 Artist Interview
+<iframe src="https://www.youtube.com/embed/qdf0ek_walU?si=NL9Q1n1NLPQN_6Nn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
                 <div class="video-info">
                     <h3>Voices from Mithila</h3>
                     <p>Interviews with contemporary Madhubani artists sharing their stories</p>
-                    <small>Duration: 35 minutes</small>
+                    <small>Duration: 19 minutes</small>
                 </div>
             </div>
         </div>
@@ -781,46 +787,40 @@
     <section id="gallery" class="section">
         <h2>Gallery</h2>
         <div class="gallery-grid">
-            <div class="gallery-item fade-in" onclick="openLightbox('Radha Krishna', 'Ganga Devi', 'A beautiful depiction of divine love through traditional Bharni style')">
-                <div class="gallery-placeholder">🎨 Radha Krishna</div>
+            <div class="gallery-item fade-in" onclick= "window.location.href = '/static/Radha-Krishna-2-madhubani.jpg' ">
+                <div class="gallery-placeholder" title="Radha Krishna" style="background-image: url(/static/Radha-Krishna-2-madhubani.jpg); background-position: center; background-size: cover;"></div>
                 <div class="gallery-overlay">
                     <h4>Radha Krishna</h4>
-                    <p>by Ganga Devi</p>
                 </div>
             </div>
-            <div class="gallery-item fade-in" onclick="openLightbox('Tree of Life', 'Sita Devi', 'The cosmic tree connecting earth and heaven')">
-                <div class="gallery-placeholder">🌳 Tree of Life</div>
+            <div class="gallery-item fade-in" onclick="window.location.href = '/static/Tree-of-Life-Madhubani-Painting-by-Vibhuti-Nath-2_1024x.webp '">
+                <div class="gallery-placeholder" style="background-image: url(/static/Tree-of-Life-Madhubani-Painting-by-Vibhuti-Nath-2_1024x.webp);"></div>
                 <div class="gallery-overlay">
                     <h4>Tree of Life</h4>
-                    <p>by Sita Devi</p>
                 </div>
             </div>
-            <div class="gallery-item fade-in" onclick="openLightbox('Kohbar Design', 'Mahasundari Devi', 'Traditional wedding chamber decoration')">
-                <div class="gallery-placeholder">💝 Kohbar Design</div>
+            <div class="gallery-item fade-in" onclick="window.location.href = '/static/kohbar\ designs.jpg'">
+                <div class="gallery-placeholder" style="background-image: url(/static/kohbar\ designs.jpg);"></div>
                 <div class="gallery-overlay">
                     <h4>Kohbar Design</h4>
-                    <p>by Mahasundari Devi</p>
                 </div>
             </div>
-            <div class="gallery-item fade-in" onclick="openLightbox('Peacock Dance', 'Bharti Dayal', 'Vibrant peacocks in monsoon celebration')">
-                <div class="gallery-placeholder">🦚 Peacock Dance</div>
+            <div class="gallery-item fade-in" onclick="window.location.href = '/static/peacock-dance.jpg'">
+                <div class="gallery-placeholder" style="background-image: url(/static/peacock-dance.jpg);"></div>
                 <div class="gallery-overlay">
                     <h4>Peacock Dance</h4>
-                    <p>by Bharti Dayal</p>
                 </div>
             </div>
-            <div class="gallery-item fade-in" onclick="openLightbox('Fish Motif', 'Yamuna Devi', 'Symbol of fertility and good fortune')">
-                <div class="gallery-placeholder">🐟 Fish Motif</div>
+            <div class="gallery-item fade-in" onclick="window.location.href = '/static/fish-motif.jpg '">
+                <div class="gallery-placeholder" style="background-image: url(/static/fish-motif.jpg);"></div>
                 <div class="gallery-overlay">
                     <h4>Fish Motif</h4>
-                    <p>by Yamuna Devi</p>
                 </div>
             </div>
-            <div class="gallery-item fade-in" onclick="openLightbox('Sun God', 'Godavari Dutta', 'Worship of Surya in Kachni style')">
-                <div class="gallery-placeholder">☀️ Sun God</div>
+            <div class="gallery-item fade-in" onclick="window.location.href = '/static/sun-god.jpg '">
+                <div class="gallery-placeholder" style="background-image: url(/static/sun-god.jpg);"></div>
                 <div class="gallery-overlay">
                     <h4>Sun God</h4>
-                    <p>by Godavari Dutta</p>
                 </div>
             </div>
         </div>
@@ -887,12 +887,11 @@
         });
 
         // Lightbox functionality
-        function openLightbox(title, artist, description) {
-            document.getElementById('lightbox-title').textContent = title;
-            document.getElementById('lightbox-artist').textContent = `Artist: ${artist}`;
-            document.getElementById('lightbox-description').textContent = description;
-            document.getElementById('lightbox').style.display = 'flex';
-        }
+        // function openLightbox(title, artist, description) {
+        //     document.getElementById('lightbox-title').textContent = title;
+        //     document.getElementById('lightbox-description').textContent = description;
+        //     document.getElementById('lightbox').style.display = 'flex';
+        // }
 
         function closeLightbox() {
             document.getElementById('lightbox').style.display = 'none';
