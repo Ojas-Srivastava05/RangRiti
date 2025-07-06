@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Performing Arts - Indian Traditional Art Museum</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Crimson+Text:400,600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -21,7 +21,7 @@
             overflow-x: hidden;
         }
 
-        /* Dynamic Decorative Background - From paintings and traditional styles.html */
+        /* Dynamic Decorative Background */
         body::before {
             content: '';
             position: fixed;
@@ -29,7 +29,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
+            background:
                 radial-gradient(circle at 20% 20%, rgba(184, 134, 11, 0.15) 0%, transparent 50%),
                 radial-gradient(circle at 80% 80%, rgba(120, 53, 15, 0.15) 0%, transparent 50%),
                 radial-gradient(circle at 60% 40%, rgba(139, 69, 19, 0.1) 0%, transparent 60%),
@@ -54,7 +54,7 @@
             }
         }
 
-        /* Floating Decorative Elements - From paintings and traditional styles.html */
+        /* Floating Decorative Elements */
         body::after {
             content: '';
             position: fixed;
@@ -62,7 +62,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
+            background:
                 url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23daa520' fill-opacity='0.1'%3E%3Cpath d='M20 5 L25 15 L35 15 L27 22 L30 32 L20 27 L10 32 L13 22 L5 15 L15 15 Z'/%3E%3C/g%3E%3C/svg%3E") 10% 10%,
                 url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%238b4513' fill-opacity='0.08'%3E%3Ccircle cx='15' cy='15' r='2'/%3E%3Cpath d='M15 5 L17 13 L25 13 L19 17 L21 25 L15 21 L9 25 L11 17 L5 13 L13 13 Z'/%3E%3C/g%3E%3C/svg%3E") 80% 80%,
                 url("data:image/svg+xml,%3Csvg width='25' height='25' viewBox='0 0 25 25' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23b8860b' fill-opacity='0.06'%3E%3Cpath d='M12.5 2 L14 8 L20 8 L15 12 L17 18 L12.5 15 L8 18 L10 12 L5 8 L11 8 Z'/%3E%3C/g%3E%3C/svg%3E") 30% 70%;
@@ -84,7 +84,7 @@
             }
         }
 
-        /* Navigation - From paintings and traditional styles.html */
+        /* Navigation */
         .nav-container {
             position: fixed;
             top: 10px;
@@ -93,6 +93,7 @@
             display: flex;
             gap: 10px;
             backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.1); /* Slightly more visible background */
             padding: 15px 25px;
             border-radius: 50px;
             border: 1px solid rgba(255, 215, 0, 0.3);
@@ -106,17 +107,17 @@
         }
 
         .nav-btn {
-            font-family: 'EB Garamond', serif;
+            font-family: 'Crimson Text', serif; /* Changed to match body font for elegance */
             background: transparent;
-            color: #3d2914; /* Adjusted to blend with painting theme */
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            color: #3d2914;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Softer shadow */
             border: none;
             padding: 8px 16px;
             border-radius: 25px;
-            font-size: 0.9rem;
-            font-weight: 500;
+            font-size: 0.95rem; /* Slightly larger */
+            font-weight: 600; /* Bolder */
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s ease-in-out; /* Smooth transition */
             position: relative;
             overflow: hidden;
             animation: navBtnFadeIn 1s ease-out forwards;
@@ -134,8 +135,8 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
-            transition: left 0.5s ease;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent); /* Softer gradient */
+            transition: left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Elegant easing */
         }
 
         .nav-btn:hover::before {
@@ -143,12 +144,12 @@
         }
 
         .nav-btn:hover {
-            background: rgba(255, 215, 0, 0.2);
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+            background: rgba(255, 215, 0, 0.15); /* Softer hover background */
+            transform: scale(1.03) translateY(-2px); /* Subtle lift and scale */
+            box-shadow: 0 6px 18px rgba(255, 215, 0, 0.25); /* Softer, wider shadow */
         }
 
-        /* Dropdown styles - From paintings and traditional styles.html */
+        /* Dropdown styles */
         .dropdown {
             position: relative;
             display: inline-block;
@@ -160,55 +161,72 @@
 
         .dropdown-menu {
             position: absolute;
-            top: 100%;
+            top: calc(100% + 5px); /* Slightly more space */
             left: 0;
-            background: rgba(0, 0, 0, 0.9);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 10px;
+            background: rgba(61, 41, 20, 0.9); /* Darker, richer background */
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            border-radius: 8px; /* Slightly less round */
             padding: 10px 0;
             display: none;
             flex-direction: column;
             min-width: 200px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); /* Stronger shadow for depth */
             z-index: 1001;
-        }
-
-        .dropdown-item {
-            font-family: 'EB Garamond', serif;
-            color: #FAF3E0;
-            text-decoration: none;
-            padding: 10px 20px;
-            display: block;
-            transition: all 0.3s ease;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-        }
-
-        .dropdown-item:hover {
-            background: rgba(255, 215, 0, 0.2);
-            color: #D4AF37; /* primary-gold from paintings theme */
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease-out, transform 0.3s ease-out, visibility 0.3s;
         }
 
         .dropdown:hover .dropdown-menu {
             display: flex;
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            font-family: 'Crimson Text', serif;
+            color: #FAF3E0;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: block;
+            transition: all 0.2s ease-in-out;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .dropdown-item:hover {
+            background: rgba(255, 215, 0, 0.15);
+            color: #D4AF37;
+            padding-left: 25px; /* Slight slide effect */
         }
 
         .dropdown-arrow {
-            font-size: 0.8em;
-            margin-left: 5px;
+            font-size: 0.7em; /* Slightly smaller */
+            margin-left: 6px; /* Adjusted spacing */
             display: inline-block;
+            transition: transform 0.3s ease;
         }
 
-        /* Header Section - From paintings and traditional styles.html */
+        .dropdown:hover .dropdown-arrow {
+            transform: rotate(180deg); /* Rotate on hover */
+        }
+
+        /* Header Section */
         .header {
-            text-align: center;
-            padding: 4rem 2rem;
-            background: 
-                linear-gradient(135deg, rgba(244, 228, 193, 0.95) 0%, rgba(220, 196, 156, 0.95) 100%),
-                url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23b8860b' fill-opacity='0.05'%3E%3Cpath d='M50 10 L60 40 L90 40 L68 58 L78 88 L50 70 L22 88 L32 58 L10 40 L40 40 Z'/%3E%3C/g%3E%3C/svg%3E");
+            text-align:center;
             margin-bottom: 3rem;
             position: relative;
             overflow: hidden;
-            margin-top: 80px; /* Adjusted to account for fixed nav */
+            margin-top: 80px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: headerFadeIn 1s ease-out forwards;
+            animation-delay: 0.5s; /* Delay for navigation to appear first */
+        }
+
+        @keyframes headerFadeIn {
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .header::before {
@@ -218,7 +236,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: 
+            background:
                 radial-gradient(circle at 30% 30%, rgba(184, 134, 11, 0.1) 0%, transparent 70%),
                 radial-gradient(circle at 70% 70%, rgba(120, 53, 15, 0.1) 0%, transparent 70%);
             z-index: 1;
@@ -227,18 +245,31 @@
         .header-content {
             position: relative;
             z-index: 2;
+            width: 100%;
+            padding: 2.5rem 2rem; /* Increased padding for visual weight */
+            background: rgba(244, 228, 193, 0.85); /* Slightly less transparent */
+            border-radius: 0;
+            box-sizing: border-box;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
         }
 
         .main-title {
-            padding-top: 20px;
             font-family: 'Cinzel', serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(2.8rem, 6vw, 4.5rem); /* Larger and more responsive */
             font-weight: 600;
             color: #3d2914;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 0.8rem; /* Reduced margin */
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.2); /* Stronger shadow */
             position: relative;
             display: inline-block;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideInFromBottom 0.8s ease-out forwards;
+            animation-delay: 1s; /* Delayed after header fade-in */
+        }
+
+        @keyframes slideInFromBottom {
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .main-title::before,
@@ -248,104 +279,166 @@
             top: 50%;
             transform: translateY(-50%);
             color: #b8860b;
-            font-size: 2rem;
+            font-size: clamp(1.8rem, 3vw, 2.5rem); /* Responsive size for stars */
+            opacity: 0;
+            animation: pulseStar 2s infinite alternate, fadeInStar 1s ease-out forwards;
+            animation-delay: 1.5s; /* Delayed star animation */
+        }
+
+        @keyframes pulseStar {
+            0% { transform: translateY(-50%) scale(1); }
+            50% { transform: translateY(-50%) scale(1.1); }
+            100% { transform: translateY(-50%) scale(1); }
+        }
+
+        @keyframes fadeInStar {
+            to { opacity: 1; }
         }
 
         .main-title::before {
-            left: -3rem;
+            left: -3.5rem; /* Slightly more offset */
         }
 
         .main-title::after {
-            right: -3rem;
+            right: -3.5rem; /* Slightly more offset */
         }
 
         .subtitle {
-            font-size: 1.2rem;
+            font-family: 'Playfair Display', serif; /* New font for elegance */
+            font-size: clamp(1rem, 2vw, 1.3rem); /* Responsive size */
             color: #6b4423;
             font-style: italic;
             margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideInFromBottom 0.8s ease-out forwards;
+            animation-delay: 1.2s; /* Delayed after main-title */
         }
 
-        /* Art Catalogue Section - Adapted from paintings and traditional styles.html */
+        /* Hero Image Styles */
+        .hero-image-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+            position: relative;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideInFromBottom 1s ease-out forwards;
+            animation-delay: 1.8s; /* Delayed after text */
+        }
+
+        .hero-image {
+            max-width: 650px; /* Slightly larger max-width */
+            width: 90%; /* Responsive width */
+            height: 450px; /* Slightly taller */
+            object-fit: cover;
+            border-radius: 18px; /* Slightly more rounded */
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35); /* Deeper shadow */
+            border: 6px solid #b8860b; /* Thicker golden border */
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .hero-image:hover {
+            transform: scale(1.01); /* Subtle zoom on hover */
+        }
+
+        /* Art Catalogue Section */
         .catalogue {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 3rem 2rem;
+            padding: 4rem 2rem; /* More vertical padding */
         }
 
         .catalogue-title {
             font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 4vw, 3.5rem); /* Larger and responsive */
             text-align: center;
             color: #3d2914;
-            margin-bottom: 3rem;
+            margin-bottom: 3.5rem; /* Increased margin */
             position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideInFromBottom 1s ease-out forwards;
+            animation-delay: 2s; /* Delayed entrance */
         }
 
         .catalogue-title::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -15px; /* Lower underline */
             left: 50%;
             transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
+            width: 120px; /* Wider underline */
+            height: 4px; /* Thicker underline */
             background: linear-gradient(90deg, transparent, #daa520, transparent);
+            border-radius: 2px; /* Slightly rounded underline */
         }
 
         .art-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjusted for responsiveness */
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Larger min-width for cards */
+            gap: 45px; /* Increased gap */
             justify-content: center;
             padding: 0 2rem;
         }
 
-        /* Art Card Styling - Merged from both, favoring paintings format */
+        /* Art Card Styling */
         .art-card {
-            background: #fff8dc; /* Light background for the card */
-            border: 1px solid #b8860b; /* Golden border */
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background: #fff8dc;
+            border: 1px solid #b8860b;
+            border-radius: 12px; /* Slightly more rounded corners */
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1); /* Softer, deeper shadow */
             overflow: hidden;
             display: flex;
             flex-direction: column;
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
             cursor: pointer;
-            position: relative; /* For the description overlay */
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: cardFadeInUp 0.8s ease-out forwards;
         }
 
+        @keyframes cardFadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Apply staggered animation delay to cards using JavaScript or a CSS trick */
+        /* For now, just apply base animation; JS can add stagger */
+
         .art-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+            transform: translateY(-12px); /* Slightly more lift */
+            box-shadow: 0 18px 40px rgba(0,0,0,0.25); /* More prominent shadow on hover */
         }
 
         .art-card img {
             width: 100%;
-            height: 250px; /* Fixed height for consistency */
+            height: 280px; /* Taller images */
             object-fit: cover;
-            transition: transform 0.3s ease;
+            transition: transform 0.4s ease-in-out;
         }
 
         .art-card:hover img {
-            transform: scale(1.05);
+            transform: scale(1.03); /* Subtle zoom */
         }
 
         .art-name {
             font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
+            font-size: 1.9rem; /* Slightly larger */
             font-weight: 500;
             color: #3d2914;
-            padding: 15px 10px 5px;
+            padding: 20px 15px 8px; /* More padding */
         }
 
         .short-description {
             font-family: 'Crimson Text', serif;
-            font-size: 1rem;
+            font-size: 1.05rem; /* Slightly larger */
             color: #6b4423;
-            padding: 0 15px 15px;
-            flex-grow: 1; /* Allows description to take available space */
+            padding: 0 20px 20px; /* More padding */
+            flex-grow: 1;
         }
 
         .full-description {
@@ -354,21 +447,21 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(61, 41, 20, 0.95); /* Dark overlay */
-            color: #f4e4c1; /* Light text for readability */
+            background: rgba(61, 41, 20, 0.98); /* Less transparent, more immersive */
+            color: #f4e4c1;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 25px; /* More padding */
             box-sizing: border-box;
             opacity: 0;
             visibility: hidden;
-            transform: translateY(10px);
-            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+            transform: translateY(15px); /* Start slightly lower */
+            transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out, visibility 0.4s;
             text-align: left;
             font-family: 'Crimson Text', serif;
-            font-size: 1.1rem;
-            line-height: 1.6;
+            font-size: 1.15rem; /* Slightly larger */
+            line-height: 1.7; /* Better readability */
         }
 
         .art-card:hover .full-description {
@@ -384,10 +477,10 @@
         /* Accessibility improvements */
         .art-card:focus {
             outline: 3px solid #daa520;
-            outline-offset: 2px;
-            box-shadow: 0 0 0 6px rgba(218, 165, 32, 0.3);
+            outline-offset: 4px; /* More visible outline */
+            box-shadow: 0 0 0 7px rgba(218, 165, 32, 0.4); /* Stronger focus shadow */
         }
-        
+
         .art-card:focus:not(:focus-visible) {
             outline: none;
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
@@ -397,44 +490,56 @@
         @media (max-width: 768px) {
             .nav-container{
                 flex-wrap: wrap;
-                width: 90vw;
-                top: 10px;
+                width: 95vw; /* Wider on small screens */
+                top: 5px; /* Closer to top */
+                padding: 10px 15px;
+            }
+            .nav-btn {
+                font-size: 0.85rem;
+                padding: 6px 12px;
+            }
+            .dropdown-menu {
+                min-width: 180px;
+                left: 50%;
+                transform: translateX(-50%); /* Center dropdown */
             }
             .header {
-                padding: 3rem 1rem;
+                padding: 2rem 1rem;
             }
             .main-title {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             .main-title::before,
             .main-title::after {
-                font-size: 1.5rem;
-                left: -2rem;
-                right: -2rem;
+                font-size: 1.8rem;
+                left: -2.5rem;
+                right: -2.5rem;
             }
             .subtitle {
                 font-size: 1rem;
             }
+            .hero-image {
+                height: 300px; /* Adjust for smaller screens */
+                max-width: 95%;
+            }
             .catalogue {
-                padding: 2rem 1rem;
+                padding: 3rem 1rem;
             }
             .catalogue-title {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             .art-grid {
                 grid-template-columns: 1fr;
                 gap: 30px;
+                padding: 0 1rem;
             }
             .art-card img {
-                height: 200px;
+                height: 220px;
             }
             .art-name {
-                font-size: 1.5rem;
+                font-size: 1.6rem;
             }
-            .short-description {
-                font-size: 0.9rem;
-            }
-            .full-description {
+            .short-description, .full-description {
                 font-size: 1rem;
                 padding: 15px;
             }
@@ -473,13 +578,16 @@
             <h1 class="main-title">Performing Arts of India</h1>
             <p class="subtitle">A vibrant tapestry of dance, music, and drama</p>
         </div>
+        <div class="hero-image-container">
+            <img src="../static/heroperformingartscategory.png" alt="Indian Performing Arts" class="hero-image">
+        </div>
     </header>
 
     <main class="catalogue">
         <h2 class="catalogue-title">Explore Indian Performing Arts</h2>
         <section class="art-grid">
             <div class="art-card" tabindex="0" role="button" aria-label="Learn more about Kathakali">
-                <img src="https://via.placeholder.com/400x250?text=Kathakali" alt="Kathakali Performance">
+                <img src="../static/kathakalicard.png" alt="Kathakali Performance">
                 <h3 class="art-name">Kathakali</h3>
                 <p class="short-description">A classical Indian dance-drama from Kerala, known for its elaborate makeup, colorful costumes, and detailed gestures.</p>
                 <div class="full-description">
@@ -488,7 +596,7 @@
             </div>
 
             <div class="art-card" tabindex="0" role="button" aria-label="Learn more about Bharatanatyam">
-                <img src="https://via.placeholder.com/400x250?text=Bharatanatyam" alt="Bharatanatyam Performance">
+                <img src="../static/bharatnatyamcard.png" alt="Bharatanatyam Performance">
                 <h3 class="art-name">Bharatanatyam</h3>
                 <p class="short-description">A major form of Indian classical dance that originated in Tamil Nadu. It is one of the oldest classical dance traditions in India.</p>
                 <div class="full-description">
@@ -497,16 +605,16 @@
             </div>
 
             <div class="art-card" tabindex="0" role="button" aria-label="Learn more about Kuchipudi">
-                <img src="https://via.placeholder.com/400x250?text=Kuchipudi" alt="Kuchipudi Performance">
+                <img src="../static/kuchipudicard.png" alt="Kuchipudi Performance">
                 <h3 class="art-name">Kuchipudi</h3>
                 <p class="short-description">An indigenous dance form from Andhra Pradesh, distinct for its lively, dramatic character, and blend of dance, music, and acting.</p>
                 <div class="full-description">
-                    <p>Kuchipudi is one of the eleven major Indian classical dances. It originated in a village named Kuchipudi in the Indian state of Andhra Pradesh. It is a dance-drama performance, with roots in ancient Hindu Sanskrit text of Natya Shastra. It typically begins with an invocation, followed by a presentation of the drama's characters and then the pure dance.</p>
+                    <p>Kuchipudi is one of the eleven major Indian classical dances. It originated in a village named Kuchipudi in the Indian state of Andhra Pradesh. It is a dance-drama performance, with roots in ancient Hindu Sanskrit text of Natya Shastra. It typically begins with an prolongation, followed by a presentation of the drama's characters and then the pure dance.</p>
                 </div>
             </div>
 
             <div class="art-card" tabindex="0" role="button" aria-label="Learn more about Odissi">
-                <img src="https://via.placeholder.com/400x250?text=Odissi" alt="Odissi Performance">
+                <img src="../static/odissicard.png" alt="Odissi Performance">
                 <h3 class="art-name">Odissi</h3>
                 <p class="short-description">An ancient classical dance form from Odisha, known for its fluid movements, sculpturesque poses, and spiritual themes.</p>
                 <div class="full-description">
@@ -515,7 +623,7 @@
             </div>
 
             <div class="art-card" tabindex="0" role="button" aria-label="Learn more about Mohiniyattam">
-                <img src="https://via.placeholder.com/400x250?text=Mohiniyattam" alt="Mohiniyattam Performance">
+                <img src="../static/mohiniyattamcard.png" alt="Mohiniyattam Performance">
                 <h3 class="art-name">Mohiniyattam</h3>
                 <p class="short-description">A graceful classical dance form from Kerala, characterized by gentle and flowing movements, often performed by women.</p>
                 <div class="full-description">
@@ -524,7 +632,7 @@
             </div>
 
             <div class="art-card" tabindex="0" role="button" aria-label="Learn more about Yakshagana">
-                <img src="https://via.placeholder.com/400x250?text=Yakshagana" alt="Yakshagana Performance">
+                <img src="../static/yakshaganacard.png" alt="Yakshagana Performance">
                 <h3 class="art-name">Yakshagana</h3>
                 <p class="short-description">A traditional folk theatre form from Karnataka, combining dance, music, dialogue, costume, and stage techniques with a unique style.</p>
                 <div class="full-description">
@@ -545,14 +653,15 @@
                 }
             }
         });
-        
-        // Add tabindex for accessibility
+
+        // Add tabindex for accessibility and staggered animation
         document.addEventListener('DOMContentLoaded', function() {
             const cards = document.querySelectorAll('.art-card');
             cards.forEach((card, index) => {
                 card.setAttribute('tabindex', '0');
                 card.setAttribute('role', 'button');
                 card.setAttribute('aria-label', `Learn more about ${card.querySelector('.art-name').textContent}`);
+                card.style.animationDelay = `${2.2 + (index * 0.1)}s`; /* Staggered animation */
             });
         });
     </script>
