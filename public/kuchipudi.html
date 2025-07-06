@@ -635,7 +635,11 @@
             visibility: visible;
             animation: cardPopIn 0.8s ease-out forwards;
         }
-
+        .gallery-placeholder img {
+    width: 100%;  /* Make the image take 100% width of its parent */
+    height: 100%; /* Make the image take 100% height of its parent */
+    object-fit: contain; /* **This is the key property** - ensures the whole image is visible */
+}
     </style>
 </head>
 <body>
@@ -746,14 +750,7 @@
                 <div class="about-image">
                     <div class="decorative-border">
                         <!-- Placeholder for an image related to Kuchipudi -->
-                        <svg width="300" height="200" viewBox="0 0 300 200">
-                            <rect fill="var(--cream-base)" width="300" height="200"/>
-                            <g fill="var(--golden-yellow)">
-                                <path d="M150 20 L180 80 L120 80 Z" fill="currentColor" opacity="0.6"/>
-                                <circle cx="150" cy="120" r="40" fill="currentColor" opacity="0.4"/>
-                                <path d="M100 150 Q150 180 200 150 Q150 120 100 150" stroke="var(--peacock-blue)" stroke-width="3" fill="none"/>
-                            </g>
-                        </svg>
+                        <img src="../static/performingarts-specific/kuchipudibanner.png" alt="" width="500" height="300">
                     </div>
                 </div>
             </div>
@@ -763,33 +760,39 @@
     <!-- Stories Section -->
     <section id="stories" class="section">
         <h2>Mythology in Motion</h2>
+      
         <div class="stories-grid">
-            <div class="story-card fade-in">
-                <h3>Bhama Kalapam</h3>
-                <p>One of the most popular Kuchipudi dance-dramas, it tells the story of Satyabhama, Krishna's proud queen, her separation from him, and her eventual reunion after humbling herself. It's known for its lyrical beauty and emotional depth.</p>
-            </div>
-            <div class="story-card fade-in">
-                <h3>Krishna Leela Tarangini</h3>
-                <p>This composition vividly portrays various episodes from Lord Krishna's life, from his mischievous childhood to his divine love stories. Dancers often perform the "Tarangam" piece on a brass plate, symbolizing Krishna's playful nature.</p>
-            </div>
-            <div class="story-card fade-in">
-                <h3>Prahlada Charitam</h3>
-                <p>Based on the Bhagavata Purana, this narrative depicts the unwavering devotion of Prahlada, a child devotee of Vishnu, despite his demon father Hiranyakashipu's attempts to kill him. It culminates in the appearance of Narasimha, the man-lion avatar of Vishnu.</p>
-            </div>
-            <div class="story-card fade-in">
-                <h3>Usha Parinayam</h3>
-                <p>This dance-drama recounts the love story of Usha, daughter of Banasura, and Aniruddha, Krishna's grandson. It's filled with romantic sequences, divine interventions, and dramatic confrontations.</p>
-            </div>
-            <div class="story-card fade-in">
-                <h3>Mohini Bhasmasura</h3>
-                <p>A popular solo item, this depicts the story of the demon Bhasmasura, who obtains a boon to turn anyone he touches into ashes. Lord Vishnu takes the form of the enchanting Mohini to trick Bhasmasura into touching his own head, leading to his demise.</p>
-            </div>
-            <div class="story-card fade-in">
-                <h3>Golla Kalapam</h3>
-                <p>A philosophical dance-drama that uses the metaphor of a milkmaid (Gollabhama) to discuss philosophical concepts, the nature of the soul, and the human condition, often with a touch of humor and wit.</p>
-            </div>
+          <div class="story-card fade-in" onclick="location.href='../public/kuchipudistory.html'">
+            <h3>Bhama Kalapam</h3>
+            <p>One of the most popular Kuchipudi dance-dramas, it tells the story of Satyabhama, Krishna's proud queen, her separation from him, and her eventual reunion after humbling herself. It's known for its lyrical beauty and emotional depth.</p>
+          </div>
+      
+          <div class="story-card fade-in" onclick="location.href='../public/kuchipudistory.html'">
+            <h3>Krishna Leela Tarangini</h3>
+            <p>This composition vividly portrays various episodes from Lord Krishna's life, from his mischievous childhood to his divine love stories. Dancers often perform the "Tarangam" piece on a brass plate, symbolizing Krishna's playful nature.</p>
+          </div>
+      
+          <div class="story-card fade-in" onclick="location.href='../public/kuchipudistory.html'">
+            <h3>Prahlada Charitam</h3>
+            <p>Based on the Bhagavata Purana, this narrative depicts the unwavering devotion of Prahlada, a child devotee of Vishnu, despite his demon father Hiranyakashipu's attempts to kill him. It culminates in the appearance of Narasimha, the man-lion avatar of Vishnu.</p>
+          </div>
+      
+          <div class="story-card fade-in" onclick="location.href='../public/kuchipudistory.html'">
+            <h3>Usha Parinayam</h3>
+            <p>This dance-drama recounts the love story of Usha, daughter of Banasura, and Aniruddha, Krishna's grandson. It's filled with romantic sequences, divine interventions, and dramatic confrontations.</p>
+          </div>
+      
+          <div class="story-card fade-in" onclick="location.href='../public/kuchipudistory.html'">
+            <h3>Mohini Bhasmasura</h3>
+            <p>A popular solo item, this depicts the story of the demon Bhasmasura, who obtains a boon to turn anyone he touches into ashes. Lord Vishnu takes the form of the enchanting Mohini to trick Bhasmasura into touching his own head, leading to his demise.</p>
+          </div>
+      
+          <div class="story-card fade-in" onclick="location.href='../public/kuchipudistory.html'">
+            <h3>Golla Kalapam</h3>
+            <p>A philosophical dance-drama that uses the metaphor of a milkmaid (Gollabhama) to discuss philosophical concepts, the nature of the soul, and the human condition, often with a touch of humor and wit.</p>
+          </div>
         </div>
-    </section>
+      </section>
 
     <!-- Videos Section -->
     <section id="videos" class="section">
@@ -797,7 +800,7 @@
         <div class="videos-grid">
             <div class="video-card fade-in">
                 <div style="position: relative; width: 100%; padding-bottom: 56.25%; overflow: hidden; max-width: 600px;">
-                    <iframe src="#"
+                    <iframe src="https://www.youtube.com/embed/5dekIa2iA48"
                         title="Kuchipudi Video 1"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -813,7 +816,7 @@
             </div>
             <div class="video-card fade-in">
                 <div style="position: relative; width: 100%; padding-bottom: 56.25%; overflow: hidden; max-width: 600px;">
-                    <iframe src="#"
+                    <iframe src="https://www.youtube.com/embed/YbRX_cdTap8"
                         title="Kuchipudi Video 2"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-write; encrypted-media; gyroscope; picture-in-picture"
@@ -829,7 +832,7 @@
             </div>
             <div class="video-card fade-in">
                  <div style="position: relative; width: 100%; padding-bottom: 56.25%; overflow: hidden; max-width: 600px;">
-                    <iframe src="#"
+                    <iframe src="https://www.youtube.com/embed/4nI935oX7oo"
                         style="position:absolute; top:0; left:0; width:100%; height:100%;"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -851,44 +854,58 @@
         <h2>Vibrant Expressions</h2>
         <div class="gallery-grid">
             <div class="gallery-item fade-in" onclick="openLightbox('Graceful Pose', 'Andhra Pradesh', 'A dancer striking a classical Kuchipudi pose.', 'https://placehold.co/400x300/FFD700/005F6B?text=Image+1')">
-                <div class="gallery-placeholder">Graceful Pose</div>
+                <div class="gallery-placeholder"><img src="../static/performingarts-specific/graceful.jpeg" alt="Pacha Character"></div>
                 <div class="gallery-overlay">
                     <h4>Graceful Pose</h4>
                     <P>Andhra Pradesh</P>
                 </div>
             </div>
             <div class="gallery-item fade-in" onclick="openLightbox('Traditional Attire', 'Andhra Pradesh', 'Close-up of a dancer in traditional Kuchipudi costume and jewelry.', 'https://placehold.co/400x300/A30000/FFFDD0?text=Image+2')">
-                <div class="gallery-placeholder">Traditional Attire</div>
+                <div class="gallery-placeholder"><img src="../static/performingarts-specific/tradattire.jpeg" alt="Pacha Character"></div>
                 <div class="gallery-overlay">
                     <h4>Traditional Attire</h4>
                     <p>Andhra Pradesh</p>
                 </div>
             </div>
             <div class="gallery-item fade-in" onclick="openLightbox('Tarangam Performance', 'Andhra Pradesh', 'A dancer performing on a brass plate (Tarangam).', 'https://placehold.co/400x300/005F6B/FFD700?text=Image+3')">
-                <div class="gallery-placeholder">Tarangam Performance</div>
+                <div class="gallery-placeholder"><img src="../static/performingarts-specific/tarangam.jpeg" alt="Pacha Character"></div>
                 <div class="gallery-overlay">
                     <h4>Tarangam Performance</h4>
                     <p>Andhra Pradesh</p>
                 </div>
             </div>
             <div class="gallery-item fade-in" onclick="openLightbox('Group Synchrony', 'Andhra Pradesh', 'Multiple dancers performing in perfect synchrony.', 'https://placehold.co/400x300/006400/FFFDD0?text=Image+4')">
-                <div class="gallery-placeholder">Group Synchrony</div>
+                <div class="gallery-placeholder"><img src="../static/performingarts-specific/groupkuchi.jpeg" alt="Pacha Character"></div>
                 <div class="gallery-overlay">
                     <h4>Group Synchrony</h4>
                     <p>Andhra Pradesh</p>
                 </div>
             </div>
             <div class="gallery-item fade-in" onclick="openLightbox('Expressive Abhinaya', 'Andhra Pradesh', 'A close-up highlighting the expressive facial gestures (abhinaya).', 'https://placehold.co/400x300/FF8C00/2F1700?text=Image+5')">
-                <div class="gallery-placeholder">Expressive Abhinaya</div>
+                <div class="gallery-placeholder"><img src="../static/performingarts-specific/expressive.jpeg" alt="Pacha Character"></div>
                 <div class="gallery-overlay">
                     <h4>Expressive Abhinaya</h4>
                     <p>Andhra Pradesh</p>
                 </div>
             </div>
-            <div class="gallery-item fade-in" onclick="openLightbox('Temple Sculpture Influence', 'Andhra Pradesh', 'A pose inspired by ancient temple sculptures.', 'https://placehold.co/400x300/2F1700/FFD700?text=Image+6')">
-                <div class="gallery-placeholder">Temple Sculpture Influence</div>
+            <div class="gallery-item fade-in" onclick="openLightbox('Bhaama Kalapam', 'Andhra Pradesh', 'A dancer portraying Satyabhama from Bhaama Kalapam.', 'https://placehold.co/400x300/8A2BE2/FFFDD0?text=Image+6')">
+                <div class="gallery-placeholder"><img src="../static/performingarts-specific/bhaama.jpeg" alt="Pacha Character"></div>
                 <div class="gallery-overlay">
-                    <h4>Temple Sculpture Influence</h4>
+                    <h4>Bhaama Kalapam</h4>
+                    <p>Andhra Pradesh</p>
+                </div>
+            </div>
+            <div class="gallery-item fade-in" onclick="openLightbox('Jathis (Rhythmic Patterns)', 'Andhra Pradesh', 'A dynamic moment capturing the intricacy of Kuchipudi Jathis.', 'https://placehold.co/400x300/4682B4/FFFDD0?text=Image+7')">
+                <div class="gallery-placeholder"><img src="../static/performingarts-specific/jaathis.jpeg" alt="Pacha Character"></div>
+                <div class="gallery-overlay">
+                    <h4>Jathis (Rhythmic Patterns)</h4>
+                    <p>Andhra Pradesh</p>
+                </div>
+            </div>
+            <div class="gallery-item fade-in" onclick="openLightbox('Mudra Storytelling', 'Andhra Pradesh', 'Close-up of precise hand gestures (mudras) used for storytelling.', 'https://placehold.co/400x300/DAA520/2F1700?text=Image+8')">
+                <div class="gallery-placeholder"><img src="../static/performingarts-specific/mudrakuchi.jpeg" alt="Pacha Character"></div>
+                <div class="gallery-overlay">
+                    <h4>Mudra Storytelling</h4>
                     <p>Andhra Pradesh</p>
                 </div>
             </div>

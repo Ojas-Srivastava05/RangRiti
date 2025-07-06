@@ -635,6 +635,11 @@
             visibility: visible;
             animation: cardPopIn 0.8s ease-out forwards;
         }
+        .gallery-placeholder img {
+    width: 100%;  /* Make the image take 100% width of its parent */
+    height: 100%; /* Make the image take 100% height of its parent */
+    object-fit: contain; /* **This is the key property** - ensures the whole image is visible */
+}
 
     </style>
 </head>
@@ -742,14 +747,7 @@
                 <div class="about-image">
                     <div class="decorative-border">
                         <!-- Placeholder for an image related to Yakshagana -->
-                        <svg width="300" height="200" viewBox="0 0 300 200">
-                            <rect fill="var(--yaksha-white)" width="300" height="200"/>
-                            <g fill="var(--yaksha-golden-yellow)">
-                                <path d="M150 20 L180 80 L120 80 Z" fill="currentColor" opacity="0.6"/>
-                                <circle cx="150" cy="120" r="40" fill="currentColor" opacity="0.4"/>
-                                <path d="M100 150 Q150 180 200 150 Q150 120 100 150" stroke="var(--yaksha-emerald-green)" stroke-width="3" fill="none"/>
-                            </g>
-                        </svg>
+                        <img src="../static/performingarts-specific/yakshaganabanner.png" alt="" width="500" height="300">
                     </div>
                 </div>
             </div>
@@ -760,32 +758,39 @@
     <section id="stories" class="section">
         <h2>Mythical Dramas</h2>
         <div class="stories-grid">
-            <div class="story-card fade-in">
-                <h3>Mahishasura Mardini</h3>
-                <p>A powerful Yakshagana presentation depicting the fierce battle between Goddess Durga and the buffalo demon Mahishasura, culminating in her victory and the restoration of cosmic order.</p>
-            </div>
-            <div class="story-card fade-in">
-                <h3>Gada Yuddha</h3>
-                <p>This popular episode from the Mahabharata focuses on the climactic mace fight between Bhima and Duryodhana, a highly dramatic and physically demanding segment of Yakshagana.</p>
-            </div>
-            <div class="story-card fade-in">
-                <h3>Sudhanva Moksha</h3>
-                <p>Narrates the story of Sudhanva, a brave warrior, and his encounter with Arjuna during the Ashwamedha Yaga. It explores themes of dharma, sacrifice, and divine intervention.</p>
-            </div>
-            <div class="story-card fade-in">
-                <h3>Panchavati</h3>
-                <p>An episode from the Ramayana, focusing on Rama, Lakshmana, and Sita's life in the forest of Panchavati, leading to Sita's abduction by Ravana. It allows for expressive portrayals of various emotions.</p>
-            </div>
-            <div class="story-card fade-in">
-                <h3>Krishna Parijata</h3>
-                <p>A light-hearted and romantic tale from the Bhagavata Purana, depicting the playful rivalry between Krishna's wives, Rukmini and Satyabhama, over the Parijata flower, showcasing various human emotions.</p>
-            </div>
-            <div class="story-card fade-in">
-                <h3>Abhimanyu Vadha</h3>
-                <p>A tragic yet heroic tale from the Mahabharata, recounting the valiant fight and ultimate demise of Arjuna's son, Abhimanyu, in the Chakravyuha formation during the Kurukshetra war.</p>
-            </div>
+      
+          <div class="story-card fade-in" onclick="location.href='../public/yakshaganastory.html'">
+            <h3>Mahishasura Mardini</h3>
+            <p>A powerful Yakshagana presentation depicting the fierce battle between Goddess Durga and the buffalo demon Mahishasura, culminating in her victory and the restoration of cosmic order.</p>
+          </div>
+      
+          <div class="story-card fade-in" onclick="location.href='../public/yakshaganastory.html'">
+            <h3>Gada Yuddha</h3>
+            <p>This popular episode from the Mahabharata focuses on the climactic mace fight between Bhima and Duryodhana, a highly dramatic and physically demanding segment of Yakshagana.</p>
+          </div>
+      
+          <div class="story-card fade-in" onclick="location.href='../public/yakshaganastory.html'">
+            <h3>Sudhanva Moksha</h3>
+            <p>Narrates the story of Sudhanva, a brave warrior, and his encounter with Arjuna during the Ashwamedha Yaga. It explores themes of dharma, sacrifice, and divine intervention.</p>
+          </div>
+      
+          <div class="story-card fade-in" onclick="location.href='../public/yakshaganastory.html'">
+            <h3>Panchavati</h3>
+            <p>An episode from the Ramayana, focusing on Rama, Lakshmana, and Sita's life in the forest of Panchavati, leading to Sita's abduction by Ravana. It allows for expressive portrayals of various emotions.</p>
+          </div>
+      
+          <div class="story-card fade-in" onclick="location.href='../public/yakshaganastory.html'">
+            <h3>Krishna Parijata</h3>
+            <p>A light-hearted and romantic tale from the Bhagavata Purana, depicting the playful rivalry between Krishna's wives, Rukmini and Satyabhama, over the Parijata flower, showcasing various human emotions.</p>
+          </div>
+      
+          <div class="story-card fade-in" onclick="location.href='../public/yakshaganastory.html'">
+            <h3>Abhimanyu Vadha</h3>
+            <p>A tragic yet heroic tale from the Mahabharata, recounting the valiant fight and ultimate demise of Arjuna's son, Abhimanyu, in the Chakravyuha formation during the Kurukshetra war.</p>
+          </div>
+      
         </div>
-    </section>
+      </section>
 
     <!-- Videos Section -->
     <section id="videos" class="section">
@@ -793,7 +798,7 @@
         <div class="videos-grid">
             <div class="video-card fade-in">
                 <div style="position: relative; width: 100%; padding-bottom: 56.25%; overflow: hidden; max-width: 600px;">
-                    <iframe src="#"
+                    <iframe src="https:www.youtube.com/embed/nimCfNctGdU"
                         title="Yakshagana Video 1"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -809,7 +814,7 @@
             </div>
             <div class="video-card fade-in">
                 <div style="position: relative; width: 100%; padding-bottom: 56.25%; overflow: hidden; max-width: 600px;">
-                    <iframe src="#"
+                    <iframe src="https:www.youtube.com/embed/qUYWZXHL8JU"
                         title="Yakshagana Video 2"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-write; encrypted-media; gyroscope; picture-in-picture"
@@ -825,7 +830,7 @@
             </div>
             <div class="video-card fade-in">
                  <div style="position: relative; width: 100%; padding-bottom: 56.25%; overflow: hidden; max-width: 600px;">
-                    <iframe src="#"
+                    <iframe src="https:www.youtube.com/embed/xot1Q0S6Tek"
                         style="position:absolute; top:0; left:0; width:100%; height:100%;"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

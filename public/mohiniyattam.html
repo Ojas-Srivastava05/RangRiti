@@ -633,6 +633,11 @@
             visibility: visible;
             animation: cardPopIn 0.8s ease-out forwards;
         }
+        .gallery-placeholder img {
+    width: 100%;  /* Make the image take 100% width of its parent */
+    height: 100%; /* Make the image take 100% height of its parent */
+    object-fit: contain; /* **This is the key property** - ensures the whole image is visible */
+}
 
     </style>
 </head>
@@ -740,14 +745,7 @@
                 <div class="about-image">
                     <div class="decorative-border">
                         <!-- Placeholder for an image related to Mohiniyattam -->
-                        <svg width="300" height="200" viewBox="0 0 300 200">
-                            <rect fill="var(--mohini-cream-gold)" width="300" height="200"/>
-                            <g fill="var(--mohini-light-gold)">
-                                <path d="M150 20 Q180 80 150 120 Q120 80 150 20 Z" fill="currentColor" opacity="0.6"/>
-                                <circle cx="150" cy="150" r="30" fill="currentColor" opacity="0.4"/>
-                                <path d="M100 150 Q150 180 200 150 Q150 120 100 150" stroke="var(--mohini-teal-blue)" stroke-width="3" fill="none"/>
-                            </g>
-                        </svg>
+                        <img src="../static/performingarts-specific/mohiniyattambanner.png" alt="" width="500" height="300">
                     </div>
                 </div>
             </div>
@@ -757,33 +755,39 @@
     <!-- Stories Section -->
     <section id="stories" class="section">
         <h2>Enchanting Narratives</h2>
+      
         <div class="stories-grid">
-            <div class="story-card fade-in">
-                <h3>Sopana Sangeetham</h3>
-                <p>Mohiniyattam often draws from Sopana Sangeetham, the traditional temple music of Kerala. Narratives from the Ashtapadis of Jayadeva's Gita Govinda, focusing on Radha and Krishna's love, are frequently performed.</p>
-            </div>
-            <div class="story-card fade-in">
-                <h3>Cholkettu and Jatiswaram</h3>
-                <p>These are abstract dance pieces that showcase the technical prowess and rhythmic patterns of Mohiniyattam. While not narrative in themselves, they set the mood and display the pure dance elements (Nritta) of the form.</p>
-            </div>
-            <div class="story-card fade-in">
-                <h3>Padam and Varnam</h3>
-                <p>These are expressive pieces (Nritya) that convey the emotional depth of the dance. Padams are short lyrical compositions, often depicting the longing of a nayika (heroine) for her beloved deity. Varnams are elaborate compositions combining Nritta and Nritya.</p>
-            </div>
-            <div class="story-card fade-in">
-                <h3>Dasavataram</h3>
-                <p>The ten incarnations of Lord Vishnu are a popular theme, allowing the dancer to portray various characters and emotions through the fluid movements and subtle expressions characteristic of Mohiniyattam.</p>
-            </div>
-            <div class="story-card fade-in">
-                <h3>Krishnattam Influence</h3>
-                <p>While distinct, Mohiniyattam shares thematic connections with Krishnattam, another dance-drama from Kerala, often drawing stories from the life of Lord Krishna, focusing on his playful and divine aspects.</p>
-            </div>
-            <div class="story-card fade-in">
-                <h3>The Story of Mohini</h3>
-                <p>The very name of the dance form is linked to Mohini, the celestial enchantress avatar of Vishnu. Performances sometimes depict episodes where Mohini appears to deceive demons for the welfare of the gods, such as during the Samudra Manthan (churning of the ocean).</p>
-            </div>
+          <div class="story-card fade-in" onclick="location.href='../public/mohiniyattamstory.html'">
+            <h3>Sopana Sangeetham</h3>
+            <p>Mohiniyattam often draws from Sopana Sangeetham, the traditional temple music of Kerala. Narratives from the Ashtapadis of Jayadeva's Gita Govinda, focusing on Radha and Krishna's love, are frequently performed.</p>
+          </div>
+      
+          <div class="story-card fade-in" onclick="location.href='../public/mohiniyattamstory.html'">
+            <h3>Cholkettu and Jatiswaram</h3>
+            <p>These are abstract dance pieces that showcase the technical prowess and rhythmic patterns of Mohiniyattam. While not narrative in themselves, they set the mood and display the pure dance elements (Nritta) of the form.</p>
+          </div>
+      
+          <div class="story-card fade-in" onclick="location.href='../public/mohiniyattamstory.html'">
+            <h3>Padam and Varnam</h3>
+            <p>These are expressive pieces (Nritya) that convey the emotional depth of the dance. Padams are short lyrical compositions, often depicting the longing of a nayika (heroine) for her beloved deity. Varnams are elaborate compositions combining Nritta and Nritya.</p>
+          </div>
+      
+          <div class="story-card fade-in" onclick="location.href='../public/mohiniyattamstory.html'">
+            <h3>Dasavataram</h3>
+            <p>The ten incarnations of Lord Vishnu are a popular theme, allowing the dancer to portray various characters and emotions through the fluid movements and subtle expressions characteristic of Mohiniyattam.</p>
+          </div>
+      
+          <div class="story-card fade-in" onclick="location.href='../public/mohiniyattamstory.html'">
+            <h3>Krishnattam Influence</h3>
+            <p>While distinct, Mohiniyattam shares thematic connections with Krishnattam, another dance-drama from Kerala, often drawing stories from the life of Lord Krishna, focusing on his playful and divine aspects.</p>
+          </div>
+      
+          <div class="story-card fade-in" onclick="location.href='../public/mohiniyattamstory.html'">
+            <h3>The Story of Mohini</h3>
+            <p>The very name of the dance form is linked to Mohini, the celestial enchantress avatar of Vishnu. Performances sometimes depict episodes where Mohini appears to deceive demons for the welfare of the gods, such as during the Samudra Manthan (churning of the ocean).</p>
+          </div>
         </div>
-    </section>
+      </section>
 
     <!-- Videos Section -->
     <section id="videos" class="section">
@@ -791,7 +795,7 @@
         <div class="videos-grid">
             <div class="video-card fade-in">
                 <div style="position: relative; width: 100%; padding-bottom: 56.25%; overflow: hidden; max-width: 600px;">
-                    <iframe src="#"
+                    <iframe src="https://www.youtube.com/embed/uF8AP9pIbG4"
                         title="Mohiniyattam Video 1"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -807,7 +811,7 @@
             </div>
             <div class="video-card fade-in">
                 <div style="position: relative; width: 100%; padding-bottom: 56.25%; overflow: hidden; max-width: 600px;">
-                    <iframe src="#"
+                    <iframe src="https://www.youtube.com/embed/m_avP6toESU"
                         title="Mohiniyattam Video 2"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-write; encrypted-media; gyroscope; picture-in-picture"
@@ -823,7 +827,7 @@
             </div>
             <div class="video-card fade-in">
                  <div style="position: relative; width: 100%; padding-bottom: 56.25%; overflow: hidden; max-width: 600px;">
-                    <iframe src="#"
+                    <iframe src="https://www.youtube.com/embed/Vg8ah-HPjtE"
                         style="position:absolute; top:0; left:0; width:100%; height:100%;"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

@@ -634,6 +634,11 @@
             visibility: visible;
             animation: cardPopIn 0.8s ease-out forwards;
         }
+        .gallery-placeholder img {
+    width: 100%;  /* Make the image take 100% width of its parent */
+    height: 100%; /* Make the image take 100% height of its parent */
+    object-fit: contain; /* **This is the key property** - ensures the whole image is visible */
+}
 
     </style>
 </head>
@@ -741,14 +746,7 @@
                 <div class="about-image">
                     <div class="decorative-border">
                         <!-- Placeholder for an image related to Bharatnatyam -->
-                        <svg width="300" height="200" viewBox="0 0 300 200">
-                            <rect fill="var(--bn-cream-gold)" width="300" height="200"/>
-                            <g fill="var(--bn-golden-yellow)">
-                                <path d="M150 20 Q180 80 150 120 Q120 80 150 20 Z" fill="currentColor" opacity="0.6"/>
-                                <circle cx="150" cy="150" r="30" fill="currentColor" opacity="0.4"/>
-                                <path d="M100 150 Q150 180 200 150 Q150 120 100 150" stroke="var(--bn-royal-blue)" stroke-width="3" fill="none"/>
-                            </g>
-                        </svg>
+                        <img src="../static/performingarts-specific/bharatnatyambanner.png" alt="" width="500" height="300">
                     </div>
                 </div>
             </div>
@@ -758,33 +756,39 @@
     <!-- Stories Section -->
     <section id="stories" class="section">
         <h2>Ancient Tales in Motion</h2>
+      
         <div class="stories-grid">
-            <div class="story-card fade-in">
-                <h3>Alarippu</h3>
-                <p>A pure dance (Nritta) piece that begins a Bharatnatyam performance. It is a rhythmic invocation, a blossoming of the body, preparing the dancer and audience for the performance to come.</p>
-            </div>
-            <div class="story-card fade-in">
-                <h3>Jatiswaram</h3>
-                <p>Another Nritta piece, Jatiswaram combines intricate rhythmic patterns (jatis) with melodic phrases (swaras). It showcases the dancer's mastery over rhythm and pure movement without explicit storytelling.</p>
-            </div>
-            <div class="story-card fade-in">
-                <h3>Shabdam</h3>
-                <p>This is the first expressive (Nritya) item, typically a short piece praising a deity or king. It introduces simple dramatic elements and facial expressions, bridging pure dance and storytelling.</p>
-            </div>
-            <div class="story-card fade-in">
-                <h3>Varnam</h3>
-                <p>The central and most complex item in a Bharatnatyam recital, Varnam combines Nritta and Nritya. It explores a single theme or story in depth, allowing the dancer to showcase both technical virtuosity and emotional expression.</p>
-            </div>
-            <div class="story-card fade-in">
-                <h3>Padam</h3>
-                <p>A purely expressive piece (Nritya) that focuses on conveying a specific emotion or mood (Bhava). Padams are usually slow and lyrical, allowing the dancer to delve into the nuances of love, longing, or devotion.</p>
-            </div>
-            <div class="story-card fade-in">
-                <h3>Thillana</h3>
-                <p>The concluding pure dance (Nritta) item, Thillana is a fast-paced and exhilarating piece. It features intricate footwork and dynamic movements, serving as a grand finale to the performance.</p>
-            </div>
+          <div class="story-card fade-in" onclick="location.href='../public/bharatnatyamstory.html'">
+            <h3>Alarippu</h3>
+            <p>A pure dance (Nritta) piece that begins a Bharatnatyam performance. It is a rhythmic invocation, a blossoming of the body, preparing the dancer and audience for the performance to come.</p>
+          </div>
+      
+          <div class="story-card fade-in" onclick="location.href='../public/bharatnatyamstory.html'">
+            <h3>Jatiswaram</h3>
+            <p>Another Nritta piece, Jatiswaram combines intricate rhythmic patterns (jatis) with melodic phrases (swaras). It showcases the dancer's mastery over rhythm and pure movement without explicit storytelling.</p>
+          </div>
+      
+          <div class="story-card fade-in" onclick="location.href='../public/bharatnatyamstory.html'">
+            <h3>Shabdam</h3>
+            <p>This is the first expressive (Nritya) item, typically a short piece praising a deity or king. It introduces simple dramatic elements and facial expressions, bridging pure dance and storytelling.</p>
+          </div>
+      
+          <div class="story-card fade-in" onclick="location.href='../public/bharatnatyamstory.html'">
+            <h3>Varnam</h3>
+            <p>The central and most complex item in a Bharatnatyam recital, Varnam combines Nritta and Nritya. It explores a single theme or story in depth, allowing the dancer to showcase both technical virtuosity and emotional expression.</p>
+          </div>
+      
+          <div class="story-card fade-in" onclick="location.href='../public/bharatnatyamstory.html'">
+            <h3>Padam</h3>
+            <p>A purely expressive piece (Nritya) that focuses on conveying a specific emotion or mood (Bhava). Padams are usually slow and lyrical, allowing the dancer to delve into the nuances of love, longing, or devotion.</p>
+          </div>
+      
+          <div class="story-card fade-in" onclick="location.href='../public/bharatnatyamstory.html'">
+            <h3>Thillana</h3>
+            <p>The concluding pure dance (Nritta) item, Thillana is a fast-paced and exhilarating piece. It features intricate footwork and dynamic movements, serving as a grand finale to the performance.</p>
+          </div>
         </div>
-    </section>
+      </section>
 
     <!-- Videos Section -->
     <section id="videos" class="section">
@@ -792,7 +796,7 @@
         <div class="videos-grid">
             <div class="video-card fade-in">
                 <div style="position: relative; width: 100%; padding-bottom: 56.25%; overflow: hidden; max-width: 600px;">
-                    <iframe src="#"
+                    <iframe src="https://www.youtube.com/embed/oQS2PosXCFk"
                         title="Bharatnatyam Video 1"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -803,12 +807,12 @@
                 <div class="video-info">
                     <h3>The Aramandi Posture</h3>
                     <p>An explanation of the fundamental half-sit posture in Bharatnatyam.</p>
-                    <small>Duration: [To be added]</small>
+                    <small>Duration: [4:53]</small>
                 </div>
             </div>
             <div class="video-card fade-in">
                 <div style="position: relative; width: 100%; padding-bottom: 56.25%; overflow: hidden; max-width: 600px;">
-                    <iframe src="#"
+                    <iframe src="https://www.youtube.com/embed/hkMA3qZ7Q5M"
                         title="Bharatnatyam Video 2"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-write; encrypted-media; gyroscope; picture-in-picture"
@@ -819,12 +823,12 @@
                 <div class="video-info">
                     <h3>Exploring Adavus (Basic Steps)</h3>
                     <p>A tutorial on the foundational dance units of Bharatnatyam.</p>
-                    <small>Duration: [To be added]</small>
+                    <small>Duration: [8:02]</small>
                 </div>
             </div>
             <div class="video-card fade-in">
                  <div style="position: relative; width: 100%; padding-bottom: 56.25%; overflow: hidden; max-width: 600px;">
-                    <iframe src="#"
+                    <iframe src="https://www.youtube.com/embed/qUle9qCGFog"
                         style="position:absolute; top:0; left:0; width:100%; height:100%;"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -835,7 +839,7 @@
                 <div class="video-info">
                     <h3>The Expressive Power of Abhinaya</h3>
                     <p>Understanding facial expressions and their role in conveying emotions.</p>
-                    <small>Duration: [To be added]</small>
+                    <small>Duration: [8:57]</small>
                 </div>
             </div>
         </div>
@@ -845,45 +849,59 @@
     <section id="gallery" class="section">
         <h2>Forms & Expressions</h2>
         <div class="gallery-grid">
-            <div class="gallery-item fade-in" onclick="openLightbox('Aramandi Pose', 'Tamil Nadu', 'A dancer in the fundamental Aramandi (half-sit) posture.', 'https://placehold.co/400x300/8B0000/FFFACD?text=Image+1')">
-                <div class="gallery-placeholder">Aramandi Pose</div>
+            <div class="gallery-item fade-in" onclick="openLightbox('Aramandi Pose', 'Tamil Nadu', 'A dancer in the fundamental Aramandi (half-sit) posture.', 'https://placehold.co/400x300/8B0000/FFFACD?text=Aramandi+Pose')">
+                <div class="gallery-placeholder"><img src="../static/performingarts-specific/aramandi.jpeg" alt="Pacha Character"></div>
                 <div class="gallery-overlay">
                     <h4>Aramandi Pose</h4>
-                    <P>Tamil Nadu</P>
+                    <p>Tamil Nadu</p>
                 </div>
             </div>
-            <div class="gallery-item fade-in" onclick="openLightbox('Temple Jewelry', 'Tamil Nadu', 'Close-up of the intricate temple jewelry worn by Bharatnatyam dancers.', 'https://placehold.co/400x300/FFBF00/362222?text=Image+2')">
-                <div class="gallery-placeholder">Temple Jewelry</div>
+            <div class="gallery-item fade-in" onclick="openLightbox('Temple Jewelry', 'Tamil Nadu', 'Close-up of the intricate temple jewelry worn by Bharatnatyam dancers.', 'https://placehold.co/400x300/FFBF00/362222?text=Temple+Jewelry')">
+                <div class="gallery-placeholder"><img src="../static/performingarts-specific/temple.jpeg" alt="Pacha Character"></div>
                 <div class="gallery-overlay">
                     <h4>Temple Jewelry</h4>
                     <p>Tamil Nadu</p>
                 </div>
             </div>
-            <div class="gallery-item fade-in" onclick="openLightbox('Dynamic Adavu', 'Tamil Nadu', 'A dancer performing a dynamic and precise Adavu (basic step).', 'https://placehold.co/400x300/000080/FFFACD?text=Image+3')">
-                <div class="gallery-placeholder">Dynamic Adavu</div>
+            <div class="gallery-item fade-in" onclick="openLightbox('Dynamic Adavu', 'Tamil Nadu', 'A dancer performing a dynamic and precise Adavu (basic step).', 'https://placehold.co/400x300/000080/FFFACD?text=Dynamic+Adavu')">
+                <div class="gallery-placeholder"><img src="../static/performingarts-specific/adavu.jpeg" alt="Pacha Character"></div>
                 <div class="gallery-overlay">
                     <h4>Dynamic Adavu</h4>
                     <p>Tamil Nadu</p>
                 </div>
             </div>
-            <div class="gallery-item fade-in" onclick="openLightbox('Abhinaya in Action', 'Tamil Nadu', 'A close-up capturing a dancer’s expressive facial gesture (Abhinaya).', 'https://placehold.co/400x300/FF8C00/362222?text=Image+4')">
-                <div class="gallery-placeholder">Abhinaya in Action</div>
+            <div class="gallery-item fade-in" onclick="openLightbox('Abhinaya in Action', 'Tamil Nadu', 'A close-up capturing a dancer’s expressive facial gesture (Abhinaya).', 'https://placehold.co/400x300/FF8C00/362222?text=Abhinaya+in+Action')">
+                <div class="gallery-placeholder"><img src="../static/performingarts-specific/abhinaya.jpeg" alt="Pacha Character"></div>
                 <div class="gallery-overlay">
                     <h4>Abhinaya in Action</h4>
                     <p>Tamil Nadu</p>
                 </div>
             </div>
-            <div class="gallery-item fade-in" onclick="openLightbox('Nataraja Pose', 'Tamil Nadu', 'A dancer striking a pose reminiscent of Lord Nataraja.', 'https://placehold.co/400x300/362222/FFBF00?text=Image+5')">
-                <div class="gallery-placeholder">Nataraja Pose</div>
+            <div class="gallery-item fade-in" onclick="openLightbox('Nataraja Pose', 'Tamil Nadu', 'A dancer striking a pose reminiscent of Lord Nataraja.', 'https://placehold.co/400x300/362222/FFBF00?text=Nataraja+Pose')">
+                <div class="gallery-placeholder"><img src="../static/performingarts-specific/natraja.jpeg" alt="Pacha Character"></div>
                 <div class="gallery-overlay">
                     <h4>Nataraja Pose</h4>
                     <p>Tamil Nadu</p>
                 </div>
             </div>
-            <div class="gallery-item fade-in" onclick="openLightbox('Group Performance', 'Tamil Nadu', 'Multiple dancers performing in synchronized harmony.', 'https://placehold.co/400x300/FF69B4/362222?text=Image+6')">
-                <div class="gallery-placeholder">Group Performance</div>
+            <div class="gallery-item fade-in" onclick="openLightbox('Graceful Hastha Mudra', 'Tamil Nadu', 'Elegant hand gestures (Hastha Mudras) conveying storytelling.', 'https://placehold.co/400x300/800080/FFFACD?text=Hastha+Mudra')">
+                <div class="gallery-placeholder"><img src="../static/performingarts-specific/hastha.jpeg" alt="Pacha Character"></div>
                 <div class="gallery-overlay">
-                    <h4>Group Performance</h4>
+                    <h4>Graceful Hastha Mudra</h4>
+                    <p>Tamil Nadu</p>
+                </div>
+            </div>
+            <div class="gallery-item fade-in" onclick="openLightbox('Costume Elegance', 'Tamil Nadu', 'Full view of a Bharatnatyam dancer in a complete, vibrant costume.', 'https://placehold.co/400x300/4B0082/FFFACD?text=Costume+Elegance')">
+                <div class="gallery-placeholder"><img src="../static/performingarts-specific/bharatcostume.jpeg" alt="Pacha Character"></div>
+                <div class="gallery-overlay">
+                    <h4>Costume Elegance</h4>
+                    <p>Tamil Nadu</p>
+                </div>
+            </div>
+            <div class="gallery-item fade-in" onclick="openLightbox('Jathi (Rhythmic Pattern)', 'Tamil Nadu', 'A dancer in motion, capturing the energy of a Jathi (rhythmic pattern).', 'https://placehold.co/400x300/006400/FFFACD?text=Jathi+in+Motion')">
+                <div class="gallery-placeholder"><img src="../static/performingarts-specific/jathi.jpeg" alt="Pacha Character"></div>
+                <div class="gallery-overlay">
+                    <h4>Jathi (Rhythmic Pattern)</h4>
                     <p>Tamil Nadu</p>
                 </div>
             </div>
