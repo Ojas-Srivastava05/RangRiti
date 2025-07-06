@@ -281,6 +281,8 @@
             justify-content: center;
             text-align: center;
             position: relative;
+            /* margin-top:300px;
+            margin-bottom:300px; */
         }
 
         .hero-content {
@@ -377,7 +379,7 @@
             line-height: 1.8;
         }
 
-        .about-image {
+        /*.about-image {
             text-align: center;
         }
 
@@ -387,7 +389,27 @@
             padding: 1rem;
             background: white;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
+        }*/
+        .about-image .decorative-border {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.responsive-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease-in-out;
+}
+
+.responsive-img:hover {
+    transform: scale(1.05);
+}
+
+
 
         /* Stories Section */
         .stories-grid {
@@ -739,7 +761,7 @@
                     <B>Symbolism</B>: Represents India's deep-rooted artistic heritage and earthy aesthetics.<br>
 
                 </div>
-                <div class="about-image">
+                <!-- <div class="about-image">
                     <div class="decorative-border">
                         <svg width="300" height="200" viewBox="0 0 300 200">
                             <rect fill="#FFF8E1" width="300" height="200"/>
@@ -752,7 +774,13 @@
                             </g>
                         </svg>
                     </div>
-                </div>
+                </div> -->
+                <div class="about-image">
+    <div class="decorative-border">
+        <img src="../static/handicrafts&sculptures-specific/terracotta-big-logo.png" alt="Terracotta Art" class="responsive-img" />
+    </div>
+</div>
+
             </div>
         </div>
     </section>
@@ -868,7 +896,7 @@ These narratives are carved on temple walls, especially in Bishnupur (West Benga
                     <P>West Bengal</P>
                 </div>
             </div>
-            <div class="gallery-item fade-in" onclick="openLightbox('Heritage Art', 'West Bengal', 'Graceful terracotta depiction of Goddess Durga.','../static/terracotta-2.jpg')">
+            <div class="gallery-item fade-in" onclick="openLightbox('Heritage Art', 'West Bengal', 'Graceful terracotta depiction of Goddess Durga.','../static/handicrafts&sculptures-specific/terracotta-2.jpg')">
                 <img src="../static/handicrafts&sculptures-specific/terracotta-2.jpg" alt="Terracotta Heritage Art" class="gallery-image">
                 <!-- <div class="gallery-placeholder">Heritage Art</div> -->
                 <div class="gallery-overlay">
@@ -907,15 +935,15 @@ These narratives are carved on temple walls, especially in Bishnupur (West Benga
                     <p>Odisha</p>
                 </div>
             </div>
-            <div class="gallery-item fade-in" onclick="openLightbox('Human Fugerines', 'Gujarat', 'Ancient Indus Valley terracotta figurines.', '../static/handicrafts&sculptures-specific/terracotta-6.jpg')">
+            <div class="gallery-item fade-in" onclick="openLightbox('Human Fugerines', 'Gujarat', 'Expressive terracotta tribal wall masks.', '../static/handicrafts&sculptures-specific/terracotta-7.jpg')">
                 <img src="../static/handicrafts&sculptures-specific/terracotta-7.jpg" alt="Terracotta Human Fugerines" class="gallery-image">
                 <div class="gallery-overlay">
                     <h4>Human Fugerines</h4>
                     <p>Gujarat</p>
                 </div>
             </div>
-            <div class="gallery-item fade-in" onclick="openLightbox('Shivaji Maharaj', 'Maharashtra', 'Majestic terracotta mural of Shivaji.', '../static/handicrafts&sculptures-specific/terracotta-6.jpg')">
-                <img src="../static/handicrafts&sculptures-specific/terracotta-8.jpg" alt="Terracotta Shivaji Maharaj" class="gallery-image">
+            <div class="gallery-item fade-in" onclick="openLightbox('Shivaji Maharaj', 'Maharashtra', 'Expressive terracotta tribal wall masks.', '../static/handicrafts&sculptures-specific/terracotta-8.jpeg')">
+                <img src="../static/handicrafts&sculptures-specific/terracotta-8.jpeg" alt="Terracotta Shivaji Maharaj" class="gallery-image">
                 <div class="gallery-overlay">
                     <h4>Shivaji Maharaj</h4>
                     <p>Maharashtra</p>
