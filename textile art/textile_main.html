@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Textile Arts and Embroidery of India</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            color: #3d2914;
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+            /* Fixed textile background using your provided image */
+            background: url('/static/Textile_art/Gemini_Generated_Image_api6f7api6f7api6.png') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+        }
+
+        /* Sandalwood overlay for readability */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(244, 228, 193, 0.78);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Decorative floating SVG overlays */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(184,134,11,0.12) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(120,53,15,0.10) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+            animation: backgroundFlow 30s ease-in-out infinite;
+        }
+
+        @keyframes backgroundFlow {
+            0%, 100% { background-position: 0% 0%, 100% 100%; }
+            50% { background-position: 100% 100%, 0% 0%; }
+        }
+
+        /* Navigation */
+        .nav-container {
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            backdrop-filter: blur(20px);
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            z-index: 1000;
+            animation: slideDown 1s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateX(-50%) translateY(-100px); opacity: 0; }
+            to { transform: translateX(-50%) translateY(0); opacity: 1; }
+        }
+
+        .nav-btn {
+            font-family: 'Cinzel', serif;
+            background: transparent;
+            color: #3d2914;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 215, 0, 0.18);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.18);
+        }
+
+        /* Dropdown styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-toggle { cursor: pointer; }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(0, 0, 0, 0.92);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            padding: 10px 0;
+            display: none;
+            flex-direction: column;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            z-index: 1001;
+        }
+        .dropdown-item {
+            font-family: 'Crimson Text', serif;
+            color: #FAF3E0;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: block;
+            transition: all 0.3s ease;
+        }
+        .dropdown-item:hover {
+            background: rgba(255, 215, 0, 0.2);
+            color: #daa520;
+        }
+        .dropdown:hover .dropdown-menu { display: flex; }
+        .dropdown-arrow { font-size: 0.8em; margin-left: 5px; }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            padding: 4rem 2rem 2rem 2rem;
+            background: linear-gradient(135deg, rgba(244, 228, 193, 0.95) 0%, rgba(220, 196, 156, 0.95) 100%);
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+        .header-content { position: relative; z-index: 2; }
+        .main-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 600;
+            color: #3d2914;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.08);
+            position: relative;
+            display: inline-block;
+        }
+        .main-title::before,
+        .main-title::after {
+            content: '✽';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #b8860b;
+            font-size: 2rem;
+        }
+        .main-title::before { left: -3rem; }
+        .main-title::after { right: -3rem; }
+        .subtitle {
+            font-size: 1.2rem;
+            color: #6b4423;
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+
+        /* Hero Image Section */
+        .hero-image {
+            text-align: center;
+            margin: 3rem 0;
+            padding: 0 2rem;
+            z-index: 2;
+            position: relative;
+        }
+        .hero-artwork {
+            max-width: 600px;
+            width: 100%;
+            height: 400px;
+            background: rgba(255,255,255,0.18);
+            border: 8px solid #3d2914;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.18), inset 0 0 20px rgba(184, 134, 11, 0.13);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-artwork img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 16px rgba(61,41,20,0.12);
+        }
+        .artwork-placeholder {
+            color: #3d2914;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.08);
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255,255,255,0.12);
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Catalogue Section */
+        .catalogue {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            z-index: 2;
+            position: relative;
+        }
+        .catalogue-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            color: #3d2914;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        .catalogue-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #daa520, transparent);
+        }
+        .art-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2.2rem;
+            margin-top: 3rem;
+        }
+        .art-card {
+            position: relative;
+            background: #fffbe6;
+            border-radius: 28px 8px 28px 8px;
+            border: 2.5px solid #9B111E;
+            box-shadow: 0 8px 32px rgba(155,17,30,0.10), 0 1.5px 0 #fff6 inset;
+            padding: 0;
+            text-align: left;
+            transition: all 0.35s cubic-bezier(.77,0,.18,1);
+            overflow: hidden;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            min-height: 320px;
+            opacity: 0;
+            transform: translateY(30px) scale(0.97);
+            animation: fadeInUp 0.8s ease forwards;
+            text-decoration: none;
+            color: #3d2914;
+            border-left: 8px solid #D4AF37;
+        }
+        .art-card-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            filter: brightness(0.75) blur(0.5px);
+            opacity: 1;
+            transition: filter 0.3s, opacity 0.5s;
+        }
+        .art-card-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.7rem;
+            padding: 2.2rem 1.5rem 2rem 1.5rem;
+            background: linear-gradient(120deg,rgba(255,251,230,0.75) 65%,rgba(244,228,193,0.68) 100%);
+            border-radius: 28px 8px 28px 8px;
+            min-height: 320px;
+            opacity: 1;
+            transition: opacity 0.5s;
+        }
+
+        /* On hover/focus: text fades out, image becomes more visible */
+        .art-card:hover .art-card-content,
+        .art-card:focus .art-card-content {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .art-card:hover .art-card-bg,
+        .art-card:focus .art-card-bg {
+            filter: brightness(1) blur(0px);
+            opacity: 1;
+        }
+        .art-icon {
+            font-size: 2.5rem;
+            color: #D4AF37;
+            margin-bottom: 0.5rem;
+            background: #fff8e1;
+            border-radius: 50%;
+            padding: 0.5em 0.7em;
+            box-shadow: 0 2px 8px #d4af3722;
+            border: 2px solid #f4e4c1;
+            align-self: flex-end;
+            margin-left: auto;
+            margin-right: 0;
+            transition: transform 0.3s;
+        }
+        .art-card:hover .art-icon {
+            transform: scale(1.12) rotate(-8deg);
+            background: #fffbe6;
+            color: #9B111E;
+            border-color: #D4AF37;
+        }
+        .art-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #9B111E;
+            margin-bottom: 0.2rem;
+            letter-spacing: 0.5px;
+        }
+        .art-description {
+            color: #6b4423;
+            font-size: 1.18rem; /* Increased size */
+            line-height: 1.7;
+            margin-bottom: 0.5rem;
+            font-weight: 600;    /* Made bolder */
+        }
+        .art-origin {
+            font-style: italic;
+            color: #b8860b;
+            font-size: 0.95rem;
+            opacity: 0.85;
+            margin-top: auto;
+            align-self: flex-end;
+        }
+        .art-card::before {
+            display: none;
+        }
+        .art-card::after {
+            display: none;
+        }
+        @media (max-width: 700px) {
+            .art-card-content { padding: 1.2rem 0.8rem 1.2rem 1rem; min-height: 220px; border-radius: 18px 6px 18px 6px; }
+            .art-icon { font-size: 2rem; }
+            .art-card { min-height: 220px; }
+        }
+
+        /* Accessibility and focus */
+        .art-card:focus {
+            outline: 3px solid #daa520;
+            outline-offset: 2px;
+            box-shadow: 0 0 0 6px rgba(218, 165, 32, 0.18);
+        }
+        .art-card:focus:not(:focus-visible) {
+            outline: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.13);
+        }
+
+        /* Animation for cards */
+        .art-card:nth-child(1) { animation-delay: 0.1s; }
+        .art-card:nth-child(2) { animation-delay: 0.2s; }
+        .art-card:nth-child(3) { animation-delay: 0.3s; }
+        .art-card:nth-child(4) { animation-delay: 0.4s; }
+        .art-card:nth-child(5) { animation-delay: 0.5s; }
+        .art-card:nth-child(6) { animation-delay: 0.6s; }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(61, 41, 20, 0.92);
+            color: #f4e4c1;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            position: relative;
+            z-index: 2;
+        }
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #daa520, transparent);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-container { flex-wrap: wrap; width: 100vw; }
+            .main-title { padding-top: 86px; }
+            .main-title::before, .main-title::after { display: none; }
+            .hero-artwork { height: 300px; }
+            .art-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .catalogue { padding: 2rem 1rem; }
+        }
+        @media (max-width: 480px) {
+            .header { padding: 2rem 1rem; }
+            .catalogue-title { font-size: 2rem; }
+            .art-card { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <button class="nav-btn">Artists</button>
+        <button class="nav-btn">Workshops</button>
+        <button class="nav-btn">Calendar</button>
+        <div class="dropdown">
+            <button class="nav-btn dropdown-toggle">
+                Heritage <span class="dropdown-arrow">&#9660;</span>
+            </button>
+            <div class="dropdown-menu">
+                <a href="#" class="dropdown-item">Textile Arts</a>
+                <a href="#" class="dropdown-item">Painting Styles</a>
+                <a href="#" class="dropdown-item">Performing Arts</a>
+                <a href="#" class="dropdown-item">Handicrafts & Sculpture</a>
+            </div>
+        </div>
+        <button class="nav-btn">Connect</button>
+    </nav>
+
+    <header class="header">
+        <div class="header-content">
+            <h1 class="main-title">Textile Arts and Embroidery of India</h1>
+            <p class="subtitle">A Journey Through India's Threads of Tradition</p>
+        </div>
+    </header>
+
+    <section class="hero-image">
+        <div class="hero-artwork">
+            <div class="artwork-placeholder">
+                <div>🪡 Featured Textile Artwork 🪡</div>
+                <div style="font-size: 1rem; margin-top: 1rem; opacity: 0.8;">
+                    <img src="/static/Textile_art/index_image.webp" alt="Traditional Indian Textile Art">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="catalogue">
+        <h2 class="catalogue-title">Explore Indian Textile Arts</h2>
+        <div class="art-grid">
+            <div class="art-card" tabindex="0" role="button" aria-label="Learn more about Phulkari">
+                <img class="art-card-bg" src="/static/Textile_art/phulkhari.jpg" alt="" />
+                <div class="art-card-content">
+                    <div class="art-icon">🪡</div>
+                    <h3 class="art-name">Phulkari</h3>
+                    <p class="art-description">
+                        Colorful floral embroidery on coarse cotton, known for its vibrant threadwork and geometric patterns.
+                    </p>
+                    <p class="art-origin">Origin: Punjab</p>
+                </div>
+            </div>
+            <div class="art-card" tabindex="0" role="button" aria-label="Learn more about Kantha">
+                <img class="art-card-bg" src="/static/Textile_art/kantha.avif" alt="" />
+                <div class="art-card-content">
+                    <div class="art-icon">🧵</div>
+                    <h3 class="art-name">Kantha</h3>
+                    <p class="art-description">
+                        Running-stitch embroidery on old saris and cloth, creating motifs of flora, fauna, and daily life.
+                    </p>
+                    <p class="art-origin">Origin: Bengal, Odisha</p>
+                </div>
+            </div>
+            <div class="art-card" tabindex="0" role="button" aria-label="Learn more about Chikankari">
+                <img class="art-card-bg" src="/static/Textile_art/chikankari.jpg" alt="" />
+                <div class="art-card-content">
+                    <div class="art-icon">✨</div>
+                    <h3 class="art-name">Chikankari</h3>
+                    <p class="art-description">
+                        Delicate white-on-white embroidery with floral and paisley motifs, often on muslin or cotton.
+                    </p>
+                    <p class="art-origin">Origin: Uttar Pradesh (Lucknow)</p>
+                </div>
+            </div>
+            <div class="art-card" tabindex="0" role="button" aria-label="Learn more about Kutch Embroidery">
+                <img class="art-card-bg" src="/static/Textile_art/Antique_Kutch_Embroidery.jpg" alt="" />
+                <div class="art-card-content">
+                    <div class="art-icon">🌸</div>
+                    <h3 class="art-name">Kutch Embroidery</h3>
+                    <p class="art-description">
+                        Rich, mirror-studded embroidery with bold colors and intricate patterns.
+                    </p>
+                    <p class="art-origin">Origin: Gujarat</p>
+                </div>
+            </div>
+            <div class="art-card" tabindex="0" role="button" aria-label="Learn more about Kalamkari Textiles">
+                <img class="art-card-bg" src="/static/Textile_art/kalamkari.webp" alt="" />
+                <div class="art-card-content">
+                    <div class="art-icon">🎨</div>
+                    <h3 class="art-name">Kalamkari Textiles</h3>
+                    <p class="art-description">
+                        Hand-painted or block-printed textiles with mythological and floral designs, using natural dyes.
+                    </p>
+                    <p class="art-origin">Origin: Andhra Pradesh, Telangana</p>
+                </div>
+            </div>
+            <div class="art-card" tabindex="0" role="button" aria-label="Learn more about Patola">
+                <img class="art-card-bg" src="/static/Textile_art/patola2jpg.jpg" alt="" />
+                <div class="art-card-content">
+                    <div class="art-icon">🧣</div>
+                    <h3 class="art-name">Patola</h3>
+                    <p class="art-description">
+                        Exquisite double ikat woven silk textiles, famous for their vibrant colors and geometric patterns.
+                    </p>
+                    <p class="art-origin">Origin: Gujarat</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2025 Textile Heritage of India. Preserving India's textile heritage through digital storytelling.</p>
+    </footer>
+
+    <script>
+        // Keyboard navigation for cards
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                const focusedCard = document.activeElement;
+                if (focusedCard && focusedCard.classList.contains('art-card')) {
+                    e.preventDefault();
+                    focusedCard.click();
+                }
+            }
+        });
+
+        // Add tabindex and ARIA for accessibility
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.art-card');
+            cards.forEach((card, index) => {
+                card.setAttribute('tabindex', '0');
+                card.setAttribute('role', 'button');
+                card.setAttribute('aria-label', `Learn more about ${card.querySelector('.art-name').textContent}`);
+            });
+        });
+
+        // Focus styles for keyboard navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const style = document.createElement('style');
+            style.textContent = `
+                .art-card:focus {
+                    outline: 3px solid #daa520;
+                    outline-offset: 2px;
+                    box-shadow: 0 0 0 6px rgba(218, 165, 32, 0.18);
+                }
+                .art-card:focus:not(:focus-visible) {
+                    outline: none;
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.13);
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>
