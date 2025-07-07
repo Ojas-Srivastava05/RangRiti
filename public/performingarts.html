@@ -401,6 +401,20 @@
             transform: translateY(30px);
             animation: cardFadeInUp 0.8s ease-out forwards;
         }
+        /* Style for the anchor tag wrapping the art card */
+.art-card-link {
+    text-decoration: none; /* Removes the underline */
+    color: inherit;      /* Inherits the text color from its parent */
+    display: block;      /* Makes the anchor tag take up the full space of the card */
+    /* Add any other styling you want for the link itself, e.g., cursor: pointer; */
+}
+
+/* Optional: Add hover effects to the card itself if desired */
+.art-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Example hover effect */
+    transform: translateY(-5px); /* Example slight lift on hover */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
 
         @keyframes cardFadeInUp {
             to { opacity: 1; transform: translateY(0); }
@@ -547,31 +561,26 @@
     </style>
 </head>
 <body>
-    <div class="nav-container">
-        <button class="nav-btn">Home</button>
+    <nav class="nav-container">
+        <a href="index.html" class="nav-btn-link"><button class="nav-btn">Home</button></a>
+        <a href="artists.html" class="nav-btn-link"><button class="nav-btn">Artists</button></a>
+        <a href="workshops.html" class="nav-btn-link"><button class="nav-btn">Workshops</button></a>
+        <a href="calendar.html" class="nav-btn-link"><button class="nav-btn">Calendar</button></a>
+    
         <div class="dropdown">
-            <button class="nav-btn dropdown-toggle">Paintings <span class="dropdown-arrow">▼</span></button>
+            <button class="nav-btn dropdown-toggle">
+                Heritage <span class="dropdown-arrow">&#9660;</span>
+            </button>
             <div class="dropdown-menu">
-                <a href="#" class="dropdown-item">Mughal Paintings</a>
-                <a href="#" class="dropdown-item">Rajput Paintings</a>
-                <a href="#" class="dropdown-item">Madhubani Art</a>
-                <a href="#" class="dropdown-item">Warli Art</a>
+                <a href="paintings and traditional styles.html" class="dropdown-item">Traditional Painting Styles</a>
+                <a href="textile_main.html" class="dropdown-item">Textile Arts</a>
+                <a href="performingarts.html" class="dropdown-item">Performing Arts</a>
+                <a href="handicrafts_and_sculptures.html" class="dropdown-item">Handicrafts & Sculpture</a>
             </div>
         </div>
-        <div class="dropdown">
-            <button class="nav-btn dropdown-toggle">Performing Arts <span class="dropdown-arrow">▼</span></button>
-            <div class="dropdown-menu">
-                <a href="#" class="dropdown-item">Kathakali</a>
-                <a href="#" class="dropdown-item">Bharatanatyam</a>
-                <a href="#" class="dropdown-item">Kuchipudi</a>
-                <a href="#" class="dropdown-item">Odissi</a>
-                <a href="#" class="dropdown-item">Mohiniyattam</a>
-                <a href="#" class="dropdown-item">Yakshagana</a>
-            </div>
-        </div>
-        <button class="nav-btn">Sculptures</button>
-        <button class="nav-btn">Textile Arts</button>
-    </div>
+    
+        <a href="connect.html" class="nav-btn-link"><button class="nav-btn">Connect</button></a>
+    </nav>
 
     <header class="header">
         <div class="header-content">
@@ -586,59 +595,71 @@
     <main class="catalogue">
         <h2 class="catalogue-title">Explore Indian Performing Arts</h2>
         <section class="art-grid">
-            <div class="art-card" tabindex="0" role="button" aria-label="Learn more about Kathakali">
-                <img src="../static/kathakalicard.png" alt="Kathakali Performance">
-                <h3 class="art-name">Kathakali</h3>
-                <p class="short-description">A classical Indian dance-drama from Kerala, known for its elaborate makeup, colorful costumes, and detailed gestures.</p>
-                <div class="full-description">
-                    <p>Kathakali is a highly stylized classical Indian dance-drama originating from Kerala. It is a "story play" genre of art, distinguished by the elaborately colorful make-up, costumes and face masks that the traditionally male actor-dancers wear. It is based on Hindu mythology, particularly the Puranas and the great Indian epics.</p>
+            <a href="kathakali.html" class="art-card-link">
+                <div class="art-card" aria-label="Learn more about Kathakali">
+                    <img src="../static/kathakalicard.png" alt="Kathakali Performance">
+                    <h3 class="art-name">Kathakali</h3>
+                    <p class="short-description">A classical Indian dance-drama from Kerala, known for its elaborate makeup, colorful costumes, and detailed gestures.</p>
+                    <div class="full-description">
+                        <p>Kathakali is a highly stylized classical Indian dance-drama originating from Kerala. It is a "story play" genre of art, distinguished by the elaborately colorful make-up, costumes and face masks that the traditionally male actor-dancers wear. It is based on Hindu mythology, particularly the Puranas and the great Indian epics.</p>
+                    </div>
                 </div>
-            </div>
-
-            <div class="art-card" tabindex="0" role="button" aria-label="Learn more about Bharatanatyam">
-                <img src="../static/bharatnatyamcard.png" alt="Bharatanatyam Performance">
-                <h3 class="art-name">Bharatanatyam</h3>
-                <p class="short-description">A major form of Indian classical dance that originated in Tamil Nadu. It is one of the oldest classical dance traditions in India.</p>
-                <div class="full-description">
-                    <p>Bharatanatyam is a classical Indian dance form that originated in the temples of Tamil Nadu. It is known for its graceful movements, expressive gestures, and intricate footwork. The dance is usually accompanied by Carnatic music and is considered a fire dance, embodying the element of fire in the human body.</p>
+            </a>
+    
+            <a href="bharatanatyam.html" class="art-card-link">
+                <div class="art-card" aria-label="Learn more about Bharatanatyam">
+                    <img src="../static/bharatnatyamcard.png" alt="Bharatanatyam Performance">
+                    <h3 class="art-name">Bharatanatyam</h3>
+                    <p class="short-description">A major form of Indian classical dance that originated in Tamil Nadu. It is one of the oldest classical dance traditions in India.</p>
+                    <div class="full-description">
+                        <p>Bharatanatyam is a classical Indian dance form that originated in the temples of Tamil Nadu. It is known for its graceful movements, expressive gestures, and intricate footwork. The dance is usually accompanied by Carnatic music and is considered a fire dance, embodying the element of fire in the human body.</p>
+                    </div>
                 </div>
-            </div>
-
-            <div class="art-card" tabindex="0" role="button" aria-label="Learn more about Kuchipudi">
-                <img src="../static/kuchipudicard.png" alt="Kuchipudi Performance">
-                <h3 class="art-name">Kuchipudi</h3>
-                <p class="short-description">An indigenous dance form from Andhra Pradesh, distinct for its lively, dramatic character, and blend of dance, music, and acting.</p>
-                <div class="full-description">
-                    <p>Kuchipudi is one of the eleven major Indian classical dances. It originated in a village named Kuchipudi in the Indian state of Andhra Pradesh. It is a dance-drama performance, with roots in ancient Hindu Sanskrit text of Natya Shastra. It typically begins with an prolongation, followed by a presentation of the drama's characters and then the pure dance.</p>
+            </a>
+    
+            <a href="kuchipudi.html" class="art-card-link">
+                <div class="art-card" aria-label="Learn more about Kuchipudi">
+                    <img src="../static/kuchipudicard.png" alt="Kuchipudi Performance">
+                    <h3 class="art-name">Kuchipudi</h3>
+                    <p class="short-description">An indigenous dance form from Andhra Pradesh, distinct for its lively, dramatic character, and blend of dance, music, and acting.</p>
+                    <div class="full-description">
+                        <p>Kuchipudi is one of the eleven major Indian classical dances. It originated in a village named Kuchipudi in the Indian state of Andhra Pradesh. It is a dance-drama performance, with roots in ancient Hindu Sanskrit text of Natya Shastra. It typically begins with an prolongation, followed by a presentation of the drama's characters and then the pure dance.</p>
+                    </div>
                 </div>
-            </div>
-
-            <div class="art-card" tabindex="0" role="button" aria-label="Learn more about Odissi">
-                <img src="../static/odissicard.png" alt="Odissi Performance">
-                <h3 class="art-name">Odissi</h3>
-                <p class="short-description">An ancient classical dance form from Odisha, known for its fluid movements, sculpturesque poses, and spiritual themes.</p>
-                <div class="full-description">
-                    <p>Odissi is a classical dance form from the state of Odisha in eastern India. It is particularly distinguished by its emphasis on the 'tribhanga' (three-bend) posture and the 'chauka' (square) stance. Odissi is traditionally a dance-drama genre of performance art, with spiritual themes and devotional stories.</p>
+            </a>
+    
+            <a href="odissi.html" class="art-card-link">
+                <div class="art-card" aria-label="Learn more about Odissi">
+                    <img src="../static/odissicard.png" alt="Odissi Performance">
+                    <h3 class="art-name">Odissi</h3>
+                    <p class="short-description">An ancient classical dance form from Odisha, known for its fluid movements, sculpturesque poses, and spiritual themes.</p>
+                    <div class="full-description">
+                        <p>Odissi is a classical dance form from the state of Odisha in eastern India. It is particularly distinguished by its emphasis on the 'tribhanga' (three-bend) posture and the 'chauka' (square) stance. Odissi is traditionally a dance-drama genre of performance art, with spiritual themes and devotional stories.</p>
+                    </div>
                 </div>
-            </div>
-
-            <div class="art-card" tabindex="0" role="button" aria-label="Learn more about Mohiniyattam">
-                <img src="../static/mohiniyattamcard.png" alt="Mohiniyattam Performance">
-                <h3 class="art-name">Mohiniyattam</h3>
-                <p class="short-description">A graceful classical dance form from Kerala, characterized by gentle and flowing movements, often performed by women.</p>
-                <div class="full-description">
-                    <p>Mohiniyattam is an Indian classical dance form that evolved in the state of Kerala. It is known for its elegant and graceful movements, swaying body movements, and subtle expressions. The dance typically tells stories of Hindu mythology, with a strong emphasis on devotion and love.</p>
+            </a>
+    
+            <a href="mohiniyattam.html" class="art-card-link">
+                <div class="art-card" aria-label="Learn more about Mohiniyattam">
+                    <img src="../static/mohiniyattamcard.png" alt="Mohiniyattam Performance">
+                    <h3 class="art-name">Mohiniyattam</h3>
+                    <p class="short-description">A graceful classical dance form from Kerala, characterized by gentle and flowing movements, often performed by women.</p>
+                    <div class="full-description">
+                        <p>Mohiniyattam is an Indian classical dance form that evolved in the state of Kerala. It is known for its elegant and graceful movements, swaying body movements, and subtle expressions. The dance typically tells stories of Hindu mythology, with a strong emphasis on devotion and love.</p>
+                    </div>
                 </div>
-            </div>
-
-            <div class="art-card" tabindex="0" role="button" aria-label="Learn more about Yakshagana">
-                <img src="../static/yakshaganacard.png" alt="Yakshagana Performance">
-                <h3 class="art-name">Yakshagana</h3>
-                <p class="short-description">A traditional folk theatre form from Karnataka, combining dance, music, dialogue, costume, and stage techniques with a unique style.</p>
-                <div class="full-description">
-                    <p>Yakshagana is a traditional theatre form popular in coastal Karnataka districts. It combines dance, music, dialogue, costume, make-up, and stage techniques with a unique style and form. The themes are drawn from the Ramayana, Mahabharata, Puranas, and other Hindu epics.</p>
+            </a>
+    
+            <a href="yakshagana.html" class="art-card-link">
+                <div class="art-card" aria-label="Learn more about Yakshagana">
+                    <img src="../static/yakshaganacard.png" alt="Yakshagana Performance">
+                    <h3 class="art-name">Yakshagana</h3>
+                    <p class="short-description">A traditional folk theatre form from Karnataka, combining dance, music, dialogue, costume, and stage techniques with a unique style.</p>
+                    <div class="full-description">
+                        <p>Yakshagana is a traditional theatre form popular in coastal Karnataka districts. It combines dance, music, dialogue, costume, make-up, and stage techniques with a unique style and form. The themes are drawn from the Ramayana, Mahabharata, Puranas, and other Hindu epics.</p>
+                    </div>
                 </div>
-            </div>
+            </a>
         </section>
     </main>
 
