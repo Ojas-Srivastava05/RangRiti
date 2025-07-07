@@ -93,40 +93,34 @@
             display: flex;
             gap: 10px;
             backdrop-filter: blur(20px);
-            background: rgba(255, 255, 255, 0.1); /* Slightly more visible background */
+            background: rgba(255, 255, 255, 0.1);
             padding: 15px 25px;
             border-radius: 50px;
             border: 1px solid rgba(255, 215, 0, 0.3);
             z-index: 1000;
-            animation: slideDown 1s ease-out;
+            /* Removed animation: slideDown */
         }
 
-        @keyframes slideDown {
-            from { transform: translateX(-50%) translateY(-100px); opacity: 0; }
-            to { transform: translateX(-50%) translateY(0); opacity: 1; }
-        }
+        /* @keyframes slideDown removed */
 
         .nav-btn {
-            font-family: 'Crimson Text', serif; /* Changed to match body font for elegance */
+            font-family: 'Crimson Text', serif;
             background: transparent;
             color: #3d2914;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Softer shadow */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
             border: none;
             padding: 8px 16px;
             border-radius: 25px;
-            font-size: 0.95rem; /* Slightly larger */
-            font-weight: 600; /* Bolder */
+            font-size: 0.95rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease-in-out; /* Smooth transition */
+            transition: all 0.3s ease-in-out;
             position: relative;
             overflow: hidden;
-            animation: navBtnFadeIn 1s ease-out forwards;
+            /* Removed animation: navBtnFadeIn */
         }
 
-        @keyframes navBtnFadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        /* @keyframes navBtnFadeIn removed */
 
         .nav-btn::before {
             content: '';
@@ -135,8 +129,8 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent); /* Softer gradient */
-            transition: left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Elegant easing */
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+            transition: left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .nav-btn:hover::before {
@@ -144,9 +138,9 @@
         }
 
         .nav-btn:hover {
-            background: rgba(255, 215, 0, 0.15); /* Softer hover background */
-            transform: scale(1.03) translateY(-2px); /* Subtle lift and scale */
-            box-shadow: 0 6px 18px rgba(255, 215, 0, 0.25); /* Softer, wider shadow */
+            background: rgba(255, 215, 0, 0.15);
+            transform: scale(1.03) translateY(-2px);
+            box-shadow: 0 6px 18px rgba(255, 215, 0, 0.25);
         }
 
         /* Dropdown styles */
@@ -161,16 +155,16 @@
 
         .dropdown-menu {
             position: absolute;
-            top: calc(100% + 5px); /* Slightly more space */
+            top: calc(100% + 5px);
             left: 0;
-            background: rgba(61, 41, 20, 0.9); /* Darker, richer background */
+            background: rgba(61, 41, 20, 0.9);
             border: 1px solid rgba(255, 215, 0, 0.4);
-            border-radius: 8px; /* Slightly less round */
+            border-radius: 8px;
             padding: 10px 0;
             display: none;
             flex-direction: column;
             min-width: 200px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); /* Stronger shadow for depth */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
             z-index: 1001;
             opacity: 0;
             visibility: hidden;
@@ -198,18 +192,18 @@
         .dropdown-item:hover {
             background: rgba(255, 215, 0, 0.15);
             color: #D4AF37;
-            padding-left: 25px; /* Slight slide effect */
+            padding-left: 25px;
         }
 
         .dropdown-arrow {
-            font-size: 0.7em; /* Slightly smaller */
-            margin-left: 6px; /* Adjusted spacing */
+            font-size: 0.7em;
+            margin-left: 6px;
             display: inline-block;
             transition: transform 0.3s ease;
         }
 
         .dropdown:hover .dropdown-arrow {
-            transform: rotate(180deg); /* Rotate on hover */
+            transform: rotate(180deg);
         }
 
         /* Header Section */
@@ -219,15 +213,12 @@
             position: relative;
             overflow: hidden;
             margin-top: 80px;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: headerFadeIn 1s ease-out forwards;
-            animation-delay: 0.5s; /* Delay for navigation to appear first */
+            /* Removed opacity and transform for headerFadeIn */
+            /* Removed animation: headerFadeIn */
+            /* Removed animation-delay */
         }
 
-        @keyframes headerFadeIn {
-            to { opacity: 1; transform: translateY(0); }
-        }
+        /* @keyframes headerFadeIn removed */
 
         .header::before {
             content: '';
@@ -246,31 +237,28 @@
             position: relative;
             z-index: 2;
             width: 100%;
-            padding: 2.5rem 2rem; /* Increased padding for visual weight */
-            background: rgba(244, 228, 193, 0.85); /* Slightly less transparent */
+            padding: 2.5rem 2rem;
+            background: rgba(244, 228, 193, 0.85);
             border-radius: 0;
             box-sizing: border-box;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         .main-title {
             font-family: 'Cinzel', serif;
-            font-size: clamp(2.8rem, 6vw, 4.5rem); /* Larger and more responsive */
+            font-size: clamp(2.8rem, 6vw, 4.5rem);
             font-weight: 600;
             color: #3d2914;
-            margin-bottom: 0.8rem; /* Reduced margin */
-            text-shadow: 2px 2px 6px rgba(0,0,0,0.2); /* Stronger shadow */
+            margin-bottom: 0.8rem;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.2);
             position: relative;
             display: inline-block;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: slideInFromBottom 0.8s ease-out forwards;
-            animation-delay: 1s; /* Delayed after header fade-in */
+            /* Removed opacity and transform for slideInFromBottom */
+            /* Removed animation: slideInFromBottom */
+            /* Removed animation-delay */
         }
 
-        @keyframes slideInFromBottom {
-            to { opacity: 1; transform: translateY(0); }
-        }
+        /* @keyframes slideInFromBottom removed */
 
         .main-title::before,
         .main-title::after {
@@ -279,11 +267,13 @@
             top: 50%;
             transform: translateY(-50%);
             color: #b8860b;
-            font-size: clamp(1.8rem, 3vw, 2.5rem); /* Responsive size for stars */
-            opacity: 0;
-            animation: pulseStar 2s infinite alternate, fadeInStar 1s ease-out forwards;
-            animation-delay: 1.5s; /* Delayed star animation */
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            /* Removed opacity for fadeInStar */
+            animation: pulseStar 2s infinite alternate; /* Kept pulseStar */
+            /* Removed animation-delay for fadeInStar */
         }
+
+        /* @keyframes fadeInStar removed */
 
         @keyframes pulseStar {
             0% { transform: translateY(-50%) scale(1); }
@@ -291,28 +281,23 @@
             100% { transform: translateY(-50%) scale(1); }
         }
 
-        @keyframes fadeInStar {
-            to { opacity: 1; }
-        }
-
         .main-title::before {
-            left: -3.5rem; /* Slightly more offset */
+            left: -3.5rem;
         }
 
         .main-title::after {
-            right: -3.5rem; /* Slightly more offset */
+            right: -3.5rem;
         }
 
         .subtitle {
-            font-family: 'Playfair Display', serif; /* New font for elegance */
-            font-size: clamp(1rem, 2vw, 1.3rem); /* Responsive size */
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1rem, 2vw, 1.3rem);
             color: #6b4423;
             font-style: italic;
             margin-bottom: 2rem;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: slideInFromBottom 0.8s ease-out forwards;
-            animation-delay: 1.2s; /* Delayed after main-title */
+            /* Removed opacity and transform for slideInFromBottom */
+            /* Removed animation: slideInFromBottom */
+            /* Removed animation-delay */
         }
 
         /* Hero Image Styles */
@@ -323,63 +308,61 @@
             margin-top: 2rem;
             position: relative;
             z-index: 2;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: slideInFromBottom 1s ease-out forwards;
-            animation-delay: 1.8s; /* Delayed after text */
+            /* Removed opacity and transform for slideInFromBottom */
+            /* Removed animation: slideInFromBottom */
+            /* Removed animation-delay */
         }
 
         .hero-image {
-            max-width: 650px; /* Slightly larger max-width */
-            width: 90%; /* Responsive width */
-            height: 450px; /* Slightly taller */
+            max-width: 650px;
+            width: 90%;
+            height: 450px;
             object-fit: cover;
-            border-radius: 18px; /* Slightly more rounded */
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35); /* Deeper shadow */
-            border: 6px solid #b8860b; /* Thicker golden border */
+            border-radius: 18px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+            border: 6px solid #b8860b;
             transition: transform 0.5s ease-in-out;
         }
 
         .hero-image:hover {
-            transform: scale(1.01); /* Subtle zoom on hover */
+            transform: scale(1.01);
         }
 
         /* Art Catalogue Section */
         .catalogue {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 4rem 2rem; /* More vertical padding */
+            padding: 4rem 2rem;
         }
 
         .catalogue-title {
             font-family: 'Cinzel', serif;
-            font-size: clamp(2rem, 4vw, 3.5rem); /* Larger and responsive */
+            font-size: clamp(2rem, 4vw, 3.5rem);
             text-align: center;
             color: #3d2914;
-            margin-bottom: 3.5rem; /* Increased margin */
+            margin-bottom: 3.5rem;
             position: relative;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: slideInFromBottom 1s ease-out forwards;
-            animation-delay: 2s; /* Delayed entrance */
+            /* Removed opacity and transform for slideInFromBottom */
+            /* Removed animation: slideInFromBottom */
+            /* Removed animation-delay */
         }
 
         .catalogue-title::after {
             content: '';
             position: absolute;
-            bottom: -15px; /* Lower underline */
+            bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 120px; /* Wider underline */
-            height: 4px; /* Thicker underline */
+            width: 120px;
+            height: 4px;
             background: linear-gradient(90deg, transparent, #daa520, transparent);
-            border-radius: 2px; /* Slightly rounded underline */
+            border-radius: 2px;
         }
 
         .art-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Larger min-width for cards */
-            gap: 45px; /* Increased gap */
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 45px;
             justify-content: center;
             padding: 0 2rem;
         }
@@ -388,8 +371,8 @@
         .art-card {
             background: #fff8dc;
             border: 1px solid #b8860b;
-            border-radius: 12px; /* Slightly more rounded corners */
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1); /* Softer, deeper shadow */
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
             overflow: hidden;
             display: flex;
             flex-direction: column;
@@ -397,61 +380,57 @@
             transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
             cursor: pointer;
             position: relative;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: cardFadeInUp 0.8s ease-out forwards;
+            /* Removed opacity and transform for cardFadeInUp */
+            /* Removed animation: cardFadeInUp */
         }
         /* Style for the anchor tag wrapping the art card */
-.art-card-link {
-    text-decoration: none; /* Removes the underline */
-    color: inherit;      /* Inherits the text color from its parent */
-    display: block;      /* Makes the anchor tag take up the full space of the card */
-    /* Add any other styling you want for the link itself, e.g., cursor: pointer; */
-}
-
-/* Optional: Add hover effects to the card itself if desired */
-.art-card:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Example hover effect */
-    transform: translateY(-5px); /* Example slight lift on hover */
-    transition: all 0.3s ease; /* Smooth transition for hover effects */
-}
-
-        @keyframes cardFadeInUp {
-            to { opacity: 1; transform: translateY(0); }
+        .art-card-link {
+            text-decoration: none; /* Removes the underline */
+            color: inherit;      /* Inherits the text color from its parent */
+            display: block;      /* Makes the anchor tag take up the full space of the card */
+            /* Add any other styling you want for the link itself, e.g., cursor: pointer; */
         }
 
-        /* Apply staggered animation delay to cards using JavaScript or a CSS trick */
-        /* For now, just apply base animation; JS can add stagger */
+        /* Optional: Add hover effects to the card itself if desired */
+        .art-card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Example hover effect */
+            transform: translateY(-5px); /* Example slight lift on hover */
+            transition: all 0.3s ease; /* Smooth transition for hover effects */
+        }
+
+        /* @keyframes cardFadeInUp removed */
+
+        /* Removed staggered animation delay to cards using JavaScript or a CSS trick */
 
         .art-card:hover {
-            transform: translateY(-12px); /* Slightly more lift */
-            box-shadow: 0 18px 40px rgba(0,0,0,0.25); /* More prominent shadow on hover */
+            transform: translateY(-12px);
+            box-shadow: 0 18px 40px rgba(0,0,0,0.25);
         }
 
         .art-card img {
             width: 100%;
-            height: 280px; /* Taller images */
+            height: 280px;
             object-fit: cover;
             transition: transform 0.4s ease-in-out;
         }
 
         .art-card:hover img {
-            transform: scale(1.03); /* Subtle zoom */
+            transform: scale(1.03);
         }
 
         .art-name {
             font-family: 'Cinzel', serif;
-            font-size: 1.9rem; /* Slightly larger */
+            font-size: 1.9rem;
             font-weight: 500;
             color: #3d2914;
-            padding: 20px 15px 8px; /* More padding */
+            padding: 20px 15px 8px;
         }
 
         .short-description {
             font-family: 'Crimson Text', serif;
-            font-size: 1.05rem; /* Slightly larger */
+            font-size: 1.05rem;
             color: #6b4423;
-            padding: 0 20px 20px; /* More padding */
+            padding: 0 20px 20px;
             flex-grow: 1;
         }
 
@@ -461,21 +440,21 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(61, 41, 20, 0.98); /* Less transparent, more immersive */
+            background: rgba(61, 41, 20, 0.98);
             color: #f4e4c1;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 25px; /* More padding */
+            padding: 25px;
             box-sizing: border-box;
             opacity: 0;
             visibility: hidden;
-            transform: translateY(15px); /* Start slightly lower */
+            transform: translateY(15px);
             transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out, visibility 0.4s;
             text-align: left;
             font-family: 'Crimson Text', serif;
-            font-size: 1.15rem; /* Slightly larger */
-            line-height: 1.7; /* Better readability */
+            font-size: 1.15rem;
+            line-height: 1.7;
         }
 
         .art-card:hover .full-description {
@@ -491,8 +470,8 @@
         /* Accessibility improvements */
         .art-card:focus {
             outline: 3px solid #daa520;
-            outline-offset: 4px; /* More visible outline */
-            box-shadow: 0 0 0 7px rgba(218, 165, 32, 0.4); /* Stronger focus shadow */
+            outline-offset: 4px;
+            box-shadow: 0 0 0 7px rgba(218, 165, 32, 0.4);
         }
 
         .art-card:focus:not(:focus-visible) {
@@ -504,8 +483,8 @@
         @media (max-width: 768px) {
             .nav-container{
                 flex-wrap: wrap;
-                width: 95vw; /* Wider on small screens */
-                top: 5px; /* Closer to top */
+                width: 95vw;
+                top: 5px;
                 padding: 10px 15px;
             }
             .nav-btn {
@@ -515,7 +494,7 @@
             .dropdown-menu {
                 min-width: 180px;
                 left: 50%;
-                transform: translateX(-50%); /* Center dropdown */
+                transform: translateX(-50%);
             }
             .header {
                 padding: 2rem 1rem;
@@ -533,7 +512,7 @@
                 font-size: 1rem;
             }
             .hero-image {
-                height: 300px; /* Adjust for smaller screens */
+                height: 300px;
                 max-width: 95%;
             }
             .catalogue {
@@ -566,7 +545,7 @@
         <a href="artists.html" class="nav-btn-link"><button class="nav-btn">Artists</button></a>
         <a href="workshops.html" class="nav-btn-link"><button class="nav-btn">Workshops</button></a>
         <a href="calendar.html" class="nav-btn-link"><button class="nav-btn">Calendar</button></a>
-    
+
         <div class="dropdown">
             <button class="nav-btn dropdown-toggle">
                 Heritage <span class="dropdown-arrow">&#9660;</span>
@@ -578,7 +557,7 @@
                 <a href="handicrafts_and_sculptures.html" class="dropdown-item">Handicrafts & Sculpture</a>
             </div>
         </div>
-    
+
         <a href="connect.html" class="nav-btn-link"><button class="nav-btn">Connect</button></a>
     </nav>
 
@@ -605,8 +584,8 @@
                     </div>
                 </div>
             </a>
-    
-            <a href="bharatanatyam.html" class="art-card-link">
+
+            <a href="bharatnatyam.html" class="art-card-link">
                 <div class="art-card" aria-label="Learn more about Bharatanatyam">
                     <img src="../static/bharatnatyamcard.png" alt="Bharatanatyam Performance">
                     <h3 class="art-name">Bharatanatyam</h3>
@@ -616,7 +595,7 @@
                     </div>
                 </div>
             </a>
-    
+
             <a href="kuchipudi.html" class="art-card-link">
                 <div class="art-card" aria-label="Learn more about Kuchipudi">
                     <img src="../static/kuchipudicard.png" alt="Kuchipudi Performance">
@@ -627,7 +606,7 @@
                     </div>
                 </div>
             </a>
-    
+
             <a href="odissi.html" class="art-card-link">
                 <div class="art-card" aria-label="Learn more about Odissi">
                     <img src="../static/odissicard.png" alt="Odissi Performance">
@@ -638,7 +617,7 @@
                     </div>
                 </div>
             </a>
-    
+
             <a href="mohiniyattam.html" class="art-card-link">
                 <div class="art-card" aria-label="Learn more about Mohiniyattam">
                     <img src="../static/mohiniyattamcard.png" alt="Mohiniyattam Performance">
@@ -649,7 +628,7 @@
                     </div>
                 </div>
             </a>
-    
+
             <a href="yakshagana.html" class="art-card-link">
                 <div class="art-card" aria-label="Learn more about Yakshagana">
                     <img src="../static/yakshaganacard.png" alt="Yakshagana Performance">
@@ -670,19 +649,35 @@
                 const focusedCard = document.activeElement;
                 if (focusedCard && focusedCard.classList.contains('art-card')) {
                     e.preventDefault();
-                    focusedCard.click();
+                    // Trigger click on the parent anchor tag if the card itself is focused
+                    const parentLink = focusedCard.closest('.art-card-link');
+                    if (parentLink) {
+                        parentLink.click();
+                    }
                 }
             }
         });
 
-        // Add tabindex for accessibility and staggered animation
+        // Removed the staggered animation delay in JavaScript
         document.addEventListener('DOMContentLoaded', function() {
             const cards = document.querySelectorAll('.art-card');
             cards.forEach((card, index) => {
-                card.setAttribute('tabindex', '0');
-                card.setAttribute('role', 'button');
-                card.setAttribute('aria-label', `Learn more about ${card.querySelector('.art-name').textContent}`);
-                card.style.animationDelay = `${2.2 + (index * 0.1)}s`; /* Staggered animation */
+                // Since the art-card is now inside an <a>, we need to adjust focus/role if keeping this logic
+                // If the entire <a> is the focusable element, these are not strictly needed on the div.
+                // However, keeping them here ensures backward compatibility if the structure changes or if
+                // some assistive technologies specifically look for roles on the inner element.
+                // For direct linking, the <a> tag handles accessibility inherently.
+                // If you want the *div* to be focusable and trigger the link on enter/space, keep tabindex/role.
+                // If the <a> handles it, remove tabindex/role from the div.art-card in HTML and here.
+
+                // Removing tabindex/role from the div.art-card as the <a> tag is now the primary interactive element.
+                // If you prefer the div to be the interactive element, consider using JS to handle click on div
+                // and then programmatically navigate, rather than wrapping in <a>.
+                // For simplicity and direct linking, let the <a> be the interactive element.
+                card.removeAttribute('tabindex');
+                card.removeAttribute('role');
+                card.removeAttribute('aria-label');
+                // card.style.animationDelay = `${2.2 + (index * 0.1)}s`; /* Removed staggered animation */
             });
         });
     </script>
