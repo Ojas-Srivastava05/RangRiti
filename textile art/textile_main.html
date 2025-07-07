@@ -531,42 +531,42 @@
 
     <script>
         // Keyboard navigation for cards
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                const focusedCard = document.activeElement;
-                if (focusedCard && focusedCard.classList.contains('art-card')) {
-                    e.preventDefault();
-                    focusedCard.click();
-                }
-            }
-        });
+        // document.addEventListener('keydown', function(e) {
+        //     if (e.key === 'Enter' || e.key === ' ') {
+        //         const focusedCard = document.activeElement;
+        //         if (focusedCard && focusedCard.classList.contains('art-card')) {
+        //             e.preventDefault();
+        //             focusedCard.click();
+        //         }
+        //     }
+        // });
 
-        // Add tabindex and ARIA for accessibility
-        document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.art-card');
-            cards.forEach((card, index) => {
-                card.setAttribute('tabindex', '0');
-                card.setAttribute('role', 'button');
-                card.setAttribute('aria-label', `Learn more about ${card.querySelector('.art-name').textContent}`);
-            });
-        });
+        // // Add tabindex and ARIA for accessibility
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     const cards = document.querySelectorAll('.art-card');
+        //     cards.forEach((card, index) => {
+        //         card.setAttribute('tabindex', '0');
+        //         card.setAttribute('role', 'button');
+        //         card.setAttribute('aria-label', `Learn more about ${card.querySelector('.art-name').textContent}`);
+        //     });
+        // });
 
-        // Focus styles for keyboard navigation
-        document.addEventListener('DOMContentLoaded', function() {
-            const style = document.createElement('style');
-            style.textContent = `
-                .art-card:focus {
-                    outline: 3px solid #daa520;
-                    outline-offset: 2px;
-                    box-shadow: 0 0 0 6px rgba(218, 165, 32, 0.18);
-                }
-                .art-card:focus:not(:focus-visible) {
-                    outline: none;
-                    box-shadow: 0 10px 30px rgba(0,0,0,0.13);
-                }
-            `;
-            document.head.appendChild(style);
-        });
+        // // Focus styles for keyboard navigation
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     const style = document.createElement('style');
+        //     style.textContent = `
+        //         .art-card:focus {
+        //             outline: 3px solid #daa520;
+        //             outline-offset: 2px;
+        //             box-shadow: 0 0 0 6px rgba(218, 165, 32, 0.18);
+        //         }
+        //         .art-card:focus:not(:focus-visible) {
+        //             outline: none;
+        //             box-shadow: 0 10px 30px rgba(0,0,0,0.13);
+        //         }
+        //     `;
+        //     document.head.appendChild(style);
+        // });
     </script>
 </body>
 </html>
