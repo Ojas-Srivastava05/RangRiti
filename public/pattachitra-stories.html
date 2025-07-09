@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pattachitra: Scrolls of Divine Splendor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables */
+        :root {
+            --yakshagana-gold: #E0B400; /* A vibrant gold for Yakshagana's rich costumes */
+            --text-gold: #FFD700;
+            --text-light: rgba(255, 248, 220, 0.9);
+            --dark-background: #251005; /* Deep, earthy brown for the stage backdrop */
+            --card-background: rgba(45, 20, 0, 0.7); /* Slightly lighter, semi-transparent */
+            --border-gold: rgba(255, 215, 0, 0.4);
+            --primary-gold: #FFD700;
+        }
+
+        /* General Body Styles */
+        body {
+            margin: 0;
+            font-family: 'EB Garamond', serif;
+            background: linear-gradient(to bottom, #3a1f0a, #251005); /* Subtle gradient for depth */
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        /* --- Navigation Bar --- */
+        .nav-container {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            backdrop-filter: blur(20px);
+            background-color: rgba(0, 0, 0, 0.6); /* Slightly darker background for contrast */
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 1px solid var(--border-gold);
+            z-index: 1000;
+            animation: slideDown 1s ease-out;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Enhanced shadow */
+        }
+
+        @keyframes slideDown {
+            from { transform: translateX(-50%) translateY(-100px); opacity: 0; }
+            to { transform: translateX(-50%) translateY(0); opacity: 1; }
+        }
+
+        .nav-btn {
+            font-family: 'EB Garamond', serif;
+            background: transparent;
+            color: #FAF3E0; /* Light Ivory for better contrast on dark bg */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Stronger shadow */
+            border: none;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: navBtnFadeIn 1s ease-out forwards;
+        }
+
+        @keyframes navBtnFadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .nav-btn:hover::before {
+            left: 100%;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 215, 0, 0.1); /* Lighter hover background */
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+            color: var(--text-gold); /* Gold color on hover */
+        }
+
+        /* Dropdown styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-toggle {
+            cursor: pointer;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 10px); /* Position below the button */
+            left: 50%;
+            transform: translateX(-50%); /* Center the dropdown */
+            background: rgba(0, 0, 0, 0.95);
+            border: 1px solid var(--border-gold);
+            border-radius: 10px;
+            padding: 10px 0;
+            display: none;
+            flex-direction: column;
+            min-width: 200px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            z-index: 1001;
+            opacity: 0;
+            transform: translateX(-50%) translateY(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: flex;
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .dropdown-item {
+            font-family: 'EB Garamond', serif;
+            color: #FAF3E0;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: block;
+            transition: all 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .dropdown-item:hover {
+            background: rgba(255, 215, 0, 0.2);
+            color: var(--primary-gold);
+            padding-left: 25px; /* Slight indent on hover */
+        }
+
+        .dropdown-arrow {
+            font-size: 0.8em;
+            margin-left: 5px;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--text-light);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Yakshagana_at_Dharmasthala.jpg/1280px-Yakshagana_at_Dharmasthala.jpg') no-repeat center center/cover; /* Yakshagana image */
+            filter: grayscale(70%) brightness(40%); /* Desaturate and darken */
+            z-index: -1;
+            animation: fadeInBackground 2s ease-out;
+        }
+
+        @keyframes fadeInBackground {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .hero-content {
+            padding-top: 100px; /* Space for fixed nav */
+            max-width: 800px;
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 4.5rem;
+            color: var(--text-gold);
+            margin-bottom: 20px;
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7);
+            letter-spacing: 2px;
+            animation: scaleIn 1.5s ease-out forwards;
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-style: italic;
+        }
+
+        /* --- Section Styling --- */
+        .section {
+            padding: 80px 5%;
+            margin-top: 0; /* No top margin as hero takes full height */
+            position: relative;
+            z-index: 1;
+            background-color: var(--dark-background); /* Ensure consistent background */
+        }
+
+        .section h2 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 3.5rem;
+            color: var(--yakshagana-gold);
+            text-align: center;
+            margin-bottom: 60px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+            position: relative;
+            padding-bottom: 15px;
+            animation: slideInFromLeft 1s ease-out forwards;
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        @keyframes slideInFromLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .section h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--text-gold), transparent);
+            margin: 15px auto 0;
+            border-radius: 5px;
+        }
+
+        /* --- Detailed Story Sections --- */
+        .detailed-story-section {
+            max-width: 900px;
+            margin: 80px auto; /* Margin between detailed stories */
+            padding: 40px;
+            background-color: rgba(0, 0, 0, 0.7); /* Slightly transparent background */
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--border-gold);
+            animation: fadeIn 1s ease-out forwards;
+            line-height: 1.8; /* Adjusted for better readability of detailed text */
+        }
+
+        .detailed-story-section h1 { /* Using h1 for main story title within this section */
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 3.8rem;
+            color: var(--text-gold);
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .detailed-story-section h1::after {
+            content: '';
+            display: block;
+            width: 150px;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--text-gold), transparent);
+            margin: 15px auto 0;
+            border-radius: 5px;
+        }
+
+        .detailed-story-section h3 { /* Using h3 for subheadings within a detailed story */
+            font-family: 'EB Garamond', serif;
+            font-size: 2.2rem;
+            color: var(--yakshagana-gold);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            border-bottom: 1px dashed rgba(255, 215, 0, 0.2);
+            padding-bottom: 10px;
+        }
+
+        .detailed-story-section p {
+            font-size: 1.15rem;
+            margin-bottom: 1.5em;
+            text-align: justify;
+        }
+
+        .detailed-story-section strong {
+            color: var(--text-gold);
+        }
+
+        /* --- Footer --- */
+        .footer {
+            background-color: #0d0600;
+            color: rgba(255, 248, 220, 0.7);
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            margin-top: 80px;
+        }
+
+        .footer p {
+            margin: 0;
+            padding: 5px 0;
+        }
+
+        .footer a {
+            color: var(--text-gold);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--primary-gold);
+            text-decoration: underline;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-wrap: wrap;
+                justify-content: center;
+                top: 15px;
+                padding: 10px 15px;
+                border-radius: 30px;
+            }
+
+            .nav-btn {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .section h2 {
+                font-size: 2.5rem;
+            }
+
+            .detailed-story-section {
+                padding: 25px;
+                margin: 60px auto;
+            }
+            .detailed-story-section h1 {
+                font-size: 3rem;
+            }
+            .detailed-story-section h3 {
+                font-size: 1.8rem;
+            }
+            .detailed-story-section p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                gap: 5px;
+            }
+            .nav-btn {
+                padding: 5px 8px;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav-container">
+        <button class="nav-btn">Artists</button>
+        <button class="nav-btn">Workshops</button>
+        <button class="nav-btn">Calendar</button>
+
+        <div class="dropdown">
+            <button class="nav-btn dropdown-toggle">
+                Heritage <span class="dropdown-arrow">&#9660;</span>
+            </button>
+            <div class="dropdown-menu">
+                <a href="#" class="dropdown-item">Traditional Painting Styles</a>
+                <a href="#" class="dropdown-item">Textile Arts</a>
+                <a href="#" class="dropdown-item">Performing Arts</a>
+                <a href="#" class="dropdown-item">Handicrafts & Sculpture</a>
+            </div>
+        </div>
+
+        <button class="nav-btn">Connect</button>
+    </nav>
+
+    <main>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Pattachitra: Scrolls of Divine Splendor</h1>
+            <p>Explore the intricate world of Pattachitra, where myths unravel in lines and colors passed down through generations of Odisha and Bengal scroll painters.</p>
+        </div>
+    </section>
+
+    <section id="pattachitra-stories-detailed" class="section">
+        <h2>Legendary Scrolls</h2>
+
+        <div id="jagannath-rath-yatra-detailed" class="detailed-story-section">
+            <h1>Jagannath’s Rath Yatra</h1>
+            <p><strong>Jagannath’s Rath Yatra</strong> is one of the most iconic themes in Pattachitra, capturing the grandeur of the annual chariot procession in Puri, Odisha.</p>
+
+            <h3>The Divine Journey</h3>
+            <p>The scrolls portray Lord Jagannath along with his siblings Balabhadra and Subhadra being carried in massive, decorated chariots. Devotees crowd the scene, their hands raised in devotion, while musicians, dancers, and priests fill the atmosphere with divine energy.</p>
+
+            <h3>Visual Spectacle</h3>
+            <p>Pattachitra’s distinct style — bold outlines, flat natural colors, and intricate borders — amplifies the spirit of this celebration. Each chariot, deity, and temple tower is rendered with devotion and architectural precision, making the scroll a vibrant tribute to Odisha’s spiritual heart.</p>
+        </div>
+
+        <div id="krishna-ras-leela-detailed" class="detailed-story-section">
+            <h1>Krishna’s Ras Leela</h1>
+            <p><strong>Krishna’s Ras Leela</strong> is a favorite motif in Pattachitra, illustrating the divine play (leela) of Krishna with Radha and the gopis under the moonlit Vrindavan skies.</p>
+
+            <h3>Dance of Devotion</h3>
+            <p>The scrolls capture the circular formations of the dance, with Krishna appearing between each gopi, symbolizing his omnipresence. Expressions of love, grace, and divine ecstasy radiate through the detailed faces and flowing garments.</p>
+
+            <h3>Nature in Harmony</h3>
+            <p>Lotus ponds, flowering trees, peacocks, and swirling patterns surround the dancers — nature itself seems to join the celebration. The composition reflects spiritual harmony, where music, art, and love unite in a divine rhythm.</p>
+        </div>
+
+        <div id="ram-return-ayodhya-detailed" class="detailed-story-section">
+            <h1>Ram’s Return to Ayodhya</h1>
+            <p><strong>Ram’s Return to Ayodhya</strong> is a triumphant moment from the Ramayana, celebrated through layers of architectural elegance and joyous detail in Pattachitra scrolls.</p>
+
+            <h3>The Victorious Arrival</h3>
+            <p>Lord Ram, along with Sita and Lakshman, is shown returning in an ornate aerial chariot as citizens of Ayodhya line the streets with lamps and garlands. Women perform aarti, children dance, and elders shed tears of joy — all intricately painted in festive detail.</p>
+
+            <h3>Symbol of Dharma</h3>
+            <p>The narrative honors the return of dharma (righteousness), depicting Ram as the ideal king. Golden temple domes, patterned floor designs, and ceremonial arches create a grand visual of restoration and divine justice.</p>
+        </div>
+
+        <div id="narayana-cosmic-form-detailed" class="detailed-story-section">
+            <h1>Narayana’s Cosmic Form</h1>
+            <p><strong>Narayana’s Cosmic Form</strong> reveals the vastness of Vishnu’s divine presence, filling scrolls with celestial imagery and metaphysical beauty.</p>
+
+            <h3>Vishwarupa Darshan</h3>
+            <p>In this scene, Lord Vishnu is shown in his cosmic form with countless heads, arms, and divine weapons. Stars, planets, sages, demons, and gods all appear within him — illustrating his all-encompassing nature. The scroll becomes a universe in itself.</p>
+
+            <h3>Ocean of Existence</h3>
+            <p>Vishnu is often depicted reclining on the serpent Ananta in a cosmic ocean, with a lotus emerging from his navel bearing Brahma. The surrounding scroll is filled with deities, conch shells, and yantras, symbolizing protection, creation, and eternal balance.</p>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <p>&copy; 2025 Pattachitra Heritage. All rights reserved.</p>
+    <p>Celebrating Odisha's sacred scrolls and eternal stories.</p>
+    <p>Contact us at <a href="mailto:info@pattachitraart.com">info@pattachitraart.com</a></p>
+</footer>
+</body>
+</html>
