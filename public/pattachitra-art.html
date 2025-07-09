@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Itihāsa - Pattachitra Art</title>
+    <title>Rangriti - Pattachitra Art</title>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -421,6 +421,9 @@
             border: 2px solid var(--golden);
             transition: transform 0.3s ease;
         }
+        .story-card:hover{
+            cursor: pointer;
+        }
 
         .video-card:hover {
             transform: scale(1.02);
@@ -670,7 +673,7 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <a href="#" class="logo">Itihāsa</a>
+            <a href="#" class="logo">Rangriti</a>
             <ul class="nav-menu">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About Madhubani</a></li>
@@ -838,11 +841,11 @@
     <footer id="contact">
         <div class="footer-content">
             <div class="footer-ornament">❋ ❋ ❋</div>
-            <h3>Connect with Itihāsa</h3>
-            <p>Email: info@itihasa-madhubani.com</p>
+            <h3>Connect with Rangriti</h3>
+            <p>Email: info@Rangriti-madhubani.com</p>
             <p>Follow us on social media for more cultural stories</p>
             <div style="margin-top: 2rem;">
-                <p>&copy; 2025 Itihāsa. Celebrating the timeless art of Madhubani.</p>
+                <p>&copy; 2025 Rangriti. Celebrating the timeless art of Madhubani.</p>
                 <p style="font-size: 0.9rem; margin-top: 1rem;">All artwork showcased with respect to the original artists and cultural heritage.</p>
             </div>
         </div>
@@ -954,6 +957,12 @@
                 container.appendChild(element);
             }
         }
+                document.querySelectorAll('.story-card').forEach(self=>{
+            self.addEventListener('click',()=>{
+                window.location.href = '/public/pattachitra-stories.html'
+            })
+        })
+
 
         // Color gradient animation for background
         function animateBackgroundGradient() {
