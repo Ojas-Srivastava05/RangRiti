@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Traditional Artforms</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #f4e7d1 0%, #e8d5b7 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(244, 231, 209, 0.3);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #8b4513;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header p {
+            color: #a0522d;
+            font-size: 1.1em;
+            font-style: italic;
+        }
+
+        .user-type-selection {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .user-type-btn {
+            flex: 1;
+            padding: 15px 20px;
+            border: 2px solid #d2b48c;
+            background: linear-gradient(135deg, #f4e7d1 0%, #e8d5b7 100%);
+            color: #8b4513;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .user-type-btn:hover {
+            background: linear-gradient(135deg, #e8d5b7 0%, #ddbf94 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .user-type-btn.active {
+            background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+            color: white;
+            border-color: #8b4513;
+        }
+
+        .form-container {
+            display: none;
+        }
+
+        .form-container.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #8b4513;
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 1em;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #d2b48c;
+            border-radius: 10px;
+            font-size: 1em;
+            background: rgba(255, 255, 255, 0.8);
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #8b4513;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 0 10px rgba(139, 69, 19, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+            font-family: 'Georgia', serif;
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-input-wrapper input[type=file] {
+            position: absolute;
+            left: -9999px;
+        }
+
+        .file-input-label {
+            display: block;
+            padding: 12px 15px;
+            border: 2px dashed #d2b48c;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            background: rgba(244, 231, 209, 0.3);
+            transition: all 0.3s ease;
+            color: #8b4513;
+        }
+
+        .file-input-label:hover {
+            border-color: #8b4513;
+            background: rgba(244, 231, 209, 0.5);
+        }
+
+        .social-links {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .social-links .form-group {
+            margin-bottom: 0;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #a0522d 0%, #8b4513 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .decorative-element {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(244, 231, 209, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .decorative-element:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .decorative-element:nth-child(2) {
+            top: 20%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .decorative-element:nth-child(3) {
+            bottom: 15%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .user-type-selection {
+                flex-direction: column;
+            }
+            
+            .social-links {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="decorative-element"></div>
+    <div class="decorative-element"></div>
+    <div class="decorative-element"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Register</h1>
+            <p>Join our community of traditional artists</p>
+        </div>
+
+        <div class="user-type-selection">
+            <button class="user-type-btn" onclick="showForm('user')">User</button>
+            <button class="user-type-btn" onclick="showForm('artist')">Artist</button>
+        </div>
+
+        <!-- User Registration Form -->
+        <div id="user-form" class="form-container">
+            <form>
+                <div class="form-group">
+                    <label for="user-name">Full Name</label>
+                    <input type="text" id="user-name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="user-email">Email Address</label>
+                    <input type="email" id="user-email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="user-password">Password</label>
+                    <input type="password" id="user-password" name="password" required>
+                </div>
+                
+                <button type="submit" class="submit-btn">Register as User</button>
+            </form>
+        </div>
+
+        <!-- Artist Registration Form -->
+        <div id="artist-form" class="form-container">
+            <form>
+                <div class="form-group">
+                    <label for="artist-name">Full Name</label>
+                    <input type="text" id="artist-name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="artist-email">Email Address</label>
+                    <input type="email" id="artist-email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="artist-password">Password</label>
+                    <input type="password" id="artist-password" name="password" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="artist-bio">Bio</label>
+                    <textarea id="artist-bio" name="bio" placeholder="Tell us about your artistic journey and experience..." required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="artist-profile">Profile Image</label>
+                    <div class="file-input-wrapper">
+                        <input type="file" id="artist-profile" name="profile_image" accept="image/*">
+                        <label for="artist-profile" class="file-input-label">
+                            📸 Choose Profile Image
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="artist-artform">Art Form</label>
+                    <select id="artist-artform" name="artform" required>
+                        <option value="">Select your art form</option>
+                        <option value="classical-dance">Classical Dance</option>
+                        <option value="folk-dance">Folk Dance</option>
+                        <option value="classical-music">Classical Music</option>
+                        <option value="folk-music">Folk Music</option>
+                        <option value="painting">Traditional Painting</option>
+                        <option value="sculpture">Sculpture</option>
+                        <option value="pottery">Pottery</option>
+                        <option value="weaving">Weaving</option>
+                        <option value="woodcarving">Wood Carving</option>
+                        <option value="metalwork">Metal Work</option>
+                        <option value="calligraphy">Calligraphy</option>
+                        <option value="theater">Traditional Theater</option>
+                        <option value="storytelling">Storytelling</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="artist-city">City</label>
+                    <select id="artist-city" name="city" required>
+                        <option value="">Select your city</option>
+                        <option value="mumbai">Mumbai</option>
+                        <option value="delhi">Delhi</option>
+                        <option value="bangalore">Bangalore</option>
+                        <option value="kolkata">Kolkata</option>
+                        <option value="chennai">Chennai</option>
+                        <option value="hyderabad">Hyderabad</option>
+                        <option value="pune">Pune</option>
+                        <option value="ahmedabad">Ahmedabad</option>
+                        <option value="jaipur">Jaipur</option>
+                        <option value="lucknow">Lucknow</option>
+                        <option value="kanpur">Kanpur</option>
+                        <option value="nagpur">Nagpur</option>
+                        <option value="indore">Indore</option>
+                        <option value="bhopal">Bhopal</option>
+                        <option value="visakhapatnam">Visakhapatnam</option>
+                        <option value="patna">Patna</option>
+                        <option value="vadodara">Vadodara</option>
+                        <option value="ghaziabad">Ghaziabad</option>
+                        <option value="ludhiana">Ludhiana</option>
+                        <option value="agra">Agra</option>
+                        <option value="nashik">Nashik</option>
+                        <option value="faridabad">Faridabad</option>
+                        <option value="meerut">Meerut</option>
+                        <option value="rajkot">Rajkot</option>
+                        <option value="varanasi">Varanasi</option>
+                        <option value="srinagar">Srinagar</option>
+                        <option value="aurangabad">Aurangabad</option>
+                        <option value="dhanbad">Dhanbad</option>
+                        <option value="amritsar">Amritsar</option>
+                        <option value="allahabad">Allahabad</option>
+                        <option value="ranchi">Ranchi</option>
+                        <option value="howrah">Howrah</option>
+                        <option value="coimbatore">Coimbatore</option>
+                        <option value="jabalpur">Jabalpur</option>
+                        <option value="gwalior">Gwalior</option>
+                        <option value="vijayawada">Vijayawada</option>
+                        <option value="jodhpur">Jodhpur</option>
+                        <option value="madurai">Madurai</option>
+                        <option value="raipur">Raipur</option>
+                        <option value="kota">Kota</option>
+                        <option value="guwahati">Guwahati</option>
+                        <option value="chandigarh">Chandigarh</option>
+                        <option value="solapur">Solapur</option>
+                        <option value="hubli">Hubli</option>
+                        <option value="mysore">Mysore</option>
+                        <option value="tiruchirappalli">Tiruchirappalli</option>
+                        <option value="bareilly">Bareilly</option>
+                        <option value="moradabad">Moradabad</option>
+                        <option value="gurgaon">Gurgaon</option>
+                        <option value="aligarh">Aligarh</option>
+                        <option value="jalandhar">Jalandhar</option>
+                        <option value="bhubaneswar">Bhubaneswar</option>
+                        <option value="salem">Salem</option>
+                        <option value="warangal">Warangal</option>
+                        <option value="guntur">Guntur</option>
+                        <option value="bhiwandi">Bhiwandi</option>
+                        <option value="saharanpur">Saharanpur</option>
+                        <option value="gorakhpur">Gorakhpur</option>
+                        <option value="bikaner">Bikaner</option>
+                        <option value="amravati">Amravati</option>
+                        <option value="noida">Noida</option>
+                        <option value="jamshedpur">Jamshedpur</option>
+                        <option value="bhilai">Bhilai</option>
+                        <option value="cuttack">Cuttack</option>
+                        <option value="firozabad">Firozabad</option>
+                        <option value="kochi">Kochi</option>
+                        <option value="bhavnagar">Bhavnagar</option>
+                        <option value="dehradun">Dehradun</option>
+                        <option value="durgapur">Durgapur</option>
+                        <option value="asansol">Asansol</option>
+                        <option value="nanded">Nanded</option>
+                        <option value="kolhapur">Kolhapur</option>
+                        <option value="ajmer">Ajmer</option>
+                        <option value="gulbarga">Gulbarga</option>
+                        <option value="jamnagar">Jamnagar</option>
+                        <option value="ujjain">Ujjain</option>
+                        <option value="loni">Loni</option>
+                        <option value="siliguri">Siliguri</option>
+                        <option value="jhansi">Jhansi</option>
+                        <option value="ulhasnagar">Ulhasnagar</option>
+                        <option value="nellore">Nellore</option>
+                        <option value="jammu">Jammu</option>
+                        <option value="sangli">Sangli</option>
+                        <option value="belgaum">Belgaum</option>
+                        <option value="mangalore">Mangalore</option>
+                        <option value="ambattur">Ambattur</option>
+                        <option value="tirunelveli">Tirunelveli</option>
+                        <option value="malegaon">Malegaon</option>
+                        <option value="gaya">Gaya</option>
+                        <option value="jalgaon">Jalgaon</option>
+                        <option value="udaipur">Udaipur</option>
+                        <option value="maheshtala">Maheshtala</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="social-links">
+                    <div class="form-group">
+                        <label for="artist-instagram">Instagram</label>
+                        <input type="url" id="artist-instagram" name="instagram" placeholder="https://instagram.com/username">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="artist-facebook">Facebook</label>
+                        <input type="url" id="artist-facebook" name="facebook" placeholder="https://facebook.com/username">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="artist-x">X (Twitter)</label>
+                    <input type="url" id="artist-x" name="x" placeholder="https://x.com/username">
+                </div>
+                
+                <button type="submit" class="submit-btn">Register as Artist</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let selectedUserType = null;
+
+        function showForm(type) {
+            // Remove active class from all buttons
+            document.querySelectorAll('.user-type-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+            
+            // Hide all forms
+            document.querySelectorAll('.form-container').forEach(form => {
+                form.classList.remove('active');
+            });
+            
+            // Show selected form
+            document.getElementById(type + '-form').classList.add('active');
+            
+            selectedUserType = type;
+        }
+
+        // Handle file input label update
+        document.getElementById('artist-profile').addEventListener('change', function(e) {
+            const label = document.querySelector('.file-input-label');
+            if (e.target.files.length > 0) {
+                label.textContent = '📸 ' + e.target.files[0].name;
+            } else {
+                label.textContent = '📸 Choose Profile Image';
+            }
+        });
+
+        // Handle form submissions
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert(`${selectedUserType.charAt(0).toUpperCase() + selectedUserType.slice(1)} registration submitted successfully!`);
+            });
+        });
+    </script>
+</body>
+</html>
