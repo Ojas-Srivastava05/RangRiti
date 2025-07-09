@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itihāsa - Kantha Art</title>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sandalwood: #E8D5B7;
+            --warm-beige: #F5E6D3;
+            --deep-brown: #8B4513;
+            --golden: #DAA520;
+            --dark-brown: #5D4037;
+            --cream: #FFF8E1;
+            --muted-gold: #B8860B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: transparent;
+            color: var(--dark-brown);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            background: linear-gradient(135deg, 
+                var(--warm-beige) 0%, 
+                var(--sandalwood) 25%, 
+                var(--cream) 50%, 
+                var(--warm-beige) 75%, 
+                var(--sandalwood) 100%);
+            animation: gradientShift 20s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { 
+                background: linear-gradient(135deg, 
+                    var(--warm-beige) 0%, 
+                    var(--sandalwood) 25%, 
+                    var(--cream) 50%, 
+                    var(--warm-beige) 75%, 
+                    var(--sandalwood) 100%);
+            }
+            25% { 
+                background: linear-gradient(225deg, 
+                    var(--cream) 0%, 
+                    var(--warm-beige) 25%, 
+                    var(--sandalwood) 50%, 
+                    var(--cream) 75%, 
+                    var(--warm-beige) 100%);
+            }
+            50% { 
+                background: linear-gradient(315deg, 
+                    var(--sandalwood) 0%, 
+                    var(--cream) 25%, 
+                    var(--warm-beige) 50%, 
+                    var(--sandalwood) 75%, 
+                    var(--cream) 100%);
+            }
+            75% { 
+                background: linear-gradient(45deg, 
+                    var(--warm-beige) 0%, 
+                    var(--sandalwood) 25%, 
+                    var(--cream) 50%, 
+                    var(--warm-beige) 75%, 
+                    var(--sandalwood) 100%);
+            }
+        }
+
+        .floating-motif {
+            position: absolute;
+            animation: float 15s ease-in-out infinite;
+            opacity: 0.15;
+            color: var(--golden);
+            filter: drop-shadow(0 0 10px rgba(218, 165, 32, 0.3));
+        }
+
+        .motif-1 {
+            top: 10%;
+            left: 80%;
+            animation-delay: 0s;
+            animation-duration: 18s;
+        }
+
+        .motif-2 {
+            top: 60%;
+            left: 5%;
+            animation-delay: 6s;
+            animation-duration: 22s;
+        }
+
+        .motif-3 {
+            top: 30%;
+            left: 40%;
+            animation-delay: 12s;
+            animation-duration: 16s;
+        }
+
+        .motif-4 {
+            top: 80%;
+            left: 70%;
+            animation-delay: 3s;
+            animation-duration: 20s;
+        }
+
+        .motif-5 {
+            top: 15%;
+            left: 15%;
+            animation-delay: 9s;
+            animation-duration: 24s;
+        }
+
+        .motif-6 {
+            top: 45%;
+            left: 85%;
+            animation-delay: 15s;
+            animation-duration: 14s;
+        }
+
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg) scale(1);
+                opacity: 0.15;
+            }
+            25% { 
+                transform: translateY(-30px) rotate(5deg) scale(1.1);
+                opacity: 0.25;
+            }
+            50% { 
+                transform: translateY(-60px) rotate(0deg) scale(1.2);
+                opacity: 0.3;
+            }
+            75% { 
+                transform: translateY(-30px) rotate(-5deg) scale(1.1);
+                opacity: 0.25;
+            }
+        }
+
+        .background-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(218, 165, 32, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(248, 230, 211, 0.1) 0%, transparent 50%);
+            animation: patternMove 30s linear infinite;
+        }
+
+        @keyframes patternMove {
+            0% { transform: translateX(0) translateY(0); }
+            25% { transform: translateX(-20px) translateY(-10px); }
+            50% { transform: translateX(-40px) translateY(-20px); }
+            75% { transform: translateX(-20px) translateY(-10px); }
+            100% { transform: translateX(0) translateY(0); }
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background: rgba(232, 213, 183, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1vh 0;
+            border-bottom: 2px solid var(--golden);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2vh;
+        }
+
+        .logo {
+            font-family: 'EB Garamond', serif;
+            font-size: 3.7vh;
+            font-weight: 700;
+            color: var(--deep-brown);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 3.7vh;
+        }
+
+        .nav-menu a {
+            color: var(--dark-brown);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: var(--golden);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--golden);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/static/patola-art.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            filter: brightness(50%);
+        }
+
+        .hero-content {
+            width: 80vw;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            filter: brightness(100%);
+            z-index: 100;
+            animation: fadeInUp 1s ease-out;
+            position: relative;
+            top: -50vh;
+        }
+
+        .hero-content h1 {
+            font-family: 'EB Garamond', serif;
+            font-size: 9.2vh;
+            margin-bottom: 1.85vh;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 4.6vh;
+            font-style: italic;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section {
+            padding: 7.4vh 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 3.7vh;
+            padding-right: 3.7vh;
+        }
+
+        .section h2 {
+            font-family: 'EB Garamond', serif;
+            font-size: 4.6vh;
+            margin-bottom: 3.7vh;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--golden);
+        }
+
+        .about {
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 5.5vh;
+            margin: 3.7vh 0;
+            border: 3px solid var(--golden);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: var(--golden);
+            opacity: 0.1;
+            border-radius: 50%;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3.7vh;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 2vh;
+            line-height: 3.3vh;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .decorative-border {
+            border: 5px solid var(--golden);
+            border-radius: 15px;
+            padding: 1.85vh;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3.7vh;
+            margin-top: 3.7vh;
+        }
+
+        .story-card {
+            background: white;
+            border-radius: 15px;
+            padding: 3.7vh;
+            border: 2px solid var(--golden);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .story-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--golden), var(--muted-gold));
+        }
+
+        .story-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .story-card h3 {
+            font-family: 'EB Garamond', serif;
+            font-size: 2.7vh;
+            color: var(--deep-brown);
+            margin-bottom: 1.85vh;
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3.7vh;
+            margin-top: 3.7vh;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid var(--golden);
+            transition: transform 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: scale(1.02);
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--sandalwood), var(--golden));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.2vh;
+        }
+        .video-placeholder iframe{
+            width: 370.35px;
+            height: 200px;
+        }
+
+        .video-info {
+            padding: 2.7vh;
+        }
+
+        .video-info h3 {
+            font-family: 'EB Garamond', serif;
+            font-size: 2.4vh;
+            color: var(--deep-brown);
+            margin-bottom: 0.9vh;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.7vh;
+            margin-top: 3.7vh;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 3px solid var(--golden);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-placeholder {
+            width: 100%;
+            height: 250px;
+            background-size:cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--deep-brown);
+            font-weight: 600;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 1.85vh;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            background: white;
+            border-radius: 10px;
+            padding: 3.7vh;
+            position: relative;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 3.7vh;
+            cursor: pointer;
+            color: var(--deep-brown);
+        }
+
+        footer {
+            background: var(--deep-brown);
+            color: var(--cream);
+            padding: 5.5vh 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 3.7vh;
+        }
+
+        .footer-ornament {
+            font-size: 3.7vh;
+            color: var(--golden);
+            margin-bottom: 1.85vh;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 4.6vh;
+            }
+            
+            .hero p {
+                font-size: 2.2vh;
+            }
+            
+            .about-content {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Dynamic Background with Motifs and Color Gradients -->
+    <div class="background-animation">
+        <div class="background-pattern"></div>
+        <div class="floating-motif motif-1">
+            <img src="/static/background_parrot.png" alt="Patola Motif 1" style="width: 90px; height: 90px; border-radius: 50%; object-fit: cover; opacity: 0.85;">
+        </div>
+        <div class="floating-motif motif-2">
+            <img src="/static/background_lotus.png" alt="Patola Motif 2" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; opacity: 0.85;">
+        </div>
+        <div class="floating-motif motif-3">
+            <img src="/static/background_elephant.png" alt="Patola Motif 3" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; opacity: 0.85;">
+        </div>
+        <div class="floating-motif motif-4">
+            <img src="/static/background_art5.png" alt="Patola Motif 4" style="width: 85px; height: 85px; border-radius: 50%; object-fit: cover; opacity: 0.85;">
+        </div>
+        <div class="floating-motif motif-5">
+            <img src="/static/background_tulips.png" alt="Patola Motif 5" style="width: 95px; height: 95px; border-radius: 50%; object-fit: cover; opacity: 0.85;">
+        </div>
+        <div class="floating-motif motif-6">
+            <img src="/static/background_leaf.png" alt="Patola Motif 6" style="width: 75px; height: 75px; border-radius: 50%; object-fit: cover; opacity: 0.85;">
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">Itihāsa</a>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Kantha</a></li>
+                <li><a href="#stories">Stories</a></li>
+                <li><a href="#videos">Videos</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero" style="background-image: url(/static/patola-art.jpg);">
+    </section>
+    <div class="hero-content">
+        <h1>The Splendor of Kantha</h1>
+        <p>– Discover the legacy of Kantha Art –</p>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <h2>About Kantha</h2>
+        <div class="about fade-in">
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Kantha is a centuries-old embroidery tradition from the Bengal region of the Indian subcontinent, encompassing present-day West Bengal, Odisha, and Bangladesh. This art form is celebrated for its simplicity, resourcefulness, and the vibrant stories it weaves into fabric.</p>
+                    <p><strong>What is Kantha?</strong><br>
+                    Kantha refers both to the distinctive running stitch used and the finished textile product. Traditionally, Kantha embroidery was practiced by rural women, who repurposed old saris and dhotis by layering and stitching them together with simple running stitches, creating quilts, shawls, and covers. The word "kantha" itself means "rags" in Sanskrit, reflecting its origins in upcycling and sustainability.</p>
+                    <ul style="margin: 1rem 0; padding-left: 2rem;">
+                        <li><strong>Storytelling and Heritage:</strong> Each Kantha piece is unique, often depicting folk tales, mythological scenes, daily life, and personal stories through its motifs.</li>
+                        <li><strong>Generational Craft:</strong> Kantha was never a royal or commissioned art; it was passed down from mother to daughter, forming an important part of dowries and family heirlooms.</li>
+                        <li><strong>Symbolic Motifs:</strong> Common motifs include the lotus (purity), fish (fertility), peacocks (love), trees of life, animals, and scenes from rural life. These motifs often carry deep personal or spiritual meanings.</li>
+                        <li><strong>Technique:</strong> The hallmark of Kantha is the running stitch, sometimes combined with darning, satin, loop, and stem stitches for outlining motifs.</li>
+                        <li><strong>Materials:</strong> Traditionally, old cotton or silk saris and dhotis are layered and stitched together. The threads used are often pulled from the borders of these old garments, resulting in subdued colors like blue, red, black, and green.</li>
+                        <li><strong>Design Process:</strong> Designs may be drawn freehand or marked with chalk. Artisans create dense, intricate patterns that can take weeks or months to complete, depending on the size and complexity.</li>
+                    </ul>
+                    <p>Kantha is not just embroidery—it's a living heritage, preserving the creativity, resilience, and stories of generations of Bengali women in every stitch.</p>
+                </div>
+                <div class="about-image">
+                    <div class="decorative-border">
+                        <img src="/static/kantha-main.jpg" style="width: 30vw;" alt="Kantha Textile">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stories Section -->
+    <section id="stories" class="section">
+        <h2>Woven Stories</h2>
+        <div class="stories-grid">
+            <div class="story-card fade-in">
+                <h3>Stitching Stories</h3>
+                <p>Each Kantha is a tapestry of memory, with motifs depicting folk tales, mythological scenes, and daily life—every stitch a story passed down through generations.</p>
+            </div>
+            <div class="story-card fade-in">
+                <h3>Heirlooms of Love</h3>
+                <p>Kantha was never a royal art, but a cherished family tradition, with mothers and daughters creating pieces for dowries and special occasions.</p>
+            </div>
+            <div class="story-card fade-in">
+                <h3>Motifs with Meaning</h3>
+                <p>Lotus, fish, peacocks, and trees of life—each motif in Kantha carries deep personal or spiritual significance, woven into the fabric of daily life.</p>
+            </div>
+            <div class="story-card fade-in">
+                <h3>Modern Kantha</h3>
+                <p>Today, Kantha thrives as both a creative expression and a source of livelihood, inspiring new generations and finding a place in global fashion and décor.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Videos Section -->
+    <section id="videos" class="section">
+        <h2>Watch & Learn</h2>
+        <div class="videos-grid">
+            <div class="video-card fade-in">
+                <div class="video-placeholder">
+                    <iframe src="https://www.youtube.com/embed/6Jk1tFoZT3E" title="Kantha Documentary" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h3>The Art of Kantha Embroidery</h3>
+                    <p>A documentary exploring the process, heritage, and stories behind Kantha embroidery in Bengal.</p>
+                    <small>Duration: 8 minutes 10 seconds</small>
+                </div>
+            </div>
+            <div class="video-card fade-in">
+                <div class="video-placeholder">
+                    <iframe src="https://www.youtube.com/embed/4yQwWb1x1oY" title="Kantha Embroidery Process" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h3>Making a Kantha Quilt</h3>
+                    <p>Step-by-step guide to the Kantha embroidery process and the artistry behind its motifs.</p>
+                    <small>Duration: 13 minutes 22 seconds</small>
+                </div>
+            </div>
+            <div class="video-card fade-in">
+                <div class="video-placeholder">
+                    <iframe src="https://www.youtube.com/embed/9Qn5vZEBtcw" title="Kantha Stories" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h3>Voices of Kantha Artisans</h3>
+                    <p>Interviews with Kantha artisans sharing their family stories and embroidery secrets.</p>
+                    <small>Duration: 11 minutes 40 seconds</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section">
+        <h2>Gallery</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item fade-in" onclick="window.location.href = '/static/kantha-gallery1.jpg' ">
+                <div class="gallery-placeholder" title="Classic Kantha" style="background-image: url(/static/kantha-gallery1.jpg); background-position: center; background-size: cover;"></div>
+                <div class="gallery-overlay">
+                    <h4>Classic Kantha</h4>
+                </div>
+            </div>
+            <div class="gallery-item fade-in" onclick="window.location.href = '/static/kantha-gallery2.jpg' ">
+                <div class="gallery-placeholder" style="background-image: url(/static/kantha-gallery2.jpg);"></div>
+                <div class="gallery-overlay">
+                    <h4>Lotus Motif</h4>
+                </div>
+            </div>
+            <div class="gallery-item fade-in" onclick="window.location.href = '/static/kantha-gallery3.jpg' ">
+                <div class="gallery-placeholder" style="background-image: url(/static/kantha-gallery3.jpg);"></div>
+                <div class="gallery-overlay">
+                    <h4>Tree of Life</h4>
+                </div>
+            </div>
+            <div class="gallery-item fade-in" onclick="window.location.href = '/static/kantha-gallery4.jpg' ">
+                <div class="gallery-placeholder" style="background-image: url(/static/kantha-gallery4.jpg);"></div>
+                <div class="gallery-overlay">
+                    <h4>Fish Motif</h4>
+                </div>
+            </div>
+            <div class="gallery-item fade-in" onclick="window.location.href = '/static/kantha-gallery5.jpg' ">
+                <div class="gallery-placeholder" style="background-image: url(/static/kantha-gallery5.jpg);"></div>
+                <div class="gallery-overlay">
+                    <h4>Peacock Motif</h4>
+                </div>
+            </div>
+            <div class="gallery-item fade-in" onclick="window.location.href = '/static/kantha-gallery6.jpg' ">
+                <div class="gallery-placeholder" style="background-image: url(/static/kantha-gallery6.jpg);"></div>
+                <div class="gallery-overlay">
+                    <h4>Modern Kantha</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+            <h3 id="lightbox-title"></h3>
+            <p id="lightbox-artist"></p>
+            <div style="height: 300px; background: linear-gradient(45deg, #E8D5B7, #F5E6D3); display: flex; align-items: center; justify-content: center; margin: 1rem 0; border-radius: 10px;">
+                <span style="font-size: 4rem;">🎨</span>
+            </div>
+            <p id="lightbox-description"></p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-ornament">❋ ❋ ❋</div>
+            <h3>Connect with Itihāsa</h3>
+            <p>Email: info@itihasa-kantha.com</p>
+            <p>Follow us on social media for more cultural stories</p>
+            <div style="margin-top: 2rem;">
+                <p>&copy; 2025 Itihāsa. Celebrating the timeless art of Kantha.</p>
+                <p style="font-size: 0.9rem; margin-top: 1rem;">All artwork showcased with respect to the original artists and cultural heritage.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Lightbox functionality
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        // Close lightbox when clicking outside
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Enhanced dynamic background animation
+        function createFloatingElements() {
+            const container = document.querySelector('.background-animation');
+            // Only use image motifs defined in HTML
+        }
+
+        // Color gradient animation for background
+        function animateBackgroundGradient() {
+            const backgroundEl = document.querySelector('.background-animation');
+            let hue = 0;
+            
+            setInterval(() => {
+                hue = (hue + 0.5) % 360;
+                backgroundEl.style.filter = `hue-rotate(${hue * 0.1}deg) brightness(${0.98 + Math.sin(hue * 0.02) * 0.02})`;
+            }, 100);
+        }
+
+        // Initialize enhanced background
+        createFloatingElements();
+        animateBackgroundGradient();
+    </script>
+</body>
+</html>
