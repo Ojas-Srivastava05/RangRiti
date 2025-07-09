@@ -530,6 +530,7 @@
                 transform: translateY(0);
             }
         }
+        .art-icon { /* Added missing curly brace */
             font-size: 3rem;
             color: #b8860b;
             margin-bottom: 1rem;
@@ -675,7 +676,7 @@
         <h2 class="catalogue-title">Explore Indian Art Forms</h2>
         
         <div class="art-grid">
-            <div class="art-card" data-art="madhubani" onclick="navigateToArtForm('madhubani')" style="background-image: url(/static/madhubani-art.jpg);">
+            <div class="art-card" data-art="madhubani" onclick="window.location.href='/public/madhubani-art.html'" style="background-image: url(/static/madhubani-art.jpg);">
                 <div class="art-card-content">
                     <div class="art-icon">🌺</div>
                     <h3 class="art-name">Madhubani</h3>
@@ -686,7 +687,7 @@
                 </div>
             </div>
 
-            <div class="art-card" data-art="warli" onclick="navigateToArtForm('warli')" style="background-image: url(/static/warli\ art.jpg); background-position: center;" >
+            <div class="art-card" data-art="warli" onclick="window.location.href = '/public/warli-art.html'" style="background-image: url(/static/warli\ art.jpg); background-position: center;" >
                 <div class="art-card-content">
                     <div class="art-icon">🌾</div>
                     <h3 class="art-name">Warli</h3>
@@ -697,7 +698,7 @@
                 </div>
             </div>
 
-            <div class="art-card" data-art="pattachitra" onclick="navigateToArtForm('pattachitra')" style="background-image: url(/static/pattachitra.jpg);">
+            <div class="art-card" data-art="pattachitra" onclick="window.location.href = '/public/pattachitra-art.html'" style="background-image: url(/static/pattachitra.jpg);">
                 <div class="art-card-content">
                     <div class="art-icon">🐚</div>
                     <h3 class="art-name">Pattachitra</h3>
@@ -708,7 +709,7 @@
                 </div>
             </div>
 
-            <div class="art-card" data-art="kalamkari" onclick="navigateToArtForm('kalamkari')" style="background-image: url(/static/kalamkari.jpeg);">
+            <div class="art-card" data-art="kalamkari" onclick="window.location.href = '/public/kalamkari-art.html'" style="background-image: url(/static/kalamkari.jpeg);">
                 <div class="art-card-content">
                     <div class="art-icon">🌸</div>
                     <h3 class="art-name">Kalamkari</h3>
@@ -718,8 +719,18 @@
                     <p class="art-origin">Origin: Andhra Pradesh, India</p>
                 </div>
             </div>
+<div class="art-card" data-art="phad" onclick="window.location.href = '/public/phad-art.html'" style="background-image: url(/static/phad.webp);">
+    <div class="art-card-content">
+        <div class="art-icon">📜</div>
+        <h3 class="art-name">Phad</h3>
+        <p class="art-description">
+            Scroll-based Rajasthani folk art used to narrate epic tales of local deities through bold lines and natural pigments.
+        </p>
+        <p class="art-origin">Origin: Rajasthan, India</p>
+    </div>
+</div>
 
-            <div class="art-card" data-art="tanjore" onclick="navigateToArtForm('tanjore')" style="background-image: url(/static/tanjore\ painting.webp); background-position: center;"">
+            <div class="art-card" data-art="tanjore" onclick="window.location.href = '/public/tanjore-painting-art.html'" style="background-image: url(/static/tanjore\ painting.webp); background-position: center;"">
                 <div class="art-card-content">
                     <div class="art-icon">💎</div>
                     <h3 class="art-name">Tanjore Painting</h3>

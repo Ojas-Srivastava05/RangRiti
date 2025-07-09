@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kathakali - The Grandeur of Kerala's Dance-Drama</title>
+    <title>RangRiti - The Grandeur of Kerala's Dance-Drama</title>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -56,7 +56,7 @@
                     #FFFACD 25%, 
                     var(--katha-white) 50%, 
                     #FFFACD 75%, 
-                    var(--katha-white) 100%);
+                    #FFFACD 100%);
             }
             25% { 
                 background: linear-gradient(225deg, 
@@ -72,7 +72,7 @@
                     #FFFACD 25%, 
                     var(--katha-white) 50%, 
                     #FFFACD 75%, 
-                    var(--katha-white) 100%);
+                    #FFFACD 100%);
             }
             75% { 
                 background: linear-gradient(45deg, 
@@ -483,6 +483,11 @@
             color: var(--katha-dark-contrast);
             font-weight: 600;
         }
+        .gallery-placeholder img {
+    width: 100%;  /* Make the image take 100% width of its parent */
+    height: 100%; /* Make the image take 100% height of its parent */
+    object-fit: contain; /* **This is the key property** - ensures the whole image is visible */
+}
 
         .gallery-overlay {
             position: absolute;
@@ -699,9 +704,9 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <a href="#home" class="logo">Kathakali Kala</a>
+            <a href="index.html" class="logo">RangRiti</a>
             <ul class="nav-menu">
-                <li><a href="#home">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="#about">About Kathakali</a></li>
                 <li><a href="#stories">Epic Narratives</a></li>
                 <li><a href="#videos">Kathakali Performances</a></li>
@@ -738,15 +743,7 @@
                 </div>
                 <div class="about-image">
                     <div class="decorative-border">
-                        <!-- Placeholder for an image related to Kathakali -->
-                        <svg width="300" height="200" viewBox="0 0 300 200">
-                            <rect fill="var(--katha-white)" width="300" height="200"/>
-                            <g fill="var(--katha-yellow)">
-                                <path d="M150 20 L180 80 L120 80 Z" fill="currentColor" opacity="0.6"/>
-                                <circle cx="150" cy="120" r="40" fill="currentColor" opacity="0.4"/>
-                                <path d="M100 150 Q150 180 200 150 Q150 120 100 150" stroke="var(--katha-green)" stroke-width="3" fill="none"/>
-                            </g>
-                        </svg>
+                      <img src="../static/performingarts-specific/kathakalibanner.png" alt="" width="500" height="300">
                     </div>
                 </div>
             </div>
@@ -755,138 +752,175 @@
 
     <!-- Stories Section -->
     <section id="stories" class="section">
-        <h2>Epic Narratives</h2>
-        <div class="stories-grid">
-            <div class="story-card fade-in">
-                <h3>Nalacharitam</h3>
-                <p>A celebrated Kathakali play, it depicts the poignant love story of King Nala and Damayanti, their separation, and eventual reunion, filled with divine interventions and human emotions.</p>
-            </div>
-            <div class="story-card fade-in">
-                <h3>Kalyanasougandhikam</h3>
-                <p>This popular play focuses on Bhima's journey to find the mythical Saugandhika flower for Draupadi, encountering Hanuman along the way. It showcases humor, strength, and devotion.</p>
-            </div>
-            <div class="story-card fade-in">
-                <h3>Duryodhana Vadham</h3>
-                <p>A dramatic and intense play from the Mahabharata, depicting the final battle between Bhima and Duryodhana, culminating in Duryodhana's defeat and death, highlighting themes of justice and retribution.</p>
-            </div>
-            <div class="story-card fade-in">
-                <h3>Kiratham</h3>
-                <p>This play narrates the story of Arjuna's penance to obtain the Pasupatastra from Lord Shiva, who appears disguised as a hunter (Kirata). It culminates in a fierce battle and Shiva revealing his true form.</p>
-            </div>
-            <div class="story-card fade-in">
-                <h3>Dakshayagam</h3>
-                <p>Based on the Shiva Purana, this tells the story of Daksha's sacrifice, Sati's self-immolation, and Shiva's destructive dance (Raudra Tandava), leading to the creation of the Shakti Peethas.</p>
-            </div>
-            <div class="story-card fade-in">
-                <h3>Subhadraharanam</h3>
-                <p>An enchanting play depicting the abduction of Subhadra by Arjuna, with the assistance of Lord Krishna. It's a romantic narrative filled with strategic planning and divine blessings.</p>
-            </div>
+      <h2>Epic Narratives</h2>
+    
+      <div class="stories-grid">
+        <div class="story-card fade-in" onclick="location.href='../public/kathakalistory.html'">
+          <h3>Nalacharitam</h3>
+          <p>A celebrated Kathakali play, it depicts the poignant love story of King Nala and Damayanti, their separation, and eventual reunion, filled with divine interventions and human emotions.</p>
         </div>
+    
+        <div class="story-card fade-in" onclick="location.href='../public/kathakalistory.html'">
+          <h3>Kalyanasougandhikam</h3>
+          <p>This popular play focuses on Bhima's journey to find the mythical Saugandhika flower for Draupadi, encountering Hanuman along the way. It showcases humor, strength, and devotion.</p>
+        </div>
+    
+        <div class="story-card fade-in" onclick="location.href='../public/kathakalistory.html'">
+          <h3>Duryodhana Vadham</h3>
+          <p>A dramatic and intense play from the Mahabharata, depicting the final battle between Bhima and Duryodhana, culminating in Duryodhana's defeat and death, highlighting themes of justice and retribution.</p>
+        </div>
+    
+        <div class="story-card fade-in" onclick="location.href='../public/kathakalistory.html'">
+          <h3>Kiratham</h3>
+          <p>This play narrates the story of Arjuna's penance to obtain the Pasupatastra from Lord Shiva, who appears disguised as a hunter (Kirata). It culminates in a fierce battle and Shiva revealing his true form.</p>
+        </div>
+    
+        <div class="story-card fade-in" onclick="location.href='../public/kathakalistory.html'">
+          <h3>Dakshayagam</h3>
+          <p>Based on the Shiva Purana, this tells the story of Daksha's sacrifice, Sati's self-immolation, and Shiva's destructive dance (Raudra Tandava), leading to the creation of the Shakti Peethas.</p>
+        </div>
+    
+        <div class="story-card fade-in" onclick="location.href='../public/kathakalistory.html'">
+          <h3>Subhadraharanam</h3>
+          <p>An enchanting play depicting the abduction of Subhadra by Arjuna, with the assistance of Lord Krishna. It's a romantic narrative filled with strategic planning and divine blessings.</p>
+        </div>
+      </div>
     </section>
 
     <!-- Videos Section -->
     <section id="videos" class="section">
-        <h2>Kathakali Performances</h2>
-        <div class="videos-grid">
-            <div class="video-card fade-in">
-                <div style="position: relative; width: 100%; padding-bottom: 56.25%; overflow: hidden; max-width: 600px;">
-                    <iframe src="#"
-                        title="Kathakali Video 1"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
-                        allowfullscreen>
-                    </iframe>
-                </div>
-                <div class="video-info">
-                    <h3>Kathakali Makeup Process</h3>
-                    <p>A fascinating look into the elaborate makeup (Chutti) application.</p>
-                    <small>Duration: [To be added]</small>
-                </div>
-            </div>
-            <div class="video-card fade-in">
-                <div style="position: relative; width: 100%; padding-bottom: 56.25%; overflow: hidden; max-width: 600px;">
-                    <iframe src="#"
-                        title="Kathakali Video 2"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-write; encrypted-media; gyroscope; picture-in-picture"
-                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
-                        allowfullscreen>
-                    </iframe>
-                </div>
-                <div class="video-info">
-                    <h3>Mudras and Expressions</h3>
-                    <p>Understanding the language of Kathakali hand gestures and facial expressions.</p>
-                    <small>Duration: [To be added]</small>
-                </div>
-            </div>
-            <div class="video-card fade-in">
-                 <div style="position: relative; width: 100%; padding-bottom: 56.25%; overflow: hidden; max-width: 600px;">
-                    <iframe src="#"
-                        style="position:absolute; top:0; left:0; width:100%; height:100%;"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
-                        allowfullscreen>
-                    </iframe>
-                </div>
-                <div class="video-info">
-                    <h3>A Glimpse of a Full Performance</h3>
-                    <p>Highlights from a traditional Kathakali night performance.</p>
-                    <small>Duration: [To be added]</small>
-                </div>
-            </div>
-        </div>
-    </section>
+      <h2>Kathakali Performances</h2>
+      <div class="videos-grid">
+          <div class="video-card fade-in">
+              <div style="position: relative; width: 100%; padding-bottom: 56.25%; overflow: hidden; max-width: 600px;">
+                  <iframe src="https://www.youtube.com/embed/WYslsvUfI40"
+                      title="Kathakali Makeup Process"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerpolicy="strict-origin-when-cross-origin"
+                      allowfullscreen
+                      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;">
+                  </iframe>
+              </div>
+              <div class="video-info">
+                  <h3>Kathakali Makeup Process</h3>
+                  <p>A fascinating look into the elaborate makeup (Chutti) application.</p>
+                  <small>Duration: [8:44]</small>
+              </div>
+          </div>
+          <div class="video-card fade-in">
+              <div style="position: relative; width: 100%; padding-bottom: 56.25%; overflow: hidden; max-width: 600px;">
+                  <iframe src="https://www.youtube.com/embed/_4WmgIyg6rY"
+                      title="Kathakali Mudras and Expressions"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-write; encrypted-media; gyroscope; picture-in-picture"
+                      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+                      allowfullscreen>
+                  </iframe>
+              </div>
+              <div class="video-info">
+                  <h3>Mudras and Expressions</h3>
+                  <p>Understanding the language of Kathakali hand gestures and facial expressions.</p>
+                  <small>Duration: [2:43]</small>
+              </div>
+          </div>
+          <div class="video-card fade-in">
+               <div style="position: relative; width: 100%; padding-bottom: 56.25%; overflow: hidden; max-width: 600px;">
+                  <iframe src="https://www.youtube.com/embed/GBbcYtkqVKQ"
+                      title="Kathakali Full Performance Glimpse"
+                      style="position:absolute; top:0; left:0; width:100%; height:100%;"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen>
+                  </iframe>
+              </div>
+              <div class="video-info">
+                  <h3>A Glimpse of a Full Performance</h3>
+                  <p>Highlights from a traditional Kathakali night performance.</p>
+                  <small>Duration: [3:37]</small>
+              </div>
+          </div>
+      </div>
+  </section>
 
     <!-- Gallery Section -->
     <section id="gallery" class="section">
-        <h2>Visual Spectacle</h2>
-        <div class="gallery-grid">
-            <div class="gallery-item fade-in" onclick="openLightbox('Pacha Character', 'Kerala', 'A noble character (Pacha) with green makeup and elaborate costume.', 'https://placehold.co/400x300/004D00/F8F8FF?text=Image+1')">
-                <div class="gallery-placeholder">Pacha Character</div>
-                <div class="gallery-overlay">
-                    <h4>Pacha Character</h4>
-                    <P>Kerala</P>
-                </div>
+    <h2>Visual Spectacle</h2>
+    <div class="gallery-grid">
+        <div class="gallery-item fade-in" onclick="window.open('../static/performingarts-specific/pacha.jpeg', '_blank');">
+            <div class="gallery-placeholder">
+                <img src="../static/performingarts-specific/pacha.jpeg" alt="Pacha Character">
             </div>
-            <div class="gallery-item fade-in" onclick="openLightbox('Kathi Character', 'Kerala', 'A villainous character (Kathi) with distinctive knife-like makeup.', 'https://placehold.co/400x300/B22222/F8F8FF?text=Image+2')">
-                <div class="gallery-placeholder">Kathi Character</div>
-                <div class="gallery-overlay">
-                    <h4>Kathi Character</h4>
-                    <p>Kerala</p>
-                </div>
-            </div>
-            <div class="gallery-item fade-in" onclick="openLightbox('Kari Character', 'Kerala', 'A black-faced character (Kari) representing forest dwellers or demons.', 'https://placehold.co/400x300/1A1A1A/FFD700?text=Image+3')">
-                <div class="gallery-placeholder">Kari Character</div>
-                <div class="gallery-overlay">
-                    <h4>Kari Character</h4>
-                    <p>Kerala</p>
-                </div>
-            </div>
-            <div class="gallery-item fade-in" onclick="openLightbox('Minukku Makeup', 'Kerala', 'A female character or sage (Minukku) with subtle, glowing makeup.', 'https://placehold.co/400x300/FFD700/1A1A1A?text=Image+4')">
-                <div class="gallery-placeholder">Minukku Makeup</div>
-                <div class="gallery-overlay">
-                    <h4>Minukku Makeup</h4>
-                    <p>Kerala</p>
-                </div>
-            </div>
-            <div class="gallery-item fade-in" onclick="openLightbox('Mudras in Detail', 'Kerala', 'Close-up of intricate hand gestures (mudras) conveying meaning.', 'https://placehold.co/400x300/FF8C00/004D00?text=Image+5')">
-                <div class="gallery-placeholder">Mudras in Detail</div>
-                <div class="gallery-overlay">
-                    <h4>Mudras in Detail</h4>
-                    <p>Kerala</p>
-                </div>
-            </div>
-            <div class="gallery-item fade-in" onclick="openLightbox('Elaborate Headgear', 'Kerala', 'A stunning example of Kathakali headgear (Kireedam).', 'https://placehold.co/400x300/000000/FFD700?text=Image+6')">
-                <div class="gallery-placeholder">Elaborate Headgear</div>
-                <div class="gallery-overlay">
-                    <h4>Elaborate Headgear</h4>
-                    <p>Kerala</p>
-                </div>
+            <div class="gallery-overlay">
+                <h4>Pacha Character</h4>
+                <p>Kerala</p>
             </div>
         </div>
-    </section>
+        <div class="gallery-item fade-in" onclick="window.open('../static/performingarts-specific/kathi.jpeg', '_blank');">
+            <div class="gallery-placeholder">
+                <img src="../static/performingarts-specific/kathi.jpeg" alt="Kathi Character">
+            </div>
+            <div class="gallery-overlay">
+                <h4>Kathi Character</h4>
+                <p>Kerala</p>
+            </div>
+        </div>
+        <div class="gallery-item fade-in" onclick="window.open('../static/performingarts-specific/kari.jpeg', '_blank');">
+            <div class="gallery-placeholder">
+                <img src="../static/performingarts-specific/kari.jpeg" alt="Kari Character">
+            </div>
+            <div class="gallery-overlay">
+                <h4>Kari Character</h4>
+                <p>Kerala</p>
+            </div>
+        </div>
+        <div class="gallery-item fade-in" onclick="window.open('../static/performingarts-specific/minukku.jpeg', '_blank');">
+            <div class="gallery-placeholder">
+                <img src="../static/performingarts-specific/minukku.jpeg" alt="Minukku Makeup">
+            </div>
+            <div class="gallery-overlay">
+                <h4>Minukku Makeup</h4>
+                <p>Kerala</p>
+            </div>
+        </div>
+        <div class="gallery-item fade-in" onclick="window.open('../static/performingarts-specific/mudra.jpeg', '_blank');">
+            <div class="gallery-placeholder">
+                <img src="../static/performingarts-specific/mudra.jpeg" alt="Mudras in Detail">
+            </div>
+            <div class="gallery-overlay">
+                <h4>Mudras in Detail</h4>
+                <p>Kerala</p>
+            </div>
+        </div>
+        <div class="gallery-item fade-in" onclick="window.open('../static/performingarts-specific/headgear.jpeg', '_blank');">
+            <div class="gallery-placeholder">
+                <img src="../static/performingarts-specific/headgear.jpeg" alt="Elaborate Headgear">
+            </div>
+            <div class="gallery-overlay">
+                <h4>Elaborate Headgear</h4>
+                <p>Kerala</p>
+            </div>
+        </div>
+        <div class="gallery-item fade-in" onclick="window.open('../static/performingarts-specific/chutti.jpeg', '_blank');">
+            <div class="gallery-placeholder">
+                <img src="../static/performingarts-specific/chutti.jpeg" alt="Chutti - Face Framing">
+            </div>
+            <div class="gallery-overlay">
+                <h4>Chutti - Face Framing</h4>
+                <p>Kerala</p>
+            </div>
+        </div>
+        <div class="gallery-item fade-in" onclick="window.open('../static/performingarts-specific/costume.jpeg', '_blank');">
+            <div class="gallery-placeholder">
+                <img src="../static/performingarts-specific/costume.jpeg" alt="Costume Detail">
+            </div>
+            <div class="gallery-overlay">
+                <h4>Costume Detail</h4>
+                <p>Kerala</p>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Lightbox -->
     <div id="lightbox" class="lightbox">
@@ -908,10 +942,10 @@
     <footer id="contact">
         <div class="footer-content">
             <div class="footer-ornament">❋ ❋ ❋</div>
-            <h3>Connect with Kathakali Kala</h3>
+            <h3>Connect with RangRiti</h3>
             <p>Explore the vibrant world of Kathakali.</p>
             <div style="margin-top: 2rem;">
-                <p>© 2025 Kathakali Kala. Celebrating the majestic art of Kathakali.</p>
+                <p>© 2025 RangRiti. Celebrating the majestic art of Kathakali.</p>
                 <p style="font-size: 0.9rem; margin-top: 1rem;">All performances and art showcased with respect to the original artists and cultural heritage.</p>
             </div>
         </div>

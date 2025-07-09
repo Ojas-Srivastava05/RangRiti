@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Odissi - The Graceful Dance of Odisha</title>
+    <title>RangRiti - Odissi, The Graceful Dance of Odisha</title>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -634,7 +634,11 @@
             visibility: visible;
             animation: cardPopIn 0.8s ease-out forwards;
         }
-
+        .gallery-placeholder img {
+    width: 100%;  /* Make the image take 100% width of its parent */
+    height: 100%; /* Make the image take 100% height of its parent */
+    object-fit: contain; /* **This is the key property** - ensures the whole image is visible */
+}
     </style>
 </head>
 <body>
@@ -700,9 +704,9 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <a href="#home" class="logo">Odissi Nritya</a>
+            <a href="index.html" class="logo">RangRiti</a>
             <ul class="nav-menu">
-                <li><a href="#home">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="#about">About Odissi</a></li>
                 <li><a href="#stories">Mythological Tales</a></li>
                 <li><a href="#videos">Odissi in Motion</a></li>
@@ -740,14 +744,7 @@
                 <div class="about-image">
                     <div class="decorative-border">
                         <!-- Placeholder for an image related to Odissi -->
-                        <svg width="300" height="200" viewBox="0 0 300 200">
-                            <rect fill="var(--od-white-cream)" width="300" height="200"/>
-                            <g fill="var(--od-golden-yellow)">
-                                <path d="M150 20 Q180 80 150 120 Q120 80 150 20 Z" fill="currentColor" opacity="0.6"/>
-                                <circle cx="150" cy="150" r="30" fill="currentColor" opacity="0.4"/>
-                                <path d="M100 150 Q150 180 200 150 Q150 120 100 150" stroke="var(--od-royal-blue)" stroke-width="3" fill="none"/>
-                            </g>
-                        </svg>
+                        <img src="../static/performingarts-specific/odissibanner.png" alt="" width="500" height="300">
                     </div>
                 </div>
             </div>
@@ -758,32 +755,39 @@
     <section id="stories" class="section">
         <h2>Mythological Tales</h2>
         <div class="stories-grid">
-            <div class="story-card fade-in">
-                <h3>Gita Govinda</h3>
-                <p>Jayadeva's lyrical poem, Gita Govinda, is a cornerstone of Odissi repertoire. It beautifully describes the divine love play between Radha and Krishna, their separation, longing, and reunion, filled with rich poetic and emotional content.</p>
-            </div>
-            <div class="story-card fade-in">
-                <h3>Dashavatara</h3>
-                <p>This popular item depicts the ten incarnations of Lord Vishnu (Matsya, Kurma, Varaha, Narasimha, Vamana, Parashurama, Rama, Balarama/Krishna, Buddha, Kalki). Each avatar is portrayed through distinct movements and expressions, showcasing Vishnu's cosmic role.</p>
-            </div>
-            <div class="story-card fade-in">
-                <h3>Battles of Durga</h3>
-                <p>Odissi often features powerful portrayals of Goddess Durga's victories over various demons, particularly Mahishasura. These pieces highlight her strength, divine fury, and triumph of good over evil, often with dynamic and energetic movements.</p>
-            </div>
-            <div class="story-card fade-in">
-                <h3>Krishna Leela</h3>
-                <p>Similar to other classical dances, Odissi includes various episodes from Krishna's life, from his childhood pranks (Bala Leela) to his youthful escapades with the Gopis. These are often imbued with a sense of playfulness and devotion.</p>
-            </div>
-            <div class="story-card fade-in">
-                <h3>Ardhanariswara</h3>
-                <p>This unique thematic presentation depicts the composite form of Lord Shiva and Goddess Parvati, symbolizing the union of masculine and feminine energies (Purusha and Prakriti). It allows the dancer to explore both vigorous (Tandava) and graceful (Lasya) aspects.</p>
-            </div>
-            <div class="story-card fade-in">
-                <h3>Shiva Stuti</h3>
-                <p>Devotional compositions praising Lord Shiva are common. These pieces often depict Shiva's cosmic dance, his attributes, and his role as the destroyer and regenerator, showcasing both his serene and fierce forms.</p>
-            </div>
+      
+          <div class="story-card fade-in" onclick="location.href='../public/odissistory.html'">
+            <h3>Gita Govinda</h3>
+            <p>Jayadeva's lyrical poem, Gita Govinda, is a cornerstone of Odissi repertoire. It beautifully describes the divine love play between Radha and Krishna, their separation, longing, and reunion, filled with rich poetic and emotional content.</p>
+          </div>
+      
+          <div class="story-card fade-in" onclick="location.href='../public/odissistory.html'">
+            <h3>Dashavatara</h3>
+            <p>This popular item depicts the ten incarnations of Lord Vishnu (Matsya, Kurma, Varaha, Narasimha, Vamana, Parashurama, Rama, Balarama/Krishna, Buddha, Kalki). Each avatar is portrayed through distinct movements and expressions, showcasing Vishnu's cosmic role.</p>
+          </div>
+      
+          <div class="story-card fade-in" onclick="location.href='../public/odissistory.html'">
+            <h3>Battles of Durga</h3>
+            <p>Odissi often features powerful portrayals of Goddess Durga's victories over various demons, particularly Mahishasura. These pieces highlight her strength, divine fury, and triumph of good over evil, often with dynamic and energetic movements.</p>
+          </div>
+      
+          <div class="story-card fade-in" onclick="location.href='../public/odissistory.html'">
+            <h3>Krishna Leela</h3>
+            <p>Similar to other classical dances, Odissi includes various episodes from Krishna's life, from his childhood pranks (Bala Leela) to his youthful escapades with the Gopis. These are often imbued with a sense of playfulness and devotion.</p>
+          </div>
+      
+          <div class="story-card fade-in" onclick="location.href='../public/odissistory.html'">
+            <h3>Ardhanariswara</h3>
+            <p>This unique thematic presentation depicts the composite form of Lord Shiva and Goddess Parvati, symbolizing the union of masculine and feminine energies (Purusha and Prakriti). It allows the dancer to explore both vigorous (Tandava) and graceful (Lasya) aspects.</p>
+          </div>
+      
+          <div class="story-card fade-in" onclick="location.href='../public/odissistory.html'">
+            <h3>Shiva Stuti</h3>
+            <p>Devotional compositions praising Lord Shiva are common. These pieces often depict Shiva's cosmic dance, his attributes, and his role as the destroyer and regenerator, showcasing both his serene and fierce forms.</p>
+          </div>
+      
         </div>
-    </section>
+      </section>
 
     <!-- Videos Section -->
     <section id="videos" class="section">
@@ -791,7 +795,7 @@
         <div class="videos-grid">
             <div class="video-card fade-in">
                 <div style="position: relative; width: 100%; padding-bottom: 56.25%; overflow: hidden; max-width: 600px;">
-                    <iframe src="#"
+                    <iframe src="https:youtube.com/embed/pcjLtTW96Qk"
                         title="Odissi Video 1"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -807,7 +811,7 @@
             </div>
             <div class="video-card fade-in">
                 <div style="position: relative; width: 100%; padding-bottom: 56.25%; overflow: hidden; max-width: 600px;">
-                    <iframe src="#"
+                    <iframe src="https:youtube.com/embed/Hk_U55DFCD8"
                         title="Odissi Video 2"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-write; encrypted-media; gyroscope; picture-in-picture"
@@ -823,7 +827,7 @@
             </div>
             <div class="video-card fade-in">
                  <div style="position: relative; width: 100%; padding-bottom: 56.25%; overflow: hidden; max-width: 600px;">
-                    <iframe src="#"
+                    <iframe src="https:youtube.com/embed/HyK2ry5h6vU"
                         style="position:absolute; top:0; left:0; width:100%; height:100%;"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -842,77 +846,91 @@
 
     <!-- Gallery Section -->
     <section id="gallery" class="section">
-        <h2>Artistic Expressions</h2>
+        <h2>Artistic Expressions: The Grace of Odissi</h2>
         <div class="gallery-grid">
-            <div class="gallery-item fade-in" onclick="openLightbox('Tribhanga Pose', 'Odisha', 'A dancer showcasing the iconic Tribhanga (three-bend) posture.', 'https://placehold.co/400x300/A00000/F8F8F8?text=Image+1')">
-                <div class="gallery-placeholder">Tribhanga Pose</div>
+            <div class="gallery-item fade-in" onclick="window.open('../static/performingarts-specific/odtribhanga.jpeg', '_blank');">
+                <div class="gallery-placeholder">
+                    <img src="../static/performingarts-specific/odtribhanga.jpeg" alt="Tribhanga Pose">
+                </div>
                 <div class="gallery-overlay">
                     <h4>Tribhanga Pose</h4>
-                    <P>Odisha</P>
+                    <P>The Iconic Three-Bend</P>
                 </div>
             </div>
-            <div class="gallery-item fade-in" onclick="openLightbox('Konark Influence', 'Odisha', 'A dance pose inspired by the sculptures of Konark Sun Temple.', 'https://placehold.co/400x300/0000A0/FFC107?text=Image+2')">
-                <div class="gallery-placeholder">Konark Influence</div>
+            <div class="gallery-item fade-in" onclick="window.open('../static/performingarts-specific/odkonark.jpeg', '_blank');">
+                <div class="gallery-placeholder">
+                    <img src="../static/performingarts-specific/odkonark.jpeg" alt="Konark Influence">
+                </div>
                 <div class="gallery-overlay">
                     <h4>Konark Influence</h4>
-                    <p>Odisha</p>
+                    <p>Sculptural Inspirations</p>
                 </div>
             </div>
-            <div class="gallery-item fade-in" onclick="openLightbox('Traditional Attire', 'Odisha', 'A dancer adorned in traditional Odissi costume and silver jewelry.', 'https://placehold.co/400x300/FFC107/4F352A?text=Image+3')">
-                <div class="gallery-placeholder">Traditional Attire</div>
+            <div class="gallery-item fade-in" onclick="window.open('../static/performingarts-specific/odattire.jpeg', '_blank');">
+                <div class="gallery-placeholder">
+                    <img src="../static/performingarts-specific/odattire.jpeg" alt="Traditional Attire">
+                </div>
                 <div class="gallery-overlay">
                     <h4>Traditional Attire</h4>
-                    <p>Odisha</p>
+                    <p>Vibrant Silk & Silver</p>
                 </div>
             </div>
-            <div class="gallery-item fade-in" onclick="openLightbox('Expressive Mudras', 'Odisha', 'Close-up of intricate hand gestures (mudras) used in Odissi.', 'https://placehold.co/400x300/FF6600/F8F8F8?text=Image+4')">
-                <div class="gallery-placeholder">Expressive Mudras</div>
+            <div class="gallery-item fade-in" onclick="window.open('../static/performingarts-specific/odmudra.jpeg', '_blank');">
+                <div class="gallery-placeholder">
+                    <img src="../static/performingarts-specific/odmudra.jpeg" alt="Expressive Mudras">
+                </div>
                 <div class="gallery-overlay">
                     <h4>Expressive Mudras</h4>
-                    <p>Odisha</p>
+                    <p>Narrative Hand Gestures</p>
                 </div>
             </div>
-            <div class="gallery-item fade-in" onclick="openLightbox('Group Harmony', 'Odisha', 'Multiple dancers performing in synchronized harmony.', 'https://placehold.co/400x300/008000/F8F8F8?text=Image+5')">
-                <div class="gallery-placeholder">Group Harmony</div>
+            <div class="gallery-item fade-in" onclick="window.open('../static/performingarts-specific/odgroup.jpeg', '_blank');">
+                <div class="gallery-placeholder">
+                    <img src="../static/performingarts-specific/odgroup.jpeg" alt="Group Harmony">
+                </div>
                 <div class="gallery-overlay">
                     <h4>Group Harmony</h4>
-                    <p>Odisha</p>
+                    <p>Synchronized Movement</p>
                 </div>
             </div>
-            <div class="gallery-item fade-in" onclick="openLightbox('Devotional Expression', 'Odisha', 'A dancer conveying deep devotion through facial expressions.', 'https://placehold.co/400x300/4F352A/FFC107?text=Image+6')">
-                <div class="gallery-placeholder">Devotional Expression</div>
+            <div class="gallery-item fade-in" onclick="window.open('../static/performingarts-specific/odexp.jpeg', '_blank');">
+                <div class="gallery-placeholder">
+                    <img src="../static/performingarts-specific/odexp.jpeg" alt="Devotional Expression">
+                </div>
                 <div class="gallery-overlay">
                     <h4>Devotional Expression</h4>
-                    <p>Odisha</p>
+                    <p>Spiritual & Emotional Depth</p>
+                </div>
+            </div>
+            <div class="gallery-item fade-in" onclick="window.open('../static/performingarts-specific/odpakhawaj.jpeg', '_blank');">
+                <div class="gallery-placeholder">
+                    <img src="../static/performingarts-specific/odpakhawaj.jpeg" alt="Pakhawaj Accompaniment">
+                </div>
+                <div class="gallery-overlay">
+                    <h4>Pakhawaj Accompaniment</h4>
+                    <p>Rhythmic Heartbeat</p>
+                </div>
+            </div>
+            <div class="gallery-item fade-in" onclick="window.open('../static/performingarts-specific/odfoot.jpeg', '_blank');">
+                <div class="gallery-placeholder">
+                    <img src="../static/performingarts-specific/odfoot.jpeg" alt="Bhumika (Footwork)">
+                </div>
+                <div class="gallery-overlay">
+                    <h4>Bhumika (Footwork)</h4>
+                    <p>Intricate Rhythms</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Lightbox -->
-    <div id="lightbox" class="lightbox">
-        <div class="lightbox-content">
-            <span class="lightbox-close" onclick="closeLightbox()">×</span>
-            <h2 id="lightbox-title" style="color:var(--od-deep-red)"></h2>
-            <p id="lightbox-state" style="color:var(--od-royal-blue)"></p>
-
-            <div style="height: auto; background: linear-gradient(45deg, var(--od-golden-yellow), var(--od-saffron)); display: flex; align-items: center; justify-content: center; margin: 1rem 0; border-radius: 10px; padding: 10px;">
-                <img id="lightbox-image" src="" alt="Odissi Art" style="max-width: 100%; max-height: 300px; border-radius: 8px;" />
-            </div>
-
-            <p id="lightbox-description" style="color:var(--od-dark-brown)"></p>
-        </div>
-    </div>
-
-
     <!-- Footer -->
     <footer id="contact">
         <div class="footer-content">
             <div class="footer-ornament">❋ ❋ ❋</div>
-            <h3>Connect with Odissi Nritya</h3>
+            <h3>Connect with RangRiti</h3>
             <p>Explore the lyrical beauty of Odissi dance.</p>
             <div style="margin-top: 2rem;">
-                <p>© 2025 Odissi Nritya. Celebrating the timeless art of Odisha.</p>
+                <p>© 2025 RangRiti. Celebrating the timeless art of Odisha.</p>
                 <p style="font-size: 0.9rem; margin-top: 1rem;">All performances and art showcased with respect to the original artists and cultural heritage.</p>
             </div>
         </div>
@@ -955,27 +973,6 @@
         // Observe all cards for the pop-in animation
         document.querySelectorAll('.story-card, .video-card, .gallery-item').forEach(el => {
             observer.observe(el);
-        });
-
-
-        // Lightbox functionality
-        function openLightbox(title, artist, description,imageUrl) {
-            document.getElementById('lightbox-title').textContent = title;
-            document.getElementById('lightbox-state').textContent = `Origin: ${artist}`;
-            document.getElementById('lightbox-description').textContent = description;
-            document.getElementById('lightbox-image').src = imageUrl;
-            document.getElementById('lightbox').style.display = 'flex';
-        }
-
-        function closeLightbox() {
-            document.getElementById('lightbox').style.display = 'none';
-        }
-
-        // Close lightbox when clicking outside
-        document.getElementById('lightbox').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeLightbox();
-            }
         });
 
         // Parallax effect for hero section
