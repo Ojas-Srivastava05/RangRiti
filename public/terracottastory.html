@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terracotta: Ancient Tales in Motion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables */
+        :root {
+            --bharatnatyam-gold: #CDA434; /* A slightly different gold for Bharatnatyam */
+            --text-gold: #FFD700;
+            --text-light: rgba(255, 248, 220, 0.9);
+            --dark-background: #150500; /* Deep, rich brown/black */
+            --card-background: rgba(30, 15, 0, 0.7); /* Slightly lighter, semi-transparent */
+            --border-gold: rgba(255, 215, 0, 0.4);
+            --primary-gold: #FFD700;
+        }
+
+        /* General Body Styles */
+        body {
+            margin: 0;
+            font-family: 'EB Garamond', serif;
+            background: linear-gradient(to bottom, #201000, #150500); /* Subtle gradient for depth */
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        /* --- Navigation Bar --- */
+        .nav-container {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            backdrop-filter: blur(20px);
+            background-color: rgba(0, 0, 0, 0.6); /* Slightly darker background for contrast */
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 1px solid var(--border-gold);
+            z-index: 1000;
+            animation: slideDown 1s ease-out;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Enhanced shadow */
+        }
+
+        @keyframes slideDown {
+            from { transform: translateX(-50%) translateY(-100px); opacity: 0; }
+            to { transform: translateX(-50%) translateY(0); opacity: 1; }
+        }
+
+        .nav-btn {
+            font-family: 'EB Garamond', serif;
+            background: transparent;
+            color: #FAF3E0; /* Light Ivory for better contrast on dark bg */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Stronger shadow */
+            border: none;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: navBtnFadeIn 1s ease-out forwards;
+        }
+
+        @keyframes navBtnFadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .nav-btn:hover::before {
+            left: 100%;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 215, 0, 0.1); /* Lighter hover background */
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+            color: var(--text-gold); /* Gold color on hover */
+        }
+
+        /* Dropdown styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-toggle {
+            cursor: pointer;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 10px); /* Position below the button */
+            left: 50%;
+            transform: translateX(-50%); /* Center the dropdown */
+            background: rgba(0, 0, 0, 0.95);
+            border: 1px solid var(--border-gold);
+            border-radius: 10px;
+            padding: 10px 0;
+            display: none;
+            flex-direction: column;
+            min-width: 200px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            z-index: 1001;
+            opacity: 0;
+            transform: translateX(-50%) translateY(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: flex;
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .dropdown-item {
+            font-family: 'EB Garamond', serif;
+            color: #FAF3E0;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: block;
+            transition: all 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .dropdown-item:hover {
+            background: rgba(255, 215, 0, 0.2);
+            color: var(--primary-gold);
+            padding-left: 25px; /* Slight indent on hover */
+        }
+
+        .dropdown-arrow {
+            font-size: 0.8em;
+            margin-left: 5px;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--text-light);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/e/e3/Bharatnatyam_dancer.jpg') no-repeat center center/cover; /* Bharatnatyam image */
+            filter: grayscale(80%) brightness(40%); /* Desaturate and darken */
+            z-index: -1;
+            animation: fadeInBackground 2s ease-out;
+        }
+
+        @keyframes fadeInBackground {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .hero-content {
+            padding-top: 100px; /* Space for fixed nav */
+            max-width: 800px;
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 4.5rem;
+            color: var(--text-gold);
+            margin-bottom: 20px;
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7);
+            letter-spacing: 2px;
+            animation: scaleIn 1.5s ease-out forwards;
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-style: italic;
+        }
+
+        /* --- Section Styling --- */
+        .section {
+            padding: 80px 5%;
+            margin-top: 0; /* No top margin as hero takes full height */
+            position: relative;
+            z-index: 1;
+            background-color: var(--dark-background); /* Ensure consistent background */
+        }
+
+        .section h2 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 3.5rem;
+            color: var(--bharatnatyam-gold);
+            text-align: center;
+            margin-bottom: 60px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+            position: relative;
+            padding-bottom: 15px;
+            animation: slideInFromLeft 1s ease-out forwards;
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        @keyframes slideInFromLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .section h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--text-gold), transparent);
+            margin: 15px auto 0;
+            border-radius: 5px;
+        }
+
+        /* --- Detailed Story Sections --- */
+        .detailed-story-section {
+            max-width: 900px;
+            margin: 80px auto; /* Margin between detailed stories */
+            padding: 40px;
+            background-color: rgba(0, 0, 0, 0.7); /* Slightly transparent background */
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--border-gold);
+            animation: fadeIn 1s ease-out forwards;
+            line-height: 1.8; /* Adjusted for better readability of detailed text */
+        }
+
+        .detailed-story-section h1 { /* Using h1 for main story title within this section */
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 3.8rem;
+            color: var(--text-gold);
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .detailed-story-section h1::after {
+            content: '';
+            display: block;
+            width: 150px;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--text-gold), transparent);
+            margin: 15px auto 0;
+            border-radius: 5px;
+        }
+
+        .detailed-story-section h3 { /* Using h3 for subheadings within a detailed story */
+            font-family: 'EB Garamond', serif;
+            font-size: 2.2rem;
+            color: var(--bharatnatyam-gold);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            border-bottom: 1px dashed rgba(255, 215, 0, 0.2);
+            padding-bottom: 10px;
+        }
+
+        .detailed-story-section p {
+            font-size: 1.15rem;
+            margin-bottom: 1.5em;
+            text-align: justify;
+        }
+
+        .detailed-story-section strong {
+            color: var(--text-gold);
+        }
+
+        /* --- Footer --- */
+        .footer {
+            background-color: #0d0600;
+            color: rgba(255, 248, 220, 0.7);
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            margin-top: 80px;
+        }
+
+        .footer p {
+            margin: 0;
+            padding: 5px 0;
+        }
+
+        .footer a {
+            color: var(--text-gold);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--primary-gold);
+            text-decoration: underline;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-wrap: wrap;
+                justify-content: center;
+                top: 15px;
+                padding: 10px 15px;
+                border-radius: 30px;
+            }
+
+            .nav-btn {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .section h2 {
+                font-size: 2.5rem;
+            }
+
+            .detailed-story-section {
+                padding: 25px;
+                margin: 60px auto;
+            }
+            .detailed-story-section h1 {
+                font-size: 3rem;
+            }
+            .detailed-story-section h3 {
+                font-size: 1.8rem;
+            }
+            .detailed-story-section p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                gap: 5px;
+            }
+            .nav-btn {
+                padding: 5px 8px;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav-container">
+        <button class="nav-btn"><a href="index.html" style="color: inherit; text-decoration: none;">Home</a></button>
+        <button class="nav-btn">Artists</button>
+        <button class="nav-btn">Workshops</button>
+        <button class="nav-btn">Calendar</button>
+
+        <div class="dropdown">
+            <button class="nav-btn dropdown-toggle">
+                Heritage <span class="dropdown-arrow">&#9660;</span>
+            </button>
+            <div class="dropdown-menu">
+                <a href="#" class="dropdown-item">Traditional Painting Styles</a>
+                <a href="#" class="dropdown-item">Textile Arts</a>
+                <a href="#" class="dropdown-item">Performing Arts</a>
+                <a href="#" class="dropdown-item">Handicrafts & Sculpture</a>
+            </div>
+        </div>
+
+        <button class="nav-btn">Connect</button>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Terracotta: The Soul of Indian Handicrafts</h1>
+                <p>Journey through the intricate beauty and craftsmanship of Indian Terracotta Artist .</p>
+            </div>
+        </section>
+
+        <section id="bharatnatyam-items-detailed" class="section">
+            <h2>The Essence of a Terracotta Art</h2>
+
+            <div id="alarippu-detailed" class="detailed-story-section">
+                <h1>The Epic of Ramayana</h1>
+                <p>Terracotta artisans often create intricate reliefs portraying key moments from the Ramayana, each panel narrating tales of dharma, devotion, and divine valor. Among the most celebrated is the Sita Swayamvar, where Rama breaks the mighty bow of Lord Shiva to win Sita’s hand, symbolizing destiny and righteousness.
+<br>
+The Vanavas, or exile, follows — a tender yet profound depiction of Rama, Sita, and Lakshmana leaving Ayodhya and entering the forest. These scenes capture not only the sorrow of separation but also the strength of moral duty and familial bonds.
+<br>
+Equally powerful are carvings of Ravana’s defeat, showcasing the epic battle between good and evil. Terracotta panels often depict Hanuman leaping into Lanka, Rama aiming his divine arrow, and Ravana’s many heads tumbling — symbolizing the triumph of virtue.
+<br>
+These stories come alive on temple walls, especially in Bishnupur (West Bengal), renowned for its terracotta temples. Here, clay transforms into scripture — each carving echoing centuries of devotion and artistic mastery.
+<br>
+The vibrant red of baked clay, the minute details of attire, emotion-filled eyes, and dynamic postures all reflect a tradition rooted in both spiritual fervor and regional storytelling. Devotees and visitors alike find themselves drawn into the sacred epic, retold silently through fired earth.
+<br>
+These terracotta narratives preserve not just mythology, but the soul of Indian heritage in enduring art.</p>
+            </div>
+
+            <div id="jatiswaram-detailed" class="detailed-story-section">
+                <h1>Krishna's Vrindhavan Leela</h1>
+                <p>In many temples and village shrines, terracotta panels vividly depict the playful and divine deeds of Lord Krishna. These artworks often show him stealing butter from hanging pots, a favorite pastime that earned him the nickname Makhan Chor. With a mischievous smile, Krishna is seen climbing on the backs of his friends to reach the treasures hidden by the gopis.
+<br>
+Another popular scene captures the Raas Leela, where Krishna dances joyfully with the gopis under the moonlight on the banks of the Yamuna, each gopi feeling his divine presence beside her. These moments symbolize pure devotion and the soul’s eternal longing for divine love.
+<br>
+The tale of Krishna subduing the mighty serpent Kaliya is also commonly sculpted. With grace and courage, young Krishna leaps into the Yamuna, dances on Kaliya’s many hoods, and drives him away, purifying the poisoned waters and restoring balance to nature.
+<br>
+Terracotta artisans bring these stories to life with remarkable detail — curling tendrils of the serpent, swirling garments of the gopis, and expressive faces filled with emotion. These panels are not just decorations but sacred storytellers.
+<br>
+Placed on temple walls, they remind devotees of Krishna’s playful charm, protective power, and deep compassion. Each panel invites onlookers to reflect, rejoice, and reconnect with divinity woven into the fabric of daily village life.
+
+</p>
+            </div>
+
+            <div id="shabdam-detailed" class="detailed-story-section">
+                <h1>Goddess Durga’s Victory <br>over Mahishasura</h1>
+                <p>A highly sacred and symbolic tale, Durga slaying the buffalo demon Mahishasura is a powerful representation of the eternal battle between good and evil. In terracotta art, this epic moment is captured with intense energy and divine grace.
+<br>
+The ten-armed goddess, each hand wielding a celestial weapon gifted by the gods, is shown riding her fearless lion into battle. Her eyes blaze with determination as she confronts Mahishasura, who shifts between human and buffalo form in a desperate attempt to escape his fate.
+<br>
+Terracotta panels often show the dramatic climax — Durga plunging her trident into the demon’s chest, while her lion lunges ferociously. The surrounding details depict gods watching in awe, celestial drums sounding victory, and nature standing still.
+<br>
+This story, deeply embedded in Shakta traditions, is more than mythology — it is a celebration of divine feminine power, Shakti, and the protection of cosmic balance. Artisans sculpt her calm face amid chaos, symbolizing control and righteousness in the face of darkness.
+<br>
+These scenes are especially prominent in temples across Bengal and eastern India, where Durga is revered with grandeur. Fired clay becomes a divine medium to eternalize her glory — intricate, expressive, and spiritually charged.
+<br>
+For devotees, every panel is a reminder that no matter how powerful evil may seem, righteousness armed with courage and unity will always prevail.</p>
+            </div>
+
+            <div id="varnam-detailed" class="detailed-story-section">
+                <h1>The Folk God Dharma Thakur (Bengal)</h1>
+                <p>Worshipped primarily in rural Bengal, Dharma Thakur is a deeply rooted village deity associated with protection, prosperity, and natural harmony. Unlike mainstream gods, he is venerated through localized rituals and folk traditions passed down through generations.
+<br>
+At the heart of his worship are the terracotta horses — humble yet sacred offerings placed at small shrines or beneath sacred trees. These figurines, often lined in rows, represent fulfilled vows, prayers for rain, fertility, and the well-being of the community.
+<br>
+The origin of this practice lies in the belief that Dharma rides a divine horse, patrolling the village to shield it from disease, drought, and evil spirits. When prayers are answered — a good harvest, a healed illness, or the birth of a child — devotees return with handcrafted horses as tokens of gratitude.
+<br>
+Each terracotta horse is unique, often with elongated necks, flared ears, and painted motifs — blending artistry with faith. Created by local potters, these offerings connect spiritual belief with the earth, quite literally.
+<br>
+Unlike formal temple deities, Dharma Thakur's worship is fluid, intimate, and woven into the seasonal rhythms of agrarian life. The shrine becomes a living space of community memory, devotion, and divine trust.
+<br>
+These earthen horses, though simple, stand as eternal sentinels — silent witnesses to a village’s prayers, hopes, and deep reverence for the unseen protector.
+
+</p>
+            </div>
+
+            <div id="padam-detailed" class="detailed-story-section">
+                <h1>Tribal Creation Myths (Santhal and Oraon Tribes)</h1>
+                <p>Among the tribal communities of eastern India, terracotta is more than just clay — it is a sacred vessel of memory. Crafted with reverence, these earthen figures often represent creation myths passed down through generations via oral tradition.
+<br>
+At the heart of many stories stands a sacred tree, believed to be the source of all life. From its roots, branches, or bark, life is said to have emerged — animals, rivers, winds, and humans — all born in harmony with nature’s rhythm.
+<br>
+In other tales, a Mother Goddess, often unnamed but deeply venerated, is depicted giving birth to the universe. She is seen seated on the earth, surrounded by birds, animals, and children, embodying both fertility and the life-giving force.
+<br>
+Terracotta figures portraying these myths are carefully molded by tribal artisans during festivals or rites of passage. They are placed at village altars or under open skies, linking the divine with the earthly.
+<br>
+Each sculpture — whether a coiled serpent, a rising sun, or a mother with a child — holds layers of meaning rooted in ancestral wisdom and spiritual ecology.
+<br>
+This folk cosmology sees no divide between the human and the natural — both are interwoven parts of the same sacred story. Through terracotta, these tales remain alive, tangible, and ever-evolving.
+<br>
+Thus, fired clay becomes not just an art form, but a living scripture, preserving the worldview of tribes whose truths are told not through books, but through earth, fire, and memory.</p>
+            </div>
+
+            <div id="thillana-detailed" class="detailed-story-section">
+                <h1>The Cosmic Dance of Lord Shiva (Nataraja)</h1>
+                <p>In Tamil Nadu and parts of Odisha, terracotta artisans craft powerful depictions of Lord Shiva as Nataraja — the cosmic dancer. With arms gracefully extended and one foot raised mid-step, he performs the Tandava, a dance embodying the rhythm of the universe.
+<br>
+These terracotta sculptures are more than artistic expressions — they are sacred icons, placed with devotion in village shrines, temple courtyards, and community altars. Every curve and gesture of the figure carries symbolic meaning.
+<br>
+The flaming halo encircling Nataraja represents the universe, while the drum in one hand echoes the beat of creation, and the fire in another symbolizes destruction. One hand gestures fearlessness, while another points to the uplifted foot — the path to liberation.
+<br>
+Beneath his foot lies Apasmara, the dwarf of ignorance, crushed and subdued, reminding devotees of the triumph of divine knowledge over darkness.
+<br>
+In terracotta form, these symbols gain an earthly connection — molded by rural hands, baked under the sun, and consecrated through age-old rituals. The reddish-brown clay, with its natural texture, adds warmth and intimacy to this grand cosmic vision.
+<br>
+For the villagers, Nataraja is not just a deity but the eternal pulse of life, reminding them of the balance between chaos and order, movement and stillness, life and death.
+<br>
+Thus, these terracotta forms stand as dynamic prayers, where divine dance meets rural devotion in a harmony of form, faith, and philosophy.</p>
+            </div>
+
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 RangRiti. All rights reserved.</p>
+        <p>Inspired by the rich heritage of Indian Handicrafts Art.</p>
+        <p>Contact us at <a href="mailto:info@terracotta.com">info@terracotta.com</a></p>
+    </footer>
+
+</body>
+</html>
