@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VR Gallery: Traditional Dance - RangRiti</title>
+    <title>VR Gallery: Traditional Paintings - RangRiti</title>
+    <!-- A-Frame Library -->
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
     <style>
         /*
         =================================================================
         RangRiti VR Experience Page Styling
         Description: A seamless continuation of the main site theme,
-                     designed for an immersive VR showcase.
+                     designed for an immersive VR showcase with A-Frame.
         =================================================================
         */
 
@@ -65,7 +67,7 @@
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none;
-            z-index: -1;
+            z-index: 1; /* Above A-Frame canvas, below prompt */
         }
 
         .particle {
@@ -84,23 +86,14 @@
             100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
         }
 
-        /* 3. VR Content & Iframe Styling */
+        /* 3. VR Content & A-Frame Styling */
         .vr-container {
             width: 100%;
             height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        #vr-iframe {
-            width: 100%;
-            height: 100%;
-            border: 0 none;
             position: absolute;
             top: 0;
             left: 0;
+            z-index: 0; /* Behind particles and UI */
         }
 
         /* 4. Fullscreen Prompt Overlay */
@@ -198,16 +191,19 @@
     <!-- Floating particles (for theme consistency) -->
     <div class="particles"></div>
 
-    <!-- Main VR Container -->
+    <!-- Main VR Container with A-Frame Scene -->
     <div class="vr-container">
-        <iframe id="vr-iframe" allowFullScreen="true" allow="accelerometer; magnetometer; gyroscope" src="https://panoraven.com/en/embed/c7ySMPWXWV"></iframe>
+        <a-scene embedded>
+            <!-- Assuming the asset is a JPG. Please change the extension if it's different (e.g., .png) -->
+            <a-sky src="../static/panoramapaintings.jpeg" rotation="0 -130 0"></a-sky>
+        </a-scene>
     </div>
 
     <!-- Fullscreen Prompt -->
     <div id="fullscreen-prompt">
-        <h1 class="prompt-title">Enter the Virtual Stage</h1>
-        <p class="prompt-text">For the best experience, witness the performance in fullscreen. Click the button below to begin your immersive journey.</p>
-        <button id="enter-fullscreen-btn" class="prompt-button">Enter Fullscreen</button>
+        <h1 class="prompt-title">Enter the Virtual Gallery</h1>
+        <p class="prompt-text">For the best experience, view the masterpieces in fullscreen. Click the button below to begin your immersive journey.</p>
+        <button id="enter-vr-btn" class="prompt-button">Enter VR</button>
     </div>
 
     <!-- Back Button -->
@@ -226,30 +222,26 @@
             document.querySelector('.particles').appendChild(particle);
             particle.addEventListener('animationend', () => particle.remove());
         }
-        setInterval(createParticle, 250); // Reduced frequency for performance
+        setInterval(createParticle, 250);
 
-        /* Fullscreen logic */
+        /* A-Frame VR Mode logic */
         const fullscreenPrompt = document.getElementById('fullscreen-prompt');
-        const enterBtn = document.getElementById('enter-fullscreen-btn');
-        const vrContainer = document.querySelector('body'); // We'll make the whole body fullscreen
+        const enterBtn = document.getElementById('enter-vr-btn');
+        const sceneEl = document.querySelector('a-scene');
 
         enterBtn.addEventListener('click', () => {
-            if (vrContainer.requestFullscreen) {
-                vrContainer.requestFullscreen();
-            } else if (vrContainer.webkitRequestFullscreen) { /* Safari */
-                vrContainer.webkitRequestFullscreen();
-            } else if (vrContainer.msRequestFullscreen) { /* IE11 */
-                vrContainer.msRequestFullscreen();
-            }
+            // A-Frame has its own method to enter VR mode
+            sceneEl.enterVR();
         });
 
-        // When fullscreen is activated, hide the prompt
-        document.addEventListener('fullscreenchange', () => {
-            if (document.fullscreenElement) {
-                fullscreenPrompt.classList.add('hidden');
-            } else {
-                fullscreenPrompt.classList.remove('hidden');
-            }
+        // When VR mode is entered, hide the prompt
+        sceneEl.addEventListener('enter-vr', () => {
+            fullscreenPrompt.classList.add('hidden');
+        });
+
+        // When VR mode is exited (e.g., by pressing ESC), show the prompt again
+        sceneEl.addEventListener('exit-vr', () => {
+            fullscreenPrompt.classList.remove('hidden');
         });
     </script>
 </body>
