@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Results - RangRiti</title>
+    <link rel="stylesheet" href="quiz.css">
+    <style>
+        .results-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+        
+        .score-display {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .score-circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--rich-gold), var(--deep-gold));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5);
+            animation: scoreGlow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes scoreGlow {
+            0% { box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5); }
+            100% { box-shadow: 0 15px 40px rgba(212, 175, 55, 0.8); }
+        }
+        
+        .score-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--light-ivory);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .score-label {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--deep-brown);
+            margin-bottom: 1rem;
+        }
+        
+        .performance-message {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.2rem;
+            color: var(--deep-wood);
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+        
+        .question-review {
+            margin-bottom: 2rem;
+        }
+        
+        .question-item {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .question-item.correct {
+            border-color: var(--emerald);
+            background: rgba(80, 200, 120, 0.1);
+        }
+        
+        .question-item.wrong {
+            border-color: var(--crimson);
+            background: rgba(220, 20, 60, 0.1);
+        }
+        
+        .question-item.unanswered {
+            border-color: var(--sandalwood);
+            background: rgba(196, 154, 108, 0.1);
+        }
+        
+        .question-number {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--rich-gold);
+            margin-bottom: 0.5rem;
+        }
+        
+        .question-text {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.1rem;
+            color: var(--deep-brown);
+            margin-bottom: 1rem;
+        }
+        
+        .answer-info {
+            font-family: 'EB Garamond', serif;
+            font-size: 1rem;
+        }
+        
+        .correct-answer {
+            color: var(--emerald);
+            font-weight: 600;
+        }
+        
+        .wrong-answer {
+            color: var(--crimson);
+            font-weight: 600;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        
+        .action-btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 30px;
+            font-family: 'EB Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            min-width: 150px;
+        }
+        
+        .retry-btn {
+            background: linear-gradient(45deg, var(--rich-gold), var(--deep-gold));
+            color: var(--light-ivory);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        .retry-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+        }
+        
+        .home-btn {
+            background: linear-gradient(45deg, var(--deep-wood), var(--sandalwood));
+            color: var(--light-ivory);
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+        }
+        
+        .home-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(139, 69, 19, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating particles -->
+    <div class="particles"></div>
+
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <a href="index.html" class="nav-btn-link"><button class="nav-btn">Home</button></a>
+        <a href="artists.html" class="nav-btn-link"><button class="nav-btn">Artists</button></a>
+        <a href="workshops.html" class="nav-btn-link"><button class="nav-btn">Workshops</button></a>
+        <a href="calendar.html" class="nav-btn-link"><button class="nav-btn">Calendar</button></a>
+        <div class="dropdown">
+            <button class="nav-btn dropdown-toggle">
+                Heritage <span class="dropdown-arrow">&#9660;</span>
+            </button>
+            <div class="dropdown-menu">
+                <a href="paintings and traditional styles.html" class="dropdown-item">Traditional Painting Styles</a>
+                <a href="textile_main.html" class="dropdown-item">Textile Arts</a>
+                <a href="performingarts.html" class="dropdown-item">Performing Arts</a>
+                <a href="handicrafts_and_sculptures.html" class="dropdown-item">Handicrafts & Sculpture</a>
+            </div>
+        </div>
+        <a href="connect.html" class="nav-btn-link"><button class="nav-btn">Connect</button></a>
+    </nav>
+
+    <header class="quiz-header">
+        <div class="header-content">
+            <h1 class="main-title">Quiz Results</h1>
+            <p class="subtitle">Your Indian Art & Culture Knowledge</p>
+            <p class="heritage-quote">"विद्या ददाति विनयं - Knowledge gives humility"</p>
+        </div>
+    </header>
+
+    <main class="results-container">
+        <div class="score-display">
+            <div class="score-circle">
+                <div class="score-text" id="score-percentage">--</div>
+            </div>
+            <div class="score-label" id="score-label">Loading...</div>
+            <div class="performance-message" id="performance-message"></div>
+        </div>
+
+        <div class="question-review" id="question-review">
+            <!-- Questions will be populated here -->
+        </div>
+
+        <div class="action-buttons">
+            <a href="quiz.html" class="action-btn retry-btn">Try Again</a>
+            <a href="index.html" class="action-btn home-btn">Back to Home</a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <nav class="footer-nav">
+                <a href="#">About</a>
+                <a href="#">Artists</a>
+                <a href="#">Workshops</a>
+                <a href="#">Calendar</a>
+                <a href="#">Heritage</a>
+                <a href="#">Connect</a>
+            </nav>
+            <p class="footer-text">&copy; 2024 RangRiti. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Particle animation
+        const particleColors = [
+            '#800000', '#680404', '#3B3B98', '#2C2C80', '#B22222', 
+            '#228B22', '#FF9933', '#FF6F00', '#FFD700', '#F9A602'
+        ];
+
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.animationDuration = Math.random() * 15 + 10 + 's';
+            const randomColor = particleColors[Math.floor(Math.random() * particleColors.length)];
+            particle.style.background = randomColor;
+            document.querySelector('.particles').appendChild(particle);
+            
+            particle.addEventListener('animationend', () => {
+                particle.remove();
+            });
+        }
+
+        setInterval(createParticle, 300);
+
+        // Quiz results logic
+        const resultData = JSON.parse(localStorage.getItem('quizResult'));
+        const scorePercentage = document.getElementById('score-percentage');
+        const scoreLabel = document.getElementById('score-label');
+        const performanceMessage = document.getElementById('performance-message');
+        const questionReview = document.getElementById('question-review');
+
+        if(resultData) {
+            const { quiz, userAnswers } = resultData;
+            let correctCount = 0;
+            
+            quiz.forEach((q, i) => {
+                if(userAnswers[i] === q.ans) correctCount++;
+            });
+            
+            const percentage = Math.round((correctCount / quiz.length) * 100);
+            scorePercentage.textContent = percentage + '%';
+            scoreLabel.textContent = `${correctCount} out of ${quiz.length} questions correct`;
+            
+            // Performance messages
+            if(percentage >= 90) {
+                performanceMessage.textContent = 'उत्कृष्ट! You are a true connoisseur of Indian art and culture!';
+            } else if(percentage >= 70) {
+                performanceMessage.textContent = 'बहुत अच्छा! You have good knowledge of Indian heritage!';
+            } else if(percentage >= 50) {
+                performanceMessage.textContent = 'अच्छा! Keep exploring to learn more about Indian art!';
+            } else {
+                performanceMessage.textContent = 'सीखते रहिए! There\'s so much beauty in Indian art to discover!';
+            }
+            
+            // Generate question review
+            quiz.forEach((q, i) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question-item';
+                
+                if(userAnswers[i] === null) {
+                    questionDiv.classList.add('unanswered');
+                } else if(userAnswers[i] === q.ans) {
+                    questionDiv.classList.add('correct');
+                } else {
+                    questionDiv.classList.add('wrong');
+                }
+                
+                let statusText = '';
+                if(userAnswers[i] === null) {
+                    statusText = 'Not Attempted';
+                } else if(userAnswers[i] === q.ans) {
+                    statusText = `<span class="correct-answer">Correct!</span>`;
+                } else {
+                    statusText = `<span class="wrong-answer">Incorrect</span>`;
+                }
+                
+                questionDiv.innerHTML = `
+                    <div class="question-number">Question ${i + 1}</div>
+                    <div class="question-text">${q.q}</div>
+                    <div class="answer-info">
+                        ${statusText}<br>
+                        <strong>Correct Answer:</strong> ${q.opts[q.ans]}
+                        ${userAnswers[i] !== null && userAnswers[i] !== q.ans ? 
+                            `<br><strong>Your Answer:</strong> ${q.opts[userAnswers[i]]}` : ''}
+                    </div>
+                `;
+                
+                questionReview.appendChild(questionDiv);
+            });
+            
+        } else {
+            scoreLabel.textContent = 'No quiz data found. Please take the quiz first.';
+            performanceMessage.textContent = 'शुरुआत करें! Start your journey into Indian art and culture!';
+        }
+    </script>
+</body>
+</html>

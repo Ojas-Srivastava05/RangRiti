@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kutch Embroidery: Mirrors of Tradition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --yakshagana-gold: #E0B400;
+            --text-gold: #FFD700;
+            --text-light: rgba(255, 248, 220, 0.9);
+            --dark-background: #251005;
+            --card-background: rgba(45, 20, 0, 0.7);
+            --border-gold: rgba(255, 215, 0, 0.4);
+            --primary-gold: #FFD700;
+        }
+        body {
+            margin: 0;
+            font-family: 'EB Garamond', serif;
+            background: linear-gradient(to bottom, #3a1f0a, #251005);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        .nav-container {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            backdrop-filter: blur(20px);
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 1px solid var(--border-gold);
+            z-index: 1000;
+            animation: slideDown 1s ease-out;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+        @keyframes slideDown {
+            from { transform: translateX(-50%) translateY(-100px); opacity: 0; }
+            to { transform: translateX(-50%) translateY(0); opacity: 1; }
+        }
+        .nav-btn {
+            font-family: 'EB Garamond', serif;
+            background: transparent;
+            color: #FAF3E0;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: navBtnFadeIn 1s ease-out forwards;
+        }
+        @keyframes navBtnFadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        .nav-btn:hover::before {
+            left: 100%;
+        }
+        .nav-btn:hover {
+            background: rgba(255, 215, 0, 0.1);
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+            color: var(--text-gold);
+        }
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown-toggle { cursor: pointer; }
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.95);
+            border: 1px solid var(--border-gold);
+            border-radius: 10px;
+            padding: 10px 0;
+            display: none;
+            flex-direction: column;
+            min-width: 200px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            z-index: 1001;
+            opacity: 0;
+            transform: translateX(-50%) translateY(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .dropdown:hover .dropdown-menu {
+            display: flex;
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+        .dropdown-item {
+            font-family: 'EB Garamond', serif;
+            color: #FAF3E0;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: block;
+            transition: all 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        .dropdown-item:hover {
+            background: rgba(255, 215, 0, 0.2);
+            color: var(--primary-gold);
+            padding-left: 25px;
+        }
+        .dropdown-arrow {
+            font-size: 0.8em;
+            margin-left: 5px;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        .dropdown:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--text-light);
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/static/kutch-embroidery-bg.jpg') no-repeat center center/cover;
+            filter: grayscale(60%) brightness(40%);
+            z-index: -1;
+            animation: fadeInBackground 2s ease-out;
+        }
+        @keyframes fadeInBackground {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .hero-content {
+            padding-top: 100px;
+            max-width: 800px;
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero h1 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 4.5rem;
+            color: var(--text-gold);
+            margin-bottom: 20px;
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7);
+            letter-spacing: 2px;
+            animation: scaleIn 1.5s ease-out forwards;
+        }
+        @keyframes scaleIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-style: italic;
+        }
+        .section {
+            padding: 80px 5%;
+            margin-top: 0;
+            position: relative;
+            z-index: 1;
+            background-color: var(--dark-background);
+        }
+        .section h2 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 3.5rem;
+            color: var(--yakshagana-gold);
+            text-align: center;
+            margin-bottom: 60px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+            position: relative;
+            padding-bottom: 15px;
+            animation: slideInFromLeft 1s ease-out forwards;
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+        @keyframes slideInFromLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .section h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--text-gold), transparent);
+            margin: 15px auto 0;
+            border-radius: 5px;
+        }
+        .detailed-story-section {
+            max-width: 900px;
+            margin: 80px auto;
+            padding: 40px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--border-gold);
+            animation: fadeIn 1s ease-out forwards;
+            line-height: 1.8;
+        }
+        .detailed-story-section h1 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 3.8rem;
+            color: var(--text-gold);
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        .detailed-story-section h1::after {
+            content: '';
+            display: block;
+            width: 150px;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--text-gold), transparent);
+            margin: 15px auto 0;
+            border-radius: 5px;
+        }
+        .detailed-story-section h3 {
+            font-family: 'EB Garamond', serif;
+            font-size: 2.2rem;
+            color: var(--yakshagana-gold);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            border-bottom: 1px dashed rgba(255, 215, 0, 0.2);
+            padding-bottom: 10px;
+        }
+        .detailed-story-section p {
+            font-size: 1.15rem;
+            margin-bottom: 1.5em;
+            text-align: justify;
+        }
+        .detailed-story-section strong {
+            color: var(--text-gold);
+        }
+        .footer {
+            background-color: #0d0600;
+            color: rgba(255, 248, 220, 0.7);
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            margin-top: 80px;
+        }
+        .footer p { margin: 0; padding: 5px 0; }
+        .footer a {
+            color: var(--text-gold);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer a:hover {
+            color: var(--primary-gold);
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .nav-container { flex-wrap: wrap; justify-content: center; top: 15px; padding: 10px 15px; border-radius: 30px; }
+            .nav-btn { font-size: 0.8rem; padding: 6px 12px; }
+            .hero h1 { font-size: 3rem; }
+            .hero p { font-size: 1.2rem; }
+            .section h2 { font-size: 2.5rem; }
+            .detailed-story-section { padding: 25px; margin: 60px auto; }
+            .detailed-story-section h1 { font-size: 3rem; }
+            .detailed-story-section h3 { font-size: 1.8rem; }
+            .detailed-story-section p { font-size: 1rem; }
+        }
+        @media (max-width: 480px) {
+            .nav-container { gap: 5px; }
+            .nav-btn { padding: 5px 8px; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1rem; }
+            .section h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav-container">
+        <button class="nav-btn">Artists</button>
+        <button class="nav-btn">Workshops</button>
+        <button class="nav-btn">Calendar</button>
+        <div class="dropdown">
+            <button class="nav-btn dropdown-toggle">
+                Heritage <span class="dropdown-arrow">&#9660;</span>
+            </button>
+            <div class="dropdown-menu">
+                <a href="#" class="dropdown-item">Traditional Painting Styles</a>
+                <a href="#" class="dropdown-item">Textile Arts</a>
+                <a href="#" class="dropdown-item">Performing Arts</a>
+                <a href="#" class="dropdown-item">Handicrafts & Sculpture</a>
+            </div>
+        </div>
+        <button class="nav-btn">Connect</button>
+    </nav>
+<main>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Kutch Embroidery: Mirrors of Tradition</h1>
+            <p>Journey into the vibrant world of Kutch, where every stitch and mirror reflects a legacy of color, culture, and community.</p>
+        </div>
+    </section>
+
+    <section id="kutch-stories-detailed" class="section">
+        <h2>Stitched Legacies</h2>
+
+        <div id="mirror-work-detailed" class="detailed-story-section">
+            <h1>Mirror Work Magic</h1>
+            <p><strong>Mirror Work</strong> is the dazzling hallmark of Kutch embroidery, believed to ward off evil and invite light and energy into daily life.</p>
+
+            <h3>Shimmering Surfaces</h3>
+            <p>Artisans meticulously sew tiny mirrors (<em>abhla</em>) into the fabric, surrounding them with vibrant threads in floral, geometric, or animal motifs. The result is a textile that sparkles with every movement, catching the eye and the imagination.</p>
+
+            <h3>Symbolism of Reflection</h3>
+            <p>Mirrors are more than decoration—they represent clarity, protection, and the ability to reflect both beauty and spirit.</p>
+        </div>
+
+        <div id="community-threads-detailed" class="detailed-story-section">
+            <h1>Community Threads</h1>
+            <p><strong>Community Threads</strong> tells the story of women gathering to embroider, sharing skills, stories, and traditions across generations.</p>
+
+            <h3>Heirloom Artistry</h3>
+            <p>Each piece is a collaborative effort, often created for weddings or festivals. Motifs and stitches are passed from mother to daughter, preserving the unique identity of Rabari, Ahir, Mutwa, and other Kutch communities.</p>
+
+            <h3>Stitching Social Bonds</h3>
+            <p>Embroidery is both art and social ritual, strengthening community ties and celebrating the collective spirit of Kutch.</p>
+        </div>
+
+        <div id="motifs-of-kutch-detailed" class="detailed-story-section">
+            <h1>Motifs of Kutch</h1>
+            <p><strong>Motifs of Kutch</strong> are inspired by the land—camels, peacocks, elephants, and stylized flowers fill the textiles with stories of desert life and celebration.</p>
+
+            <h3>Patterns of Identity</h3>
+            <p>Each community has its signature motifs and color palettes, making every textile a map of heritage. Bold reds, yellows, and greens dominate, echoing the vibrancy of Gujarat’s festivals and landscapes.</p>
+
+            <h3>Stories in Stitches</h3>
+            <p>Every motif is a symbol—camels for endurance, peacocks for beauty, flowers for joy—stitched with intention and pride.</p>
+        </div>
+
+        <div id="living-tradition-detailed" class="detailed-story-section">
+            <h1>Living Tradition</h1>
+            <p><strong>Living Tradition</strong> celebrates the ongoing evolution of Kutch embroidery, blending old motifs with new designs for a global audience.</p>
+
+            <h3>Adaptation and Innovation</h3>
+            <p>Artisans experiment with patterns and products, from traditional garments to contemporary accessories and décor, keeping the craft alive and relevant.</p>
+
+            <h3>Threads of Continuity</h3>
+            <p>Kutch embroidery is a testament to resilience and creativity—a living heritage that continues to inspire and empower.</p>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <p>&copy; 2025 Kutch Embroidery Chronicles. All rights reserved.</p>
+    <p>Celebrating the vibrant stitches of Gujarat’s heartland.</p>
+    <p>Contact us at <a href="mailto:info@kutchembroidery.com">info@kutchembroidery.com</a></p>
+</footer>
+</body>
+</html>
