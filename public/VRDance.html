@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VR Gallery: Traditional Dance - RangRiti</title>
+    <!-- A-Frame Library -->
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <style>
+        /*
+        =================================================================
+        RangRiti VR Experience Page Styling
+        Description: A seamless continuation of the main site theme,
+                     designed for an immersive VR showcase with A-Frame.
+        =================================================================
+        */
+
+        /* 1. Core Setup & Theming (Matches main page) */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gold: #FFD700;
+            --deep-gold: #B8860B;
+            --sandalwood: #C19A6B;
+            --deep-wood: #8B4513;
+            --ivory: #FFFEF7;
+            --warm-white: #FAF9F6;
+            --text-brown: #4B1E10;
+        }
+
+        /* 2. Body & Dynamic Background (Matches main page) */
+        body {
+            font-family: 'EB Garamond', serif;
+            background: linear-gradient(135deg, #F5DEB3 0%, #E5C49B 50%, #B97A56 100%);
+            color: var(--text-brown);
+            overflow: hidden; /* Prevent scrolling */
+            height: 100vh;
+            width: 100vw;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(245, 222, 179, 0.04) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(139, 69, 19, 0.04) 0%, transparent 50%);
+            animation: backgroundShift 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { transform: translateX(0) translateY(0); }
+            25% { transform: translateX(10px) translateY(-10px); }
+            50% { transform: translateX(-10px) translateY(10px); }
+            75% { transform: translateX(10px) translateY(10px); }
+        }
+
+        .particles {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 1; /* Above A-Frame canvas, below prompt */
+        }
+
+        .particle {
+            position: absolute;
+            width: 7px; height: 7px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            animation: float 15s linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* 3. VR Content & A-Frame Styling */
+        .vr-container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0; /* Behind particles and UI */
+        }
+
+        /* 4. Fullscreen Prompt Overlay */
+        #fullscreen-prompt {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            color: var(--warm-white);
+            text-align: center;
+            padding: 2rem;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        #fullscreen-prompt.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .prompt-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            color: var(--primary-gold);
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            margin-bottom: 1rem;
+        }
+
+        .prompt-text {
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            line-height: 1.6;
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .prompt-button {
+            background: #D4AF37;
+            color: var(--text-brown);
+            border: none;
+            padding: 15px 35px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            font-family: 'EB Garamond', serif;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .prompt-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        /* 5. Back Button */
+        .back-button {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            color: var(--warm-white);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: 'EB Garamond', serif;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1001;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background: rgba(212, 175, 55, 0.2);
+            border-color: var(--primary-gold);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating particles (for theme consistency) -->
+    <div class="particles"></div>
+
+    <!-- Main VR Container with A-Frame Scene -->
+    <div class="vr-container">
+        <a-scene embedded>
+            <!-- Assuming the asset is a JPG. Please change the extension if it's different (e.g., .png) -->
+            <a-sky src="../static/panoramadance.jpeg" rotation="0 -130 0"></a-sky>
+        </a-scene>
+    </div>
+
+    <!-- Fullscreen Prompt -->
+    <div id="fullscreen-prompt">
+        <h1 class="prompt-title">Enter the Virtual Stage</h1>
+        <p class="prompt-text">For the best experience, witness the performance in fullscreen. Click the button below to begin your immersive journey.</p>
+        <button id="enter-vr-btn" class="prompt-button">Enter VR</button>
+    </div>
+
+    <!-- Back Button -->
+    <a href="index.html" class="back-button">&larr; Back to Heritage</a>
+
+    <script>
+        /* Floating particles script (for theme consistency) */
+        const particleColors = ['#800000', '#680404', '#3B3B98', '#2C2C80', '#B22222', '#228B22', '#FF9933', '#FF6F00', '#FFD700', '#F9A602'];
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.animationDuration = Math.random() * 15 + 10 + 's';
+            const randomColor = particleColors[Math.floor(Math.random() * particleColors.length)];
+            particle.style.background = randomColor;
+            document.querySelector('.particles').appendChild(particle);
+            particle.addEventListener('animationend', () => particle.remove());
+        }
+        setInterval(createParticle, 250);
+
+        /* A-Frame VR Mode logic */
+        const fullscreenPrompt = document.getElementById('fullscreen-prompt');
+        const enterBtn = document.getElementById('enter-vr-btn');
+        const sceneEl = document.querySelector('a-scene');
+
+        enterBtn.addEventListener('click', () => {
+            // A-Frame has its own method to enter VR mode
+            sceneEl.enterVR();
+        });
+
+        // When VR mode is entered, hide the prompt
+        sceneEl.addEventListener('enter-vr', () => {
+            fullscreenPrompt.classList.add('hidden');
+        });
+
+        // When VR mode is exited (e.g., by pressing ESC), show the prompt again
+        sceneEl.addEventListener('exit-vr', () => {
+            fullscreenPrompt.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
