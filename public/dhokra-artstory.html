@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dhokra Art: Ancient Tales in Motion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables */
+        :root {
+            --bharatnatyam-gold: #CDA434; /* A slightly different gold for Bharatnatyam */
+            --text-gold: #FFD700;
+            --text-light: rgba(255, 248, 220, 0.9);
+            --dark-background: #150500; /* Deep, rich brown/black */
+            --card-background: rgba(30, 15, 0, 0.7); /* Slightly lighter, semi-transparent */
+            --border-gold: rgba(255, 215, 0, 0.4);
+            --primary-gold: #FFD700;
+        }
+
+        /* General Body Styles */
+        body {
+            margin: 0;
+            font-family: 'EB Garamond', serif;
+            background: linear-gradient(to bottom, #201000, #150500); /* Subtle gradient for depth */
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        /* --- Navigation Bar --- */
+        .nav-container {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            backdrop-filter: blur(20px);
+            background-color: rgba(0, 0, 0, 0.6); /* Slightly darker background for contrast */
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 1px solid var(--border-gold);
+            z-index: 1000;
+            animation: slideDown 1s ease-out;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Enhanced shadow */
+        }
+
+        @keyframes slideDown {
+            from { transform: translateX(-50%) translateY(-100px); opacity: 0; }
+            to { transform: translateX(-50%) translateY(0); opacity: 1; }
+        }
+
+        .nav-btn {
+            font-family: 'EB Garamond', serif;
+            background: transparent;
+            color: #FAF3E0; /* Light Ivory for better contrast on dark bg */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Stronger shadow */
+            border: none;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: navBtnFadeIn 1s ease-out forwards;
+        }
+
+        @keyframes navBtnFadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .nav-btn:hover::before {
+            left: 100%;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 215, 0, 0.1); /* Lighter hover background */
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+            color: var(--text-gold); /* Gold color on hover */
+        }
+
+        /* Dropdown styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-toggle {
+            cursor: pointer;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 10px); /* Position below the button */
+            left: 50%;
+            transform: translateX(-50%); /* Center the dropdown */
+            background: rgba(0, 0, 0, 0.95);
+            border: 1px solid var(--border-gold);
+            border-radius: 10px;
+            padding: 10px 0;
+            display: none;
+            flex-direction: column;
+            min-width: 200px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            z-index: 1001;
+            opacity: 0;
+            transform: translateX(-50%) translateY(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: flex;
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .dropdown-item {
+            font-family: 'EB Garamond', serif;
+            color: #FAF3E0;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: block;
+            transition: all 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .dropdown-item:hover {
+            background: rgba(255, 215, 0, 0.2);
+            color: var(--primary-gold);
+            padding-left: 25px; /* Slight indent on hover */
+        }
+
+        .dropdown-arrow {
+            font-size: 0.8em;
+            margin-left: 5px;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--text-light);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/e/e3/Bharatnatyam_dancer.jpg') no-repeat center center/cover; /* Bharatnatyam image */
+            filter: grayscale(80%) brightness(40%); /* Desaturate and darken */
+            z-index: -1;
+            animation: fadeInBackground 2s ease-out;
+        }
+
+        @keyframes fadeInBackground {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .hero-content {
+            padding-top: 100px; /* Space for fixed nav */
+            max-width: 800px;
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 4.5rem;
+            color: var(--text-gold);
+            margin-bottom: 20px;
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7);
+            letter-spacing: 2px;
+            animation: scaleIn 1.5s ease-out forwards;
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-style: italic;
+        }
+
+        /* --- Section Styling --- */
+        .section {
+            padding: 80px 5%;
+            margin-top: 0; /* No top margin as hero takes full height */
+            position: relative;
+            z-index: 1;
+            background-color: var(--dark-background); /* Ensure consistent background */
+        }
+
+        .section h2 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 3.5rem;
+            color: var(--bharatnatyam-gold);
+            text-align: center;
+            margin-bottom: 60px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+            position: relative;
+            padding-bottom: 15px;
+            animation: slideInFromLeft 1s ease-out forwards;
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        @keyframes slideInFromLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .section h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--text-gold), transparent);
+            margin: 15px auto 0;
+            border-radius: 5px;
+        }
+
+        /* --- Detailed Story Sections --- */
+        .detailed-story-section {
+            max-width: 900px;
+            margin: 80px auto; /* Margin between detailed stories */
+            padding: 40px;
+            background-color: rgba(0, 0, 0, 0.7); /* Slightly transparent background */
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--border-gold);
+            animation: fadeIn 1s ease-out forwards;
+            line-height: 1.8; /* Adjusted for better readability of detailed text */
+        }
+
+        .detailed-story-section h1 { /* Using h1 for main story title within this section */
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 3.8rem;
+            color: var(--text-gold);
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .detailed-story-section h1::after {
+            content: '';
+            display: block;
+            width: 150px;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--text-gold), transparent);
+            margin: 15px auto 0;
+            border-radius: 5px;
+        }
+
+        .detailed-story-section h3 { /* Using h3 for subheadings within a detailed story */
+            font-family: 'EB Garamond', serif;
+            font-size: 2.2rem;
+            color: var(--bharatnatyam-gold);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            border-bottom: 1px dashed rgba(255, 215, 0, 0.2);
+            padding-bottom: 10px;
+        }
+
+        .detailed-story-section p {
+            font-size: 1.15rem;
+            margin-bottom: 1.5em;
+            text-align: justify;
+        }
+
+        .detailed-story-section strong {
+            color: var(--text-gold);
+        }
+
+        /* --- Footer --- */
+        .footer {
+            background-color: #0d0600;
+            color: rgba(255, 248, 220, 0.7);
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            margin-top: 80px;
+        }
+
+        .footer p {
+            margin: 0;
+            padding: 5px 0;
+        }
+
+        .footer a {
+            color: var(--text-gold);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--primary-gold);
+            text-decoration: underline;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-wrap: wrap;
+                justify-content: center;
+                top: 15px;
+                padding: 10px 15px;
+                border-radius: 30px;
+            }
+
+            .nav-btn {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .section h2 {
+                font-size: 2.5rem;
+            }
+
+            .detailed-story-section {
+                padding: 25px;
+                margin: 60px auto;
+            }
+            .detailed-story-section h1 {
+                font-size: 3rem;
+            }
+            .detailed-story-section h3 {
+                font-size: 1.8rem;
+            }
+            .detailed-story-section p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                gap: 5px;
+            }
+            .nav-btn {
+                padding: 5px 8px;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav-container">
+        <button class="nav-btn"><a href="index.html" style="color: inherit; text-decoration: none;">Home</a></button>
+        <button class="nav-btn">Artists</button>
+        <button class="nav-btn">Workshops</button>
+        <button class="nav-btn">Calendar</button>
+
+        <div class="dropdown">
+            <button class="nav-btn dropdown-toggle">
+                Heritage <span class="dropdown-arrow">&#9660;</span>
+            </button>
+            <div class="dropdown-menu">
+                <a href="paintings and traditional styles.html" class="dropdown-item">Traditional Painting Styles</a>
+                <a href="textile_main.html" class="dropdown-item">Textile Arts</a>
+                <a href="performingarts.html" class="dropdown-item">Performing Arts</a>
+                <a href="handicrafts_and_sculptures.html" class="dropdown-item">Handicrafts & Sculpture</a>
+            </div>
+        </div>
+
+        <button class="nav-btn">Connect</button>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Dhokra Art: The Soul of Indian Handicrafts</h1>
+                <p>Journey through the intricate beauty and craftsmanship of Indian Dhokra Artist .</p>
+            </div>
+        </section>
+
+        <section id="bharatnatyam-items-detailed" class="section">
+            <h2>The Essence of a Dhokra Art</h2>
+
+            <div id="alarippu-detailed" class="detailed-story-section">
+                <h1>The Dancing Girl’s Echo</h1>
+                <p>In the tribal heartland of Bastar, nestled among the forests of Chhattisgarh, lived an old artisan known for his skill in Dhokra metalwork. Every spring, as the sal trees bloomed, he would sit by the fireside and sculpt a graceful figure—a woman mid-dance, her limbs fluid and her posture poised. He believed she was no ordinary creation, but a tribute to the legendary "Dancing Girl" of the Indus Valley Civilization. To him, this ancient muse had never vanished; her spirit simply traveled through time, seeking new hands to shape her.
+<br>
+For the artisan, crafting her was more than tradition—it was a sacred ritual. He believed that by honoring her each year, she would continue to bless his family with artistic hands and the steady calm needed to pour molten metal into fragile molds. The figure he sculpted was always slightly different—sometimes with flowing hair, other times with bangles that jingled like forest songs—but always alive with motion and memory.
+<br>
+Villagers gathered to watch the dance take shape in bronze, seeing in it a symbol of continuity and cultural pride. Over time, this figure became more than a seasonal creation—it became a story passed down, linking Bastar’s tribal heritage with India’s ancient past. Through the fire, the metal, and the dance, the artisan kept a 4,000-year-old legacy moving, step by step, into the future.</p>
+            </div>
+
+            <div id="jatiswaram-detailed" class="detailed-story-section">
+                <h1>The Elephant Guardian</h1>
+                <p>Long ago, in a forested tribal region of central India, a village chief awoke from a vivid and powerful dream. In it, a majestic golden elephant had appeared, shimmering in the moonlight, guarding the village from dark forces and wandering spirits. The elephant stood tall and still, its eyes glowing with a quiet strength, as evil shadows retreated in its presence. The chief, moved by the vision, shared his dream with the village elders, believing it to be a divine sign—a protector sent by the ancestors.
+<br>
+Inspired by the story, a local Dhokra craftsman took it upon himself to bring the dream to life. Using wax, clay, and molten metal, he poured not just skill, but reverence into his work. Over several days, he molded a powerful elephant, its trunk raised in blessing, its body adorned with tribal motifs that told stories of courage and harmony. When the final sculpture was revealed, the village gathered in awe—it was exactly as the chief had seen in his dream.
+<br>
+The elephant was placed beside the village shrine, under the shade of an old neem tree, facing the forest as if on eternal watch. To this day, villagers offer flowers and prayers to the guardian, believing it wards off misfortune and invites peace. The Dhokra elephant is not just a sculpture—it is a living piece of folklore, born from a dream and cast in eternal metal, standing tall as a symbol of protection and faith.</p>
+            </div>
+
+            <div id="shabdam-detailed" class="detailed-story-section">
+                <h1>The Wedding Lamp</h1>
+                <p>In a quiet village nestled amid the hills, a father once presented his daughter with a Dhokra oil lamp on the eve of her wedding. Handcrafted by local artisans, the lamp was shaped like two graceful peacocks, their necks entwined, symbolizing unity, beauty, and lifelong harmony. The father had chosen it not just for its artistry, but for its meaning—he believed that the glow of the lamp would guide his daughter through a life filled with love and balance. As the sacred fire was lit, the lamp stood beside the couple, its twin flames dancing like blessings in the breeze.
+<br>
+In her new home, the bride kept the lamp close—lighting it during festivals, prayers, and quiet moments of reflection. Over the years, the golden patina deepened, but the warmth it radiated never faded. It became more than a wedding gift; it became a silent witness to joy, sorrow, and the quiet resilience of love that grows with time. When her own daughter married, the lamp was lovingly passed down, a symbol of continuity and grace.
+<br>
+Decades later, as her granddaughter stood ready for her own vows, the same Dhokra lamp was lit once again. Its peacocks, though worn with age, still gleamed under the ceremonial light. It stood proudly, just as it had generations ago, filling the room with the same soft glow of hope and togetherness. In that moment, the lamp wasn’t just metal—it was memory, tradition, and enduring love, cast in bronze and kept alive by family hands.
+
+</p>
+             </div>
+
+            <div id="varnam-detailed" class="detailed-story-section">
+                <h1>The Forest Drummer</h1>
+                <p>Deep within the ancient forests of central India, tribal lore speaks of a mysterious forest spirit who played drums beneath the moonlit canopy. It is said that his rhythms echoed through the jungle, calming restless beasts and lulling even the fiercest predators into peace. The villagers believed this spirit watched over them, using music to maintain harmony between humans and nature. Over time, the tale became sacred—a symbol of balance, rhythm, and the healing power of sound.
+<br>
+Inspired by this legend, Dhokra artisans began casting figures of tribal drummers in brass, their bodies frozen mid-beat, their expressions lost in trance. Each sculpture, made using the age-old lost-wax technique, was more than art—it was an offering to the spirit of rhythm. The drums they held were not merely instruments but vessels of peace, believed to carry the same calming energy once spread by the forest guardian.
+<br>
+To this day, these brass drummers are created with quiet reverence. Placed in homes, shrines, and cultural spaces, they are thought to bring inner stillness and balance. The artists say the spirit still moves through their hands, guiding the flow of molten metal as if striking an invisible beat. In every Dhokra drummer, the legend lives on—reminding us that even in chaos, there is a rhythm that can heal, protect, and gently tame the world.
+
+</p>
+            </div>
+
+            <div id="padam-detailed" class="detailed-story-section">
+                <h1>The Lost Necklace</h1>
+                <p>Long ago, in a forest kingdom rich with tradition and craft, a tribal queen wore an exquisite Dhokra necklace—handmade by the finest metal artisans in her court. The necklace was a masterpiece of brass, its intricate patterns inspired by river vines, wildflowers, and sacred geometry. One day, while walking along the riverbank, the queen leaned over to touch the water and the necklace slipped from her neck, vanishing into the flowing current. Heartbroken, she believed the treasured heirloom was lost forever.
+<br>
+Days later, a humble fisherman casting his net downstream discovered something tangled in the reeds. To his amazement, it was the queen’s necklace, still gleaming beneath layers of silt. Recognizing its royal significance, he returned it without hesitation. The queen, moved by his honesty, not only rewarded him with grain and land but made a special request of her artisans: to create copies of the necklace so that its beauty could be shared with all.
+<br>
+The artisans, honored by the command, recreated the design with devotion, making subtle variations for different clans and regions. What was once a one-of-a-kind royal ornament became a beloved pattern, passed through generations of Dhokra metalworkers. Even today, the “Queen’s Necklace” design is sold in markets and exhibitions, still bearing the vines and curves of the original. With every replica, the story lives on—a tale of loss, honesty, and a queen’s wish to turn her personal treasure into a shared legacy.
+
+</p>
+            </div>
+
+            <div id="thillana-detailed" class="detailed-story-section">
+                <h1>The Bird of Wishes</h1>
+                <p>In a quiet village in Odisha, a lonely child once sat beside his father’s workshop, watching molten metal glow in the furnace. Missing his mother and yearning for comfort, the boy took a lump of beeswax and gently shaped it into a small bird—its wings open, its beak lifted toward the sky. He whispered his hopes into its form and, with innocent faith, asked the gods to hear his silent prayers. Moved by his son’s devotion, the father—a skilled Dhokra artist—decided to cast the fragile wax bird into enduring brass.
+<br>
+Using the ancient lost-wax technique, he carefully preserved every tiny detail the child had carved—the soft curve of the wings, the tilt of the head, the spirit of longing captured in metal. Once complete, the bird gleamed golden in the sun, delicate yet strong. The villagers, touched by the story, began to see the little brass bird as more than a sculpture. They believed it carried the wishes of the heart, soaring silently to the heavens.
+<br>
+Over time, more birds were crafted—each one a symbol of hope, prayer, and childlike faith. Today, these birds are sold in markets across India, perched in homes and temples, gifted at moments of farewell or new beginnings. Though born from a child's longing, they now carry the wishes of many, reminding us that the smallest creations, shaped with love and sincerity, can reach the sky.
+
+</p>
+            </div>
+
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 RangRiti. All rights reserved.</p>
+        <p>Inspired by the rich heritage of Indian Handicrafts Art.</p>
+        <p>Contact us at <a href="mailto:info@dhokraart.com">info@dhokraart.com</a></p>
+    </footer>
+
+</body>
+</html>
