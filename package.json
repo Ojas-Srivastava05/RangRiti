@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Ojas-Srivastava05/RangRiti#readme",
   "dependencies": {
+    "@clerk/clerk-sdk-node": "^4.13.23",
     "body-parser": "^2.2.0",
     "dotenv": "^17.2.0",
     "express": "^5.1.0",
