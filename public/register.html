@@ -582,6 +582,7 @@
         <div class="particle"></div><div class="particle"></div><div class="particle"></div>
         <div class="particle"></div><div class="particle"></div><div class="particle"></div>
         <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
         <div class="particle"></div><div class="particle"></div>
     </div>
 
@@ -605,10 +606,20 @@
                 </div>
                 
                 <div class="form-group">
+                    <label for="user-username">Username</label>
+                    <input type="text" id="user-username" name="username" required>
+                </div>
+
+                <div class="form-group">
                     <label for="user-email">Email Address</label>
                     <input type="email" id="user-email" name="email" required placeholder="e.g., ojas.srivastava@example.com">
                 </div>
                 
+                <div class="form-group">
+                    <label for="user-phone">Phone Number</label>
+                    <input type="tel" id="user-phone" name="phoneNumber">
+                </div>
+
                 <div class="form-group">
                     <label for="user-password">Password</label>
                     <input type="password" id="user-password" name="password" required placeholder="Enter a secure password">
@@ -626,11 +637,23 @@
                     <input type="text" id="artist-name" name="name" required placeholder="e.g., Pandit Ravi Shankar">
                 </div>
                 
+                <!-- ADD THIS USERNAME FIELD -->
+                <div class="form-group">
+                    <label for="artist-username">Username</label>
+                    <input type="text" id="artist-username" name="username" required placeholder="Create a unique username">
+                </div>
+
                 <div class="form-group">
                     <label for="artist-email">Email Address</label>
                     <input type="email" id="artist-email" name="email" required placeholder="e.g., contact@ravishankar.art">
                 </div>
                 
+                <!-- ADD THIS PHONE NUMBER FIELD -->
+                <div class="form-group">
+                    <label for="artist-phone">Phone Number </label>
+                    <input type="tel" id="artist-phone" name="phoneNumber" placeholder="Your contact number">
+                </div>
+
                 <div class="form-group">
                     <label for="artist-password">Password</label>
                     <input type="password" id="artist-password" name="password" required placeholder="Create a strong password">
@@ -642,14 +665,9 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="artist-profile">Profile Image</label>
-                    <div class="file-input-wrapper">
-                        <input type="file" id="artist-profile" name="profile_image" accept="image/*">
-                        <label for="artist-profile" class="file-input-label">
-                            <span class="file-icon">🖼️</span>
-                            <span class="file-text">Upload a Portrait</span>
-                        </label>
-                    </div>
+                    <label for="artist-profile-url">Profile Image URL</label>
+                    <input type="url" id="artist-profile-url" name="profilePictureUrl" placeholder="Link to your profile image (e.g., from Imgur, Cloudinary)">
+                    <small style="display: block; margin-top: 5px; color: #8B4513;">For now, please provide a direct URL to your profile image.</small>
                 </div>
                 
                 <div class="form-group">
@@ -812,30 +830,58 @@
         }
 
         // Handle file input label update
-        const fileInput = document.getElementById('artist-profile');
-        if (fileInput) {
-            fileInput.addEventListener('change', function(e) {
-                const label = this.nextElementSibling; // Get the label
-                const fileText = label.querySelector('.file-text');
-                if (e.target.files.length > 0) {
-                    fileText.textContent = e.target.files[0].name;
-                } else {
-                    fileText.textContent = 'Upload a Portrait';
-                }
-            });
-        }
+        // const fileInput = document.getElementById('artist-profile');
+        // if (fileInput) {
+        //     fileInput.addEventListener('change', function(e) {
+        //         const label = this.nextElementSibling; // Get the label
+        //         const fileText = label.querySelector('.file-text');
+        //         if (e.target.files.length > 0) {
+        //             fileText.textContent = e.target.files[0].name;
+        //         } else {
+        //             fileText.textContent = 'Upload a Portrait';
+        //         }
+        //     });
+        // }
 
         // Handle form submissions
         document.querySelectorAll('form').forEach(form => {
-            form.addEventListener('submit', function(e) {
+            form.addEventListener('submit', async function(e) {
                 e.preventDefault();
-                if (selectedUserType) {
-                    alert(`${selectedUserType.charAt(0).toUpperCase() + selectedUserType.slice(1)} registration submitted successfully!`);
-                } else {
-                    alert('Registration submitted successfully!');
+
+                // Create a FormData object from the submitted form
+                const formData = new FormData(e.target);
+
+                // Convert FormData to a plain JavaScript object
+                const data = Object.fromEntries(formData.entries());
+
+                // **Crucially, add the userType to the data object**
+                data.userType = selectedUserType; // 'user' or 'artist'
+
+                try {
+                    // ADD THIS FETCH LOGIC
+                    const response = await fetch('/api/register', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(data),
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok) {
+                        alert('Registration successful! You will now be redirected to the login page.');
+                        // Redirect to the login page after successful registration
+                        window.location.href = '/login.html';
+                    } else {
+                        // Display the specific error message from the server
+                        alert(`Registration failed: ${result.message}`);
+                    }
+                    // END OF ADDED FETCH LOGIC
+                } catch (error) {
+                    console.error('Error submitting registration form:', error);
+                    alert('An unexpected error occurred. Please try again.');
                 }
-                // Here you would typically send the form data to a server
-                // e.g., using fetch()
             });
         });
 
