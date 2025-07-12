@@ -582,6 +582,7 @@
         <div class="particle"></div><div class="particle"></div><div class="particle"></div>
         <div class="particle"></div><div class="particle"></div><div class="particle"></div>
         <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
         <div class="particle"></div><div class="particle"></div>
     </div>
 
@@ -605,10 +606,20 @@
                 </div>
                 
                 <div class="form-group">
+                    <label for="user-username">Username</label>
+                    <input type="text" id="user-username" name="username" required>
+                </div>
+
+                <div class="form-group">
                     <label for="user-email">Email Address</label>
                     <input type="email" id="user-email" name="email" required placeholder="e.g., ojas.srivastava@example.com">
                 </div>
                 
+                <div class="form-group">
+                    <label for="user-phone">Phone Number</label>
+                    <input type="tel" id="user-phone" name="phoneNumber">
+                </div>
+
                 <div class="form-group">
                     <label for="user-password">Password</label>
                     <input type="password" id="user-password" name="password" required placeholder="Enter a secure password">
@@ -626,11 +637,23 @@
                     <input type="text" id="artist-name" name="name" required placeholder="e.g., Pandit Ravi Shankar">
                 </div>
                 
+                <!-- ADD THIS USERNAME FIELD -->
+                <div class="form-group">
+                    <label for="artist-username">Username</label>
+                    <input type="text" id="artist-username" name="username" required placeholder="Create a unique username">
+                </div>
+
                 <div class="form-group">
                     <label for="artist-email">Email Address</label>
                     <input type="email" id="artist-email" name="email" required placeholder="e.g., contact@ravishankar.art">
                 </div>
                 
+                <!-- ADD THIS PHONE NUMBER FIELD -->
+                <div class="form-group">
+                    <label for="artist-phone">Phone Number </label>
+                    <input type="tel" id="artist-phone" name="phoneNumber" placeholder="Your contact number">
+                </div>
+
                 <div class="form-group">
                     <label for="artist-password">Password</label>
                     <input type="password" id="artist-password" name="password" required placeholder="Create a strong password">
@@ -835,6 +858,7 @@
                 data.userType = selectedUserType; // 'user' or 'artist'
 
                 try {
+                    // ADD THIS FETCH LOGIC
                     const response = await fetch('/api/register', {
                         method: 'POST',
                         headers: {
@@ -846,16 +870,17 @@
                     const result = await response.json();
 
                     if (response.ok) {
-                        alert('Registration successful! You can now log in.');
-                        // Optionally, redirect to the login page
-                        // window.location.href = '/login.html';
+                        alert('Registration successful! You will now be redirected to the login page.');
+                        // Redirect to the login page after successful registration
+                        window.location.href = '/login.html';
                     } else {
-                        // Display the error message from the server
+                        // Display the specific error message from the server
                         alert(`Registration failed: ${result.message}`);
                     }
+                    // END OF ADDED FETCH LOGIC
                 } catch (error) {
-                    console.error('Error submitting form:', error);
-                    alert('An error occurred. Please try again.');
+                    console.error('Error submitting registration form:', error);
+                    alert('An unexpected error occurred. Please try again.');
                 }
             });
         });

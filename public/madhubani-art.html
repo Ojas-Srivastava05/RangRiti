@@ -54,7 +54,7 @@
                     var(--warm-beige) 0%, 
                     var(--sandalwood) 25%, 
                     var(--cream) 50%, 
-                    var(--warm-beige) 75%, 
+                    var (--warm-beige) 75%, 
                     var(--sandalwood) 100%);
             }
             25% { 
@@ -964,7 +964,7 @@
         }
         document.querySelectorAll('.story-card').forEach(self=>{
             self.addEventListener('click',()=>{
-                window.location.href = '/public/madhubani-story.html'
+                window.location.href = '/madhubani-story.html'
             })
         })
 

@@ -379,8 +379,6 @@
         <div class="particle"></div><div class="particle"></div><div class="particle"></div>
         <div class="particle"></div><div class="particle"></div><div class="particle"></div>
         <div class="particle"></div><div class="particle"></div><div class="particle"></div>
-        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
-        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
         <div class="particle"></div>
     </div>
 
@@ -391,20 +389,18 @@
         </div>
 
         <div class="form-container">
+            <!-- Restoring your original, custom-styled form -->
             <form id="login-form">
                 <div class="form-group">
                     <label for="login-email">Email Address</label>
-                    <input type="email" id="login-email" name="email" required placeholder="Enter your email address">
+                    <input type="email" id="login-email" name="email" required placeholder="e.g., ojas.srivastava@example.com">
                 </div>
-                
                 <div class="form-group">
                     <label for="login-password">Password</label>
                     <input type="password" id="login-password" name="password" required placeholder="Enter your password">
                 </div>
-                
-                <button type="submit" class="submit-btn">Login</button>
+                <button type="submit" class="submit-btn">Log In</button>
             </form>
-
             <div class="additional-links">
                 <a href="#">Forgot Password?</a>
                 <span>|</span>
@@ -414,12 +410,55 @@
     </div>
 
     <script>
-        document.getElementById('login-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Login attempt successful!');
-            // Here you would typically handle the login logic,
-            // like sending data to a server.
+        // IMPORTANT: This key MUST be a string (enclosed in quotes).
+        // Please replace this with your actual Clerk Publishable Key.
+        const CLERK_PUBLISHABLE_KEY = "pk_test_dW5pZmllZC1lZnQtMjAuY2xlcmsuYWNjb3VudHMuZGV2JA";
+
+        const script = document.createElement('script');
+        script.setAttribute('data-clerk-publishable-key', CLERK_PUBLISHABLE_KEY);
+        script.async = true;
+        script.src = `https://cdn.jsdelivr.net/npm/@clerk/clerk-js@latest/dist/clerk.browser.js`;
+        
+        script.addEventListener('load', async function () {
+            await window.Clerk.load();
+
+            const loginForm = document.getElementById('login-form');
+            loginForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                const email = document.getElementById('login-email').value;
+                const password = document.getElementById('login-password').value;
+
+                try {
+                    // Attempt to sign in using the credentials from your form
+                    const result = await window.Clerk.signIn.create({
+                        identifier: email,
+                        password: password,
+                    });
+
+                    // If the sign-in is fully complete, redirect to the main page
+                    if (result.status === 'complete') {
+                        await window.Clerk.setActive({ session: result.createdSessionId });
+                        window.location.href = '/index.html';
+                    } else {
+                        // This handles cases like MFA. For now, we'll log it.
+                        // A more advanced implementation would show an MFA input screen.
+                        console.log('Sign-in requires additional steps:', result.status);
+                        alert('Sign-in requires another step. Please check your device.');
+                    }
+
+                } catch (error) {
+                    // This catches errors like incorrect password or user not found
+                    console.error('Error during login:', JSON.stringify(error, null, 2));
+                    let errorMessage = "Login failed. Please check your credentials and try again.";
+                    if (error.errors && error.errors.length > 0) {
+                        errorMessage = error.errors[0].longMessage || errorMessage;
+                    }
+                    alert(errorMessage);
+                }
+            });
         });
+        document.body.appendChild(script);
     </script>
 </body>
 </html>

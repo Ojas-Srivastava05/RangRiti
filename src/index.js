@@ -84,21 +84,33 @@ const UserProfile = mongoose.model('UserProfile', userProfileSchema);
         // --- API Endpoint for User Registration ---
         app.post('/api/register', async (req, res) => {
             const {
-                email, password, name, userType,
+                email, password, name, username, phoneNumber, // Added username and phoneNumber
+                userType,
                 artistName, artform, city, portfolioUrl, bio, contactNumber,
                 instagram, facebook, x,
                 profilePictureUrl, artSampleUrls
             } = req.body;
 
-            if (!email || !password || !name) {
-                return res.status(400).json({ success: false, message: 'Email, password, and full name are required.' });
+            // Updated validation to include username
+            if (!email || !password || !name || !username) {
+                return res.status(400).json({ success: false, message: 'Email, password, full name, and username are required.' });
             }
 
             try {
-                const clerkUser = await clerk.users.createUser({
+                // Prepare the data payload for Clerk
+                const clerkPayload = {
                     emailAddress: [email],
                     password: password,
-                });
+                    username: username,
+                };
+
+                // Conditionally add phone number if it was provided
+                if (phoneNumber) {
+                    clerkPayload.phoneNumber = [phoneNumber];
+                }
+
+                // Create the user in Clerk with the complete payload
+                const clerkUser = await clerk.users.createUser(clerkPayload);
 
                 console.log('User registered successfully with Clerk. User ID:', clerkUser.id);
 
@@ -106,6 +118,8 @@ const UserProfile = mongoose.model('UserProfile', userProfileSchema);
                     clerkUserId: clerkUser.id,
                     email: email,
                     fullName: name,
+                    // You might want to save the username to your DB as well
+                    // username: username, 
                     firstName: '',
                     lastName: '',
                     userType: userType || 'user',
