@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artistry Collection - Timeless Craftsmanship</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:wght@400;500;700&family=Lora:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --sandalwood: #e7d0c4;
+            --sandalwood-dark: #d8c1b0;
+            --sandalwood-light: #f5e9e1;
+            --gold: #d4af37;
+            --dark-brown: #5d4037;
+            --light-brown: #8d6e63;
+            --accent: #a1887f;
+            --shadow: rgba(93, 64, 55, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            top: 10vh;
+            font-family: 'Lora', serif;
+            background-color: var(--sandalwood-light);
+            color: var(--dark-brown);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(215, 190, 175, 0.1) 0px, transparent 1px),
+                radial-gradient(circle at 90% 80%, rgba(215, 190, 175, 0.1) 0px, transparent 1px);
+            background-size: 200px 200px;
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M20,20 Q40,5 60,20 T100,20 M20,50 Q40,35 60,50 T100,50 M20,80 Q40,65 60,80 T100,80" fill="none" stroke="%23d8c1b0" stroke-width="0.3" stroke-opacity="0.15"/></svg>');
+            opacity: 0.2;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Floating particles */
+        .particle {
+            position: fixed;
+            background: var(--gold);
+            border-radius: 50%;
+            opacity: 0.1;
+            z-index: -1;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-20vh) translateX(10vw); }
+            50% { transform: translateY(10vh) translateX(20vw); }
+            75% { transform: translateY(-15vh) translateX(-10vw); }
+            100% { transform: translateY(0) translateX(0); }
+        }
+
+        /* Header styles */
+        header {
+            background: var(--sandalwood);
+            padding: 2rem 5%;
+            border-bottom: 1px solid var(--sandalwood-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+            opacity: 0.3;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-title {
+            font-family: 'Cinzel', serif;
+            font-size: 3.5rem;
+            color: var(--dark-brown);
+            text-align: center;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            text-align: center;
+            color: var(--light-brown);
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .breadcrumbs {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            color: var(--light-brown);
+        }
+
+        .breadcrumbs a {
+            color: var(--light-brown);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .breadcrumbs a:hover {
+            color: var(--dark-brown);
+        }
+
+        /* Main layout */
+        .container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2%;
+            display: flex;
+            gap: 2rem;
+        }
+
+        /* Filter sidebar */
+        .filter-sidebar {
+            width: 280px;
+            background: rgba(231, 208, 196, 0.7);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px var(--shadow);
+            backdrop-filter: blur(5px);
+            height: fit-content;
+            border: 1px solid var(--sandalwood-dark);
+        }
+
+        .filter-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px dashed var(--light-brown);
+            color: var(--dark-brown);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .filter-section {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(141, 110, 99, 0.2);
+            padding-bottom: 1.5rem;
+        }
+
+        .filter-section:last-child {
+            border-bottom: none;
+        }
+
+        .filter-section h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--dark-brown);
+            display: flex;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .filter-section h3 i {
+            transition: transform 0.3s;
+        }
+
+        .filter-options {
+            display: grid;
+            gap: 0.6rem;
+        }
+
+        .filter-option {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .filter-option input {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--gold);
+            cursor: pointer;
+        }
+
+        .filter-option label {
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .filter-option:hover label {
+            color: var(--dark-brown);
+        }
+
+        .price-slider {
+            width: 100%;
+            height: 5px;
+            background: var(--sandalwood-dark);
+            border-radius: 5px;
+            margin: 1rem 0;
+            position: relative;
+        }
+
+        .price-slider .track {
+            position: absolute;
+            height: 100%;
+            background: var(--gold);
+            border-radius: 5px;
+        }
+
+        .price-range {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--light-brown);
+        }
+
+        .stars {
+            display: flex;
+            gap: 0.2rem;
+        }
+
+        .stars i {
+            color: var(--gold);
+            font-size: 0.9rem;
+        }
+
+        /* Main catalogue area */
+        .catalogue-main {
+            flex: 1;
+        }
+
+        .sorting-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(231, 208, 196, 0.7);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px var(--shadow);
+            border: 1px solid var(--sandalwood-dark);
+        }
+
+        .sorting-options {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .sorting-options label {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+        }
+
+        .sort-select {
+            background: var(--sandalwood-light);
+            border: 1px solid var(--sandalwood-dark);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-family: 'Lora', serif;
+            color: var(--dark-brown);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .sort-select:hover {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+        }
+
+        .results-count {
+            font-size: 0.95rem;
+            color: var(--light-brown);
+        }
+
+        /* Product grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px var(--shadow);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            border: 1px solid var(--sandalwood-dark);
+            transform: translateY(0);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(93, 64, 55, 0.2);
+            border: 1px solid var(--gold);
+            z-index: 10;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--gold);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 2;
+        }
+
+        .product-image {
+            height: 240px;
+            overflow: hidden;
+            position: relative;
+            background: var(--sandalwood-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-image::before {
+            content: '';
+            position: absolute;
+            inset: 10px;
+            border: 1px solid rgba(161, 136, 127, 0.3);
+            pointer-events: none;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--dark-brown);
+        }
+
+        .product-artist {
+            font-size: 0.95rem;
+            color: var(--light-brown);
+            margin-bottom: 0.75rem;
+            font-style: italic;
+        }
+
+        .product-price {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: var(--dark-brown);
+            margin-bottom: 1rem;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .rating-stars {
+            color: var(--gold);
+        }
+
+        .rating-value {
+            font-size: 0.9rem;
+            color: var(--light-brown);
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .action-button {
+            flex: 1;
+            padding: 0.7rem;
+            border: none;
+            border-radius: 4px;
+            font-family: 'Lora', serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .view-details {
+            background: var(--sandalwood);
+            color: var(--dark-brown);
+            border: 1px solid var(--sandalwood-dark);
+        }
+
+        .add-to-cart {
+            background: var(--gold);
+            color: white;
+            border: 1px solid var(--gold);
+        }
+
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(93, 64, 55, 0.2);
+        }
+
+        .view-details:hover {
+            background: var(--sandalwood-dark);
+        }
+
+        .add-to-cart:hover {
+            background: #c19d2b;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 3rem;
+        }
+
+        .page-button {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--sandalwood);
+            color: var(--dark-brown);
+            border: 1px solid var(--sandalwood-dark);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 3px 10px var(--shadow);
+        }
+
+        .page-button:hover, .page-button.active {
+            background: var(--gold);
+            color: white;
+            border-color: var(--gold);
+            transform: translateY(-3px);
+        }
+
+        /* Floating cart */
+        .floating-cart {
+            position: fixed;
+            top: 9vh;
+            right: 30px;
+            background: var(--sandalwood);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px var(--shadow);
+            border: 1px solid var(--sandalwood-dark);
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+
+        .floating-cart:hover {
+            background: var(--sandalwood-dark);
+            transform: translateY(-3px);
+        }
+
+        .cart-icon {
+            font-size: 1.5rem;
+            color: var(--dark-brown);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(245, 230, 211, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--rich-brown);
+            text-decoration: none;
+            position: relative;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--terracotta);
+            transition: width 0.3s ease;
+        }
+
+        .logo:hover::after {
+            width: 100%;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--dark-brown);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--terracotta);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--rich-brown);
+        }
+
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--gold);
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* Responsive design */
+
+
+            
+        
+        @media (max-width: 992px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .filter-sidebar {
+                width: 100%;
+            }
+            
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 576px) {
+            .page-title {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .sorting-bar {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating particles -->
+    <div class="particle" style="width: 8px; height: 8px; top: 10%; left: 15%;"></div>
+    <div class="particle" style="width: 5px; height: 5px; top: 25%; left: 70%;"></div>
+    <div class="particle" style="width: 6px; height: 6px; top: 65%; left: 40%;"></div>
+    <div class="particle" style="width: 7px; height: 7px; top: 45%; left: 85%;"></div>
+    <div class="particle" style="width: 4px; height: 4px; top: 75%; left: 20%;"></div>
+
+    <!-- Floating cart -->
+    <div class="floating-cart">
+        <i class="fas fa-shopping-bag cart-icon"></i>
+        <div class="cart-count">3</div>
+    </div>
+
+    <!-- Header -->
+
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">Rangriti</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#categories">Categories</a></li>
+                <li><a href="#sell">Sell with Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main content -->
+    <div class="container">
+        <!-- Filter sidebar -->
+        <aside class="filter-sidebar">
+            <h2 class="filter-title">Filters <i class="fas fa-sliders-h"></i></h2>
+            
+            <div class="filter-section">
+                <h3>Type <i class="fas fa-chevron-down"></i></h3>
+                <div class="filter-options">
+                    <div class="filter-option">
+                        <input type="checkbox" id="paintings" checked>
+                        <label for="paintings">Paintings</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="pottery" checked>
+                        <label for="pottery">Pottery</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="sculpture">
+                        <label for="sculpture">Sculpture</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="handloom">
+                        <label for="handloom">Handloom</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="woodcraft" checked>
+                        <label for="woodcraft">Woodcraft</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="filter-section">
+                <h3>Price Range <i class="fas fa-chevron-down"></i></h3>
+                <div class="price-slider">
+                    <div class="track" style="width: 70%; left: 10%;"></div>
+                </div>
+                <div class="price-range">
+                    <span>$50</span>
+                    <span>$500</span>
+                </div>
+            </div>
+            
+            <div class="filter-section">
+                <h3>Rating <i class="fas fa-chevron-down"></i></h3>
+                <div class="filter-options">
+                    <div class="filter-option">
+                        <input type="checkbox" id="rating5">
+                        <label for="rating5">
+                            <div class="stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="rating4" checked>
+                        <label for="rating4">
+                            <div class="stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i> & above
+                            </div>
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="rating3">
+                        <label for="rating3">
+                            <div class="stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> & above
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="filter-section">
+                <h3>Artist <i class="fas fa-chevron-down"></i></h3>
+                <div class="filter-options">
+                    <div class="filter-option">
+                        <input type="checkbox" id="artist1" checked>
+                        <label for="artist1">Ananya Sharma</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="artist2">
+                        <label for="artist2">Rajiv Mehta</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="artist3" checked>
+                        <label for="artist3">Priya Desai</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="artist4">
+                        <label for="artist4">Carlos Mendez</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="filter-section">
+                <h3>Availability <i class="fas fa-chevron-down"></i></h3>
+                <div class="filter-options">
+                    <div class="filter-option">
+                        <input type="checkbox" id="instock" checked>
+                        <label for="instock">In Stock</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="preorder">
+                        <label for="preorder">Pre-order</label>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Catalogue main area -->
+        <main class="catalogue-main">
+            <div class="sorting-bar">
+                <div class="sorting-options">
+                    <label for="sort">Sort by:</label>
+                    <select id="sort" class="sort-select">
+                        <option>Newest</option>
+                        <option>Price: Low to High</option>
+                        <option selected>Price: High to Low</option>
+                        <option>Rating</option>
+                    </select>
+                </div>
+                <div class="results-count">Showing 12 of 48 products</div>
+            </div>
+            
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-badge">New</div>
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1579783901586-d88db74b4fe4?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=600&w=400" alt="Handmade Pottery">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Ceramic Moon Vase</h3>
+                        <div class="product-artist">by Ananya Sharma</div>
+                        <div class="product-price">$189</div>
+                        <div class="product-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <div class="rating-value">4.7 (24)</div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="action-button view-details"><i class="fas fa-eye"></i> Details</button>
+                            <button class="action-button add-to-cart"><i class="fas fa-shopping-bag"></i> Add</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-badge">Featured</div>
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=600&w=400" alt="Woodcraft">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Teakwood Sculpture</h3>
+                        <div class="product-artist">by Rajiv Mehta</div>
+                        <div class="product-price">$275</div>
+                        <div class="product-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <div class="rating-value">5.0 (18)</div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="action-button view-details"><i class="fas fa-eye"></i> Details</button>
+                            <button class="action-button add-to-cart"><i class="fas fa-shopping-bag"></i> Add</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1580745294520-9be551a0f5b9?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=600&w=400" alt="Painting">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Sunset Landscape</h3>
+                        <div class="product-artist">by Carlos Mendez</div>
+                        <div class="product-price">$320</div>
+                        <div class="product-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                            </div>
+                            <div class="rating-value">4.2 (31)</div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="action-button view-details"><i class="fas fa-eye"></i> Details</button>
+                            <button class="action-button add-to-cart"><i class="fas fa-shopping-bag"></i> Add</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-badge">New</div>
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1605725657597-3b5e9b0b0b0b?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=600&w=400" alt="Handloom">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Silk Embroidery</h3>
+                        <div class="product-artist">by Priya Desai</div>
+                        <div class="product-price">$145</div>
+                        <div class="product-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <div class="rating-value">4.6 (27)</div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="action-button view-details"><i class="fas fa-eye"></i> Details</button>
+                            <button class="action-button add-to-cart"><i class="fas fa-shopping-bag"></i> Add</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1580745294697-ebd5f3a9a3a5?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=600&w=400" alt="Sculpture">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Bronze Dancing Figure</h3>
+                        <div class="product-artist">by Mei Lin</div>
+                        <div class="product-price">$420</div>
+                        <div class="product-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <div class="rating-value">5.0 (12)</div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="action-button view-details"><i class="fas fa-eye"></i> Details</button>
+                            <button class="action-button add-to-cart"><i class="fas fa-shopping-bag"></i> Add</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1579762592090-3d1c0b0b0b0b?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=600&w=400" alt="Woodcraft">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Walnut Serving Board</h3>
+                        <div class="product-artist">by James Wilson</div>
+                        <div class="product-price">$85</div>
+                        <div class="product-rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                            </div>
+                            <div class="rating-value">4.0 (19)</div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="action-button view-details"><i class="fas fa-eye"></i> Details</button>
+                            <button class="action-button add-to-cart"><i class="fas fa-shopping-bag"></i> Add</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="pagination">
+                <div class="page-button"><i class="fas fa-chevron-left"></i></div>
+                <div class="page-button active">1</div>
+                <div class="page-button">2</div>
+                <div class="page-button">3</div>
+                <div class="page-button"><i class="fas fa-ellipsis-h"></i></div>
+                <div class="page-button">5</div>
+                <div class="page-button"><i class="fas fa-chevron-right"></i></div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Create floating particles
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.body;
+            const particleCount = 15;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size between 3px and 8px
+                const size = Math.floor(Math.random() * 6) + 3;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.left = `${Math.random() * 100}%`;
+                
+                // Random animation delay and duration
+                const delay = Math.random() * 15;
+                const duration = 15 + Math.random() * 15;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
+                
+                container.appendChild(particle);
+            }
+            
+            // Accordion functionality for filters
+            const filterHeaders = document.querySelectorAll('.filter-section h3');
+            filterHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const icon = header.querySelector('i');
+                    icon.classList.toggle('fa-chevron-down');
+                    icon.classList.toggle('fa-chevron-up');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
