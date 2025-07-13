@@ -4,378 +4,214 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - RangRiti</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
-    /*
-    =================================================================
-    RangRiti Login Page Styling
-    Version: 1.0
-    Author: GitHub Copilot
-    Date: 9 July 2025
-    Description: A comprehensive, dynamic, and aesthetically rich
-                 stylesheet for a premium login experience,
-                 matching the registration page theme.
-    =================================================================
-    */
+        :root {
+            --color-background: #fdf8f0;
+            --color-primary-text: #4a2c0f;
+            --color-secondary-text: #a0522d;
+            --color-container-bg: rgba(255, 250, 240, 0.85);
+            --color-border: #d2b48c;
+            --color-accent-gold: #b8860b;
+            --color-accent-gold-dark: #8c640a;
+            --color-gold-gradient: linear-gradient(145deg, #d4af37, #b8860b);
+            --color-shadow: rgba(139, 69, 19, 0.15);
+            --font-primary: 'Lora', serif;
+            --font-display: 'Playfair Display', serif;
+            --transition-speed: 0.4s;
+            --easing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
 
-    /* --------------------------------------------------------------
-       1. Core Setup & Theming
-       -------------------------------------------------------------- */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    :root {
-        --color-sandalwood-beige: #F5DEB3;
-        --color-sandalwood-light: #FFF8E7;
-        --color-sandalwood-dark: #D2B48C;
-        --color-earth-brown: #8B4513;
-        --color-dark-brown: #5D4037;
-        --color-gold-accent: #B8860B;
-        --color-gold-gradient-start: #D4AF37;
-        --color-gold-gradient-end: #B8860B;
-        --color-text-primary: #4a2c0f;
-        --color-text-secondary: #a0522d;
-        --color-shadow-primary: rgba(0, 0, 0, 0.15);
-        --color-shadow-secondary: rgba(139, 69, 19, 0.2);
-        --color-backdrop: rgba(253, 245, 230, 0.8);
-        --font-primary: 'Lora', serif;
-        --font-display: 'Playfair Display', serif;
-        --transition-speed-fast: 0.2s;
-        --transition-speed-medium: 0.4s;
-        --transition-speed-slow: 0.6s;
-        --easing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
-    }
-
-    @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@700&display=swap');
-
-    *, *::before, *::after {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    /* --------------------------------------------------------------
-       2. Body & Dynamic Background
-       -------------------------------------------------------------- */
-
-    html {
-        scroll-behavior: smooth;
-    }
-
-    body {
-        font-family: var(--font-primary);
-        color: var(--color-text-primary);
-        background-color: var(--color-sandalwood-beige);
-        min-height: 100vh;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 3rem 1rem;
-        position: relative;
-        overflow-x: hidden;
-    }
-
-    body::before {
-        content: '';
-        position: fixed;
-        top: 0; left: 0; width: 100%; height: 100%;
-        background: linear-gradient(45deg, var(--color-sandalwood-beige), #d8b88e, #b98a56, #8b5e34);
-        background-size: 400% 400%;
-        animation: gradientBG 20s ease infinite;
-        z-index: -3;
-    }
-
-    @keyframes gradientBG {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
-
-    body::after {
-        content: '';
-        position: fixed;
-        top: 0; left: 0; width: 100%; height: 100%;
-        background-image: url('https://www.transparenttextures.com/patterns/arabesque.png');
-        opacity: 0.04;
-        z-index: -2;
-        pointer-events: none;
-    }
-
-    .particle-container {
-        position: fixed;
-        top: 0; left: 0; width: 100%; height: 100%;
-        overflow: hidden;
-        z-index: -1;
-        pointer-events: none;
-    }
-
-    .particle {
-        position: absolute;
-        background-color: var(--color-gold-accent);
-        border-radius: 50%;
-        opacity: 0;
-        animation: float 25s infinite linear;
-    }
-
-    @keyframes float {
-        0% { transform: translateY(100vh) scale(0); opacity: 0.5; }
-        100% { transform: translateY(-10vh) scale(1); opacity: 0; }
-    }
-
-    .particle:nth-child(1) { left: 5%; animation-duration: 22s; animation-delay: -2s; width: 8px; height: 8px; }
-    .particle:nth-child(2) { left: 15%; animation-duration: 18s; animation-delay: -15s; width: 5px; height: 5px; }
-    .particle:nth-child(3) { left: 22%; animation-duration: 28s; animation-delay: -7s; width: 10px; height: 10px; }
-    .particle:nth-child(4) { left: 33%; animation-duration: 15s; animation-delay: -22s; width: 6px; height: 6px; }
-    .particle:nth-child(5) { left: 45%; animation-duration: 25s; animation-delay: -1s; width: 8px; height: 8px; }
-    .particle:nth-child(6) { left: 51%; animation-duration: 19s; animation-delay: -18s; width: 4px; height: 4px; }
-    .particle:nth-child(7) { left: 63%; animation-duration: 26s; animation-delay: -4s; width: 9px; height: 9px; }
-    .particle:nth-child(8) { left: 72%; animation-duration: 17s; animation-delay: -25s; width: 5px; height: 5px; }
-    .particle:nth-child(9) { left: 85%; animation-duration: 23s; animation-delay: -11s; width: 7px; height: 7px; }
-    .particle:nth-child(10) { left: 95%; animation-duration: 20s; animation-delay: -9s; width: 6px; height: 6px; }
-    .particle:nth-child(11) { left: 8%; animation-duration: 16s; animation-delay: -20s; width: 4px; height: 4px; }
-    .particle:nth-child(12) { left: 28%; animation-duration: 29s; animation-delay: -13s; width: 11px; height: 11px; }
-    .particle:nth-child(13) { left: 38%; animation-duration: 21s; animation-delay: -6s; width: 7px; height: 7px; }
-    .particle:nth-child(14) { left: 58%; animation-duration: 24s; animation-delay: -16s; width: 9px; height: 9px; }
-    .particle:nth-child(15) { left: 68%; animation-duration: 14s; animation-delay: -3s; width: 5px; height: 5px; }
-    .particle:nth-child(16) { left: 78%; animation-duration: 30s; animation-delay: -19s; width: 12px; height: 12px; }
-    .particle:nth-child(17) { left: 88%; animation-duration: 22s; animation-delay: -8s; width: 6px; height: 6px; }
-    .particle:nth-child(18) { left: 3%; animation-duration: 18s; animation-delay: -14s; width: 5px; height: 5px; }
-    .particle:nth-child(19) { left: 92%; animation-duration: 27s; animation-delay: -23s; width: 10px; height: 10px; }
-    .particle:nth-child(20) { left: 48%; animation-duration: 16s; animation-delay: -5s; width: 6px; height: 6px; }
-    .particle:nth-child(21) { left: 18%; animation-duration: 25s; animation-delay: -12s; width: 8px; height: 8px; }
-    .particle:nth-child(22) { left: 55%; animation-duration: 20s; animation-delay: -21s; width: 7px; height: 7px; }
-    .particle:nth-child(23) { left: 82%; animation-duration: 28s; animation-delay: -10s; width: 9px; height: 9px; }
-    .particle:nth-child(24) { left: 42%; animation-duration: 19s; animation-delay: -17s; width: 5px; height: 5px; }
-    .particle:nth-child(25) { left: 25%; animation-duration: 23s; animation-delay: -24s; width: 10px; height: 10px; }
-
-    /* --------------------------------------------------------------
-       3. Main Container & Layout
-       -------------------------------------------------------------- */
-
-    .container {
-        background: var(--color-backdrop);
-        backdrop-filter: blur(15px) saturate(150%);
-        -webkit-backdrop-filter: blur(15px) saturate(150%);
-        padding: 3rem 4rem;
-        width: 100%;
-        max-width: 550px; /* Adjusted for simpler form */
-        position: relative;
-        z-index: 1;
-        border: 12px solid;
-        border-image-slice: 1;
-        border-image-source: linear-gradient(to bottom right, var(--color-gold-gradient-start), var(--color-gold-gradient-end));
-        box-shadow: 0 30px 70px var(--color-shadow-primary),
-                    inset 0 0 20px var(--color-shadow-secondary);
-        animation: container-fade-in 1s var(--easing-function) forwards;
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    @keyframes container-fade-in {
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* --------------------------------------------------------------
-       4. Header & Typography
-       -------------------------------------------------------------- */
-
-    .header {
-        text-align: center;
-        margin-bottom: 3rem;
-        position: relative;
-    }
-
-    .header h1 {
-        font-family: var(--font-display);
-        color: var(--color-earth-brown);
-        font-size: 3.5em;
-        margin-bottom: 0.5rem;
-        text-shadow: 2px 2px 5px var(--color-shadow-primary);
-        letter-spacing: 1px;
-    }
-
-    .header p {
-        color: var(--color-text-secondary);
-        font-size: 1.2em;
-        font-style: italic;
-        font-family: var(--font-primary);
-    }
-
-    .header::after {
-        content: '';
-        display: block;
-        width: 100px;
-        height: 2px;
-        background: linear-gradient(to right, transparent, var(--color-gold-accent), transparent);
-        margin: 1.5rem auto 0;
-    }
-
-    /* --------------------------------------------------------------
-       5. Form Styling
-       -------------------------------------------------------------- */
-
-    .form-container {
-        animation: form-fade-in var(--transition-speed-slow) var(--easing-function) forwards;
-    }
-
-    @keyframes form-fade-in {
-        from { opacity: 0; transform: translateY(25px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    .form-group {
-        margin-bottom: 2rem;
-        position: relative;
-    }
-
-    .form-group label {
-        display: block;
-        color: var(--color-earth-brown);
-        font-weight: 600;
-        margin-bottom: 0.75rem;
-        font-size: 1.05em;
-        transition: all var(--transition-speed-fast) ease;
-    }
-
-    .form-group input {
-        width: 100%;
-        padding: 14px 18px;
-        border: 1px solid var(--color-sandalwood-dark);
-        border-radius: 8px;
-        font-size: 1rem;
-        background: var(--color-sandalwood-light);
-        color: var(--color-dark-brown);
-        transition: all var(--transition-speed-medium) var(--easing-function);
-        font-family: var(--font-primary);
-        box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);
-    }
-
-    .form-group input::placeholder {
-        color: #a98f71;
-        font-style: italic;
-    }
-
-    .form-group input:focus {
-        outline: none;
-        border-color: var(--color-gold-accent);
-        background: #fff;
-        box-shadow: 0 0 0 4px rgba(184, 134, 11, 0.2),
-                    inset 0 2px 4px rgba(0,0,0,0.06);
-        transform: scale(1.01);
-    }
-
-    /* --------------------------------------------------------------
-       6. Submit Button
-       -------------------------------------------------------------- */
-
-    .submit-btn {
-        width: 100%;
-        padding: 1.1rem;
-        background: linear-gradient(145deg, var(--color-earth-brown), #a0522d);
-        color: var(--color-sandalwood-light);
-        border: none;
-        border-radius: 10px;
-        font-size: 1.25em;
-        font-weight: bold;
-        font-family: var(--font-primary);
-        cursor: pointer;
-        transition: all var(--transition-speed-medium) var(--easing-function);
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        box-shadow: 0 5px 20px var(--color-shadow-secondary);
-        margin-top: 1rem;
-    }
-
-    .submit-btn:hover {
-        background: linear-gradient(145deg, #a0522d, var(--color-earth-brown));
-        transform: translateY(-4px);
-        box-shadow: 0 10px 25px rgba(139, 69, 19, 0.4);
-    }
-
-    .submit-btn:active {
-        transform: translateY(-1px);
-        box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
-    }
-
-    /* --------------------------------------------------------------
-       7. Additional Links (Forgot Password, etc.)
-       -------------------------------------------------------------- */
-    
-    .additional-links {
-        text-align: center;
-        margin-top: 2.5rem;
-        font-size: 0.95em;
-    }
-
-    .additional-links a {
-        color: var(--color-earth-brown);
-        text-decoration: none;
-        transition: color var(--transition-speed-fast) ease;
-        font-weight: 600;
-    }
-
-    .additional-links a:hover {
-        color: var(--color-gold-accent);
-        text-decoration: underline;
-    }
-
-    .additional-links span {
-        color: var(--color-sandalwood-dark);
-        margin: 0 0.75rem;
-        user-select: none;
-    }
-
-    /* --------------------------------------------------------------
-       8. Responsive Design
-       -------------------------------------------------------------- */
-
-    @media (max-width: 768px) {
         body {
-            padding: 2rem 1rem;
+            font-family: var(--font-primary);
+            color: var(--color-primary-text);
+            background-color: var(--color-background);
+            background-image: url('https://www.transparenttextures.com/patterns/arabesque.png');
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
         }
 
+        .particle-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background-color: var(--color-accent-gold);
+            border-radius: 50%;
+            opacity: 0;
+            animation: float 25s infinite linear;
+            bottom: 0;
+        }
+
+        @keyframes float {
+            from {
+                transform: translateY(0) scale(1);
+                opacity: 0.7;
+            }
+            to {
+                transform: translateY(-105vh) scale(0);
+                opacity: 0;
+            }
+        }
+
+        .particle:nth-child(1) { left: 5%; animation-duration: 22s; animation-delay: -2s; width: 8px; height: 8px; }
+        .particle:nth-child(2) { left: 15%; animation-duration: 18s; animation-delay: -15s; width: 5px; height: 5px; }
+        .particle:nth-child(3) { left: 22%; animation-duration: 28s; animation-delay: -7s; width: 10px; height: 10px; }
+        .particle:nth-child(4) { left: 33%; animation-duration: 15s; animation-delay: -22s; width: 6px; height: 6px; }
+        .particle:nth-child(5) { left: 45%; animation-duration: 25s; animation-delay: -1s; width: 8px; height: 8px; }
+        .particle:nth-child(6) { left: 51%; animation-duration: 19s; animation-delay: -18s; width: 4px; height: 4px; }
+        .particle:nth-child(7) { left: 63%; animation-duration: 26s; animation-delay: -4s; width: 9px; height: 9px; }
+        .particle:nth-child(8) { left: 72%; animation-duration: 17s; animation-delay: -25s; width: 5px; height: 5px; }
+        .particle:nth-child(9) { left: 85%; animation-duration: 23s; animation-delay: -11s; width: 7px; height: 7px; }
+        .particle:nth-child(10) { left: 95%; animation-duration: 20s; animation-delay: -9s; width: 6px; height: 6px; }
+
         .container {
-            padding: 2rem 1.5rem;
-            border-width: 8px;
-            margin-top: 2rem;
-            max-width: 450px;
+            width: 100%;
+            max-width: 500px;
+            background: var(--color-container-bg);
+            backdrop-filter: blur(12px) saturate(120%);
+            border: 1px solid rgba(210, 180, 140, 0.5);
+            border-radius: 12px;
+            padding: 2.5rem 3rem;
+            box-shadow: 0 15px 40px var(--color-shadow);
+            animation: fadeIn 1s var(--easing-function) forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2.5rem;
         }
 
         .header h1 {
-            font-size: 2.8em;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .container {
-            padding: 1.5rem 1rem;
-            max-width: 100%;
-        }
-
-        .header h1 {
-            font-size: 2.2em;
+            font-family: var(--font-display);
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
         }
 
         .header p {
-            font-size: 1em;
+            color: var(--color-secondary-text);
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+
+        .form-group {
+            margin-bottom: 1.75rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: var(--font-primary);
+            background-color: #fff;
+            transition: all var(--transition-speed) var(--easing-function);
+            color: var(--color-primary-text);
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--color-accent-gold);
+            box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.25);
         }
 
         .submit-btn {
-            font-size: 1.1em;
+            width: 100%;
             padding: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            background: var(--color-gold-gradient);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all var(--transition-speed) var(--easing-function);
+            margin-top: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(139, 69, 19, 0.3);
+        }
+        
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+            transition: left 0.8s var(--easing-function);
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
         }
 
         .additional-links {
+            text-align: center;
             margin-top: 2rem;
-            font-size: 0.9em;
+            font-size: 0.95em;
         }
-    }
+
+        .additional-links a {
+            color: var(--color-primary-text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .additional-links a:hover {
+            color: var(--color-accent-gold);
+            text-decoration: underline;
+        }
+
+        .additional-links span {
+            color: var(--color-border);
+            margin: 0 0.75rem;
+            user-select: none;
+        }
     </style>
 </head>
 <body>
-    <!-- Background Particle Effects -->
     <div class="particle-container">
-        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
-        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
-        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
         <div class="particle"></div><div class="particle"></div><div class="particle"></div>
         <div class="particle"></div><div class="particle"></div><div class="particle"></div>
         <div class="particle"></div><div class="particle"></div><div class="particle"></div>
@@ -388,77 +224,57 @@
             <p>Log in to your RangRiti account</p>
         </div>
 
-        <div class="form-container">
-            <!-- Restoring your original, custom-styled form -->
-            <form id="login-form">
-                <div class="form-group">
-                    <label for="login-email">Email Address</label>
-                    <input type="email" id="login-email" name="email" required placeholder="e.g., ojas.srivastava@example.com">
-                </div>
-                <div class="form-group">
-                    <label for="login-password">Password</label>
-                    <input type="password" id="login-password" name="password" required placeholder="Enter your password">
-                </div>
-                <button type="submit" class="submit-btn">Log In</button>
-            </form>
-            <div class="additional-links">
-                <a href="#">Forgot Password?</a>
-                <span>|</span>
-                <a href="register.html">Create an Account</a>
+        <form id="login-form">
+            <div class="form-group">
+                <label for="login-email">Email Address</label>
+                <input type="email" id="login-email" name="email" required placeholder="Enter your email">
             </div>
+            <div class="form-group">
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" name="password" required placeholder="Enter your password">
+            </div>
+            <button type="submit" class="submit-btn">Log In</button>
+        </form>
+        <div class="additional-links">
+            <a href="#">Forgot Password?</a>
+            <span>|</span>
+            <a href="register.html">Create an Account</a>
         </div>
     </div>
 
     <script>
-        // IMPORTANT: This key MUST be a string (enclosed in quotes).
-        // Please replace this with your actual Clerk Publishable Key.
-        const CLERK_PUBLISHABLE_KEY = "pk_test_dW5pZmllZC1lZnQtMjAuY2xlcmsuYWNjb3VudHMuZGV2JA";
+        const loginForm = document.getElementById('login-form');
+        loginForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
 
-        const script = document.createElement('script');
-        script.setAttribute('data-clerk-publishable-key', CLERK_PUBLISHABLE_KEY);
-        script.async = true;
-        script.src = `https://cdn.jsdelivr.net/npm/@clerk/clerk-js@latest/dist/clerk.browser.js`;
-        
-        script.addEventListener('load', async function () {
-            await window.Clerk.load();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
 
-            const loginForm = document.getElementById('login-form');
-            loginForm.addEventListener('submit', async function(e) {
-                e.preventDefault();
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password }),
+                });
 
-                const email = document.getElementById('login-email').value;
-                const password = document.getElementById('login-password').value;
+                const result = await response.json();
 
-                try {
-                    // Attempt to sign in using the credentials from your form
-                    const result = await window.Clerk.signIn.create({
-                        identifier: email,
-                        password: password,
-                    });
-
-                    // If the sign-in is fully complete, redirect to the main page
-                    if (result.status === 'complete') {
-                        await window.Clerk.setActive({ session: result.createdSessionId });
-                        window.location.href = '/index.html';
-                    } else {
-                        // This handles cases like MFA. For now, we'll log it.
-                        // A more advanced implementation would show an MFA input screen.
-                        console.log('Sign-in requires additional steps:', result.status);
-                        alert('Sign-in requires another step. Please check your device.');
-                    }
-
-                } catch (error) {
-                    // This catches errors like incorrect password or user not found
-                    console.error('Error during login:', JSON.stringify(error, null, 2));
-                    let errorMessage = "Login failed. Please check your credentials and try again.";
-                    if (error.errors && error.errors.length > 0) {
-                        errorMessage = error.errors[0].longMessage || errorMessage;
-                    }
-                    alert(errorMessage);
+                if (response.ok) {
+                    alert(`Login successful! Welcome, ${result.user.firstName}.`);
+                    // Redirect to a dashboard or home page
+                    window.location.href = '/index.html'; 
+                } else {
+                    // Use the message from the server
+                    alert(`Login Failed: ${result.message}`);
                 }
-            });
+
+            } catch (error) {
+                console.error('Error during login:', error);
+                alert('An unexpected error occurred. Please try again.');
+            }
         });
-        document.body.appendChild(script);
     </script>
 </body>
 </html>
