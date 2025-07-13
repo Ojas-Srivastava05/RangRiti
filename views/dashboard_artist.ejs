@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -85,9 +86,17 @@
         }
 
         @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         /* Subtle Texture Overlay */
@@ -129,6 +138,7 @@
                 transform: translateY(100vh) scale(0);
                 opacity: 0.5;
             }
+
             100% {
                 transform: translateY(-10vh) scale(1);
                 opacity: 0;
@@ -136,16 +146,85 @@
         }
 
         /* Particle styling */
-        .particle:nth-child(1) { left: 5%; animation-duration: 22s; animation-delay: -2s; width: 8px; height: 8px; }
-        .particle:nth-child(2) { left: 15%; animation-duration: 18s; animation-delay: -15s; width: 5px; height: 5px; }
-        .particle:nth-child(3) { left: 22%; animation-duration: 28s; animation-delay: -7s; width: 10px; height: 10px; }
-        .particle:nth-child(4) { left: 33%; animation-duration: 15s; animation-delay: -22s; width: 6px; height: 6px; }
-        .particle:nth-child(5) { left: 45%; animation-duration: 25s; animation-delay: -1s; width: 8px; height: 8px; }
-        .particle:nth-child(6) { left: 51%; animation-duration: 19s; animation-delay: -18s; width: 4px; height: 4px; }
-        .particle:nth-child(7) { left: 63%; animation-duration: 26s; animation-delay: -4s; width: 9px; height: 9px; }
-        .particle:nth-child(8) { left: 72%; animation-duration: 17s; animation-delay: -25s; width: 5px; height: 5px; }
-        .particle:nth-child(9) { left: 85%; animation-duration: 23s; animation-delay: -11s; width: 7px; height: 7px; }
-        .particle:nth-child(10) { left: 95%; animation-duration: 20s; animation-delay: -9s; width: 6px; height: 6px; }
+        .particle:nth-child(1) {
+            left: 5%;
+            animation-duration: 22s;
+            animation-delay: -2s;
+            width: 8px;
+            height: 8px;
+        }
+
+        .particle:nth-child(2) {
+            left: 15%;
+            animation-duration: 18s;
+            animation-delay: -15s;
+            width: 5px;
+            height: 5px;
+        }
+
+        .particle:nth-child(3) {
+            left: 22%;
+            animation-duration: 28s;
+            animation-delay: -7s;
+            width: 10px;
+            height: 10px;
+        }
+
+        .particle:nth-child(4) {
+            left: 33%;
+            animation-duration: 15s;
+            animation-delay: -22s;
+            width: 6px;
+            height: 6px;
+        }
+
+        .particle:nth-child(5) {
+            left: 45%;
+            animation-duration: 25s;
+            animation-delay: -1s;
+            width: 8px;
+            height: 8px;
+        }
+
+        .particle:nth-child(6) {
+            left: 51%;
+            animation-duration: 19s;
+            animation-delay: -18s;
+            width: 4px;
+            height: 4px;
+        }
+
+        .particle:nth-child(7) {
+            left: 63%;
+            animation-duration: 26s;
+            animation-delay: -4s;
+            width: 9px;
+            height: 9px;
+        }
+
+        .particle:nth-child(8) {
+            left: 72%;
+            animation-duration: 17s;
+            animation-delay: -25s;
+            width: 5px;
+            height: 5px;
+        }
+
+        .particle:nth-child(9) {
+            left: 85%;
+            animation-duration: 23s;
+            animation-delay: -11s;
+            width: 7px;
+            height: 7px;
+        }
+
+        .particle:nth-child(10) {
+            left: 95%;
+            animation-duration: 20s;
+            animation-delay: -9s;
+            width: 6px;
+            height: 6px;
+        }
 
         /* Header */
         .header {
@@ -450,7 +529,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+            background: linear-gradient(120deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 100%);
             transition: left var(--transition-speed-slow) var(--easing-function);
         }
 
@@ -527,43 +606,49 @@
                 padding: 0 0.5rem 1rem;
             }
         }
-    
-/* Header subtitle animation */
-.header-subtitle {
-    animation: fadeInUp 1s ease-out 0.4s forwards;
-    opacity: 0;
-    transform: translateY(10px);
-}
 
-@keyframes fadeInUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+        /* Header subtitle animation */
+        .header-subtitle {
+            animation: fadeInUp 1s ease-out 0.4s forwards;
+            opacity: 0;
+            transform: translateY(10px);
+        }
 
-/* Subtle glow on profile name */
-.profile-name {
-    text-shadow: 0 0 6px rgba(184, 134, 11, 0.3), 0 0 12px rgba(184, 134, 11, 0.2);
-}
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-/* Hover interaction for stat cards */
-.stat-card:hover {
-    background: linear-gradient(145deg, #fff1d6, #f8e0c1);
-    color: var(--color-text-primary);
-    transform: translateY(-8px);
-    transition: 0.3s ease-in-out;
-    cursor: pointer;
-}
+        /* Subtle glow on profile name */
+        .profile-name {
+            text-shadow: 0 0 6px rgba(184, 134, 11, 0.3), 0 0 12px rgba(184, 134, 11, 0.2);
+        }
 
-</style>
+        /* Hover interaction for stat cards */
+        .stat-card:hover {
+            background: linear-gradient(145deg, #fff1d6, #f8e0c1);
+            color: var(--color-text-primary);
+            transform: translateY(-8px);
+            transition: 0.3s ease-in-out;
+            cursor: pointer;
+        }
+    </style>
 </head>
+
 <body>
     <!-- Background Particle Effects -->
     <div class="particle-container">
-        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
-        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
-        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
         <div class="particle"></div>
     </div>
 
@@ -580,29 +665,38 @@
 
     <!-- Main Container -->
     <div class="main-container">
+
         <!-- Dashboard Grid -->
         <div class="dashboard-grid">
             <!-- Profile Card -->
             <div class="profile-card">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face" alt="Artist Profile" class="profile-image" id="profileImage">
-                <h2 class="profile-name" id="artistName">Pandit Ravi Shankar</h2>
-                <div class="profile-artform" id="artistArtform">Traditional Painting Styles</div>
-                <div class="profile-location" id="artistLocation">Mumbai, Maharashtra</div>
-                
+                <img src="<%= artist.profilePictureUrl %>" alt="Artist Profile" class="profile-image" id="profileImage">
+                <h2 class="profile-name" id="artistName">
+                    <%= artist.firstName + ' ' + artist.lastName %>
+                </h2>
+                <div class="profile-artform" id="artistArtform">
+                    <%= artist.specialization || '—' %>
+                </div>
+                <div class="profile-location" id="artistLocation">
+                    <%= artist.city || '—' %>
+                </div>
                 <div class="social-links">
                     <a href="#" class="social-link" id="instagramLink" title="Instagram">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                         </svg>
                     </a>
                     <a href="#" class="social-link" id="facebookLink" title="Facebook">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            <path
+                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                         </svg>
                     </a>
                     <a href="#" class="social-link" id="xLink" title="X (Twitter)">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            <path
+                                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                         </svg>
                     </a>
                 </div>
@@ -612,7 +706,7 @@
             <div class="bio-section">
                 <h3 class="section-title">Artistic Journey</h3>
                 <div class="bio-text" id="artistBio">
-                    Welcome to my artistic world! I am a passionate traditional artist dedicated to preserving and celebrating India's rich cultural heritage through my work. My journey began in childhood, inspired by the vibrant colors and intricate patterns of traditional Indian art forms. Over the years, I have mastered various techniques including miniature painting, folk art, and classical Indian painting styles. Each piece I create tells a story, connecting the past with the present and keeping our beautiful traditions alive for future generations.
+                    <%= artist.bio || 'No bio provided.' %>
                 </div>
             </div>
         </div>
@@ -657,7 +751,7 @@
                     <span class="action-icon">🖼️</span>
                     <span>Manage Gallery</span>
                 </button>
-                
+
                 <button class="action-btn" onclick="contactSupport()">
                     <span class="action-icon">💬</span>
                     <span>Contact Support</span>
@@ -667,75 +761,14 @@
     </div>
 
     <script>
-        // Sample artist data (this would normally come from a database)
-        const artistData = {
-            name: "Pandit Ravi Shankar",
-            email: "contact@ravishankar.art",
-            bio: "Welcome to my artistic world! I am a passionate traditional artist dedicated to preserving and celebrating India's rich cultural heritage through my work. My journey began in childhood, inspired by the vibrant colors and intricate patterns of traditional Indian art forms. Over the years, I have mastered various techniques including miniature painting, folk art, and classical Indian painting styles. Each piece I create tells a story, connecting the past with the present and keeping our beautiful traditions alive for future generations.",
-            artform: "Traditional Painting Styles",
-            city: "Mumbai",
-            profileImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
-            socialLinks: {
-                instagram: "https://instagram.com/ravishankar_art",
-                facebook: "https://facebook.com/ravishankar.artist",
-                x: "https://x.com/ravishankar_art"
-            }
-        };
-
-        // Function to populate dashboard with artist data
-        function populateDashboard() {
-            document.getElementById('artistName').textContent = artistData.name;
-            document.getElementById('artistArtform').textContent = artistData.artform;
-            document.getElementById('artistLocation').textContent = artistData.city;
-            document.getElementById('artistBio').textContent = artistData.bio;
-            document.getElementById('profileImage').src = artistData.profileImage;
-            document.getElementById('profileImage').alt = artistData.name;
-            
-            // Update social links
-            if (artistData.socialLinks.instagram) {
-                document.getElementById('instagramLink').href = artistData.socialLinks.instagram;
-            }
-            if (artistData.socialLinks.facebook) {
-                document.getElementById('facebookLink').href = artistData.socialLinks.facebook;
-            }
-            if (artistData.socialLinks.x) {
-                document.getElementById('xLink').href = artistData.socialLinks.x;
-            }
-        }
-
-        // Action button functions
-
-
-        function editProfile() {
-            alert("Redirecting to profile edit page...");
-        }
-
-        function viewOrders() {
-            alert("Redirecting to orders page...");
-        }
-
-        function manageGallery() {
-            alert("Redirecting to gallery management page...");
-        }
-
-        
-
-        function contactSupport() {
-            alert("Redirecting to support page...");
-        }
-
         function logout() {
-            if (confirm("Are you sure you want to logout?")) {
-                alert("Logging out...");
-                // Redirect to login page
-                window.location.href = "login.html";
+            let ans = confirm("Do you want to logout ?");
+            if (ans) {
+                window.location.href = '/logout';
             }
         }
-
-        // Initialize dashboard on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            populateDashboard();
-        });
     </script>
+
 </body>
+
 </html>

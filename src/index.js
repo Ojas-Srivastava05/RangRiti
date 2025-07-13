@@ -40,27 +40,46 @@ app.use(session({
   }
 }));
 
+app.get('/logout', (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            return res.status(500).render('error', { message: 'Logout failed.' });
+        }
+        res.redirect('/');
+    });
+});
+
 
 // --- ROOT ROUTE ---
 // This route will now be executed for the root URL.
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'public', 'landing.html'));
-});
+}); //route to index
 
-app.get('/dashboard', (req, res) => {
-    const user = req.session.user;
-    if (!user || user.type !== 'artist') {
-        return res.status(403).render('error', { message: 'Unauthorized access.' });
+app.get('/dashboard', async (req, res) => {
+    try {
+        const userId = req.session?.user?.id;
+        if (!userId) {
+            return res.redirect('/');
+        }
+
+        const artist = await Artist.findById(userId);
+        if (!artist) {
+            return res.status(404).send("Artist not found");
+        }
+
+        res.render('dashboard_artist', { artist });  // ✅ make sure you're passing artist here
+    } catch (err) {
+        console.error("Dashboard render error:", err);
+        res.status(500).send("Server error");
     }
-    res.render('dashboard', { user });
 });
-
 app.get('/user', (req, res) => {
     const user = req.session.user;
     if (!user || user.type !== 'user') {
         return res.status(403).render('error', { message: 'Unauthorized access.' });
     }
-    res.render('marketplace', { user });
+    res.render('marketplace', { user }); // route to marketplace
 });
 // --- Registration Endpoints ---
 
