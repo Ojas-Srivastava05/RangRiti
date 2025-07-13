@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marble Inlay: Ancient Tales in Motion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables */
+        :root {
+            --bharatnatyam-gold: #CDA434; /* A slightly different gold for Bharatnatyam */
+            --text-gold: #FFD700;
+            --text-light: rgba(255, 248, 220, 0.9);
+            --dark-background: #150500; /* Deep, rich brown/black */
+            --card-background: rgba(30, 15, 0, 0.7); /* Slightly lighter, semi-transparent */
+            --border-gold: rgba(255, 215, 0, 0.4);
+            --primary-gold: #FFD700;
+        }
+
+        /* General Body Styles */
+        body {
+            margin: 0;
+            font-family: 'EB Garamond', serif;
+            background: linear-gradient(to bottom, #201000, #150500); /* Subtle gradient for depth */
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        /* --- Navigation Bar --- */
+        .nav-container {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            backdrop-filter: blur(20px);
+            background-color: rgba(0, 0, 0, 0.6); /* Slightly darker background for contrast */
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 1px solid var(--border-gold);
+            z-index: 1000;
+            animation: slideDown 1s ease-out;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Enhanced shadow */
+        }
+
+        @keyframes slideDown {
+            from { transform: translateX(-50%) translateY(-100px); opacity: 0; }
+            to { transform: translateX(-50%) translateY(0); opacity: 1; }
+        }
+
+        .nav-btn {
+            font-family: 'EB Garamond', serif;
+            background: transparent;
+            color: #FAF3E0; /* Light Ivory for better contrast on dark bg */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Stronger shadow */
+            border: none;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: navBtnFadeIn 1s ease-out forwards;
+        }
+
+        @keyframes navBtnFadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .nav-btn:hover::before {
+            left: 100%;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 215, 0, 0.1); /* Lighter hover background */
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+            color: var(--text-gold); /* Gold color on hover */
+        }
+
+        /* Dropdown styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-toggle {
+            cursor: pointer;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 10px); /* Position below the button */
+            left: 50%;
+            transform: translateX(-50%); /* Center the dropdown */
+            background: rgba(0, 0, 0, 0.95);
+            border: 1px solid var(--border-gold);
+            border-radius: 10px;
+            padding: 10px 0;
+            display: none;
+            flex-direction: column;
+            min-width: 200px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            z-index: 1001;
+            opacity: 0;
+            transform: translateX(-50%) translateY(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: flex;
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .dropdown-item {
+            font-family: 'EB Garamond', serif;
+            color: #FAF3E0;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: block;
+            transition: all 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .dropdown-item:hover {
+            background: rgba(255, 215, 0, 0.2);
+            color: var(--primary-gold);
+            padding-left: 25px; /* Slight indent on hover */
+        }
+
+        .dropdown-arrow {
+            font-size: 0.8em;
+            margin-left: 5px;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--text-light);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/e/e3/Bharatnatyam_dancer.jpg') no-repeat center center/cover; /* Bharatnatyam image */
+            filter: grayscale(80%) brightness(40%); /* Desaturate and darken */
+            z-index: -1;
+            animation: fadeInBackground 2s ease-out;
+        }
+
+        @keyframes fadeInBackground {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .hero-content {
+            padding-top: 100px; /* Space for fixed nav */
+            max-width: 800px;
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 4.5rem;
+            color: var(--text-gold);
+            margin-bottom: 20px;
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7);
+            letter-spacing: 2px;
+            animation: scaleIn 1.5s ease-out forwards;
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-style: italic;
+        }
+
+        /* --- Section Styling --- */
+        .section {
+            padding: 80px 5%;
+            margin-top: 0; /* No top margin as hero takes full height */
+            position: relative;
+            z-index: 1;
+            background-color: var(--dark-background); /* Ensure consistent background */
+        }
+
+        .section h2 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 3.5rem;
+            color: var(--bharatnatyam-gold);
+            text-align: center;
+            margin-bottom: 60px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+            position: relative;
+            padding-bottom: 15px;
+            animation: slideInFromLeft 1s ease-out forwards;
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        @keyframes slideInFromLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .section h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--text-gold), transparent);
+            margin: 15px auto 0;
+            border-radius: 5px;
+        }
+
+        /* --- Detailed Story Sections --- */
+        .detailed-story-section {
+            max-width: 900px;
+            margin: 80px auto; /* Margin between detailed stories */
+            padding: 40px;
+            background-color: rgba(0, 0, 0, 0.7); /* Slightly transparent background */
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--border-gold);
+            animation: fadeIn 1s ease-out forwards;
+            line-height: 1.8; /* Adjusted for better readability of detailed text */
+        }
+
+        .detailed-story-section h1 { /* Using h1 for main story title within this section */
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 3.8rem;
+            color: var(--text-gold);
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .detailed-story-section h1::after {
+            content: '';
+            display: block;
+            width: 150px;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--text-gold), transparent);
+            margin: 15px auto 0;
+            border-radius: 5px;
+        }
+
+        .detailed-story-section h3 { /* Using h3 for subheadings within a detailed story */
+            font-family: 'EB Garamond', serif;
+            font-size: 2.2rem;
+            color: var(--bharatnatyam-gold);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            border-bottom: 1px dashed rgba(255, 215, 0, 0.2);
+            padding-bottom: 10px;
+        }
+
+        .detailed-story-section p {
+            font-size: 1.15rem;
+            margin-bottom: 1.5em;
+            text-align: justify;
+        }
+
+        .detailed-story-section strong {
+            color: var(--text-gold);
+        }
+
+        /* --- Footer --- */
+        .footer {
+            background-color: #0d0600;
+            color: rgba(255, 248, 220, 0.7);
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            margin-top: 80px;
+        }
+
+        .footer p {
+            margin: 0;
+            padding: 5px 0;
+        }
+
+        .footer a {
+            color: var(--text-gold);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--primary-gold);
+            text-decoration: underline;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-wrap: wrap;
+                justify-content: center;
+                top: 15px;
+                padding: 10px 15px;
+                border-radius: 30px;
+            }
+
+            .nav-btn {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .section h2 {
+                font-size: 2.5rem;
+            }
+
+            .detailed-story-section {
+                padding: 25px;
+                margin: 60px auto;
+            }
+            .detailed-story-section h1 {
+                font-size: 3rem;
+            }
+            .detailed-story-section h3 {
+                font-size: 1.8rem;
+            }
+            .detailed-story-section p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                gap: 5px;
+            }
+            .nav-btn {
+                padding: 5px 8px;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav-container">
+        <button class="nav-btn"><a href="index.html" style="color: inherit; text-decoration: none;">Home</a></button>
+        <button class="nav-btn">Artists</button>
+        <button class="nav-btn">Workshops</button>
+        <button class="nav-btn">Calendar</button>
+
+        <div class="dropdown">
+            <button class="nav-btn dropdown-toggle">
+                Heritage <span class="dropdown-arrow">&#9660;</span>
+            </button>
+            <div class="dropdown-menu">
+                <a href="paintings and traditional styles.html" class="dropdown-item">Traditional Painting Styles</a>
+                <a href="textile_main.html" class="dropdown-item">Textile Arts</a>
+                <a href="performingarts.html" class="dropdown-item">Performing Arts</a>
+                <a href="handicrafts_and_sculptures.html" class="dropdown-item">Handicrafts & Sculpture</a>
+            </div>
+        </div>
+
+        <button class="nav-btn">Connect</button>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Marble Inlay: The Soul of Indian Handicrafts</h1>
+                <p>Journey through the intricate beauty and craftsmanship of Indian Marble Inlay Artist .</p>
+            </div>
+        </section>
+
+        <section id="bharatnatyam-items-detailed" class="section">
+            <h2>The Essence of a Marble Inlay</h2>
+
+            <div id="alarippu-detailed" class="detailed-story-section">
+                <h1>The Saint and the Stone</h1>
+                <p>In the bustling lanes of Agra, where marble dust danced in the sunlight and artisans toiled over stone, an old tale still lingers—one of divine guidance and quiet miracles. A young boy, newly apprenticed to a marble inlay master, struggled to learn the art. His patterns were uneven, his hands unsure, and his spirit dimmed with each failed attempt. One evening, as he sat beside a Sufi shrine, eyes brimming with frustration, a wandering saint noticed his sorrow. The saint gently touched the boy’s head and whispered a blessing, telling him to trust his hands and listen to his dreams.
+<br>
+That night, the boy saw vivid patterns—floral vines that moved like rivers, stars blooming in lotus petals, and sacred geometry flowing in endless symmetry. When he awoke, he rushed to his tools and began carving with newfound grace. To everyone’s amazement, his work was flawless—more intricate and alive than anything seen before. Locals whispered that the saint’s spirit had entered the boy’s chisel, guiding it with unseen wisdom.
+<br>
+His fame grew, but he remained humble, always offering a prayer at the saint’s resting place before beginning a new design. Generations later, some of his inlay panels still survive in hidden corners of Agra’s older mosques and mansions. Elders say you can feel something different in those patterns—a quiet rhythm, a pulse of devotion. For believers, they are not just art, but sacred visions shaped by blessed hands.
+
+</p>
+            </div>
+
+            <div id="jatiswaram-detailed" class="detailed-story-section">
+                <h1>The Cursed Jewel Tile</h1>
+                <p>In one of the royal tombs nestled within a Mughal complex, there existed a marble panel unlike any other—set with a rare, glowing ruby at its center. The stone, said to have been chosen by court astrologers, symbolized protection and divine energy. For decades, it sat undisturbed, catching the morning sun and casting a warm red glow across the tomb’s cool white walls. Locals believed it held spiritual significance, guarding the resting soul and blessing those who came in reverence.
+<br>
+But during British rule, the ruby vanished—quietly pried from its setting and smuggled away by a colonial officer. Soon after, strange misfortunes began to befall those who possessed it. Illness, financial ruin, and unexplained deaths followed its journey across continents. Whispers of a curse began to spread, and eventually, the ruby was discreetly returned to the tomb under mysterious circumstances.
+<br>
+When artisans reset the stone into its original place, elders claimed the air felt lighter, and peace slowly returned to the area. Pilgrims once again gathered near the panel, offering prayers of gratitude. To this day, the story is told not only as a warning, but as a testament to the spiritual power believed to dwell within sacred art. The ruby’s return was seen as divine justice—proof that some creations are meant not to be owned, but honored.</p>
+            </div>
+
+            <div id="shabdam-detailed" class="detailed-story-section">
+                <h1>The Eternal Love of the Taj Mahal</h1>
+                <p>Commissioned by Emperor Shah Jahan in the 17th century, the Taj Mahal was built as a timeless tribute to his beloved wife, Mumtaz Mahal. After her passing, he vowed to create a monument unlike any the world had seen—one that would immortalize their love in stone. Rising on the banks of the Yamuna River in Agra, the Taj Mahal became more than just a mausoleum; it became a sacred poem written in white marble. Every element, from its symmetrical domes to its flowing gardens, was designed to reflect harmony, eternity, and divine love.
+<br>
+But perhaps the most breathtaking feature lies in the delicate inlay work that decorates its surfaces. Using a technique called Pietra Dura, artisans embedded semi-precious stones like jade, carnelian, onyx, turquoise, and lapis lazuli into the marble walls. These stones were hand-carved into intricate floral motifs—each petal and vine laid with flawless precision. The vibrant colors shimmer against the pure white marble, creating patterns that seem to bloom eternally.
+<br>
+More than ornamental beauty, the inlays symbolized spiritual ideals—carnelian for passion, jade for harmony, lapis for the heavens. Every stone placed in the Taj was not just material, but metaphor, a whisper of devotion preserved through art. Today, as millions stand before its shining walls, the Taj Mahal continues to echo the love story that built it—eternal, luminous, and carved into history one gem at a time.
+
+</p>
+             </div>
+
+            <div id="varnam-detailed" class="detailed-story-section">
+                <h1>The Secret of the Glow</h1>
+                <p>Legend holds that when the moonlight touches the Taj Mahal, the inlay stones shimmer as if alive, casting a gentle glow that enchants all who behold it. Among these precious stones, the carnelian stands out—its deep orange-red hue capturing and reflecting light like a flickering flame within marble. Mughal artisans, masters of precision, carved each stone with astonishing detail, fitting them seamlessly into the white marble surface as if nature had placed them there. By day, the inlays add vibrant beauty; by night, they seem to awaken, glowing softly under the silver sky.
+<br>
+It is said that the carnelian, in particular, was chosen for more than just its color. Known for its ability to reflect light, it was believed to possess spiritual power—symbolizing passion, protection, and sacred love. Under moonlight, the Taj Mahal transforms into something beyond architecture: a glowing tribute to devotion, where every stone seems to whisper the eternal story of Shah Jahan and Mumtaz.
+<br>
+Visitors who see the monument at night often describe it as otherworldly, as if the structure breathes with a silent spirit. This mystical quality—the way stone turns to light—is believed to represent not just the brilliance of craftsmanship, but the radiance of pure love and the soul’s longing. In the shimmering inlays of the Taj, art and emotion meet, creating a luminous symbol of timeless affection and spiritual beauty.
+
+</p>
+            </div>
+
+            <div id="padam-detailed" class="detailed-story-section">
+                <h1>The Mughal Artisan’s Oath</h1>
+                <p>It is said that centuries ago, when marble inlay first appeared on Indian soil, it came with whispers of secrecy and sacred duty. Skilled artisans from Persia were invited by emperors to bring their rare craft—Pietra Dura—to life in India. But there was a condition: they were sworn to an oath of silence, vowing to guard the inlay techniques as sacred knowledge. This was no ordinary art—it was believed to be a gift from the heavens, bestowed only upon those deemed worthy of shaping divine and royal spaces.
+<br>
+Rather than writing down instructions or revealing secrets to outsiders, these artisans passed their knowledge through generations—father to son, uncle to nephew—preserving the craft within bloodlines like a sacred inheritance. Each family became a living library of guarded skills, perfecting the precision of carving, the alchemy of stone mixing, and the grace of design over lifetimes.
+<br>
+Because the craft was so revered, it was reserved for the walls of mosques, tombs, palaces, and spiritual sanctuaries. To inlay stone was to speak directly to the divine, to leave a permanent prayer in marble. Even today, families in places like Agra and Jaipur trace their lineage to these oath-bound artisans, continuing the legacy with the same discipline and devotion. The purity of the technique, untouched by dilution, is a testament to centuries of protection—an art not just mastered, but spiritually guarded.</p>
+            </div>
+
+            <div id="thillana-detailed" class="detailed-story-section">
+                <h1>Prayer Walls of Fatehpur Sikri</h1>
+                <p>At Fatehpur Sikri, the majestic red sandstone city built by Emperor Akbar, art and faith intertwined in breathtaking harmony. Among its mosques, palaces, and tombs, marble inlay work graced the walls with delicate beauty. Skilled artisans carved into the stone and filled each groove with semi-precious gems and contrasting white marble, forming intricate floral patterns that seemed to bloom from the architecture itself. These flowers weren’t just decoration—they were symbols of eternal prayers, each petal representing a hope etched into history.
+<br>
+The inlay designs, inspired by Persian and Indian motifs, added softness to the grandeur of the stone, turning cold surfaces into meditative canvases. Devotees believed that every bloom held spiritual energy—that wishes whispered close to them would be absorbed and lifted skyward. It became a quiet ritual: travelers and pilgrims would place a hand near the inlays, close their eyes, and speak from the heart.
+<br>
+Over centuries, these marble blossoms have endured, untouched by time or weather, their shine still intact beneath the northern sun. Even today, visitors walk through the courtyards of Fatehpur Sikri, pausing near the inlaid tomb walls, drawn by an invisible pull of faith. The belief lives on—that within those silent flowers carved in stone, divine blessings still bloom, quietly answering the prayers of those who dare to dream.
+
+</p>
+            </div>
+
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 RangRiti. All rights reserved.</p>
+        <p>Inspired by the rich heritage of Indian Handicrafts Art.</p>
+        <p>Contact us at <a href="mailto:info@marbleinlay.com">info@marbleinlay.com</a></p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sandalwood Carving: Ancient Tales in Motion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables */
+        :root {
+            --bharatnatyam-gold: #CDA434; /* A slightly different gold for Bharatnatyam */
+            --text-gold: #FFD700;
+            --text-light: rgba(255, 248, 220, 0.9);
+            --dark-background: #150500; /* Deep, rich brown/black */
+            --card-background: rgba(30, 15, 0, 0.7); /* Slightly lighter, semi-transparent */
+            --border-gold: rgba(255, 215, 0, 0.4);
+            --primary-gold: #FFD700;
+        }
+
+        /* General Body Styles */
+        body {
+            margin: 0;
+            font-family: 'EB Garamond', serif;
+            background: linear-gradient(to bottom, #201000, #150500); /* Subtle gradient for depth */
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        /* --- Navigation Bar --- */
+        .nav-container {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            backdrop-filter: blur(20px);
+            background-color: rgba(0, 0, 0, 0.6); /* Slightly darker background for contrast */
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 1px solid var(--border-gold);
+            z-index: 1000;
+            animation: slideDown 1s ease-out;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Enhanced shadow */
+        }
+
+        @keyframes slideDown {
+            from { transform: translateX(-50%) translateY(-100px); opacity: 0; }
+            to { transform: translateX(-50%) translateY(0); opacity: 1; }
+        }
+
+        .nav-btn {
+            font-family: 'EB Garamond', serif;
+            background: transparent;
+            color: #FAF3E0; /* Light Ivory for better contrast on dark bg */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Stronger shadow */
+            border: none;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: navBtnFadeIn 1s ease-out forwards;
+        }
+
+        @keyframes navBtnFadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .nav-btn:hover::before {
+            left: 100%;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 215, 0, 0.1); /* Lighter hover background */
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+            color: var(--text-gold); /* Gold color on hover */
+        }
+
+        /* Dropdown styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-toggle {
+            cursor: pointer;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 10px); /* Position below the button */
+            left: 50%;
+            transform: translateX(-50%); /* Center the dropdown */
+            background: rgba(0, 0, 0, 0.95);
+            border: 1px solid var(--border-gold);
+            border-radius: 10px;
+            padding: 10px 0;
+            display: none;
+            flex-direction: column;
+            min-width: 200px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            z-index: 1001;
+            opacity: 0;
+            transform: translateX(-50%) translateY(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: flex;
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .dropdown-item {
+            font-family: 'EB Garamond', serif;
+            color: #FAF3E0;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: block;
+            transition: all 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .dropdown-item:hover {
+            background: rgba(255, 215, 0, 0.2);
+            color: var(--primary-gold);
+            padding-left: 25px; /* Slight indent on hover */
+        }
+
+        .dropdown-arrow {
+            font-size: 0.8em;
+            margin-left: 5px;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--text-light);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/e/e3/Bharatnatyam_dancer.jpg') no-repeat center center/cover; /* Bharatnatyam image */
+            filter: grayscale(80%) brightness(40%); /* Desaturate and darken */
+            z-index: -1;
+            animation: fadeInBackground 2s ease-out;
+        }
+
+        @keyframes fadeInBackground {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .hero-content {
+            padding-top: 100px; /* Space for fixed nav */
+            max-width: 800px;
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 4.5rem;
+            color: var(--text-gold);
+            margin-bottom: 20px;
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7);
+            letter-spacing: 2px;
+            animation: scaleIn 1.5s ease-out forwards;
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-style: italic;
+        }
+
+        /* --- Section Styling --- */
+        .section {
+            padding: 80px 5%;
+            margin-top: 0; /* No top margin as hero takes full height */
+            position: relative;
+            z-index: 1;
+            background-color: var(--dark-background); /* Ensure consistent background */
+        }
+
+        .section h2 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 3.5rem;
+            color: var(--bharatnatyam-gold);
+            text-align: center;
+            margin-bottom: 60px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+            position: relative;
+            padding-bottom: 15px;
+            animation: slideInFromLeft 1s ease-out forwards;
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        @keyframes slideInFromLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .section h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--text-gold), transparent);
+            margin: 15px auto 0;
+            border-radius: 5px;
+        }
+
+        /* --- Detailed Story Sections --- */
+        .detailed-story-section {
+            max-width: 900px;
+            margin: 80px auto; /* Margin between detailed stories */
+            padding: 40px;
+            background-color: rgba(0, 0, 0, 0.7); /* Slightly transparent background */
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--border-gold);
+            animation: fadeIn 1s ease-out forwards;
+            line-height: 1.8; /* Adjusted for better readability of detailed text */
+        }
+
+        .detailed-story-section h1 { /* Using h1 for main story title within this section */
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 3.8rem;
+            color: var(--text-gold);
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .detailed-story-section h1::after {
+            content: '';
+            display: block;
+            width: 150px;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--text-gold), transparent);
+            margin: 15px auto 0;
+            border-radius: 5px;
+        }
+
+        .detailed-story-section h3 { /* Using h3 for subheadings within a detailed story */
+            font-family: 'EB Garamond', serif;
+            font-size: 2.2rem;
+            color: var(--bharatnatyam-gold);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            border-bottom: 1px dashed rgba(255, 215, 0, 0.2);
+            padding-bottom: 10px;
+        }
+
+        .detailed-story-section p {
+            font-size: 1.15rem;
+            margin-bottom: 1.5em;
+            text-align: justify;
+        }
+
+        .detailed-story-section strong {
+            color: var(--text-gold);
+        }
+
+        /* --- Footer --- */
+        .footer {
+            background-color: #0d0600;
+            color: rgba(255, 248, 220, 0.7);
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            margin-top: 80px;
+        }
+
+        .footer p {
+            margin: 0;
+            padding: 5px 0;
+        }
+
+        .footer a {
+            color: var(--text-gold);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--primary-gold);
+            text-decoration: underline;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-wrap: wrap;
+                justify-content: center;
+                top: 15px;
+                padding: 10px 15px;
+                border-radius: 30px;
+            }
+
+            .nav-btn {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .section h2 {
+                font-size: 2.5rem;
+            }
+
+            .detailed-story-section {
+                padding: 25px;
+                margin: 60px auto;
+            }
+            .detailed-story-section h1 {
+                font-size: 3rem;
+            }
+            .detailed-story-section h3 {
+                font-size: 1.8rem;
+            }
+            .detailed-story-section p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                gap: 5px;
+            }
+            .nav-btn {
+                padding: 5px 8px;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav-container">
+        <button class="nav-btn"><a href="index.html" style="color: inherit; text-decoration: none;">Home</a></button>
+        <button class="nav-btn">Artists</button>
+        <button class="nav-btn">Workshops</button>
+        <button class="nav-btn">Calendar</button>
+
+        <div class="dropdown">
+            <button class="nav-btn dropdown-toggle">
+                Heritage <span class="dropdown-arrow">&#9660;</span>
+            </button>
+            <div class="dropdown-menu">
+                <a href="paintings and traditional styles.html" class="dropdown-item">Traditional Painting Styles</a>
+                <a href="textile_main.html" class="dropdown-item">Textile Arts</a>
+                <a href="performingarts.html" class="dropdown-item">Performing Arts</a>
+                <a href="handicrafts_and_sculptures.html" class="dropdown-item">Handicrafts & Sculpture</a>
+            </div>
+        </div>
+
+        <button class="nav-btn">Connect</button>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Sandalwood Carving: The Soul of Indian Handicrafts</h1>
+                <p>Journey through the intricate beauty and craftsmanship of Indian Sandalwood Carving Artist .</p>
+            </div>
+        </section>
+
+        <section id="bharatnatyam-items-detailed" class="section">
+            <h2>The Essence of a Sandalwood Carving</h2>
+
+            <div id="alarippu-detailed" class="detailed-story-section">
+                <h1>Krishna's Idol from Sandalwood (Puri Legend)</h1>
+                <p>A revered legend from Puri, Odisha tells of the divine origins of Lord Jagannath’s first idol, believed to have been carved from a sacred sandalwood log. As the story goes, the log mysteriously floated ashore at the confluence of the Mahanadi River and the sea—untouched by decay, radiating a divine fragrance that drew the attention of saints and sages. Recognizing its celestial nature, King Indradyumna was guided by a divine vision to use it for the idol of Lord Jagannath. He prayed for a sculptor worthy of such a sacred task, and his prayers were answered when Vishwakarma, the celestial architect, appeared in disguise.
+<br>
+Vishwakarma agreed to carve the idol, but on one condition: he must work in complete secrecy. He shut himself inside a chamber and began sculpting with divine precision. Days passed in silence until impatience and doubt overcame the king, who broke open the doors—only to find the idols incomplete. Yet these unfinished forms were declared divine, and the partially carved features became the symbolic representation of Lord Jagannath that millions worship today.
+<br>
+It is believed that the use of sandalwood was not by chance but divine design—its cooling nature, fragrant essence, and spiritual purity made it the perfect medium for temple art. This story elevated sandalwood’s status in religious craftsmanship across India. Even today, artisans use sandalwood for ritual objects, associating it with divine origins and celestial blessing. The Jagannath idol legend endures, reminding devotees of patience, devotion, and the sacred role sandalwood plays in bringing the divine to form.
+
+</p>
+            </div>
+
+            <div id="jatiswaram-detailed" class="detailed-story-section">
+                <h1>Goddess Lakshmi's Carved Shrine</h1>
+                <p>In the lush regions of southern India, an enduring belief surrounds a sacred sandalwood shrine crafted in honor of Goddess Lakshmi, the deity of wealth, fortune, and grace. According to local tradition, this intricately carved shrine was made centuries ago by temple artisans using sandalwood harvested under strict spiritual guidelines. Every surface of the shrine was adorned with lotus motifs—symbols of purity, abundance, and the blossoming of inner and outer prosperity. The scent of the sandalwood itself was believed to draw divine energy, making the space around it peaceful and spiritually charged.
+<br>
+During Diwali, the festival of lights, families across southern India continue this tradition by placing small sandalwood shrines or carvings of Lakshmi at the heart of their homes. The fragrance is thought to invite not just material wealth, but emotional harmony and spiritual clarity. Lamps are lit around the shrine, offerings are made, and mantras are chanted, with the belief that Goddess Lakshmi visits homes that are pure, fragrant, and filled with devotion.
+<br>
+These shrines, sometimes passed down for generations, are treated not as mere decorative objects but as living altars that hold blessings from the past. The lotus carvings serve as daily reminders of beauty arising from simplicity, and the presence of the goddess is felt in the air—subtle, serene, and auspicious. Even today, artisans continue to handcraft these sandalwood Lakshmi shrines, keeping alive a tradition where fragrance, craftsmanship, and faith come together to attract abundance and divine grace.</p>
+            </div>
+
+            <div id="shabdam-detailed" class="detailed-story-section">
+                <h1>Sage Agastya’s Ritual Box</h1>
+                <p>Ancient scriptures and temple lore speak of the revered Sage Agastya—one of the wisest sages in Indian mythology—who journeyed across the southern lands carrying with him a sandalwood chest. This chest, according to tradition, held his sacred herbs, prayer items, and rare manuscripts gathered from his travels and spiritual practices. The box was no ordinary container; it was intricately carved from pure sandalwood, with motifs of celestial beings, divine symbols, and flowing vines said to represent the cosmic order.
+<br>
+The scent of the chest was so potent and pure that wherever Sage Agastya paused to meditate, the fragrance would cleanse the space, driving away negative energies and aligning the surroundings with peace and clarity. Disciples who sat near the chest during his sessions reported feeling calmer, more focused, as if enveloped in a protective spiritual aura. The carvings themselves were believed to act as visual aids during deep meditation—each celestial figure reminding the sage of higher realms and universal truths.
+<br>
+Over time, the chest became a symbol not just of spiritual discipline, but of the harmony between nature and devotion. Temples and ashrams across South India began crafting similar sandalwood boxes, inspired by Agastya’s legend, to store their own sacred objects. Even today, in rituals honoring the sage, priests anoint sandalwood carvings and chant prayers beside them, invoking purity and divine presence. The tale endures as a reminder that even a simple object, when crafted with purpose and reverence, can become a vessel of sacred power.
+
+</p>
+             </div>
+
+            <div id="varnam-detailed" class="detailed-story-section">
+                <h1>The Sandalwood Shiva Linga</h1>
+                <p>In the sacred temples of Tamil Nadu, particularly during the scorching summer months, a unique tradition unfolds—rituals centered around a Shiva Linga carved entirely from sandalwood. Unlike the typical stone Lingas found in temples, these are crafted from the fragrant heartwood of sandal trees, chosen for their natural cooling properties and sacred symbolism. Devotees believe that the soothing scent of sandalwood pleases Lord Shiva, the ascetic deity known for his meditative calm and elemental power.
+<br>
+During intense abhishekam (ritual bathing), the sandalwood Linga is anointed with milk, rose water, and sacred herbs, enhancing its fragrance and spreading serenity through the temple halls. Priests chant mantras as the aroma fills the air, believed to purify both body and spirit. The practice is especially emphasized during summer festivals like Chithirai and Aani Thirumanjanam, when the heat is harsh and spiritual discipline is at its peak.
+<br>
+The use of sandalwood is more than symbolic—its cooling effect is thought to balance the fire of devotion, allowing worshippers to connect with Shiva in a calm, centered state. In some temples, the sandalwood paste from the Linga is distributed as prasadam, believed to bring peace and clarity. Passed down for generations, this tradition blends nature, scent, and divinity into a sacred experience. The sandalwood Linga thus becomes not just an icon of worship, but a living essence of purification, devotion, and inner stillness.
+
+</p>
+            </div>
+
+            <div id="padam-detailed" class="detailed-story-section">
+                <h1>Sandalwood Throne for Lord Rama</h1>
+                <p>A cherished legend from Karnataka tells of a sacred sandalwood throne, crafted not just with skill, but with devotion, for the coronation of Lord Rama in Ayodhya. According to lore, the throne was carved deep in the southern forests by master artisans chosen for their purity of heart and hand. The sandalwood used was said to come from a centuries-old tree that had grown undisturbed, its core rich with divine fragrance. Intricate carvings adorned the throne—symbols of dharma, satya (truth), and lotus motifs representing purity of spirit and royal virtue.
+<br>
+As the artisans worked, the scent of the sandalwood was so strong and sweet that birds gathered near the workshop, and villagers described the air itself as becoming lighter and more peaceful. Once completed, the throne was transported across rivers and kingdoms to Ayodhya, guided by sages and guarded by warriors. It is said that when Lord Rama finally sat upon it, the fragrance filled the palace and spread across the kingdom like a sacred wind, marking the return of peace, justice, and divine rule.
+<br>
+People believed the sandalwood throne carried spiritual energy, not just symbolic authority. Even after the coronation, its scent lingered for years, as if blessing the land and its people with Rama’s ideals. Though no physical trace remains today, the legend lives on in temple songs and folk stories. The sandalwood throne is remembered not only as a royal seat, but as a vessel of sacred purpose—where truth sat crowned, and the fragrance of dharma perfumed an entire era.
+
+</p>
+            </div>
+
+            <div id="thillana-detailed" class="detailed-story-section">
+                <h1>The Enlightenment of a Monk</h1>
+                <p>Long ago, a wandering monk journeyed across dense forests and quiet villages in search of inner peace. One evening, weary and burdened by thoughts, he came upon a serene grove where a lone sandalwood tree stood beside a carved wooden figure of the Buddha. The deity, though simple, bore fine details—each line of the carving radiating calm and presence. The monk sat beneath the sandalwood tree, drawn by its gentle fragrance, which seemed to soothe his restless mind and deepen his breath with every passing moment.
+<br>
+As twilight faded into night, the sacred aroma mingled with the stillness around him, and he entered a state of profound meditation. Hours passed like minutes, and when he opened his eyes at dawn, he felt an unfamiliar yet comforting stillness—a clarity he had never known. He believed the tree and the carved image had opened a spiritual gateway, guiding him toward enlightenment. Word of his experience spread, and artisans began carving Buddhist deities from sandalwood, hoping to capture the same essence of peace and divinity.
+<br>
+Over time, sandalwood became a favored medium for Buddhist sculptures across regions—from tiny amulets to grand temple idols. It was said that the scent itself carried meditative energy, while the wood’s softness allowed for intricate detailing—ideal for sacred forms. Even today, when monks chant before sandalwood statues, they remember the story of the seeker who found truth beneath the sacred tree, where fragrance, faith, and form became one.</p>
+            </div>
+
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 RangRiti. All rights reserved.</p>
+        <p>Inspired by the rich heritage of Indian Handicrafts Art.</p>
+        <p>Contact us at <a href="mailto:info@sandalwoodcarving.com">info@sandalwoodcarving.com</a></p>
+    </footer>
+
+</body>
+</html>
