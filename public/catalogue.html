@@ -492,7 +492,6 @@
         /* Floating cart */
         .floating-cart {
             position: fixed;
-            top: 9vh;
             right: 30px;
             background: var(--sandalwood);
             width: 60px;
@@ -504,7 +503,6 @@
             box-shadow: 0 5px 15px var(--shadow);
             border: 1px solid var(--sandalwood-dark);
             cursor: pointer;
-            z-index: 1000;
             transition: all 0.3s;
         }
 
@@ -704,11 +702,6 @@
     <div class="particle" style="width: 7px; height: 7px; top: 45%; left: 85%;"></div>
     <div class="particle" style="width: 4px; height: 4px; top: 75%; left: 20%;"></div>
 
-    <!-- Floating cart -->
-    <div class="floating-cart">
-        <i class="fas fa-shopping-bag cart-icon"></i>
-        <div class="cart-count">3</div>
-    </div>
 
     <!-- Header -->
 
@@ -716,12 +709,16 @@
         <div class="nav-container">
             <a href="#" class="logo">Rangriti</a>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
+                <li><a href="/public/index.html">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#categories">Categories</a></li>
-                <li><a href="#sell">Sell with Us</a></li>
+                <li><a href="/public/catalogue.html">Categories</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li></li>
+                <li>    <!-- Floating cart -->
+    <div class="floating-cart" onclick="window.location.href = '/public/cart.html'">
+        <i class="fas fa-shopping-bag cart-icon"></i>
+        <div class="cart-count"></div>
+    </div>
+</li>
             </ul>
         </div>
     </nav>

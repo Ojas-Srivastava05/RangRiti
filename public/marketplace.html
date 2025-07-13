@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Artisan Bazaar - Where Hands Craft Soul</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lora:wght@300;400;500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:wght@400;500;700&family=Lora:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <style>
         :root {
             --primary-beige: #F5E6D3;
@@ -238,6 +241,31 @@
         .nav-links a:hover {
             color: var(--rich-brown);
         }
+        .floating-cart {
+            position: fixed;
+            right: 30px;
+            background: var(--sandalwood);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px var(--shadow);
+            border: 1px solid var(--sandalwood-dark);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .floating-cart:hover {
+            background: var(--sandalwood-dark);
+            transform: translateY(-3px);
+        }
+
+        .cart-icon {
+            font-size: 1.5rem;
+            color: var(--dark-brown);
+        }
+
 
         /* Hero Section */
         .hero {
@@ -547,9 +575,6 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
             
             .hero h1 {
                 font-size: 2.5rem;
@@ -578,11 +603,16 @@
         <div class="nav-container">
             <a href="#" class="logo">Rangriti</a>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
+                <li><a href="/public/index.html">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#categories">Categories</a></li>
-                <li><a href="#sell">Sell with Us</a></li>
+                <li><a href="/public/catalogue.html">Categories</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li>    <!-- Floating cart -->
+    <div class="floating-cart" onclick="window.location.href = '/public/cart.html'">
+        <i class="fas fa-shopping-bag cart-icon"></i>
+        <div class="cart-count"></div>
+    </div>
+</li>
             </ul>
         </div>
     </nav>
@@ -592,7 +622,7 @@
         <div class="hero-content" >
             <h1 style="color: white; font-weight: 1000;" >Rangriti Bazaar</h1>
             <p class="hero-tagline" style="color: white;">"Where Hands Craft Soul into Clay, Canvas, and Stone"</p>
-            <a href="#categories" class="cta-button">Explore Marketplace</a>
+            <a href="/public/catalogue.html" class="cta-button">Explore Marketplace</a>
         </div>
     </section>
 
@@ -798,6 +828,11 @@
                 this.style.transform = 'translateY(0) rotateX(0deg)';
             });
         });
+        document.querySelectorAll('.category-card').forEach((self)=>{
+            self.addEventListener('click',()=>{
+                window.location.href = '/public/catalogue.html';
+            })
+        })
     </script>
 </body>
 </html>
