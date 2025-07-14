@@ -10,6 +10,17 @@ import User from '../models.js/user.models.js';
 import Artist from '../models.js/artist.models.js';
 
 import session from 'express-session';
+import multer from 'multer';
+import cloudinaryModule from 'cloudinary';
+import Product from '../models.js/product.models.js'// ✅ your Product schema
+
+const cloudinary = cloudinaryModule.v2;
+
+// Multer setup for image upload
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+
+// Cloudinary config
 const app = express();
 
 
@@ -21,11 +32,27 @@ dotenv.config({ path: path.join(__dirname, '../.env') });
 
 const port = process.env.PORT || 3000;
 
+
 app.set('view engine','ejs')
 
 // --- Middleware ---
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
+function uploadToCloudinary(buffer) {
+  return new Promise((resolve, reject) => {
+    cloudinary.uploader.upload_stream({ resource_type: 'image' }, (error, result) => {
+      if (error) return reject(error);
+      resolve(result.secure_url);
+    }).end(buffer);
+  });
+}
+
 
 // CORRECTED STATIC MIDDLEWARE
 // The { index: false } option prevents Express from automatically serving index.html on '/'.
@@ -80,6 +107,109 @@ app.get('/user', (req, res) => {
         return res.status(403).render('error', { message: 'Unauthorized access.' });
     }
     res.render('marketplace', { user }); // route to marketplace
+});
+
+app.get('/marketplace', (req,res)=>{
+    res.render('marketplace')
+});
+
+
+app.get('/catalogue', async (req, res) => {
+    try {
+        const {
+            category,            // e.g., "Painting", "Woodcraft"
+            minPrice,            // e.g., 100
+            maxPrice,            // e.g., 1000
+            minRating,           // e.g., 4
+            artist,              // e.g., "Ananya Sharma"
+            availability         // e.g., "inStock" or "preorder"
+        } = req.query;
+
+        const filter = {};
+
+        if (category) {
+            filter.category = { $in: category.split(',') };
+        }
+
+        if (minPrice || maxPrice) {
+            filter.price = {};
+            if (minPrice) filter.price.$gte = Number(minPrice);
+            if (maxPrice) filter.price.$lte = Number(maxPrice);
+        }
+
+        if (minRating) {
+            filter.rating = { $gte: Number(minRating) };
+        }
+
+        if (artist) {
+            filter.artistName = { $in: artist.split(',') };
+        }
+
+        if (availability === 'inStock') {
+            filter.inStock = true;
+        } else if (availability === 'preorder') {
+            filter.inStock = false;
+        }
+
+        const products = await Product.find(filter).lean();
+
+        res.render('catalogue', { products });
+
+    } catch (error) {
+        console.error("Error loading filtered catalogue:", error);
+        res.status(500).send("Failed to load filtered products.");
+    }
+});
+app.get('/product',(req,res)=>{
+    res.render('product');
+})
+
+
+app.post('/api/add-product', upload.array('images'), async (req, res) => {
+    try {
+        const {
+            name,
+            artistName,
+            category,
+            description,
+            price,
+            quantityAvailable,
+            material,
+            size,
+            originRegion,
+            tags
+        } = req.body;
+
+        // Upload images to Cloudinary
+        let imageUrls = [];
+        if (req.files && req.files.length > 0) {
+            const uploadPromises = req.files.map(file => uploadToCloudinary(file.buffer));
+            imageUrls = await Promise.all(uploadPromises);
+        } else {
+            imageUrls = ['https://via.placeholder.com/300'];
+        }
+
+        const newProduct = new Product({
+            name,
+            artistName,
+            category,
+            description,
+            images: imageUrls,
+            price,
+            quantityAvailable: quantityAvailable || 1,
+            material,
+            size,
+            originRegion,
+            tags: tags ? tags.split(',').map(tag => tag.trim()) : []
+        });
+
+        await newProduct.save();
+        res.redirect('/dashboard?success=true');
+
+    } catch (err) {
+        console.error("Error adding product:", err);
+        res.status(500).json({ success: false, message: "Failed to add product." });
+    }
 });
 // --- Registration Endpoints ---
 

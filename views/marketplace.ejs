@@ -606,9 +606,9 @@
         <div class="nav-container">
             <a href="#" class="logo">Rangriti</a>
             <ul class="nav-links">
-                <li><a href="/public/index.html">Home</a></li>
+                <li><a href="/">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="/public/catalogue.html">Categories</a></li>
+                <li><a href="/catalogue">Categories</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><a href="#logout" onclick="
                 let ans = confirm('Do you want to logout ?');
@@ -841,8 +841,8 @@
         });
         document.querySelectorAll('.category-card').forEach((self)=>{
             self.addEventListener('click',()=>{
-                window.location.href = '/public/catalogue.html';
-            })
+                window.location.href = '/catalogue';
+                })
         })
     </script>
 </body>

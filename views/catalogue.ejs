@@ -709,10 +709,11 @@
         <div class="nav-container">
             <a href="#" class="logo">Rangriti</a>
             <ul class="nav-links">
-                <li><a href="/public/index.html">Home</a></li>
+                <li><a href="/marketplace">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="/public/catalogue.html">Categories</a></li>
+                <li><a href="/catalogue">Categories</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="/logout">Logout</a></li>
                 <li>    <!-- Floating cart -->
     <div class="floating-cart" onclick="window.location.href = '/public/cart.html'">
         <i class="fas fa-shopping-bag cart-icon"></i>
@@ -724,114 +725,110 @@
     </nav>
 
     <!-- Main content -->
+     <main>
     <div class="container">
         <!-- Filter sidebar -->
-        <aside class="filter-sidebar">
-            <h2 class="filter-title">Filters <i class="fas fa-sliders-h"></i></h2>
-            
-            <div class="filter-section">
-                <h3>Type <i class="fas fa-chevron-down"></i></h3>
-                <div class="filter-options">
-                    <div class="filter-option">
-                        <input type="checkbox" id="paintings" checked>
-                        <label for="paintings">Paintings</label>
-                    </div>
-                    <div class="filter-option">
-                        <input type="checkbox" id="pottery" checked>
-                        <label for="pottery">Pottery</label>
-                    </div>
-                    <div class="filter-option">
-                        <input type="checkbox" id="sculpture">
-                        <label for="sculpture">Sculpture</label>
-                    </div>
-                    <div class="filter-option">
-                        <input type="checkbox" id="handloom">
-                        <label for="handloom">Handloom</label>
-                    </div>
-                    <div class="filter-option">
-                        <input type="checkbox" id="woodcraft" checked>
-                        <label for="woodcraft">Woodcraft</label>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="filter-section">
-                <h3>Price Range <i class="fas fa-chevron-down"></i></h3>
-                <div class="price-slider">
-                    <div class="track" style="width: 70%; left: 10%;"></div>
-                </div>
-                <div class="price-range">
-                    <span>$50</span>
-                    <span>$500</span>
-                </div>
-            </div>
-            
-            <div class="filter-section">
-                <h3>Rating <i class="fas fa-chevron-down"></i></h3>
-                <div class="filter-options">
-                    <div class="filter-option">
-                        <input type="checkbox" id="rating5">
-                        <label for="rating5">
-                            <div class="stars">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            </div>
-                        </label>
-                    </div>
-                    <div class="filter-option">
-                        <input type="checkbox" id="rating4" checked>
-                        <label for="rating4">
-                            <div class="stars">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i> & above
-                            </div>
-                        </label>
-                    </div>
-                    <div class="filter-option">
-                        <input type="checkbox" id="rating3">
-                        <label for="rating3">
-                            <div class="stars">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> & above
-                            </div>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="filter-section">
-                <h3>Artist <i class="fas fa-chevron-down"></i></h3>
-                <div class="filter-options">
-                    <div class="filter-option">
-                        <input type="checkbox" id="artist1" checked>
-                        <label for="artist1">Ananya Sharma</label>
-                    </div>
-                    <div class="filter-option">
-                        <input type="checkbox" id="artist2">
-                        <label for="artist2">Rajiv Mehta</label>
-                    </div>
-                    <div class="filter-option">
-                        <input type="checkbox" id="artist3" checked>
-                        <label for="artist3">Priya Desai</label>
-                    </div>
-                    <div class="filter-option">
-                        <input type="checkbox" id="artist4">
-                        <label for="artist4">Carlos Mendez</label>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="filter-section">
-                <h3>Availability <i class="fas fa-chevron-down"></i></h3>
-                <div class="filter-options">
-                    <div class="filter-option">
-                        <input type="checkbox" id="instock" checked>
-                        <label for="instock">In Stock</label>
-                    </div>
-                    <div class="filter-option">
-                        <input type="checkbox" id="preorder">
-                        <label for="preorder">Pre-order</label>
-                    </div>
-                </div>
-            </div>
-        </aside>
+<aside class="filter-sidebar">
+  <form method="GET" action="/catalogue">
+    <h2 class="filter-title">Filters <i class="fas fa-sliders-h"></i></h2>
+
+    <!-- Type Filter -->
+    <div class="filter-section">
+      <h3>Type <i class="fas fa-chevron-down"></i></h3>
+      <div class="filter-options">
+        <div class="filter-option">
+          <input type="checkbox" name="category" value="Painting" id="paintings">
+          <label for="paintings">Paintings</label>
+        </div>
+        <div class="filter-option">
+          <input type="checkbox" name="category" value="Pottery" id="pottery">
+          <label for="pottery">Pottery</label>
+        </div>
+        <div class="filter-option">
+          <input type="checkbox" name="category" value="Sculpture" id="sculpture">
+          <label for="sculpture">Sculpture</label>
+        </div>
+        <div class="filter-option">
+          <input type="checkbox" name="category" value="Handloom" id="handloom">
+          <label for="handloom">Handloom</label>
+        </div>
+        <div class="filter-option">
+          <input type="checkbox" name="category" value="Woodcraft" id="woodcraft">
+          <label for="woodcraft">Woodcraft</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Price Range -->
+    <div class="filter-section">
+      <h3>Price Range <i class="fas fa-chevron-down"></i></h3>
+      <label>Min: ₹<input type="number" name="minPrice" min="0" placeholder="0"></label>
+      <label>Max: ₹<input type="number" name="maxPrice" min="0" placeholder="10000"></label>
+    </div>
+
+    <!-- Rating -->
+    <div class="filter-section">
+      <h3>Rating <i class="fas fa-chevron-down"></i></h3>
+      <div class="filter-options">
+        <div class="filter-option">
+          <input type="radio" name="minRating" value="5" id="rating5">
+          <label for="rating5">★★★★★</label>
+        </div>
+        <div class="filter-option">
+          <input type="radio" name="minRating" value="4" id="rating4">
+          <label for="rating4">★★★★☆ & above</label>
+        </div>
+        <div class="filter-option">
+          <input type="radio" name="minRating" value="3" id="rating3">
+          <label for="rating3">★★★☆☆ & above</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Artist -->
+    <div class="filter-section">
+      <h3>Artist <i class="fas fa-chevron-down"></i></h3>
+      <div class="filter-options">
+        <div class="filter-option">
+          <input type="checkbox" name="artist" value="Ananya Sharma" id="artist1">
+          <label for="artist1">Ananya Sharma</label>
+        </div>
+        <div class="filter-option">
+          <input type="checkbox" name="artist" value="Rajiv Mehta" id="artist2">
+          <label for="artist2">Rajiv Mehta</label>
+        </div>
+        <div class="filter-option">
+          <input type="checkbox" name="artist" value="Priya Desai" id="artist3">
+          <label for="artist3">Priya Desai</label>
+        </div>
+        <div class="filter-option">
+          <input type="checkbox" name="artist" value="Carlos Mendez" id="artist4">
+          <label for="artist4">Carlos Mendez</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Availability -->
+    <div class="filter-section">
+      <h3>Availability <i class="fas fa-chevron-down"></i></h3>
+      <div class="filter-options">
+        <div class="filter-option">
+          <input type="radio" name="availability" value="inStock" id="instock">
+          <label for="instock">In Stock</label>
+        </div>
+        <div class="filter-option">
+          <input type="radio" name="availability" value="preorder" id="preorder">
+          <label for="preorder">Pre-order</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="filter-section">
+      <button type="submit" class="apply-filters-button">Apply Filters</button>
+    </div>
+  </form>
+</aside>
 
         <!-- Catalogue main area -->
         <main class="catalogue-main">
@@ -848,142 +845,43 @@
                 <div class="results-count">Showing 12 of 48 products</div>
             </div>
             
-            <div class="product-grid">
-                <!-- Product 1 -->
-                <div class="product-card">
-                    <div class="product-badge">New</div>
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1579783901586-d88db74b4fe4?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=600&w=400" alt="Handmade Pottery">
+<div class="product-grid">
+    <% products.forEach(product => { %>
+        <div class="product-card">
+            <% if (product.isNew) { %>
+                <div class="product-badge">New</div>
+            <% } %>
+
+            <div class="product-image">
+                <img src="<%= product.images[0] %>" alt="<%= product.name %>">
+            </div>
+
+            <div class="product-info">
+                <h3 class="product-title"><%= product.name %></h3>
+                <div class="product-artist">by <%= product.artistName %></div>
+                <div class="product-price">₹<%= product.price %></div>
+                <div class="product-rating">
+                    <div class="rating-stars">
+                        <% for (let i = 0; i < 5; i++) { %>
+                            <% if (i < Math.floor(product.rating)) { %>
+                                <i class="fas fa-star"></i>
+                            <% } else if (i < product.rating) { %>
+                                <i class="fas fa-star-half-alt"></i>
+                            <% } else { %>
+                                <i class="far fa-star"></i>
+                            <% } %>
+                        <% } %>
                     </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Ceramic Moon Vase</h3>
-                        <div class="product-artist">by Ananya Sharma</div>
-                        <div class="product-price">$189</div>
-                        <div class="product-rating">
-                            <div class="rating-stars">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                            </div>
-                            <div class="rating-value">4.7 (24)</div>
-                        </div>
-                        <div class="product-actions">
-                            <button class="action-button view-details"><i class="fas fa-eye"></i> Details</button>
-                            <button class="action-button add-to-cart"><i class="fas fa-shopping-bag"></i> Add</button>
-                        </div>
-                    </div>
+                    <div class="rating-value"><%= product.rating %> (<%= product.reviewsCount %>)</div>
                 </div>
-                
-                <!-- Product 2 -->
-                <div class="product-card">
-                    <div class="product-badge">Featured</div>
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=600&w=400" alt="Woodcraft">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Teakwood Sculpture</h3>
-                        <div class="product-artist">by Rajiv Mehta</div>
-                        <div class="product-price">$275</div>
-                        <div class="product-rating">
-                            <div class="rating-stars">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            </div>
-                            <div class="rating-value">5.0 (18)</div>
-                        </div>
-                        <div class="product-actions">
-                            <button class="action-button view-details"><i class="fas fa-eye"></i> Details</button>
-                            <button class="action-button add-to-cart"><i class="fas fa-shopping-bag"></i> Add</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Product 3 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1580745294520-9be551a0f5b9?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=600&w=400" alt="Painting">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Sunset Landscape</h3>
-                        <div class="product-artist">by Carlos Mendez</div>
-                        <div class="product-price">$320</div>
-                        <div class="product-rating">
-                            <div class="rating-stars">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
-                            </div>
-                            <div class="rating-value">4.2 (31)</div>
-                        </div>
-                        <div class="product-actions">
-                            <button class="action-button view-details"><i class="fas fa-eye"></i> Details</button>
-                            <button class="action-button add-to-cart"><i class="fas fa-shopping-bag"></i> Add</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Product 4 -->
-                <div class="product-card">
-                    <div class="product-badge">New</div>
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1605725657597-3b5e9b0b0b0b?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=600&w=400" alt="Handloom">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Silk Embroidery</h3>
-                        <div class="product-artist">by Priya Desai</div>
-                        <div class="product-price">$145</div>
-                        <div class="product-rating">
-                            <div class="rating-stars">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                            </div>
-                            <div class="rating-value">4.6 (27)</div>
-                        </div>
-                        <div class="product-actions">
-                            <button class="action-button view-details"><i class="fas fa-eye"></i> Details</button>
-                            <button class="action-button add-to-cart"><i class="fas fa-shopping-bag"></i> Add</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Product 5 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1580745294697-ebd5f3a9a3a5?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=600&w=400" alt="Sculpture">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Bronze Dancing Figure</h3>
-                        <div class="product-artist">by Mei Lin</div>
-                        <div class="product-price">$420</div>
-                        <div class="product-rating">
-                            <div class="rating-stars">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            </div>
-                            <div class="rating-value">5.0 (12)</div>
-                        </div>
-                        <div class="product-actions">
-                            <button class="action-button view-details"><i class="fas fa-eye"></i> Details</button>
-                            <button class="action-button add-to-cart"><i class="fas fa-shopping-bag"></i> Add</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Product 6 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1579762592090-3d1c0b0b0b0b?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=600&w=400" alt="Woodcraft">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Walnut Serving Board</h3>
-                        <div class="product-artist">by James Wilson</div>
-                        <div class="product-price">$85</div>
-                        <div class="product-rating">
-                            <div class="rating-stars">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
-                            </div>
-                            <div class="rating-value">4.0 (19)</div>
-                        </div>
-                        <div class="product-actions">
-                            <button class="action-button view-details"><i class="fas fa-eye"></i> Details</button>
-                            <button class="action-button add-to-cart"><i class="fas fa-shopping-bag"></i> Add</button>
-                        </div>
-                    </div>
+                <div class="product-actions">
+                    <button class="action-button view-details"><i class="fas fa-eye"></i> Details</button>
+                    <button class="action-button add-to-cart"><i class="fas fa-shopping-bag"></i> Add</button>
                 </div>
             </div>
+        </div>
+    <% }); %>
+</div>
             
             <!-- Pagination -->
             <div class="pagination">

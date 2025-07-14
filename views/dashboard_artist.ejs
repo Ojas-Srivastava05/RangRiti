@@ -735,7 +735,7 @@
         <div class="actions-section">
             <h3 class="section-title">Quick Actions</h3>
             <div class="actions-grid">
-                <button class="action-btn" onclick="window.location.href = 'product.html'">
+                <button class="action-btn" onclick="window.location.href = '/product'">
                     <span class="action-icon">🎨</span>
                     <span>Upload Artwork</span>
                 </button>
@@ -761,6 +761,10 @@
     </div>
 
     <script>
+          const params = new URLSearchParams(window.location.search);
+    if (params.get('success') === 'true') {
+        alert("✅ Product saved successfully!");
+    }
         function logout() {
             let ans = confirm("Do you want to logout ?");
             if (ans) {

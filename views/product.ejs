@@ -652,63 +652,109 @@
     <div class="diya-flame" style="bottom: 30%; right: 22%; animation-delay: -1s;"></div>
     <div class="diya-flame" style="bottom: 45%; left: 77%; animation-delay: -2s;"></div>
 
-    <div class="container">
-        <div class="royal-header">
-            <h1>Royal Art Gallery</h1>
-            <p>Present your masterpiece to the world</p>
-        </div>
-
-        <div class="scroll-section">
-            <h2 class="section-title">🎨 Your Masterpiece</h2>
-            <div class="upload-frame" id="uploadFrame">
-                <div class="upload-icon">🖼️</div>
-                <div class="upload-text">
-                    <strong>Drop your artwork here</strong><br>
-                    or click to browse your gallery
-                </div>
-                <input type="file" id="artworkFile" accept="image/*" style="display: none;">
-                <div id="imagePreview"></div>
-            </div>
-        </div>
-
-        <div class="scroll-section">
-            <h2 class="section-title">🖋️ Title of Your Creation</h2>
-            <input type="text" class="elegant-input" id="artworkTitle" placeholder="Enter the name of your masterpiece...">
-        </div>
-
-        <div class="scroll-section">
-            <h2 class="section-title">📜 Story Behind Your Art</h2>
-            <textarea class="elegant-textarea" id="artworkDescription" placeholder="Tell the world about your artistic journey, inspiration, and the story behind this creation..."></textarea>
-        </div>
-
-        <div class="scroll-section">
-            <h2 class="section-title">💰 Value of Your Art</h2>
-            <div class="price-container">
-                <span class="price-symbol">₹</span>
-                <input type="number" class="price-input" id="artworkPrice" placeholder="0000" min="0">
-            </div>
-        </div>
-
-        <div class="scroll-section">
-            <h2 class="section-title">🔢 Available Pieces</h2>
-            <div class="quantity-container">
-                <button class="quantity-btn" onclick="changeQuantity(-1)">-</button>
-                <div class="quantity-display" id="quantityDisplay">1</div>
-                <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
-            </div>
-        </div>
-
-        <div class="scroll-section">
-            <h2 class="section-title">🧑‍🎨 Artist Signature</h2>
-            <input type="text" class="elegant-input" id="artistName" placeholder="Your name as it will appear in the gallery...">
-        </div>
-
-        <button class="royal-submit" onclick="submitArtwork()">
-            ✨ Present to Gallery ✨
-        </button>
+<form id="artworkForm" action="/api/add-product" method="POST" enctype="multipart/form-data">
+  <div class="container">
+    <div class="royal-header">
+      <h1>Royal Art Gallery</h1>
+      <p>Present your masterpiece to the world</p>
     </div>
 
-    <script>
+    <!-- Upload Image -->
+    <div class="scroll-section">
+      <h2 class="section-title">🎨 Your Masterpiece</h2>
+      <div class="upload-frame" id="uploadFrame" onclick="document.getElementById('artworkFile').click()">
+        <div class="upload-icon">🖼️</div>
+        <div class="upload-text">
+          <strong>Drop your artwork here</strong><br>
+          or click to browse your gallery
+        </div>
+        <input type="file" name="images" id="artworkFile" accept="image/*" multiple required>
+        <div id="imagePreview"></div>
+      </div>
+    </div>
+
+    <!-- Title -->
+    <div class="scroll-section">
+      <h2 class="section-title">🖋️ Title of Your Creation</h2>
+      <input type="text" class="elegant-input" name="name" id="artworkTitle" placeholder="Name of your masterpiece..." required>
+    </div>
+
+    <!-- Description -->
+    <div class="scroll-section">
+      <h2 class="section-title">📜 Story Behind Your Art</h2>
+      <textarea class="elegant-textarea" name="description" id="artworkDescription" placeholder="Your story, journey, inspiration..." required></textarea>
+    </div>
+
+    <!-- Category -->
+    <div class="scroll-section">
+      <h2 class="section-title">📂 Art Category</h2>
+      <select name="category" class="elegant-input" required>
+        <option value="">-- Select Category --</option>
+        <option value="Painting">Painting</option>
+        <option value="Pottery">Pottery</option>
+        <option value="Sculpture">Sculpture</option>
+        <option value="Handloom">Handloom</option>
+        <option value="Woodcraft">Woodcraft</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+
+    <!-- Price -->
+    <div class="scroll-section">
+      <h2 class="section-title">💰 Value of Your Art</h2>
+      <div class="price-container">
+        <span class="price-symbol">₹</span>
+        <input type="number" class="price-input" name="price" id="artworkPrice" placeholder="0000" min="0" required>
+      </div>
+    </div>
+
+    <!-- Quantity -->
+    <div class="scroll-section">
+      <h2 class="section-title">🔢 Available Pieces</h2>
+      <div class="quantity-container">
+        <button type="button" class="quantity-btn" onclick="changeQuantity(-1)">-</button>
+        <input type="number" class="quantity-display" name="quantityAvailable" id="quantityDisplay" value="1" readonly>
+        <button type="button" class="quantity-btn" onclick="changeQuantity(1)">+</button>
+      </div>
+    </div>
+
+    <!-- Material -->
+    <div class="scroll-section">
+      <h2 class="section-title">🧵 Material Used</h2>
+      <input type="text" class="elegant-input" name="material" placeholder="Canvas, clay, metal, etc.">
+    </div>
+
+    <!-- Size -->
+    <div class="scroll-section">
+      <h2 class="section-title">📏 Size</h2>
+      <input type="text" class="elegant-input" name="size" placeholder="e.g. 12x18 inches">
+    </div>
+
+    <!-- Origin -->
+    <div class="scroll-section">
+      <h2 class="section-title">🌍 Region of Origin</h2>
+      <input type="text" class="elegant-input" name="originRegion" placeholder="e.g. Rajasthan, Bengal">
+    </div>
+
+    <!-- Tags -->
+    <div class="scroll-section">
+      <h2 class="section-title">🏷️ Tags</h2>
+      <input type="text" class="elegant-input" name="tags" placeholder="Comma-separated tags (e.g. handmade, tribal)">
+    </div>
+
+    <!-- Artist -->
+    <div class="scroll-section">
+      <h2 class="section-title">🧑‍🎨 Artist Signature</h2>
+      <input type="text" class="elegant-input" name="artistName" id="artistName" placeholder="Your name..." required>
+    </div>
+
+    <!-- Submit -->
+    <button type="submit" class="royal-submit">
+      ✨ Present to Gallery ✨
+    </button>
+  </div>
+</form>
+ <script>
         // Enhanced dynamic background with more animations
         function createSparkles() {
             for (let i = 0; i < 25; i++) {
@@ -732,7 +778,12 @@
                 document.body.appendChild(particle);
             }
         }
-
+function changeQuantity(delta) {
+  const quantityInput = document.getElementById('quantityDisplay');
+  let current = parseInt(quantityInput.value);
+  current = Math.max(1, current + delta);
+  quantityInput.value = current;
+}
         function createDiyaFlames() {
             const flamePositions = [
                 { bottom: '20%', left: '8%' },
