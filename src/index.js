@@ -221,9 +221,11 @@ app.post('/api/register/user', async (req, res) => {
             return res.status(400).json({ message: 'Email and password are required.' });
         }
 
+        // Check both User and Artist collections for the email
         const existingUser = await User.findOne({ email });
-        if (existingUser) {
-            return res.status(409).json({ message: 'An account with this email already exists.' });
+        const existingArtist = await Artist.findOne({ email });
+        if (existingUser || existingArtist) {
+            return res.status(409).json({ message: 'An account with this email already exists. Please use a different email or log in.' });
         }
 
         const hashedPassword = await bcrypt.hash(password, 12);
@@ -248,9 +250,11 @@ app.post('/api/register/artist', async (req, res) => {
             return res.status(400).json({ message: 'Email and password are required.' });
         }
 
+        // Check both Artist and User collections for the email
         const existingArtist = await Artist.findOne({ email });
-        if (existingArtist) {
-            return res.status(409).json({ message: 'An account with this email already exists.' });
+        const existingUser = await User.findOne({ email });
+        if (existingArtist || existingUser) {
+            return res.status(409).json({ message: 'An account with this email already exists. Please use a different email or log in.' });
         }
 
         const hashedPassword = await bcrypt.hash(password, 12);

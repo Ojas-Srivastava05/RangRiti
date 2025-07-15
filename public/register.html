@@ -9,36 +9,72 @@
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --color-background: #fdf8f0;
+            --sandalwood-beige: #F5DEB3;
+            --warm-tan: #E5C49B;
             --color-primary-text: #4a2c0f;
             --color-secondary-text: #a0522d;
-            --color-container-bg: rgba(255, 250, 240, 0.85);
+            --color-container-bg: rgba(255, 250, 240, 0.75);
             --color-border: #d2b48c;
             --color-accent-gold: #b8860b;
-            --color-accent-gold-dark: #8c640a;
             --color-gold-gradient: linear-gradient(145deg, #d4af37, #b8860b);
             --color-shadow: rgba(139, 69, 19, 0.15);
             --font-primary: 'Lora', serif;
             --font-display: 'Playfair Display', serif;
+            --primary-gold: #D4AF37;
             --transition-speed: 0.4s;
             --easing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
-            --primary-gold: #FFD700;
         }
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: var(--font-primary);
             color: var(--color-primary-text);
-            background-color: var(--color-background);
-            background-image: url('https://www.transparenttextures.com/patterns/arabesque.png');
+            background: linear-gradient(145deg, var(--sandalwood-beige) 0%, var(--warm-tan) 100%);
             min-height: 100vh;
             display: flex;
+            flex-direction: column; /* Changed to column for better alignment */
             align-items: center;
-            justify-content: center;
-            padding: 3rem 2rem;
+            justify-content: flex-start; /* Align content to the top */
+            padding: 150px 2rem 3rem 2rem; /* Added top padding to make space for nav */
             position: relative;
+            overflow-x: hidden;
         }
-        
-        /* Navigation Bar Styles */
+
+        .background-wrapper {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background-color: var(--primary-gold);
+            border-radius: 50%;
+            opacity: 0;
+            animation: float 25s infinite linear;
+            bottom: -50px;
+        }
+
+        @keyframes float {
+            from { transform: translateY(0) scale(1); opacity: 0.6; }
+            to { transform: translateY(-110vh) scale(0); opacity: 0; }
+        }
+
+        .particle:nth-child(1) { left: 10%; animation-duration: 22s; animation-delay: -2s; width: 6px; height: 6px; }
+        .particle:nth-child(2) { left: 20%; animation-duration: 18s; animation-delay: -15s; width: 4px; height: 4px; }
+        .particle:nth-child(3) { left: 35%; animation-duration: 28s; animation-delay: -7s; width: 8px; height: 8px; }
+        .particle:nth-child(4) { left: 50%; animation-duration: 15s; animation-delay: -22s; width: 5px; height: 5px; }
+        .particle:nth-child(5) { left: 65%; animation-duration: 25s; animation-delay: -1s; width: 7px; height: 7px; }
+        .particle:nth-child(6) { left: 80%; animation-duration: 19s; animation-delay: -18s; width: 4px; height: 4px; }
+        .particle:nth-child(7) { left: 90%; animation-duration: 26s; animation-delay: -4s; width: 6px; height: 6px; }
+
         .nav-container {
             position: fixed;
             top: 30px;
@@ -55,69 +91,35 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
             border: 1px solid rgba(255, 215, 0, 0.2);
         }
+
         .nav-btn-link { text-decoration: none; }
         .nav-btn {
             font-family: 'EB Garamond', serif;
-            background: transparent;
-            border: none;
-            color: #FAF3E0;
-            padding: 10px 20px;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            border-radius: 20px;
+            background: transparent; border: none; color: #FAF3E0;
+            padding: 10px 20px; font-size: 1rem; font-weight: 500;
+            cursor: pointer; transition: all 0.3s ease;
+            position: relative; overflow: hidden; border-radius: 20px;
         }
-        .nav-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
-            transition: left 0.5s ease;
-        }
-        .nav-btn:hover::before { left: 100%; }
-        .nav-btn:hover {
-            color: var(--primary-gold);
-            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
-        }
+        .nav-btn:hover { color: var(--primary-gold); text-shadow: 0 0 5px rgba(255, 215, 0, 0.5); }
         .dropdown { position: relative; display: inline-block; }
         .dropdown-toggle { cursor: pointer; }
         .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
+            position: absolute; top: 100%; left: 0;
             background: rgba(0, 0, 0, 0.9);
             border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 10px;
-            padding: 10px 0;
-            display: none;
-            flex-direction: column;
-            min-width: 200px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-            z-index: 1001;
+            border-radius: 10px; padding: 10px 0; display: none;
+            flex-direction: column; min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); z-index: 1001;
         }
         .dropdown-item {
-            font-family: 'EB Garamond', serif;
-            color: #FAF3E0;
-            text-decoration: none;
-            padding: 10px 20px;
-            display: block;
-            transition: all 0.3s ease;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            font-family: 'EB Garamond', serif; color: #FAF3E0;
+            text-decoration: none; padding: 10px 20px; display: block;
+            transition: all 0.3s ease; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
-        .dropdown-item:hover {
-            background: rgba(255, 215, 0, 0.2);
-            color: var(--primary-gold);
-        }
+        .dropdown-item:hover { background: rgba(255, 215, 0, 0.2); color: var(--primary-gold); }
         .dropdown:hover .dropdown-menu { display: flex; }
         .dropdown-arrow { font-size: 0.8em; margin-left: 5px; display: inline-block; }
 
-        /* Page Specific Styles */
         .container {
             width: 100%;
             max-width: 800px;
@@ -126,39 +128,76 @@
             border: 1px solid rgba(210, 180, 140, 0.5);
             border-radius: 12px;
             padding: 2.5rem 3rem;
-            box-shadow: 0 15px 40px var(--color-shadow);
-            animation: fadeIn 1s var(--easing-function) forwards;
-            opacity: 0;
-            transform: translateY(20px);
-            margin-top: 80px; /* Add margin to avoid overlap with navbar */
+            box-shadow: 0 15px 40px var (--color-shadow);
+            animation: fadeIn 0.8s var(--easing-function) forwards;
+            opacity: 0; /* Start transparent for animation */
+            transform: translateY(20px); /* Start slightly lower for animation */
         }
-        @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         h1, h2 { font-family: var(--font-display); color: var(--color-primary-text); text-align: center; }
         h1 { font-size: 3.2rem; margin-bottom: 0.5rem; text-shadow: 1px 1px 3px rgba(0,0,0,0.1); }
         .container > p { text-align: center; color: var(--color-secondary-text); font-size: 1.1rem; margin-bottom: 2.5rem; font-style: italic; }
         h2 { font-size: 1.8rem; margin-bottom: 2rem; padding-bottom: 0.8rem; position: relative; }
         h2::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 80px; height: 2px; background: var(--color-gold-gradient); }
+        
         .user-type-selection { display: flex; gap: 1rem; margin-bottom: 2rem; }
-        .user-type-btn { flex: 1; padding: 0.8rem 1rem; font-family: var(--font-primary); font-size: 1rem; font-weight: 600; color: var(--color-accent-gold-dark); background-color: transparent; border: 2px solid var(--color-border); border-radius: 8px; cursor: pointer; transition: all var(--transition-speed) var(--easing-function); position: relative; overflow: hidden; }
-        .user-type-btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0) 100%); transition: left 0.6s var(--easing-function); }
-        .user-type-btn:hover::before { left: 100%; }
+        .user-type-btn {
+            flex: 1; padding: 0.8rem 1rem; font-family: var(--font-primary);
+            font-size: 1rem; font-weight: 600; color: var(--color-accent-gold-dark);
+            background-color: transparent; border: 2px solid var(--color-border);
+            border-radius: 8px; cursor: pointer;
+            transition: all var(--transition-speed) var(--easing-function);
+        }
         .user-type-btn:hover { transform: translateY(-4px); box-shadow: 0 8px 15px var(--color-shadow); }
-        .user-type-btn.active { color: white; background: var(--color-gold-gradient); border-color: var(--color-accent-gold); box-shadow: 0 4px 15px rgba(184, 134, 11, 0.4); transform: translateY(-2px); }
+        .user-type-btn.active {
+            color: white; background: var(--color-gold-gradient);
+            border-color: var(--color-accent-gold);
+            box-shadow: 0 4px 15px rgba(184, 134, 11, 0.4);
+            transform: translateY(-2px);
+        }
+        
         .form-container { display: none; }
         .form-container.active { display: block; animation: slideDown 0.6s var(--easing-function) forwards; }
         @keyframes slideDown { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        
         .form-group { margin-bottom: 1.5rem; }
         label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--color-primary-text); }
-        input, select, textarea { width: 100%; padding: 0.8rem 1rem; border: 1px solid var(--color-border); border-radius: 6px; font-size: 1rem; font-family: var(--font-primary); background-color: #fff; transition: all var(--transition-speed) var(--easing-function); color: var(--color-primary-text); }
-        input:focus, select:focus, textarea:focus { outline: none; border-color: var(--color-accent-gold); box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.25); background-color: #fff; }
+        input, select, textarea {
+            width: 100%; padding: 0.8rem 1rem; border: 1px solid var(--color-border);
+            border-radius: 6px; font-size: 1rem; font-family: var(--font-primary);
+            background-color: #fff; transition: all var(--transition-speed) var(--easing-function);
+            color: var(--color-primary-text);
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none; border-color: var(--color-accent-gold);
+            box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.25);
+        }
         textarea { min-height: 100px; resize: vertical; }
-        button[type="submit"] { width: 100%; padding: 1rem; font-size: 1.1rem; font-weight: 600; color: white; background: var(--color-gold-gradient); border: none; border-radius: 8px; cursor: pointer; transition: all var(--transition-speed) var(--easing-function); margin-top: 1rem; position: relative; overflow: hidden; }
+        
+        button[type="submit"] {
+            width: 100%; padding: 1rem; font-size: 1.1rem; font-weight: 600;
+            color: white; background: var(--color-gold-gradient);
+            border: none; border-radius: 8px; cursor: pointer;
+            transition: all var(--transition-speed) var(--easing-function);
+            margin-top: 1rem;
+        }
         button[type="submit"]:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(139, 69, 19, 0.3); }
-        button[type="submit"]::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%); transition: left 0.8s var(--easing-function); }
-        button[type="submit"]:hover::before { left: 100%; }
     </style>
 </head>
 <body>
+    <div class="background-wrapper">
+        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
     <nav class="nav-container">
         <a href="index.html" class="nav-btn-link"><button class="nav-btn">Home</button></a>
         <a href="artists.html" class="nav-btn-link"><button class="nav-btn">Artists</button></a>
@@ -185,6 +224,7 @@
             <button class="user-type-btn active" onclick="showForm('user', this)">Register as a User</button>
             <button class="user-type-btn" onclick="showForm('artist', this)">Register as an Artist</button>
         </div>
+        
         <!-- User Registration Form -->
         <div id="user-form" class="form-container active">
             <h2>User Registration</h2>
@@ -208,6 +248,7 @@
                 <button type="submit">Create User Account</button>
             </form>
         </div>
+
         <!-- Artist Registration Form -->
         <div id="artist-form" class="form-container">
             <h2>Artist Registration</h2>
@@ -279,6 +320,7 @@
             </form>
         </div>
     </div>
+
     <script>
         function showForm(formType, element) {
             document.querySelectorAll('.form-container').forEach(c => c.classList.remove('active'));
@@ -286,11 +328,13 @@
             document.querySelectorAll('.user-type-btn').forEach(b => b.classList.remove('active'));
             element.classList.add('active');
         }
+
         async function handleRegistration(event, userType) {
             event.preventDefault();
             const form = event.target;
             const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
+
             try {
                 const response = await fetch(`/api/register/${userType}`, {
                     method: 'POST',
@@ -309,6 +353,7 @@
                 alert('An unexpected error occurred.');
             }
         }
+
         document.getElementById('userRegistrationForm').addEventListener('submit', (e) => handleRegistration(e, 'user'));
         document.getElementById('artistRegistrationForm').addEventListener('submit', (e) => handleRegistration(e, 'artist'));
     </script>

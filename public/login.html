@@ -9,20 +9,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --color-background: #fdf8f0;
+            --sandalwood-beige: #F5DEB3;
+            --warm-tan: #E5C49B;
             --color-primary-text: #4a2c0f;
             --color-secondary-text: #a0522d;
-            --color-container-bg: rgba(255, 250, 240, 0.85);
+            --color-container-bg: rgba(255, 250, 240, 0.75);
             --color-border: #d2b48c;
             --color-accent-gold: #b8860b;
-            --color-accent-gold-dark: #8c640a;
             --color-gold-gradient: linear-gradient(145deg, #d4af37, #b8860b);
             --color-shadow: rgba(139, 69, 19, 0.15);
             --font-primary: 'Lora', serif;
             --font-display: 'Playfair Display', serif;
+            --primary-gold: #D4AF37;
             --transition-speed: 0.4s;
             --easing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
-            --primary-gold: #FFD700;
         }
 
         *, *::before, *::after {
@@ -34,17 +34,47 @@
         body {
             font-family: var(--font-primary);
             color: var(--color-primary-text);
-            background-color: var(--color-background);
-            background-image: url('https://www.transparenttextures.com/patterns/arabesque.png');
+            background: linear-gradient(145deg, var(--sandalwood-beige) 0%, var(--warm-tan) 100%);
             min-height: 100vh;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
+            flex-direction: column; /* Align items vertically */
+            align-items: center; /* Center items horizontally */
+            justify-content: center; /* Center the container vertically in the remaining space */
+            padding: 120px 2rem 2rem 2rem; /* Add padding for nav and spacing */
             position: relative;
+            overflow-x: hidden;
         }
 
-        /* Navigation Bar Styles */
+        .background-wrapper {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background-color: var(--primary-gold);
+            border-radius: 50%;
+            opacity: 0;
+            animation: float 25s infinite linear;
+            bottom: -50px;
+        }
+
+        @keyframes float {
+            from { transform: translateY(0) scale(1); opacity: 0.6; }
+            to { transform: translateY(-110vh) scale(0); opacity: 0; }
+        }
+
+        .particle:nth-child(1) { left: 10%; animation-duration: 22s; animation-delay: -2s; width: 6px; height: 6px; }
+        .particle:nth-child(2) { left: 20%; animation-duration: 18s; animation-delay: -15s; width: 4px; height: 4px; }
+        .particle:nth-child(3) { left: 35%; animation-duration: 28s; animation-delay: -7s; width: 8px; height: 8px; }
+        .particle:nth-child(4) { left: 50%; animation-duration: 15s; animation-delay: -22s; width: 5px; height: 5px; }
+        .particle:nth-child(5) { left: 65%; animation-duration: 25s; animation-delay: -1s; width: 7px; height: 7px; }
+        .particle:nth-child(6) { left: 80%; animation-duration: 19s; animation-delay: -18s; width: 4px; height: 4px; }
+        .particle:nth-child(7) { left: 90%; animation-duration: 26s; animation-delay: -4s; width: 6px; height: 6px; }
+
         .nav-container {
             position: fixed;
             top: 30px;
@@ -61,69 +91,35 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
             border: 1px solid rgba(255, 215, 0, 0.2);
         }
+
         .nav-btn-link { text-decoration: none; }
         .nav-btn {
             font-family: 'EB Garamond', serif;
-            background: transparent;
-            border: none;
-            color: #FAF3E0;
-            padding: 10px 20px;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            border-radius: 20px;
+            background: transparent; border: none; color: #FAF3E0;
+            padding: 10px 20px; font-size: 1rem; font-weight: 500;
+            cursor: pointer; transition: all 0.3s ease;
+            position: relative; overflow: hidden; border-radius: 20px;
         }
-        .nav-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
-            transition: left 0.5s ease;
-        }
-        .nav-btn:hover::before { left: 100%; }
-        .nav-btn:hover {
-            color: var(--primary-gold);
-            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
-        }
+        .nav-btn:hover { color: var(--primary-gold); text-shadow: 0 0 5px rgba(255, 215, 0, 0.5); }
         .dropdown { position: relative; display: inline-block; }
         .dropdown-toggle { cursor: pointer; }
         .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
+            position: absolute; top: 100%; left: 0;
             background: rgba(0, 0, 0, 0.9);
             border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 10px;
-            padding: 10px 0;
-            display: none;
-            flex-direction: column;
-            min-width: 200px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-            z-index: 1001;
+            border-radius: 10px; padding: 10px 0; display: none;
+            flex-direction: column; min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); z-index: 1001;
         }
         .dropdown-item {
-            font-family: 'EB Garamond', serif;
-            color: #FAF3E0;
-            text-decoration: none;
-            padding: 10px 20px;
-            display: block;
-            transition: all 0.3s ease;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            font-family: 'EB Garamond', serif; color: #FAF3E0;
+            text-decoration: none; padding: 10px 20px; display: block;
+            transition: all 0.3s ease; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
-        .dropdown-item:hover {
-            background: rgba(255, 215, 0, 0.2);
-            color: var(--primary-gold);
-        }
+        .dropdown-item:hover { background: rgba(255, 215, 0, 0.2); color: var(--primary-gold); }
         .dropdown:hover .dropdown-menu { display: flex; }
         .dropdown-arrow { font-size: 0.8em; margin-left: 5px; display: inline-block; }
 
-        /* Page Specific Styles */
         .container {
             width: 100%;
             max-width: 500px;
@@ -133,11 +129,18 @@
             border-radius: 12px;
             padding: 2.5rem 3rem;
             box-shadow: 0 15px 40px var(--color-shadow);
-            animation: fadeIn 1s var(--easing-function) forwards;
+            animation: fadeIn 0.8s var(--easing-function) forwards;
             opacity: 0;
             transform: translateY(20px);
         }
-        @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .header { text-align: center; margin-bottom: 2.5rem; }
         .header h1 {
             font-family: var(--font-display);
@@ -176,24 +179,11 @@
             cursor: pointer;
             transition: all var(--transition-speed) var(--easing-function);
             margin-top: 1rem;
-            position: relative;
-            overflow: hidden;
         }
         .submit-btn:hover {
             transform: translateY(-4px);
             box-shadow: 0 8px 25px rgba(139, 69, 19, 0.3);
         }
-        .submit-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
-            transition: left 0.8s var(--easing-function);
-        }
-        .submit-btn:hover::before { left: 100%; }
         .additional-links { text-align: center; margin-top: 2rem; font-size: 0.95em; }
         .additional-links a {
             color: var(--color-primary-text);
@@ -206,6 +196,11 @@
     </style>
 </head>
 <body>
+    <div class="background-wrapper">
+        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+        <div class="particle"></div>
+    </div>
     <nav class="nav-container">
         <a href="index.html" class="nav-btn-link"><button class="nav-btn">Home</button></a>
         <a href="artists.html" class="nav-btn-link"><button class="nav-btn">Artists</button></a>
@@ -230,7 +225,7 @@
             <h1>Welcome Back</h1>
             <p>Log in to your RangRiti account</p>
         </div>
-        <form id="login-form" action="/api/login" method="POST">
+        <form id="login-form">
             <div class="form-group">
                 <label for="login-email">Email Address</label>
                 <input type="email" id="login-email" name="email" required placeholder="Enter your email">
@@ -247,5 +242,33 @@
             <a href="register.html">Create an Account</a>
         </div>
     </div>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data),
+                });
+                const result = await response.json();
+                if (response.ok) {
+                    alert('Login successful!');
+                    // Redirect to a dashboard or home page
+                    window.location.href = '/'; 
+                } else {
+                    alert(`Login failed: ${result.message}`);
+                }
+            } catch (error) {
+                console.error('Error during login:', error);
+                alert('An unexpected error occurred. Please try again.');
+            }
+        });
+    </script>
 </body>
 </html>
