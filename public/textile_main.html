@@ -3,571 +3,1178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Textile Arts and Embroidery of India</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
+    <title>Textile Arts - RangRiti</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Crimson+Text:400,600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* =================== CSS VARIABLES =================== */
+        :root {
+            --sandalwood-beige: #F5DEB3;
+            --warm-sandalwood: #E8D5B7;
+            --deep-sandalwood: #DCC49C;
+            --ivory: #FFFFF0;
+            --cream-white: #FAF0E6;
+            --pearl-white: #F8F6F0;
+            --chocolate-brown: #3D2914;
+            --rich-brown: #6B4423;
+            --royal-gold: #DAA520;
+            --amber-gold: #FFBF00;
+            --bronze-gold: #CD7F32;
+            --antique-gold: #CFB53B;
+            --warm-glow: rgba(255, 215, 0, 0.1);
+            --gold-glow: rgba(218, 165, 32, 0.08);
+            --font-luxury: 'Cinzel', serif;
+            --font-elegant: 'Playfair Display', serif;
+            --font-classic: 'Crimson Text', serif;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        /* =================== ENHANCED DYNAMIC BACKGROUND =================== */
         body {
-            font-family: 'Crimson Text', serif;
-            color: #3d2914;
-            min-height: 100vh;
-            line-height: 1.6;
-            overflow-x: hidden;
-            /* Fixed textile background using your provided image */
-            background: url('/static/Textile_art/Gemini_Generated_Image_api6f7api6f7api6.png') no-repeat center center fixed;
-            background-size: cover;
-            position: relative;
-        }
-
-        /* Sandalwood overlay for readability */
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(244, 228, 193, 0.78);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* Decorative floating SVG overlays */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            background:
-                radial-gradient(circle at 20% 20%, rgba(184,134,11,0.12) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(120,53,15,0.10) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: 1;
-            animation: backgroundFlow 30s ease-in-out infinite;
-        }
-
-        @keyframes backgroundFlow {
-            0%, 100% { background-position: 0% 0%, 100% 100%; }
-            50% { background-position: 100% 100%, 0% 0%; }
-        }
-
-        /* Navigation */
-        .nav-container {
-            position: fixed;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-            backdrop-filter: blur(20px);
-            padding: 15px 25px;
-            border-radius: 50px;
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            z-index: 1000;
-            animation: slideDown 1s ease-out;
-        }
-
-        @keyframes slideDown {
-            from { transform: translateX(-50%) translateY(-100px); opacity: 0; }
-            to { transform: translateX(-50%) translateY(0); opacity: 1; }
-        }
-
-        .nav-btn {
-            font-family: 'Cinzel', serif;
-            background: transparent;
-            color: #3d2914;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 25px;
-            font-size: 0.95rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .nav-btn:hover {
-            background: rgba(255, 215, 0, 0.18);
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.18);
-        }
-
-        /* Dropdown styles */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-        .dropdown-toggle { cursor: pointer; }
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: rgba(0, 0, 0, 0.92);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 10px;
-            padding: 10px 0;
-            display: none;
-            flex-direction: column;
-            min-width: 200px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-            z-index: 1001;
-        }
-        .dropdown-item {
-            font-family: 'Crimson Text', serif;
-            color: #FAF3E0;
-            text-decoration: none;
-            padding: 10px 20px;
-            display: block;
-            transition: all 0.3s ease;
-        }
-        .dropdown-item:hover {
-            background: rgba(255, 215, 0, 0.2);
-            color: #daa520;
-        }
-        .dropdown:hover .dropdown-menu { display: flex; }
-        .dropdown-arrow { font-size: 0.8em; margin-left: 5px; }
-
-        /* Header Section */
-        .header {
-            text-align: center;
-            padding: 4rem 2rem 2rem 2rem;
-            background: linear-gradient(135deg, rgba(244, 228, 193, 0.95) 0%, rgba(220, 196, 156, 0.95) 100%);
-            margin-bottom: 3rem;
-            position: relative;
-            z-index: 2;
-        }
-        .header-content { position: relative; z-index: 2; }
-        .main-title {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 600;
-            color: #3d2914;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.08);
-            position: relative;
-            display: inline-block;
-        }
-        .main-title::before,
-        .main-title::after {
-            content: '✽';
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #b8860b;
-            font-size: 2rem;
-        }
-        .main-title::before { left: -3rem; }
-        .main-title::after { right: -3rem; }
-        .subtitle {
-            font-size: 1.2rem;
-            color: #6b4423;
-            font-style: italic;
-            margin-bottom: 2rem;
-        }
-
-        /* Hero Image Section */
-        .hero-image {
-            text-align: center;
-            margin: 3rem 0;
-            padding: 0 2rem;
-            z-index: 2;
-            position: relative;
-        }
-        .hero-artwork {
-            max-width: 600px;
-            width: 100%;
-            height: 400px;
-            background: rgba(255,255,255,0.18);
-            border: 8px solid #3d2914;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.18), inset 0 0 20px rgba(184, 134, 11, 0.13);
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero-artwork img {
-            max-width: 100%;
-            max-height: 100%;
-            border-radius: 10px;
-            box-shadow: 0 4px 16px rgba(61,41,20,0.12);
-        }
-        .artwork-placeholder {
-            color: #3d2914;
-            font-size: 1.5rem;
-            font-weight: 600;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.08);
-            text-align: center;
-            padding: 2rem;
-            background: rgba(255,255,255,0.12);
-            border-radius: 10px;
-            backdrop-filter: blur(5px);
-        }
-
-        /* Catalogue Section */
-        .catalogue {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-            z-index: 2;
-            position: relative;
-        }
-        .catalogue-title {
-            font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
-            text-align: center;
-            color: #3d2914;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-        .catalogue-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #daa520, transparent);
-        }
-        .art-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 2.2rem;
-            margin-top: 3rem;
-        }
-        .art-card {
-            position: relative;
-            background: #fffbe6;
-            border-radius: 28px 8px 28px 8px;
-            border: 2.5px solid #9B111E;
-            box-shadow: 0 8px 32px rgba(155,17,30,0.10), 0 1.5px 0 #fff6 inset;
-            padding: 0;
-            text-align: left;
-            transition: all 0.35s cubic-bezier(.77,0,.18,1);
-            overflow: hidden;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            align-items: stretch;
-            min-height: 320px;
-            opacity: 0;
-            transform: translateY(30px) scale(0.97);
-            animation: fadeInUp 0.8s ease forwards;
-            text-decoration: none;
-            color: #3d2914;
-            border-left: 8px solid #D4AF37;
-        }
-        .art-card-bg {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 0;
-            filter: brightness(0.75) blur(0.5px);
-            opacity: 0.7;
-            transition: filter 0.3s, opacity 0.5s;
-        }
-        .art-card-content {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 0.7rem;
-            padding: 2.2rem 1.5rem 2rem 1.5rem;
-            background: linear-gradient(120deg,rgba(255,251,230,0.75) 65%,rgba(244,228,193,0.68) 100%);
-            border-radius: 28px 8px 28px 8px;
-            min-height: 320px;
-            opacity: 1;
-            transition: opacity 0.5s;
-        }
-
-        /* On hover/focus: text fades out, image becomes more visible */
-        .art-card:hover .art-card-content,
-        .art-card:focus .art-card-content {
-            opacity: 0;
-            pointer-events: none;
-        }
-        .art-card:hover .art-card-bg,
-        .art-card:focus .art-card-bg {
-            filter: brightness(1) blur(0px);
-            opacity: 1;
-        }
-        .art-icon {
-            font-size: 2.5rem;
-            color: #D4AF37;
-            margin-bottom: 0.5rem;
-            background: #fff8e1;
-            border-radius: 50%;
-            padding: 0.5em 0.7em;
-            box-shadow: 0 2px 8px #d4af3722;
-            border: 2px solid #f4e4c1;
-            align-self: flex-end;
-            margin-left: auto;
-            margin-right: 0;
-            transition: transform 0.3s;
-        }
-        .art-card:hover .art-icon {
-            transform: scale(1.12) rotate(-8deg);
-            background: #fffbe6;
-            color: #9B111E;
-            border-color: #D4AF37;
-        }
-        .art-name {
-            font-family: 'Cinzel', serif;
-            font-size: 1.35rem;
-            font-weight: 700;
-            color: #9B111E;
-            margin-bottom: 0.2rem;
-            letter-spacing: 0.5px;
-        }
-        .art-description {
-            color: #6b4423;
-            font-size: 1.18rem; /* Increased size */
+            font-family: var(--font-elegant);
+            background: 
+                linear-gradient(45deg, var(--sandalwood-beige) 0%, var(--warm-sandalwood) 25%, var(--deep-sandalwood) 50%, var(--sandalwood-beige) 75%, var(--warm-sandalwood) 100%),
+                radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(139, 69, 19, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(245, 222, 179, 0.05) 0%, transparent 30%);
+            background-size: 400% 400%, 100% 100%, 100% 100%, 100% 100%;
+            animation: megaDynamicBackground 30s ease infinite;
+            color: var(--chocolate-brown);
             line-height: 1.7;
-            margin-bottom: 0.5rem;
-            font-weight: 600;    /* Made bolder */
-        }
-        .art-origin {
-            font-style: italic;
-            color: #b8860b;
-            font-size: 0.95rem;
-            opacity: 0.85;
-            margin-top: auto;
-            align-self: flex-end;
-        }
-        .art-card::before {
-            display: none;
-        }
-        .art-card::after {
-            display: none;
-        }
-        @media (max-width: 700px) {
-            .art-card-content { padding: 1.2rem 0.8rem 1.2rem 1rem; min-height: 220px; border-radius: 18px 6px 18px 6px; }
-            .art-icon { font-size: 2rem; }
-            .art-card { min-height: 220px; }
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
         }
 
-        /* Accessibility and focus */
-        .art-card:focus {
-            outline: 3px solid #daa520;
-            outline-offset: 2px;
-            box-shadow: 0 0 0 6px rgba(218, 165, 32, 0.18);
-        }
-        .art-card:focus:not(:focus-visible) {
-            outline: none;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.13);
-        }
-
-        /* Animation for cards */
-        .art-card:nth-child(1) { animation-delay: 0.1s; }
-        .art-card:nth-child(2) { animation-delay: 0.2s; }
-        .art-card:nth-child(3) { animation-delay: 0.3s; }
-        .art-card:nth-child(4) { animation-delay: 0.4s; }
-        .art-card:nth-child(5) { animation-delay: 0.5s; }
-        .art-card:nth-child(6) { animation-delay: 0.6s; }
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
+        @keyframes megaDynamicBackground {
+            0% { 
+                background-position: 0% 50%, 20% 80%, 80% 20%, 40% 40%; 
+                filter: hue-rotate(0deg) brightness(1) contrast(1);
+            }
+            20% { 
+                background-position: 50% 80%, 40% 60%, 60% 40%, 80% 20%; 
+                filter: hue-rotate(3deg) brightness(1.02) contrast(1.01);
+            }
+            40% { 
+                background-position: 100% 50%, 80% 20%, 20% 80%, 60% 60%; 
+                filter: hue-rotate(6deg) brightness(1.01) contrast(1.02);
+            }
+            60% { 
+                background-position: 80% 20%, 60% 40%, 40% 60%, 20% 80%; 
+                filter: hue-rotate(4deg) brightness(1.03) contrast(1.01);
+            }
+            80% { 
+                background-position: 20% 80%, 20% 80%, 80% 20%, 40% 40%; 
+                filter: hue-rotate(2deg) brightness(1.01) contrast(1);
+            }
+            100% { 
+                background-position: 0% 50%, 20% 80%, 80% 20%, 40% 40%; 
+                filter: hue-rotate(0deg) brightness(1) contrast(1);
             }
         }
 
-        /* Footer */
-        .footer {
-            background: rgba(61, 41, 20, 0.92);
-            color: #f4e4c1;
+        /* Enhanced dynamic overlay */
+        .geometric-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                conic-gradient(from 0deg at 25% 25%, rgba(255, 215, 0, 0.06) 0deg, transparent 90deg, rgba(139, 69, 19, 0.04) 180deg, transparent 270deg),
+                conic-gradient(from 180deg at 75% 75%, rgba(245, 222, 179, 0.05) 0deg, transparent 120deg, rgba(255, 215, 0, 0.03) 240deg, transparent 360deg),
+                linear-gradient(45deg, rgba(255, 215, 0, 0.02) 0%, transparent 50%, rgba(139, 69, 19, 0.02) 100%);
+            animation: rotateAndPulse 45s linear infinite;
+        }
+
+        @keyframes rotateAndPulse {
+            0% { 
+                transform: rotate(0deg) scale(1); 
+                opacity: 0.8;
+            }
+            25% { 
+                transform: rotate(90deg) scale(1.05); 
+                opacity: 0.6;
+            }
+            50% { 
+                transform: rotate(180deg) scale(1.1); 
+                opacity: 0.9;
+            }
+            75% { 
+                transform: rotate(270deg) scale(1.05); 
+                opacity: 0.7;
+            }
+            100% { 
+                transform: rotate(360deg) scale(1); 
+                opacity: 0.8;
+            }
+        }
+
+        /* Enhanced particle system */
+        .floating-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--royal-gold), var(--amber-gold));
+            opacity: 0;
+            animation: gentleFloat 45s infinite linear;
+            will-change: transform, opacity;
+        }
+
+        @keyframes gentleFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg) scale(0.3);
+                opacity: 0;
+            }
+            15% {
+                opacity: 0.7;
+                transform: translateY(85vh) rotate(54deg) scale(0.8);
+            }
+            30% {
+                opacity: 0.9;
+                transform: translateY(70vh) rotate(108deg) scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: translateY(50vh) rotate(180deg) scale(1.1);
+            }
+            70% {
+                opacity: 0.6;
+                transform: translateY(30vh) rotate(252deg) scale(0.9);
+            }
+            85% {
+                opacity: 0.4;
+                transform: translateY(15vh) rotate(306deg) scale(0.6);
+            }
+            100% {
+                transform: translateY(-10vh) rotate(360deg) scale(0.2);
+                opacity: 0;
+            }
+        }
+
+        /* 12 beautifully distributed gold particles */
+        .particle:nth-child(1) { left: 8%; animation-delay: -3s; width: 4px; height: 4px; animation-duration: 42s; }
+        .particle:nth-child(2) { left: 18%; animation-delay: -12s; width: 6px; height: 6px; animation-duration: 48s; }
+        .particle:nth-child(3) { left: 28%; animation-delay: -7s; width: 3px; height: 3px; animation-duration: 45s; }
+        .particle:nth-child(4) { left: 38%; animation-delay: -18s; width: 5px; height: 5px; animation-duration: 40s; }
+        .particle:nth-child(5) { left: 48%; animation-delay: -5s; width: 4px; height: 4px; animation-duration: 46s; }
+        .particle:nth-child(6) { left: 58%; animation-delay: -22s; width: 7px; height: 7px; animation-duration: 43s; }
+        .particle:nth-child(7) { left: 68%; animation-delay: -14s; width: 3px; height: 3px; animation-duration: 47s; }
+        .particle:nth-child(8) { left: 78%; animation-delay: -9s; width: 5px; height: 5px; animation-duration: 41s; }
+        .particle:nth-child(9) { left: 88%; animation-delay: -16s; width: 4px; height: 4px; animation-duration: 44s; }
+        .particle:nth-child(10) { left: 92%; animation-delay: -25s; width: 6px; height: 6px; animation-duration: 49s; }
+        .particle:nth-child(11) { left: 12%; animation-delay: -20s; width: 5px; height: 5px; animation-duration: 38s; }
+        .particle:nth-child(12) { left: 72%; animation-delay: -11s; width: 4px; height: 4px; animation-duration: 50s; }
+
+        /* Additional micro particles for density */
+        .micro-particle {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--royal-gold);
+            opacity: 0;
+            animation: microFloat 60s infinite linear;
+            will-change: transform;
+        }
+
+        @keyframes microFloat {
+            0% {
+                transform: translateY(100vh) scale(0.1);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.1;
+            }
+            100% {
+                transform: translateY(-50px) scale(0.8);
+                opacity: 0;
+            }
+        }
+
+        /* 8 micro particles for subtle sparkle effect */
+        .micro-particle:nth-child(13) { left: 15%; animation-delay: -8s; width: 2px; height: 2px; animation-duration: 55s; }
+        .micro-particle:nth-child(14) { left: 35%; animation-delay: -28s; width: 1.5px; height: 1.5px; animation-duration: 62s; }
+        .micro-particle:nth-child(15) { left: 55%; animation-delay: -13s; width: 2px; height: 2px; animation-duration: 58s; }
+        .micro-particle:nth-child(16) { left: 75%; animation-delay: -33s; width: 1.5px; height: 1.5px; animation-duration: 53s; }
+        .micro-particle:nth-child(17) { left: 25%; animation-delay: -19s; width: 2px; height: 2px; animation-duration: 61s; }
+        .micro-particle:nth-child(18) { left: 65%; animation-delay: -6s; width: 1.5px; height: 1.5px; animation-duration: 56s; }
+        .micro-particle:nth-child(19) { left: 85%; animation-delay: -24s; width: 2px; height: 2px; animation-duration: 59s; }
+        .micro-particle:nth-child(20) { left: 45%; animation-delay: -15s; width: 1.5px; height: 1.5px; animation-duration: 54s; }
+
+        /* Enhanced shimmer particles */
+        .shimmer-particle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--amber-gold) 20%, transparent 70%);
+            opacity: 0;
+            animation: shimmerFloat 35s infinite ease-in-out;
+            will-change: transform, opacity;
+        }
+
+        @keyframes shimmerFloat {
+            0%, 100% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.8;
+                transform: translateY(80vh) scale(1);
+            }
+            80% {
+                opacity: 0.3;
+                transform: translateY(20vh) scale(1.5);
+            }
+        }
+
+        /* 6 shimmer particles for magical effect */
+        .shimmer-particle:nth-child(21) { left: 20%; animation-delay: -4s; width: 8px; height: 8px; animation-duration: 32s; }
+        .shimmer-particle:nth-child(22) { left: 40%; animation-delay: -17s; width: 10px; height: 10px; animation-duration: 38s; }
+        .shimmer-particle:nth-child(23) { left: 60%; animation-delay: -26s; width: 6px; height: 6px; animation-duration: 35s; }
+        .shimmer-particle:nth-child(24) { left: 80%; animation-delay: -10s; width: 9px; height: 9px; animation-duration: 40s; }
+        .shimmer-particle:nth-child(25) { left: 30%; animation-delay: -21s; width: 7px; height: 7px; animation-duration: 36s; }
+        .shimmer-particle:nth-child(26) { left: 70%; animation-delay: -2s; width: 8px; height: 8px; animation-duration: 34s; }
+
+        /* Floating ornamental elements */
+        .floating-ornament {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0.08;
+            animation: ornamentDance 25s ease-in-out infinite;
+            will-change: transform;
+        }
+
+        @keyframes ornamentDance {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg) scale(1); 
+                opacity: 0.08;
+            }
+            25% { 
+                transform: translateY(-30px) rotate(90deg) scale(1.1); 
+                opacity: 0.12;
+            }
+            50% { 
+                transform: translateY(-15px) rotate(180deg) scale(0.9); 
+                opacity: 0.15;
+            }
+            75% { 
+                transform: translateY(-25px) rotate(270deg) scale(1.05); 
+                opacity: 0.1;
+            }
+        }
+
+        .ornament-1 {
+            top: 15%;
+            left: 8%;
+            width: 45px;
+            height: 45px;
+            background: radial-gradient(circle, var(--royal-gold), var(--amber-gold));
+            border-radius: 50% 20% 50% 20%;
+            animation-delay: -8s;
+        }
+
+        .ornament-2 {
+            top: 55%;
+            right: 12%;
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(45deg, var(--bronze-gold), var(--antique-gold));
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            animation-delay: -18s;
+        }
+
+        .ornament-3 {
+            top: 75%;
+            left: 15%;
+            width: 40px;
+            height: 40px;
+            background: conic-gradient(var(--royal-gold), var(--amber-gold), var(--bronze-gold), var(--royal-gold));
+            border-radius: 50% 10% 50% 10%;
+            animation-delay: -12s;
+        }
+
+        .ornament-4 {
+            top: 35%;
+            right: 25%;
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, var(--royal-gold), transparent, var(--amber-gold));
+            border-radius: 50%;
+            animation-delay: -25s;
+        }
+
+        /* Mesh gradient overlay for extra depth */
+        .mesh-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse 80% 50% at 20% 30%, rgba(255, 215, 0, 0.03), transparent),
+                radial-gradient(ellipse 60% 80% at 80% 70%, rgba(139, 69, 19, 0.02), transparent),
+                radial-gradient(ellipse 100% 60% at 50% 10%, rgba(245, 222, 179, 0.04), transparent);
+            animation: meshShift 35s ease-in-out infinite alternate;
+        }
+
+        @keyframes meshShift {
+            0% { 
+                transform: scale(1) rotate(0deg);
+                opacity: 0.5;
+            }
+            50% { 
+                transform: scale(1.1) rotate(2deg);
+                opacity: 0.8;
+            }
+            100% { 
+                transform: scale(0.95) rotate(-1deg);
+                opacity: 0.6;
+            }
+        }
+
+        /* =================== PERFECTLY CENTERED NAVIGATION =================== */
+        .nav-container {
+            position: fixed;
+            top: 1.5rem;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 215, 0, 0.15);
+            border-radius: 25px;
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
+            z-index: 1000;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            width: fit-content;
+            max-width: 90vw;
+        }
+
+        .nav-container:hover {
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn-link {
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .nav-btn {
+            font-family: var(--font-classic);
+            background: transparent;
+            border: none;
+            color: #F8F8F2;
+            padding: 0.5rem 0.8rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            border-radius: 20px;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .nav-btn:hover {
+            color: var(--royal-gold);
+            background: rgba(255, 215, 0, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 110%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 12px;
+            padding: 0.8rem 0;
+            min-width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .dropdown-item {
+            font-family: var(--font-classic);
+            color: #F8F8F2;
+            text-decoration: none;
+            padding: 0.6rem 1.2rem;
+            display: block;
+            transition: all 0.25s ease;
+            font-size: 0.85rem;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--royal-gold);
+            transform: translateX(3px);
+        }
+
+        .dropdown-arrow {
+            font-size: 0.7em;
+            margin-left: 0.4rem;
+            transition: transform 0.25s ease;
+        }
+
+        .dropdown:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* =================== HERO SECTION =================== */
+        .hero-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
             text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
+            padding: 8rem 2rem 4rem;
             position: relative;
             z-index: 2;
         }
-        .footer::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #daa520, transparent);
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        /* Mobile Responsiveness */
-        @media (max-width: 768px) {
-            .nav-container { flex-wrap: wrap; width: 100vw; }
-            .main-title { padding-top: 86px; }
-            .main-title::before, .main-title::after { display: none; }
-            .hero-artwork { height: 300px; }
-            .art-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-            .catalogue { padding: 2rem 1rem; }
+        .page-title {
+            font-family: var(--font-luxury);
+            font-size: clamp(3.5rem, 8vw, 7rem);
+            font-weight: 900;
+            color: var(--chocolate-brown);
+            margin-bottom: 1.5rem;
+            text-shadow: 
+                3px 3px 6px rgba(0, 0, 0, 0.15),
+                0 0 30px rgba(255, 215, 0, 0.2);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
         }
+
+        .page-subtitle {
+            font-family: var(--font-elegant);
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            color: var(--rich-brown);
+            font-style: italic;
+            font-weight: 400;
+            margin-bottom: 3rem;
+            letter-spacing: 0.5px;
+        }
+
+        .decorative-divider {
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--royal-gold), var(--amber-gold), var(--royal-gold));
+            margin: 2rem auto;
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .decorative-divider::before,
+        .decorative-divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 15px;
+            height: 15px;
+            background: radial-gradient(circle, var(--royal-gold), var(--amber-gold));
+            border-radius: 50%;
+            transform: translateY(-50%);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+
+        .decorative-divider::before {
+            left: -25px;
+        }
+
+        .decorative-divider::after {
+            right: -25px;
+        }
+
+        /* =================== FEATURED SHOWCASE =================== */
+        .featured-showcase {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .showcase-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .showcase-title {
+            font-family: var(--font-luxury);
+            font-size: clamp(2.8rem, 5vw, 4rem);
+            color: var(--chocolate-brown);
+            margin-bottom: 2rem;
+            position: relative;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .showcase-title::after {
+            content: '';
+            position: absolute;
+            bottom: -0.8rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--royal-gold), var(--amber-gold), var(--royal-gold));
+            border-radius: 2px;
+        }
+
+        .featured-artwork {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+            background: linear-gradient(145deg, var(--ivory), var(--cream-white));
+            padding: 2.5rem;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+            will-change: transform;
+        }
+
+        .featured-artwork:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .featured-artwork img {
+            width: 100%;
+            height: auto;
+            max-height: 450px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .artwork-details {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 2.5rem;
+            right: 2.5rem;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(20, 20, 20, 0.85));
+            backdrop-filter: blur(12px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            color: white;
+            opacity: 0;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .featured-artwork:hover .artwork-details {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .artwork-title {
+            font-family: var(--font-luxury);
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--royal-gold);
+            text-shadow: 
+                0 2px 4px rgba(0, 0, 0, 0.3),
+                0 0 15px rgba(255, 215, 0, 0.4);
+            letter-spacing: -0.01em;
+        }
+
+        .artwork-description {
+            font-family: var(--font-elegant);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #F8F8F2;
+            opacity: 0.95;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+        }
+
+        /* =================== ART CATALOGUE SECTION =================== */
+        .art-catalogue {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .catalogue-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .catalogue-title {
+            font-family: var(--font-luxury);
+            font-size: clamp(2.8rem, 5vw, 4rem);
+            color: var(--chocolate-brown);
+            margin-bottom: 1.5rem;
+            position: relative;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .catalogue-title::after {
+            content: '';
+            position: absolute;
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, var (--royal-gold), var(--amber-gold), var(--royal-gold));
+            border-radius: 2px;
+        }
+
+        .art-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            justify-content: center;
+            padding: 0 1rem;
+        }
+
+        /* =================== ENHANCED ART CARDS =================== */
+        .art-card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .art-card {
+            background: linear-gradient(145deg, var(--ivory), var(--pearl-white));
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.06);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            will-change: transform;
+            cursor: pointer;
+        }
+
+        .art-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .art-card-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            transition: transform 0.2s ease;
+        }
+
+        .art-card:hover .art-card-image {
+            transform: scale(1.02);
+        }
+
+        .card-content {
+            padding: 2rem;
+        }
+
+        .card-title {
+            font-family: var(--font-luxury);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--chocolate-brown);
+            margin-bottom: 1.2rem;
+            position: relative;
+            transition: color 0.3s ease;
+            letter-spacing: -0.01em;
+        }
+
+        .card-title::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--royal-gold), var(--amber-gold));
+            transition: width 0.2s ease;
+        }
+
+        .art-card:hover .card-title::after {
+            width: 60px;
+        }
+
+        .card-description {
+            font-family: var(--font-elegant);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--rich-brown);
+            margin-bottom: 1.8rem;
+            opacity: 0.9;
+            font-weight: 400;
+            letter-spacing: 0.2px;
+        }
+
+        .card-origin {
+            font-family: var(--font-classic);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--bronze-gold);
+            font-style: italic;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            letter-spacing: 0.3px;
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: linear-gradient(135deg, var(--royal-gold), var(--amber-gold));
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .art-card:hover .card-badge {
+            opacity: 1;
+        }
+
+        /* =================== MOBILE OPTIMIZATION =================== */
+        @media (max-width: 1200px) {
+            .nav-container {
+                padding: 0.5rem 1.2rem;
+                gap: 0.2rem;
+            }
+            
+            .nav-btn {
+                padding: 0.45rem 0.7rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                top: 1rem;
+                padding: 0.5rem 1rem;
+                flex-wrap: nowrap;
+                max-width: calc(100vw - 2rem);
+                gap: 0.2rem;
+                overflow-x: auto;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+            }
+
+            .nav-container::-webkit-scrollbar {
+                display: none;
+            }
+
+            .nav-btn {
+                padding: 0.4rem 0.6rem;
+                font-size: 0.75rem;
+                min-width: fit-content;
+            }
+
+            .hero-section {
+                padding: 6rem 1rem 3rem;
+            }
+
+            .featured-showcase, .art-catalogue {
+                padding: 3rem 1rem;
+            }
+
+            .artwork-details {
+                bottom: 2rem;
+                left: 2rem;
+                right: 2rem;
+                padding: 2rem;
+            }
+
+            .artwork-title {
+                font-size: 1.8rem;
+            }
+
+            .artwork-description {
+                font-size: 1rem;
+            }
+
+            .art-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 0;
+            }
+
+            .card-title {
+                font-size: 1.8rem;
+            }
+
+            .card-description {
+                font-size: 1rem;
+            }
+
+            /* Reduce particles on mobile for better performance */
+            .particle:nth-child(n+7) {
+                display: none;
+            }
+            
+            .micro-particle {
+                display: none;
+            }
+            
+            .shimmer-particle:nth-child(n+23) {
+                display: none;
+            }
+
+            .featured-artwork:hover {
+                transform: translateY(-1px);
+            }
+
+            .art-card:hover {
+                transform: translateY(-2px);
+            }
+        }
+
         @media (max-width: 480px) {
-            .header { padding: 2rem 1rem; }
-            .catalogue-title { font-size: 2rem; }
-            .art-card { padding: 1.5rem; }
+            .nav-container {
+                gap: 0.1rem;
+                padding: 0.4rem 0.8rem;
+            }
+
+            .nav-btn {
+                padding: 0.35rem 0.5rem;
+                font-size: 0.7rem;
+            }
+
+            .hero-section {
+                padding: 5rem 1rem 2rem;
+            }
+
+            .featured-artwork {
+                padding: 2rem;
+            }
+
+            .artwork-details {
+                bottom: 2rem;
+                left: 2rem;
+                right: 2rem;
+                padding: 1.8rem;
+            }
+
+            .artwork-title {
+                font-size: 1.6rem;
+            }
+
+            .card-content {
+                padding: 1.5rem;
+            }
+
+            .card-title {
+                font-size: 1.6rem;
+            }
+
+            /* Only keep essential particles on small screens */
+            .particle:nth-child(n+4) {
+                display: none;
+            }
+            
+            .shimmer-particle {
+                display: none;
+            }
+        }
+
+        /* =================== PERFORMANCE BOOST =================== */
+        .particle-container {
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+
+        /* Reduce motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            .particle,
+            .micro-particle,
+            .shimmer-particle {
+                animation-duration: 100s;
+                opacity: 0.1;
+            }
+
+            .geometric-overlay {
+                animation: none;
+            }
+
+            body {
+                animation: none;
+            }
+
+            .featured-artwork:hover {
+                transform: none;
+            }
+
+            .art-card:hover {
+                transform: none;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Enhanced Gold Particle Background -->
+    <div class="background-layers">
+        <div class="mesh-overlay"></div>
+        <div class="geometric-overlay"></div>
+        <div class="floating-particles particle-container">
+            <!-- Main particles -->
+            <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+            <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+            <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+            <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+            
+            <!-- Micro particles -->
+            <div class="micro-particle"></div><div class="micro-particle"></div><div class="micro-particle"></div>
+            <div class="micro-particle"></div><div class="micro-particle"></div><div class="micro-particle"></div>
+            <div class="micro-particle"></div><div class="micro-particle"></div>
+            
+            <!-- Shimmer particles -->
+            <div class="shimmer-particle"></div><div class="shimmer-particle"></div><div class="shimmer-particle"></div>
+            <div class="shimmer-particle"></div><div class="shimmer-particle"></div><div class="shimmer-particle"></div>
+        </div>
+        <!-- Enhanced Floating Ornaments -->
+        <div class="floating-ornament ornament-1"></div>
+        <div class="floating-ornament ornament-2"></div>
+        <div class="floating-ornament ornament-3"></div>
+        <div class="floating-ornament ornament-4"></div>
+    </div>
+
     <!-- Navigation -->
     <nav class="nav-container">
-        <a href="/public/index.html"> <button class="nav-btn">Home</button></a>
-        <button class="nav-btn">Artists</button>
-        <button class="nav-btn">Workshops</button>
-        <button class="nav-btn">Calendar</button>
+        <a href="index.html" class="nav-btn-link"><button class="nav-btn">Home</button></a>
+        <a href="artists.html" class="nav-btn-link"><button class="nav-btn">Artists</button></a>
+        <a href="workshops.html" class="nav-btn-link"><button class="nav-btn">Workshops</button></a>
+        <a href="calendar.html" class="nav-btn-link"><button class="nav-btn">Calendar</button></a>
         <div class="dropdown">
-            <button class="nav-btn dropdown-toggle">
-                Heritage <span class="dropdown-arrow">&#9660;</span>
-            </button>
+            <button class="nav-btn dropdown-toggle">Heritage <span class="dropdown-arrow">&#9660;</span></button>
             <div class="dropdown-menu">
-                <a href="/public/textile_main.html" class="dropdown-item">Textile Arts</a>
-                <a href="/public/paintings and traditional styles.html" class="dropdown-item">Painting Styles</a>
-                <a href="/public/performingarts.html" class="dropdown-item">Performing Arts</a>
-                <a href="/public/handicrafts_and_sculptures.html" class="dropdown-item">Handicrafts & Sculpture</a>
+                <a href="paintings and traditional styles.html" class="dropdown-item">Traditional Painting Styles</a>
+                <a href="textile_main.html" class="dropdown-item">Textile Arts</a>
+                <a href="performingarts.html" class="dropdown-item">Performing Arts</a>
+                <a href="handicrafts_and_sculptures.html" class="dropdown-item">Handicrafts & Sculpture</a>
             </div>
         </div>
-        <button class="nav-btn">Connect</button>
+        <a href="connect.html" class="nav-btn-link"><button class="nav-btn">Connect</button></a>
+        <a href="login.html" class="nav-btn-link"><button class="nav-btn">Login</button></a>
+        <a href="register.html" class="nav-btn-link"><button class="nav-btn">Register</button></a>
     </nav>
 
-    <header class="header">
-        <div class="header-content">
-            <h1 class="main-title">Textile Arts and Embroidery of India</h1>
-            <p class="subtitle">A Journey Through India's Threads of Tradition</p>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="page-title">Textile Arts</h1>
+            <div class="decorative-divider"></div>
+            <p class="page-subtitle">Threads of Tradition Woven Through Time</p>
         </div>
-    </header>
+    </section>
 
-    <section class="hero-image">
-        <div class="hero-artwork">
-            <div class="artwork-placeholder">
-                <div>🪡 Featured Textile Artwork 🪡</div>
-                <div style="font-size: 1rem; margin-top: 1rem; opacity: 0.8;">
-                    <img src="/static/Textile_art/index_image.webp" alt="Traditional Indian Textile Art">
-                </div>
+    <!-- Featured Showcase -->
+    <section class="featured-showcase">
+        <div class="showcase-header">
+            <h2 class="showcase-title">Featured Textile</h2>
+        </div>
+        <div class="featured-artwork">
+            <img src="/static/Textile_art/index_image.webp" alt="Traditional Indian Textile Art">
+            <div class="artwork-details">
+                <h3 class="artwork-title">Indian Textile Heritage</h3>
+                <p class="artwork-description">
+                    Explore the magnificent world of Indian textiles, where every thread tells a story of tradition, 
+                    culture, and artistic excellence. From the intricate embroidery of Kashmir to the vibrant weaves 
+                    of Gujarat, Indian textiles represent centuries of craftsmanship passed down through generations, 
+                    creating a tapestry of beauty that continues to inspire the world.
+                </p>
             </div>
         </div>
     </section>
 
-    <section class="catalogue">
-        <h2 class="catalogue-title">Explore Indian Textile Arts</h2>
+    <!-- Art Catalogue -->
+    <section class="art-catalogue">
+        <div class="catalogue-header">
+            <h2 class="catalogue-title">Explore Textile Arts</h2>
+        </div>
+        
         <div class="art-grid">
-            <div class="art-card" tabindex="0" role="button" aria-label="Learn more about Phulkari" onclick="window.location.href = '/phulkari.html' ">
-                <img class="art-card-bg" src="/static/Textile_art/phulkhari.jpg" alt="" />
-                <div class="art-card-content">
-                    <div class="art-icon">🪡</div>
-                    <h3 class="art-name">Phulkari</h3>
-                    <p class="art-description">
-                        Colorful floral embroidery on coarse cotton, known for its vibrant threadwork and geometric patterns.
-                    </p>
-                    <p class="art-origin">Origin: Punjab</p>
+            <a href="phulkari.html" class="art-card-link">
+                <div class="art-card">
+                    <div class="card-badge">Punjab</div>
+                    <img src="/static/Textile_art/phulkhari.jpg" alt="Phulkari Embroidery" class="art-card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">Phulkari</h3>
+                        <p class="card-description">Colorful floral embroidery on coarse cotton, known for its vibrant threadwork and geometric patterns that celebrate life and nature.</p>
+                        <div class="card-origin">🪡 Floral Embroidery • Punjab</div>
+                    </div>
                 </div>
-            </div>
-            <div class="art-card" tabindex="0" role="button" aria-label="Learn more about Kantha" onclick="window.location.href = '/kantha.html' ">
-                <img class="art-card-bg" src="/static/Textile_art/kantha.avif" alt="" />
-                <div class="art-card-content">
-                    <div class="art-icon">🧵</div>
-                    <h3 class="art-name">Kantha</h3>
-                    <p class="art-description">
-                        Running-stitch embroidery on old saris and cloth, creating motifs of flora, fauna, and daily life.
-                    </p>
-                    <p class="art-origin">Origin: Bengal, Odisha</p>
+            </a>
+
+            <a href="kantha.html" class="art-card-link">
+                <div class="art-card">
+                    <div class="card-badge">Bengal</div>
+                    <img src="/static/Textile_art/kantha.avif" alt="Kantha Embroidery" class="art-card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">Kantha</h3>
+                        <p class="card-description">Running-stitch embroidery on old saris and cloth, creating motifs of flora, fauna, and daily life with recycled materials.</p>
+                        <div class="card-origin">🧵 Running Stitch • Bengal</div>
+                    </div>
                 </div>
-            </div>
-            <div class="art-card" tabindex="0" role="button" aria-label="Learn more about Chikankari" onclick="window.location.href = '/chikankari.html' ">
-                <img class="art-card-bg" src="/static/Textile_art/chikankari.jpg" alt="" />
-                <div class="art-card-content">
-                    <div class="art-icon">✨</div>
-                    <h3 class="art-name">Chikankari</h3>
-                    <p class="art-description">
-                        Delicate white-on-white embroidery with floral and paisley motifs, often on muslin or cotton.
-                    </p>
-                    <p class="art-origin">Origin: Uttar Pradesh (Lucknow)</p>
+            </a>
+
+            <a href="chikankari.html" class="art-card-link">
+                <div class="art-card">
+                    <div class="card-badge">Uttar Pradesh</div>
+                    <img src="/static/Textile_art/chikankari.jpg" alt="Chikankari Embroidery" class="art-card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">Chikankari</h3>
+                        <p class="card-description">Delicate white-on-white embroidery with floral and paisley motifs, often on muslin or cotton, representing Mughal elegance.</p>
+                        <div class="card-origin">✨ White Work • Lucknow</div>
+                    </div>
                 </div>
-            </div>
-            <div class="art-card" tabindex="0" role="button" aria-label="Learn more about Kutch Embroidery" onclick="window.location.href = '/kutchEmbroidery.html' ">
-                <img class="art-card-bg" src="/static/Textile_art/Antique_Kutch_Embroidery.jpg" alt="" />
-                <div class="art-card-content">
-                    <div class="art-icon">🌸</div>
-                    <h3 class="art-name">Kutch Embroidery</h3>
-                    <p class="art-description">
-                        Rich, mirror-studded embroidery with bold colors and intricate patterns.
-                    </p>
-                    <p class="art-origin">Origin: Gujarat</p>
+            </a>
+
+            <a href="kutchEmbroidery.html" class="art-card-link">
+                <div class="art-card">
+                    <div class="card-badge">Gujarat</div>
+                    <img src="/static/Textile_art/Antique_Kutch_Embroidery.jpg" alt="Kutch Embroidery" class="art-card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">Kutch Embroidery</h3>
+                        <p class="card-description">Rich, mirror-studded embroidery with bold colors and intricate patterns reflecting the vibrant culture of the Kutch region.</p>
+                        <div class="card-origin">🌸 Mirror Work • Gujarat</div>
+                    </div>
                 </div>
-            </div>
-            <div class="art-card" tabindex="0" role="button" aria-label="Learn more about Kalamkari Textiles" onclick="window.location.href = '/KalamkariTextiles.html' ">
-                <img class="art-card-bg" src="/static/Textile_art/kalamkari.webp" alt="" />
-                <div class="art-card-content">
-                    <div class="art-icon">🎨</div>
-                    <h3 class="art-name">Kalamkari Textiles</h3>
-                    <p class="art-description">
-                        Hand-painted or block-printed textiles with mythological and floral designs, using natural dyes.
-                    </p>
-                    <p class="art-origin">Origin: Andhra Pradesh, Telangana</p>
+            </a>
+
+            <a href="KalamkariTextiles.html" class="art-card-link">
+                <div class="art-card">
+                    <div class="card-badge">Andhra Pradesh</div>
+                    <img src="/static/Textile_art/kalamkari.webp" alt="Kalamkari Textiles" class="art-card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">Kalamkari Textiles</h3>
+                        <p class="card-description">Hand-painted or block-printed textiles with mythological and floral designs, using natural dyes and traditional techniques.</p>
+                        <div class="card-origin">🎨 Hand Painted • Andhra Pradesh</div>
+                    </div>
                 </div>
-            </div>
-            <div class="art-card" tabindex="0" role="button" aria-label="Learn more about Patola" onclick="window.location.href = '/patola.html' ">
-                <img class="art-card-bg" src="/static/Textile_art/patola2jpg.jpg" alt="" />
-                <div class="art-card-content">
-                    <div class="art-icon">🧣</div>
-                    <h3 class="art-name">Patola</h3>
-                    <p class="art-description">
-                        Exquisite double ikat woven silk textiles, famous for their vibrant colors and geometric patterns.
-                    </p>
-                    <p class="art-origin">Origin: Gujarat</p>
+            </a>
+
+            <a href="patola.html" class="art-card-link">
+                <div class="art-card">
+                    <div class="card-badge">Gujarat</div>
+                    <img src="/static/Textile_art/patola2jpg.jpg" alt="Patola Silk" class="art-card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">Patola</h3>
+                        <p class="card-description">Exquisite double ikat woven silk textiles, famous for their vibrant colors and geometric patterns, representing the pinnacle of weaving art.</p>
+                        <div class="card-origin">🧣 Double Ikat • Gujarat</div>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
     </section>
-
-    <footer class="footer">
-        <p>&copy; 2025 Textile Heritage of India. Preserving India's textile heritage through digital storytelling.</p>
-    </footer>
 
     <script>
-        // Keyboard navigation for cards
-        // document.addEventListener('keydown', function(e) {
-        //     if (e.key === 'Enter' || e.key === ' ') {
-        //         const focusedCard = document.activeElement;
-        //         if (focusedCard && focusedCard.classList.contains('art-card')) {
-        //             e.preventDefault();
-        //             focusedCard.click();
-        //         }
-        //     }
-        // });
+        // Optimized performance loading
+        window.addEventListener('load', function() {
+            // GPU acceleration for smoother animations
+            document.querySelectorAll('.art-card, .featured-artwork, .nav-container, .particle-container').forEach(el => {
+                el.style.transform = 'translateZ(0)';
+                el.style.backfaceVisibility = 'hidden';
+            });
+        });
 
-        // // Add tabindex and ARIA for accessibility
-        // document.addEventListener('DOMContentLoaded', function() {
-        //     const cards = document.querySelectorAll('.art-card');
-        //     cards.forEach((card, index) => {
-        //         card.setAttribute('tabindex', '0');
-        //         card.setAttribute('role', 'button');
-        //         card.setAttribute('aria-label', `Learn more about ${card.querySelector('.art-name').textContent}`);
-        //     });
-        // });
+        // Enhanced scroll reveal with performance optimization
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
 
-        // // Focus styles for keyboard navigation
-        // document.addEventListener('DOMContentLoaded', function() {
-        //     const style = document.createElement('style');
-        //     style.textContent = `
-        //         .art-card:focus {
-        //             outline: 3px solid #daa520;
-        //             outline-offset: 2px;
-        //             box-shadow: 0 0 0 6px rgba(218, 165, 32, 0.18);
-        //         }
-        //         .art-card:focus:not(:focus-visible) {
-        //             outline: none;
-        //             box-shadow: 0 10px 30px rgba(0,0,0,0.13);
-        //         }
-        //     `;
-        //     document.head.appendChild(style);
-        // });
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    scrollObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Apply smooth scroll reveal to essential elements only
+        document.querySelectorAll('.art-card, .featured-artwork').forEach(el => {
+            el.classList.add('scroll-reveal');
+            scrollObserver.observe(el);
+        });
+
+        // Optimized particle management
+        const allParticles = document.querySelectorAll('.particle, .micro-particle, .shimmer-particle');
+        
+        // Pause particles when tab is not visible
+        document.addEventListener('visibilitychange', () => {
+            const isTabActive = !document.hidden;
+            allParticles.forEach(particle => {
+                particle.style.animationPlayState = isTabActive ? 'running' : 'paused';
+            });
+        });
+
+        // Intelligent particle management based on device performance
+        const isLowPerformanceDevice = navigator.hardwareConcurrency < 4 || 
+                                       /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+        if (isLowPerformanceDevice) {
+            // Remove some particles on low-performance devices
+            document.querySelectorAll('.micro-particle, .shimmer-particle').forEach(el => {
+                el.style.display = 'none';
+            });
+        }
+
+        // Card click functionality
+        document.querySelectorAll('.art-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const link = this.closest('.art-card-link');
+                if (link && link.href) {
+                    window.location.href = link.href;
+                }
+            });
+        });
     </script>
 </body>
 </html>
