@@ -111,7 +111,7 @@ const cartItems = req.user.cart.map(item => ({
     quantity: item.quantity
 }));
 const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
-const shipping = subtotal > 10000 ? 0 : 250;
+const shipping = subtotal > 10000 ? 0 : 0;
 const tax = Math.round(subtotal * 0.1);
 const total = subtotal + shipping + tax;
 
