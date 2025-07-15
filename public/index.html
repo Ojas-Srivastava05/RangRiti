@@ -156,10 +156,10 @@
         .subtitle {
     font-family: 'EB Garamond', serif;
     font-size: clamp(1.2rem, 3vw, 2rem);
-    color: #FAF3E0; /* Light Ivory */
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); /* Soft shadow */
+    color: #5a3825; /* Changed to a rich, warm brown for visibility */
+    text-shadow: 1px 1px 3px rgba(255, 250, 240, 0.2); /* Adjusted shadow for the darker text */
     margin-bottom: 1rem;
-    opacity: 0.9;
+    opacity: 0.95;
     animation: fadeInUp 2s ease-out 0.5s both;
 }
 
@@ -167,8 +167,9 @@
     font-family: 'EB Garamond', serif;
     font-size: clamp(1rem, 2vw, 1.4rem);
     font-style: italic;
-    color: #000000; /* Sandalwood */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Soft shadow */
+    font-weight: 600; /* Made the text bolder */
+    color: #4B1E10; /* Changed to a deep, rich brown for distinction */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Slightly enhanced shadow */
     margin-bottom: 3rem;
     animation: fadeInUp 2s ease-out 1s both;
 }
@@ -707,6 +708,7 @@
 </head>
 <body>
     <!-- Floating particles -->
+     
     <div class="particles"></div>
 
     <!-- Navigation -->
@@ -752,7 +754,7 @@
                 <button class="explore-btn" onclick="window.location.href = 'paintings and traditional styles.html'">Explore</button>
                 <button class="quiz-btn">Quiz</button>
                 <a href="./VRPaintings.html">
-                    <!-- <button class="explore-btn">VR Experience</button> -->
+                    <button class="explore-btn">VR Experience</button>
                 </a>
             </div>
             
@@ -766,7 +768,7 @@
                 <a href="/textile_main.html"><button class="explore-btn">Explore</button></a>
                 <button class="quiz-btn">Quiz</button>
                 <a href="./VRTextile.html">
-                    <!-- <button class="explore-btn">VR Experience</button> -->
+                    <button class="explore-btn">VR Experience</button>
                 </a>
             </div>
         </div>
@@ -782,7 +784,7 @@
             </a>
             <button class="quiz-btn">Quiz</button>
                 <a href="./VRDance.html">
-                    <!-- <button class="explore-btn">VR Experience</button> -->
+                    <button class="explore-btn">VR Experience</button>
                 </a>
             
             
@@ -801,7 +803,7 @@
             </a>
                 <button class="quiz-btn">Quiz</button>
                 <a href="./VRHandicrafts.html">
-                    <!-- <button class="explore-btn">VR Experience</button> -->
+                    <button class="explore-btn">VR Experience</button>
                 </a>
             </div>
         </div>
@@ -854,7 +856,7 @@
             });
         }
 
-        setInterval(createParticle, 100);
+        setInterval(createParticle, 800); // Changed from 100 to 800 to reduce particle density
 
         /* Scroll reveal with throttling */
         let ticking = false;

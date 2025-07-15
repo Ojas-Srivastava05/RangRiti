@@ -22,6 +22,7 @@
             --font-display: 'Playfair Display', serif;
             --transition-speed: 0.4s;
             --easing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+            --primary-gold: #FFD700;
         }
 
         *, *::before, *::after {
@@ -43,48 +44,86 @@
             position: relative;
         }
 
-        .particle-container {
+        /* Navigation Bar Styles */
+        .nav-container {
             position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        .nav-btn-link { text-decoration: none; }
+        .nav-btn {
+            font-family: 'EB Garamond', serif;
+            background: transparent;
+            border: none;
+            color: #FAF3E0;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+        .nav-btn::before {
+            content: '';
+            position: absolute;
             top: 0;
-            left: 0;
+            left: -100%;
             width: 100%;
             height: 100%;
-            overflow: hidden;
-            z-index: -1;
-            pointer-events: none;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
+            transition: left 0.5s ease;
         }
-
-        .particle {
+        .nav-btn:hover::before { left: 100%; }
+        .nav-btn:hover {
+            color: var(--primary-gold);
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+        }
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown-toggle { cursor: pointer; }
+        .dropdown-menu {
             position: absolute;
-            background-color: var(--color-accent-gold);
-            border-radius: 50%;
-            opacity: 0;
-            animation: float 25s infinite linear;
-            bottom: 0;
+            top: 100%;
+            left: 0;
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            padding: 10px 0;
+            display: none;
+            flex-direction: column;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            z-index: 1001;
         }
-
-        @keyframes float {
-            from {
-                transform: translateY(0) scale(1);
-                opacity: 0.7;
-            }
-            to {
-                transform: translateY(-105vh) scale(0);
-                opacity: 0;
-            }
+        .dropdown-item {
+            font-family: 'EB Garamond', serif;
+            color: #FAF3E0;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: block;
+            transition: all 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
+        .dropdown-item:hover {
+            background: rgba(255, 215, 0, 0.2);
+            color: var(--primary-gold);
+        }
+        .dropdown:hover .dropdown-menu { display: flex; }
+        .dropdown-arrow { font-size: 0.8em; margin-left: 5px; display: inline-block; }
 
-        .particle:nth-child(1) { left: 5%; animation-duration: 22s; animation-delay: -2s; width: 8px; height: 8px; }
-        .particle:nth-child(2) { left: 15%; animation-duration: 18s; animation-delay: -15s; width: 5px; height: 5px; }
-        .particle:nth-child(3) { left: 22%; animation-duration: 28s; animation-delay: -7s; width: 10px; height: 10px; }
-        .particle:nth-child(4) { left: 33%; animation-duration: 15s; animation-delay: -22s; width: 6px; height: 6px; }
-        .particle:nth-child(5) { left: 45%; animation-duration: 25s; animation-delay: -1s; width: 8px; height: 8px; }
-        .particle:nth-child(6) { left: 51%; animation-duration: 19s; animation-delay: -18s; width: 4px; height: 4px; }
-        .particle:nth-child(7) { left: 63%; animation-duration: 26s; animation-delay: -4s; width: 9px; height: 9px; }
-        .particle:nth-child(8) { left: 72%; animation-duration: 17s; animation-delay: -25s; width: 5px; height: 5px; }
-        .particle:nth-child(9) { left: 85%; animation-duration: 23s; animation-delay: -11s; width: 7px; height: 7px; }
-        .particle:nth-child(10) { left: 95%; animation-duration: 20s; animation-delay: -9s; width: 6px; height: 6px; }
-
+        /* Page Specific Styles */
         .container {
             width: 100%;
             max-width: 500px;
@@ -98,39 +137,17 @@
             opacity: 0;
             transform: translateY(20px);
         }
-
-        @keyframes fadeIn {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 2.5rem;
-        }
-
+        @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+        .header { text-align: center; margin-bottom: 2.5rem; }
         .header h1 {
             font-family: var(--font-display);
             font-size: 3rem;
             margin-bottom: 0.5rem;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
         }
-
-        .header p {
-            color: var(--color-secondary-text);
-            font-size: 1.1rem;
-            font-style: italic;
-        }
-
-        .form-group {
-            margin-bottom: 1.75rem;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
+        .header p { color: var(--color-secondary-text); font-size: 1.1rem; font-style: italic; }
+        .form-group { margin-bottom: 1.75rem; }
+        label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
         input {
             width: 100%;
             padding: 0.8rem 1rem;
@@ -142,13 +159,11 @@
             transition: all var(--transition-speed) var(--easing-function);
             color: var(--color-primary-text);
         }
-
         input:focus {
             outline: none;
             border-color: var(--color-accent-gold);
             box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.25);
         }
-
         .submit-btn {
             width: 100%;
             padding: 1rem;
@@ -164,12 +179,10 @@
             position: relative;
             overflow: hidden;
         }
-
         .submit-btn:hover {
             transform: translateY(-4px);
             box-shadow: 0 8px 25px rgba(139, 69, 19, 0.3);
         }
-        
         .submit-btn::before {
             content: '';
             position: absolute;
@@ -180,50 +193,43 @@
             background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
             transition: left 0.8s var(--easing-function);
         }
-
-        .submit-btn:hover::before {
-            left: 100%;
-        }
-
-        .additional-links {
-            text-align: center;
-            margin-top: 2rem;
-            font-size: 0.95em;
-        }
-
+        .submit-btn:hover::before { left: 100%; }
+        .additional-links { text-align: center; margin-top: 2rem; font-size: 0.95em; }
         .additional-links a {
             color: var(--color-primary-text);
             text-decoration: none;
             font-weight: 600;
             transition: color var(--transition-speed) ease;
         }
-
-        .additional-links a:hover {
-            color: var(--color-accent-gold);
-            text-decoration: underline;
-        }
-
-        .additional-links span {
-            color: var(--color-border);
-            margin: 0 0.75rem;
-            user-select: none;
-        }
+        .additional-links a:hover { color: var(--color-accent-gold); text-decoration: underline; }
+        .additional-links span { color: var(--color-border); margin: 0 0.75rem; user-select: none; }
     </style>
 </head>
 <body>
-    <div class="particle-container">
-        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
-        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
-        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
-        <div class="particle"></div>
-    </div>
+    <nav class="nav-container">
+        <a href="index.html" class="nav-btn-link"><button class="nav-btn">Home</button></a>
+        <a href="artists.html" class="nav-btn-link"><button class="nav-btn">Artists</button></a>
+        <a href="workshops.html" class="nav-btn-link"><button class="nav-btn">Workshops</button></a>
+        <a href="calendar.html" class="nav-btn-link"><button class="nav-btn">Calendar</button></a>
+        <div class="dropdown">
+            <button class="nav-btn dropdown-toggle">Heritage <span class="dropdown-arrow">&#9660;</span></button>
+            <div class="dropdown-menu">
+                <a href="paintings and traditional styles.html" class="dropdown-item">Traditional Painting Styles</a>
+                <a href="textile_main.html" class="dropdown-item">Textile Arts</a>
+                <a href="performingarts.html" class="dropdown-item">Performing Arts</a>
+                <a href="handicrafts_and_sculptures.html" class="dropdown-item">Handicrafts & Sculpture</a>
+            </div>
+        </div>
+        <a href="connect.html" class="nav-btn-link"><button class="nav-btn">Connect</button></a>
+        <a href="login.html" class="nav-btn-link"><button class="nav-btn">Login</button></a>
+        <a href="register.html" class="nav-btn-link"><button class="nav-btn">Register</button></a>
+    </nav>
 
     <div class="container">
         <div class="header">
             <h1>Welcome Back</h1>
             <p>Log in to your RangRiti account</p>
         </div>
-
         <form id="login-form" action="/api/login" method="POST">
             <div class="form-group">
                 <label for="login-email">Email Address</label>
@@ -241,6 +247,5 @@
             <a href="register.html">Create an Account</a>
         </div>
     </div>
-
 </body>
 </html>
