@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rangriti Bazaar - Your Handpicked Treasures</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -17,13 +20,13 @@
             --light-text: #5c4d3a;
             --dark-text: #3a3023;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Playfair Display', serif;
             background-color: var(--sandalwood-beige);
@@ -34,7 +37,7 @@
             overflow-x: hidden;
             min-height: 100vh;
         }
-        
+
         /* Floating Petals Animation */
         .petal {
             position: absolute;
@@ -46,21 +49,34 @@
             animation: float 15s linear infinite;
             z-index: -1;
         }
-        
+
         @keyframes float {
-            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.7; }
-            90% { opacity: 0.7; }
-            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.7;
+            }
+
+            90% {
+                opacity: 0.7;
+            }
+
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
         }
-        
+
         /* Header Styles */
         header {
             text-align: center;
             padding: 2.5rem 1rem 1.5rem;
             position: relative;
         }
-        
+
         .header-title {
             font-family: 'Cinzel', serif;
             color: var(--deep-maroon);
@@ -68,14 +84,14 @@
             letter-spacing: 1px;
             margin-bottom: 0.5rem;
         }
-        
+
         .header-subtext {
             font-size: 1.2rem;
             font-style: italic;
             color: var(--light-text);
             margin-bottom: 1.5rem;
         }
-        
+
         .divider {
             width: 300px;
             height: 20px;
@@ -84,7 +100,7 @@
             background-repeat: no-repeat;
             background-position: center;
         }
-        
+
         /* Main Container */
         .container {
             max-width: 1200px;
@@ -94,13 +110,13 @@
             flex-wrap: wrap;
             gap: 2rem;
         }
-        
+
         /* Cart Items Section */
         .cart-items {
             flex: 1;
             min-width: 300px;
         }
-        
+
         .cart-item {
             background: rgba(255, 253, 248, 0.9);
             border: 1px solid rgba(139, 69, 19, 0.2);
@@ -114,17 +130,24 @@
             transition: all 0.3s ease;
             animation: fadeIn 0.5s ease-out;
         }
-        
+
         .cart-item:hover {
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transform: translateY(-3px);
         }
-        
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
+
         .item-image {
             width: 120px;
             height: 120px;
@@ -134,44 +157,44 @@
             border: 2px solid var(--sandalwood-beige);
             box-shadow: 0 0 0 2px var(--turmeric-yellow), 0 0 0 4px var(--deep-maroon);
         }
-        
+
         .item-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        
+
         .item-details {
             flex: 1;
         }
-        
+
         .item-name {
             font-family: 'Cinzel', serif;
             font-size: 1.4rem;
             color: var(--deep-maroon);
             margin-bottom: 0.3rem;
         }
-        
+
         .artist-name {
             font-style: italic;
             color: var(--faded-indigo);
             margin-bottom: 1rem;
             font-size: 0.95rem;
         }
-        
+
         .item-price {
             font-weight: 600;
             font-size: 1.2rem;
             color: var(--dark-text);
             margin: 0.8rem 0;
         }
-        
+
         .quantity-control {
             display: flex;
             align-items: center;
             margin: 1rem 0;
         }
-        
+
         .qty-btn {
             width: 32px;
             height: 32px;
@@ -185,14 +208,14 @@
             align-items: center;
             justify-content: center;
             transition: all 0.2s ease;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        
+
         .qty-btn:hover {
             background: var(--gold);
             transform: scale(1.1);
         }
-        
+
         .qty-input {
             width: 50px;
             height: 32px;
@@ -203,7 +226,7 @@
             font-family: inherit;
             font-size: 1rem;
         }
-        
+
         .remove-btn {
             position: absolute;
             top: 15px;
@@ -220,13 +243,13 @@
             justify-content: center;
             transition: all 0.2s ease;
         }
-        
+
         .remove-btn:hover {
             background: var(--deep-maroon);
             color: white;
             transform: rotate(90deg);
         }
-        
+
         .loyalty-coins {
             background: rgba(224, 169, 61, 0.15);
             padding: 0.3rem 0.6rem;
@@ -236,12 +259,12 @@
             color: var(--dark-text);
             margin-top: 0.5rem;
         }
-        
+
         .loyalty-coins i {
             color: var(--gold);
             margin-right: 0.3rem;
         }
-        
+
         /* Summary Section */
         .summary {
             width: 320px;
@@ -254,7 +277,7 @@
             top: 1.5rem;
             align-self: flex-start;
         }
-        
+
         .summary-title {
             font-family: 'Cinzel', serif;
             font-size: 1.6rem;
@@ -263,7 +286,7 @@
             margin-bottom: 1.5rem;
             position: relative;
         }
-        
+
         .summary-title:after {
             content: "";
             position: absolute;
@@ -273,7 +296,7 @@
             height: 1px;
             background: linear-gradient(to right, transparent, var(--gold), transparent);
         }
-        
+
         .summary-item {
             display: flex;
             justify-content: space-between;
@@ -281,14 +304,14 @@
             padding: 0.3rem 0;
             position: relative;
         }
-        
+
         .summary-item:before {
             content: "•";
             color: var(--turmeric-yellow);
             margin-right: 0.5rem;
             font-size: 1.2rem;
         }
-        
+
         .summary-total {
             border-top: 2px dashed var(--gold);
             padding-top: 1rem;
@@ -297,7 +320,7 @@
             font-size: 1.3rem;
             color: var(--deep-maroon);
         }
-        
+
         .gift-wrap {
             display: flex;
             align-items: center;
@@ -307,24 +330,24 @@
             border-radius: 6px;
             border: 1px dashed var(--muted-green);
         }
-        
+
         .gift-wrap input {
             margin-right: 0.8rem;
         }
-        
+
         .gift-wrap label {
             font-size: 0.95rem;
         }
-        
+
         .gift-wrap i {
             color: var(--muted-green);
             margin-left: auto;
         }
-        
+
         .note-to-artist {
             margin: 1.5rem 0;
         }
-        
+
         .note-to-artist textarea {
             width: 100%;
             height: 100px;
@@ -337,20 +360,20 @@
             resize: vertical;
             margin-top: 0.5rem;
         }
-        
+
         .note-to-artist label {
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 500;
         }
-        
+
         .cta-buttons {
             display: flex;
             flex-direction: column;
             gap: 1rem;
             margin-top: 1.5rem;
         }
-        
+
         .btn {
             padding: 0.9rem 1.5rem;
             border: none;
@@ -365,13 +388,13 @@
             justify-content: center;
             gap: 0.7rem;
         }
-        
+
         .btn-continue {
             background: var(--sandalwood-beige);
             color: var(--deep-maroon);
             border: 1px solid var(--deep-maroon);
         }
-        
+
         .btn-checkout {
             background: var(--deep-maroon);
             color: white;
@@ -379,7 +402,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .btn-checkout:after {
             content: "";
             position: absolute;
@@ -391,25 +414,25 @@
             transform: rotate(25deg);
             transition: all 0.6s;
         }
-        
+
         .btn:hover {
             transform: translateY(-2px);
         }
-        
+
         .btn-continue:hover {
             background: rgba(138, 28, 28, 0.05);
             letter-spacing: 0.5px;
         }
-        
+
         .btn-checkout:hover {
             background: #751616;
             box-shadow: 0 6px 0 rgba(109, 13, 13, 0.8);
         }
-        
+
         .btn-checkout:hover:after {
             left: 120%;
         }
-        
+
         /* Footer */
         footer {
             text-align: center;
@@ -420,46 +443,47 @@
             border-top: 1px solid rgba(139, 69, 19, 0.1);
             margin-top: 2rem;
         }
-        
+
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
             .container {
                 flex-direction: column;
             }
-            
+
             .summary {
                 width: 100%;
                 position: static;
                 margin-top: 1rem;
             }
-            
+
             .cart-item {
                 flex-direction: column;
                 gap: 1rem;
             }
-            
+
             .item-image {
                 width: 100%;
                 height: 200px;
             }
-            
+
             .header-title {
                 font-size: 2.2rem;
             }
-            
+
             .cta-buttons {
                 flex-direction: row;
                 flex-wrap: wrap;
             }
-            
+
             .btn {
                 flex: 1;
                 min-width: 150px;
             }
         }
-        
+
         /* Traditional decorative elements */
-        .decor-top-left, .decor-top-right {
+        .decor-top-left,
+        .decor-top-right {
             position: absolute;
             top: 20px;
             width: 60px;
@@ -467,17 +491,17 @@
             opacity: 0.1;
             z-index: -1;
         }
-        
+
         .decor-top-left {
             left: 20px;
             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M20,50 Q30,30 50,20 Q70,30 80,50 Q70,70 50,80 Q30,70 20,50 Z" fill="none" stroke="%238a1c1c" stroke-width="2"/></svg>');
         }
-        
+
         .decor-top-right {
             right: 20px;
             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M20,50 Q30,30 50,20 Q70,30 80,50 Q70,70 50,80 Q30,70 20,50 Z" fill="none" stroke="%238a1c1c" stroke-width="2"/></svg>');
         }
-        
+
         .item-image:after {
             content: "";
             position: absolute;
@@ -491,6 +515,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Floating petals -->
     <div class="petal" style="left: 5%; animation-delay: 0s;"></div>
@@ -500,116 +525,95 @@
     <div class="petal" style="left: 60%; animation-delay: 11s;"></div>
     <div class="petal" style="left: 75%; animation-delay: 14s;"></div>
     <div class="petal" style="left: 90%; animation-delay: 17s;"></div>
-    
+
     <!-- Decorative elements -->
     <div class="decor-top-left"></div>
     <div class="decor-top-right"></div>
-    
+
     <header>
         <h1 class="header-title">🧺 Your Handpicked Treasures</h1>
         <p class="header-subtext">Curated by artisans. Loved by you.</p>
         <div class="divider"></div>
     </header>
-    
+
     <div class="container">
         <section class="cart-items">
-            <div class="cart-item">
-                <div class="item-image">
-                    <img src="https://images.unsplash.com/photo-1591195853828-11db59a44f6b?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&w=400" alt="Handcrafted Pottery">
-                </div>
-                <div class="item-details">
-                    <h3 class="item-name">Blue Glazed Terracotta Pot</h3>
-                    <p class="artist-name">by Rajesh Kumhar, Jaipur</p>
-                    <div class="quantity-control">
-                        <button class="qty-btn minus">−</button>
-                        <input type="number" class="qty-input" value="1" min="1">
-                        <button class="qty-btn plus">+</button>
-                    </div>
-                    <div class="item-price">₹1,850</div>
-                    <div class="loyalty-coins">
-                        <i class="fas fa-coins"></i> Earn ₹185 Rangriti Rewards
-                    </div>
-                </div>
-                <button class="remove-btn">✕</button>
-            </div>
-            
-            <div class="cart-item">
-                <div class="item-image">
-                    <img src="https://images.unsplash.com/photo-1586448900401-87cbdbf8c9c8?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&w=400" alt="Silk Saree">
-                </div>
-                <div class="item-details">
-                    <h3 class="item-name">Banarasi Silk Saree</h3>
-                    <p class="artist-name">by Meera Weavers, Varanasi</p>
-                    <div class="quantity-control">
-                        <button class="qty-btn minus">−</button>
-                        <input type="number" class="qty-input" value="1" min="1">
-                        <button class="qty-btn plus">+</button>
-                    </div>
-                    <div class="item-price">₹8,999</div>
-                    <div class="loyalty-coins">
-                        <i class="fas fa-coins"></i> Earn ₹900 Rangriti Rewards
-                    </div>
-                </div>
-                <button class="remove-btn">✕</button>
-            </div>
-            
-            <div class="cart-item">
-                <div class="item-image">
-                    <img src="https://images.unsplash.com/photo-1624963917587-2a5b0d694f36?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&w=400" alt="Wooden Elephant">
-                </div>
-                <div class="item-details">
-                    <h3 class="item-name">Sandalwood Elephant Carving</h3>
-                    <p class="artist-name">by Prakash Artisans, Mysore</p>
-                    <div class="quantity-control">
-                        <button class="qty-btn minus">−</button>
-                        <input type="number" class="qty-input" value="1" min="1">
-                        <button class="qty-btn plus">+</button>
-                    </div>
-                    <div class="item-price">₹3,250</div>
-                    <div class="loyalty-coins">
-                        <i class="fas fa-coins"></i> Earn ₹325 Rangriti Rewards
-                    </div>
-                </div>
-                <button class="remove-btn">✕</button>
-            </div>
+            <% if (cartItems.length===0) { %>
+                <p>Your cart is empty.</p>
+                <% } else { %>
+                    <% cartItems.forEach(item=> { %>
+                        <div class="cart-item" data-product-id="<%= item.productId %>">
+                            <div class="item-image">
+                                <img src="<%= item.image %>" alt="<%= item.name %>">
+                            </div>
+                            <div class="item-details">
+                                <h3 class="item-name">
+                                    <%= item.name %>
+                                </h3>
+                                <p class="artist-name">by <%= item.artistName %>
+                                </p>
+                                <div class="quantity-control">
+                                    <button class="qty-btn minus">−</button>
+                                    <input type="number" class="qty-input" value="<%= item.quantity %>" min="1">
+                                    <button class="qty-btn plus">+</button>
+                                </div>
+                                <div class="item-price" data-unit-price="<%= item.price %>">₹<%= item.price *
+                                        item.quantity %>
+                                </div>
+                                <div class="loyalty-coins">
+                                    <i class="fas fa-coins"></i> Earn ₹<%= Math.round(item.price * item.quantity * 0.1)
+                                        %> Rangriti Rewards
+                                </div>
+                            </div>
+                            <button class="remove-btn">✕</button>
+                        </div>
+                        <% }); %>
+                            <% } %>
+
+
+
+
         </section>
-        
+
         <section class="summary">
             <h2 class="summary-title">Order Summary</h2>
-            
+
             <div class="summary-item">
-                <span>Subtotal (3 items)</span>
-                <span>₹14,099</span>
+                <span>Subtotal (<%= cartItems.reduce((sum, item)=> sum + item.quantity, 0) %> items)</span>
+                <span>₹<%= subtotal %></span>
             </div>
-            
+
             <div class="summary-item">
                 <span>Shipping</span>
-                <span>₹250</span>
+                <span>
+                    <%= shipping===0 ? 'Free' : `₹${shipping}` %>
+                </span>
             </div>
-            
+
             <div class="summary-item">
                 <span>Taxes</span>
-                <span>₹1,410</span>
+                <span>₹<%= tax %></span>
             </div>
-            
+
             <div class="summary-item summary-total">
                 <span>Total</span>
-                <span>₹15,759</span>
+                <span>₹<%= total %></span>
             </div>
-            
+
             <div class="gift-wrap">
-                <input type="checkbox" id="gift-wrap">
+                <input type="checkbox" id="gift-wrap" name="giftWrap">
                 <label for="gift-wrap">Add Traditional Gift Wrap</label>
                 <i class="fas fa-gift"></i>
             </div>
-            
+
             <div class="note-to-artist">
                 <label for="artist-note">Note to Artisan (optional):</label>
-                <textarea id="artist-note" placeholder="Write a personal message for the artisan..."></textarea>
+                <textarea id="artist-note" name="noteToArtist"
+                    placeholder="Write a personal message for the artisan..."></textarea>
             </div>
-            
+
             <div class="cta-buttons">
-                <button class="btn btn-continue">
+                <button class="btn btn-continue" onclick="updateCartAndContinue()">
                     <i class="fas fa-arrow-left"></i> Continue Shopping
                 </button>
                 <button class="btn btn-checkout">
@@ -618,45 +622,27 @@
             </div>
         </section>
     </div>
-    
+
     <footer>
         <p>© 2023 Rangriti Bazaar - Preserving Heritage, Empowering Artisans</p>
         <p>Every purchase supports traditional Indian craftsmanship</p>
     </footer>
-    
+
     <script>
-        // Quantity controls
-        document.querySelectorAll('.qty-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                const input = this.parentElement.querySelector('.qty-input');
-                let value = parseInt(input.value);
-                
-                if (this.classList.contains('plus')) {
-                    input.value = value + 1;
-                } else if (this.classList.contains('minus') && value > 1) {
-                    input.value = value - 1;
-                }
-                
-                // Add animation effect
-                const item = this.closest('.cart-item');
-                item.style.animation = 'none';
-                setTimeout(() => {
-                    item.style.animation = 'fadeIn 0.5s ease-out';
-                }, 10);
-            });
-        });
-        
-        // Remove item
+
+        // Remove buttons
         document.querySelectorAll('.remove-btn').forEach(button => {
-            button.addEventListener('click', function() {
+            button.addEventListener('click', async function () {
                 const item = this.closest('.cart-item');
                 item.style.animation = 'fadeOut 0.5s ease-out';
-                setTimeout(() => {
+
+                setTimeout(async () => {
                     item.remove();
+                    updateSummary();
+                    await updateCartOnServer(); // ✅ ADDED
                 }, 500);
             });
         });
-        
         // Add fadeOut animation to styles
         const style = document.createElement('style');
         style.innerHTML = `
@@ -666,7 +652,7 @@
             }
         `;
         document.head.appendChild(style);
-        
+
         // Create additional petals for animation
         function createPetals() {
             const container = document.body;
@@ -680,8 +666,83 @@
                 container.appendChild(petal);
             }
         }
-        
+
         createPetals();
+
+
     </script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const cartSection = document.querySelector('.cart-items');
+
+        cartSection.addEventListener('click', async (e) => {
+            const isPlus = e.target.classList.contains('plus');
+            const isMinus = e.target.classList.contains('minus');
+            const isRemove = e.target.classList.contains('remove-btn');
+
+            if (!isPlus && !isMinus && !isRemove) return;
+
+            const cartItem = e.target.closest('.cart-item');
+            const input = cartItem.querySelector('.qty-input');
+            const productId = cartItem.dataset.productId;
+
+            let quantity = parseInt(input.value);
+
+            // Adjust quantity
+            if (isPlus) quantity += 1;
+            else if (isMinus) quantity -= 1;
+            else if (isRemove) quantity = 0; // ❌ Remove button clicked
+
+            quantity = Math.max(0, quantity);
+
+            try {
+                const response = await fetch('/cart/update', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ productId, quantity })
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    if (quantity === 0) {
+                        input.value = 0;
+                        cartItem.querySelector('.item-price').textContent = `₹0`;
+                        cartItem.querySelector('.loyalty-coins').innerHTML = `<i class="fas fa-coins"></i> Earn ₹0 Rangriti Rewards`;
+
+                        setTimeout(() => cartItem.remove(), 150);
+                    } else {
+                        input.value = quantity;
+                        cartItem.querySelector('.item-price').textContent = `₹${data.updatedItem.total}`;
+                        cartItem.querySelector('.loyalty-coins').innerHTML = `<i class="fas fa-coins"></i> Earn ₹${data.updatedItem.rewards} Rangriti Rewards`;
+                    }
+
+                    updateSummary(data);
+                } else {
+                    alert('Error updating cart. Try again.');
+                }
+            } catch (err) {
+                console.error('AJAX error:', err);
+            }
+        });
+
+        function updateSummary(data) {
+            document.querySelector('.summary-item:nth-child(2) span:last-child').textContent = `₹${data.subtotal}`;
+            
+            const shippingElem = document.querySelector('.summary-item:nth-child(3) span:last-child');
+            shippingElem.textContent = (data.totalItems === 0 || data.shipping === 0) ? 'Free' : `₹${data.shipping}`;
+            
+            document.querySelector('.summary-item:nth-child(4) span:last-child').textContent = `₹${data.tax}`;
+            document.querySelector('.summary-item.summary-total span:last-child').textContent = `₹${data.total}`;
+            document.querySelector('.summary-item:nth-child(2) span:first-child').textContent = `Subtotal (${data.totalItems} items)`;
+        }
+    });
+
+    function updateCartAndContinue(){
+        window.location.href = '/catalogue';
+    }
+</script>
 </body>
+
 </html>

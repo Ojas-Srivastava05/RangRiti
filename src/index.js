@@ -33,24 +33,24 @@ dotenv.config({ path: path.join(__dirname, '../.env') });
 const port = process.env.PORT || 3000;
 
 
-app.set('view engine','ejs')
+app.set('view engine', 'ejs')
 
 // --- Middleware ---
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
 function uploadToCloudinary(buffer) {
-  return new Promise((resolve, reject) => {
-    cloudinary.uploader.upload_stream({ resource_type: 'image' }, (error, result) => {
-      if (error) return reject(error);
-      resolve(result.secure_url);
-    }).end(buffer);
-  });
+    return new Promise((resolve, reject) => {
+        cloudinary.uploader.upload_stream({ resource_type: 'image' }, (error, result) => {
+            if (error) return reject(error);
+            resolve(result.secure_url);
+        }).end(buffer);
+    });
 }
 
 
@@ -59,13 +59,30 @@ function uploadToCloudinary(buffer) {
 app.use(express.static(path.join(__dirname, '..', 'public'), { index: false }));
 app.use('/static', express.static(path.join(__dirname, '..', 'static')));
 app.use(session({
-  secret: process.env.SESSION_SECRET || 'supersecretkey', // store in .env for production
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    maxAge: 1000 * 60 * 60 * 24 // 1 day
-  }
+    secret: process.env.SESSION_SECRET || 'supersecretkey', // store in .env for production
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24 // 1 day
+    }
 }));
+app.use(async (req, res, next) => {
+    if (req.session.user && req.session.user.id) {
+        try {
+            const user =
+                req.session.user.type === 'artist'
+                    ? await Artist.findById(req.session.user.id)
+                    : await User.findById(req.session.user.id);
+
+            if (user) {
+                req.user = user; // ✅ Now req.user is available for /cart/add
+            }
+        } catch (err) {
+            console.error('Error fetching user from session:', err);
+        }
+    }
+    next();
+});
 
 app.get('/logout', (req, res) => {
     req.session.destroy(err => {
@@ -75,6 +92,138 @@ app.get('/logout', (req, res) => {
         res.redirect('/');
     });
 });
+
+
+app.get('/cart', async (req, res) => {
+    try {
+        if (!req.user) {
+            return res.redirect('/'); // or show "Please login" message
+        }
+
+        await req.user.populate('cart.productId'); // Populate full product info
+
+const cartItems = req.user.cart.map(item => ({
+    productId: item.productId._id.toString(), // ✅ Add this line
+    name: item.productId.name,
+    artistName: item.productId.artistName,
+    price: item.priceAtAddTime,
+    image: item.productId.images[0],
+    quantity: item.quantity
+}));
+const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+const shipping = subtotal > 10000 ? 0 : 250;
+const tax = Math.round(subtotal * 0.1);
+const total = subtotal + shipping + tax;
+
+res.render('cart', {
+  cartItems,
+  subtotal,
+  shipping,
+  tax,
+  total
+});
+    } catch (err) {
+        console.error("Error loading cart:", err);
+        res.status(500).render('error', { message: "Failed to load cart." });
+    }
+
+
+});
+
+app.post('/cart/add', async (req, res) => {
+    try {
+        if (!req.user) {
+            return res.status(401).json({ message: 'You must be logged in to add to cart.' });
+        }
+
+        const { productId } = req.body;
+
+        const product = await Product.findById(productId);
+        if (!product) {
+            return res.status(404).json({ message: 'Product not found' });
+        }
+
+        const user = req.user;
+
+        const existingItem = user.cart.find(item =>
+            item.productId.toString() === productId
+        );
+
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            user.cart.push({
+                productId: product._id,
+                quantity: 1,
+                priceAtAddTime: product.price
+            });
+        }
+
+        await user.save();
+        return res.status(200).json({ message: 'Item added to cart' });
+
+    } catch (error) {
+        console.error('Add to cart error:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+app.post('/cart/update', async (req, res) => {
+  const { productId, quantity } = req.body;
+
+  if (!req.session.user || !req.session.user.id) {
+    return res.status(401).json({ success: false, message: 'User not logged in' });
+  }
+
+  const userId = req.session.user.id;
+
+  try {
+    const user = await User.findById(userId);
+    if (!user) return res.status(404).json({ success: false, message: 'User not found' });
+
+    const itemIndex = user.cart.findIndex(
+      item => String(item.productId) === String(productId)
+    );
+
+    if (itemIndex === -1) {
+      return res.json({ success: false, message: 'Item not in cart' });
+    }
+
+    if (quantity <= 0) {
+      user.cart.splice(itemIndex, 1);
+    } else {
+      user.cart[itemIndex].quantity = quantity;
+    }
+
+    await user.save();
+
+    const subtotal = user.cart.reduce((sum, item) => sum + item.quantity * item.priceAtAddTime, 0);
+    const shipping = subtotal > 0 ? 50 : 0;
+    const tax = Math.round(subtotal * 0.18);
+    const total = subtotal + shipping + tax;
+
+    const updatedItem = user.cart[itemIndex]
+      ? {
+          total: user.cart[itemIndex].quantity * user.cart[itemIndex].priceAtAddTime,
+          rewards: Math.round(user.cart[itemIndex].quantity * user.cart[itemIndex].priceAtAddTime * 0.1)
+        }
+      : null;
+
+    return res.json({
+      success: true,
+      updatedItem,
+      subtotal,
+      shipping,
+      tax,
+      total,
+      totalItems: user.cart.reduce((sum, item) => sum + item.quantity, 0)
+    });
+  } catch (err) {
+    console.error('Cart update error:', err);
+    return res.status(500).json({ success: false, message: 'Server error' });
+  }
+});
+
 
 
 // --- ROOT ROUTE ---
@@ -109,7 +258,7 @@ app.get('/user', (req, res) => {
     res.render('marketplace', { user }); // route to marketplace
 });
 
-app.get('/marketplace', (req,res)=>{
+app.get('/marketplace', (req, res) => {
     res.render('marketplace')
 });
 
@@ -117,12 +266,12 @@ app.get('/marketplace', (req,res)=>{
 app.get('/catalogue', async (req, res) => {
     try {
         const {
-            category,            // e.g., "Painting", "Woodcraft"
-            minPrice,            // e.g., 100
-            maxPrice,            // e.g., 1000
-            minRating,           // e.g., 4
-            artist,              // e.g., "Ananya Sharma"
-            availability         // e.g., "inStock" or "preorder"
+            category,
+            minPrice,
+            maxPrice,
+            minRating,
+            artist,
+            availability
         } = req.query;
 
         const filter = {};
@@ -153,17 +302,18 @@ app.get('/catalogue', async (req, res) => {
 
         const products = await Product.find(filter).lean();
 
-        res.render('catalogue', { products });
+        // ✅ Define user from req.user or fallback to null
+        const user = req.user || null;
 
+        res.render('catalogue', { products, user }); // ✅ Now safe
     } catch (error) {
         console.error("Error loading filtered catalogue:", error);
         res.status(500).send("Failed to load filtered products.");
     }
 });
-app.get('/product',(req,res)=>{
+app.get('/product', (req, res) => {
     res.render('product');
 })
-
 
 app.post('/api/add-product', upload.array('images'), async (req, res) => {
     try {
@@ -271,6 +421,9 @@ app.post('/api/register/artist', async (req, res) => {
     }
 });
 
+
+
+// --- LOGIN ENDPOINT ---
 // --- LOGIN ENDPOINT ---
 app.post('/api/login', async (req, res) => {
     try {
@@ -292,10 +445,10 @@ app.post('/api/login', async (req, res) => {
         }
 
         const isMatch = await bcrypt.compare(password, user.password);
-
         if (!isMatch) {
-            return res.status(401).json({ message: 'Invalid credentials. Please check your password.' });
+            return res.status(401).json({ message: 'Invalid credentials.' });
         }
+
         req.session.user = {
             id: user._id,
             email: user.email,
@@ -303,19 +456,13 @@ app.post('/api/login', async (req, res) => {
             type: userType
         };
 
-        // ✅ Redirect
         if (userType === 'artist') {
-            return res.redirect('/dashboard');
+            return res.status(200).json({ message: 'Login successful', redirect: '/dashboard' });
         } else {
-            return res.redirect('/user');
+            return res.status(200).json({ message: 'Login successful', redirect: '/user' });
         }
-
-
-
-        
-
     } catch (error) {
-        console.error("Error during login:", error);
+        console.error("Login error:", error);
         res.status(500).json({ message: 'Server error during login.' });
     }
 });
