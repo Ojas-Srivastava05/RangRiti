@@ -223,7 +223,42 @@ app.post('/cart/update', async (req, res) => {
     return res.status(500).json({ success: false, message: 'Server error' });
   }
 });
+app.get('/product/:id', async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
 
+    if (!product) {
+      return res.status(404).render('error', { message: 'Product not found.' });
+    }
+
+    // Sample reviews — replace with real ones from DB later
+    const reviews = [
+      {
+        name: 'Priya Sharma',
+        rating: 5,
+        comment: 'Absolutely breathtaking! The zari work is exquisite.',
+        date: new Date('2023-10-12')
+      },
+      {
+        name: 'Rajiv Mehta',
+        rating: 4.5,
+        comment: 'Wife loved it! Craftsmanship is top-notch.',
+        date: new Date('2023-09-28')
+      }
+    ];
+
+    const relatedProducts = await Product.find({
+      category: product.category,
+      _id: { $ne: product._id }
+    }).limit(4);
+
+    res.render('details', { product, reviews, relatedProducts });
+
+  } catch (err) {
+    console.error('Error loading product page:', err);
+    res.status(500).render('error', { message: 'Failed to load product.' });
+  }
+});
 
 
 // --- ROOT ROUTE ---
@@ -359,6 +394,20 @@ app.post('/api/add-product', upload.array('images'), async (req, res) => {
     } catch (err) {
         console.error("Error adding product:", err);
         res.status(500).json({ success: false, message: "Failed to add product." });
+    }
+});
+
+
+app.get('/product/:id', async (req, res) => {
+    try {
+        const product = await Product.findById(req.params.id).lean();
+        if (!product) return res.status(404).send("Product not found");
+
+        const user = req.user || null;
+        res.render('details', { product, user });
+    } catch (error) {
+        console.error("Error loading product:", error);
+        res.status(500).send("Failed to load product details.");
     }
 });
 // --- Registration Endpoints ---
