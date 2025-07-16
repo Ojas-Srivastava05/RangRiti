@@ -231,21 +231,6 @@ app.get('/product/:id', async (req, res) => {
       return res.status(404).render('error', { message: 'Product not found.' });
     }
 
-    // Sample reviews — replace with real ones from DB later
-    const reviews = [
-      {
-        name: 'Priya Sharma',
-        rating: 5,
-        comment: 'Absolutely breathtaking! The zari work is exquisite.',
-        date: new Date('2023-10-12')
-      },
-      {
-        name: 'Rajiv Mehta',
-        rating: 4.5,
-        comment: 'Wife loved it! Craftsmanship is top-notch.',
-        date: new Date('2023-09-28')
-      }
-    ];
 
     const relatedProducts = await Product.find({
       category: product.category,
@@ -382,6 +367,7 @@ app.get('/catalogue', async (req, res) => {
     }
 });
 app.get('/product', (req, res) => {
+    
     res.render('product');
 })
 
