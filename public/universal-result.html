@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Results - RangRiti</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=EB+Garamond:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gold: #FFD700;
+            --deep-gold: #B8860B;
+            --rich-amber: #FFBF00;
+            --sandalwood: #C19A6B;
+            --deep-wood: #8B4513;
+            --midnight: #0A0A0A;
+            --charcoal: #1A1A1A;
+            --ivory: #FFFEF7;
+            --warm-white: #FAF9F6;
+            --crimson: #DC143C;
+            --emerald: #50C878;
+            --royal-blue: #4169E1;
+            --purple: #9932CC;
+            --deep-brown: #4B1E10;
+            --light-ivory: #FAF3E0;
+            --rich-gold: #D4AF37;
+        }
+
+        body {
+            font-family: 'EB Garamond', serif;
+            background: linear-gradient(135deg, #F5DEB3 0%, #E5C49B 50%, #B97A56 100%);
+            color: var(--deep-brown);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        .nav-container {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            backdrop-filter: blur(20px);
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            z-index: 1000;
+            animation: slideDown 1s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateX(-50%) translateY(-100px); opacity: 0; }
+            to { transform: translateX(-50%) translateY(0); opacity: 1; }
+        }
+
+        .nav-btn {
+            font-family: 'EB Garamond', serif;
+            background: transparent;
+            color: #000000;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .nav-btn:hover::before {
+            left: 100%;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Dropdown styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-toggle {
+            cursor: pointer;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            padding: 10px 0;
+            display: none;
+            flex-direction: column;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            z-index: 1001;
+        }
+
+        .dropdown-item {
+            font-family: 'EB Garamond', serif;
+            color: #FAF3E0;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: block;
+            transition: all 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .dropdown-item:hover {
+            background: rgba(255, 215, 0, 0.2);
+            color: var(--primary-gold);
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: flex;
+        }
+
+        .dropdown-arrow {
+            font-size: 0.8em;
+            margin-left: 5px;
+            display: inline-block;
+        }
+
+        /* Result Header */
+        .result-header {
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .result-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(45deg, transparent 30%, rgba(255, 215, 0, 0.1) 50%, transparent 10%),
+                linear-gradient(-45deg, transparent 30%, rgba(220, 20, 60, 0.08) 50%, transparent 10%);
+            animation: headerGlow 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes headerGlow {
+            0% { opacity: 0.5; transform: scale(1); }
+            100% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .main-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, #6f450e 40%, #8B4C39 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.8);
+            margin-bottom: 2rem;
+            letter-spacing: 0.1em;
+        }
+
+        @keyframes titleGlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        .quiz-type-title {
+            font-family: 'EB Garamond', serif;
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: var(--light-ivory);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .score-display {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: var(--primary-gold);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .performance-message {
+            font-family: 'EB Garamond', serif;
+            font-size: clamp(1rem, 2vw, 1.4rem);
+            font-style: italic;
+            color: #000000;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            margin-bottom: 2rem;
+        }
+
+        /* Main container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Art card styling */
+        .art-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .art-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                rgba(255, 215, 0, 0.1) 0%, 
+                transparent 50%, 
+                rgba(220, 20, 60, 0.1) 100%);
+            opacity: 0;
+        }
+
+        /* Summary card */
+        .summary-card {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .summary-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--rich-gold);
+            text-shadow: 0 0 5px rgba(212, 175, 55, 0.7);
+            margin-bottom: 1.5rem;
+        }
+
+        .summary-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-gold);
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.1rem;
+            color: var(--deep-brown);
+            font-weight: 500;
+        }
+
+        /* Review section */
+        .review-section {
+            padding: 2rem;
+        }
+
+        .review-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--rich-gold);
+            text-shadow: 0 0 5px rgba(212, 175, 55, 0.7);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .review-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+        }
+
+        .review-card.correct {
+            border-color: var(--emerald);
+            background: rgba(80, 200, 120, 0.1);
+        }
+
+        .review-card.incorrect {
+            border-color: var(--crimson);
+            background: rgba(220, 20, 60, 0.1);
+        }
+
+        .question-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--rich-gold);
+            margin-bottom: 1rem;
+        }
+
+        .question-text {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.1rem;
+            color: var(--deep-brown);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .answer-info {
+            margin-bottom: 0.5rem;
+        }
+
+        .answer-label {
+            font-family: 'EB Garamond', serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .answer-text {
+            font-family: 'EB Garamond', serif;
+            font-size: 1rem;
+            padding: 0.5rem 0.8rem;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+        }
+
+        .user-answer {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .correct-answer {
+            background: rgba(80, 200, 120, 0.15);
+            border: 1px solid var(--emerald);
+            color: var(--deep-wood);
+        }
+
+        .incorrect-answer {
+            background: rgba(220, 20, 60, 0.15);
+            border: 1px solid var(--crimson);
+        }
+
+        .status-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+        }
+
+        .status-icon.correct {
+            color: var(--emerald);
+        }
+
+        .status-icon.incorrect {
+            color: var(--crimson);
+        }
+
+        /* Action buttons */
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            font-family: 'EB Garamond', serif;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .primary-btn {
+            background: linear-gradient(45deg, var(--rich-gold), var(--deep-gold));
+            color: var(--light-ivory);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .secondary-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--deep-brown);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .secondary-btn:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: translateY(-1px);
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 80px 0 40px;
+            margin-top: 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
+            animation: footerGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes footerGlow {
+            0% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
+            100% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.8); }
+        }
+
+        .footer-content {
+            text-align: center;
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .footer-nav a {
+            font-family: 'EB Garamond', serif;
+            color: var(--light-ivory);
+            text-decoration: none;
+            font-weight: 500;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 10px 0;
+        }
+
+        .footer-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--primary-gold);
+            transition: width 0.3s ease;
+        }
+
+        .footer-nav a:hover::after {
+            width: 100%;
+        }
+
+        .footer-nav a:hover {
+            color: var(--primary-gold);
+            transform: translateY(-2px);
+        }
+
+        .footer-text {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.1rem;
+            color: var(--deep-brown);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            font-style: italic;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-wrap: wrap;
+                gap: 5px;
+                padding: 10px 15px;
+                width: 80vw;
+            }
+            
+            .nav-btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .summary-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .review-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <a href="index.html" class="nav-btn-link"><button class="nav-btn">Home</button></a>
+        <a href="artists.html" class="nav-btn-link"><button class="nav-btn">Artists</button></a>
+        <a href="workshops.html" class="nav-btn-link"><button class="nav-btn">Workshops</button></a>
+        <a href="calendar.html" class="nav-btn-link"><button class="nav-btn">Calendar</button></a>
+        <div class="dropdown">
+            <button class="nav-btn dropdown-toggle">
+                Heritage <span class="dropdown-arrow">&#9660;</span>
+            </button>
+            <div class="dropdown-menu">
+                <a href="paintings and traditional styles.html" class="dropdown-item">Traditional Painting Styles</a>
+                <a href="textile_main.html" class="dropdown-item">Textile Arts</a>
+                <a href="performingarts.html" class="dropdown-item">Performing Arts</a>
+                <a href="handicrafts_and_sculptures.html" class="dropdown-item">Handicrafts & Sculpture</a>
+            </div>
+        </div>
+        <a href="connect.html" class="nav-btn-link"><button class="nav-btn">Connect</button></a>
+    </nav>
+
+    <header class="result-header">
+        <div class="header-content">
+            <h1 class="main-title">Quiz Results</h1>
+            <p id="quiz-type-display" class="quiz-type-title">Loading...</p>
+            <div id="score-display" class="score-display">0/0</div>
+            <p id="performance-message" class="performance-message">Calculating your performance...</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Summary Card -->
+        <section class="art-card summary-card">
+            <h2 class="summary-title">Quiz Summary</h2>
+            <div class="summary-stats">
+                <div class="stat-item">
+                    <div id="total-questions" class="stat-number">0</div>
+                    <div class="stat-label">Total Questions</div>
+                </div>
+                <div class="stat-item">
+                    <div id="correct-answers" class="stat-number">0</div>
+                    <div class="stat-label">Correct Answers</div>
+                </div>
+                <div class="stat-item">
+                    <div id="incorrect-answers" class="stat-number">0</div>
+                    <div class="stat-label">Incorrect Answers</div>
+                </div>
+                <div class="stat-item">
+                    <div id="percentage-score" class="stat-number">0%</div>
+                    <div class="stat-label">Percentage Score</div>
+                </div>
+            </div>
+            <div class="action-buttons">
+                <a href="#" id="retake-quiz" class="action-btn primary-btn">Retake Quiz</a>
+                <a href="index.html" class="action-btn secondary-btn">Go Home</a>
+            </div>
+        </section>
+
+        <!-- Review Section -->
+        <section class="art-card review-section">
+            <h2 class="review-title">Detailed Review</h2>
+            <div id="review-grid" class="review-grid">
+                <!-- Review cards will be populated by JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <nav class="footer-nav">
+                <a href="#">About</a>
+                <a href="#">Artists</a>
+                <a href="#">Workshops</a>
+                <a href="#">Calendar</a>
+                <a href="#">Heritage</a>
+                <a href="#">Connect</a>
+            </nav>
+            <p class="footer-text">&copy; 2024 RangRiti. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Quiz type configurations
+        const quizConfigs = {
+            'quizResult': {
+                title: 'Indian Art & Textile Heritage Quiz',
+                quizPage: 'quiz.html',
+                storageKey: 'quizResult'
+            },
+            'paintingsQuizResult': {
+                title: 'Traditional Paintings Quiz',
+                quizPage: 'paintings-quiz.html',
+                storageKey: 'paintingsQuizResult'
+            },
+            'performingArtsQuizResult': {
+                title: 'Performing Arts Quiz',
+                quizPage: 'performing-arts-quiz.html',
+                storageKey: 'performingArtsQuizResult'
+            },
+            'handicraftsQuizResult': {
+                title: 'Handicrafts & Sculpture Quiz',
+                quizPage: 'handicrafts-quiz.html',
+                storageKey: 'handicraftsQuizResult'
+            }
+            // Add more quiz types here as needed
+        };
+
+        // Function to detect quiz type and load appropriate data
+        function loadQuizData() {
+            let quizData = null;
+            let quizType = null;
+            
+            // Check all possible quiz types
+            for (const [key, config] of Object.entries(quizConfigs)) {
+                const data = localStorage.getItem(key);
+                if (data) {
+                    quizData = JSON.parse(data);
+                    quizType = key;
+                    break;
+                }
+            }
+            
+            // If no quiz data found, check URL parameters for fallback
+            if (!quizData) {
+                const urlParams = new URLSearchParams(window.location.search);
+                const type = urlParams.get('type');
+                if (type && quizConfigs[type]) {
+                    quizType = type;
+                    // Try to load the data again
+                    const data = localStorage.getItem(type);
+                    if (data) {
+                        quizData = JSON.parse(data);
+                    }
+                }
+            }
+            
+            // Default fallback to main quiz if still no data
+            if (!quizData) {
+                quizType = 'quizResult';
+                const data = localStorage.getItem('quizResult');
+                if (data) {
+                    quizData = JSON.parse(data);
+                }
+            }
+            
+            return { quizData, quizType };
+        }
+
+        // Function to calculate score and generate performance message
+        function calculateScore(quiz, userAnswers) {
+            let correct = 0;
+            
+            quiz.forEach((question, index) => {
+                if (userAnswers[index] === question.ans) {
+                    correct++;
+                }
+            });
+            
+            const percentage = Math.round((correct / quiz.length) * 100);
+            let message = '';
+            
+            if (percentage >= 90) {
+                message = 'Outstanding! You have excellent knowledge of Indian heritage! 🎨';
+            } else if (percentage >= 80) {
+                message = 'Great job! You have a good understanding of our cultural traditions! 👏';
+            } else if (percentage >= 70) {
+                message = 'Well done! You have a solid foundation in Indian art and culture! 🌟';
+            } else if (percentage >= 60) {
+                message = 'Good effort! Keep exploring to deepen your knowledge! 📚';
+            } else {
+                message = 'There\'s always room to learn more about our rich heritage! 🎯';
+            }
+            
+            return { correct, percentage, message };
+        }
+
+        // Function to display results
+        function displayResults() {
+            const { quizData, quizType } = loadQuizData();
+            
+            if (!quizData) {
+                document.getElementById('quiz-type-display').textContent = 'No quiz data found';
+                document.getElementById('score-display').textContent = '0/0';
+                document.getElementById('performance-message').textContent = 'Please take a quiz first!';
+                return;
+            }
+            
+            const { quiz, userAnswers } = quizData;
+            const config = quizConfigs[quizType];
+            const { correct, percentage, message } = calculateScore(quiz, userAnswers);
+            
+            // Update header
+            document.getElementById('quiz-type-display').textContent = config.title;
+            document.getElementById('score-display').textContent = `${correct}/${quiz.length}`;
+            document.getElementById('performance-message').textContent = message;
+            
+            // Update summary stats
+            document.getElementById('total-questions').textContent = quiz.length;
+            document.getElementById('correct-answers').textContent = correct;
+            document.getElementById('incorrect-answers').textContent = quiz.length - correct;
+            document.getElementById('percentage-score').textContent = `${percentage}%`;
+            
+            // Update retake button
+            document.getElementById('retake-quiz').href = config.quizPage;
+            
+            // Generate review cards
+            generateReviewCards(quiz, userAnswers);
+        }
+
+        // Function to generate review cards
+        function generateReviewCards(quiz, userAnswers) {
+            const reviewGrid = document.getElementById('review-grid');
+            reviewGrid.innerHTML = '';
+            
+            quiz.forEach((question, index) => {
+                const isCorrect = userAnswers[index] === question.ans;
+                const userAnswerText = userAnswers[index] !== null ? question.opts[userAnswers[index]] : 'Not answered';
+                const correctAnswerText = question.opts[question.ans];
+                
+                const card = document.createElement('div');
+                card.className = `review-card ${isCorrect ? 'correct' : 'incorrect'}`;
+                
+                card.innerHTML = `
+                    <div class="status-icon ${isCorrect ? 'correct' : 'incorrect'}">
+                        ${isCorrect ? '✅' : '❌'}
+                    </div>
+                    <div class="question-number">Question ${index + 1}</div>
+                    <div class="question-text">${question.q}</div>
+                    <div class="answer-info">
+                        <div class="answer-label">Your Answer:</div>
+                        <div class="answer-text user-answer ${isCorrect ? '' : 'incorrect-answer'}">${userAnswerText}</div>
+                    </div>
+                    ${!isCorrect ? `
+                        <div class="answer-info">
+                            <div class="answer-label">Correct Answer:</div>
+                            <div class="answer-text correct-answer">${correctAnswerText}</div>
+                        </div>
+                    ` : ''}
+                `;
+                
+                reviewGrid.appendChild(card);
+            });
+        }
+
+        // Function to review specific question
+        function reviewQuestion(questionIndex, quizType) {
+            const config = quizConfigs[quizType];
+            localStorage.setItem('reviewQuestion', questionIndex);
+            window.location.href = `${config.quizPage}?review=1`;
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            displayResults();
+        });
+    </script>
+</body>
+</html>

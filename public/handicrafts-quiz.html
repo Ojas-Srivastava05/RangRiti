@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handicrafts & Sculpture Quiz - RangRiti</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=EB+Garamond:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gold: #FFD700;
+            --deep-gold: #B8860B;
+            --rich-amber: #FFBF00;
+            --sandalwood: #C19A6B;
+            --deep-wood: #8B4513;
+            --midnight: #0A0A0A;
+            --charcoal: #1A1A1A;
+            --ivory: #FFFEF7;
+            --warm-white: #FAF9F6;
+            --crimson: #DC143C;
+            --emerald: #50C878;
+            --royal-blue: #4169E1;
+            --purple: #9932CC;
+            --deep-brown: #4B1E10;
+            --light-ivory: #FAF3E0;
+            --rich-gold: #D4AF37;
+        }
+
+        body {
+            font-family: 'EB Garamond', serif;
+            background: linear-gradient(135deg, #F5DEB3 0%, #E5C49B 50%, #B97A56 100%);
+            color: var(--deep-brown);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        .nav-container {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            backdrop-filter: blur(20px);
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            z-index: 1000;
+            animation: slideDown 1s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateX(-50%) translateY(-100px); opacity: 0; }
+            to { transform: translateX(-50%) translateY(0); opacity: 1; }
+        }
+
+        .nav-btn {
+            font-family: 'EB Garamond', serif;
+            background: transparent;
+            color: #000000;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .nav-btn:hover::before {
+            left: 100%;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Dropdown styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-toggle {
+            cursor: pointer;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            padding: 10px 0;
+            display: none;
+            flex-direction: column;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            z-index: 1001;
+        }
+
+        .dropdown-item {
+            font-family: 'EB Garamond', serif;
+            color: #FAF3E0;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: block;
+            transition: all 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .dropdown-item:hover {
+            background: rgba(255, 215, 0, 0.2);
+            color: var(--primary-gold);
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: flex;
+        }
+
+        .dropdown-arrow {
+            font-size: 0.8em;
+            margin-left: 5px;
+            display: inline-block;
+        }
+
+        /* Quiz Header */
+        .quiz-header {
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quiz-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(45deg, transparent 30%, rgba(255, 215, 0, 0.1) 50%, transparent 10%),
+                linear-gradient(-45deg, transparent 30%, rgba(220, 20, 60, 0.08) 50%, transparent 10%);
+            animation: headerGlow 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes headerGlow {
+            0% { opacity: 0.5; transform: scale(1); }
+            100% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .main-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, #6f450e 40%, #8B4C39 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.8);
+            margin-bottom: 2rem;
+            letter-spacing: 0.1em;
+        }
+
+        @keyframes titleGlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        .subtitle {
+            font-family: 'EB Garamond', serif;
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: var(--light-ivory);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .heritage-quote {
+            font-family: 'EB Garamond', serif;
+            font-size: clamp(1rem, 2vw, 1.4rem);
+            font-style: italic;
+            color: #000000;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            margin-bottom: 3rem;
+        }
+
+        /* Main container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 10;
+            display: flex;
+            gap: 2rem;
+        }
+
+        /* Art card styling */
+        .art-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .art-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                rgba(255, 215, 0, 0.1) 0%, 
+                transparent 50%, 
+                rgba(220, 20, 60, 0.1) 100%);
+            opacity: 0;
+        }
+
+        /* Question panel */
+        #question-panel {
+            flex: 2 1 60%;
+            padding: 2rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            min-width: 320px;
+        }
+
+        .art-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--rich-gold);
+            text-shadow: 0 0 5px rgba(212, 175, 55, 0.7);
+        }
+
+        #question-text {
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--deep-brown);
+        }
+
+        .options-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem 0;
+        }
+
+        .options-list li {
+            margin-bottom: 1rem;
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            padding: 1rem 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.08rem;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+            position: relative;
+            font-family: 'EB Garamond', serif;
+            color: var(--deep-brown);
+        }
+
+        .options-list li:hover {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: var(--primary-gold);
+            transform: translateX(5px);
+        }
+
+        .options-list li.selected {
+            background: rgba(80, 200, 120, 0.2);
+            border-color: var(--emerald);
+            color: var(--deep-wood);
+        }
+
+        .options-list li.selected.review-mode {
+            border: 2.5px solid var(--deep-wood);
+            position: relative;
+        }
+
+        .options-list li.selected.review-mode::after {
+            content: "✓";
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--deep-wood);
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .options-list li.correct {
+            background: rgba(80, 200, 120, 0.3);
+            border-color: var(--emerald);
+        }
+
+        .options-list li.wrong {
+            background: rgba(220, 20, 60, 0.3);
+            border-color: var(--crimson);
+        }
+
+        /* Buttons */
+        .btn-row, .nav-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin-top: 1rem;
+        }
+
+        .primary-btn, .secondary-btn, .nav-btn-quiz, .submit-btn {
+            padding: 0.7rem 1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            font-family: 'EB Garamond', serif;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .primary-btn {
+            background: linear-gradient(45deg, var(--rich-gold), var(--deep-gold));
+            color: var(--light-ivory);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .secondary-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--deep-brown);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .secondary-btn:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .nav-btn-quiz {
+            background: linear-gradient(45deg, var(--sandalwood), var(--deep-wood));
+            color: var(--light-ivory);
+        }
+
+        .nav-btn-quiz:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.3);
+        }
+
+        .submit-btn {
+            background: linear-gradient(90deg, var(--emerald) 60%, var(--royal-blue) 100%);
+            color: var(--light-ivory);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 16px rgba(80, 200, 120, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(80, 200, 120, 0.4);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            flex: 1 1 35%;
+            padding: 1.5rem;
+            min-width: 220px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .sidebar-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--rich-gold);
+            text-shadow: 0 0 5px rgba(212, 175, 55, 0.7);
+            margin-bottom: 1.5rem;
+        }
+
+        .legend {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 1.5rem;
+            width: 100%;
+        }
+
+        .legend li {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            font-family: 'EB Garamond', serif;
+            color: var(--deep-brown);
+        }
+
+        .box {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border-radius: 5px;
+            border: 1.5px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .not-visited { background: var(--sandalwood); }
+        .not-answered { background: var(--crimson); }
+        .answered { background: var(--emerald); }
+        .review { background: var(--purple); }
+        .answered-review { background: var(--royal-blue); }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(44px, 1fr));
+            gap: 0.6rem;
+            width: 100%;
+        }
+
+        .grid button {
+            padding: 0.7rem 0;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            background: var(--sandalwood);
+            color: var(--deep-brown);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            font-family: 'EB Garamond', serif;
+        }
+
+        .grid button:hover {
+            filter: brightness(1.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 80px 0 40px;
+            margin-top: 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
+            animation: footerGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes footerGlow {
+            0% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
+            100% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.8); }
+        }
+
+        .footer-content {
+            text-align: center;
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .footer-nav a {
+            font-family: 'EB Garamond', serif;
+            color: var(--light-ivory);
+            text-decoration: none;
+            font-weight: 500;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 10px 0;
+        }
+
+        .footer-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--primary-gold);
+            transition: width 0.3s ease;
+        }
+
+        .footer-nav a:hover::after {
+            width: 100%;
+        }
+
+        .footer-nav a:hover {
+            color: var(--primary-gold);
+            transform: translateY(-2px);
+        }
+
+        .footer-text {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.1rem;
+            color: var(--deep-brown);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            font-style: italic;
+        }
+
+        /* Responsive design */
+        @media (max-width: 900px) {
+            .container { 
+                flex-direction: column; 
+                gap: 1.2rem; 
+            }
+            .sidebar { 
+                order: -1; 
+                width: 100%; 
+                min-width: unset; 
+            }
+            #question-panel { 
+                width: 100%; 
+                min-width: unset; 
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-wrap: wrap;
+                gap: 5px;
+                padding: 10px 15px;
+                width: 80vw;
+            }
+            
+            .nav-btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+            
+            .container { 
+                padding: 0.5rem; 
+            }
+            
+            #question-panel, .sidebar { 
+                padding: 1rem; 
+                border-radius: 15px; 
+            }
+            
+            .btn-row, .nav-row { 
+                flex-direction: column; 
+                gap: 0.5rem; 
+            }
+            
+            .grid { 
+                grid-template-columns: repeat(auto-fill, minmax(36px, 1fr)); 
+            }
+            
+            .options-list li { 
+                font-size: 0.98rem; 
+                padding: 0.7rem; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <a href="index.html" class="nav-btn-link"><button class="nav-btn">Home</button></a>
+        <a href="artists.html" class="nav-btn-link"><button class="nav-btn">Artists</button></a>
+        <a href="workshops.html" class="nav-btn-link"><button class="nav-btn">Workshops</button></a>
+        <a href="calendar.html" class="nav-btn-link"><button class="nav-btn">Calendar</button></a>
+        <div class="dropdown">
+            <button class="nav-btn dropdown-toggle">
+                Heritage <span class="dropdown-arrow">&#9660;</span>
+            </button>
+            <div class="dropdown-menu">
+                <a href="paintings and traditional styles.html" class="dropdown-item">Traditional Painting Styles</a>
+                <a href="textile_main.html" class="dropdown-item">Textile Arts</a>
+                <a href="performingarts.html" class="dropdown-item">Performing Arts</a>
+                <a href="handicrafts_and_sculptures.html" class="dropdown-item">Handicrafts & Sculpture</a>
+            </div>
+        </div>
+        <a href="connect.html" class="nav-btn-link"><button class="nav-btn">Connect</button></a>
+    </nav>
+
+    <header class="quiz-header">
+        <div class="header-content">
+            <h1 class="main-title">Handicrafts & Sculpture Quiz</h1>
+            <p class="subtitle">Test your knowledge about Indian traditional handicrafts and sculptures!</p>
+            <p class="heritage-quote">"शिल्प कला में भारतीय संस्कृति की गहराई है - Indian culture's depth lies in its craftsmanship"</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="question-panel" class="art-card">
+            <div id="question-text" class="art-title">Loading...</div>
+            <ul id="options" class="options-list"></ul>
+            <div class="btn-row">
+                <button id="save-next" class="primary-btn">Save & Next</button>
+                <button id="clear" class="secondary-btn">Clear</button>
+            </div>
+            <div class="nav-row">
+                <button id="back" class="nav-btn-quiz">« Back</button>
+                <button id="next" class="nav-btn-quiz">Next »</button>
+                <button id="submit" class="submit-btn" style="display:none;">Submit</button>
+            </div>
+        </section>
+        
+        <aside class="sidebar art-card">
+            <h3 class="sidebar-title">Question Navigation</h3>
+            <ul class="legend">
+                <li><span class="box not-visited"></span> Not Visited</li>
+                <li><span class="box not-answered"></span> Not Answered</li>
+                <li><span class="box answered"></span> Answered</li>
+                <li><span class="box review"></span> Review</li>
+                <li><span class="box answered-review"></span> Answered & Review</li>
+            </ul>
+            <div id="grid" class="grid"></div>
+        </aside>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <nav class="footer-nav">
+                <a href="#">About</a>
+                <a href="#">Artists</a>
+                <a href="#">Workshops</a>
+                <a href="#">Calendar</a>
+                <a href="#">Heritage</a>
+                <a href="#">Connect</a>
+            </nav>
+            <p class="footer-text">&copy; 2024 RangRiti. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        /********************
+        * Quiz Data - Indian Handicrafts & Sculpture *
+        ********************/
+
+        // Complete question bank - all available questions
+        const allQuestions = [
+            // Dhokra Art
+            {
+                q: 'Dhokra art is a traditional metal casting technique from which region?',
+                opts: ['North India', 'South India', 'East India', 'West India'],
+                ans: 2
+            },
+            {
+                q: 'Which metal is primarily used in Dhokra art?',
+                opts: ['Copper', 'Silver', 'Bronze', 'Iron'],
+                ans: 2
+            },
+            {
+                q: 'What is the unique technique used in Dhokra art called?',
+                opts: ['Sand casting', 'Lost wax casting', 'Die casting', 'Investment casting'],
+                ans: 1
+            },
+            {
+                q: 'Which Indian states are famous for Dhokra art?',
+                opts: ['Punjab and Haryana', 'Tamil Nadu and Kerala', 'West Bengal and Odisha', 'Gujarat and Rajasthan'],
+                ans: 2
+            },
+            {
+                q: 'What type of designs are typically seen in Dhokra art?',
+                opts: ['Geometric patterns', 'Tribal motifs and animals', 'Floral designs', 'Religious symbols'],
+                ans: 1
+            },
+            // Bidriware
+            {
+                q: 'Bidriware is a traditional metalwork from which Indian city?',
+                opts: ['Hyderabad', 'Bidar', 'Mysore', 'Bangalore'],
+                ans: 1
+            },
+            {
+                q: 'Which metals are used in Bidriware?',
+                opts: ['Gold and silver', 'Zinc and copper', 'Iron and bronze', 'Brass and tin'],
+                ans: 1
+            },
+            {
+                q: 'What gives Bidriware its distinctive black color?',
+                opts: ['Black paint', 'Oxidation process', 'Special soil treatment', 'Chemical coating'],
+                ans: 2
+            },
+            {
+                q: 'Which patterns are inlaid in Bidriware?',
+                opts: ['Gold patterns', 'Silver patterns', 'Copper patterns', 'Bronze patterns'],
+                ans: 1
+            },
+            {
+                q: 'Bidriware received which recognition?',
+                opts: ['UNESCO Heritage', 'Geographical Indication', 'National Award', 'International Patent'],
+                ans: 1
+            },
+            // Sandalwood Carving
+            {
+                q: 'Which Indian state is most famous for sandalwood carving?',
+                opts: ['Tamil Nadu', 'Karnataka', 'Kerala', 'Andhra Pradesh'],
+                ans: 1
+            },
+            {
+                q: 'What is the traditional center of sandalwood carving in Karnataka?',
+                opts: ['Bangalore', 'Mysore', 'Mangalore', 'Hubli'],
+                ans: 1
+            },
+            {
+                q: 'Which type of sandalwood is considered best for carving?',
+                opts: ['Indian sandalwood', 'Australian sandalwood', 'Hawaiian sandalwood', 'East Indian sandalwood'],
+                ans: 0
+            },
+            {
+                q: 'What are the common themes in sandalwood carving?',
+                opts: ['Modern art', 'Religious figures and deities', 'Abstract designs', 'Geometric patterns'],
+                ans: 1
+            },
+            {
+                q: 'Which tool is NOT typically used in sandalwood carving?',
+                opts: ['Chisel', 'Gouge', 'Mallet', 'Lathe'],
+                ans: 3
+            },
+            // Marble Inlay Work
+            {
+                q: 'Which monument is the most famous example of marble inlay work?',
+                opts: ['Red Fort', 'Taj Mahal', 'Qutub Minar', 'India Gate'],
+                ans: 1
+            },
+            {
+                q: 'What is the traditional term for marble inlay work?',
+                opts: ['Pietra dura', 'Parchin kari', 'Both A and B', 'None of the above'],
+                ans: 2
+            },
+            {
+                q: 'Which city is famous for marble inlay work?',
+                opts: ['Jaipur', 'Agra', 'Delhi', 'Lucknow'],
+                ans: 1
+            },
+            {
+                q: 'Which stones are commonly used in marble inlay work?',
+                opts: ['Precious stones', 'Semi-precious stones', 'Colored marble', 'All of the above'],
+                ans: 3
+            },
+            {
+                q: 'What is the first step in marble inlay work?',
+                opts: ['Cutting stones', 'Polishing marble', 'Creating design', 'Making grooves'],
+                ans: 2
+            },
+            // Terracotta
+            {
+                q: 'Which Indian state is famous for Bankura horse terracotta?',
+                opts: ['Odisha', 'West Bengal', 'Bihar', 'Jharkhand'],
+                ans: 1
+            },
+            {
+                q: 'What is terracotta made from?',
+                opts: ['Wood', 'Clay', 'Metal', 'Stone'],
+                ans: 1
+            },
+            {
+                q: 'Which ancient civilization is known for terracotta artifacts?',
+                opts: ['Mauryan', 'Gupta', 'Harappan', 'Mughal'],
+                ans: 2
+            },
+            {
+                q: 'What is the firing temperature range for terracotta?',
+                opts: ['600-800°C', '800-1000°C', '1000-1200°C', '1200-1400°C'],
+                ans: 1
+            },
+            {
+                q: 'Which region is famous for blue pottery (terracotta)?',
+                opts: ['Gujarat', 'Rajasthan', 'Punjab', 'Haryana'],
+                ans: 1
+            },
+            // Stone Carving
+            {
+                q: 'Which stone is commonly used for carving in Rajasthan?',
+                opts: ['Marble', 'Granite', 'Sandstone', 'Slate'],
+                ans: 2
+            },
+            {
+                q: 'Which temple complex is famous for stone carving?',
+                opts: ['Khajuraho', 'Konark', 'Hampi', 'All of the above'],
+                ans: 3
+            },
+            {
+                q: 'What is the traditional stone carving technique called?',
+                opts: ['Silpashastra', 'Vastushastra', 'Shilpashastra', 'Yogashastra'],
+                ans: 2
+            },
+            {
+                q: 'Which dynasty is known for rock-cut architecture?',
+                opts: ['Mauryan', 'Gupta', 'Chalukya', 'All of the above'],
+                ans: 3
+            },
+            {
+                q: 'What is the black stone used in South Indian temples?',
+                opts: ['Granite', 'Basalt', 'Slate', 'Marble'],
+                ans: 0
+            },
+            // Wood Carving
+            {
+                q: 'Which wood is traditionally used in Kashmir for carving?',
+                opts: ['Teak', 'Rosewood', 'Walnut', 'Sandalwood'],
+                ans: 2
+            },
+            {
+                q: 'What is the traditional wood carving style of Kerala called?',
+                opts: ['Kathakali carving', 'Theyyam carving', 'Traditional carving', 'Mohiniyattam carving'],
+                ans: 2
+            },
+            {
+                q: 'Which region is famous for wooden toys and dolls?',
+                opts: ['Channapatna', 'Kondapalli', 'Varanasi', 'All of the above'],
+                ans: 3
+            },
+            {
+                q: 'What type of wood is preferred for intricate carving?',
+                opts: ['Hardwood', 'Softwood', 'Both', 'Neither'],
+                ans: 1
+            },
+            {
+                q: 'Which festival is associated with wooden craft displays?',
+                opts: ['Diwali', 'Dussehra', 'Holi', 'All festivals'],
+                ans: 3
+            }
+        ];
+
+        // Function to shuffle array (Fisher-Yates algorithm)
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        // Select 10 random questions from the complete question bank
+        const quiz = shuffleArray(allQuestions).slice(0, 10);
+
+        let current = 0;
+        const statuses = Array(quiz.length).fill('NV'); // Not Visited, Not Answered, Answered
+        const userAnswers = Array(quiz.length).fill(null);
+        let submitted = false;
+
+        const $questionText = document.getElementById('question-text');
+        const $options = document.getElementById('options');
+        const $grid = document.getElementById('grid');
+        const $submit = document.getElementById('submit');
+
+        /********************
+        * DOM Build *
+        ********************/
+
+        function buildGrid() {
+            $grid.innerHTML = '';
+            quiz.forEach((_, idx) => {
+                const btn = document.createElement('button');
+                btn.textContent = `${idx+1}`;
+                btn.addEventListener('click', () => goTo(idx));
+                $grid.appendChild(btn);
+            });
+        }
+
+        function loadQuestion(idx) {
+            const item = quiz[idx];
+            $questionText.textContent = item.q;
+            $options.innerHTML = '';
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const reviewMode = urlParams.get('review') === '1';
+
+            item.opts.forEach((opt, i) => {
+                const li = document.createElement('li');
+                li.textContent = opt;
+
+                if(userAnswers[idx] === i) {
+                    li.classList.add('selected');
+                    if (reviewMode) li.classList.add('review-mode');
+                }
+
+                if(reviewMode) {
+                    if(item.ans === i) li.classList.add('correct');
+                    else if(userAnswers[idx] === i && userAnswers[idx] !== item.ans) li.classList.add('wrong');
+                    li.onclick = null;
+                } else if(submitted) {
+                    if(item.ans === i) li.classList.add('correct');
+                    else if(userAnswers[idx] === i && userAnswers[idx] !== item.ans) li.classList.add('wrong');
+                    li.onclick = null;
+                } else {
+                    li.onclick = () => selectOption(i);
+                }
+
+                $options.appendChild(li);
+            });
+
+            highlightGrid();
+
+            if(reviewMode) {
+                document.querySelector('.btn-row').style.display = 'none';
+                document.querySelector('.nav-row').style.display = 'none';
+            } else {
+                $submit.style.display = (current === quiz.length - 1 && !submitted) ? 'inline-block' : 'none';
+                document.querySelector('.btn-row').style.display = '';
+                document.querySelector('.nav-row').style.display = '';
+            }
+        }
+
+        function highlightGrid() {
+            [...$grid.children].forEach((btn, i) => {
+                btn.className = '';
+                if(statuses[i] === 'NV') btn.style.background = '#C19A6B';
+                if(statuses[i] === 'NA') btn.style.background = '#DC143C';
+                if(statuses[i] === 'A') btn.style.background = '#50C878';
+                btn.style.outline = (i === current) ? '2px solid #FFD700' : '';
+                btn.style.transform = (i === current) ? 'scale(1.1)' : '';
+            });
+        }
+
+        /********************
+        * Actions *
+        ********************/
+
+        function selectOption(optIdx) {
+            userAnswers[current] = optIdx;
+            statuses[current] = 'A';
+            loadQuestion(current);
+            
+            // Add selection feedback
+            const selectedOption = document.querySelector('.options-list li.selected');
+            if (selectedOption) {
+                selectedOption.style.transform = 'scale(1.02)';
+                setTimeout(() => {
+                    selectedOption.style.transform = '';
+                }, 200);
+            }
+        }
+
+        function saveAndNext() {
+            if(statuses[current] === 'NV') statuses[current] = userAnswers[current] !== null ? 'A' : 'NA';
+            next();
+        }
+
+        function next() {
+            if(current < quiz.length - 1) {
+                current++;
+                loadQuestion(current);
+            }
+        }
+
+        function goTo(idx) {
+            current = idx;
+            loadQuestion(current);
+        }
+
+        function clearSelection() {
+            userAnswers[current] = null;
+            statuses[current] = 'NA';
+            loadQuestion(current);
+        }
+
+        function submitQuiz() {
+            submitted = true;
+            loadQuestion(current);
+            localStorage.setItem('handicraftsQuizResult', JSON.stringify({
+                quiz: quiz,
+                userAnswers: userAnswers
+            }));
+            window.location.href = 'universal-result.html';
+        }
+
+        /********************
+        * Event Links *
+        ********************/
+        document.getElementById('save-next').onclick = saveAndNext;
+        document.getElementById('clear').onclick = clearSelection;
+        document.getElementById('next').onclick = next;
+        document.getElementById('back').onclick = () => {
+            if(current > 0) {
+                current--;
+                loadQuestion(current);
+            }
+        };
+        document.getElementById('submit').onclick = submitQuiz;
+
+        /********************
+        * Init *
+        ********************/
+        buildGrid();
+        loadQuestion(0);
+
+        // If coming from result page, jump to the requested question and show review mode
+        const reviewQ = localStorage.getItem('reviewQuestion');
+        const urlParams = new URLSearchParams(window.location.search);
+        if(urlParams.get('review') === '1' && reviewQ !== null) {
+            current = parseInt(reviewQ, 10);
+            loadQuestion(current);
+            localStorage.removeItem('reviewQuestion');
+        }
+    </script>
+</body>
+</html>

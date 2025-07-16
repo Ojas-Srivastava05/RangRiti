@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rangriti | Master Artist Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sandalwood: #e6d0b5;
+            --sandalwood-dark: #d4b894;
+            --sandalwood-light: #f3e9d9;
+            --accent-red: #b6452c;
+            --accent-gold: #c8a951;
+            --accent-green: #4e6b5a;
+            --text-dark: #3c2f2d;
+            --text-light: #7a6e66;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--sandalwood-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header styling */
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--accent-red);
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+        
+        .header::after {
+            content: "";
+            display: block;
+            width: 200px;
+            height: 20px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10"><path d="M0,5 Q25,10 50,5 T100,5" stroke="%23b6452c" stroke-width="2" fill="none"/></svg>');
+            background-repeat: no-repeat;
+            background-position: center;
+            margin: 15px auto;
+        }
+        
+        /* Profile Section */
+        .profile-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 50px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .profile-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, var(--accent-red), var(--accent-gold), var(--accent-green));
+        }
+        
+        .profile-image {
+            flex: 1;
+            min-width: 300px;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--sandalwood);
+            position: relative;
+        }
+        
+        .profile-image img {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid var(--sandalwood-light);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .profile-image::after {
+            content: "";
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 80px;
+            height: 80px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,5 C70,5 85,20 85,40 C85,60 70,75 50,75 C30,75 15,60 15,40 C15,20 30,5 50,5 Z" fill="none" stroke="%23c8a951" stroke-width="3"/><path d="M35,35 L65,65 M65,35 L35,65" stroke="%23c8a951" stroke-width="3"/></svg>');
+            opacity: 0.2;
+        }
+        
+        .profile-info {
+            flex: 2;
+            min-width: 300px;
+            padding: 40px 30px 40px 0;
+        }
+        
+        .artist-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+        
+        .stage-name {
+            font-size: 1.4rem;
+            color: var(--accent-gold);
+            font-weight: 500;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+        
+        .specialization {
+            display: inline-block;
+            background-color: var(--accent-green);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+        
+        .location {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-light);
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+        
+        .bio {
+            margin-bottom: 30px;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+        }
+        
+        .contact-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--sandalwood);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-green);
+            font-size: 1.1rem;
+        }
+        
+        .portfolio-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-red);
+            font-weight: 500;
+            text-decoration: none;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .portfolio-link:hover {
+            color: var(--accent-green);
+            transform: translateX(5px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: var(--sandalwood);
+            color: var(--accent-red);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .social-link:hover {
+            background-color: var(--accent-red);
+            color: white;
+            transform: translateY(-5px);
+        }
+        
+        /* Gallery Section */
+        .gallery-section {
+            margin: 60px 0;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--accent-green);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 20px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><path d="M0,10 Q15,0 30,10 T60,10 T90,10" stroke="%234e6b5a" stroke-width="2" fill="none"/></svg>');
+            background-repeat: no-repeat;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            height: 300px;
+            background-color: var(--sandalwood);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .gallery-item::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.5), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover::before {
+            opacity: 1;
+        }
+        
+        .gallery-item-title {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            font-weight: 500;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-item-title {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Follow Button */
+        .follow-section {
+            text-align: center;
+            margin: 50px 0;
+            position: relative;
+        }
+        
+        .follow-button {
+            background: linear-gradient(to right, var(--accent-red), var(--accent-gold));
+            color: white;
+            border: none;
+            padding: 18px 45px;
+            font-size: 1.3rem;
+            font-weight: 500;
+            border-radius: 50px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: all 0.3s ease;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(182, 69, 44, 0.3);
+        }
+        
+        .follow-button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+            transition: all 0.6s ease;
+            z-index: -1;
+        }
+        
+        .follow-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(182, 69, 44, 0.4);
+        }
+        
+        .follow-button:hover::before {
+            left: 100%;
+        }
+        
+        .follow-button::after {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px solid var(--accent-gold);
+            border-radius: 60px;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .follow-button:hover::after {
+            opacity: 1;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+        }
+        
+        /* Floral decoration */
+        .floral-decoration {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .floral-1 {
+            top: 50px;
+            left: 50px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,15 C60,15 70,20 75,30 C80,40 78,50 70,60 C60,70 50,72 40,65 C30,58 25,48 30,38 C35,28 40,15 50,15 Z" fill="none" stroke="%234e6b5a" stroke-width="2"/></svg>');
+        }
+        
+        .floral-2 {
+            bottom: 100px;
+            right: 50px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="20" fill="none" stroke="%23b6452c" stroke-width="2"/><path d="M50,30 L50,70 M30,50 L70,50 M40,40 L60,60 M60,40 L40,60" stroke="%23b6452c" stroke-width="2"/></svg>');
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--sandalwood-dark);
+            margin-top: 40px;
+        }
+        
+        .rangriti-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--accent-red);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .profile-section {
+                flex-direction: column;
+            }
+            
+            .profile-info {
+                padding: 30px;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .artist-name {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floral-decoration floral-1"></div>
+    <div class="floral-decoration floral-2"></div>
+    
+<div class="container" style="background-color: #f5f1e1; font-family: 'Georgia', serif; padding: 2rem;">
+    <!-- Header -->
+    <div class="header" style="text-align: center; color: #5a3a1a;">
+        <h1>Rangriti</h1>
+        <p>Celebrating Indian Artistry & Craftsmanship</p>
+    </div>
+
+    <!-- Profile Section -->
+    <div class="profile-section" style="display: flex; flex-wrap: wrap; margin-top: 2rem; gap: 2rem;">
+        <div class="profile-image">
+            <img src="<%= artist.profilePictureUrl %>" alt="Artist Profile"
+                style="width: 250px; height: 250px; border-radius: 50%; object-fit: cover; border: 5px solid #d2b48c;">
+        </div>
+
+        <div class="profile-info" style="flex: 1;">
+            <h1 class="artist-name" style="color: #4b2e18;"><%= artist.firstName %> <%= artist.lastName %></h1>
+            <div class="stage-name" style="font-style: italic; color: #8B4513;">"<%= artist.artistName %>"</div>
+
+            <% if (artist.specialization) { %>
+                <div class="specialization" style="margin-top: 1rem; font-weight: bold;"><%= artist.specialization %></div>
+            <% } %>
+
+            <% if (artist.city) { %>
+                <div class="location" style="margin-top: 0.5rem;">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span><%= artist.city %>, India</span>
+                </div>
+            <% } %>
+
+            <% if (artist.bio) { %>
+                <div class="bio" style="margin-top: 1rem; line-height: 1.6; color: #333;">
+                    <p><%= artist.bio %></p>
+                </div>
+            <% } %>
+
+            <% if (artist.contactNumber) { %>
+                <div class="contact-details" style="margin-top: 1rem;">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span><%= artist.contactNumber %></span>
+                    </div>
+                </div>
+            <% } %>
+
+            <% if (artist.portfolioUrl) { %>
+                <a href="<%= artist.portfolioUrl %>" target="_blank" class="portfolio-link"
+                    style="display: inline-block; margin-top: 1rem; color: #8B4513; font-weight: bold; text-decoration: none;">
+                    <i class="fas fa-external-link-alt"></i> View Full Portfolio
+                </a>
+            <% } %>
+
+            <div class="social-links" style="margin-top: 1rem;">
+                <% if (artist.instagram) { %>
+                    <a href="<%= artist.instagram %>" class="social-link"><i class="fab fa-instagram"></i></a>
+                <% } %>
+                <% if (artist.facebook) { %>
+                    <a href="<%= artist.facebook %>" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                <% } %>
+                <% if (artist.twitter) { %>
+                    <a href="<%= artist.twitter %>" class="social-link"><i class="fab fa-twitter"></i></a>
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Section -->
+<!-- Products Section -->
+<div class="product-section" style="margin-top: 3rem;">
+    <h2 class="section-title" style="color: #5a3a1a;">Products by <%= artist.artistName %></h2>
+    
+    <% if (products.length === 0) { %>
+        <p style="margin-top: 1rem; color: #666;">No products uploaded yet.</p>
+    <% } else { %>
+        <div class="product-grid"
+             style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1rem;">
+            <% products.forEach(product => { %>
+                <div class="product-card"
+                     style="background-color: #fffaf0; padding: 1rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <img src="<%= product.images[0] %>" alt="<%= product.name %>"
+                         style="width: 100%; height: 200px; object-fit: cover; border-radius: 0.3rem;">
+                    <div class="product-name" style="margin-top: 0.5rem; font-weight: bold; color: #4b2e18;">
+                        <%= product.name %>
+                    </div>
+                    <div class="product-price" style="color: #8B4513;">₹<%= product.price %></div>
+                    <div class="product-category" style="font-size: 0.9rem; color: #777;">
+                        <%= product.category %>
+                    </div>
+                    <a href="/products/<%= product._id %>" class="view-link"
+                       style="display: inline-block; margin-top: 0.5rem; color: #a0522d; font-weight: bold;">View Details</a>
+                </div>
+            <% }) %>
+        </div>
+    <% } %>
+</div>
+
+    <!-- Footer -->
+    <div class="footer" style="text-align: center; margin-top: 4rem; color: #5a3a1a;">
+        <div class="rangriti-logo" style="font-weight: bold; font-size: 1.5rem;">Rangriti</div>
+        <p>Preserving and promoting India's artistic heritage since 2005</p>
+        <p>© <%= new Date().getFullYear() %> Rangriti. All rights reserved.</p>
+    </div>
+</div>
+    
+    <script>
+        // Simple animation for the follow button
+        document.querySelector('.follow-button').addEventListener('click', function() {
+            this.innerHTML = '<i class="fas fa-check"></i> Following';
+            this.style.background = 'linear-gradient(to right, var(--accent-green), var(--accent-gold))';
+            
+            // Create a small animation effect
+            this.style.transform = 'scale(1.05)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 300);
+        });
+    </script>
+</body>
+</html>

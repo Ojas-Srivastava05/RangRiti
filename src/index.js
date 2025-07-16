@@ -261,6 +261,41 @@ app.get('/product/:id', async (req, res) => {
 });
 
 
+app.get('/artists',async (req,res)=>{
+   const searchQuery = req.query.search || '';
+    try {
+        const artists = await Artist.find({
+            $or: [
+                { firstName: { $regex: searchQuery, $options: 'i' } },
+                { lastName: { $regex: searchQuery, $options: 'i' } },
+                { artistName: { $regex: searchQuery, $options: 'i' } }
+            ]
+        });
+
+        res.render('artists', { artists, searchQuery });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Error fetching artists");
+    }
+})
+app.get('/artists/:id', async (req, res) => {
+    const artistId = req.params.id;
+
+    try {
+        const artist = await Artist.findById(artistId);
+            const products = await Product.find({ artistName: artist.artistName }); 
+        let isFollowing = false;
+
+
+        res.render('artist-profile', { artist,products });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Artist not found");
+    }
+});
+
+
+
 // --- ROOT ROUTE ---
 // This route will now be executed for the root URL.
 app.get("/", (req, res) => {
