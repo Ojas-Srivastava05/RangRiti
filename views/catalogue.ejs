@@ -1008,6 +1008,7 @@
         const data = await res.json();
         if (res.ok) {
           alert('Added to cart!');
+          location.reload();
         } else {
           alert('Error: ' + data.message);
         }
