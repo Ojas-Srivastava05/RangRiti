@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rangriti - Discover Traditional Artists</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --sandalwood-beige: #F5E3C3;
+            --sandalwood-light: #f9efd9;
+            --maroon: #800000;
+            --rust: #B7410E;
+            --indigo: #3E2F5B;
+            --off-white: #f8f5f0;
+            --gold: #C5A455;
+            --shadow: rgba(62, 47, 91, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--sandalwood-beige) 0%, #f0d9b5 100%);
+            color: var(--indigo);
+            min-height: 100vh;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxwYXR0ZXJuIGlkPSJtYW5kYWxhIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIiB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgcGF0dGVyblRyYW5zZm9ybT0icm90YXRlKDMwKSI+PGNpcmNsZSBjeD0iMjAwIiBjeT0iMjAwIiByPSIxODAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0M1QTQ1NSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2Utb3BhY2l0eT0iMC4wNSIvPjxwYXRoIGQ9Ik0yMDAsMjAgQzEwMCwxMDAgMzAwLDEwMCAyMDAsMjAwIEMxMDAsMzAwIDEwMCwxMDAgMjAsMjAwIiBmaWxsPSJub25lIiBzdHJva2U9IiNDNUE0NTUiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2Utb3BhY2l0eT0iMC4wNSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNtYW5kYWxhKSIvPjwvc3ZnPg==');
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYWlzZWx5IiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCI+PHBhdGggZD0iTTAgMCBMNTAgMCA1MCA1MCAwIDUweiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjQzVBNTQ1IiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIwLjAyIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI3BhaXNlbHkpIi8+PC9zdmc+');
+            opacity: 0.1;
+            z-index: -1;
+        }
+        
+        .floating-element {
+            position: absolute;
+            opacity: 0.1;
+            z-index: -1;
+        }
+        
+        .floating-element.leaf {
+            width: 80px;
+            height: 80px;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNjAgMTBDNTUgNSA0MCAxMCAzMCAyMEMyMCAxMCAxMCAxNSAxMCAyNUMxMCAzNSAyMCA0MCAyNSA0NUMzMCA1MCAzNSA1NSA0MCA2MEM0NSA2NSA1MCA2NSA1NSA2MEM2MCA1NSA2NSA0NSA2NSAzNUM2NSAyNSA3MCAxNSA2MCAxMFoiIGZpbGw9IiM4MDAwMDAiIGZpbGwtb3BhY2l0eT0iMC4xIi8+PC9zdmc+');
+            animation: float 25s infinite ease-in-out;
+        }
+        
+        .floating-element.mandala {
+            width: 120px;
+            height: 120px;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDEyMCAxMjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iNjAiIGN5PSI2MCIgcj0iNTAiIHN0cm9rZT0iI0M1QTQ1NSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2Utb3BhY2l0eT0iMC4xIi8+PGNpcmNsZSBjeD0iNjAiIGN5PSI2MCIgcj0iMzUiIHN0cm9rZT0iI0M1QTQ1NSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2Utb3BhY2l0eT0iMC4xIi8+PGNpcmNsZSBjeD0iNjAiIGN5PSI2MCIgcj0iMjAiIHN0cm9rZT0iI0M1QTQ1NSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2Utb3BhY2l0eT0iMC4xIi8+PC9zdmc+');
+            animation: float 30s infinite ease-in-out reverse;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(20px, 40px) rotate(5deg); }
+            50% { transform: translate(40px, 20px) rotate(0deg); }
+            75% { transform: translate(10px, 30px) rotate(-5deg); }
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            text-align: center;
+            padding: 40px 0 30px;
+            position: relative;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: var(--indigo);
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .logo::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--gold), var(--rust));
+            border-radius: 2px;
+        }
+        
+        .tagline {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2rem;
+            color: var(--rust);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        /* Page Heading */
+        .page-heading {
+            text-align: center;
+            margin: 40px 0;
+            position: relative;
+        }
+        
+        .page-heading h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: var(--indigo);
+            position: relative;
+            display: inline-block;
+            padding: 0 20px;
+        }
+        
+        .page-heading h1::before,
+        .page-heading h1::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+        }
+        
+        .page-heading h1::before {
+            right: 100%;
+        }
+        
+        .page-heading h1::after {
+            left: 100%;
+        }
+        
+        .page-heading .flourish {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: var(--gold);
+            opacity: 0.5;
+        }
+        
+        .page-heading .flourish.left {
+            left: calc(50% - 200px);
+        }
+        
+        .page-heading .flourish.right {
+            right: calc(50% - 200px);
+        }
+        
+        /* Filters */
+        .filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+            padding: 15px;
+            background-color: rgba(245, 227, 195, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 4px 12px var(--shadow);
+            max-width: 900px;
+            margin: 0 auto 40px;
+        }
+        
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            min-width: 180px;
+        }
+        
+        .filter-group label {
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            color: var(--rust);
+            font-weight: 500;
+        }
+        
+        .filter-group select, .filter-group input {
+            padding: 10px 15px;
+            border: 1px solid var(--gold);
+            border-radius: 6px;
+            background-color: var(--off-white);
+            font-family: 'Poppins', sans-serif;
+            color: var(--indigo);
+        }
+        
+        .search-bar {
+            display: flex;
+            align-self: flex-end;
+        }
+        
+        .search-bar input {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-right: none;
+        }
+        
+        .search-bar button {
+            background: var(--rust);
+            color: white;
+            border: none;
+            border-top-right-radius: 6px;
+            border-bottom-right-radius: 6px;
+            padding: 0 15px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .search-bar button:hover {
+            background: var(--maroon);
+        }
+        
+        /* Artist Grid */
+        .artist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        /* Artist Card */
+        .artist-card {
+            background: var(--off-white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .artist-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(62, 47, 91, 0.2);
+        }
+        
+        .card-header {
+            background: linear-gradient(to right, var(--indigo), var(--rust));
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .profile-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto;
+        }
+        
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--off-white);
+            background-color: var(--sandalwood-light);
+        }
+        
+        .profile-frame {
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            z-index: 2;
+        }
+        
+        .artist-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: white;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+        
+        .artist-stage-name {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--gold);
+            margin-top: 5px;
+            font-size: 1.2rem;
+        }
+        
+        .artist-details {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .artist-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed var(--gold);
+        }
+        
+        .specialization, .location {
+            display: flex;
+            align-items: center;
+            font-size: 0.95rem;
+        }
+        
+        .specialization i, .location i {
+            color: var(--rust);
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .artist-bio {
+            margin: 15px 0;
+            line-height: 1.7;
+            color: var(--indigo);
+            flex-grow: 1;
+            font-size: 0.95rem;
+        }
+        
+        .gallery-preview {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .art-sample {
+            aspect-ratio: 1/1;
+            border-radius: 8px;
+            background-color: var(--sandalwood-beige);
+            border: 1px solid rgba(183, 65, 14, 0.1);
+            overflow: hidden;
+        }
+        
+        .art-sample img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .artist-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--sandalwood-beige);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--rust);
+            text-decoration: none;
+            transition: all 0.3s;
+            border: 1px solid rgba(183, 65, 14, 0.2);
+        }
+        
+        .social-icon:hover {
+            background: var(--rust);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border: none;
+        }
+        
+        .btn-portfolio {
+            background: var(--rust);
+            color: white;
+        }
+        
+        .btn-portfolio:hover {
+            background: var(--maroon);
+        }
+        
+        .btn-profile {
+            background: transparent;
+            color: var(--indigo);
+            border: 1px solid var(--indigo);
+        }
+        
+        .btn-profile:hover {
+            background: var(--indigo);
+            color: white;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+            color: var(--indigo);
+            border-top: 1px solid rgba(197, 164, 85, 0.3);
+        }
+        
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .artist-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+            
+            .filters {
+                flex-direction: column;
+            }
+            
+            .page-heading h1 {
+                font-size: 2.2rem;
+            }
+            
+            .page-heading .flourish {
+                display: none;
+            }
+            
+            .page-heading h1::before,
+            .page-heading h1::after {
+                width: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating decorative elements -->
+    <div class="floating-element leaf" style="top: 10%; left: 5%;"></div>
+    <div class="floating-element mandala" style="top: 15%; right: 7%;"></div>
+    <div class="floating-element leaf" style="bottom: 20%; left: 8%;"></div>
+    <div class="floating-element mandala" style="bottom: 15%; right: 5%;"></div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">Rangriti</div>
+            <p class="tagline">Celebrating the soul of Indian artistry through generations of traditional craftsmanship</p>
+        </header>
+        
+        <div class="page-heading">
+            <span class="flourish left">❀</span>
+            <h1>Discover Master Artists</h1>
+            <span class="flourish right">❀</span>
+        </div>
+        
+        <div class="filters">
+
+            
+
+            
+
+            
+            <div class="filter-group search-bar">
+                <label>Search Artists</label>
+                <div style="display: flex;">
+                    <input type="text" placeholder="Artist name">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="artist-grid">
+            <!-- Artist 1 -->
+            <div class="artist-card">
+                <div class="card-header">
+                    <div class="profile-container">
+                        <div class="profile-pic" style="background: linear-gradient(45deg, #8B4513, #CD853F);"></div>
+                        <div class="profile-frame"></div>
+                    </div>
+                    <h2 class="artist-name">Rajesh Sharma</h2>
+                    <div class="artist-stage-name">KalaRaj</div>
+                </div>
+                
+                <div class="artist-details">
+                    <div class="artist-info">
+                        <div class="specialization">
+                            <i class="fas fa-palette"></i>
+                            <span>Miniature Painting</span>
+                        </div>
+                        <div class="location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Udaipur, Rajasthan</span>
+                        </div>
+                    </div>
+                    
+                    <p class="artist-bio">Fourth-generation miniature painter specializing in Rajasthani and Mughal styles. Trained under National Awardee Guru Hemant Sharma. Known for intricate details and natural pigments.</p>
+                    
+                    <div class="gallery-preview">
+                        <div class="art-sample" style="background: linear-gradient(45deg, #D2B48C, #8B4513);"></div>
+                        <div class="art-sample" style="background: linear-gradient(45deg, #CD5C5C, #8B0000);"></div>
+                        <div class="art-sample" style="background: linear-gradient(45deg, #556B2F, #6B8E23);"></div>
+                    </div>
+                    
+                    <div class="artist-actions">
+                        <div class="social-icons">
+                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        </div>
+                        
+                        <a href="#" class="btn btn-portfolio">
+                            <i class="fas fa-eye"></i>
+                            View Portfolio
+                        </a>
+                        
+                        <a href="#" class="btn btn-profile">
+                            <i class="fas fa-user"></i>
+                            Full Profile
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Artist 2 -->
+            <div class="artist-card">
+                <div class="card-header">
+                    <div class="profile-container">
+                        <div class="profile-pic" style="background: linear-gradient(45deg, #2F4F4F, #708090);"></div>
+                        <div class="profile-frame"></div>
+                    </div>
+                    <h2 class="artist-name">Priya Venkatesh</h2>
+                    <div class="artist-stage-name">SilpaPriya</div>
+                </div>
+                
+                <div class="artist-details">
+                    <div class="artist-info">
+                        <div class="specialization">
+                            <i class="fas fa-hands"></i>
+                            <span>Bronze Sculpture</span>
+                        </div>
+                        <div class="location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Swamimalai, Tamil Nadu</span>
+                        </div>
+                    </div>
+                    
+                    <p class="artist-bio">Master sculptor continuing the 1000-year legacy of Chola bronze casting. Creates deities and spiritual figures using ancient lost-wax technique. Received state award in 2020.</p>
+                    
+                    <div class="gallery-preview">
+                        <div class="art-sample" style="background: linear-gradient(45deg, #A9A9A9, #696969);"></div>
+                        <div class="art-sample" style="background: linear-gradient(45deg, #8FBC8F, #2E8B57);"></div>
+                        <div class="art-sample" style="background: linear-gradient(45deg, #DAA520, #B8860B);"></div>
+                    </div>
+                    
+                    <div class="artist-actions">
+                        <div class="social-icons">
+                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        </div>
+                        
+                        <a href="#" class="btn btn-portfolio">
+                            <i class="fas fa-eye"></i>
+                            View Portfolio
+                        </a>
+                        
+                        <a href="#" class="btn btn-profile">
+                            <i class="fas fa-user"></i>
+                            Full Profile
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Artist 3 -->
+            <div class="artist-card">
+                <div class="card-header">
+                    <div class="profile-container">
+                        <div class="profile-pic" style="background: linear-gradient(45deg, #9932CC, #8A2BE2);"></div>
+                        <div class="profile-frame"></div>
+                    </div>
+                    <h2 class="artist-name">Amina Khatoon</h2>
+                    <div class="artist-stage-name">Chikankari Amina</div>
+                </div>
+                
+                <div class="artist-details">
+                    <div class="artist-info">
+                        <div class="specialization">
+                            <i class="fas fa-tshirt"></i>
+                            <span>Chikankari Embroidery</span>
+                        </div>
+                        <div class="location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Lucknow, Uttar Pradesh</span>
+                        </div>
+                    </div>
+                    
+                    <p class="artist-bio">Preserving and innovating Lucknow's famed Chikankari embroidery. Creates contemporary designs while maintaining traditional stitches. Empowers women artisans through workshops.</p>
+                    
+                    <div class="gallery-preview">
+                        <div class="art-sample" style="background: linear-gradient(45deg, #E6E6FA, #D8BFD8);"></div>
+                        <div class="art-sample" style="background: linear-gradient(45deg, #FFF0F5, #FFB6C1);"></div>
+                        <div class="art-sample" style="background: linear-gradient(45deg, #F5F5DC, #DEB887);"></div>
+                    </div>
+                    
+                    <div class="artist-actions">
+                        <div class="social-icons">
+                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        </div>
+                        
+                        <a href="#" class="btn btn-portfolio">
+                            <i class="fas fa-eye"></i>
+                            View Portfolio
+                        </a>
+                        
+                        <a href="#" class="btn btn-profile">
+                            <i class="fas fa-user"></i>
+                            Full Profile
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-logo">Rangriti</div>
+        <p class="copyright">Preserving India's artistic heritage since 2010 • © 2023 Rangriti Arts Foundation</p>
+    </footer>
+</body>
+</html>
