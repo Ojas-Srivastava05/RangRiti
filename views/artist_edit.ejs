@@ -1,53 +1,177 @@
+</html> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>Edit Profile – RangRiti</title>
-  <link rel="stylesheet" href="/static/styles.css" /> <!-- Optional -->
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-bg: #f5deb3;
+      --color-light: #fff8e7;
+      --color-dark: #8b5e34;
+      --color-text: #4a2c0f;
+      --color-accent: #b8860b;
+      --font-primary: 'Lora', serif;
+      --font-display: 'Playfair Display', serif;
+      --gradient: linear-gradient(145deg, #d4af37, #b8860b);
+    }
+
+    body {
+      margin: 0;
+      padding: 2rem;
+      font-family: var(--font-primary);
+      background: linear-gradient(145deg, #f5deb3, #e5c49b);
+      color: var(--color-text);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background-color: rgba(255, 248, 231, 0.95);
+      border: 2px solid #d2b48c;
+      border-radius: 12px;
+      padding: 2rem 3rem;
+      box-shadow: 0 10px 25px rgba(139, 69, 19, 0.15);
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: var(--color-dark);
+      text-shadow: 0 0 6px rgba(184, 134, 11, 0.2);
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+    }
+
+    label {
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      display: block;
+      color: var(--color-dark);
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #d2b48c;
+      border-radius: 6px;
+      font-family: var(--font-primary);
+      font-size: 1rem;
+      background-color: #fff;
+      transition: border-color 0.3s ease;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--color-accent);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.2);
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    button {
+      padding: 1rem;
+      background: var(--gradient);
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(139, 69, 19, 0.3);
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 1.5rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Edit Profile</h1>
-  <form action="/artist/edit-profile" method="POST">
-    <label>First Name</label>
-    <input name="firstName" value="<%= artist.firstName %>" required>
-
-    <label>Last Name</label>
-    <input name="lastName" value="<%= artist.lastName %>" required>
-
-    <label>Artist Name</label>
-    <input name="artistName" value="<%= artist.artistName %>" required>
-
-    <label>Email</label>
-    <input name="email" value="<%= artist.email %>" required readonly>
-
-    <label>City</label>
-    <input name="city" value="<%= artist.city %>">
-
-    <label>Specialization</label>
-    <input name="specialization" value="<%= artist.specialization %>">
-
-    <label>Bio</label>
-    <textarea name="bio"><%= artist.bio %></textarea>
-
-    <label>Portfolio URL</label>
-    <input name="portfolioUrl" value="<%= artist.portfolioUrl %>">
-
-    <label>Contact Number</label>
-    <input name="contactNumber" value="<%= artist.contactNumber %>">
-
-    <label>Instagram</label>
-    <input name="instagram" value="<%= artist.instagram %>">
-
-    <label>Facebook</label>
-    <input name="facebook" value="<%= artist.facebook %>">
-
-    <label>Twitter</label>
-    <input name="twitter" value="<%= artist.twitter %>">
-
-    <label>Profile Picture URL</label>
-    <input name="profilePictureUrl" value="<%= artist.profilePictureUrl %>">
-
-    <button type="submit">Save Changes</button>
-  </form>
+  <div class="container">
+    <h1>Edit Your Profile</h1>
+    <form action="/artist/edit-profile" method="POST">
+      <div>
+        <label>First Name</label>
+        <input name="firstName" value="<%= artist.firstName %>" required>
+      </div>
+      <div>
+        <label>Last Name</label>
+        <input name="lastName" value="<%= artist.lastName %>" required>
+      </div>
+      <div>
+        <label>Artist Name</label>
+        <input name="artistName" value="<%= artist.artistName %>" required>
+      </div>
+      <div>
+        <label>Email</label>
+        <input name="email" value="<%= artist.email %>" readonly>
+      </div>
+      <div>
+        <label>City</label>
+        <input name="city" value="<%= artist.city %>">
+      </div>
+      <div>
+        <label>Specialization</label>
+        <input name="specialization" value="<%= artist.specialization %>">
+      </div>
+      <div>
+        <label>Bio</label>
+        <textarea name="bio"><%= artist.bio %></textarea>
+      </div>
+      <div>
+        <label>Portfolio URL</label>
+        <input name="portfolioUrl" value="<%= artist.portfolioUrl %>">
+      </div>
+      <div>
+        <label>Contact Number</label>
+        <input name="contactNumber" value="<%= artist.contactNumber %>">
+      </div>
+      <div>
+        <label>Instagram</label>
+        <input name="instagram" value="<%= artist.instagram %>">
+      </div>
+      <div>
+        <label>Facebook</label>
+        <input name="facebook" value="<%= artist.facebook %>">
+      </div>
+      <div>
+        <label>Twitter</label>
+        <input name="twitter" value="<%= artist.twitter %>">
+      </div>
+      <div>
+        <label>Profile Picture URL</label>
+        <input name="profilePictureUrl" value="<%= artist.profilePictureUrl %>">
+      </div>
+      <button type="submit">Save Changes</button>
+    </form>
+  </div>
 </body>
 </html>
