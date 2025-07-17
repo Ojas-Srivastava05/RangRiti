@@ -34,6 +34,7 @@ const port = process.env.PORT || 3000;
 
 
 app.set('view engine', 'ejs')
+// app.set('views', path.join(__dirname, '..', 'views'));  // by sunil
 
 // --- Middleware ---
 app.use(express.json());
@@ -83,6 +84,53 @@ app.use(async (req, res, next) => {
     }
     next();
 });
+
+// by sunil
+app.get('/artist/edit-profile', async (req, res) => {
+  const user = req.session.user;
+  if (!user || user.type !== 'artist') {
+    return res.status(403).send("Unauthorized");
+  }
+  try {
+    const artist = await Artist.findById(user.id);
+    if (!artist) return res.status(404).send("Artist not found");
+
+    res.render('artist_edit', { artist });
+  } catch (err) {
+    console.error("Error loading edit profile:", err);
+    res.status(500).send("Server error");
+  }
+});
+app.post('/artist/edit-profile', async (req, res) => {
+  const user = req.session.user;
+  if (!user || user.type !== 'artist') {
+    return res.status(403).send("Unauthorized");
+  }
+
+  try {
+    const updatedData = {
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      artistName: req.body.artistName,
+      city: req.body.city,
+      specialization: req.body.specialization,
+      bio: req.body.bio,
+      portfolioUrl: req.body.portfolioUrl,
+      contactNumber: req.body.contactNumber,
+      instagram: req.body.instagram,
+      facebook: req.body.facebook,
+      twitter: req.body.twitter,
+      profilePictureUrl: req.body.profilePictureUrl
+    };
+
+    await Artist.findByIdAndUpdate(user.id, updatedData);
+    res.redirect('/dashboard');
+  } catch (err) {
+    console.error("Error updating profile:", err);
+    res.status(500).send("Error updating profile");
+  }
+});
+// till this
 
 app.get('/logout', (req, res) => {
     req.session.destroy(err => {

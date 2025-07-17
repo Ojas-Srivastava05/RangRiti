@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Edit Profile – RangRiti</title>
+  <link rel="stylesheet" href="/static/styles.css" /> <!-- Optional -->
+</head>
+<body>
+  <h1>Edit Profile</h1>
+  <form action="/artist/edit-profile" method="POST">
+    <label>First Name</label>
+    <input name="firstName" value="<%= artist.firstName %>" required>
+
+    <label>Last Name</label>
+    <input name="lastName" value="<%= artist.lastName %>" required>
+
+    <label>Artist Name</label>
+    <input name="artistName" value="<%= artist.artistName %>" required>
+
+    <label>Email</label>
+    <input name="email" value="<%= artist.email %>" required readonly>
+
+    <label>City</label>
+    <input name="city" value="<%= artist.city %>">
+
+    <label>Specialization</label>
+    <input name="specialization" value="<%= artist.specialization %>">
+
+    <label>Bio</label>
+    <textarea name="bio"><%= artist.bio %></textarea>
+
+    <label>Portfolio URL</label>
+    <input name="portfolioUrl" value="<%= artist.portfolioUrl %>">
+
+    <label>Contact Number</label>
+    <input name="contactNumber" value="<%= artist.contactNumber %>">
+
+    <label>Instagram</label>
+    <input name="instagram" value="<%= artist.instagram %>">
+
+    <label>Facebook</label>
+    <input name="facebook" value="<%= artist.facebook %>">
+
+    <label>Twitter</label>
+    <input name="twitter" value="<%= artist.twitter %>">
+
+    <label>Profile Picture URL</label>
+    <input name="profilePictureUrl" value="<%= artist.profilePictureUrl %>">
+
+    <button type="submit">Save Changes</button>
+  </form>
+</body>
+</html>
