@@ -355,7 +355,26 @@ app.get('/artist/gallery', async (req, res) => {
   }
 });
 
+app.post('/artist/delete-product/:id', async (req, res) => {
+  try {
+    const artistId = req.session?.user?.id;
+    if (!artistId) return res.redirect('/');
 
+    const productId = req.params.id;
+    const artist = await Artist.findById(artistId);
+    const product = await Product.findById(productId);
+
+    if (!product || product.artistName !== artist.artistName) {
+      return res.status(403).send("Not authorized to delete this product");
+    }
+
+    await Product.findByIdAndDelete(productId);
+    res.redirect('/artist/gallery');
+  } catch (error) {
+    console.error("Error deleting product:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
 
 
 // --- ROOT ROUTE ---
