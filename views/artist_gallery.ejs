@@ -515,10 +515,12 @@
                                 <p class="product-price">₹ <%= product.price.toLocaleString('en-IN') %>
                                 </p>
                                 <div class="product-actions">
-                                    <button class="action-btn edit">Edit</button>
+                                    <button class="action-btn edit"><a style="color: black; text-decoration: none;" onclick="window.location.href = '/artist/edit-product/<%= product._id %>'"  >
+                                            ✏️ Edit
+                                        </button>
                                     <form action="/artist/delete-product/<%= product._id %>" method="POST"
                                         onsubmit="return confirm('⚠️ Are you sure you want to permanently delete this product?');">
-                                        <button type="submit" class = "action-btn">
+                                        <button type="submit" class="action-btn">
                                             Delete
                                         </button>
                                     </form>

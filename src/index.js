@@ -34,7 +34,7 @@ const port = process.env.PORT || 3000;
 
 
 app.set('view engine', 'ejs')
-app.set('views', path.join(__dirname, '..', 'views'));  // by sunil
+// app.set('views', path.join(__dirname, '..', 'views'));  // by sunil
 
 // --- Middleware ---
 app.use(express.json());
@@ -143,77 +143,84 @@ app.get('/logout', (req, res) => {
 
 
 app.get('/cart', async (req, res) => {
-    try {
-        if (!req.user) {
-            return res.redirect('/'); // or show "Please login" message
-        }
-
-        await req.user.populate('cart.productId'); // Populate full product info
-
-const cartItems = req.user.cart.map(item => ({
-    productId: item.productId._id.toString(), // ✅ Add this line
-    name: item.productId.name,
-    artistName: item.productId.artistName,
-    price: item.priceAtAddTime,
-    image: item.productId.images[0],
-    quantity: item.quantity
-}));
-const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
-const shipping = subtotal > 10000 ? 0 : 0;
-const tax = Math.round(subtotal * 0.1);
-const total = subtotal + shipping + tax;
-
-res.render('cart', {
-  cartItems,
-  subtotal,
-  shipping,
-  tax,
-  total
-});
-    } catch (err) {
-        console.error("Error loading cart:", err);
-        res.status(500).render('error', { message: "Failed to load cart." });
+  try {
+    const user = req.session?.user;
+    if (!user || !user.id) {
+      return res.redirect('/'); // or res.send("Please login to view your cart");
     }
 
+    const fullUser = await User.findById(user.id).populate('cart.productId');
+    if (!fullUser) {
+      return res.status(404).render('error', { message: "User not found" });
+    }
 
+    const cartItems = fullUser.cart.map(item => ({
+      productId: item.productId?._id?.toString() || "",
+      name: item.productId?.name || "Unknown",
+      artistName: item.productId?.artistName || "Unknown",
+      price: item.priceAtAddTime,
+      image: item.productId?.images?.[0] || "/images/default.jpg",
+      quantity: item.quantity
+    }));
+
+    const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const shipping = subtotal > 10000 ? 0 : 0; // You can update later
+    const tax = Math.round(subtotal * 0.1);
+    const total = subtotal + shipping + tax;
+
+    res.render('cart', {
+      cartItems,
+      subtotal,
+      shipping,
+      tax,
+      total
+    });
+
+  } catch (err) {
+    console.error("Error loading cart:", err);
+    res.status(500).render('error', { message: "Failed to load cart." });
+  }
 });
 
 app.post('/cart/add', async (req, res) => {
-    try {
-        if (!req.user) {
-            return res.status(401).json({ message: 'You must be logged in to add to cart.' });
-        }
-
-        const { productId } = req.body;
-
-        const product = await Product.findById(productId);
-        if (!product) {
-            return res.status(404).json({ message: 'Product not found' });
-        }
-
-        const user = req.user;
-
-        const existingItem = user.cart.find(item =>
-            item.productId.toString() === productId
-        );
-
-        if (existingItem) {
-            existingItem.quantity += 1;
-        } else {
-            user.cart.push({
-                productId: product._id,
-                quantity: 1,
-                priceAtAddTime: product.price
-            });
-        }
-
-        await user.save();
-        return res.status(200).json({ message: 'Item added to cart' });
-
-    } catch (error) {
-        console.error('Add to cart error:', error);
-        res.status(500).json({ message: 'Internal server error' });
+  try {
+    const userSession = req.session.user;
+    if (!userSession || !userSession.id) {
+      return res.status(401).json({ message: 'You must be logged in to add to cart.' });
     }
+
+    const { productId } = req.body;
+    const product = await Product.findById(productId);
+    if (!product) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+
+    const user = await User.findById(userSession.id);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    const existingItem = user.cart.find(item =>
+      item.productId.toString() === productId
+    );
+
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      user.cart.push({
+        productId: product._id,
+        quantity: 1,
+        priceAtAddTime: product.price
+      });
+    }
+
+    await user.save();
+    return res.status(200).json({ message: 'Item added to cart' });
+
+  } catch (error) {
+    console.error('Add to cart error:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
 });
 
 app.post('/cart/update', async (req, res) => {
@@ -285,7 +292,7 @@ app.get('/product/:id', async (req, res) => {
       _id: { $ne: product._id }
     }).limit(4);
 
-    res.render('details', { product, reviews, relatedProducts });
+    res.render('details', { product, relatedProducts });
 
   } catch (err) {
     console.error('Error loading product page:', err);
@@ -373,6 +380,53 @@ app.post('/artist/delete-product/:id', async (req, res) => {
   } catch (error) {
     console.error("Error deleting product:", error);
     res.status(500).send("Internal Server Error");
+  }
+});
+app.get('/artist/edit-product/:id', async (req, res) => {
+  try {
+    const artistId = req.session?.user?.id;
+    if (!artistId) return res.redirect('/');
+
+    const product = await Product.findById(req.params.id);
+    if (!product) return res.status(404).send("Product not found");
+
+    const artist = await Artist.findById(artistId);
+    if (product.artistName !== artist.artistName) {
+      return res.status(403).send("Not authorized to edit this product");
+    }
+
+    res.render('edit_product', { product }); // 👈 new view with pre-filled form
+  } catch (error) {
+    console.error("Error loading edit page:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+app.post('/api/edit-product/:id', upload.array('images'), async (req, res) => {
+  const productId = req.params.id;
+
+  try {
+    const updatedData = {
+      name: req.body.name,
+      description: req.body.description,
+      category: req.body.category,
+      price: req.body.price,
+      quantityAvailable: req.body.quantityAvailable,
+      material: req.body.material,
+      size: req.body.size,
+      originRegion: req.body.originRegion,
+      tags: req.body.tags,
+      artistName: req.body.artistName,
+    };
+
+    if (req.files && req.files.length > 0) {
+      updatedData.images = req.files.map(file => file.path); // or your cloudinary url logic
+    }
+
+    await Product.findByIdAndUpdate(productId, updatedData);
+    res.redirect('/artist/gallery');
+  } catch (err) {
+    console.error("Error updating product:", err);
+    res.status(500).send("Failed to update product");
   }
 });
 
