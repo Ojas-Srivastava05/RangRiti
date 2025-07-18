@@ -1,10 +1,12 @@
-</html> 
+</html>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <title>Edit Profile – RangRiti</title>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Playfair+Display:wght@700&display=swap"
+    rel="stylesheet">
   <style>
     :root {
       --color-bg: #f5deb3;
@@ -38,8 +40,15 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     h1 {
@@ -64,7 +73,9 @@
       color: var(--color-dark);
     }
 
-    input, textarea, select {
+    input,
+    textarea,
+    select {
       width: 100%;
       padding: 0.75rem;
       border: 1px solid #d2b48c;
@@ -75,7 +86,9 @@
       transition: border-color 0.3s ease;
     }
 
-    input:focus, textarea:focus, select:focus {
+    input:focus,
+    textarea:focus,
+    select:focus {
       border-color: var(--color-accent);
       outline: none;
       box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.2);
@@ -114,6 +127,7 @@
     }
   </style>
 </head>
+
 <body>
   <div class="container">
     <h1>Edit Your Profile</h1>
@@ -166,12 +180,47 @@
         <label>Twitter</label>
         <input name="twitter" value="<%= artist.twitter %>">
       </div>
-      <div>
-        <label>Profile Picture URL</label>
-        <input name="profilePictureUrl" value="<%= artist.profilePictureUrl %>">
+      <!-- Visible File Upload Field -->
+      <div class="form-group">
+        <label for="artist-profilePictureFile">Profile Picture (Optional)</label>
+        <input type="file" id="artist-profilePictureFile" accept="image/*">
       </div>
+
+      <!-- Hidden field to store the image URL (required by backend) -->
+      <input type="hidden" id="artist-profilePictureUrl" name="profilePictureUrl">
       <button type="submit">Save Changes</button>
     </form>
   </div>
+  <script>
+    document.getElementById('artist-profilePictureFile').addEventListener('change', async function (e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', 'rangriti'); // 🔁 Replace with your Cloudinary preset
+
+      try {
+        const res = await fetch('https://api.cloudinary.com/v1_1/dty09agoq/image/upload', {
+          method: 'POST',
+          body: formData
+        });
+
+        const data = await res.json();
+        console.log("📦 Cloudinary Response:", data);
+
+        if (res.ok && data.secure_url) {
+          alert("✅ Upload successful!");
+          document.getElementById('artist-profilePictureUrl').value = data.secure_url; // auto-fill URL
+        } else {
+          alert("❌ Upload failed: " + (data.error?.message || 'Unknown error'));
+        }
+      } catch (err) {
+        console.error("❌ Upload error:", err);
+        alert("❌ Upload failed. Check console for error.");
+      }
+    });
+  </script>
 </body>
+
 </html>

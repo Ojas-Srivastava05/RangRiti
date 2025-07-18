@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Creations - Rangriti</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&family=Tangerine:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #F5E1C2;
+            --maroon: #800000;
+            --green: #2F4F2F;
+            --gold: #D4AF37;
+            --gold-light: #e6c970;
+            --text-dark: #3a3a3a;
+            --text-light: #5c5c5c;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary);
+            color: var(--text-dark);
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23F5E1C2"/><path d="M0,0 Q50,20 100,0 T100,100 Q50,80 0,100 T0,0 Z" fill="%23f0d8b4" opacity="0.2"/></svg>');
+            background-size: 300px;
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 80px;
+        }
+        
+        /* Decorative borders */
+        body::before, body::after {
+            content: "";
+            position: fixed;
+            height: 20px;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background-repeat: repeat-x;
+            pointer-events: none;
+        }
+        
+        body::before {
+            top: 0;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="20" viewBox="0 0 60 20"><path d="M0,20 Q15,10 30,20 Q45,10 60,20" stroke="%23800000" stroke-width="1.5" fill="none" stroke-opacity="0.5"/></svg>');
+        }
+        
+        body::after {
+            bottom: 0;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="20" viewBox="0 0 60 20"><path d="M0,0 Q15,10 30,0 Q45,10 60,0" stroke="%232F4F2F" stroke-width="1.5" fill="none" stroke-opacity="0.5"/></svg>');
+        }
+        
+        /* Header styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: rgba(245, 225, 194, 0.95);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border-bottom: 2px solid var(--gold);
+        }
+        
+        .logo {
+            font-family: 'Tangerine', cursive;
+            font-size: 2.8rem;
+            font-weight: bold;
+            color: var(--maroon);
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo::before, .logo::after {
+            content: "✦";
+            color: var(--gold);
+            font-size: 1.5rem;
+            margin: 0 12px;
+        }
+        
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .profile img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+            object-fit: cover;
+        }
+        
+        .welcome {
+            font-family: 'Playfair Display', serif;
+            color: var(--green);
+        }
+        
+        /* Main content layout */
+        .container {
+            display: flex;
+            max-width: 1400px;
+            margin: 30px auto;
+            padding: 0 20px;
+            gap: 30px;
+        }
+        
+        /* Sidebar styles */
+        .sidebar {
+            width: 250px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
+            padding: 25px 0;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .sidebar::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, var(--maroon), var(--green), var(--gold));
+            opacity: 0.7;
+        }
+        
+        .nav-item {
+            padding: 14px 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-item:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+            color: var(--maroon);
+        }
+        
+        .nav-item.active {
+            background-color: rgba(212, 175, 55, 0.15);
+            color: var(--maroon);
+            font-weight: 600;
+        }
+        
+        .nav-item.active::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 5px;
+            background-color: var(--maroon);
+        }
+        
+        .nav-item i {
+            width: 24px;
+            text-align: center;
+            color: var(--gold);
+        }
+        
+        /* Main content styles */
+        .main-content {
+            flex: 1;
+        }
+        
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px dashed var(--gold);
+        }
+        
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--maroon);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+        }
+        
+        .btn-primary {
+            background-color: var(--green);
+            color: white;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--text-dark);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-primary:hover {
+            background-color: #254025;
+        }
+        
+        .btn-outline:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+        
+        /* Product grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-image {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+            border-bottom: 2px solid var(--gold);
+        }
+        
+        .product-details {
+            padding: 20px;
+        }
+        
+        .product-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--maroon);
+            margin-bottom: 8px;
+        }
+        
+        .product-category {
+            display: inline-block;
+            background-color: rgba(128, 0, 0, 0.1);
+            color: var(--maroon);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+        }
+        
+        .product-price {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 15px;
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .action-btn {
+            flex: 1;
+            padding: 8px 0;
+            border-radius: 6px;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--text-dark);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .action-btn.edit:hover {
+            background-color: rgba(47, 79, 47, 0.1);
+            color: var(--green);
+            border-color: var(--green);
+        }
+        
+        .action-btn.delete:hover {
+            background-color: rgba(128, 0, 0, 0.1);
+            color: var(--maroon);
+            border-color: var(--maroon);
+        }
+        
+        /* Footer styles */
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: rgba(47, 79, 47, 0.9);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .social-icons a {
+            color: var(--gold);
+            font-size: 1.4rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            transform: translateY(-3px);
+            color: var(--gold-light);
+        }
+        
+        /* Decorative elements */
+        .decorative-corner {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        
+        .corner-tl {
+            top: 10px;
+            left: 10px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M0,0 L100,0 L100,20 Q80,30 50,30 Q20,30 0,20 Z" fill="%23800000"/></svg>');
+        }
+        
+        .corner-tr {
+            top: 10px;
+            right: 10px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M0,0 L100,0 L100,20 Q80,30 50,30 Q20,30 0,20 Z" fill="%232F4F2F" transform="scale(-1,1) translate(-100,0)"/></svg>');
+        }
+        
+        .corner-bl {
+            bottom: 10px;
+            left: 10px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M0,0 L100,0 L100,20 Q80,30 50,30 Q20,30 0,20 Z" fill="%23D4AF37" transform="rotate(180,50,50)"/></svg>');
+        }
+        
+        .corner-br {
+            bottom: 10px;
+            right: 10px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M0,0 L100,0 L100,20 Q80,30 50,30 Q20,30 0,20 Z" fill="%23800000" transform="scale(-1,-1) translate(-100,-100)"/></svg>');
+        }
+        
+        /* Responsive design */
+        @media (max-width: 992px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+            }
+            
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .actions {
+                width: 100%;
+                flex-wrap: wrap;
+            }
+            
+            .btn {
+                flex: 1;
+                min-width: 120px;
+                justify-content: center;
+            }
+            
+            header {
+                padding: 15px;
+            }
+            
+            .logo {
+                font-size: 2.2rem;
+            }
+            
+            .welcome {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo::before, .logo::after {
+                margin: 0 6px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Decorative corners -->
+    <div class="decorative-corner corner-tl"></div>
+    <div class="decorative-corner corner-tr"></div>
+    <div class="decorative-corner corner-bl"></div>
+    <div class="decorative-corner corner-br"></div>
+    
+    <!-- Header -->
+    <header>
+        <div class="logo">Rangriti</div>
+        <div class="profile">
+            <span class="welcome">Welcome, <%= artist.firstName %> <%= artist.lastName %></span>
+            <img src="<%= artist.profileImage || 'https://via.placeholder.com/150' %>" alt="Artist Profile">
+        </div>
+    </header>
+    
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="dashboard-header">
+                <h1 class="page-title">
+                    <i class="fas fa-palette"></i>
+                    My Creations
+                </h1>
+                <div class="actions">
+                    <button class="btn btn-primary">
+                        <i class="fas fa-plus"></i>
+                        Add New Product
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Product Grid -->
+            <div class="product-grid">
+                <% if (products.length > 0) { %>
+                    <% products.forEach(product => { %>
+                        <div class="product-card">
+                            <img src="<%= product.images[0] || 'https://via.placeholder.com/400x300' %>" alt="<%= product.name %>" class="product-image">
+                            <div class="product-details">
+                                <h3 class="product-name"><%= product.name %></h3>
+                                <span class="product-category"><%= product.category %></span>
+                                <p class="product-price">₹ <%= product.price.toLocaleString('en-IN') %></p>
+                                <div class="product-actions">
+                                    <button class="action-btn edit">Edit</button>
+                                    <button class="action-btn delete">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    <% }) %>
+                <% } else { %>
+                    <p>No products to show.</p>
+                <% } %>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-pinterest"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <p>Rangriti © 2025 | Celebrating Indian Craftsmanship</p>
+    </footer>
+</body>
+</html>

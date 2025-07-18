@@ -331,6 +331,31 @@ app.get('/artists/:id', async (req, res) => {
     }
 });
 
+app.get('/artist/gallery', async (req, res) => {
+  try {
+    const artistId = req.session?.user?.id; // ✅ artistId is pulled correctly
+    if (!artistId) {
+      return res.redirect('/');
+    }
+
+    const artist = await Artist.findById(artistId); // ✅ use artistId here
+    if (!artist) {
+      return res.status(404).send("Artist not found");
+    }
+
+    const products = await Product.find({ artistName: artist.artistName });
+
+    res.render('artist_gallery', {
+      artist,
+      products
+    });
+  } catch (error) {
+    console.error("Error loading gallery:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+
 
 
 // --- ROOT ROUTE ---

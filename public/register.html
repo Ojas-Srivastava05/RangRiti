@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - RangRiti</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --sandalwood-beige: #F5DEB3;
@@ -25,7 +28,9 @@
             --easing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
-        *, *::before, *::after {
+        *,
+        *::before,
+        *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -37,17 +42,23 @@
             background: linear-gradient(145deg, var(--sandalwood-beige) 0%, var(--warm-tan) 100%);
             min-height: 100vh;
             display: flex;
-            flex-direction: column; /* Changed to column for better alignment */
+            flex-direction: column;
+            /* Changed to column for better alignment */
             align-items: center;
-            justify-content: flex-start; /* Align content to the top */
-            padding: 150px 2rem 3rem 2rem; /* Added top padding to make space for nav */
+            justify-content: flex-start;
+            /* Align content to the top */
+            padding: 150px 2rem 3rem 2rem;
+            /* Added top padding to make space for nav */
             position: relative;
             overflow-x: hidden;
         }
 
         .background-wrapper {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: -1;
             overflow: hidden;
             pointer-events: none;
@@ -63,17 +74,72 @@
         }
 
         @keyframes float {
-            from { transform: translateY(0) scale(1); opacity: 0.6; }
-            to { transform: translateY(-110vh) scale(0); opacity: 0; }
+            from {
+                transform: translateY(0) scale(1);
+                opacity: 0.6;
+            }
+
+            to {
+                transform: translateY(-110vh) scale(0);
+                opacity: 0;
+            }
         }
 
-        .particle:nth-child(1) { left: 10%; animation-duration: 22s; animation-delay: -2s; width: 6px; height: 6px; }
-        .particle:nth-child(2) { left: 20%; animation-duration: 18s; animation-delay: -15s; width: 4px; height: 4px; }
-        .particle:nth-child(3) { left: 35%; animation-duration: 28s; animation-delay: -7s; width: 8px; height: 8px; }
-        .particle:nth-child(4) { left: 50%; animation-duration: 15s; animation-delay: -22s; width: 5px; height: 5px; }
-        .particle:nth-child(5) { left: 65%; animation-duration: 25s; animation-delay: -1s; width: 7px; height: 7px; }
-        .particle:nth-child(6) { left: 80%; animation-duration: 19s; animation-delay: -18s; width: 4px; height: 4px; }
-        .particle:nth-child(7) { left: 90%; animation-duration: 26s; animation-delay: -4s; width: 6px; height: 6px; }
+        .particle:nth-child(1) {
+            left: 10%;
+            animation-duration: 22s;
+            animation-delay: -2s;
+            width: 6px;
+            height: 6px;
+        }
+
+        .particle:nth-child(2) {
+            left: 20%;
+            animation-duration: 18s;
+            animation-delay: -15s;
+            width: 4px;
+            height: 4px;
+        }
+
+        .particle:nth-child(3) {
+            left: 35%;
+            animation-duration: 28s;
+            animation-delay: -7s;
+            width: 8px;
+            height: 8px;
+        }
+
+        .particle:nth-child(4) {
+            left: 50%;
+            animation-duration: 15s;
+            animation-delay: -22s;
+            width: 5px;
+            height: 5px;
+        }
+
+        .particle:nth-child(5) {
+            left: 65%;
+            animation-duration: 25s;
+            animation-delay: -1s;
+            width: 7px;
+            height: 7px;
+        }
+
+        .particle:nth-child(6) {
+            left: 80%;
+            animation-duration: 19s;
+            animation-delay: -18s;
+            width: 4px;
+            height: 4px;
+        }
+
+        .particle:nth-child(7) {
+            left: 90%;
+            animation-duration: 26s;
+            animation-delay: -4s;
+            width: 6px;
+            height: 6px;
+        }
 
         .nav-container {
             position: fixed;
@@ -92,33 +158,78 @@
             border: 1px solid rgba(255, 215, 0, 0.2);
         }
 
-        .nav-btn-link { text-decoration: none; }
+        .nav-btn-link {
+            text-decoration: none;
+        }
+
         .nav-btn {
             font-family: 'EB Garamond', serif;
-            background: transparent; border: none; color: #FAF3E0;
-            padding: 10px 20px; font-size: 1rem; font-weight: 500;
-            cursor: pointer; transition: all 0.3s ease;
-            position: relative; overflow: hidden; border-radius: 20px;
+            background: transparent;
+            border: none;
+            color: #FAF3E0;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
         }
-        .nav-btn:hover { color: var(--primary-gold); text-shadow: 0 0 5px rgba(255, 215, 0, 0.5); }
-        .dropdown { position: relative; display: inline-block; }
-        .dropdown-toggle { cursor: pointer; }
+
+        .nav-btn:hover {
+            color: var(--primary-gold);
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-toggle {
+            cursor: pointer;
+        }
+
         .dropdown-menu {
-            position: absolute; top: 100%; left: 0;
+            position: absolute;
+            top: 100%;
+            left: 0;
             background: rgba(0, 0, 0, 0.9);
             border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 10px; padding: 10px 0; display: none;
-            flex-direction: column; min-width: 200px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); z-index: 1001;
+            border-radius: 10px;
+            padding: 10px 0;
+            display: none;
+            flex-direction: column;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            z-index: 1001;
         }
+
         .dropdown-item {
-            font-family: 'EB Garamond', serif; color: #FAF3E0;
-            text-decoration: none; padding: 10px 20px; display: block;
-            transition: all 0.3s ease; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            font-family: 'EB Garamond', serif;
+            color: #FAF3E0;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: block;
+            transition: all 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
-        .dropdown-item:hover { background: rgba(255, 215, 0, 0.2); color: var(--primary-gold); }
-        .dropdown:hover .dropdown-menu { display: flex; }
-        .dropdown-arrow { font-size: 0.8em; margin-left: 5px; display: inline-block; }
+
+        .dropdown-item:hover {
+            background: rgba(255, 215, 0, 0.2);
+            color: var(--primary-gold);
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: flex;
+        }
+
+        .dropdown-arrow {
+            font-size: 0.8em;
+            margin-left: 5px;
+            display: inline-block;
+        }
 
         .container {
             width: 100%;
@@ -130,8 +241,10 @@
             padding: 2.5rem 3rem;
             box-shadow: 0 15px 40px var (--color-shadow);
             animation: fadeIn 0.8s var(--easing-function) forwards;
-            opacity: 0; /* Start transparent for animation */
-            transform: translateY(20px); /* Start slightly lower for animation */
+            opacity: 0;
+            /* Start transparent for animation */
+            transform: translateY(20px);
+            /* Start slightly lower for animation */
         }
 
         @keyframes fadeIn {
@@ -141,60 +254,166 @@
             }
         }
 
-        h1, h2 { font-family: var(--font-display); color: var(--color-primary-text); text-align: center; }
-        h1 { font-size: 3.2rem; margin-bottom: 0.5rem; text-shadow: 1px 1px 3px rgba(0,0,0,0.1); }
-        .container > p { text-align: center; color: var(--color-secondary-text); font-size: 1.1rem; margin-bottom: 2.5rem; font-style: italic; }
-        h2 { font-size: 1.8rem; margin-bottom: 2rem; padding-bottom: 0.8rem; position: relative; }
-        h2::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 80px; height: 2px; background: var(--color-gold-gradient); }
-        
-        .user-type-selection { display: flex; gap: 1rem; margin-bottom: 2rem; }
+        h1,
+        h2 {
+            font-family: var(--font-display);
+            color: var(--color-primary-text);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3.2rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .container>p {
+            text-align: center;
+            color: var(--color-secondary-text);
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            font-style: italic;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            padding-bottom: 0.8rem;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background: var(--color-gold-gradient);
+        }
+
+        .user-type-selection {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
         .user-type-btn {
-            flex: 1; padding: 0.8rem 1rem; font-family: var(--font-primary);
-            font-size: 1rem; font-weight: 600; color: var(--color-accent-gold-dark);
-            background-color: transparent; border: 2px solid var(--color-border);
-            border-radius: 8px; cursor: pointer;
+            flex: 1;
+            padding: 0.8rem 1rem;
+            font-family: var(--font-primary);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-accent-gold-dark);
+            background-color: transparent;
+            border: 2px solid var(--color-border);
+            border-radius: 8px;
+            cursor: pointer;
             transition: all var(--transition-speed) var(--easing-function);
         }
-        .user-type-btn:hover { transform: translateY(-4px); box-shadow: 0 8px 15px var(--color-shadow); }
+
+        .user-type-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 15px var(--color-shadow);
+        }
+
         .user-type-btn.active {
-            color: white; background: var(--color-gold-gradient);
+            color: white;
+            background: var(--color-gold-gradient);
             border-color: var(--color-accent-gold);
             box-shadow: 0 4px 15px rgba(184, 134, 11, 0.4);
             transform: translateY(-2px);
         }
-        
-        .form-container { display: none; }
-        .form-container.active { display: block; animation: slideDown 0.6s var(--easing-function) forwards; }
-        @keyframes slideDown { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
-        
-        .form-group { margin-bottom: 1.5rem; }
-        label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--color-primary-text); }
-        input, select, textarea {
-            width: 100%; padding: 0.8rem 1rem; border: 1px solid var(--color-border);
-            border-radius: 6px; font-size: 1rem; font-family: var(--font-primary);
-            background-color: #fff; transition: all var(--transition-speed) var(--easing-function);
+
+        .form-container {
+            display: none;
+        }
+
+        .form-container.active {
+            display: block;
+            animation: slideDown 0.6s var(--easing-function) forwards;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
             color: var(--color-primary-text);
         }
-        input:focus, select:focus, textarea:focus {
-            outline: none; border-color: var(--color-accent-gold);
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: var(--font-primary);
+            background-color: #fff;
+            transition: all var(--transition-speed) var(--easing-function);
+            color: var(--color-primary-text);
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--color-accent-gold);
             box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.25);
         }
-        textarea { min-height: 100px; resize: vertical; }
-        
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
         button[type="submit"] {
-            width: 100%; padding: 1rem; font-size: 1.1rem; font-weight: 600;
-            color: white; background: var(--color-gold-gradient);
-            border: none; border-radius: 8px; cursor: pointer;
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            background: var(--color-gold-gradient);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
             transition: all var(--transition-speed) var(--easing-function);
             margin-top: 1rem;
         }
-        button[type="submit"]:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(139, 69, 19, 0.3); }
+
+        button[type="submit"]:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(139, 69, 19, 0.3);
+        }
     </style>
 </head>
+
 <body>
     <div class="background-wrapper">
-        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
-        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
         <div class="particle"></div>
     </div>
 
@@ -224,7 +443,7 @@
             <button class="user-type-btn active" onclick="showForm('user', this)">Register as a User</button>
             <button class="user-type-btn" onclick="showForm('artist', this)">Register as an Artist</button>
         </div>
-        
+
         <!-- User Registration Form -->
         <div id="user-form" class="form-container active">
             <h2>User Registration</h2>
@@ -296,10 +515,14 @@
                     <label for="artist-contactNumber">Contact Number (Optional)</label>
                     <input type="tel" id="artist-contactNumber" name="contactNumber">
                 </div>
+                <!-- Visible File Upload Field -->
                 <div class="form-group">
-                    <label for="artist-profilePictureUrl">Profile Picture URL (Optional)</label>
-                    <input type="url" id="artist-profilePictureUrl" name="profilePictureUrl">
+                    <label for="artist-profilePictureFile">Profile Picture (Optional)</label>
+                    <input type="file" id="artist-profilePictureFile" accept="image/*">
                 </div>
+
+                <!-- Hidden field to store the image URL (required by backend) -->
+                <input type="hidden" id="artist-profilePictureUrl" name="profilePictureUrl">
                 <div class="form-group">
                     <label for="artist-portfolioUrl">Portfolio URL (Optional)</label>
                     <input type="url" id="artist-portfolioUrl" name="portfolioUrl">
@@ -357,5 +580,34 @@
         document.getElementById('userRegistrationForm').addEventListener('submit', (e) => handleRegistration(e, 'user'));
         document.getElementById('artistRegistrationForm').addEventListener('submit', (e) => handleRegistration(e, 'artist'));
     </script>
+    <script>
+document.getElementById('artist-profilePictureFile').addEventListener('change', async function (e) {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', 'rangriti'); // 🔁 Replace with your Cloudinary preset
+
+    try {
+        const res = await fetch('https://api.cloudinary.com/v1_1/dty09agoq/image/upload', {
+            method: 'POST',
+            body: formData
+        });
+
+        const data = await res.json();
+        if (data.secure_url) {
+            document.getElementById('artist-profilePictureUrl').value = data.secure_url;
+            console.log("✅ Image uploaded:", data.secure_url);
+        } else {
+            throw new Error("Upload failed");
+        }
+    } catch (err) {
+        console.error("❌ Image upload error:", err);
+        alert("Failed to upload profile picture.");
+    }
+});
+</script>
 </body>
+
 </html>
