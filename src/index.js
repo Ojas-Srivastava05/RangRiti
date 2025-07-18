@@ -315,15 +315,19 @@ app.get('/artists/:id', async (req, res) => {
     const artistId = req.params.id;
 
     try {
-        const artist = await Artist.findById(artistId);
-            const products = await Product.find({ artistName: artist.artistName }); 
-        let isFollowing = false;
+        // Populate the products array from artist schema
+        const artist = await Artist.findById(artistId).populate('products');
 
+        if (!artist) {
+            return res.status(404).send("Artist not found");
+        }
 
-        res.render('artist-profile', { artist,products });
+        const products = artist.products;  // populated products
+
+        res.render('artist-profile', { artist, products });
     } catch (err) {
-        console.error(err);
-        res.status(500).send("Artist not found");
+        console.error("Error loading artist profile:", err);
+        res.status(500).send("Server error");
     }
 });
 
@@ -414,16 +418,33 @@ app.get('/catalogue', async (req, res) => {
         res.status(500).send("Failed to load filtered products.");
     }
 });
-app.get('/product', (req, res) => {
-    
-    res.render('product');
-})
+app.get('/product', async (req, res) => {
+    const userId = req.session?.user?.id;
+    if (!userId) {
+        return res.redirect('/');
+    }
 
+    try {
+        const artist = await Artist.findById(userId);
+        if (!artist) {
+            return res.status(404).send("Artist not found");
+        }
+
+        res.render('product', { artist });  // if you want to show artist info in form, etc.
+    } catch (err) {
+        console.error("Error loading product form:", err);
+        res.status(500).send("Server error");
+    }
+});
 app.post('/api/add-product', upload.array('images'), async (req, res) => {
     try {
+        const artistId = req.session?.user?.id;
+        if (!artistId) {
+            return res.redirect('/');
+        }
+
         const {
             name,
-            artistName,
             category,
             description,
             price,
@@ -443,9 +464,16 @@ app.post('/api/add-product', upload.array('images'), async (req, res) => {
             imageUrls = ['https://via.placeholder.com/300'];
         }
 
+        // Get artist object (to fetch artistName for product and push product ID)
+        const artist = await Artist.findById(artistId);
+        if (!artist) {
+            return res.status(404).send("Artist not found");
+        }
+
+        // Create new product
         const newProduct = new Product({
             name,
-            artistName,
+            artistName: artist.artistName,  // store display name
             category,
             description,
             images: imageUrls,
@@ -457,7 +485,12 @@ app.post('/api/add-product', upload.array('images'), async (req, res) => {
             tags: tags ? tags.split(',').map(tag => tag.trim()) : []
         });
 
-        await newProduct.save();
+        const savedProduct = await newProduct.save();
+
+        // Push product ID into artist's products array
+        artist.products.push(savedProduct._id);
+        await artist.save();
+
         res.redirect('/dashboard?success=true');
 
     } catch (err) {

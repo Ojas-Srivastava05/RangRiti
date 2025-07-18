@@ -15,7 +15,13 @@ const artistSchema = new mongoose.Schema({
     facebook: { type: String },
     twitter: { type: String },
     profilePictureUrl: { type: String },
-    artSampleUrls: { type: [String] }
+    artSampleUrls: { type: [String] },
+    products: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Product'
+        }
+    ]
 }, { timestamps: true });
 
 const Artist = mongoose.model('Artist', artistSchema);
