@@ -13,7 +13,7 @@ import session from 'express-session';
 import multer from 'multer';
 import cloudinaryModule from 'cloudinary';
 import Product from '../models.js/product.models.js'// ✅ your Product schema
-
+import Order from '../models.js/order.models.js';
 const cloudinary = cloudinaryModule.v2;
 
 // Multer setup for image upload
@@ -182,6 +182,8 @@ app.get('/cart', async (req, res) => {
   }
 });
 
+
+
 app.post('/cart/add', async (req, res) => {
   try {
     const userSession = req.session.user;
@@ -299,45 +301,21 @@ app.get('/product/:id', async (req, res) => {
     res.status(500).render('error', { message: 'Failed to load product.' });
   }
 });
+// Static first
+app.get('/orders', async (req, res) => {
+  try {
+    const artistName = req.user.artistName; // assuming `req.user` is an artist
 
+    const orders = await Order.find({ artistName }) // ✅ match string field
+      .populate('product buyer')
+      .sort({ createdAt: -1 });
 
-app.get('/artists',async (req,res)=>{
-   const searchQuery = req.query.search || '';
-    try {
-        const artists = await Artist.find({
-            $or: [
-                { firstName: { $regex: searchQuery, $options: 'i' } },
-                { lastName: { $regex: searchQuery, $options: 'i' } },
-                { artistName: { $regex: searchQuery, $options: 'i' } }
-            ]
-        });
-
-        res.render('artists', { artists, searchQuery });
-    } catch (err) {
-        console.error(err);
-        res.status(500).send("Error fetching artists");
-    }
-})
-app.get('/artists/:id', async (req, res) => {
-    const artistId = req.params.id;
-
-    try {
-        // Populate the products array from artist schema
-        const artist = await Artist.findById(artistId).populate('products');
-
-        if (!artist) {
-            return res.status(404).send("Artist not found");
-        }
-
-        const products = artist.products;  // populated products
-
-        res.render('artist-profile', { artist, products });
-    } catch (err) {
-        console.error("Error loading artist profile:", err);
-        res.status(500).send("Server error");
-    }
+    res.render('orders', { orders });
+  } catch (err) {
+    console.error("Error loading artist orders:", err);
+    res.status(500).render('error', { message: "Failed to load orders." });
+  }
 });
-
 app.get('/artist/gallery', async (req, res) => {
   try {
     const artistId = req.session?.user?.id; // ✅ artistId is pulled correctly
@@ -362,6 +340,33 @@ app.get('/artist/gallery', async (req, res) => {
   }
 });
 
+// Then dynamic
+app.get('/artist/:id', async (req, res) => {
+  const artist = await Artist.findById(req.params.id);
+  res.render('artist-profile', { artist });
+});
+
+app.get('/artists',async (req,res)=>{
+   const searchQuery = req.query.search || '';
+    try {
+        const artists = await Artist.find({
+            $or: [
+                { firstName: { $regex: searchQuery, $options: 'i' } },
+                { lastName: { $regex: searchQuery, $options: 'i' } },
+                { artistName: { $regex: searchQuery, $options: 'i' } }
+            ]
+        });
+
+        res.render('artists', { artists, searchQuery });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Error fetching artists");
+    }
+})
+
+
+
+
 app.post('/artist/delete-product/:id', async (req, res) => {
   try {
     const artistId = req.session?.user?.id;
@@ -381,6 +386,26 @@ app.post('/artist/delete-product/:id', async (req, res) => {
     console.error("Error deleting product:", error);
     res.status(500).send("Internal Server Error");
   }
+});
+
+app.get('/artists/:id', async (req, res) => {
+    const artistId = req.params.id;
+
+    try {
+        // Populate the products array from artist schema
+        const artist = await Artist.findById(artistId).populate('products');
+
+        if (!artist) {
+            return res.status(404).send("Artist not found");
+        }
+
+        const products = artist.products;  // populated products
+
+        res.render('artist-profile', { artist, products });
+    } catch (err) {
+        console.error("Error loading artist profile:", err);
+        res.status(500).send("Server error");
+    }
 });
 app.get('/artist/edit-product/:id', async (req, res) => {
   try {
@@ -429,6 +454,49 @@ app.post('/api/edit-product/:id', upload.array('images'), async (req, res) => {
     res.status(500).send("Failed to update product");
   }
 });
+
+
+app.post('/buy-now/:productId', async (req, res) => {
+  try {
+    const userSession = req.session.user;
+    if (!userSession || !userSession.id) {
+      return res.redirect('/login');
+    }
+
+    const { productId } = req.params;
+    const user = await User.findById(userSession.id);
+    if (!user) return res.status(404).send('User not found');
+
+    const product = await Product.findById(productId);
+    if (!product) return res.status(404).send('Product not found');
+
+    const newOrder = new Order({
+      product: product._id,
+      artistName: product.artistName, // 👈 grab from product
+      buyer: user._id,
+      priceAtPurchase: product.price
+    });
+
+    await newOrder.save();
+
+    // Clear cart or handle post-order logic
+    user.cart = [];
+    await user.save();
+
+    res.send(`
+      <script>
+        alert('Order request sent!');
+        window.location.href = '/marketplace';
+      </script>
+    `);
+  } catch (err) {
+    console.error('Error in buy-now:', err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+
+
 
 
 // --- ROOT ROUTE ---

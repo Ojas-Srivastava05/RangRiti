@@ -616,9 +616,9 @@
                 <button class="btn btn-continue" onclick="updateCartAndContinue()">
                     <i class="fas fa-arrow-left"></i> Continue Shopping
                 </button>
-                <button class="btn btn-checkout">
-                    Proceed to Checkout <i class="fas fa-lock"></i>
-                </button>
+                <form action="/buy-now/<%= cartItems[0].productId %>" method="POST"> <button type="submit"
+                        class="btn btn-checkout">Buy Now</button>
+                </form>
             </div>
         </section>
     </div>
@@ -671,78 +671,103 @@
 
 
     </script>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const cartSection = document.querySelector('.cart-items');
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cartSection = document.querySelector('.cart-items');
 
-        cartSection.addEventListener('click', async (e) => {
-            const isPlus = e.target.classList.contains('plus');
-            const isMinus = e.target.classList.contains('minus');
-            const isRemove = e.target.classList.contains('remove-btn');
+            cartSection.addEventListener('click', async (e) => {
+                const isPlus = e.target.classList.contains('plus');
+                const isMinus = e.target.classList.contains('minus');
+                const isRemove = e.target.classList.contains('remove-btn');
 
-            if (!isPlus && !isMinus && !isRemove) return;
+                if (!isPlus && !isMinus && !isRemove) return;
 
-            const cartItem = e.target.closest('.cart-item');
-            const input = cartItem.querySelector('.qty-input');
-            const productId = cartItem.dataset.productId;
+                const cartItem = e.target.closest('.cart-item');
+                const input = cartItem.querySelector('.qty-input');
+                const productId = cartItem.dataset.productId;
 
-            let quantity = parseInt(input.value);
+                let quantity = parseInt(input.value);
 
-            // Adjust quantity
-            if (isPlus) quantity += 1;
-            else if (isMinus) quantity -= 1;
-            else if (isRemove) quantity = 0; // ❌ Remove button clicked
+                // Adjust quantity
+                if (isPlus) quantity += 1;
+                else if (isMinus) quantity -= 1;
+                else if (isRemove) quantity = 0; // ❌ Remove button clicked
 
-            quantity = Math.max(0, quantity);
+                quantity = Math.max(0, quantity);
 
-            try {
-                const response = await fetch('/cart/update', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ productId, quantity })
-                });
+                try {
+                    const response = await fetch('/cart/update', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ productId, quantity })
+                    });
 
-                const data = await response.json();
-                if (data.success) {
-                    if (quantity === 0) {
-                        input.value = 0;
-                        cartItem.querySelector('.item-price').textContent = `₹0`;
-                        cartItem.querySelector('.loyalty-coins').innerHTML = `<i class="fas fa-coins"></i> Earn ₹0 Rangriti Rewards`;
+                    const data = await response.json();
+                    if (data.success) {
+                        if (quantity === 0) {
+                            input.value = 0;
+                            cartItem.querySelector('.item-price').textContent = `₹0`;
+                            cartItem.querySelector('.loyalty-coins').innerHTML = `<i class="fas fa-coins"></i> Earn ₹0 Rangriti Rewards`;
 
-                        setTimeout(() => cartItem.remove(), 150);
+                            setTimeout(() => cartItem.remove(), 150);
+                        } else {
+                            input.value = quantity;
+                            cartItem.querySelector('.item-price').textContent = `₹${data.updatedItem.total}`;
+                            cartItem.querySelector('.loyalty-coins').innerHTML = `<i class="fas fa-coins"></i> Earn ₹${data.updatedItem.rewards} Rangriti Rewards`;
+                        }
+
+                        updateSummary(data);
                     } else {
-                        input.value = quantity;
-                        cartItem.querySelector('.item-price').textContent = `₹${data.updatedItem.total}`;
-                        cartItem.querySelector('.loyalty-coins').innerHTML = `<i class="fas fa-coins"></i> Earn ₹${data.updatedItem.rewards} Rangriti Rewards`;
+                        alert('Error updating cart. Try again.');
                     }
-
-                    updateSummary(data);
-                } else {
-                    alert('Error updating cart. Try again.');
+                } catch (err) {
+                    console.error('AJAX error:', err);
                 }
-            } catch (err) {
-                console.error('AJAX error:', err);
+            });
+
+            function updateSummary(data) {
+                document.querySelector('.summary-item:nth-child(2) span:last-child').textContent = `₹${data.subtotal}`;
+
+                const shippingElem = document.querySelector('.summary-item:nth-child(3) span:last-child');
+                shippingElem.textContent = (data.totalItems === 0 || data.shipping === 0) ? 'Free' : `₹${data.shipping}`;
+
+                document.querySelector('.summary-item:nth-child(4) span:last-child').textContent = `₹${data.tax}`;
+                document.querySelector('.summary-item.summary-total span:last-child').textContent = `₹${data.total}`;
+                document.querySelector('.summary-item:nth-child(2) span:first-child').textContent = `Subtotal (${data.totalItems} items)`;
             }
         });
 
-        function updateSummary(data) {
-            document.querySelector('.summary-item:nth-child(2) span:last-child').textContent = `₹${data.subtotal}`;
-            
-            const shippingElem = document.querySelector('.summary-item:nth-child(3) span:last-child');
-            shippingElem.textContent = (data.totalItems === 0 || data.shipping === 0) ? 'Free' : `₹${data.shipping}`;
-            
-            document.querySelector('.summary-item:nth-child(4) span:last-child').textContent = `₹${data.tax}`;
-            document.querySelector('.summary-item.summary-total span:last-child').textContent = `₹${data.total}`;
-            document.querySelector('.summary-item:nth-child(2) span:first-child').textContent = `Subtotal (${data.totalItems} items)`;
+        function updateCartAndContinue() {
+            window.location.href = '/catalogue';
         }
-    });
+    </script>
+    <script>
+        const form = document.getElementById('buyNowForm');
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
 
-    function updateCartAndContinue(){
-        window.location.href = '/catalogue';
-    }
-</script>
+            try {
+                const res = await fetch(form.action, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                });
+
+                if (res.ok) {
+                    alert('Order request sent');
+                    window.location.href = '/marketplace'; // 🔁 Replace with your actual marketplace route
+                } else {
+                    alert('Failed to send order request');
+                }
+            } catch (err) {
+                console.error(err);
+                alert('Something went wrong');
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders | Rangriti</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500&family=Tangerine:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --sandalwood: #f5e9d7;
+            --sandalwood-dark: #e8d9c2;
+            --warm-beige: #f0e2cc;
+            --earth-brown: #8d6e63;
+            --deep-brown: #5d4037;
+            --accent-red: #c62828;
+            --accent-gold: #d4af37;
+            --shadow: rgba(93, 64, 55, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--sandalwood);
+            color: var(--deep-brown);
+            background-image: 
+                radial-gradient(circle at 5% 5%, rgba(141, 110, 99, 0.05) 0.5px, transparent 1px),
+                radial-gradient(circle at 95% 95%, rgba(141, 110, 99, 0.05) 0.5px, transparent 1px);
+            background-size: 60px 60px;
+            min-height: 100vh;
+            padding-bottom: 40px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(to right, var(--deep-brown), var(--earth-brown));
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 12px var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--accent-gold), var(--accent-red));
+        }
+
+        .logo {
+            font-family: 'Tangerine', cursive;
+            font-size: 3.5rem;
+            color: var(--sandalwood);
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .logo::after {
+            content: "ॐ";
+            position: absolute;
+            top: -5px;
+            right: -25px;
+            font-size: 1.8rem;
+            color: var(--accent-gold);
+        }
+
+        /* Page Title */
+        .page-title {
+            text-align: center;
+            margin: 2rem auto;
+            max-width: 800px;
+            position: relative;
+            padding: 0 20px;
+        }
+
+        .page-title h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: var(--deep-brown);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .page-title h1::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 25%;
+            width: 50%;
+            height: 4px;
+            background: linear-gradient(to right, transparent, var(--accent-gold), transparent);
+            border-radius: 2px;
+        }
+
+        .page-title p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Order Cards */
+        .orders-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .order-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px var(--shadow);
+            margin-bottom: 30px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid var(--sandalwood-dark);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .order-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(93, 64, 55, 0.15);
+        }
+
+        .order-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--accent-gold), var(--accent-red));
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 1.5rem;
+            background-color: rgba(245, 233, 215, 0.3);
+            border-bottom: 1px dashed var(--sandalwood-dark);
+        }
+
+        .order-id {
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .order-date {
+            color: var(--earth-brown);
+            font-size: 0.9rem;
+        }
+
+        .order-content {
+            display: flex;
+            padding: 1.5rem;
+        }
+
+        .product-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--sandalwood-dark);
+            flex-shrink: 0;
+            background: var(--warm-beige);
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-image::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 8px;
+            pointer-events: none;
+        }
+
+        .order-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-details {
+            flex: 1;
+            padding: 0 1.5rem;
+        }
+
+        .product-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--deep-brown);
+        }
+
+        .artist-name {
+            font-size: 1rem;
+            color: var(--earth-brown);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .product-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 1rem;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-label {
+            font-size: 0.85rem;
+            color: var(--earth-brown);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-value {
+            font-weight: 500;
+            font-size: 1.1rem;
+            margin-top: 3px;
+        }
+
+        .order-status {
+            display: flex;
+            align-items: center;
+            padding: 1.2rem 1.5rem;
+            background-color: rgba(245, 233, 215, 0.4);
+            border-top: 1px dashed var(--sandalwood-dark);
+        }
+
+        .status-label {
+            font-weight: 500;
+            margin-right: 10px;
+        }
+
+        .status-value {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .status-pending {
+            background-color: rgba(255, 183, 77, 0.2);
+            color: #e65100;
+        }
+
+        .status-shipped {
+            background-color: rgba(102, 187, 106, 0.2);
+            color: #2e7d32;
+        }
+
+        .status-delivered {
+            background-color: rgba(129, 199, 132, 0.3);
+            color: #1b5e20;
+        }
+
+        .status-cancelled {
+            background-color: rgba(229, 115, 115, 0.2);
+            color: #c62828;
+        }
+
+        /* Decorative elements */
+        .mandala-decoration {
+            position: absolute;
+            opacity: 0.03;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .mandala-1 {
+            top: 10%;
+            left: 5%;
+            width: 200px;
+            height: 200px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,15 A35,35 0 1,0 50,85 A35,35 0 1,0 50,15 Z" fill="none" stroke="%235d4037" stroke-width="1"/><circle cx="50" cy="50" r="10" fill="none" stroke="%235d4037" stroke-width="0.5"/></svg>');
+            background-repeat: no-repeat;
+        }
+
+        .mandala-2 {
+            bottom: 10%;
+            right: 5%;
+            width: 150px;
+            height: 150px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M20,50 Q35,30 50,20 Q65,30 80,50 Q65,70 50,80 Q35,70 20,50 Z" fill="none" stroke="%235d4037" stroke-width="1"/></svg>');
+            background-repeat: no-repeat;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            color: var(--earth-brown);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--sandalwood-dark);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .order-content {
+                flex-direction: column;
+            }
+            
+            .product-image {
+                width: 100%;
+                height: 200px;
+                margin-bottom: 1rem;
+            }
+            
+            .product-details {
+                padding: 0;
+            }
+            
+            .product-info {
+                gap: 15px;
+            }
+            
+            .page-title h1 {
+                font-size: 2.2rem;
+            }
+            
+            .logo {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .order-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+            
+            .order-date {
+                align-self: flex-end;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Decorative Mandalas -->
+    <div class="mandala-decoration mandala-1"></div>
+    <div class="mandala-decoration mandala-2"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">Rangriti</div>
+    </header>
+
+    <!-- Page Title -->
+    <section class="page-title">
+        <h1>My Orders</h1>
+        <p>Discover the beautiful journey of your handcrafted treasures. Each piece tells a story of tradition, artistry, and cultural heritage.</p>
+    </section>
+
+    <!-- Orders Container -->
+    <div class="orders-container">
+        <% if (orders && orders.length > 0) { %>
+            <% orders.forEach((order, index) => { %>
+                <div class="order-card">
+                    <div class="order-header">
+                        <div class="order-id">Order #<%= order.orderId || ('RT' + (10000 + index)) %></div>
+                        <div class="order-date">Ordered: <%= new Date(order.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' }) %></div>
+                    </div>
+                    
+                    <div class="order-content">
+                        <div class="product-image">
+                            <img src="<%= order.product.imageUrl %>" alt="<%= order.product.name %>">
+                        </div>
+                        
+                        <div class="product-details">
+                            <h3 class="product-name"><%= order.product.name %></h3>
+                            <p class="artist-name">by <%= order.artistName %>, <%= order.city %></p>
+                            
+                            <div class="product-info">
+                                <div class="info-item">
+                                    <span class="info-label">Price</span>
+                                    <span class="info-value">₹ <%= order.product.price %></span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Quantity</span>
+                                    <span class="info-value"><%= order.quantity %></span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Category</span>
+                                    <span class="info-value"><%= order.product.category %></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="order-status">
+                        <span class="status-label">Status:</span>
+                        <span class="status-value status-<%= order.status.toLowerCase() %>"><%= order.status %></span>
+                    </div>
+                </div>
+            <% }); %>
+        <% } else { %>
+            <p class="no-orders">You have no orders yet. Start exploring the marketplace!</p>
+        <% } %>
+    </div>
+
+    <footer>
+        <p>© 2025 Rangriti - Celebrating India's Handicraft Heritage. Every purchase supports traditional artisans.</p>
+    </footer>
+</body></html>
