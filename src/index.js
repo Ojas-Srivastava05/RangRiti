@@ -280,7 +280,9 @@ app.post('/cart/update', async (req, res) => {
     return res.status(500).json({ success: false, message: 'Server error' });
   }
 });
-app.get('/product/:id', async (req, res) => {
+
+
+app.get('/product2/:id', async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
 
@@ -294,7 +296,7 @@ app.get('/product/:id', async (req, res) => {
       _id: { $ne: product._id }
     }).limit(4);
 
-    res.render('details', { product, relatedProducts });
+    res.render('details_2', { product, relatedProducts });
 
   } catch (err) {
     console.error('Error loading product page:', err);
