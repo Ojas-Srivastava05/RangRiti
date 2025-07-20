@@ -605,6 +605,8 @@
       storyText += p.innerText + " ";
     });
 
+    console.log("Sending story text:", storyText);
+
     try {
       const response = await fetch("/api/tts", {
         method: "POST",

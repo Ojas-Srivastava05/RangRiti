@@ -746,7 +746,6 @@ app.post('/api/register/artist', async (req, res) => {
 
 
 // --- LOGIN ENDPOINT ---
-// --- LOGIN ENDPOINT ---
 app.post('/api/login', async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -788,25 +787,8 @@ app.post('/api/login', async (req, res) => {
         res.status(500).json({ message: 'Server error during login.' });
     }
 });
-// 404 - Page Not Found
-app.use((req, res, next) => {
-  res.status(404).render('error', {
-    message: 'Page Not Found',
-    errorCode: 404
-  });
-});
 
-// Global Error Handler
-app.use((err, req, res, next) => {
-  console.error('Global error handler caught:', err.stack || err);
-
-  res.status(500).render('error', {
-    message: 'Something went wrong. Please try again later.',
-    errorCode: 500
-  });
-});
-
-// --- TTS ROUTE --- (Move this BEFORE the server startup)
+// Move TTS route to here - BEFORE the error handlers
 app.post("/api/tts", async (req, res) => {
     const { text } = req.body;
 
@@ -836,7 +818,25 @@ app.post("/api/tts", async (req, res) => {
     }
 });
 
-// --- Server Start --- (Keep this at the end)
+// 404 - Page Not Found (Keep this AFTER all your routes)
+app.use((req, res, next) => {
+  res.status(404).render('error', {
+    message: 'Page Not Found',
+    errorCode: 404
+  });
+});
+
+// Global Error Handler (Keep this AFTER 404)
+app.use((err, req, res, next) => {
+  console.error('Global error handler caught:', err.stack || err);
+
+  res.status(500).render('error', {
+    message: 'Something went wrong. Please try again later.',
+    errorCode: 500
+  });
+});
+
+// --- Server Start ---
 (async () => {
     try {
         const mongoUri = process.env.MONGODB_URI;
@@ -854,3 +854,5 @@ app.post("/api/tts", async (req, res) => {
         process.exit(1);
     }
 })();
+
+console.log("Voice RSS API Key:", process.env.VOICE_RSS_API_KEY ? "✓ Loaded" : "✗ Missing");
