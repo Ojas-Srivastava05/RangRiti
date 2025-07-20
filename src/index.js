@@ -5,6 +5,8 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import bcrypt from 'bcryptjs';
+import cors from 'cors'; // Add at the top if not present
+import fetch from 'node-fetch'; // Add at the top if not present
 // CORRECTED MODEL PATHS
 import User from '../models.js/user.models.js';
 import Artist from '../models.js/artist.models.js';
@@ -39,6 +41,7 @@ app.set('view engine', 'ejs')
 // --- Middleware ---
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors()); // Place this after express.json() and express.urlencoded()
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
     api_key: process.env.CLOUDINARY_API_KEY,
@@ -821,3 +824,33 @@ app.use((err, req, res, next) => {
         process.exit(1);
     }
 })();
+
+// --- TTS ROUTE ---
+app.post("/api/tts", async (req, res) => {
+    const { text } = req.body;
+
+    if (!text) {
+        return res.status(400).json({ error: "No text provided" });
+    }
+
+    const apiKey = process.env.VOICE_RSS_API_KEY;
+
+    const url = `https://api.voicerss.org/?key=${apiKey}&hl=en-us&v=Mary&r=0&src=${encodeURIComponent(
+        text
+    )}&c=MP3&f=44khz_16bit_stereo`;
+
+    try {
+        const response = await fetch(url);
+        const audioBuffer = await response.arrayBuffer();
+
+        res.set({
+            "Content-Type": "audio/mpeg",
+            "Content-Length": audioBuffer.byteLength,
+        });
+
+        res.send(Buffer.from(audioBuffer));
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "TTS request failed" });
+    }
+});
