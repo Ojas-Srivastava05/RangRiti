@@ -407,12 +407,12 @@
             box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
         }
         .listenBtn{
-            border-radius: 12px;
-            color: rgb(138, 126, 126);
+            border-radius: 11.5px;
+            color: rgb(167, 148, 148);
             height: 30px;
-            background-color: #722c2cb0;
-            border: solid rgb(67, 52, 55);
-            box-shadow: #0d0600;
+            background-color: #542424b0;
+            border: solid rgba(186, 168, 173, 0.059);
+            box-shadow: #d9d6d4;
             transition: transform 0.1s, box-shadow 0.1s;
         }
 
@@ -606,7 +606,7 @@
     });
 
     try {
-      const response = await fetch("http://localhost:5000/api/tts", {
+      const response = await fetch("/api/tts", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

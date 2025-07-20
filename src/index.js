@@ -806,26 +806,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-// --- Server Start ---
-(async () => {
-    try {
-        const mongoUri = process.env.MONGODB_URI;
-        if (!mongoUri) {
-            throw new Error("MONGODB_URI is not defined in your .env file.");
-        }
-        await mongoose.connect(mongoUri);
-        console.log("MongoDB connected successfully!");
-        app.listen(port, () => {
-            console.log(`Server running at http://localhost:${port}`);
-            console.log(`Landing page should now be served at the root URL.`);
-        });
-    } catch (error) {
-        console.error("Server startup error:", error.message);
-        process.exit(1);
-    }
-})();
-
-// --- TTS ROUTE ---
+// --- TTS ROUTE --- (Move this BEFORE the server startup)
 app.post("/api/tts", async (req, res) => {
     const { text } = req.body;
 
@@ -854,3 +835,22 @@ app.post("/api/tts", async (req, res) => {
         res.status(500).json({ error: "TTS request failed" });
     }
 });
+
+// --- Server Start --- (Keep this at the end)
+(async () => {
+    try {
+        const mongoUri = process.env.MONGODB_URI;
+        if (!mongoUri) {
+            throw new Error("MONGODB_URI is not defined in your .env file.");
+        }
+        await mongoose.connect(mongoUri);
+        console.log("MongoDB connected successfully!");
+        app.listen(port, () => {
+            console.log(`Server running at http://localhost:${port}`);
+            console.log(`Landing page should now be served at the root URL.`);
+        });
+    } catch (error) {
+        console.error("Server startup error:", error.message);
+        process.exit(1);
+    }
+})();
