@@ -1,41 +1,149 @@
-<nav class="nav-container">
-    <a href="/index.html" class="nav-btn-link"><button class="nav-btn">Home</button></a>
-    <a href="/artists" class="nav-btn-link"><button class="nav-btn">Artists</button></a>
-
-    <%# This is the key part. It checks the user's session. %>
-    <% if (locals.user && user.type === 'artist') { %>
-        <%# If the user is an artist, this button links to their workshop dashboard %>
-        <a href="/artist/workshops" class="nav-btn-link"><button class="nav-btn">My Workshops</button></a>
-    <% } else { %>
-        <%# For everyone else (regular users, logged-out visitors), it links to the public calendar %>
-        <a href="/calendar" class="nav-btn-link"><button class="nav-btn">Workshops</button></a>
-    <% } %>
-    
-    <a href="/calendar" class="nav-btn-link"><button class="nav-btn">Calendar</button></a>
-
-    <div class="dropdown">
-        <button class="nav-btn dropdown-toggle">
-            Heritage <span class="dropdown-arrow">&#9660;</span>
-        </button>
-        <div class="dropdown-menu">
-            <a href="/paintings and traditional styles.html" class="dropdown-item">Traditional Painting Styles</a>
-            <a href="/textile_main.html" class="dropdown-item">Textile Arts</a>
-            <a href="/performingarts.html" class="dropdown-item">Performing Arts</a>
-            <a href="/handicrafts_and_sculptures.html" class="dropdown-item">Handicrafts & Sculpture</a>
+<nav class="floating-navbar">
+    <div class="nav-container">
+        <!-- Logo/Brand with animated glow -->
+        <div class="brand-container">
+            <a href="index.html" class="brand-logo">
+                <span class="brand-text">RangRiti</span>
+                <div class="brand-glow"></div>
+            </a>
         </div>
+
+        <!-- Main Navigation Links -->
+        <div class="nav-links">
+            <a href="index.html" class="nav-link" data-text="Home">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-text">Home</span>
+                <div class="nav-ripple"></div>
+            </a>
+            
+            <a href="/artists" class="nav-link" data-text="Artists">
+                <span class="nav-icon">👨‍🎨</span>
+                <span class="nav-text">Artists</span>
+                <div class="nav-ripple"></div>
+            </a>
+            
+            <% if (typeof user !== 'undefined' && user) { %>
+                <% if (user.type === 'artist') { %>
+                    <a href="/artist/workshops" class="nav-link" data-text="My Workshops">
+                        <span class="nav-icon">🎭</span>
+                        <span class="nav-text">My Workshops</span>
+                        <div class="nav-ripple"></div>
+                    </a>
+                <% } else { %>
+                    <a href="/workshops" class="nav-link" data-text="Workshops">
+                        <span class="nav-icon">🎭</span>
+                        <span class="nav-text">Workshops</span>
+                        <div class="nav-ripple"></div>
+                    </a>
+                <% } %>
+            <% } else { %>
+                <a href="/workshops" class="nav-link" data-text="Workshops">
+                    <span class="nav-icon">🎭</span>
+                    <span class="nav-text">Workshops</span>
+                    <div class="nav-ripple"></div>
+                </a>
+            <% } %>
+            
+            <a href="/calendar" class="nav-link" data-text="Calendar">
+                <span class="nav-icon">📅</span>
+                <span class="nav-text">Calendar</span>
+                <div class="nav-ripple"></div>
+            </a>
+            
+            <!-- Heritage Dropdown with improved animation -->
+            <div class="nav-dropdown">
+                <button class="nav-link dropdown-trigger" data-text="Heritage">
+                    <span class="nav-icon">🏛️</span>
+                    <span class="nav-text">Heritage</span>
+                    <span class="dropdown-arrow">▼</span>
+                    <div class="nav-ripple"></div>
+                </button>
+                <div class="dropdown-panel">
+                    <div class="dropdown-content">
+                        <a href="/heritage/traditional" class="dropdown-item">
+                            <span class="dropdown-icon">🎨</span>
+                            <span class="dropdown-text">Traditional Arts</span>
+                        </a>
+                        <a href="/heritage/folk" class="dropdown-item">
+                            <span class="dropdown-icon">🎪</span>
+                            <span class="dropdown-text">Folk Arts</span>
+                        </a>
+                        <a href="/heritage/classical" class="dropdown-item">
+                            <span class="dropdown-icon">🏺</span>
+                            <span class="dropdown-text">Classical Arts</span>
+                        </a>
+                        <a href="/heritage/contemporary" class="dropdown-item">
+                            <span class="dropdown-icon">🖼️</span>
+                            <span class="dropdown-text">Contemporary Arts</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <a href="/connect" class="nav-link" data-text="Connect">
+                <span class="nav-icon">🤝</span>
+                <span class="nav-text">Connect</span>
+                <div class="nav-ripple"></div>
+            </a>
+        </div>
+
+        <!-- Authentication Section -->
+        <div class="auth-section">
+            <% if (typeof user !== 'undefined' && user) { %>
+                <!-- Logged in state -->
+                <% if (user.type === 'artist') { %>
+                    <a href="/dashboard" class="auth-link profile-btn" data-text="Profile">
+                        <span class="auth-icon">👤</span>
+                        <span class="auth-text">Profile</span>
+                        <div class="nav-ripple"></div>
+                    </a>
+                <% } else { %>
+                    <a href="/profile" class="auth-link profile-btn" data-text="Profile">
+                        <span class="auth-icon">👤</span>
+                        <span class="auth-text">Profile</span>
+                        <div class="nav-ripple"></div>
+                    </a>
+                <% } %>
+                <a href="/logout" class="auth-link logout-btn" data-text="Logout">
+                    <span class="auth-icon">🚪</span>
+                    <span class="auth-text">Logout</span>
+                    <div class="nav-ripple"></div>
+                </a>
+            <% } else { %>
+                <!-- Not logged in state -->
+                <a href="login.html" class="auth-link profile-btn" data-text="Profile">
+                    <span class="auth-icon">👤</span>
+                    <span class="auth-text">Profile</span>
+                    <div class="nav-ripple"></div>
+                </a>
+                <a href="login.html" class="auth-link login-btn" data-text="Login">
+                    <span class="auth-icon">🔑</span>
+                    <span class="auth-text">Login</span>
+                    <div class="nav-ripple"></div>
+                </a>
+                <a href="register.html" class="auth-link register-btn" data-text="Register">
+                    <span class="auth-icon">📝</span>
+                    <span class="auth-text">Register</span>
+                    <div class="nav-ripple"></div>
+                </a>
+            <% } %>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-toggle" id="mobileToggle">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
     </div>
 
-    <a href="/connect.html" class="nav-btn-link"><button class="nav-btn">Connect</button></a>
-    
-    <% if (locals.user) { %>
-        <a href="/logout" class="nav-btn-link"><button class="nav-btn">Logout</button></a>
-        <% if (user.type === 'artist') { %>
-             <a href="/dashboard" class="nav-btn-link"><button class="nav-btn">Dashboard</button></a>
-        <% } else { %>
-             <a href="/user" class="nav-btn-link"><button class="nav-btn">My Profile</button></a>
-        <% } %>
-    <% } else { %>
-        <a href="/login.html" class="nav-btn-link"><button class="nav-btn">Login</button></a>
-        <a href="/register.html" class="nav-btn-link"><button class="nav-btn">Register</button></a>
-    <% } %>
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay">
+        <div class="mobile-nav-content">
+            <button class="mobile-close" id="mobileClose">✕</button>
+            <div class="mobile-nav-links">
+                <!-- Mobile links will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
 </nav>

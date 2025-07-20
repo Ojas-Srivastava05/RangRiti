@@ -148,7 +148,7 @@ app.get('/logout', (req, res) => {
         if (err) {
             return res.status(500).render('error', { message: 'Logout failed.' });
         }
-        res.redirect('/');
+        res.redirect('index.html');
     });
 });
 
