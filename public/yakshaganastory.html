@@ -398,6 +398,39 @@
                 font-size: 2rem;
             }
         }
+
+        /* Toggle button pressed state */
+        .listenBtn.active,
+        .listenBtn.pressed {
+            background-color: #5a2020b0;
+            transform: translateY(2px) scale(0.97);
+            box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
+        }
+        .listenBtn{
+            border-radius: 12px;
+            color: rgb(138, 126, 126);
+            height: 30px;
+            background-color: #722c2cb0;
+            border: solid rgb(67, 52, 55);
+            box-shadow: #0d0600;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+
+        .listenBtn.pressed {
+            transform: translateY(2px) scale(0.97);
+            box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
+            background-color: #5a2020b0;
+        }
+
+        .listenBtn:hover{
+           transform: translateY(-1px) scale(1.05);
+           box-shadow: 0 6px 24px 0 rgba(255,255,255,0.25);
+        }
+
+        .listenBtn:active{
+            transform: translateY(1px) scale(01);
+            box-shadow: 0 2px 12px 0 rgba(255,255,255,0.25);
+        }
     </style>
 </head>
 <body>
@@ -435,6 +468,8 @@
             <h2>Mythical Dramas</h2>
 
             <div id="mahishasura-mardini-detailed" class="detailed-story-section">
+                <button class="listenBtn">🔊 Play story</button>
+
                 <h1>Mahishasura Mardini</h1>
                 <p><strong>Mahishasura Mardini</strong> is one of the most iconic and electrifying Yakshagana presentations, embodying the eternal struggle between good and evil. It vividly portrays the fierce battle between the formidable buffalo demon, Mahishasura, and the supreme divine feminine, Goddess Durga, culminating in her triumphant victory and the restoration of cosmic order.</p>
 
@@ -449,6 +484,7 @@
             </div>
 
             <div id="gada-yuddha-detailed" class="detailed-story-section">
+                <button class="listenBtn">🔊 Play story</button>
                 <h1>Gada Yuddha</h1>
                 <p><strong>Gada Yuddha (The Mace Fight)</strong> is one of the most popular and dramatically charged episodes from the epic Mahabharata, a cornerstone of the Yakshagana repertoire. This narrative focuses on the climactic and brutal mace duel between the powerful Pandava prince, **Bhima**, and the arrogant Kaurava chieftain, **Duryodhana**, on the eighteenth day of the Kurukshetra War.</p>
 
@@ -466,6 +502,7 @@
             </div>
 
             <div id="sudhanva-moksha-detailed" class="detailed-story-section">
+                <button class="listenBtn">🔊 Play story</button>
                 <h1>Sudhanva Moksha</h1>
                 <p><strong>Sudhanva Moksha (The Liberation of Sudhanva)</strong> is a captivating Yakshagana narrative that delves into themes of devotion, sacrifice, the power of a devotee, and divine intervention, drawing from episodes related to the Ashwamedha Yaga in the Mahabharata's later sections. It focuses on the extraordinary encounter between Lord Krishna's ardent devotee, **Sudhanva**, and the mighty Pandava warrior, Arjuna.</p>
 
@@ -483,6 +520,7 @@
             </div>
 
             <div id="panchavati-detailed" class="detailed-story-section">
+                <button class="listenBtn">🔊 Play story</button>
                 <h1>Panchavati</h1>
                 <p><strong>Panchavati</strong> is a poignant and dramatically significant episode from the epic Ramayana, a frequently performed theme in Yakshagana. It focuses on the serene yet fateful period of Lord Rama, Lakshmana, and Sita's exile in the forest of Panchavati, leading to the pivotal event of Sita's abduction by the demon king Ravana.</p>
 
@@ -503,6 +541,7 @@
             </div>
 
             <div id="krishna-parijata-detailed" class="detailed-story-section">
+                <button class="listenBtn">🔊 Play story</button>
                 <h1>Krishna Parijata</h1>
                 <p><strong>Krishna Parijata</strong> is a delightful and very popular Yakshagana presentation from the Bhagavata Purana, focusing on a light-hearted, romantic, and occasionally humorous tale from the life of Lord Krishna. It beautifully depicts the playful rivalry between Krishna's two prominent wives, **Rukmini** and **Satyabhama**, over the divine **Parijata flower**, showcasing various human emotions like love, jealousy, pride, and reconciliation.</p>
 
@@ -520,6 +559,7 @@
             </div>
 
             <div id="abhimanyu-vadha-detailed" class="detailed-story-section">
+                <button class="listenBtn">🔊 Play story</button>
                 <h1>Abhimanyu Vadha</h1>
                 <p><strong>Abhimanyu Vadha (The Slaying of Abhimanyu)</strong> is a deeply tragic and profoundly heroic tale from the epic Mahabharata, and a highly emotional and dramatic presentation in Yakshagana. It recounts the valiant, almost superhuman, fight and ultimate, unfair demise of the young warrior **Abhimanyu**, son of Arjuna and Subhadra, within the impenetrable Chakravyuha formation during the Kurukshetra War.</p>
 
@@ -545,5 +585,51 @@
         <p>Contact us at <a href="mailto:info@yakshagana.com">info@yakshagana.com</a></p>
     </footer>
 
+
+    <script>
+        document.querySelectorAll(".listenBtn").forEach(button => {
+  button.addEventListener("click", async () => {
+    // Find the nearest parent div with the class 'detailed-story-section'
+    const storySection = button.closest(".detailed-story-section");
+    if (!storySection) {
+      alert("Story section not found!");
+      return;
+    }
+
+    // Get the main text you want — for example, the <h1> + first <p>
+    const title = storySection.querySelector("h1")?.innerText || "";
+    const paragraphs = storySection.querySelectorAll("p");
+    let storyText = title + ". ";
+
+    paragraphs.forEach(p => {
+      storyText += p.innerText + " ";
+    });
+
+    try {
+      const response = await fetch("http://localhost:5000/api/tts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ text: storyText }),
+      });
+
+      if (!response.ok) {
+        throw new Error("TTS request failed");
+      }
+
+      const audioBlob = await response.blob();
+      const audioUrl = URL.createObjectURL(audioBlob);
+
+      const audio = new Audio(audioUrl);
+      audio.play();
+    } catch (error) {
+      console.error(error);
+      alert("Error playing story audio");
+    }
+  });
+});
+
+    </script>
 </body>
 </html>
