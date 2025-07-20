@@ -1,0 +1,19 @@
+/* Copy all your navbar styles from navbar-styles.ejs here */
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+
+/* Root Variables */
+:root {
+    --nav-bg: rgba(61, 41, 20, 0.12);
+    --nav-glass: rgba(255, 248, 231, 0.08);
+    --nav-border: rgba(218, 165, 32, 0.25);
+    --nav-text: #3D2914;
+    --nav-text-light: rgba(61, 41, 20, 0.8);
+    --nav-hover: #DAA520;
+    --nav-active: #B8860B;
+    --nav-shadow: rgba(61, 41, 20, 0.15);
+    --nav-glow: rgba(218, 165, 32, 0.3);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* ... rest of your navbar styles ... */
