@@ -340,7 +340,7 @@
                         <p><strong>Date:</strong> <%= new Date(workshop.date).toLocaleDateString() %></p>
                         <p><strong>Time:</strong> <%= workshop.startTime %> - <%= workshop.endTime %></p>
                         <p><strong>Location:</strong> <%= workshop.location %></p>
-                        <p><strong>Price:</strong> $<%= workshop.price %></p>
+                        <p><strong>Price:</strong> ₹<%= workshop.price %></p>
                         <% if (workshop.maxParticipants) { %>
                             <p><strong>Max Participants:</strong> <%= workshop.maxParticipants %></p>
                         <% } %>
