@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RangRiti - Handcrafted Indian Artistry</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --sandalwood: #f5e9d7;
+            --deep-maroon: #8b0000;
+            --muted-saffron: #e0a84a;
+            --indigo: #4b0082;
+            --forest-green: #228b22;
+            --light-pattern: rgba(245, 233, 215, 0.1);
+            --dark-pattern: rgba(139, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--sandalwood);
+            color: #333;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M20,20 Q40,5 60,20 T100,20 Q85,40 100,60 T100,100 Q60,85 60,100 T20,100 Q5,85 20,60 T20,20" fill="none" stroke="%238b0000" stroke-opacity="0.1" stroke-width="0.5"/></svg>');
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 15px 0;
+            border-bottom: 2px solid var(--deep-maroon);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--deep-maroon);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: var(--muted-saffron);
+        }
+
+        .back-btn {
+            background: var(--deep-maroon);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-btn:hover {
+            background: #6a0000;
+            transform: translateY(-2px);
+        }
+
+        /* Main Content Styles */
+        .product-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 40px 0;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--deep-maroon), var(--muted-saffron), var(--indigo), var(--forest-green));
+        }
+
+        /* Gallery Styles */
+        .gallery {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            background-color: #f8f3ea;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .main-image::after {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid rgba(139, 0, 0, 0.1);
+            border-radius: 8px;
+            pointer-events: none;
+        }
+
+        .thumbnails {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .thumbnail:hover,
+        .thumbnail.active {
+            border-color: var(--deep-maroon);
+            transform: scale(1.05);
+        }
+
+        /* Product Info Styles */
+        .product-info {
+            padding: 15px;
+        }
+
+        .product-category {
+            font-size: 1rem;
+            color: var(--muted-saffron);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .product-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--deep-maroon);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .product-title::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--muted-saffron);
+        }
+
+        .artist {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .artist i {
+            color: var(--indigo);
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .stars {
+            color: var(--muted-saffron);
+        }
+
+        .reviews {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .price {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--forest-green);
+            margin-bottom: 20px;
+        }
+
+        .availability {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .in-stock {
+            color: var(--forest-green);
+            background: rgba(34, 139, 34, 0.1);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .out-stock {
+            color: #cc0000;
+            background: rgba(204, 0, 0, 0.1);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .product-meta {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .meta-item {
+            display: flex;
+            gap: 8px;
+        }
+
+        .meta-label {
+            font-weight: 500;
+            color: var(--indigo);
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .tag {
+            background: rgba(139, 0, 0, 0.1);
+            color: var(--deep-maroon);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        .actions {
+            display: flex;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 6px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .add-to-cart {
+            background: var(--deep-maroon);
+            color: white;
+            box-shadow: 0 4px 10px rgba(139, 0, 0, 0.3);
+        }
+
+        .add-to-cart:hover {
+            background: #6a0000;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(139, 0, 0, 0.4);
+        }
+
+        .buy-now {
+            background: var(--muted-saffron);
+            color: white;
+            box-shadow: 0 4px 10px rgba(224, 168, 74, 0.3);
+        }
+
+        .buy-now:hover {
+            background: #d0973a;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(224, 168, 74, 0.4);
+        }
+
+        /* Description Section */
+        .description-section {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin: 40px 0;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--deep-maroon);
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--muted-saffron);
+        }
+
+        .description {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .description::first-letter {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: var(--deep-maroon);
+            float: left;
+            line-height: 0.8;
+            margin-right: 8px;
+        }
+
+        /* Artist Story */
+        .artist-story {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .artist-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--sandalwood);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .artist-details {
+            flex: 1;
+        }
+
+        .artist-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--indigo);
+            margin-bottom: 10px;
+        }
+
+        /* Reviews */
+        .reviews-section {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin: 40px 0;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .review {
+            display: flex;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .review:last-child {
+            border-bottom: none;
+        }
+
+        .reviewer {
+            font-weight: 500;
+            color: var(--deep-maroon);
+        }
+
+        .review-date {
+            color: #777;
+            font-size: 0.85rem;
+        }
+
+        /* Related Products */
+        .related-products {
+            margin: 60px 0;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-details {
+            padding: 20px;
+        }
+
+        .product-card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--deep-maroon);
+            margin-bottom: 8px;
+        }
+
+        .product-price {
+            color: var(--forest-green);
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--deep-maroon);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            margin-top: 60px;
+            border-top: 5px solid var(--muted-saffron);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-tagline {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Decorative Elements */
+        .mandala-border {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .mandala-1 {
+            top: 20px;
+            right: 20px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%234b0082" stroke-width="2"/><circle cx="50" cy="50" r="35" fill="none" stroke="%234b0082" stroke-width="1.5"/><circle cx="50" cy="50" r="25" fill="none" stroke="%234b0082" stroke-width="1"/></svg>');
+        }
+
+        .paisley {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            opacity: 0.1;
+            bottom: 20px;
+            left: 20px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,10 C70,10 90,30 90,50 C90,70 70,90 50,90 C30,90 10,70 10,50 C10,30 30,10 50,10 Z" fill="none" stroke="%238b0000" stroke-width="2"/></svg>');
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1100px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .product-container {
+                grid-template-columns: 1fr;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .main-image {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .product-meta {
+                grid-template-columns: 1fr;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .artist-story {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header with Navigation -->
+    <header>
+        <div class="header-content">
+            <a href="#" class="logo">
+                <i class="fas fa-palette"></i>
+                RangRiti
+            </a>
+            <button class="back-btn" onclick="window.location.href = '/artists'">
+                <i class="fas fa-arrow-left"></i> Back to Artist
+            </button>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Product Details Section -->
+        <div class="product-container">
+            <!-- Decorative Elements -->
+            <div class="mandala-border mandala-1"></div>
+            <div class="paisley"></div>
+
+            <!-- Product Gallery -->
+            <div class="gallery">
+                <div class="main-image">
+                    <img src="<%= product.images[0] %>" alt="Product image" class="main-img">
+                </div>
+                <div class="thumbnails">
+                    <% product.images.forEach((img, index)=> { %>
+                        <img src="<%= img %>" alt="Thumbnail <%= index + 1 %>"
+                            class="thumbnail <%= index === 0 ? 'active' : '' %>">
+                        <% }); %>
+                </div>
+            </div>
+
+            <!-- Product Information -->
+            <div class="product-info">
+                <div class="product-category">
+                    <%= product.category %>
+                </div>
+                <h1 class="product-title">
+                    <%= product.name %>
+                </h1>
+
+                <div class="artist">
+                    <i class="fas fa-user"></i>
+                    <span>Created by: <%= product.artistName %></span>
+                </div>
+
+                <div class="rating">
+                    <div class="stars">
+                        <% for (let i=1; i <=5; i++) { %>
+                            <% if (i <=Math.floor(product.rating)) { %>
+                                <i class="fas fa-star"></i>
+                                <% } else if (i - product.rating <=0.5) { %>
+                                    <i class="fas fa-star-half-alt"></i>
+                                    <% } else { %>
+                                        <i class="far fa-star"></i>
+                                        <% } %>
+                                            <% } %>
+                    </div>
+                    <div class="reviews">(<%= product.reviewsCount %> reviews)</div>
+                </div>
+
+                <div class="price">₹<%= product.price.toLocaleString() %>
+                </div>
+
+                <div class="availability">
+                    <i class="fas fa-check-circle"></i>
+                    <span class="in-stock">
+                        <%= product.inStock ? `In Stock (${product.quantityAvailable} available)` : 'Out of Stock' %>
+                    </span>
+                </div>
+
+                <div class="product-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">Material:</span>
+                        <span>
+                            <%= product.material %>
+                        </span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Size:</span>
+                        <span>
+                            <%= product.size %>
+                        </span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Region:</span>
+                        <span>
+                            <%= product.originRegion %>
+                        </span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Created:</span>
+                        <span>
+                            <%= product.dateCreated.toDateString() %>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="tags">
+                    <% product.tags.forEach(tag=> { %>
+                        <span class="tag">
+                            <%= tag %>
+                        </span>
+                        <% }); %>
+                </div>
+
+                <div class="actions">
+                    <button class="btn add-to-cart" id="addToCartBtn" data-product-id="<%= product._id %>">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                    <div id="addToCartMsg" style="margin-top: 10px;"></div> <button class="btn buy-now">
+                        <i class="fas fa-bolt"></i> Buy Now
+                    </button>
+                    <div id="addToCartMsg" style="margin-top: 10px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Description Section -->
+        <div class="description-section">
+            <h2 class="section-title">Product Description</h2>
+            <p class="description">
+                <%= product.description %>
+            </p>
+
+            <!-- Artist Story -->
+            <div class="artist-story">
+                <div class="artist-image-placeholder">
+                    <i class="fas fa-user-circle" style="font-size: 150px; color: #ddd;"></i>
+                </div>
+                <div class="artist-details">
+                    <h3 class="artist-name">
+                        <%= product.artistName %>
+                    </h3>
+                    <p>This artist has contributed significantly to Indian traditional arts and crafts. Stay tuned for a
+                        detailed artist story soon!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reviews Section -->
+
+
+        <!-- Related Products -->
+        <div class="related-products">
+            <h2 class="section-title">You May Also Like</h2>
+            <div class="products-grid">
+                <% relatedProducts.forEach(rp=> { %>
+                    <div class="product-card">
+                        <div class="product-image"
+                            style="background-image: url('<%= rp.images[0] %>'); background-size: cover;"></div>
+                        <div class="product-details">
+                            <h3 class="product-card-title">
+                                <%= rp.name %>
+                            </h3>
+                            <div class="product-price">₹<%= rp.price.toLocaleString() %>
+                            </div>
+                        </div>
+                    </div>
+                    <% }); %>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">RangRiti</div>
+            <p class="footer-tagline">Preserving India's artistic heritage by connecting master artisans with
+                appreciative patrons worldwide.</p>
+            <p>© 2023 RangRiti. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple image gallery functionality
+        document.querySelectorAll('.thumbnail').forEach(thumb => {
+            thumb.addEventListener('click', function () {
+                // Remove active class from all thumbnails
+                document.querySelectorAll('.thumbnail').forEach(t => {
+                    t.classList.remove('active');
+                });
+
+                // Add active class to clicked thumbnail
+                this.classList.add('active');
+
+                // In a real implementation, this would update the main image
+            });
+        });
+    </script>
+    <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const addToCartBtn = document.getElementById('addToCartBtn');
+    const feedbackMsg = document.getElementById('addToCartMsg');
+
+    addToCartBtn.addEventListener('click', async () => {
+      const productId = addToCartBtn.getAttribute('data-product-id');
+
+      try {
+        const response = await fetch('/cart/add', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ productId })
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          feedbackMsg.textContent = '✔️ Added to cart!';
+          feedbackMsg.style.color = 'green';
+        } else {
+          feedbackMsg.textContent = `❌ ${result.message}`;
+          feedbackMsg.style.color = 'red';
+        }
+      } catch (error) {
+        feedbackMsg.textContent = '❌ Error adding to cart.';
+        feedbackMsg.style.color = 'red';
+        console.error(error);
+      }
+    });
+  });
+</script>
+</body>
+
+</html>

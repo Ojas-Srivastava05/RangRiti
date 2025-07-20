@@ -280,7 +280,9 @@ app.post('/cart/update', async (req, res) => {
     return res.status(500).json({ success: false, message: 'Server error' });
   }
 });
-app.get('/product/:id', async (req, res) => {
+
+
+app.get('/product2/:id', async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
 
@@ -294,7 +296,7 @@ app.get('/product/:id', async (req, res) => {
       _id: { $ne: product._id }
     }).limit(4);
 
-    res.render('details', { product, relatedProducts });
+    res.render('details_2', { product, relatedProducts });
 
   } catch (err) {
     console.error('Error loading product page:', err);
@@ -783,7 +785,23 @@ app.post('/api/login', async (req, res) => {
         res.status(500).json({ message: 'Server error during login.' });
     }
 });
+// 404 - Page Not Found
+app.use((req, res, next) => {
+  res.status(404).render('error', {
+    message: 'Page Not Found',
+    errorCode: 404
+  });
+});
 
+// Global Error Handler
+app.use((err, req, res, next) => {
+  console.error('Global error handler caught:', err.stack || err);
+
+  res.status(500).render('error', {
+    message: 'Something went wrong. Please try again later.',
+    errorCode: 500
+  });
+});
 
 // --- Server Start ---
 (async () => {
