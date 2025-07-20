@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rangriti - Page Not Found</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background-color: #f5e8d0; /* Sandalwood beige */
+            background-image: 
+                radial-gradient(#e8d1b0 1px, transparent 1px),
+                radial-gradient(#e8d1b0 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+            color: #5c3e2a; /* Deep earthy brown */
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            text-align: center;
+            padding: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Ethnic border pattern */
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border: 2px solid #c19a6b; /* Warm bronze */
+            border-image: 
+                repeating-linear-gradient(
+                    45deg,
+                    #c19a6b,
+                    #c19a6b 10px,
+                    #e8d1b0 10px,
+                    #e8d1b0 20px
+                ) 10;
+            z-index: -1;
+        }
+
+        .mandala {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background-image: 
+                radial-gradient(circle, #e8d1b0 10%, transparent 10%),
+                radial-gradient(circle, #e8d1b0 20%, transparent 20%),
+                radial-gradient(circle, #e8d1b0 30%, transparent 30%),
+                radial-gradient(circle, #e8d1b0 40%, transparent 40%);
+            background-size: 100px 100px;
+            background-position: 0 0, 50px 50px, 0 100px, 100px 50px;
+            opacity: 0.3;
+            z-index: 1;
+        }
+
+        .mandala:nth-child(1) {
+            top: -150px;
+            left: -150px;
+            transform: rotate(15deg);
+        }
+
+        .mandala:nth-child(2) {
+            bottom: -150px;
+            right: -150px;
+            transform: rotate(-15deg);
+        }
+
+        .error-code {
+            font-family: 'Playfair Display', serif;
+            font-size: 12rem;
+            font-weight: 700;
+            color: #8b5a2b; /* Rich bronze */
+            text-shadow: 4px 4px 0 #d4b483, 8px 8px 0 rgba(139, 90, 43, 0.2);
+            margin: 20px 0;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .error-code::after {
+            content: "";
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 8px;
+            background: linear-gradient(90deg, transparent, #b8860b, transparent);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: #5c3e2a;
+            letter-spacing: 1px;
+        }
+
+        p {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .home-button {
+            display: inline-block;
+            background: #8b5a2b; /* Rich bronze */
+            color: #f5e8d0;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            text-decoration: none;
+            padding: 15px 40px;
+            border-radius: 0;
+            margin-top: 20px;
+            position: relative;
+            border: 2px solid #5c3e2a;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(92, 62, 42, 0.2);
+            letter-spacing: 1px;
+        }
+
+        /* Handwoven button effect */
+        .home-button::before,
+        .home-button::after {
+            content: "";
+            position: absolute;
+            background: #d4b483; /* Light sandalwood */
+            width: 8px;
+            height: 100%;
+            top: 0;
+        }
+
+        .home-button::before {
+            left: -10px;
+            transform: skewY(-45deg);
+        }
+
+        .home-button::after {
+            right: -10px;
+            transform: skewY(45deg);
+        }
+
+        .home-button:hover {
+            background: #9c6b3b;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(92, 62, 42, 0.3);
+        }
+
+        .home-button:active {
+            transform: translateY(0);
+        }
+
+        /* Block print patterns */
+        .pattern {
+            position: absolute;
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        .pattern-1 {
+            top: 10%;
+            left: 10%;
+            width: 120px;
+            height: 120px;
+            background-image: 
+                linear-gradient(45deg, #5c3e2a 25%, transparent 25%),
+                linear-gradient(-45deg, #5c3e2a 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #5c3e2a 75%),
+                linear-gradient(-45deg, transparent 75%, #5c3e2a 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        }
+
+        .pattern-2 {
+            bottom: 15%;
+            right: 15%;
+            width: 100px;
+            height: 100px;
+            background-image: 
+                radial-gradient(circle, #5c3e2a 30%, transparent 30%),
+                radial-gradient(circle, #5c3e2a 30%, transparent 30%);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+        }
+
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 8rem;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            p {
+                font-size: 1.2rem;
+            }
+            
+            .mandala {
+                width: 250px;
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Decorative mandalas -->
+    <div class="mandala"></div>
+    <div class="mandala"></div>
+    
+    <!-- Ethnic patterns -->
+    <div class="pattern pattern-1"></div>
+    <div class="pattern pattern-2"></div>
+    
+    <div class="container">
+        <div class="error-code">404</div>
+        <h1>Oops! Something Went Wrong</h1>
+        <p>It seems the page you're seeking has wandered off like a colorful kite in the monsoon breeze. Not to worry, let's guide you back to familiar ground.</p>
+        <a href="/index.html" class="home-button">Return to Home</a>
+    </div>
+</body>
+</html>

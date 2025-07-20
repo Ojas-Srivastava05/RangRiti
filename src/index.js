@@ -785,7 +785,23 @@ app.post('/api/login', async (req, res) => {
         res.status(500).json({ message: 'Server error during login.' });
     }
 });
+// 404 - Page Not Found
+app.use((req, res, next) => {
+  res.status(404).render('error', {
+    message: 'Page Not Found',
+    errorCode: 404
+  });
+});
 
+// Global Error Handler
+app.use((err, req, res, next) => {
+  console.error('Global error handler caught:', err.stack || err);
+
+  res.status(500).render('error', {
+    message: 'Something went wrong. Please try again later.',
+    errorCode: 500
+  });
+});
 
 // --- Server Start ---
 (async () => {
