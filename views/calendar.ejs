@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Workshops Calendar - RangRiti</title>
+    <!-- FullCalendar CSS -->
+    <link rel="stylesheet" href="/static/css/navbar.css"> 
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #FAF0E6; }
+        #calendar { max-width: 1100px; margin: 40px auto; padding: 20px; background: white; border-radius: 10px; }
+        .fc-event-title { font-weight: bold; }
+        /* You can add more custom styles for the calendar here */
+    </style>
+    <%- include('partials/navbar-styles') %>
+</head>
+<body>
+    
+    <%- include('partials/navbar') %>
+
+    <h1 style="text-align: center; color: #3D2914; margin-top: 40px;">Workshops & Events Calendar</h1>
+    <div id='calendar'></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,listWeek'
+                },
+                events: '/api/workshops', // Fetch events from our API
+                eventDidMount: function(info) {
+                    // You can use a tooltip library like Tippy.js for richer popovers
+                    const props = info.event.extendedProps;
+                    const tooltipContent = `
+                        <strong>Artist:</strong> ${props.artistName}<br>
+                        <strong>Time:</strong> ${props.startTime} - ${props.endTime}<br>
+                        <strong>Location:</strong> ${props.location}<br>
+                        <strong>Price:</strong> $${props.price}<br>
+                        <hr>
+                        <p>${props.description.substring(0, 100)}...</p>
+                    `;
+                    info.el.setAttribute('title', tooltipContent);
+                }
+            });
+            calendar.render();
+        });
+    </script>
+
+</body>
+</html>

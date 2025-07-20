@@ -1,0 +1,41 @@
+<nav class="nav-container">
+    <a href="/index.html" class="nav-btn-link"><button class="nav-btn">Home</button></a>
+    <a href="/artists" class="nav-btn-link"><button class="nav-btn">Artists</button></a>
+
+    <%# This is the key part. It checks the user's session. %>
+    <% if (locals.user && user.type === 'artist') { %>
+        <%# If the user is an artist, this button links to their workshop dashboard %>
+        <a href="/artist/workshops" class="nav-btn-link"><button class="nav-btn">My Workshops</button></a>
+    <% } else { %>
+        <%# For everyone else (regular users, logged-out visitors), it links to the public calendar %>
+        <a href="/calendar" class="nav-btn-link"><button class="nav-btn">Workshops</button></a>
+    <% } %>
+    
+    <a href="/calendar" class="nav-btn-link"><button class="nav-btn">Calendar</button></a>
+
+    <div class="dropdown">
+        <button class="nav-btn dropdown-toggle">
+            Heritage <span class="dropdown-arrow">&#9660;</span>
+        </button>
+        <div class="dropdown-menu">
+            <a href="/paintings and traditional styles.html" class="dropdown-item">Traditional Painting Styles</a>
+            <a href="/textile_main.html" class="dropdown-item">Textile Arts</a>
+            <a href="/performingarts.html" class="dropdown-item">Performing Arts</a>
+            <a href="/handicrafts_and_sculptures.html" class="dropdown-item">Handicrafts & Sculpture</a>
+        </div>
+    </div>
+
+    <a href="/connect.html" class="nav-btn-link"><button class="nav-btn">Connect</button></a>
+    
+    <% if (locals.user) { %>
+        <a href="/logout" class="nav-btn-link"><button class="nav-btn">Logout</button></a>
+        <% if (user.type === 'artist') { %>
+             <a href="/dashboard" class="nav-btn-link"><button class="nav-btn">Dashboard</button></a>
+        <% } else { %>
+             <a href="/user" class="nav-btn-link"><button class="nav-btn">My Profile</button></a>
+        <% } %>
+    <% } else { %>
+        <a href="/login.html" class="nav-btn-link"><button class="nav-btn">Login</button></a>
+        <a href="/register.html" class="nav-btn-link"><button class="nav-btn">Register</button></a>
+    <% } %>
+</nav>

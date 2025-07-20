@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Workshops</title>
+    
+    <%- include('partials/navbar-styles') %>
+    
+    <style>
+        /* Google Fonts Import for Traditional Look */
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@400;700&display=swap');
+
+        /* Root Variables - Sandalwood Beige Theme */
+        :root {
+            --sandalwood-beige: #F5DEB3;
+            --sandalwood-light: #FFF8E7;
+            --sandalwood-dark: #D2B48C;
+            --chocolate-brown: #3D2914;
+            --rich-brown: #6B4423;
+            --royal-gold: #DAA520;
+            --amber-gold: #FFBF00;
+            --cream-white: #FFFDD0;
+            --antique-bronze: #CD7F32;
+            --font-classic: 'Crimson Text', serif;
+            --font-display: 'Playfair Display', serif;
+        }
+
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-classic);
+            background: linear-gradient(135deg, var(--sandalwood-beige) 0%, var(--sandalwood-dark) 100%);
+            min-height: 100vh;
+            margin-top: 80px;
+            position: relative;
+            will-change: auto;
+        }
+
+        /* Simplified decorative background - static instead of animated */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 25% 25%, transparent 2px, rgba(139, 69, 19, 0.02) 2px),
+                radial-gradient(circle at 75% 75%, transparent 2px, rgba(139, 69, 19, 0.02) 2px);
+            background-size: 80px 80px;
+            opacity: 0.4;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Main Dashboard Container */
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 30px;
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: containerFadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes containerFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Page Title */
+        .dashboard-container h1 {
+            font-family: var(--font-display);
+            font-size: 3em;
+            color: var(--chocolate-brown);
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(61, 41, 20, 0.15);
+        }
+
+        .dashboard-container h1::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(to right, transparent, var(--royal-gold), transparent);
+            transform: translateX(-50%);
+        }
+
+        /* Primary Button (Schedule New Workshop) */
+        .btn-primary {
+            display: block;
+            background: linear-gradient(135deg, var(--royal-gold), var(--amber-gold));
+            color: white;
+            padding: 18px 35px;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 8px 25px rgba(218, 165, 32, 0.3);
+            margin: 0 auto 50px;
+            width: fit-content;
+            will-change: transform;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(218, 165, 32, 0.4);
+        }
+
+        .btn-primary::after {
+            content: ' ✦';
+            margin-left: 8px;
+            transition: transform 0.2s ease;
+        }
+
+        .btn-primary:hover::after {
+            transform: rotate(45deg);
+        }
+
+        /* Workshops List Container */
+        .workshops-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        /* Workshop Card - Simplified animations */
+        .workshop-card {
+            background: linear-gradient(145deg, var(--cream-white), var(--sandalwood-light));
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(61, 41, 20, 0.12);
+            border: 3px solid var(--royal-gold);
+            position: relative;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            will-change: transform;
+            opacity: 0;
+            animation: cardSlideIn 0.4s ease-out forwards;
+        }
+
+        .workshop-card:nth-child(1) { animation-delay: 0.1s; }
+        .workshop-card:nth-child(2) { animation-delay: 0.2s; }
+        .workshop-card:nth-child(3) { animation-delay: 0.3s; }
+        .workshop-card:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes cardSlideIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .workshop-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(61, 41, 20, 0.2);
+        }
+
+        /* Decorative Corner Element - Static */
+        .workshop-card::after {
+            content: '❀';
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: var(--royal-gold);
+            font-size: 24px;
+            opacity: 0.6;
+        }
+
+        /* Workshop Card Title */
+        .workshop-card h2 {
+            font-family: var(--font-display);
+            font-size: 1.8em;
+            color: var(--chocolate-brown);
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .workshop-card h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(to right, var(--royal-gold), var(--amber-gold));
+            transition: width 0.2s ease;
+        }
+
+        .workshop-card:hover h2::after {
+            width: 100%;
+        }
+
+        /* Workshop Card Paragraphs */
+        .workshop-card p {
+            color: var(--rich-brown);
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .workshop-card p::before {
+            content: '◦';
+            position: absolute;
+            left: 0;
+            color: var(--royal-gold);
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .workshop-card p strong {
+            color: var(--chocolate-brown);
+            font-family: var(--font-display);
+            font-weight: 600;
+        }
+
+        /* Empty State Message */
+        .workshops-list p {
+            text-align: center;
+            font-size: 1.4em;
+            color: var(--rich-brown);
+            font-style: italic;
+            background: linear-gradient(145deg, var(--cream-white), var(--sandalwood-light));
+            padding: 40px;
+            border-radius: 15px;
+            border: 2px dashed var(--royal-gold);
+            position: relative;
+        }
+
+        .workshops-list p::before {
+            content: '🎨';
+            display: block;
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .dashboard-container {
+                padding: 30px 20px;
+            }
+
+            .dashboard-container h1 {
+                font-size: 2.2em;
+                margin-bottom: 30px;
+            }
+
+            .workshops-list {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .workshop-card {
+                padding: 25px;
+            }
+
+            .workshop-card h2 {
+                font-size: 1.5em;
+            }
+
+            .btn-primary {
+                padding: 15px 25px;
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .dashboard-container {
+                padding: 20px 15px;
+            }
+
+            .dashboard-container h1 {
+                font-size: 1.8em;
+            }
+
+            .workshop-card {
+                padding: 20px;
+                border-radius: 15px;
+            }
+
+            .workshop-card h2 {
+                font-size: 1.3em;
+                margin-bottom: 15px;
+            }
+
+            .workshop-card p {
+                font-size: 1em;
+                padding-left: 20px;
+            }
+
+            .btn-primary {
+                padding: 12px 20px;
+                font-size: 15px;
+            }
+        }
+
+        /* Reduced motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <%- include('partials/navbar') %>
+
+    <div class="dashboard-container">
+        <h1>My Scheduled Workshops</h1>
+        <a href="/workshops/new" class="btn-primary">Schedule New Workshop</a>
+        
+        <div class="workshops-list">
+            <% if (workshops.length > 0) { %>
+                <% workshops.forEach(workshop => { %>
+                    <div class="workshop-card">
+                        <h2><%= workshop.title %></h2>
+                        <p><strong>Date:</strong> <%= new Date(workshop.date).toLocaleDateString() %></p>
+                        <p><strong>Time:</strong> <%= workshop.startTime %> - <%= workshop.endTime %></p>
+                        <p><strong>Location:</strong> <%= workshop.location %></p>
+                        <p><strong>Price:</strong> $<%= workshop.price %></p>
+                        <% if (workshop.maxParticipants) { %>
+                            <p><strong>Max Participants:</strong> <%= workshop.maxParticipants %></p>
+                        <% } %>
+                        <% if (workshop.category) { %>
+                            <p><strong>Category:</strong> <%= workshop.category %></p>
+                        <% } %>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p>You have not scheduled any workshops yet.</p>
+            <% } %>
+        </div>
+    </div>
+
+    <script>
+        // Lightweight button interaction
+        document.querySelector('.btn-primary')?.addEventListener('click', function(e) {
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => this.style.transform = '', 100);
+        });
+    </script>
+</body>
+</html>

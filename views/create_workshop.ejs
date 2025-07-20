@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Schedule a New Workshop</title>
+    <%- include('partials/navbar-styles') %>
+    <style>
+        /* Google Fonts Import for Traditional Look */
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@400;700&display=swap');
+
+        /* Root Variables - Sandalwood Beige Theme */
+        :root {
+            --sandalwood-beige: #F5DEB3;
+            --sandalwood-light: #FFF8E7;
+            --sandalwood-dark: #D2B48C;
+            --chocolate-brown: #3D2914;
+            --rich-brown: #6B4423;
+            --royal-gold: #DAA520;
+            --amber-gold: #FFBF00;
+            --cream-white: #FFFDD0;
+            --antique-bronze: #CD7F32;
+            --font-classic: 'Crimson Text', serif;
+            --font-display: 'Playfair Display', serif;
+        }
+
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-classic);
+            background: linear-gradient(135deg, var(--sandalwood-beige) 0%, var(--sandalwood-dark) 50%, #C19A6B 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            min-height: 100vh;
+            margin-top: 80px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Gradient */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Traditional Paper Texture Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 25% 25%, transparent 2px, rgba(139, 69, 19, 0.02) 2px),
+                radial-gradient(circle at 75% 75%, transparent 2px, rgba(139, 69, 19, 0.02) 2px);
+            background-size: 60px 60px;
+            opacity: 0.6;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Floating Decorative Elements */
+        .decorative-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .float-element {
+            position: absolute;
+            color: var(--royal-gold);
+            font-size: 24px;
+            opacity: 0.1;
+            animation: floatMotion 20s infinite ease-in-out;
+        }
+
+        .float-element:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .float-element:nth-child(2) { top: 20%; right: 15%; animation-delay: -5s; }
+        .float-element:nth-child(3) { bottom: 30%; left: 20%; animation-delay: -10s; }
+        .float-element:nth-child(4) { bottom: 15%; right: 25%; animation-delay: -15s; }
+
+        @keyframes floatMotion {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(5deg); }
+            50% { transform: translateY(-40px) rotate(-5deg); }
+            75% { transform: translateY(-20px) rotate(3deg); }
+        }
+
+        /* Back to Home Button */
+        .back-home-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, var(--chocolate-brown), var(--rich-brown));
+            color: var(--cream-white);
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 1001;
+            box-shadow: 0 6px 20px rgba(61, 41, 20, 0.3);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            font-family: var(--font-classic);
+            border: 2px solid transparent;
+        }
+        
+        .back-home-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(61, 41, 20, 0.4);
+            background: linear-gradient(135deg, var(--rich-brown), var(--antique-bronze));
+            border-color: var(--royal-gold);
+        }
+        
+        .back-home-btn::before {
+            content: '❮';
+            font-size: 16px;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .back-home-btn:hover::before {
+            transform: translateX(-3px);
+        }
+
+        /* Main Container */
+        .form-container {
+            max-width: 700px;
+            margin: 60px auto;
+            padding: 40px;
+            background: linear-gradient(145deg, var(--cream-white), var(--sandalwood-light));
+            border-radius: 20px;
+            box-shadow: 
+                0 20px 60px rgba(61, 41, 20, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            position: relative;
+            z-index: 1;
+            border: 3px solid;
+            border-image: linear-gradient(45deg, var(--royal-gold), var(--amber-gold), var(--royal-gold)) 1;
+            animation: containerFadeIn 1s ease-out;
+            overflow: hidden;
+        }
+
+        @keyframes containerFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Decorative Corner Elements */
+        .form-container::before,
+        .form-container::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, var(--royal-gold) 2px, transparent 2px);
+            background-size: 12px 12px;
+            opacity: 0.3;
+        }
+
+        .form-container::before {
+            top: 15px;
+            left: 15px;
+            border-top: 3px solid var(--royal-gold);
+            border-left: 3px solid var(--royal-gold);
+            border-radius: 10px 0 0 0;
+        }
+
+        .form-container::after {
+            bottom: 15px;
+            right: 15px;
+            border-bottom: 3px solid var(--royal-gold);
+            border-right: 3px solid var(--royal-gold);
+            border-radius: 0 0 10px 0;
+        }
+
+        /* Title Styling */
+        .form-container h1 {
+            font-family: var(--font-display);
+            font-size: 2.5em;
+            color: var(--chocolate-brown);
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(61, 41, 20, 0.1);
+            animation: titleSlideIn 1.2s ease-out 0.3s both;
+        }
+
+        @keyframes titleSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+                letter-spacing: 10px;
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                letter-spacing: normal;
+            }
+        }
+
+        .form-container h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--royal-gold), transparent);
+            transform: translateX(-50%);
+            animation: underlineExpand 1s ease-out 1s both;
+        }
+
+        @keyframes underlineExpand {
+            from { width: 0; }
+            to { width: 100px; }
+        }
+
+        /* Form Group Styling */
+        .form-group {
+            margin-bottom: 25px;
+            animation: formGroupSlideIn 0.8s ease-out both;
+            position: relative;
+        }
+
+        .form-group:nth-child(1) { animation-delay: 0.5s; }
+        .form-group:nth-child(2) { animation-delay: 0.6s; }
+        .form-group:nth-child(3) { animation-delay: 0.7s; }
+        .form-group:nth-child(4) { animation-delay: 0.8s; }
+        .form-group:nth-child(5) { animation-delay: 0.9s; }
+        .form-group:nth-child(6) { animation-delay: 1.0s; }
+        .form-group:nth-child(7) { animation-delay: 1.1s; }
+        .form-group:nth-child(8) { animation-delay: 1.2s; }
+        .form-group:nth-child(9) { animation-delay: 1.3s; }
+
+        @keyframes formGroupSlideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Label Styling */
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--chocolate-brown);
+            font-family: var(--font-display);
+            font-size: 1.1em;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .form-group label::before {
+            content: '❋';
+            color: var(--royal-gold);
+            margin-right: 8px;
+            font-size: 0.9em;
+            opacity: 0.7;
+        }
+
+        /* Input and Textarea Styling */
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid var(--sandalwood-dark);
+            border-radius: 12px;
+            font-size: 16px;
+            font-family: var(--font-classic);
+            background: linear-gradient(145deg, #FFFFFF, var(--sandalwood-light));
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            color: var(--chocolate-brown);
+            box-shadow: inset 0 2px 5px rgba(61, 41, 20, 0.1);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--royal-gold);
+            background: #FFFFFF;
+            transform: translateY(-2px);
+            box-shadow: 
+                inset 0 2px 5px rgba(61, 41, 20, 0.1),
+                0 8px 25px rgba(218, 165, 32, 0.15);
+            animation: inputGlow 0.5s ease;
+        }
+
+        @keyframes inputGlow {
+            0% { box-shadow: inset 0 2px 5px rgba(61, 41, 20, 0.1); }
+            50% { box-shadow: inset 0 2px 5px rgba(61, 41, 20, 0.1), 0 0 20px rgba(218, 165, 32, 0.3); }
+            100% { box-shadow: inset 0 2px 5px rgba(61, 41, 20, 0.1), 0 8px 25px rgba(218, 165, 32, 0.15); }
+        }
+
+        /* Textarea specific styling */
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+            line-height: 1.6;
+        }
+
+        /* Submit Button */
+        .btn-submit {
+            background: linear-gradient(135deg, var(--royal-gold), var(--amber-gold));
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 8px 25px rgba(218, 165, 32, 0.3);
+            position: relative;
+            overflow: hidden;
+            margin-top: 20px;
+            animation: buttonSlideUp 1s ease-out 1.5s both;
+        }
+
+        @keyframes buttonSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .btn-submit::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn-submit:hover::before {
+            left: 100%;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(218, 165, 32, 0.4);
+            background: linear-gradient(135deg, var(--amber-gold), var(--antique-bronze));
+        }
+
+        .btn-submit:active {
+            transform: translateY(-1px) scale(0.98);
+            transition: all 0.1s ease;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .form-container {
+                margin: 40px 20px;
+                padding: 30px 25px;
+            }
+
+            .form-container h1 {
+                font-size: 2em;
+            }
+
+            .form-group input,
+            .form-group textarea,
+            .form-group select {
+                padding: 12px 15px;
+                font-size: 15px;
+            }
+
+            .btn-submit {
+                padding: 15px 30px;
+                font-size: 16px;
+            }
+
+            .back-home-btn {
+                top: 15px;
+                left: 15px;
+                padding: 10px 16px;
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .form-container {
+                margin: 30px 15px;
+                padding: 25px 20px;
+            }
+
+            .form-container h1 {
+                font-size: 1.8em;
+            }
+
+            .back-home-btn {
+                top: 10px;
+                left: 10px;
+                padding: 8px 14px;
+                font-size: 12px;
+            }
+        }
+
+        /* Loading Animation for Form Submission */
+        .btn-submit.loading {
+            background: linear-gradient(135deg, #ccc, #999);
+            cursor: not-allowed;
+            animation: pulse 1.5s infinite;
+        }
+
+        .btn-submit.loading::after {
+            content: '⟳';
+            display: inline-block;
+            margin-left: 10px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Traditional Ornamental Separator */
+        .ornamental-divider {
+            text-align: center;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .ornamental-divider::before {
+            content: '❦ ❦ ❦';
+            color: var(--royal-gold);
+            font-size: 1.2em;
+            opacity: 0.6;
+        }
+
+        /* Hover Effects for Interactive Elements */
+        .form-group:hover label {
+            color: var(--royal-gold);
+            transition: color 0.3s ease;
+        }
+
+        .form-group:hover label::before {
+            opacity: 1;
+            transform: scale(1.2);
+            transition: all 0.3s ease;
+        }
+
+        /* Success/Error Messages Styling */
+        .message {
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-family: var(--font-classic);
+            font-weight: 500;
+            animation: messageSlideIn 0.5s ease-out;
+        }
+
+        .message.success {
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            color: #155724;
+            border: 2px solid #28a745;
+        }
+
+        .message.error {
+            background: linear-gradient(135deg, #f8d7da, #f1b0b7);
+            color: #721c24;
+            border: 2px solid #dc3545;
+        }
+
+        @keyframes messageSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Decorative floating elements -->
+    <div class="decorative-elements">
+        <div class="float-element">❀</div>
+        <div class="float-element">❁</div>
+        <div class="float-element">❃</div>
+        <div class="float-element">❋</div>
+    </div>
+
+    <!-- Back to Home Button -->
+    <a href="/" class="back-home-btn">Home</a>
+    
+    <%- include('partials/navbar') %>
+    
+    <div class="form-container">
+        <h1>Schedule a New Workshop</h1>
+        
+        <form action="/api/workshops/create" method="POST" id="workshopForm">
+            <div class="form-group">
+                <label for="title">Workshop Title</label>
+                <input type="text" id="title" name="title" placeholder="Enter an engaging workshop title..." required>
+            </div>
+            
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" rows="5" placeholder="Describe your workshop in detail..." required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="category">Category</label>
+                <input type="text" id="category" name="category" placeholder="e.g., Pottery, Painting, Sculpture..." required>
+            </div>
+            
+            <div class="ornamental-divider"></div>
+            
+            <div class="form-group">
+                <label for="date">Date</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="startTime">Start Time</label>
+                <input type="time" id="startTime" name="startTime" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="endTime">End Time</label>
+                <input type="time" id="endTime" name="endTime" required>
+            </div>
+            
+            <div class="ornamental-divider"></div>
+            
+            <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" id="location" name="location" value="Online" placeholder="Workshop venue or 'Online'" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="price">Price (INR)</label>
+                <input type="number" id="price" name="price" min="0" value="0" placeholder="0" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="maxParticipants">Max Participants</label>
+                <input type="number" id="maxParticipants" name="maxParticipants" min="1" placeholder="Maximum number of participants">
+            </div>
+            
+            <button type="submit" class="btn-submit">Schedule Workshop</button>
+        </form>
+    </div>
+
+    <script>
+        // Form submission animation
+        document.getElementById('workshopForm').addEventListener('submit', function(e) {
+            const submitBtn = document.querySelector('.btn-submit');
+            submitBtn.classList.add('loading');
+            submitBtn.textContent = 'Creating Workshop...';
+        });
+
+        // Set minimum date to today
+        document.getElementById('date').min = new Date().toISOString().split('T')[0];
+
+        // Form validation for end time
+        document.getElementById('endTime').addEventListener('change', function() {
+            const startTime = document.getElementById('startTime').value;
+            const endTime = this.value;
+            
+            if (startTime && endTime && endTime <= startTime) {
+                alert('End time must be after start time');
+                this.value = '';
+            }
+        });
+    </script>
+</body>
+</html>

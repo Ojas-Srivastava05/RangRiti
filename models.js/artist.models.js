@@ -25,7 +25,11 @@ const artistSchema = new mongoose.Schema({
     orders: [{
   type: mongoose.Schema.Types.ObjectId,
   ref: 'Order'
-}]
+}],
+    workshops: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Workshop'
+    }]
 
 }, { timestamps: true });
 

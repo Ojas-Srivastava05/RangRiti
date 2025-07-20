@@ -10,6 +10,7 @@ import fetch from 'node-fetch'; // Add at the top if not present
 // CORRECTED MODEL PATHS
 import User from '../models.js/user.models.js';
 import Artist from '../models.js/artist.models.js';
+import Workshop from '../models.js/workshop.models.js'; // Import the new Workshop model
 
 import session from 'express-session';
 import multer from 'multer';
@@ -36,7 +37,7 @@ const port = process.env.PORT || 3000;
 
 
 app.set('view engine', 'ejs')
-// app.set('views', path.join(__dirname, '..', 'views'));  // by sunil
+app.set('views', path.join(__dirname, '..', 'views'));  // by sunil
 
 // --- Middleware ---
 app.use(express.json());
@@ -70,6 +71,13 @@ app.use(session({
         maxAge: 1000 * 60 * 60 * 24 // 1 day
     }
 }));
+
+// This middleware makes the `user` object available in all EJS templates.
+app.use((req, res, next) => {
+    res.locals.user = req.session.user || null;
+    next();
+});
+
 app.use(async (req, res, next) => {
     if (req.session.user && req.session.user.id) {
         try {
@@ -346,10 +354,6 @@ app.get('/artist/gallery', async (req, res) => {
 });
 
 // Then dynamic
-app.get('/artist/:id', async (req, res) => {
-  const artist = await Artist.findById(req.params.id);
-  res.render('artist-profile', { artist });
-});
 
 app.get('/artists',async (req,res)=>{
    const searchQuery = req.query.search || '';
@@ -372,65 +376,114 @@ app.get('/artists',async (req,res)=>{
 
 
 
-app.post('/artist/delete-product/:id', async (req, res) => {
-  try {
-    const artistId = req.session?.user?.id;
-    if (!artistId) return res.redirect('/');
+// --- ARTIST & WORKSHOP ROUTES (CORRECT ORDER) ---
 
-    const productId = req.params.id;
-    const artist = await Artist.findById(artistId);
-    const product = await Product.findById(productId);
+// --- STEP 1: Define ALL specific routes first ---
 
-    if (!product || product.artistName !== artist.artistName) {
-      return res.status(403).send("Not authorized to delete this product");
+// Page to view all artists
+app.get('/artists', async (req, res) => {
+    const searchQuery = req.query.search || '';
+    try {
+        const artists = await Artist.find({
+            $or: [
+                { firstName: { $regex: searchQuery, $options: 'i' } },
+                { lastName: { $regex: searchQuery, $options: 'i' } },
+                { artistName: { $regex: searchQuery, $options: 'i' } }
+            ]
+        });
+        res.render('artists', { artists, searchQuery });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Error fetching artists");
     }
-
-    await Product.findByIdAndDelete(productId);
-    res.redirect('/artist/gallery');
-  } catch (error) {
-    console.error("Error deleting product:", error);
-    res.status(500).send("Internal Server Error");
-  }
 });
 
+// Logged-in artist's product gallery
+app.get('/artist/gallery', async (req, res) => {
+    try {
+        const artistId = req.session?.user?.id;
+        if (!artistId) return res.redirect('/');
+        const artist = await Artist.findById(artistId);
+        if (!artist) return res.status(404).send("Artist not found");
+        const products = await Product.find({ artistName: artist.artistName });
+        res.render('artist_gallery', { artist, products });
+    } catch (error) {
+        console.error("Error loading gallery:", error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+// Logged-in artist's workshop dashboard
+app.get('/artist/workshops', async (req, res) => {
+    const user = req.session.user;
+    if (!user || user.type !== 'artist') {
+        return res.status(403).redirect('/login.html');
+    }
+    try {
+        const workshops = await Workshop.find({ artist: user.id }).sort({ date: 'asc' });
+        res.render('artist_workshops', { workshops });
+    } catch (error) {
+        console.error("Error fetching artist workshops:", error);
+        res.status(500).render('error', { message: "Server error" });
+    }
+});
+
+
+// --- STEP 2: Define ALL dynamic routes (with /:id) last ---
+
+// Page for an artist to edit one of their products
+app.get('/artist/edit-product/:id', async (req, res) => {
+    try {
+        const artistId = req.session?.user?.id;
+        if (!artistId) return res.redirect('/');
+        const product = await Product.findById(req.params.id);
+        if (!product) return res.status(404).send("Product not found");
+        const artist = await Artist.findById(artistId);
+        if (product.artistName !== artist.artistName) {
+            return res.status(403).send("Not authorized to edit this product");
+        }
+        res.render('edit_product', { product });
+    } catch (error) {
+        console.error("Error loading edit page:", error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+// API endpoint to delete a product
+app.post('/artist/delete-product/:id', async (req, res) => {
+    try {
+        const artistId = req.session?.user?.id;
+        if (!artistId) return res.redirect('/');
+        const productId = req.params.id;
+        const artist = await Artist.findById(artistId);
+        const product = await Product.findById(productId);
+        if (!product || product.artistName !== artist.artistName) {
+            return res.status(403).send("Not authorized to delete this product");
+        }
+        await Product.findByIdAndDelete(productId);
+        res.redirect('/artist/gallery');
+    } catch (error) {
+        console.error("Error deleting product:", error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+// Public profile page for any artist (This is the most general route and must be last)
+// NOTE: I have combined your two '/artist/:id' and '/artists/:id' routes into one.
 app.get('/artists/:id', async (req, res) => {
     const artistId = req.params.id;
-
     try {
-        // Populate the products array from artist schema
         const artist = await Artist.findById(artistId).populate('products');
-
         if (!artist) {
             return res.status(404).send("Artist not found");
         }
-
-        const products = artist.products;  // populated products
-
-        res.render('artist-profile', { artist, products });
+        res.render('artist-profile', { artist, products: artist.products });
     } catch (err) {
         console.error("Error loading artist profile:", err);
         res.status(500).send("Server error");
     }
 });
-app.get('/artist/edit-product/:id', async (req, res) => {
-  try {
-    const artistId = req.session?.user?.id;
-    if (!artistId) return res.redirect('/');
 
-    const product = await Product.findById(req.params.id);
-    if (!product) return res.status(404).send("Product not found");
-
-    const artist = await Artist.findById(artistId);
-    if (product.artistName !== artist.artistName) {
-      return res.status(403).send("Not authorized to edit this product");
-    }
-
-    res.render('edit_product', { product }); // 👈 new view with pre-filled form
-  } catch (error) {
-    console.error("Error loading edit page:", error);
-    res.status(500).send("Internal Server Error");
-  }
-});
 app.post('/api/edit-product/:id', upload.array('images'), async (req, res) => {
   const productId = req.params.id;
 
@@ -502,6 +555,103 @@ app.post('/buy-now/:productId', async (req, res) => {
 
 
 
+// --- WORKSHOP & CALENDAR ROUTES ---
+
+// Page to render the "Create Workshop" form for an artist
+app.get('/workshops/new', async (req, res) => {
+    const user = req.session.user;
+    if (!user || user.type !== 'artist') {
+        return res.status(403).redirect('/login.html');
+    }
+    try {
+        const artist = await Artist.findById(user.id);
+        res.render('create_workshop', { artist });
+    } catch (error) {
+        console.error("Error loading create workshop page:", error);
+        res.status(500).render('error', { message: "Server error" });
+    }
+});
+
+// API endpoint for an artist to create a new workshop
+app.post('/api/workshops/create', async (req, res) => {
+    const user = req.session.user;
+    if (!user || user.type !== 'artist') {
+        return res.status(403).json({ message: "Unauthorized" });
+    }
+
+    try {
+        const artist = await Artist.findById(user.id);
+        if (!artist) {
+            return res.status(404).json({ message: "Artist not found" });
+        }
+
+        const newWorkshop = new Workshop({
+            ...req.body,
+            artist: artist._id,
+            artistName: artist.artistName
+        });
+
+        const savedWorkshop = await newWorkshop.save();
+
+        // Add workshop to the artist's list of workshops
+        artist.workshops.push(savedWorkshop._id);
+        await artist.save();
+
+        res.status(201).redirect('/artist/workshops');
+
+    } catch (error) {
+        console.error("Error creating workshop:", error);
+        res.status(500).json({ message: "Failed to create workshop." });
+    }
+});
+
+// Page for an artist to view their own scheduled workshops
+app.get('/artist/workshops', async (req, res) => {
+    const user = req.session.user;
+    if (!user || user.type !== 'artist') {
+        return res.status(403).redirect('/login.html');
+    }
+    try {
+        const workshops = await Workshop.find({ artist: user.id }).sort({ date: 'asc' });
+        res.render('artist_workshops', { workshops });
+    } catch (error) {
+        console.error("Error fetching artist workshops:", error);
+        res.status(500).render('error', { message: "Server error" });
+    }
+});
+
+// Public calendar page
+app.get('/calendar', (req, res) => {
+    res.render('calendar');
+});
+
+// API endpoint to fetch all workshops for the public calendar
+app.get('/api/workshops', async (req, res) => {
+    try {
+        const workshops = await Workshop.find({})
+            .populate('artist', 'artistName profilePictureUrl')
+            .lean();
+
+        // Format data for FullCalendar.js
+        const events = workshops.map(ws => ({
+            title: ws.title,
+            start: ws.date,
+            extendedProps: {
+                artistName: ws.artistName,
+                description: ws.description,
+                startTime: ws.startTime,
+                endTime: ws.endTime,
+                location: ws.location,
+                price: ws.price,
+                category: ws.category
+            }
+        }));
+        res.json(events);
+    } catch (error) {
+        console.error("Error fetching workshops for calendar:", error);
+        res.status(500).json({ message: "Failed to fetch workshops." });
+    }
+});
 
 
 // --- ROOT ROUTE ---

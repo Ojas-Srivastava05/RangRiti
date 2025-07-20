@@ -71,6 +71,41 @@
             overflow-x: hidden;
         }
 
+        /* Back to Home Button */
+        .back-home-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, var(--color-earth-brown), var(--color-dark-brown));
+            color: var(--color-sandalwood-light);
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 1001;
+            box-shadow: 0 6px 20px var(--color-shadow-primary);
+            transition: all var(--transition-speed-medium) var(--easing-function);
+            font-family: var(--font-primary);
+        }
+        
+        .back-home-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px var(--color-shadow-secondary);
+            background: linear-gradient(135deg, var(--color-dark-brown), var(--color-earth-brown));
+        }
+        
+        .back-home-btn::before {
+            content: '←';
+            font-size: 18px;
+            font-weight: bold;
+        }
+
         /* Animated Gradient Background */
         body::before {
             content: '';
@@ -450,7 +485,7 @@
             padding: 1.5rem;
             border-radius: 12px;
             border: 2px solid;
-            border-image: linear-gradient(to bottom right, var(--color-gold-gradient-start), var(--color-gold-gradient-end)) 1;
+            border-image: linear-gradient(to bottom right, var (--color-gold-gradient-start), var(--color-gold-gradient-end)) 1;
             box-shadow: 0 10px 25px var(--color-shadow-primary);
             text-align: center;
             animation: card-fade-in 0.8s var(--easing-function) 0.4s forwards;
@@ -582,6 +617,11 @@
             .actions-grid {
                 grid-template-columns: 1fr;
             }
+
+            .back-home-btn {
+                padding: 10px 16px;
+                font-size: 13px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -604,6 +644,13 @@
 
             .main-container {
                 padding: 0 0.5rem 1rem;
+            }
+
+            .back-home-btn {
+                top: 15px;
+                left: 15px;
+                padding: 8px 14px;
+                font-size: 12px;
             }
         }
 
@@ -638,6 +685,9 @@
 </head>
 
 <body>
+    <!-- Back to Home Button -->
+    <a href="/index.html" class="back-home-btn">Home</a>
+
     <!-- Background Particle Effects -->
     <div class="particle-container">
         <div class="particle"></div>
@@ -725,10 +775,6 @@
                 <div class="stat-number">89</div>
                 <div class="stat-label">Sold Pieces</div>
             </div>
-            <!-- <div class="stat-card">
-                <div class="stat-number">4.8</div>
-                <div class="stat-label">Rating</div>
-            </div> -->
         </div>
 
         <!-- Actions Section -->
@@ -739,15 +785,10 @@
                     <span class="action-icon">🎨</span>
                     <span>Upload Artwork</span>
                 </button>
-                <!-- <button class="action-btn" onclick="editProfile()">
+                <button class="action-btn" onclick="window.location.href='/artist/edit-profile'">
                     <span class="action-icon">✏️</span>
                     <span>Edit Profile</span>
-                </button> -->
-                <button class="action-btn" onclick="window.location.href='/artist/edit-profile'">
-  <span class="action-icon">✏️</span>
-  <span>Edit Profile</span>
-</button>
-
+                </button>
                 <button class="action-btn" onclick="window.location.href = 'orders'">
                     <span class="action-icon">📦</span>
                     <span>View Orders</span>
