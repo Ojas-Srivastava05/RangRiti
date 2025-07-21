@@ -3,581 +3,842 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rangriti - Discover Traditional Artists</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>Master Artists - RangRiti</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- ADD NAVBAR CSS -->
+    <link rel="stylesheet" href="/css/navbar.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Crimson+Text:400,600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
+        /* =================== CSS VARIABLES =================== */
         :root {
-            --sandalwood-beige: #F5E3C3;
-            --sandalwood-light: #f9efd9;
-            --maroon: #800000;
-            --rust: #B7410E;
-            --indigo: #3E2F5B;
-            --off-white: #f8f5f0;
-            --gold: #C5A455;
-            --shadow: rgba(62, 47, 91, 0.1);
+            --sandalwood-beige: #F5DEB3;
+            --warm-sandalwood: #E8D5B7;
+            --deep-sandalwood: #DCC49C;
+            --ivory: #FFFFF0;
+            --cream-white: #FAF0E6;
+            --pearl-white: #F8F6F0;
+            --chocolate-brown: #3D2914;
+            --rich-brown: #6B4423;
+            --royal-gold: #DAA520;
+            --amber-gold: #FFBF00;
+            --bronze-gold: #CD7F32;
+            --antique-gold: #CFB53B;
+            --warm-glow: rgba(255, 215, 0, 0.1);
+            --gold-glow: rgba(218, 165, 32, 0.08);
+            --font-luxury: 'Cinzel', serif;
+            --font-elegant: 'Playfair Display', serif;
+            --font-classic: 'Crimson Text', serif;
         }
-        
-        * {
+
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* =================== ENHANCED DYNAMIC BACKGROUND =================== */
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, var(--sandalwood-beige) 0%, #f0d9b5 100%);
-            color: var(--indigo);
+            font-family: var(--font-elegant);
+            background: 
+                linear-gradient(45deg, var(--sandalwood-beige) 0%, var(--warm-sandalwood) 25%, var(--deep-sandalwood) 50%, var(--sandalwood-beige) 75%, var(--warm-sandalwood) 100%),
+                radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(139, 69, 19, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(245, 222, 179, 0.05) 0%, transparent 30%);
+            background-size: 400% 400%, 100% 100%, 100% 100%, 100% 100%;
+            animation: megaDynamicBackground 30s ease infinite;
+            color: var(--chocolate-brown);
+            line-height: 1.7;
             min-height: 100vh;
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxwYXR0ZXJuIGlkPSJtYW5kYWxhIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIiB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgcGF0dGVyblRyYW5zZm9ybT0icm90YXRlKDMwKSI+PGNpcmNsZSBjeD0iMjAwIiBjeT0iMjAwIiByPSIxODAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0M1QTQ1NSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2Utb3BhY2l0eT0iMC4wNSIvPjxwYXRoIGQ9Ik0yMDAsMjAgQzEwMCwxMDAgMzAwLDEwMCAyMDAsMjAwIEMxMDAsMzAwIDEwMCwxMDAgMjAsMjAwIiBmaWxsPSJub25lIiBzdHJva2U9IiNDNUE0NTUiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2Utb3BhY2l0eT0iMC4wNSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNtYW5kYWxhKSIvPjwvc3ZnPg==');
             position: relative;
             overflow-x: hidden;
         }
-        
-        body::before {
-            content: "";
+
+        @keyframes megaDynamicBackground {
+            0% { 
+                background-position: 0% 50%, 20% 80%, 80% 20%, 40% 40%; 
+                filter: hue-rotate(0deg) brightness(1) contrast(1);
+            }
+            20% { 
+                background-position: 50% 80%, 40% 60%, 60% 40%, 80% 20%; 
+                filter: hue-rotate(3deg) brightness(1.02) contrast(1.01);
+            }
+            40% { 
+                background-position: 100% 50%, 80% 20%, 20% 80%, 60% 60%; 
+                filter: hue-rotate(6deg) brightness(1.01) contrast(1.02);
+            }
+            60% { 
+                background-position: 80% 20%, 60% 40%, 40% 60%, 20% 80%; 
+                filter: hue-rotate(4deg) brightness(1.03) contrast(1.01);
+            }
+            80% { 
+                background-position: 20% 80%, 20% 80%, 80% 20%, 40% 40%; 
+                filter: hue-rotate(2deg) brightness(1.01) contrast(1);
+            }
+            100% { 
+                background-position: 0% 50%, 20% 80%, 80% 20%, 40% 40%; 
+                filter: hue-rotate(0deg) brightness(1) contrast(1);
+            }
+        }
+
+        /* =================== BACKGROUND LAYERS =================== */
+        .background-layers {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        /* Enhanced dynamic overlay */
+        .geometric-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYWlzZWx5IiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCI+PHBhdGggZD0iTTAgMCBMNTAgMCA1MCA1MCAwIDUweiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjQzVBNTQ1IiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIwLjAyIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI3BhaXNlbHkpIi8+PC9zdmc+');
-            opacity: 0.1;
-            z-index: -1;
+            background: 
+                conic-gradient(from 0deg at 25% 25%, rgba(255, 215, 0, 0.06) 0deg, transparent 90deg, rgba(139, 69, 19, 0.04) 180deg, transparent 270deg),
+                conic-gradient(from 180deg at 75% 75%, rgba(245, 222, 179, 0.05) 0deg, transparent 120deg, rgba(255, 215, 0, 0.03) 240deg, transparent 360deg),
+                linear-gradient(45deg, rgba(255, 215, 0, 0.02) 0%, transparent 50%, rgba(139, 69, 19, 0.02) 100%);
+            animation: rotateAndPulse 45s linear infinite;
         }
-        
-        .floating-element {
+
+        @keyframes rotateAndPulse {
+            0% { 
+                transform: rotate(0deg) scale(1); 
+                opacity: 0.8;
+            }
+            25% { 
+                transform: rotate(90deg) scale(1.05); 
+                opacity: 0.6;
+            }
+            50% { 
+                transform: rotate(180deg) scale(1.1); 
+                opacity: 0.9;
+            }
+            75% { 
+                transform: rotate(270deg) scale(1.05); 
+                opacity: 0.7;
+            }
+            100% { 
+                transform: rotate(360deg) scale(1); 
+                opacity: 0.8;
+            }
+        }
+
+        /* Enhanced particle system */
+        .floating-particles {
             position: absolute;
-            opacity: 0.1;
-            z-index: -1;
+            width: 100%;
+            height: 100%;
         }
-        
-        .floating-element.leaf {
-            width: 80px;
-            height: 80px;
-            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNjAgMTBDNTUgNSA0MCAxMCAzMCAyMEMyMCAxMCAxMCAxNSAxMCAyNUMxMCAzNSAyMCA0MCAyNSA0NUMzMCA1MCAzNSA1NSA0MCA2MEM0NSA2NSA1MCA2NSA1NSA2MEM2MCA1NSA2NSA0NSA2NSAzNUM2NSAyNSA3MCAxNSA2MCAxMFoiIGZpbGw9IiM4MDAwMDAiIGZpbGwtb3BhY2l0eT0iMC4xIi8+PC9zdmc+');
-            animation: float 25s infinite ease-in-out;
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--royal-gold), var(--amber-gold));
+            opacity: 0;
+            animation: gentleFloat 45s infinite linear;
+            will-change: transform, opacity;
         }
-        
-        .floating-element.mandala {
+
+        @keyframes gentleFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg) scale(0.3);
+                opacity: 0;
+            }
+            15% {
+                opacity: 0.7;
+                transform: translateY(85vh) rotate(54deg) scale(0.8);
+            }
+            30% {
+                opacity: 0.9;
+                transform: translateY(70vh) rotate(108deg) scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: translateY(50vh) rotate(180deg) scale(1.1);
+            }
+            70% {
+                opacity: 0.6;
+                transform: translateY(30vh) rotate(252deg) scale(0.9);
+            }
+            85% {
+                opacity: 0.4;
+                transform: translateY(15vh) rotate(306deg) scale(0.6);
+            }
+            100% {
+                transform: translateY(-10vh) rotate(360deg) scale(0.2);
+                opacity: 0;
+            }
+        }
+
+        /* 8 particles for artist page */
+        .particle:nth-child(1) { left: 8%; animation-delay: -3s; width: 4px; height: 4px; animation-duration: 42s; }
+        .particle:nth-child(2) { left: 18%; animation-delay: -12s; width: 6px; height: 6px; animation-duration: 48s; }
+        .particle:nth-child(3) { left: 28%; animation-delay: -7s; width: 3px; height: 3px; animation-duration: 45s; }
+        .particle:nth-child(4) { left: 38%; animation-delay: -18s; width: 5px; height: 5px; animation-duration: 40s; }
+        .particle:nth-child(5) { left: 58%; animation-delay: -22s; width: 7px; height: 7px; animation-duration: 43s; }
+        .particle:nth-child(6) { left: 68%; animation-delay: -14s; width: 3px; height: 3px; animation-duration: 47s; }
+        .particle:nth-child(7) { left: 78%; animation-delay: -9s; width: 5px; height: 5px; animation-duration: 41s; }
+        .particle:nth-child(8) { left: 88%; animation-delay: -16s; width: 4px; height: 4px; animation-duration: 44s; }
+
+        /* =================== HERO SECTION =================== */
+        .hero-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 50vh;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-title {
+            font-family: var(--font-luxury);
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 900;
+            color: var(--chocolate-brown);
+            margin-bottom: 1.5rem;
+            text-shadow: 
+                3px 3px 6px rgba(0, 0, 0, 0.15),
+                0 0 30px rgba(255, 215, 0, 0.2);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .page-subtitle {
+            font-family: var(--font-elegant);
+            font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+            color: var(--rich-brown);
+            font-style: italic;
+            font-weight: 400;
+            margin-bottom: 3rem;
+            letter-spacing: 0.5px;
+            max-width: 600px;
+        }
+
+        .decorative-divider {
             width: 120px;
-            height: 120px;
-            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDEyMCAxMjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iNjAiIGN5PSI2MCIgcj0iNTAiIHN0cm9rZT0iI0M1QTQ1NSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2Utb3BhY2l0eT0iMC4xIi8+PGNpcmNsZSBjeD0iNjAiIGN5PSI2MCIgcj0iMzUiIHN0cm9rZT0iI0M1QTQ1NSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2Utb3BhY2l0eT0iMC4xIi8+PGNpcmNsZSBjeD0iNjAiIGN5PSI2MCIgcj0iMjAiIHN0cm9rZT0iI0M1QTQ1NSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2Utb3BhY2l0eT0iMC4xIi8+PC9zdmc+');
-            animation: float 30s infinite ease-in-out reverse;
+            height: 4px;
+            background: linear-gradient(90deg, var(--royal-gold), var(--amber-gold), var(--royal-gold));
+            margin: 2rem auto;
+            border-radius: 2px;
+            position: relative;
         }
-        
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(20px, 40px) rotate(5deg); }
-            50% { transform: translate(40px, 20px) rotate(0deg); }
-            75% { transform: translate(10px, 30px) rotate(-5deg); }
+
+        .decorative-divider::before,
+        .decorative-divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 15px;
+            height: 15px;
+            background: radial-gradient(circle, var(--royal-gold), var(--amber-gold));
+            border-radius: 50%;
+            transform: translateY(-50%);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
         }
-        
+
+        .decorative-divider::before {
+            left: -25px;
+        }
+
+        .decorative-divider::after {
+            right: -25px;
+        }
+
+        /* =================== MAIN CONTENT =================== */
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 20px;
-        }
-        
-        /* Header Styles */
-        header {
-            text-align: center;
-            padding: 40px 0 30px;
+            padding: 2rem;
             position: relative;
+            z-index: 2;
         }
-        
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            color: var(--indigo);
-            margin-bottom: 10px;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .logo::after {
-            content: "";
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(to right, var(--gold), var(--rust));
-            border-radius: 2px;
-        }
-        
-        .tagline {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.2rem;
-            color: var(--rust);
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-        
-        /* Page Heading */
-        .page-heading {
-            text-align: center;
-            margin: 40px 0;
-            position: relative;
-        }
-        
-        .page-heading h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
-            color: var(--indigo);
-            position: relative;
-            display: inline-block;
-            padding: 0 20px;
-        }
-        
-        .page-heading h1::before,
-        .page-heading h1::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            width: 100px;
-            height: 2px;
-            background: linear-gradient(to right, transparent, var(--gold), transparent);
-        }
-        
-        .page-heading h1::before {
-            right: 100%;
-        }
-        
-        .page-heading h1::after {
-            left: 100%;
-        }
-        
-        .page-heading .flourish {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 2rem;
-            color: var(--gold);
-            opacity: 0.5;
-        }
-        
-        .page-heading .flourish.left {
-            left: calc(50% - 200px);
-        }
-        
-        .page-heading .flourish.right {
-            right: calc(50% - 200px);
-        }
-        
-        /* Filters */
-        .filters {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 40px;
-            padding: 15px;
-            background-color: rgba(245, 227, 195, 0.7);
-            border-radius: 10px;
-            box-shadow: 0 4px 12px var(--shadow);
+
+        /* =================== FILTERS SECTION =================== */
+        .filters-section {
             max-width: 900px;
-            margin: 0 auto 40px;
+            margin: 0 auto 4rem;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(245, 222, 179, 0.7));
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.2);
         }
-        
+
         .filter-group {
             display: flex;
             flex-direction: column;
-            min-width: 180px;
+            width: 100%;
         }
-        
+
         .filter-group label {
-            font-size: 0.9rem;
-            margin-bottom: 5px;
-            color: var(--rust);
-            font-weight: 500;
+            font-family: var(--font-luxury);
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            color: var (--rich-brown);
+            font-weight: 600;
+            letter-spacing: 0.5px;
         }
-        
-        .filter-group select, .filter-group input {
-            padding: 10px 15px;
-            border: 1px solid var(--gold);
-            border-radius: 6px;
-            background-color: var(--off-white);
-            font-family: 'Poppins', sans-serif;
-            color: var(--indigo);
-        }
-        
-        .search-bar {
+
+        .search-container {
             display: flex;
-            align-self: flex-end;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
-        
-        .search-bar input {
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-            border-right: none;
+
+        .filter-group input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: none;
+            background: var(--ivory);
+            font-family: var(--font-elegant);
+            font-size: 1rem;
+            color: var(--chocolate-brown);
+            outline: none;
         }
-        
-        .search-bar button {
-            background: var(--rust);
+
+        .filter-group input::placeholder {
+            color: var(--rich-brown);
+            opacity: 0.7;
+        }
+
+        .search-btn {
+            background: linear-gradient(135deg, var(--royal-gold), var(--amber-gold));
             color: white;
             border: none;
-            border-top-right-radius: 6px;
-            border-bottom-right-radius: 6px;
-            padding: 0 15px;
+            padding: 1rem 1.5rem;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
         }
-        
-        .search-bar button:hover {
-            background: var(--maroon);
+
+        .search-btn:hover {
+            background: linear-gradient(135deg, var(--amber-gold), var(--bronze-gold));
+            transform: translateY(-1px);
         }
-        
-        /* Artist Grid */
+
+        /* =================== ARTIST GRID =================== */
         .artist-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
         }
-        
-        /* Artist Card */
+
+        /* =================== ARTIST CARDS =================== */
         .artist-card {
-            background: var(--off-white);
-            border-radius: 15px;
+            background: linear-gradient(145deg, var(--ivory), var(--cream-white));
+            border-radius: 25px;
             overflow: hidden;
-            box-shadow: 0 10px 30px var(--shadow);
-            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
             position: relative;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
+            will-change: transform;
         }
-        
+
         .artist-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(62, 47, 91, 0.2);
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
         }
-        
+
         .card-header {
-            background: linear-gradient(to right, var(--indigo), var(--rust));
-            padding: 20px;
+            background: linear-gradient(135deg, var(--chocolate-brown), var(--rich-brown));
+            padding: 2.5rem 2rem;
             text-align: center;
             position: relative;
+            overflow: hidden;
         }
-        
+
+        .card-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 215, 0, 0.1) 50%, transparent 70%);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+            100% { transform: translateX(100%); }
+        }
+
         .profile-container {
             position: relative;
             width: 120px;
             height: 120px;
             margin: 0 auto;
+            z-index: 2;
         }
-        
+
         .profile-pic {
             width: 100%;
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid var(--off-white);
-            background-color: var(--sandalwood-light);
+            border: 4px solid var(--ivory);
+            background: var(--sandalwood-beige);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         }
-        
+
         .profile-frame {
             position: absolute;
             top: -8px;
             left: -8px;
             right: -8px;
             bottom: -8px;
-            border: 2px solid var(--gold);
+            border: 3px solid var(--royal-gold);
             border-radius: 50%;
-            z-index: 2;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            animation: glow 2s ease-in-out infinite alternate;
         }
-        
+
+        @keyframes glow {
+            from { box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
+            to { box-shadow: 0 0 30px rgba(255, 215, 0, 0.5); }
+        }
+
         .artist-name {
-            font-family: 'Playfair Display', serif;
+            font-family: var(--font-luxury);
             font-size: 1.8rem;
-            color: white;
-            margin-top: 15px;
-            font-weight: 600;
+            color: var(--ivory);
+            margin-top: 1rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: -0.5px;
         }
-        
+
         .artist-stage-name {
-            font-family: 'Playfair Display', serif;
+            font-family: var(--font-elegant);
             font-style: italic;
-            color: var(--gold);
-            margin-top: 5px;
+            color: var(--royal-gold);
+            margin-top: 0.5rem;
             font-size: 1.2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
-        
+
         .artist-details {
-            padding: 25px;
-            flex-grow: 1;
+            padding: 2rem;
             display: flex;
             flex-direction: column;
+            height: calc(100% - 200px);
         }
-        
+
         .artist-info {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px dashed var(--gold);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px dashed var(--royal-gold);
+            opacity: 0.8;
         }
-        
+
         .specialization, .location {
             display: flex;
             align-items: center;
-            font-size: 0.95rem;
+            font-size: 1rem;
+            font-family: var(--font-classic);
+            font-weight: 600;
+            color: var(--rich-brown);
         }
-        
+
         .specialization i, .location i {
-            color: var(--rust);
-            margin-right: 8px;
+            color: var(--bronze-gold);
+            margin-right: 0.5rem;
             font-size: 1.1rem;
         }
-        
+
         .artist-bio {
-            margin: 15px 0;
-            line-height: 1.7;
-            color: var(--indigo);
+            margin: 1rem 0 1.5rem;
+            line-height: 1.8;
+            color: var(--chocolate-brown);
             flex-grow: 1;
-            font-size: 0.95rem;
+            font-size: 1rem;
+            font-family: var(--font-elegant);
+            opacity: 0.9;
         }
-        
+
         .gallery-preview {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin: 15px 0;
+            gap: 0.8rem;
+            margin: 1.5rem 0;
         }
-        
+
         .art-sample {
             aspect-ratio: 1/1;
-            border-radius: 8px;
-            background-color: var(--sandalwood-beige);
-            border: 1px solid rgba(183, 65, 14, 0.1);
+            border-radius: 12px;
+            background: var(--sandalwood-beige);
+            border: 2px solid rgba(218, 165, 32, 0.2);
             overflow: hidden;
+            transition: transform 0.3s ease;
         }
-        
+
+        .art-sample:hover {
+            transform: scale(1.05);
+        }
+
         .art-sample img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        
+
         .artist-actions {
             display: flex;
             justify-content: space-between;
-            margin-top: 20px;
+            align-items: center;
+            margin-top: 1.5rem;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 1rem;
         }
-        
+
         .social-icons {
             display: flex;
-            gap: 12px;
+            gap: 0.8rem;
         }
-        
+
         .social-icon {
-            width: 36px;
-            height: 36px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            background: var(--sandalwood-beige);
+            background: linear-gradient(135deg, var(--sandalwood-beige), var(--warm-sandalwood));
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--rust);
+            color: var(--rich-brown);
             text-decoration: none;
-            transition: all 0.3s;
-            border: 1px solid rgba(183, 65, 14, 0.2);
+            transition: all 0.3s ease;
+            border: 2px solid rgba(218, 165, 32, 0.3);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        
+
         .social-icon:hover {
-            background: var(--rust);
+            background: linear-gradient(135deg, var(--royal-gold), var(--amber-gold));
             color: white;
             transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
         }
-        
+
         .btn {
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 500;
+            padding: 0.8rem 1.5rem;
+            border-radius: 12px;
+            font-family: var(--font-elegant);
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 0.5rem;
             border: none;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
         }
-        
+
         .btn-portfolio {
-            background: var(--rust);
+            background: linear-gradient(135deg, var(--rich-brown), var(--chocolate-brown));
             color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
-        
+
         .btn-portfolio:hover {
-            background: var(--maroon);
+            background: linear-gradient(135deg, var(--chocolate-brown), var(--rich-brown));
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
-        
+
         .btn-profile {
             background: transparent;
-            color: var(--indigo);
-            border: 1px solid var(--indigo);
+            color: var(--chocolate-brown);
+            border: 2px solid var(--royal-gold);
         }
-        
+
         .btn-profile:hover {
-            background: var(--indigo);
+            background: var(--royal-gold);
             color: white;
+            transform: translateY(-2px);
         }
-        
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 40px 0 20px;
-            margin-top: 60px;
-            color: var(--indigo);
-            border-top: 1px solid rgba(197, 164, 85, 0.3);
-        }
-        
-        .footer-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            margin-bottom: 15px;
-        }
-        
-        .copyright {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-        
-        /* Responsive */
+
+        /* =================== MOBILE OPTIMIZATION =================== */
         @media (max-width: 768px) {
+            .hero-section {
+                padding: 6rem 1rem 3rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
             .artist-grid {
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                grid-template-columns: 1fr;
+                gap: 2rem;
             }
-            
-            .filters {
+
+            .filters-section {
+                padding: 1.5rem;
+                margin-bottom: 3rem;
+            }
+
+            .artist-actions {
                 flex-direction: column;
+                align-items: stretch;
             }
-            
-            .page-heading h1 {
-                font-size: 2.2rem;
+
+            .social-icons {
+                justify-content: center;
             }
-            
-            .page-heading .flourish {
+
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            /* Reduce particles on mobile */
+            .particle:nth-child(n+5) {
                 display: none;
             }
-            
-            .page-heading h1::before,
-            .page-heading h1::after {
-                width: 50px;
+        }
+
+        @media (max-width: 480px) {
+            .hero-section {
+                padding: 5rem 1rem 2rem;
+            }
+
+            .artist-details {
+                padding: 1.5rem;
+            }
+
+            .card-header {
+                padding: 2rem 1.5rem;
+            }
+
+            .artist-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            /* Only keep essential particles on small screens */
+            .particle:nth-child(n+3) {
+                display: none;
+            }
+        }
+
+        /* =================== PERFORMANCE BOOST =================== */
+        .particle-container {
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+
+        /* Reduce motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            .particle {
+                animation-duration: 100s;
+                opacity: 0.1;
+            }
+
+            .geometric-overlay {
+                animation: none;
+            }
+
+            body {
+                animation: none;
+            }
+
+            .artist-card:hover {
+                transform: translateY(-2px);
             }
         }
     </style>
 </head>
 <body>
-    <!-- Floating decorative elements -->
-    <div class="floating-element leaf" style="top: 10%; left: 5%;"></div>
-    <div class="floating-element mandala" style="top: 15%; right: 7%;"></div>
-    <div class="floating-element leaf" style="bottom: 20%; left: 8%;"></div>
-    <div class="floating-element mandala" style="bottom: 15%; right: 5%;"></div>
-    
-<div class="container">
-    <header>
-        <div class="logo">Rangriti</div>
-        <p class="tagline">Celebrating the soul of Indian artistry through generations of traditional craftsmanship</p>
-    </header>
-
-    <div class="page-heading">
-        <span class="flourish left">❀</span>
-        <h1>Discover Master Artists</h1>
-        <span class="flourish right">❀</span>
+    <!-- Enhanced Gold Particle Background -->
+    <div class="background-layers">
+        <div class="geometric-overlay"></div>
+        <div class="floating-particles particle-container">
+            <!-- Main particles for artist page -->
+            <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+            <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+            <div class="particle"></div><div class="particle"></div>
+        </div>
     </div>
 
-    <div class="filters">
-        <div class="filter-group search-bar">
-            <form method="GET" action="/artists" class="filter-group search-bar">
-    <label>Search Artists</label>
-    <div style="display: flex;">
-        <input type="text" name="search" placeholder="Artist name" value="<%= typeof searchQuery !== 'undefined' ? searchQuery : '' %>">
-        <button type="submit"><i class="fas fa-search"></i></button>
-    </div>
-</form>
+    <!-- Navigation will be injected here by navbar.js -->
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1 class="page-title">Master Artists</h1>
+        <div class="decorative-divider"></div>
+        <p class="page-subtitle">Celebrating the soul of Indian artistry through generations of traditional craftsmanship</p>
+    </section>
+
+    <div class="container">
+        <!-- Filters Section -->
+        <div class="filters-section">
+            <form method="GET" action="/artists" class="filter-group">
+                <label>Search Artists</label>
+                <div class="search-container">
+                    <input type="text" name="search" placeholder="Enter artist name to discover their work..." value="<%= typeof searchQuery !== 'undefined' ? searchQuery : '' %>">
+                    <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+            </form>
         </div>
 
-    </div>
-
-    <div class="artist-grid">
-        <% artists.forEach(artist => { %>
-            <div class="artist-card">
-                <div class="card-header">
-                    <div class="profile-container">
-                        <div class="profile-pic" style="background-image: url('<%= artist.profilePictureUrl %>'); background-size: cover;"></div>
-                        <div class="profile-frame"></div>
-                    </div>
-                    <h2 class="artist-name"><%= artist.firstName %> <%= artist.lastName %></h2>
-                    <div class="artist-stage-name"><%= artist.artistName %></div>
-                </div>
-
-                <div class="artist-details">
-                    <div class="artist-info">
-                        <% if (artist.specialization) { %>
-                            <div class="specialization">
-                                <i class="fas fa-palette"></i>
-                                <span><%= artist.specialization %></span>
-                            </div>
-                        <% } %>
-
-                        <% if (artist.city) { %>
-                            <div class="location">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span><%= artist.city %></span>
-                            </div>
-                        <% } %>
+        <!-- Artist Grid -->
+        <div class="artist-grid">
+            <% artists.forEach(artist => { %>
+                <div class="artist-card">
+                    <div class="card-header">
+                        <div class="profile-container">
+                            <div class="profile-pic" style="background-image: url('<%= artist.profilePictureUrl %>'); background-size: cover;"></div>
+                            <div class="profile-frame"></div>
+                        </div>
+                        <h2 class="artist-name"><%= artist.firstName %> <%= artist.lastName %></h2>
+                        <div class="artist-stage-name"><%= artist.artistName %></div>
                     </div>
 
-                    <p class="artist-bio"><%= artist.bio %></p>
-
-                    <div class="gallery-preview">
-                        <% artist.artSampleUrls.slice(0, 3).forEach(sample => { %>
-                            <div class="art-sample" style="background-image: url('<%= sample %>'); background-size: cover;"></div>
-                        <% }) %>
-                    </div>
-
-                    <div class="artist-actions">
-                        <div class="social-icons">
-                            <% if (artist.instagram) { %>
-                                <a href="<%= artist.instagram %>" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <div class="artist-details">
+                        <div class="artist-info">
+                            <% if (artist.specialization) { %>
+                                <div class="specialization">
+                                    <i class="fas fa-palette"></i>
+                                    <span><%= artist.specialization %></span>
+                                </div>
                             <% } %>
-                            <% if (artist.facebook) { %>
-                                <a href="<%= artist.facebook %>" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                            <% } %>
-                            <% if (artist.twitter) { %>
-                                <a href="<%= artist.twitter %>" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+
+                            <% if (artist.city) { %>
+                                <div class="location">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span><%= artist.city %></span>
+                                </div>
                             <% } %>
                         </div>
 
-                        <% if (artist.portfolioUrl) { %>
-                            <a href="<%= artist.portfolioUrl %>" target="_blank" class="btn btn-portfolio">
-                                <i class="fas fa-eye"></i>
-                                View Portfolio
-                            </a>
-                        <% } %>
+                        <p class="artist-bio"><%= artist.bio %></p>
 
-                        <a href="/artists/<%= artist._id %>" class="btn btn-profile">
-                            <i class="fas fa-user"></i>
-                            Full Profile
-                        </a>
+                        <div class="gallery-preview">
+                            <% artist.artSampleUrls.slice(0, 3).forEach(sample => { %>
+                                <div class="art-sample" style="background-image: url('<%= sample %>'); background-size: cover;"></div>
+                            <% }) %>
+                        </div>
+
+                        <div class="artist-actions">
+                            <div class="social-icons">
+                                <% if (artist.instagram) { %>
+                                    <a href="<%= artist.instagram %>" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                                <% } %>
+                                <% if (artist.facebook) { %>
+                                    <a href="<%= artist.facebook %>" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                                <% } %>
+                                <% if (artist.twitter) { %>
+                                    <a href="<%= artist.twitter %>" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+                                <% } %>
+                            </div>
+
+                            <div style="display: flex; gap: 0.8rem;">
+                                <% if (artist.portfolioUrl) { %>
+                                    <a href="<%= artist.portfolioUrl %>" target="_blank" class="btn btn-portfolio">
+                                        <i class="fas fa-eye"></i>
+                                        Portfolio
+                                    </a>
+                                <% } %>
+
+                                <a href="/artists/<%= artist._id %>" class="btn btn-profile">
+                                    <i class="fas fa-user"></i>
+                                    Profile
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        <% }) %>
+            <% }) %>
+        </div>
     </div>
-</div>
-    
-    <footer>
-        <div class="footer-logo">Rangriti</div>
-        <p class="copyright">Preserving India's artistic heritage since 2010 • © 2023 Rangriti Arts Foundation</p>
-    </footer>
+
+    <!-- LOAD NAVBAR JAVASCRIPT -->
+    <script src="/js/navbar.js"></script>
+
+    <script>
+        // Optimized performance loading
+        window.addEventListener('load', function() {
+            // GPU acceleration for smoother animations
+            document.querySelectorAll('.artist-card, .particle-container').forEach(el => {
+                el.style.transform = 'translateZ(0)';
+                el.style.backfaceVisibility = 'hidden';
+            });
+        });
+
+        // Enhanced scroll reveal with performance optimization
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    scrollObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Apply smooth scroll reveal to artist cards
+        document.querySelectorAll('.artist-card').forEach((el, index) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+            scrollObserver.observe(el);
+        });
+
+        // Optimized particle management
+        const allParticles = document.querySelectorAll('.particle');
+        
+        // Pause particles when tab is not visible
+        document.addEventListener('visibilitychange', () => {
+            const isTabActive = !document.hidden;
+            allParticles.forEach(particle => {
+                particle.style.animationPlayState = isTabActive ? 'running' : 'paused';
+            });
+        });
+
+        // Intelligent particle management based on device performance
+        const isLowPerformanceDevice = navigator.hardwareConcurrency < 4 || 
+                                       /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+        if (isLowPerformanceDevice) {
+            // Reduce particles on low-performance devices
+            allParticles.forEach((particle, index) => {
+                if (index > 3) {
+                    particle.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </body>
 </html>

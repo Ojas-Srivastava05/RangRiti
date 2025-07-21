@@ -928,9 +928,9 @@ app.post('/api/login', async (req, res) => {
         };
 
         if (userType === 'artist') {
-            return res.status(200).json({ message: 'Login successful', redirect: '/dashboard' });
+            return res.status(200).json({ message: 'Login successful', redirect: 'index.html' });
         } else {
-            return res.status(200).json({ message: 'Login successful', redirect: '/user' });
+            return res.status(200).json({ message: 'Login successful', redirect: 'index.html' });
         }
     } catch (error) {
         console.error("Login error:", error);
