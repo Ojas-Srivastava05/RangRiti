@@ -6,1333 +6,482 @@
     <title>Traditional Painting Styles - RangRiti</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- ADD NAVBAR CSS -->
     <link rel="stylesheet" href="css/navbar.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
     <style>
-        /* =================== CSS VARIABLES & BASE =================== */
-        :root {
-            --sandalwood-beige: #F5DEB3;
-            --warm-sandalwood: #E8D5A6;
-            --deep-sandalwood: #D2B48C;
-            --rich-brown: #8B4513;
-            --chocolate-brown: #5D2F0F;
-            --mahogany: #C04000;
-            --burnt-sienna: #8B2500;
-            --antique-gold: #CD9575;
-            --royal-gold: #FFD700;
-            --amber-gold: #FFBF00;
-            --bronze-gold: #CD7F32;
-            --cream-white: #FFF8DC;
-            --ivory: #FFFFF0;
-            --pearl-white: #F8F6F0;
-            --soft-shadow: rgba(139, 69, 19, 0.08);
-            --medium-shadow: rgba(139, 69, 19, 0.15);
-            --deep-shadow: rgba(139, 69, 19, 0.25);
-            --gold-glow: rgba(255, 215, 0, 0.3);
-            --warm-glow: rgba(245, 222, 179, 0.4);
-            
-            /* Typography */
-            --font-luxury: 'Playfair Display', serif;
-            --font-elegant: 'Crimson Text', serif;
-            --font-classic: 'Cormorant Garamond', serif;
-            
-            /* Spacing & Sizing */
-            --container-max: 1600px;
-            --section-padding: 8rem;
-            --card-padding: 2.5rem;
-            
-            /* Animations */
-            --transition-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            --transition-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            --transition-elegant: cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        /* =================== RESET & BASE STYLES =================== */
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            font-size: 16px;
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-        }
-
-        /* =================== ULTRA-OPTIMIZED BACKGROUND =================== */
-        body {
-            font-family: var(--font-elegant);
-            background: 
-                linear-gradient(45deg, var(--sandalwood-beige) 0%, var(--warm-sandalwood) 25%, var(--deep-sandalwood) 50%, var(--sandalwood-beige) 75%, var(--warm-sandalwood) 100%),
-                radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(139, 69, 19, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(245, 222, 179, 0.05) 0%, transparent 30%);
-            background-size: 400% 400%, 100% 100%, 100% 100%, 100% 100%;
-            animation: megaDynamicBackground 30s ease infinite;
-            color: var(--chocolate-brown);
-            line-height: 1.7;
-            min-height: 100vh;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        @keyframes megaDynamicBackground {
-            0% { 
-                background-position: 0% 50%, 20% 80%, 80% 20%, 40% 40%; 
-                filter: hue-rotate(0deg) brightness(1) contrast(1);
-            }
-            20% { 
-                background-position: 50% 80%, 40% 60%, 60% 40%, 80% 20%; 
-                filter: hue-rotate(3deg) brightness(1.02) contrast(1.01);
-            }
-            40% { 
-                background-position: 100% 50%, 80% 20%, 20% 80%, 60% 60%; 
-                filter: hue-rotate(6deg) brightness(1.01) contrast(1.02);
-            }
-            60% { 
-                background-position: 80% 20%, 60% 40%, 40% 60%, 20% 80%; 
-                filter: hue-rotate(4deg) brightness(1.03) contrast(1.01);
-            }
-            80% { 
-                background-position: 20% 80%, 20% 80%, 80% 20%, 40% 40%; 
-                filter: hue-rotate(2deg) brightness(1.01) contrast(1);
-            }
-            100% { 
-                background-position: 0% 50%, 20% 80%, 80% 20%, 40% 40%; 
-                filter: hue-rotate(0deg) brightness(1) contrast(1);
-            }
-        }
-
-        /* Remove heavy background animations */
-        .background-layers {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        /* Enhanced dynamic overlay */
-        .geometric-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                conic-gradient(from 0deg at 25% 25%, rgba(255, 215, 0, 0.06) 0deg, transparent 90deg, rgba(139, 69, 19, 0.04) 180deg, transparent 270deg),
-                conic-gradient(from 180deg at 75% 75%, rgba(245, 222, 179, 0.05) 0deg, transparent 120deg, rgba(255, 215, 0, 0.03) 240deg, transparent 360deg),
-                linear-gradient(45deg, rgba(255, 215, 0, 0.02) 0%, transparent 50%, rgba(139, 69, 19, 0.02) 100%);
-            animation: rotateAndPulse 45s linear infinite;
-        }
-
-        @keyframes rotateAndPulse {
-            0% { 
-                transform: rotate(0deg) scale(1); 
-                opacity: 0.8;
-            }
-            25% { 
-                transform: rotate(90deg) scale(1.05); 
-                opacity: 0.6;
-            }
-            50% { 
-                transform: rotate(180deg) scale(1.1); 
-                opacity: 0.9;
-            }
-            75% { 
-                transform: rotate(270deg) scale(1.05); 
-                opacity: 0.7;
-            }
-            100% { 
-                transform: rotate(360deg) scale(1); 
-                opacity: 0.8;
-            }
-        }
-
-        /* Ultra-minimal particles - only 3 for performance */
-        .floating-particles {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-
-        .particle {
-            position: absolute;
-            border-radius: 50%;
-            background: linear-gradient(45deg, var(--royal-gold), var(--amber-gold));
-            opacity: 0;
-            animation: superFloat 40s infinite linear;
-            will-change: transform, opacity;
-        }
-
-        @keyframes superFloat {
-            0% {
-                transform: translateY(100vh) rotate(0deg) scale(0.2);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.6;
-                transform: translateY(90vh) rotate(36deg) scale(0.6);
-            }
-            25% {
-                opacity: 0.8;
-                transform: translateY(75vh) rotate(90deg) scale(1);
-            }
-            50% {
-                opacity: 0.9;
-                transform: translateY(50vh) rotate(180deg) scale(1.2);
-            }
-            75% {
-                opacity: 0.6;
-                transform: translateY(25vh) rotate(270deg) scale(0.8);
-            }
-            90% {
-                opacity: 0.3;
-                transform: translateY(10vh) rotate(324deg) scale(0.4);
-            }
-            100% {
-                transform: translateY(-10vh) rotate(360deg) scale(0);
-                opacity: 0;
-            }
-        }
-
-        /* Only 3 particles for smooth performance */
-        .particle:nth-child(1) { left: 12%; animation-delay: -5s; width: 4px; height: 4px; animation-duration: 38s; }
-        .particle:nth-child(2) { left: 28%; animation-delay: -15s; width: 6px; height: 6px; animation-duration: 42s; }
-        .particle:nth-child(3) { left: 45%; animation-delay: -8s; width: 3px; height: 3px; animation-duration: 40s; }
-        .particle:nth-child(4) { left: 62%; animation-delay: -22s; width: 5px; height: 5px; animation-duration: 36s; }
-        .particle:nth-child(5) { left: 78%; animation-delay: -12s; width: 4px; height: 4px; animation-duration: 44s; }
-        .particle:nth-child(6) { left: 88%; animation-delay: -18s; width: 7px; height: 7px; animation-duration: 39s; }
-
-        /* =================== ABSOLUTELY CENTERED NAVIGATION - FINAL FIX =================== */
-
-        /* =================== RESPONSIVE NAVIGATION - FINAL FIX =================== */
-
-
-
-        /* =================== HEADER SECTION =================== */
-        .hero-section {
-            padding: 12rem 2rem 6rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(ellipse at center top, rgba(255, 215, 0, 0.1) 0%, transparent 70%),
-                linear-gradient(180deg, rgba(245, 222, 179, 0.1) 0%, transparent 100%);
-            pointer-events: none;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .page-title {
-            font-family: var(--font-luxury);
-            font-size: clamp(3.5rem, 8vw, 7rem);
-            font-weight: 900;
-            color: var(--chocolate-brown);
-            margin-bottom: 1.5rem;
-            text-shadow: 
-                3px 3px 6px rgba(0, 0, 0, 0.15),
-                0 0 30px rgba(255, 215, 0, 0.2);
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-            animation: titleReveal 1.2s ease forwards;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        @keyframes titleReveal {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .page-subtitle {
-            font-family: var(--font-elegant);
-            font-size: clamp(1.6rem, 3vw, 2.2rem);
-            color: var(--rich-brown);
-            font-style: italic;
-            font-weight: 400;
-            margin-bottom: 3rem;
-            animation: subtitleReveal 1.2s ease 0.3s forwards;
-            opacity: 0;
-            transform: translateY(20px);
-            letter-spacing: 0.5px;
-        }
-
-        @keyframes subtitleReveal {
-            to {
-                opacity: 0.9;
-                transform: translateY(0);
-            }
-        }
-
-        .decorative-divider {
-            width: 120px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--royal-gold), var(--amber-gold), var(--royal-gold));
-            margin: 2rem auto;
-            border-radius: 2px;
-            position: relative;
-            animation: dividerExpand 0.8s ease 0.4s forwards;
-            transform: scaleX(0);
-        }
-
-        @keyframes dividerExpand {
-            to {
-                transform: scaleX(1);
-            }
-        }
-
-        /* =================== FEATURED SHOWCASE =================== */
-        .featured-showcase {
-            padding: 6rem 2rem;
-            max-width: var(--container-max);
-            margin: 0 auto;
-        }
-
-        .showcase-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .showcase-title {
-            font-family: var(--font-luxury);
-            font-size: clamp(2.8rem, 5vw, 4rem);
-            color: var(--chocolate-brown);
-            margin-bottom: 2rem;
-            position: relative;
-            font-weight: 700;
-            letter-spacing: -0.01em;
-        }
-
-        .showcase-title::after {
-            content: '';
-            position: absolute;
-            bottom: -0.8rem;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--royal-gold), var(--amber-gold), var(--royal-gold));
-            border-radius: 2px;
-        }
-
-        .featured-artwork {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
-            background: linear-gradient(145deg, var(--ivory), var(--cream-white));
-            padding: 2.5rem;
-            transition: transform 0.15s ease, box-shadow 0.15s ease;
-            will-change: transform;
-        }
-
-        .featured-artwork:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.15);
-        }
-
-        .featured-artwork img {
-            width: 100%;
-            height: auto;
-            max-height: 450px;
-            object-fit: cover;
-            border-radius: 15px;
-        }
-
-        .artwork-title {
-            font-family: var(--font-luxury);
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--royal-gold);
-            text-shadow: 
-                0 2px 4px rgba(0, 0, 0, 0.3),
-                0 0 15px rgba(255, 215, 0, 0.4);
-            letter-spacing: -0.01em;
-        }
-
-        .artwork-description {
-            font-family: var(--font-elegant);
-            font-size: 1.1rem;
-            line-height: 1.7;
-            color: #F8F8F2;
-            opacity: 0.95;
-            font-weight: 400;
-            letter-spacing: 0.3px;
-        }
-
-        .artwork-details {
-            position: absolute;
-            bottom: 2.5rem;
-            left: 2.5rem;
-            right: 2.5rem;
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(20, 20, 20, 0.85));
-            backdrop-filter: blur(12px);
-            padding: 2.5rem;
-            border-radius: 20px;
-            color: white;
-            opacity: 0;
-            transition: all 0.4s ease;
-            border: 1px solid rgba(255, 215, 0, 0.1);
-            box-shadow: 
-                0 10px 30px rgba(0, 0, 0, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        }
-
-        .featured-artwork:hover .artwork-details {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* =================== ART FORMS GALLERY =================== */
-        .gallery-section {
-            padding: 6rem 2rem;
-            max-width: var(--container-max);
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 5rem;
-        }
-
-        .section-title {
-            font-family: var(--font-luxury);
-            font-size: clamp(2.8rem, 5vw, 4rem);
-            color: var(--chocolate-brown);
-            margin-bottom: 1.5rem;
-            position: relative;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .section-title::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: -100px;
-            width: 80px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--royal-gold));
-            transform: translateY(-50%);
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            right: -100px;
-            width: 80px;
-            height: 2px;
-            background: linear-gradient(90deg, var(--royal-gold), transparent);
-            transform: translateY(-50%);
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 3rem;
-            margin-bottom: 4rem;
-        }
-
-        .art-card {
-            background: linear-gradient(145deg, var(--ivory), var(--pearl-white));
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.06);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            text-decoration: none;
-            color: inherit;
-            position: relative;
-            will-change: transform;
-        }
-
-        .art-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-        }
-
-        .card-image-container {
-            position: relative;
-            height: 280px;
-            overflow: hidden;
-        }
-
-        .art-card-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.2s ease;
-        }
-
-        .art-card:hover .art-card-image {
-            transform: scale(1.02);
-        }
-
-        .image-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(
-                180deg, 
-                transparent 0%, 
-                rgba(0, 0, 0, 0.1) 50%, 
-                rgba(0, 0, 0, 0.3) 100%
-            );
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .art-card:hover .image-overlay {
-            opacity: 1;
-        }
-
-        .card-content {
-            padding: 2.5rem;
-            position: relative;
-        }
-
-        .card-title {
-            font-family: var(--font-luxury);
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--chocolate-brown);
-            margin-bottom: 1.2rem;
-            position: relative;
-            transition: color 0.3s ease;
-            letter-spacing: -0.01em;
-        }
-
-        .art-card:hover .card-title {
-            color: var(--mahogany);
-        }
-
-        .card-title::after {
-            content: '';
-            position: absolute;
-            bottom: -0.5rem;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--royal-gold), var(--amber-gold));
-            transition: width 0.4s var(--transition-elegant);
-        }
-
-        .art-card:hover .card-title::after {
-            width: 60px;
-        }
-
-        .card-description {
-            font-family: var(--font-elegant);
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--rich-brown);
-            margin-bottom: 1.8rem;
-            opacity: 0.9;
-            font-weight: 400;
-            letter-spacing: 0.2px;
-        }
-
-        .card-origin {
-            font-family: var(--font-classic);
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--bronze-gold);
-            font-style: italic;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            letter-spacing: 0.3px;
-        }
-
-        .card-origin::before {
-            content: '📍';
-            font-size: 1.2rem;
-        }
-
-        .card-badge {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            background: linear-gradient(135deg, var(--royal-gold), var(--amber-gold));
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
-            transform: scale(0);
-            transition: transform 0.3s var(--transition-bounce);
-        }
-
-        .art-card:hover .card-badge {
-            transform: scale(1);
-        }
-
-        /* =================== STATISTICS SECTION =================== */
-        .stats-section {
-            background: linear-gradient(135deg, var(--rich-brown), var(--chocolate-brown));
-            color: white;
-            padding: 6rem 2rem;
-            margin: 6rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stats-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .stats-container {
-            max-width: var(--container-max);
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            text-align: center;
-        }
-
-        .stat-item {
-            padding: 2rem;
-        }
-
-        .stat-number {
-            font-family: var(--font-luxury);
-            font-size: 4rem;
-            font-weight: 900;
-            color: var(--royal-gold);
-            margin-bottom: 1rem;
-            text-shadow: 
-                0 0 20px rgba(255, 215, 0, 0.4),
-                2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .stat-label {
-            font-family: var(--font-elegant);
-            font-size: 1.3rem;
-            opacity: 0.95;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-weight: 500;
-        }
-
-        /* =================== FOOTER =================== */
-        .footer {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.95));
-            color: #F5F5DC;
-            text-align: center;
-            padding: 4rem 2rem 2rem;
-            margin-top: 6rem;
-            position: relative;
-        }
-
-        .footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--royal-gold), transparent);
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .footer-logo {
-            font-family: var(--font-luxury);
-            font-size: 3rem;
-            color: var(--royal-gold);
-            margin-bottom: 1.5rem;
-            font-weight: 900;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
-        }
-
-        .footer-text {
-            font-family: var(--font-elegant);
-            font-size: 1.1rem;
-            opacity: 0.9;
-            margin-bottom: 2.5rem;
-            font-weight: 400;
-            letter-spacing: 0.3px;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-link {
-            color: #F5F5DC;
-            text-decoration: none;
-            transition: color 0.3s ease;
-            font-weight: 500;
-        }
-
-        .footer-link:hover {
-            color: var (--royal-gold);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 2rem;
-            font-size: 0.9rem;
-            opacity: 0.6;
-        }
-
-        /* =================== RESPONSIVE DESIGN =================== */
-       
-
-            .hero-section {
-                padding: 9rem 1rem 4rem;
-            }
-
-            .gallery-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            /* Reduce background effects on mobile for performance */
-            .floating-ornament {
-                display: none;
-            }
-            
-            .particle:nth-child(n+4) {
-                display: none;
-            }
-
-            .featured-artwork:hover {
-                transform: translateY(-1px);
-            }
-
-            .art-card:hover {
-                transform: translateY(-2px);
-            }
-
-            .artwork-details {
-                bottom: 2rem;
-                left: 2rem;
-                right: 2rem;
-                padding: 2rem;
-            }
-
-            .artwork-title {
-                font-size: 1.8rem;
-            }
-
-            .artwork-description {
-                font-size: 1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .art-card {
-                margin: 0 1rem;
-            }
-
-            .featured-showcase,
-            .gallery-section {
-                padding: 4rem 1rem;
-            }
-
-            .featured-artwork {
-                padding: 2rem;
-            }
-
-            .artwork-details {
-                bottom: 2rem;
-                left: 2rem;
-                right: 2rem;
-                padding: 1.8rem;
-            }
-
-        
-
-            .particle:nth-child(n+4) {
-                display: none;
-            }
-            
-            .shimmer-particle {
-                display: none;
-            }
-
-            .artwork-title {
-                font-size: 1.6rem;
-            }
-        }
-
-        /* =================== SCROLL ANIMATIONS =================== */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-on-scroll {
-            opacity: 0;
-            animation: fadeInUp 0.8s var(--transition-elegant) forwards;
-        }
-
-        /* =================== LOADING ANIMATIONS =================== */
-        .page-loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--sandalwood-beige), var(--warm-sandalwood));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-        }
-
-        .page-loader.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .loader-content {
-            text-align: center;
-        }
-
-        .loader-logo {
-            font-family: var(--font-luxury);
-            font-size: 4rem;
-            color: var (--chocolate-brown);
-            margin-bottom: 2rem;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        .loader-spinner {
-            width: 60px;
-            height: 60px;
-            border: 3px solid rgba(139, 69, 19, 0.1);
-            border-top: 3px solid var(--royal-gold);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* =================== ENHANCED FLOATING ELEMENTS =================== */
-        .floating-ornament {
-            position: absolute;
-            pointer-events: none;
-            opacity: 0.08;
-            animation: ornamentDance 25s ease-in-out infinite;
-            will-change: transform;
-        }
-
-        @keyframes ornamentDance {
-            0%, 100% { 
-                transform: translateY(0px) rotate(0deg) scale(1); 
-                opacity: 0.08;
-            }
-            25% { 
-                transform: translateY(-30px) rotate(90deg) scale(1.1); 
-                opacity: 0.12;
-            }
-            50% { 
-                transform: translateY(-15px) rotate(180deg) scale(0.9); 
-                opacity: 0.15;
-            }
-            75% { 
-                transform: translateY(-25px) rotate(270deg) scale(1.05); 
-                opacity: 0.1;
-            }
-        }
-
-        .ornament-1 {
-            top: 15%;
-            left: 8%;
-            width: 45px;
-            height: 45px;
-            background: radial-gradient(circle, var(--royal-gold), var(--amber-gold));
-            border-radius: 50% 20% 50% 20%;
-            animation-delay: -8s;
-        }
-
-        .ornament-2 {
-            top: 55%;
-            right: 12%;
-            width: 35px;
-            height: 35px;
-            background: linear-gradient(45deg, var(--bronze-gold), var(--antique-gold));
-            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-            animation-delay: -18s;
-        }
-
-        .ornament-3 {
-            top: 75%;
-            left: 15%;
-            width: 40px;
-            height: 40px;
-            background: conic-gradient(var(--royal-gold), var(--amber-gold), var (--bronze-gold), var(--royal-gold));
-            border-radius: 50% 10% 50% 10%;
-            animation-delay: -12s;
-        }
-
-        .ornament-4 {
-            top: 35%;
-            right: 25%;
-            width: 30px;
-            height: 30px;
-            background: linear-gradient(135deg, var(--royal-gold), transparent, var(--amber-gold));
-            border-radius: 50%;
-            animation-delay: -25s;
-        }
-
-        /* Mesh gradient overlay for extra depth */
-        .mesh-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(ellipse 80% 50% at 20% 30%, rgba(255, 215, 0, 0.03), transparent),
-                radial-gradient(ellipse 60% 80% at 80% 70%, rgba(139, 69, 19, 0.02), transparent),
-                radial-gradient(ellipse 100% 60% at 50% 10%, rgba(245, 222, 179, 0.04), transparent);
-            animation: meshShift 35s ease-in-out infinite alternate;
-        }
-
-        @keyframes meshShift {
-            0% { 
-                transform: scale(1) rotate(0deg);
-                opacity: 0.5;
-            }
-            50% { 
-                transform: scale(1.1) rotate(2deg);
-                opacity: 0.8;
-            }
-            100% { 
-                transform: scale(0.95) rotate(-1deg);
-                opacity: 0.6;
-            }
-        }
-
-        /* =================== SMOOTH SCROLL EFFECTS =================== */
-        .scroll-reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .scroll-reveal.revealed {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* =================== PERFORMANCE OPTIMIZATIONS =================== */
-        * {
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        .gpu-accelerated {
-            transform: translateZ(0);
-            backface-visibility: hidden;
-            perspective: 1000px;
-        }
-
-        /* =================== ULTRA-LIGHT FEATURED SHOWCASE =================== */
-        .featured-artwork {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
-            background: linear-gradient(145deg, var(--ivory), var(--cream-white));
-            padding: 2.5rem;
-            transition: transform 0.15s ease, box-shadow 0.15s ease;
-            will-change: transform;
-        }
-
-        .featured-artwork:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.15);
-        }
-
-        .featured-artwork img {
-            width: 100%;
-            height: auto;
-            max-height: 450px;
-            object-fit: cover;
-            border-radius: 15px;
-            /* Remove heavy filter effects */
-        }
-
-        .artwork-details {
-            position: absolute;
-            bottom: 2.5rem;
-            left: 2.5rem;
-            right: 2.5rem;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(6px);
-            padding: 1.8rem;
-            border-radius: 15px;
-            color: white;
-            opacity: 0;
-            transition: opacity 0.2s ease;
-        }
-
-        .featured-artwork:hover .artwork-details {
-            opacity: 1;
-        }
-
-        /* =================== ENHANCED GOLD PARTICLE SYSTEM =================== */
-        .floating-particles {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-
-        .particle {
-            position: absolute;
-            border-radius: 50%;
-            background: linear-gradient(45deg, var(--royal-gold), var(--amber-gold));
-            opacity: 0;
-            animation: gentleFloat 45s infinite linear;
-            will-change: transform, opacity;
-        }
-
-        @keyframes gentleFloat {
-            0% {
-                transform: translateY(100vh) rotate(0deg) scale(0.3);
-                opacity: 0;
-            }
-            15% {
-                opacity: 0.7;
-                transform: translateY(85vh) rotate(54deg) scale(0.8);
-            }
-            30% {
-                opacity: 0.9;
-                transform: translateY(70vh) rotate(108deg) scale(1);
-            }
-            50% {
-                opacity: 0.8;
-                transform: translateY(50vh) rotate(180deg) scale(1.1);
-            }
-             70% {
-                opacity: 0.6;
-                transform: translateY(30vh) rotate(252deg) scale(0.9);
-            }
-            85% {
-                opacity: 0.4;
-                transform: translateY(15vh) rotate(306deg) scale(0.6);
-            }
-            100% {
-                transform: translateY(-10vh) rotate(360deg) scale(0.2);
-                opacity: 0;
-            }
-        }
-
-        /* 12 beautifully distributed gold particles */
-        .particle:nth-child(1) { left: 8%; animation-delay: -3s; width: 4px; height: 4px; animation-duration: 42s; }
-        .particle:nth-child(2) { left: 18%; animation-delay: -12s; width: 6px; height: 6px; animation-duration: 48s; }
-        .particle:nth-child(3) { left: 28%; animation-delay: -7s; width: 3px; height: 3px; animation-duration: 45s; }
-        .particle:nth-child(4) { left: 38%; animation-delay: -18s; width: 5px; height: 5px; animation-duration: 40s; }
-        .particle:nth-child(5) { left: 48%; animation-delay: -5s; width: 4px; height: 4px; animation-duration: 46s; }
-        .particle:nth-child(6) { left: 58%; animation-delay: -22s; width: 7px; height: 7px; animation-duration: 43s; }
-        .particle:nth-child(7) { left: 68%; animation-delay: -14s; width: 3px; height: 3px; animation-duration: 47s; }
-        .particle:nth-child(8) { left: 78%; animation-delay: -9s; width: 5px; height: 5px; animation-duration: 41s; }
-        .particle:nth-child(9) { left: 88%; animation-delay: -16s; width: 4px; height: 4px; animation-duration: 44s; }
-        .particle:nth-child(10) { left: 92%; animation-delay: -25s; width: 6px; height: 6px; animation-duration: 49s; }
-        .particle:nth-child(11) { left: 12%; animation-delay: -20s; width: 5px; height: 5px; animation-duration: 38s; }
-        .particle:nth-child(12) { left: 72%; animation-delay: -11s; width: 4px; height: 4px; animation-duration: 50s; }
-
-        /* Additional micro particles for density */
-        .micro-particle {
-            position: absolute;
-            border-radius: 50%;
-            background: var(--royal-gold);
-            opacity: 0;
-            animation: microFloat 60s infinite linear;
-            will-change: transform;
-        }
-
-        @keyframes microFloat {
-            0% {
-                transform: translateY(100vh) scale(0.1);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.3;
-            }
-            90% {
-                opacity: 0.1;
-            }
-            100% {
-                transform: translateY(-50px) scale(0.8);
-                opacity: 0;
-            }
-        }
-
-        /* 8 micro particles for subtle sparkle effect */
-        .micro-particle:nth-child(13) { left: 15%; animation-delay: -8s; width: 2px; height: 2px; animation-duration: 55s; }
-        .micro-particle:nth-child(14) { left: 35%; animation-delay: -28s; width: 1.5px; height: 1.5px; animation-duration: 62s; }
-        .micro-particle:nth-child(15) { left: 55%; animation-delay: -13s; width: 2px; height: 2px; animation-duration: 58s; }
-        .micro-particle:nth-child(16) { left: 75%; animation-delay: -33s; width: 1.5px; height: 1.5px; animation-duration: 53s; }
-        .micro-particle:nth-child(17) { left: 25%; animation-delay: -19s; width: 2px; height: 2px; animation-duration: 61s; }
-        .micro-particle:nth-child(18) { left: 65%; animation-delay: -6s; width: 1.5px; height: 1.5px; animation-duration: 56s; }
-        .micro-particle:nth-child(19) { left: 85%; animation-delay: -24s; width: 2px; height: 2px; animation-duration: 59s; }
-        .micro-particle:nth-child(20) { left: 45%; animation-delay: -15s; width: 1.5px; height: 1.5px; animation-duration: 54s; }
-
-        /* Enhanced shimmer particles */
-        .shimmer-particle {
-            position: absolute;
-            border-radius: 50%;
-            background: radial-gradient(circle, var(--amber-gold) 20%, transparent 70%);
-            opacity: 0;
-            animation: shimmerFloat 35s infinite ease-in-out;
-            will-change: transform, opacity;
-        }
-
-        @keyframes shimmerFloat {
-            0%, 100% {
-                transform: translateY(100vh) scale(0);
-                opacity: 0;
-            }
-            20% {
-                opacity: 0.8;
-                transform: translateY(80vh) scale(1);
-            }
-            80% {
-                opacity: 0.3;
-                transform: translateY(20vh) scale(1.5);
-            }
-        }
-
-        /* 6 shimmer particles for magical effect */
-        .shimmer-particle:nth-child(21) { left: 20%; animation-delay: -4s; width: 8px; height: 8px; animation-duration: 32s; }
-        .shimmer-particle:nth-child(22) { left: 40%; animation-delay: -17s; width: 10px; height: 10px; animation-duration: 38s; }
-        .shimmer-particle:nth-child(23) { left: 60%; animation-delay: -26s; width: 6px; height: 6px; animation-duration: 35s; }
-        .shimmer-particle:nth-child(24) { left: 80%; animation-delay: -10s; width: 9px; height: 9px; animation-duration: 40s; }
-        .shimmer-particle:nth-child(25) { left: 30%; animation-delay: -21s; width: 7px; height: 7px; animation-duration: 36s; }
-        .shimmer-particle:nth-child(26) { left: 70%; animation-delay: -2s; width: 8px; height: 8px; animation-duration: 34s; }
-
-        /* =================== OPTIMIZED CARD ANIMATIONS =================== */
-        .art-card {
-            background: linear-gradient(145deg, var(--ivory), var(--pearl-white));
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.06);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            text-decoration: none;
-            color: inherit;
-            position: relative;
-            will-change: transform;
-        }
-
-        .art-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-        }
-
-        .art-card-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.2s ease;
-        }
-
-        .art-card:hover .art-card-image {
-            transform: scale(1.02);
-        }
-
-        /* =================== MOBILE OPTIMIZATION =================== */
-        @media (max-width: 768px) {
-            /* Reduce particles on mobile for better performance */
-            .particle:nth-child(n+7) {
-                display: none;
-            }
-            
-            .micro-particle {
-                display: none;
-            }
-            
-            .shimmer-particle:nth-child(n+23) {
-                display: none;
-            }
-
-            .featured-artwork:hover {
-                transform: translateY(-1px);
-            }
-
-            .art-card:hover {
-                transform: translateY(-2px);
-            }
-        }
-
-        @media (max-width: 480px) {
-            /* Only keep essential particles on small screens */
-            .particle:nth-child(n+4) {
-                display: none;
-            }
-            
-            .shimmer-particle {
-                display: none;
-            }
-        }
-
-        /* =================== PERFORMANCE BOOST =================== */
-        .particle-container {
-            transform: translateZ(0);
-            backface-visibility: hidden;
-        }
-
-        /* Reduce motion for accessibility */
-        @media (prefers-reduced-motion: reduce) {
-            .particle,
-            .micro-particle,
-            .shimmer-particle {
-                animation-duration: 100s;
-                opacity: 0.1;
-            }
-
-            .featured-artwork:hover {
-                transform: none;
-            }
-
-            .art-card:hover {
-                transform: none;
-            }
-        }
-
-        /* =================== ENHANCED DECORATIVE ELEMENTS =================== */
-        .decorative-divider::before,
-        .decorative-divider::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            width: 15px;
-            height: 15px;
-            background: radial-gradient(circle, var(--royal-gold), var(--amber-gold));
-            border-radius: 50%;
-            transform: translateY(-50%);
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-        }
-
-        .decorative-divider::before {
-            left: -25px;
-        }
-
-        .decorative-divider::after {
-            right: -25px;
-        }
-
-        /* =================== TYPOGRAPHY IMPROVEMENTS =================== */
-        .section-title {
-            font-family: var(--font-luxury);
-            font-size: clamp(2.8rem, 5vw, 4rem);
-            color: var(--chocolate-brown);
-            margin-bottom: 1.5rem;
-            position: relative;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .footer-logo {
-            font-family: var(--font-luxury);
-            font-size: 3rem;
-            color: var(--royal-gold);
-            margin-bottom: 1.5rem;
-            font-weight: 900;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
-        }
-
-        .footer-text {
-            font-family: var(--font-elegant);
-            font-size: 1.1rem;
-            opacity: 0.9;
-            margin-bottom: 2.5rem;
-            font-weight: 400;
-            letter-spacing: 0.3px;
-        }
-
-        .stat-number {
-            font-family: var(--font-luxury);
-            font-size: 4rem;
-            font-weight: 900;
-            color: var(--royal-gold);
-            margin-bottom: 1rem;
-            text-shadow: 
-                0 0 20px rgba(255, 215, 0, 0.4),
-                2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .stat-label {
-            font-family: var(--font-elegant);
-            font-size: 1.3rem;
-            opacity: 0.95;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-weight: 500;
-        }
-    </style>
+/* =================== CSS VARIABLES & BASE =================== */
+:root {
+    --sandalwood-beige: #F5DEB3;
+    --warm-sandalwood: #E8D5A6;
+    --deep-sandalwood: #D2B48C;
+    --rich-brown: #8B4513;
+    --chocolate-brown: #5D2F0F;
+    --mahogany: #C04000;
+    --burnt-sienna: #8B2500;
+    --antique-gold: #CD9575;
+    --royal-gold: #FFD700;
+    --amber-gold: #FFBF00;
+    --bronze-gold: #CD7F32;
+    --cream-white: #FFF8DC;
+    --ivory: #FFFFF0;
+    --pearl-white: #F8F6F0;
+    
+    --font-luxury: 'Playfair Display', serif;
+    --font-elegant: 'Crimson Text', serif;
+    --font-classic: 'Cormorant Garamond', serif;
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: var(--font-elegant);
+    background: linear-gradient(45deg, var(--sandalwood-beige) 0%, var(--warm-sandalwood) 25%, var(--deep-sandalwood) 50%, var(--sandalwood-beige) 75%, var(--warm-sandalwood) 100%);
+    background-size: 400% 400%;
+    animation: megaDynamicBackground 30s ease infinite;
+    color: var(--chocolate-brown);
+    line-height: 1.7;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+@keyframes megaDynamicBackground {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.background-layers {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.floating-particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(45deg, var(--royal-gold), var(--amber-gold));
+    opacity: 0;
+    animation: gentleFloat 45s infinite linear;
+    will-change: transform;
+}
+
+@keyframes gentleFloat {
+    0% { transform: translateY(100vh) scale(0.3); opacity: 0; }
+    15% { opacity: 0.7; transform: translateY(85vh) scale(0.8); }
+    50% { opacity: 0.8; transform: translateY(50vh) scale(1); }
+    85% { opacity: 0.4; transform: translateY(15vh) scale(0.6); }
+    100% { transform: translateY(-10vh) scale(0.2); opacity: 0; }
+}
+
+.particle:nth-child(1) { left: 15%; animation-delay: -5s; width: 4px; height: 4px; animation-duration: 42s; }
+.particle:nth-child(2) { left: 30%; animation-delay: -15s; width: 6px; height: 6px; animation-duration: 48s; }
+.particle:nth-child(3) { left: 45%; animation-delay: -8s; width: 3px; height: 3px; animation-duration: 45s; }
+.particle:nth-child(4) { left: 60%; animation-delay: -20s; width: 5px; height: 5px; animation-duration: 40s; }
+.particle:nth-child(5) { left: 75%; animation-delay: -12s; width: 4px; height: 4px; animation-duration: 46s; }
+.particle:nth-child(6) { left: 85%; animation-delay: -25s; width: 5px; height: 5px; animation-duration: 43s; }
+
+/* Hero Section */
+.hero-section {
+    padding: 8rem 2rem 6rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page-title {
+    font-family: var(--font-luxury);
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 900;
+    color: var(--chocolate-brown);
+    margin-bottom: 1.5rem;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+.page-subtitle {
+    font-family: var(--font-elegant);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    color: var(--rich-brown);
+    font-style: italic;
+    margin-bottom: 3rem;
+}
+
+.decorative-divider {
+    width: 120px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--royal-gold), var(--amber-gold), var(--royal-gold));
+    margin: 2rem auto;
+    border-radius: 2px;
+}
+
+/* Featured Showcase */
+.featured-showcase {
+    padding: 6rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.showcase-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.showcase-title {
+    font-family: var(--font-luxury);
+    font-size: clamp(2.8rem, 5vw, 4rem);
+    color: var(--chocolate-brown);
+    margin-bottom: 2rem;
+    font-weight: 700;
+}
+
+.featured-artwork {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+    background: linear-gradient(145deg, var(--ivory), var(--cream-white));
+    padding: 2.5rem;
+    transition: transform 0.3s ease;
+}
+
+.featured-artwork:hover {
+    transform: translateY(-5px);
+}
+
+.featured-artwork img {
+    width: 100%;
+    height: auto;
+    max-height: 450px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.artwork-details {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 2.5rem;
+    right: 2.5rem;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(6px);
+    padding: 2rem;
+    border-radius: 15px;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.featured-artwork:hover .artwork-details {
+    opacity: 1;
+}
+
+.artwork-title {
+    font-family: var(--font-luxury);
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--royal-gold);
+}
+
+.artwork-description {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #F8F8F2;
+}
+
+/* =================== FIXED GALLERY SECTION =================== */
+.gallery-section {
+    padding: 6rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.section-title {
+    font-family: var(--font-luxury);
+    font-size: clamp(2.8rem, 5vw, 4rem);
+    color: var(--chocolate-brown);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+/* =================== PROPERLY FIXED GALLERY GRID =================== */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
+    margin: 4rem auto;
+    max-width: 1400px;
+}
+
+.art-card {
+    background: linear-gradient(145deg, var(--ivory), var(--pearl-white));
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    height: auto;
+}
+
+.art-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.card-image-container {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+}
+
+.art-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.art-card:hover .art-card-image {
+    transform: scale(1.05);
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.art-card:hover .image-overlay {
+    opacity: 1;
+}
+
+.card-content {
+    padding: 2.5rem;
+}
+
+.card-title {
+    font-family: var(--font-luxury);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--chocolate-brown);
+    margin-bottom: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.art-card:hover .card-title {
+    color: var(--mahogany);
+}
+
+.card-description {
+    font-family: var(--font-elegant);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--rich-brown);
+    margin-bottom: 1.8rem;
+}
+
+.card-origin {
+    font-family: var(--font-classic);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--bronze-gold);
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.card-origin::before {
+    content: '📍';
+    font-size: 1.2rem;
+}
+
+.card-badge {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: linear-gradient(135deg, var(--royal-gold), var(--amber-gold));
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+/* Footer */
+.footer {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.95));
+    color: #F5F5DC;
+    text-align: center;
+    padding: 4rem 2rem 2rem;
+    margin-top: 6rem;
+    position: relative;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--royal-gold), transparent);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-logo {
+    font-family: var(--font-luxury);
+    font-size: 3rem;
+    color: var(--royal-gold);
+    margin-bottom: 1.5rem;
+    font-weight: 900;
+}
+
+.footer-text {
+    font-family: var(--font-elegant);
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin-bottom: 2.5rem;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.footer-link {
+    color: #F5F5DC;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: 500;
+}
+
+.footer-link:hover {
+    color: var(--royal-gold);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 2rem;
+    font-size: 0.9rem;
+    opacity: 0.6;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .card-content {
+        padding: 2rem;
+    }
+    
+    .card-image-container {
+        height: 250px;
+    }
+    
+    .hero-section {
+        padding: 6rem 1rem 4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-grid {
+        gap: 1.5rem;
+        padding: 0 1rem;
+    }
+    
+    .card-content {
+        padding: 1.5rem;
+    }
+    
+    .card-image-container {
+        height: 220px;
+    }
+    
+    .card-title {
+        font-size: 1.8rem;
+    }
+    
+    .card-description {
+        font-size: 1rem;
+    }
+}
+
+
+
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+</style>
 </head>
 <body>
     <!-- Page Loader -->
@@ -1370,7 +519,7 @@
         <div class="floating-ornament ornament-4"></div>
     </div>
 
-    <!-- Navigation - FIXED CENTERING -->
+    <!-- NAVBAR WILL BE INJECTED HERE BY JAVASCRIPT -->
 
     <!-- Hero Section -->
     <section class="hero-section">
@@ -1490,10 +639,10 @@
             <div class="footer-logo">RangRiti</div>
             <p class="footer-text">Preserving India's artistic heritage for future generations</p>
             <div class="footer-links">
-                <a href="#" class="footer-link">About Us</a>
+                <a href="aboutus.html" class="footer-link">About Us</a>
                 <a href="#" class="footer-link">Privacy Policy</a>
                 <a href="#" class="footer-link">Terms of Service</a>
-                <a href="#" class="footer-link">Contact</a>
+                <a href="connect.html" class="footer-link">Connect</a>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2025 RangRiti. All rights reserved. Crafted with passion for Indian arts.</p>
@@ -1501,16 +650,12 @@
         </div>
     </footer>
 
+    <!-- LOAD NAVBAR JAVASCRIPT -->
     <script src="js/navbar.js"></script>
 
     <script>
         // Optimized performance loading
-        window.addEventListener('load', function() {
-            const loader = document.getElementById('pageLoader');
-            setTimeout(() => {
-                loader.classList.add('hidden');
-            }, 600);
-        });
+        
 
         // Enhanced scroll reveal with performance optimization
         const observerOptions = {
