@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Performing Arts - RangRiti</title>
+    <link rel="stylesheet" href="css/navbar.css">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Crimson+Text:400,600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* =================== CSS VARIABLES =================== */
@@ -343,112 +344,6 @@
         }
 
         /* =================== PERFECTLY CENTERED NAVIGATION =================== */
-        .nav-container {
-            position: fixed;
-            top: 1.5rem;
-            left: 0;
-            right: 0;
-            margin: 0 auto;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 215, 0, 0.15);
-            border-radius: 25px;
-            padding: 0.6rem 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.3rem;
-            z-index: 1000;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-            width: fit-content;
-            max-width: 90vw;
-        }
-
-        .nav-container:hover {
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
-            transform: translateY(-2px);
-        }
-
-        .nav-btn-link {
-            text-decoration: none;
-            flex-shrink: 0;
-        }
-
-        .nav-btn {
-            font-family: var(--font-classic);
-            background: transparent;
-            border: none;
-            color: #F8F8F2;
-            padding: 0.5rem 0.8rem;
-            font-size: 0.85rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            border-radius: 20px;
-            letter-spacing: 0.3px;
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
-
-        .nav-btn:hover {
-            color: var(--royal-gold);
-            background: rgba(255, 215, 0, 0.1);
-            transform: translateY(-1px);
-        }
-
-        .dropdown {
-            position: relative;
-            display: inline-block;
-            flex-shrink: 0;
-        }
-
-        .dropdown-menu {
-            position: absolute;
-            top: 110%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.9);
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            border-radius: 12px;
-            padding: 0.8rem 0;
-            min-width: 220px;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .dropdown:hover .dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .dropdown-item {
-            font-family: var(--font-classic);
-            color: #F8F8F2;
-            text-decoration: none;
-            padding: 0.6rem 1.2rem;
-            display: block;
-            transition: all 0.25s ease;
-            font-size: 0.85rem;
-        }
-
-        .dropdown-item:hover {
-            background: rgba(255, 215, 0, 0.1);
-            color: var(--royal-gold);
-            transform: translateX(3px);
-        }
-
-        .dropdown-arrow {
-            font-size: 0.7em;
-            margin-left: 0.4rem;
-            transition: transform 0.25s ease;
-        }
-
-        .dropdown:hover .dropdown-arrow {
-            transform: rotate(180deg);
-        }
 
         /* =================== HERO SECTION =================== */
         .hero-section {
@@ -984,24 +879,6 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="nav-container">
-        <a href="index.html" class="nav-btn-link"><button class="nav-btn">Home</button></a>
-        <a href="artists.html" class="nav-btn-link"><button class="nav-btn">Artists</button></a>
-        <a href="workshops.html" class="nav-btn-link"><button class="nav-btn">Workshops</button></a>
-        <a href="calendar.html" class="nav-btn-link"><button class="nav-btn">Calendar</button></a>
-        <div class="dropdown">
-            <button class="nav-btn dropdown-toggle">Heritage <span class="dropdown-arrow">&#9660;</span></button>
-            <div class="dropdown-menu">
-                <a href="paintings and traditional styles.html" class="dropdown-item">Traditional Painting Styles</a>
-                <a href="textile_main.html" class="dropdown-item">Textile Arts</a>
-                <a href="performingarts.html" class="dropdown-item">Performing Arts</a>
-                <a href="handicrafts_and_sculptures.html" class="dropdown-item">Handicrafts & Sculpture</a>
-            </div>
-        </div>
-        <a href="connect.html" class="nav-btn-link"><button class="nav-btn">Connect</button></a>
-        <a href="login.html" class="nav-btn-link"><button class="nav-btn">Login</button></a>
-        <a href="register.html" class="nav-btn-link"><button class="nav-btn">Register</button></a>
-    </nav>
 
     <!-- Hero Section -->
     <section class="hero-section">
@@ -1111,6 +988,7 @@
             </a>
         </div>
     </section>
+    <script src="js/navbar.js"></script>
 
     <script>
         // Optimized performance loading

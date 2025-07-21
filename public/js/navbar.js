@@ -12,7 +12,7 @@ const navbarHTML = `
 
         <!-- Main Navigation Links -->
         <div class="nav-links">
-            <a href="/index.html" class="nav-link" data-text="Home">
+            <a href="index.html" class="nav-link" data-text="Home">
                 <span class="nav-icon">🏠</span>
                 <span class="nav-text">Home</span>
                 <div class="nav-ripple"></div>
@@ -65,6 +65,12 @@ const navbarHTML = `
                     </div>
                 </div>
             </div>
+            
+            <a href="aboutus.html" class="nav-link" data-text="About Us">
+                <span class="nav-icon">👥</span>
+                <span class="nav-text">About Us</span>
+                <div class="nav-ripple"></div>
+            </a>
             
             <a href="connect.html" class="nav-link" data-text="Connect">
                 <span class="nav-icon">🤝</span>

@@ -6,6 +6,7 @@
     <title>Traditional Painting Styles - RangRiti</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/navbar.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
     <style>
         /* =================== CSS VARIABLES & BASE =================== */
@@ -208,164 +209,10 @@
         .particle:nth-child(6) { left: 88%; animation-delay: -18s; width: 7px; height: 7px; animation-duration: 39s; }
 
         /* =================== ABSOLUTELY CENTERED NAVIGATION - FINAL FIX =================== */
-        .nav-container {
-            position: fixed;
-            top: 1.5rem;
-            left: 0;
-            right: 0;
-            margin: 0 auto;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 215, 0, 0.15);
-            border-radius: 25px;
-            padding: 0.6rem 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.3rem;
-            z-index: 1000;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-            width: fit-content;
-            max-width: 90vw;
-        }
-
-        .nav-container:hover {
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
-            transform: translateY(-2px);
-        }
-
-        .nav-btn-link {
-            text-decoration: none;
-            flex-shrink: 0;
-        }
-
-        .nav-btn {
-            font-family: var(--font-classic);
-            background: transparent;
-            border: none;
-            color: #F8F8F2;
-            padding: 0.5rem 0.8rem;
-            font-size: 0.85rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            border-radius: 20px;
-            letter-spacing: 0.3px;
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
-
-        .nav-btn:hover {
-            color: var(--royal-gold);
-            background: rgba(255, 215, 0, 0.1);
-            transform: translateY(-1px);
-        }
-
-        .dropdown {
-            position: relative;
-            display: inline-block;
-            flex-shrink: 0;
-        }
-
-        .dropdown-menu {
-            position: absolute;
-            top: 110%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.9);
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            border-radius: 12px;
-            padding: 0.8rem 0;
-            min-width: 220px;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .dropdown:hover .dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .dropdown-item {
-            font-family: var(--font-classic);
-            color: #F8F8F2;
-            text-decoration: none;
-            padding: 0.6rem 1.2rem;
-            display: block;
-            transition: all 0.25s ease;
-            font-size: 0.85rem;
-        }
-
-        .dropdown-item:hover {
-            background: rgba(255, 215, 0, 0.1);
-            color: var(--royal-gold);
-            transform: translateX(3px);
-        }
-
-        .dropdown-arrow {
-            font-size: 0.7em;
-            margin-left: 0.4rem;
-            transition: transform 0.25s ease;
-        }
-
-        .dropdown:hover .dropdown-arrow {
-            transform: rotate(180deg);
-        }
 
         /* =================== RESPONSIVE NAVIGATION - FINAL FIX =================== */
-        @media (max-width: 1200px) {
-            .nav-container {
-                padding: 0.5rem 1.2rem;
-                gap: 0.2rem;
-            }
-            
-            .nav-btn {
-                padding: 0.45rem 0.7rem;
-                font-size: 0.8rem;
-            }
-        }
 
-        @media (max-width: 768px) {
-            .nav-container {
-                top: 1rem;
-                padding: 0.5rem 1rem;
-                flex-wrap: nowrap;
-                max-width: calc(100vw - 2rem);
-                gap: 0.2rem;
-                overflow-x: auto;
-                scrollbar-width: none;
-                -ms-overflow-style: none;
-            }
 
-            .nav-container::-webkit-scrollbar {
-                display: none;
-            }
-
-            .nav-btn {
-                padding: 0.4rem 0.6rem;
-                font-size: 0.75rem;
-                min-width: fit-content;
-            }
-
-            .dropdown-menu {
-                min-width: 200px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .nav-container {
-                gap: 0.1rem;
-                padding: 0.4rem 0.8rem;
-            }
-
-            .nav-btn {
-                padding: 0.35rem 0.5rem;
-                font-size: 0.7rem;
-            }
-        }
 
         /* =================== HEADER SECTION =================== */
         .hero-section {
@@ -879,40 +726,7 @@
         }
 
         /* =================== RESPONSIVE DESIGN =================== */
-        @media (max-width: 1200px) {
-            .nav-container {
-                padding: 0.9rem 2rem;
-                gap: 0.8rem;
-            }
-            
-            .nav-btn {
-                padding: 0.7rem 1.2rem;
-                font-size: 0.95rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-container {
-                position: fixed;
-                top: 1rem;
-                left: 50%;
-                transform: translateX(-50%);
-                border-radius: 30px;
-                padding: 0.8rem 1.5rem;
-                flex-wrap: wrap;
-                justify-content: center;
-                max-width: calc(100vw - 2rem);
-                gap: 0.5rem;
-            }
-
-            .nav-btn {
-                padding: 0.6rem 1rem;
-                font-size: 0.9rem;
-            }
-
-            .dropdown-menu {
-                min-width: 250px;
-            }
+       
 
             .hero-section {
                 padding: 9rem 1rem 4rem;
@@ -977,15 +791,7 @@
                 padding: 1.8rem;
             }
 
-            .nav-container {
-                gap: 0.3rem;
-                padding: 0.7rem 1rem;
-            }
-
-            .nav-btn {
-                padding: 0.5rem 0.8rem;
-                font-size: 0.85rem;
-            }
+        
 
             .particle:nth-child(n+4) {
                 display: none;
@@ -1565,24 +1371,6 @@
     </div>
 
     <!-- Navigation - FIXED CENTERING -->
-    <nav class="nav-container">
-        <a href="index.html" class="nav-btn-link"><button class="nav-btn">Home</button></a>
-        <a href="artists.html" class="nav-btn-link"><button class="nav-btn">Artists</button></a>
-        <a href="workshops.html" class="nav-btn-link"><button class="nav-btn">Workshops</button></a>
-        <a href="calendar.html" class="nav-btn-link"><button class="nav-btn">Calendar</button></a>
-        <div class="dropdown">
-            <button class="nav-btn dropdown-toggle">Heritage <span class="dropdown-arrow">&#9660;</span></button>
-            <div class="dropdown-menu">
-                <a href="paintings and traditional styles.html" class="dropdown-item">Traditional Painting Styles</a>
-                <a href="textile_main.html" class="dropdown-item">Textile Arts</a>
-                <a href="performingarts.html" class="dropdown-item">Performing Arts</a>
-                <a href="handicrafts_and_sculptures.html" class="dropdown-item">Handicrafts & Sculpture</a>
-            </div>
-        </div>
-        <a href="connect.html" class="nav-btn-link"><button class="nav-btn">Connect</button></a>
-        <a href="login.html" class="nav-btn-link"><button class="nav-btn">Login</button></a>
-        <a href="register.html" class="nav-btn-link"><button class="nav-btn">Register</button></a>
-    </nav>
 
     <!-- Hero Section -->
     <section class="hero-section">
@@ -1712,6 +1500,8 @@
             </div>
         </div>
     </footer>
+
+    <script src="js/navbar.js"></script>
 
     <script>
         // Optimized performance loading
