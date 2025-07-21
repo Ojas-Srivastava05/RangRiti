@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RangRiti</title>
+    
+    <!-- Include navbar CSS -->
+    <link rel="stylesheet" href="css/navbar.css">
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap');
         
@@ -100,197 +104,124 @@
         }
 
         /* Header with parallax */
-        .header {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
+.header {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
 
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                linear-gradient(45deg, transparent 30%, rgba(255, 215, 0, 0.1) 50%, transparent 10%),
-                linear-gradient(-45deg, transparent 30%, rgba(220, 20, 60, 0.08) 50%, transparent 10%);
-            animation: headerGlow 8s ease-in-out infinite alternate;
-        }
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(45deg, transparent 30%, rgba(255, 215, 0, 0.1) 50%, transparent 10%),
+        linear-gradient(-45deg, transparent 30%, rgba(220, 20, 60, 0.08) 50%, transparent 10%);
+    animation: headerGlow 8s ease-in-out infinite alternate;
+}
 
-        @keyframes headerGlow {
-            0% { opacity: 0.5; transform: scale(1); }
-            100% { opacity: 0.8; transform: scale(1.05); }
-        }
+@keyframes headerGlow {
+    0% { opacity: 0.5; transform: scale(1); }
+    100% { opacity: 0.8; transform: scale(1.05); }
+}
 
-        .header-content {
-            position: relative;
-            z-index: 2;
-        }
+.header-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 20px;
+}
 
-        .main-title {
+.main-title {
     font-family: 'Playfair Display', serif;
     font-size: clamp(4rem, 12vw, 10rem);
     font-weight: 900;
-    background: linear-gradient(135deg, #6f450e 40%, #8B4C39 100%); /* Rich Gold */
+    background: linear-gradient(135deg, #6f450e 40%, #8B4C39 100%);
     background-size: 200% 200%;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: titleGlow 1s ease-in-out infinite alternate;
-    text-shadow: 0 0 20px rgba(212, 175, 55, 0.8); /* Gold shadow */
-    margin-bottom: 2rem;
+    animation: titleGlow 3s ease-in-out infinite alternate;
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.8);
+    margin-bottom: 2rem; /* Reduced from 10rem to bring elements closer */
     letter-spacing: 0.1em;
+    text-align: center;
 }
 
-        @keyframes titleGlow {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
-        }
+@keyframes titleGlow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
 
-        .subtitle {
+.subtitle {
     font-family: 'EB Garamond', serif;
     font-size: clamp(1.2rem, 3vw, 2rem);
-    color: #5a3825; /* Changed to a rich, warm brown for visibility */
-    text-shadow: 1px 1px 3px rgba(255, 250, 240, 0.2); /* Adjusted shadow for the darker text */
-    margin-bottom: 1rem;
+    color: #5a3825;
+    text-shadow: 1px 1px 3px rgba(255, 250, 240, 0.2);
     opacity: 0.95;
     animation: fadeInUp 2s ease-out 0.5s both;
+    margin-bottom: 1.5rem; /* Added margin for spacing */
+    text-align: center;
 }
 
-        .heritage-quote {
+.heritage-quote {
     font-family: 'EB Garamond', serif;
     font-size: clamp(1rem, 2vw, 1.4rem);
     font-style: italic;
-    font-weight: 600; /* Made the text bolder */
-    color: #4B1E10; /* Changed to a deep, rich brown for distinction */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Slightly enhanced shadow */
-    margin-bottom: 3rem;
-    animation: fadeInUp 2s ease-out 1s both;
-}
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Navigation */
-        .nav-container {
-            position: fixed;
-            top: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-            backdrop-filter: blur(20px);
-            padding: 15px 25px;
-            border-radius: 50px;
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            z-index: 1000;
-            animation: slideDown 1s ease-out;
-        }
-
-        @keyframes slideDown {
-            from { transform: translateX(-50%) translateY(-100px); opacity: 0; }
-            to { transform: translateX(-50%) translateY(0); opacity: 1; }
-        }
-
-        .nav-btn {
-    font-family: 'EB Garamond', serif;
-    background: transparent;
-    color: #000000; /* Light Ivory */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Soft shadow */
-    border: none;
-    padding: 8px 16px;
-    border-radius: 25px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    animation: navBtnFadeIn 1s ease-out forwards; /* Added animation */
-}
-
-        @keyframes navBtnFadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .nav-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .nav-btn:hover::before {
-            left: 100%;
-        }
-
-        .nav-btn:hover {
-            background: rgba(255, 215, 0, 0.2);
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
-        }
-
-        /* Dropdown styles */
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-toggle {
-    cursor: pointer;
-}
-
-.dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: rgba(0, 0, 0, 0.9);
-    border: 1px solid rgba(255, 215, 0, 0.3);
-    border-radius: 10px;
-    padding: 10px 0;
-    display: none;
-    flex-direction: column;
-    min-width: 200px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-    z-index: 1001;
-}
-
-.dropdown-item {
-    font-family: 'EB Garamond', serif;
-    color: #FAF3E0;
-    text-decoration: none;
-    padding: 10px 20px;
-    display: block;
-    transition: all 0.3s ease;
+    font-weight: 600;
+    color: #4B1E10;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    margin-bottom: 0; /* Removed bottom margin */
+    animation: fadeInUp 2s ease-out 1s both;
+    text-align: center;
+    max-width: 800px; /* Limit width for better readability */
 }
 
-.dropdown-item:hover {
-    background: rgba(255, 215, 0, 0.2);
-    color: var(--primary-gold);
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-.dropdown:hover .dropdown-menu {
-    display: flex;
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+    .header-content {
+        padding: 0 15px;
+    }
+    
+    .main-title {
+        margin-bottom: 1.5rem;
+    }
+    
+    .subtitle {
+        margin-bottom: 1rem;
+    }
+    
+    .heritage-quote {
+        font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+        line-height: 1.4;
+    }
 }
 
-.dropdown-arrow {
-    font-size: 0.8em;
-    margin-left: 5px;
-    display: inline-block; /* Ensure it's on the same line */
+@media (max-width: 480px) {
+    .main-title {
+        margin-bottom: 1rem;
+    }
+    
+    .subtitle {
+        margin-bottom: 0.8rem;
+    }
 }
 
         /* Gallery section */
@@ -707,33 +638,11 @@
     </style>
 </head>
 <body>
+    <!-- Navbar will be inserted here by JavaScript -->
+    
     <!-- Floating particles -->
-     
     <div class="particles"></div>
 
-    <!-- Navigation -->
-    <nav class="nav-container">
-        <a href="index.html" class="nav-btn-link"><button class="nav-btn">Home</button></a>
-        <a href="/artists" class="nav-btn-link"><button class="nav-btn">Artists</button></a>
-        <a href="/artist/workshops" class="nav-btn-link"><button class="nav-btn">Workshops</button></a>
-        <a href="/calendar" class="nav-btn-link"><button class="nav-btn">Calendar</button></a>
-    
-        <div class="dropdown">
-            <button class="nav-btn dropdown-toggle">
-                Heritage <span class="dropdown-arrow">&#9660;</span>
-            </button>
-            <div class="dropdown-menu">
-                <a href="paintings and traditional styles.html" class="dropdown-item">Traditional Painting Styles</a>
-                <a href="textile_main.html" class="dropdown-item">Textile Arts</a>
-                <a href="performingarts.html" class="dropdown-item">Performing Arts</a>
-                <a href="handicrafts_and_sculptures.html" class="dropdown-item">Handicrafts & Sculpture</a>
-            </div>
-        </div>
-    
-        <a href="connect.html" class="nav-btn-link"><button class="nav-btn">Connect</button></a>
-        <a href="login.html" class="nav-btn-link"><button class="nav-btn">Login</button></a>
-        <a href="register.html" class="nav-btn-link"><button class="nav-btn">Register</button></a>
-    </nav>
     <!-- Header -->
     <header class="header">
         <div class="header-content">
@@ -823,6 +732,9 @@
             <p class="footer-text">&copy; 2024 Itihasya. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Include navbar JavaScript -->
+    <script src="js/navbar.js"></script>
 
     <script>
         /* Floating particles */

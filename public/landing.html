@@ -51,147 +51,326 @@
         
         .floating-petal {
             position: absolute;
-            animation: floatPetal 15s infinite linear;
+            animation: floatPetal 20s infinite linear;
             opacity: 0;
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
         }
         
         .flower-particle {
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
             position: relative;
+            animation: particleRotate 8s ease-in-out infinite;
         }
         
         .flower-particle::before,
         .flower-particle::after {
             content: '';
             position: absolute;
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
             border-radius: 50% 20% 50% 20%;
             top: 50%;
             left: 50%;
             transform-origin: 50% 80%;
-            box-shadow: inset 0 0 4px rgba(0,0,0,0.1);
+            box-shadow: 
+                inset 0 0 6px rgba(255, 255, 255, 0.3),
+                0 0 12px rgba(255, 255, 255, 0.2);
+            filter: brightness(1.2) saturate(1.4);
         }
         
         .flower-particle::before {
-            background: radial-gradient(ellipse at 30% 30%, #FF9933, #FF6600);
+            background: radial-gradient(ellipse at 30% 30%, 
+                rgba(255, 215, 0, 0.9), 
+                rgba(255, 153, 51, 0.8),
+                rgba(255, 102, 0, 0.6));
             transform: translate(-50%, -50%) rotate(0deg);
+            animation: petalShimmer 3s ease-in-out infinite;
         }
         
         .flower-particle::after {
-            background: radial-gradient(ellipse at 30% 30%, #9B111E, #800000);
+            background: radial-gradient(ellipse at 30% 30%, 
+                rgba(220, 20, 60, 0.8), 
+                rgba(155, 17, 30, 0.7),
+                rgba(128, 0, 0, 0.5));
             transform: translate(-50%, -50%) rotate(90deg);
+            animation: petalShimmer 3s ease-in-out infinite 1.5s;
         }
         
+        /* Enhanced Marigold - Golden & Orange */
         .flower-particle.marigold::before {
-            background: radial-gradient(ellipse at 30% 30%, #FF9933, #FFB347);
+            background: radial-gradient(ellipse at 30% 30%, 
+                rgba(255, 215, 0, 0.95),
+                rgba(255, 165, 0, 0.85),
+                rgba(255, 140, 0, 0.7));
+            box-shadow: 
+                inset 0 0 8px rgba(255, 255, 255, 0.4),
+                0 0 15px rgba(255, 215, 0, 0.3);
         }
         .flower-particle.marigold::after {
-            background: radial-gradient(ellipse at 30% 30%, #FFA500, #FF7F00);
+            background: radial-gradient(ellipse at 30% 30%, 
+                rgba(255, 165, 0, 0.9),
+                rgba(255, 127, 80, 0.8),
+                rgba(255, 99, 71, 0.6));
+            box-shadow: 
+                inset 0 0 8px rgba(255, 255, 255, 0.4),
+                0 0 15px rgba(255, 165, 0, 0.3);
+        }
+        .flower-particle.marigold {
+            background: radial-gradient(circle at center, 
+                rgba(139, 69, 19, 0.8) 0%, 
+                rgba(139, 69, 19, 0.6) 25%, 
+                transparent 26%);
+            filter: brightness(1.3) saturate(1.5);
         }
         
+        /* Enhanced Rose - Deep Red & Pink */
         .flower-particle.rose::before {
-            background: radial-gradient(ellipse at 30% 30%, #9B111E, #DC143C);
+            background: radial-gradient(ellipse at 30% 30%, 
+                rgba(220, 20, 60, 0.95),
+                rgba(255, 105, 180, 0.85),
+                rgba(199, 21, 133, 0.7));
+            box-shadow: 
+                inset 0 0 8px rgba(255, 255, 255, 0.4),
+                0 0 15px rgba(220, 20, 60, 0.4);
         }
         .flower-particle.rose::after {
-            background: radial-gradient(ellipse at 30% 30%, #B22222, #8B0000);
-        }
-        
-        .flower-particle.jasmine::before {
-            background: radial-gradient(ellipse at 30% 30%, #F5F5DC, #FFFACD);
-            opacity: 0.9;
-        }
-        .flower-particle.jasmine::after {
-            background: radial-gradient(ellipse at 30% 30%, #FFFEF0, #FFF8DC);
-            opacity: 0.8;
-        }
-        
-        .flower-particle.lotus::before {
-            background: radial-gradient(ellipse at 30% 30%, #FFB6C1, #FF69B4);
-        }
-        .flower-particle.lotus::after {
-            background: radial-gradient(ellipse at 30% 30%, #DDA0DD, #DA70D6);
-        }
-        
-        /* Add center dot for flowers */
-        .flower-particle.marigold {
-            background: radial-gradient(circle at center, #8B4513 0%, #8B4513 20%, transparent 21%);
+            background: radial-gradient(ellipse at 30% 30%, 
+                rgba(178, 34, 34, 0.9),
+                rgba(139, 0, 0, 0.8),
+                rgba(128, 0, 32, 0.6));
+            box-shadow: 
+                inset 0 0 8px rgba(255, 255, 255, 0.4),
+                0 0 15px rgba(178, 34, 34, 0.4);
         }
         .flower-particle.rose {
-            background: radial-gradient(circle at center, #2F4F2F 0%, #2F4F2F 20%, transparent 21%);
+            background: radial-gradient(circle at center, 
+                rgba(47, 79, 47, 0.8) 0%, 
+                rgba(47, 79, 47, 0.6) 25%, 
+                transparent 26%);
+            filter: brightness(1.2) saturate(1.6);
+        }
+        
+        /* Enhanced Jasmine - Pure White & Cream */
+        .flower-particle.jasmine::before {
+            background: radial-gradient(ellipse at 30% 30%, 
+                rgba(255, 255, 255, 0.95),
+                rgba(255, 250, 240, 0.9),
+                rgba(245, 245, 220, 0.8));
+            box-shadow: 
+                inset 0 0 10px rgba(255, 255, 255, 0.6),
+                0 0 20px rgba(255, 255, 255, 0.5);
+        }
+        .flower-particle.jasmine::after {
+            background: radial-gradient(ellipse at 30% 30%, 
+                rgba(255, 248, 220, 0.9),
+                rgba(255, 245, 238, 0.85),
+                rgba(250, 235, 215, 0.75));
+            box-shadow: 
+                inset 0 0 10px rgba(255, 255, 255, 0.6),
+                0 0 20px rgba(255, 255, 255, 0.5);
         }
         .flower-particle.jasmine {
-            background: radial-gradient(circle at center, #DAA520 0%, #DAA520 20%, transparent 21%);
+            background: radial-gradient(circle at center, 
+                rgba(218, 165, 32, 0.9) 0%, 
+                rgba(218, 165, 32, 0.7) 25%, 
+                transparent 26%);
+            filter: brightness(1.4) saturate(1.1);
+        }
+        
+        /* Enhanced Lotus - Pink & Purple */
+        .flower-particle.lotus::before {
+            background: radial-gradient(ellipse at 30% 30%, 
+                rgba(255, 182, 193, 0.95),
+                rgba(255, 105, 180, 0.85),
+                rgba(221, 160, 221, 0.75));
+            box-shadow: 
+                inset 0 0 8px rgba(255, 255, 255, 0.5),
+                0 0 15px rgba(255, 182, 193, 0.4);
+        }
+        .flower-particle.lotus::after {
+            background: radial-gradient(ellipse at 30% 30%, 
+                rgba(221, 160, 221, 0.9),
+                rgba(218, 112, 214, 0.8),
+                rgba(186, 85, 211, 0.7));
+            box-shadow: 
+                inset 0 0 8px rgba(255, 255, 255, 0.5),
+                0 0 15px rgba(221, 160, 221, 0.4);
         }
         .flower-particle.lotus {
-            background: radial-gradient(circle at center, #FFD700 0%, #FFD700 20%, transparent 21%);
+            background: radial-gradient(circle at center, 
+                rgba(255, 215, 0, 0.9) 0%, 
+                rgba(255, 215, 0, 0.7) 25%, 
+                transparent 26%);
+            filter: brightness(1.3) saturate(1.4);
         }
-
+        
+        /* Enhanced Hibiscus - Vibrant Red */
         .flower-particle.hibiscus::before {
-  background: radial-gradient(ellipse at 30% 30%, #B22222, #FF2400);
-}
-.flower-particle.hibiscus::after {
-  background: radial-gradient(ellipse at 30% 30%, #8B0000, #990000);
-}
-.flower-particle.hibiscus {
-  background: radial-gradient(circle at center, #4B0000 0%, #4B0000 20%, transparent 21%);
-}
-
-.flower-particle.bougainvillea::before {
-  background: radial-gradient(ellipse at 30% 30%, #C71585, #FF1493);
-}
-.flower-particle.bougainvillea::after {
-  background: radial-gradient(ellipse at 30% 30%, #DB7093, #FF69B4);
-}
-.flower-particle.bougainvillea {
-  background: radial-gradient(circle at center, #800040 0%, #800040 20%, transparent 21%);
-}
-
-.flower-particle.tulsi::before {
-  background: radial-gradient(ellipse at 30% 30%, #A2C523, #6B8E23);
-}
-.flower-particle.tulsi::after {
-  background: radial-gradient(ellipse at 30% 30%, #556B2F, #3B5323);
-}
-.flower-particle.tulsi {
-  background: radial-gradient(circle at center, #3E4D1E 0%, #3E4D1E 20%, transparent 21%);
-}
-
-.flower-particle.tulsi::before {
-  background: radial-gradient(ellipse at 30% 30%, #A2C523, #6B8E23);
-}
-.flower-particle.tulsi::after {
-  background: radial-gradient(ellipse at 30% 30%, #556B2F, #3B5323);
-}
-.flower-particle.tulsi {
-  background: radial-gradient(circle at center, #3E4D1E 0%, #3E4D1E 20%, transparent 21%);
-}
-
-.flower-particle.midlotus::before {
-  background: radial-gradient(ellipse at 30% 30%, #483D8B, #6A5ACD);
-}
-.flower-particle.midlotus::after {
-  background: radial-gradient(ellipse at 30% 30%, #8A2BE2, #4B0082);
-}
-.flower-particle.midlotus {
-  background: radial-gradient(circle at center, #DAA520 0%, #DAA520 20%, transparent 21%);
-}
+            background: radial-gradient(ellipse at 30% 30%, 
+                rgba(255, 36, 0, 0.95),
+                rgba(255, 69, 0, 0.85),
+                rgba(220, 20, 60, 0.75));
+            box-shadow: 
+                inset 0 0 8px rgba(255, 255, 255, 0.4),
+                0 0 15px rgba(255, 36, 0, 0.4);
+        }
+        .flower-particle.hibiscus::after {
+            background: radial-gradient(ellipse at 30% 30%, 
+                rgba(178, 34, 34, 0.9),
+                rgba(139, 0, 0, 0.8),
+                rgba(153, 0, 0, 0.7));
+            box-shadow: 
+                inset 0 0 8px rgba(255, 255, 255, 0.4),
+                0 0 15px rgba(178, 34, 34, 0.4);
+        }
+        .flower-particle.hibiscus {
+            background: radial-gradient(circle at center, 
+                rgba(75, 0, 0, 0.9) 0%, 
+                rgba(75, 0, 0, 0.7) 25%, 
+                transparent 26%);
+            filter: brightness(1.4) saturate(1.7);
+        }
+        
+        /* Enhanced Bougainvillea - Magenta & Pink */
+        .flower-particle.bougainvillea::before {
+            background: radial-gradient(ellipse at 30% 30%, 
+                rgba(255, 20, 147, 0.95),
+                rgba(199, 21, 133, 0.85),
+                rgba(219, 112, 147, 0.75));
+            box-shadow: 
+                inset 0 0 8px rgba(255, 255, 255, 0.5),
+                0 0 15px rgba(255, 20, 147, 0.4);
+        }
+        .flower-particle.bougainvillea::after {
+            background: radial-gradient(ellipse at 30% 30%, 
+                rgba(219, 112, 147, 0.9),
+                rgba(255, 105, 180, 0.8),
+                rgba(255, 182, 193, 0.7));
+            box-shadow: 
+                inset 0 0 8px rgba(255, 255, 255, 0.5),
+                0 0 15px rgba(219, 112, 147, 0.4);
+        }
+        .flower-particle.bougainvillea {
+            background: radial-gradient(circle at center, 
+                rgba(128, 0, 64, 0.9) 0%, 
+                rgba(128, 0, 64, 0.7) 25%, 
+                transparent 26%);
+            filter: brightness(1.3) saturate(1.6);
+        }
+        
+        /* Enhanced Tulsi - Sacred Green */
+        .flower-particle.tulsi::before {
+            background: radial-gradient(ellipse at 30% 30%, 
+                rgba(173, 255, 47, 0.95),
+                rgba(154, 205, 50, 0.85),
+                rgba(107, 142, 35, 0.75));
+            box-shadow: 
+                inset 0 0 8px rgba(255, 255, 255, 0.4),
+                0 0 15px rgba(173, 255, 47, 0.3);
+        }
+        .flower-particle.tulsi::after {
+            background: radial-gradient(ellipse at 30% 30%, 
+                rgba(85, 107, 47, 0.9),
+                rgba(59, 83, 35, 0.8),
+                rgba(34, 139, 34, 0.7));
+            box-shadow: 
+                inset 0 0 8px rgba(255, 255, 255, 0.4),
+                0 0 15px rgba(85, 107, 47, 0.3);
+        }
+        .flower-particle.tulsi {
+            background: radial-gradient(circle at center, 
+                rgba(62, 77, 30, 0.9) 0%, 
+                rgba(62, 77, 30, 0.7) 25%, 
+                transparent 26%);
+            filter: brightness(1.3) saturate(1.4);
+        }
+        
+        /* Enhanced Mid Lotus - Blue & Purple */
+        .flower-particle.midlotus::before {
+            background: radial-gradient(ellipse at 30% 30%, 
+                rgba(138, 43, 226, 0.95),
+                rgba(106, 90, 205, 0.85),
+                rgba(72, 61, 139, 0.75));
+            box-shadow: 
+                inset 0 0 8px rgba(255, 255, 255, 0.5),
+                0 0 15px rgba(138, 43, 226, 0.4);
+        }
+        .flower-particle.midlotus::after {
+            background: radial-gradient(ellipse at 30% 30%, 
+                rgba(75, 0, 130, 0.9),
+                rgba(72, 61, 139, 0.8),
+                rgba(123, 104, 238, 0.7));
+            box-shadow: 
+                inset 0 0 8px rgba(255, 255, 255, 0.5),
+                0 0 15px rgba(75, 0, 130, 0.4);
+        }
+        .flower-particle.midlotus {
+            background: radial-gradient(circle at center, 
+                rgba(255, 215, 0, 0.9) 0%, 
+                rgba(255, 215, 0, 0.7) 25%, 
+                transparent 26%);
+            filter: brightness(1.3) saturate(1.5);
+        }
         
         @keyframes floatPetal {
             0% {
-                transform: translateY(100vh) rotate(0deg) scale(0.3);
+                transform: translateY(100vh) translateX(0) rotate(0deg) scale(0.3);
                 opacity: 0;
             }
-            10% {
-                opacity: 0.8;
+            5% {
+                opacity: 0.7;
             }
-            90% {
+            15% {
+                opacity: 0.9;
+                transform: translateY(90vh) translateX(20px) rotate(45deg) scale(0.6);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(50vh) translateX(-30px) rotate(180deg) scale(0.8);
+            }
+            85% {
+                opacity: 0.8;
+                transform: translateY(20vh) translateX(15px) rotate(300deg) scale(1);
+            }
+            95% {
                 opacity: 0.4;
             }
             100% {
-                transform: translateY(-100px) rotate(720deg) scale(0.8);
+                transform: translateY(-20vh) translateX(-10px) rotate(720deg) scale(0.9);
                 opacity: 0;
+            }
+        }
+        
+        @keyframes particleRotate {
+            0%, 100% { 
+                transform: rotate(0deg) scale(1);
+                filter: brightness(1.2) saturate(1.4) hue-rotate(0deg);
+            }
+            25% { 
+                transform: rotate(90deg) scale(1.1);
+                filter: brightness(1.3) saturate(1.5) hue-rotate(15deg);
+            }
+            50% { 
+                transform: rotate(180deg) scale(0.9);
+                filter: brightness(1.4) saturate(1.6) hue-rotate(30deg);
+            }
+            75% { 
+                transform: rotate(270deg) scale(1.05);
+                filter: brightness(1.3) saturate(1.5) hue-rotate(15deg);
+            }
+        }
+        
+        @keyframes petalShimmer {
+            0%, 100% { 
+                opacity: 0.8;
+                transform: translate(-50%, -50%) rotate(var(--rotation, 0deg)) scale(1);
+                filter: brightness(1.2) saturate(1.4);
+            }
+            50% { 
+                opacity: 1;
+                transform: translate(-50%, -50%) rotate(var(--rotation, 0deg)) scale(1.1);
+                filter: brightness(1.5) saturate(1.8) drop-shadow(0 0 10px rgba(255, 255, 255, 0.6));
             }
         }
         
@@ -251,10 +430,11 @@
   position: fixed;
   width: 80px;
   height: 80px;
-  opacity: 0.85;
+  opacity: 0.9;
   z-index: 1;
   pointer-events: none;
-  animation: slowSpin 30s linear infinite, pulseGlow 5s ease-in-out infinite;
+  animation: slowSpin 30s linear infinite, enhancedPulseGlow 4s ease-in-out infinite;
+  filter: brightness(1.3) saturate(1.5) drop-shadow(0 0 15px rgba(255, 215, 0, 0.4));
 }
 .rangoli-flower.edge-top {
   top: 20px;
@@ -303,14 +483,16 @@
   transform: rotate(180deg);
 }
 
-@keyframes pulseGlow {
+@keyframes enhancedPulseGlow {
   0%, 100% {
-    filter: drop-shadow(0 0 4px rgba(255, 153, 51, 0.2));
-    opacity: 0.85;
+    filter: brightness(1.3) saturate(1.5) drop-shadow(0 0 15px rgba(255, 215, 0, 0.4));
+    opacity: 0.9;
+    transform: scale(1);
   }
   50% {
-    filter: drop-shadow(0 0 12px rgba(255, 153, 51, 0.5));
+    filter: brightness(1.6) saturate(1.8) drop-shadow(0 0 25px rgba(255, 215, 0, 0.7));
     opacity: 1;
+    transform: scale(1.05);
   }
 }
 
@@ -333,26 +515,35 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 20% 30%, rgba(255, 153, 51, 0.03) 0%, transparent 25%),
-                radial-gradient(circle at 80% 20%, rgba(155, 17, 30, 0.02) 0%, transparent 25%),
-                radial-gradient(circle at 30% 80%, rgba(34, 139, 34, 0.02) 0%, transparent 25%),
-                radial-gradient(circle at 70% 70%, rgba(255, 153, 51, 0.03) 0%, transparent 25%),
-                radial-gradient(circle at 50% 50%, rgba(245, 222, 179, 0.05) 0%, transparent 40%);
-            animation: subtleShift 20s ease-in-out infinite;
+                radial-gradient(circle at 20% 30%, rgba(255, 182, 193, 0.06) 0%, transparent 25%),
+                radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.04) 0%, transparent 25%),
+                radial-gradient(circle at 30% 80%, rgba(173, 255, 47, 0.04) 0%, transparent 25%),
+                radial-gradient(circle at 70% 70%, rgba(138, 43, 226, 0.05) 0%, transparent 25%),
+                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 40%);
+            animation: enhancedSubtleShift 15s ease-in-out infinite;
         }
         
-        @keyframes subtleShift {
-            0%, 100% { opacity: 1; }
-            33% { opacity: 0.8; }
-            66% { opacity: 0.9; }
+        @keyframes enhancedSubtleShift {
+            0%, 100% { 
+                opacity: 1; 
+                filter: brightness(1.1) saturate(1.2);
+            }
+            33% { 
+                opacity: 0.8; 
+                filter: brightness(1.2) saturate(1.3);
+            }
+            66% { 
+                opacity: 0.9; 
+                filter: brightness(1.15) saturate(1.25);
+            }
         }
         
-        .ornamental-border .border-piece {
-  position: absolute;
-  background-image: url('static/rotating-border-tile.svg'); /* replace with actual path */
-  background-repeat: repeat;
-  background-size: 60px;
-  animation: borderRotate 60s linear infinite;
+        .solid{
+            position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 150px;
   opacity: 0.4;
   z-index: 10;
   pointer-events: none;
@@ -1340,7 +1531,7 @@
         }
         
         // Create petals continuously
-        setInterval(createFloatingPetal, 300);
+        setInterval(createFloatingPetal, 100000000000000);
         
         // Create initial batch of petals
         for (let i = 0; i < 30; i++) {

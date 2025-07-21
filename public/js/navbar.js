@@ -12,31 +12,31 @@ const navbarHTML = `
 
         <!-- Main Navigation Links -->
         <div class="nav-links">
-            <a href="index.html" class="nav-link" data-text="Home">
+            <a href="/index.html" class="nav-link" data-text="Home">
                 <span class="nav-icon">🏠</span>
                 <span class="nav-text">Home</span>
                 <div class="nav-ripple"></div>
             </a>
             
-            <a href="artists.html" class="nav-link" data-text="Artists">
+            <a href="/artists" class="nav-link" data-text="Artists">
                 <span class="nav-icon">👨‍🎨</span>
                 <span class="nav-text">Artists</span>
                 <div class="nav-ripple"></div>
             </a>
             
-            <a href="workshops.html" class="nav-link" data-text="Workshops">
+            <a href="/artist/workshops" class="nav-link" data-text="Workshops">
                 <span class="nav-icon">🎭</span>
                 <span class="nav-text">Workshops</span>
                 <div class="nav-ripple"></div>
             </a>
             
-            <a href="calendar.html" class="nav-link" data-text="Calendar">
+            <a href="/calendar" class="nav-link" data-text="Calendar">
                 <span class="nav-icon">📅</span>
                 <span class="nav-text">Calendar</span>
                 <div class="nav-ripple"></div>
             </a>
             
-            <!-- Heritage Dropdown -->
+            <!-- Heritage Dropdown with improved animation -->
             <div class="nav-dropdown">
                 <button class="nav-link dropdown-trigger" data-text="Heritage">
                     <span class="nav-icon">🏛️</span>
@@ -46,21 +46,21 @@ const navbarHTML = `
                 </button>
                 <div class="dropdown-panel">
                     <div class="dropdown-content">
-                        <a href="traditional.html" class="dropdown-item">
+                        <a href="paintings and traditional styles.html" class="dropdown-item">
                             <span class="dropdown-icon">🎨</span>
-                            <span class="dropdown-text">Traditional Arts</span>
+                            <span class="dropdown-text">Traditional Painting Styles</span>
                         </a>
-                        <a href="folk.html" class="dropdown-item">
-                            <span class="dropdown-icon">🎪</span>
-                            <span class="dropdown-text">Folk Arts</span>
+                        <a href="textile_main.html" class="dropdown-item">
+                            <span class="dropdown-icon">🪡</span>
+                            <span class="dropdown-text">Textile Arts and Embroidery</span>
                         </a>
-                        <a href="classical.html" class="dropdown-item">
+                        <a href="performingarts.html" class="dropdown-item">
+                            <span class="dropdown-icon">🪷</span>
+                            <span class="dropdown-text">Performing Arts</span>
+                        </a>
+                        <a href="handicrafts_and_sculptures.html" class="dropdown-item">
                             <span class="dropdown-icon">🏺</span>
-                            <span class="dropdown-text">Classical Arts</span>
-                        </a>
-                        <a href="contemporary.html" class="dropdown-item">
-                            <span class="dropdown-icon">🖼️</span>
-                            <span class="dropdown-text">Contemporary Arts</span>
+                            <span class="dropdown-text">Handicrafts and Sculpture</span>
                         </a>
                     </div>
                 </div>
@@ -75,7 +75,7 @@ const navbarHTML = `
 
         <!-- Authentication Section -->
         <div class="auth-section">
-            <!-- For static HTML, we'll show login/register by default -->
+            <!-- Not logged in state -->
             <a href="login.html" class="auth-link profile-btn" data-text="Profile">
                 <span class="auth-icon">👤</span>
                 <span class="auth-text">Profile</span>
@@ -118,14 +118,11 @@ function loadNavbar() {
     // Insert navbar at the beginning of body
     document.body.insertAdjacentHTML('afterbegin', navbarHTML);
     
-    // Add padding to body to account for fixed navbar
-    document.body.style.paddingTop = '80px';
-    
     // Initialize navbar functionality
     initializeNavbar();
 }
 
-// Navbar functionality
+// Navbar functionality - Matching EJS implementation exactly
 function initializeNavbar() {
     const mobileToggle = document.getElementById('mobileToggle');
     const mobileNavOverlay = document.getElementById('mobileNavOverlay');
@@ -150,7 +147,10 @@ function initializeNavbar() {
     });
 
     // Scroll effect
+    let scrollTimeout;
     window.addEventListener('scroll', function() {
+        clearTimeout(scrollTimeout);
+        
         if (window.scrollY > 50) {
             navbar?.classList.add('scrolled');
         } else {
@@ -159,12 +159,11 @@ function initializeNavbar() {
     });
 
     // Active link highlighting
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const currentPath = window.location.pathname;
     const navLinks = document.querySelectorAll('.nav-link, .auth-link');
     
     navLinks.forEach(link => {
-        const linkPage = link.getAttribute('href');
-        if (linkPage === currentPage) {
+        if (link.getAttribute('href') === currentPath) {
             link.classList.add('active');
         }
     });
@@ -184,28 +183,61 @@ function initializeNavbar() {
         });
     });
 
-    // Enhanced dropdown functionality
+    // Enhanced dropdown functionality - Matching EJS exactly
     const dropdowns = document.querySelectorAll('.nav-dropdown');
     
     dropdowns.forEach(dropdown => {
+        const trigger = dropdown.querySelector('.dropdown-trigger');
         const panel = dropdown.querySelector('.dropdown-panel');
         let hoverTimeout;
 
-        dropdown.addEventListener('mouseenter', function() {
-            clearTimeout(hoverTimeout);
-            panel.style.opacity = '1';
-            panel.style.visibility = 'visible';
-            panel.style.transform = 'translateX(-50%) translateY(0) scale(1)';
-        });
+        if (trigger && panel) {
+            // Show dropdown on hover
+            dropdown.addEventListener('mouseenter', function() {
+                clearTimeout(hoverTimeout);
+                panel.style.opacity = '1';
+                panel.style.visibility = 'visible';
+                panel.style.transform = 'translateX(-50%) translateY(0) scale(1)';
+            });
 
-        dropdown.addEventListener('mouseleave', function() {
-            hoverTimeout = setTimeout(() => {
-                panel.style.opacity = '0';
-                panel.style.visibility = 'hidden';
-                panel.style.transform = 'translateX(-50%) translateY(-8px) scale(0.96)';
-            }, 100);
-        });
+            // Hide dropdown when leaving both trigger and panel
+            dropdown.addEventListener('mouseleave', function() {
+                hoverTimeout = setTimeout(() => {
+                    panel.style.opacity = '0';
+                    panel.style.visibility = 'hidden';
+                    panel.style.transform = 'translateX(-50%) translateY(-8px) scale(0.96)';
+                }, 100); // Small delay to allow moving to dropdown
+            });
+
+            // Keep dropdown open when hovering the panel
+            panel.addEventListener('mouseenter', function() {
+                clearTimeout(hoverTimeout);
+            });
+        }
     });
+
+    // Populate mobile navigation - Matching EJS implementation
+    const navLinksContainer = document.querySelector('.nav-links');
+    const authSection = document.querySelector('.auth-section');
+    const mobileNavLinks = document.querySelector('.mobile-nav-links');
+
+    if (navLinksContainer && authSection && mobileNavLinks) {
+        const allLinks = [...navLinksContainer.children, ...authSection.children];
+        
+        allLinks.forEach(item => {
+            if (item.tagName === 'A' || item.classList.contains('nav-dropdown')) {
+                const mobileItem = item.cloneNode(true);
+                mobileItem.style.fontSize = '1.1rem';
+                mobileItem.style.padding = '12px 20px';
+                mobileItem.style.color = 'white';
+                mobileItem.style.borderRadius = '12px';
+                mobileItem.style.minWidth = '180px';
+                mobileItem.style.textAlign = 'center';
+                mobileItem.addEventListener('click', toggleMobileMenu);
+                mobileNavLinks.appendChild(mobileItem);
+            }
+        });
+    }
 }
 
 // Load navbar when DOM is ready
