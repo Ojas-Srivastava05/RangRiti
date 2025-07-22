@@ -323,8 +323,14 @@
         </div>
         <button class="nav-btn">Connect</button>
     </nav>
+
 <main>
-    <section class="hero">
+<div id="tts-controls" style="position: fixed; top: 20px; right: 20px; z-index: 1000;">
+  <button onclick="speakPatolaStory()">🔊 Listen</button>
+  <button onclick="pauseTTS()">⏸️ Pause</button>
+  <button onclick="resumeTTS()">▶️ Resume</button>
+  <button onclick="cancelTTS()">⏹️ Stop</button>
+</div>    <section class="hero">
         <div class="hero-content">
             <h1>Patan Patola: Double Ikat Legends</h1>
             <p>Step into the world of Patan, where every silk thread is dyed with precision and woven into a tapestry of geometry, color, and royal legacy.</p>
@@ -385,5 +391,49 @@
     <p>Honoring the legendary weaves of Patan’s silk heritage.</p>
     <p>Contact us at <a href="mailto:info@patolasilk.com">info@patolasilk.com</a></p>
 </footer>
+<script>
+  let utterance; // make it global so we can pause/resume it
+
+  function speakPatolaStory() {
+    // Cancel if already speaking
+    speechSynthesis.cancel();
+
+    const contentSections = document.querySelectorAll('main h1, main h2, main h3, main p, main strong');
+    let textToRead = '';
+    
+    contentSections.forEach(el => {
+      textToRead += el.innerText + '. ';
+    });
+
+    utterance = new SpeechSynthesisUtterance(textToRead);
+    utterance.rate = 1;
+    utterance.pitch = 1;
+    utterance.volume = 1;
+
+    const voices = speechSynthesis.getVoices();
+    utterance.voice = voices.find(v => v.lang === 'en-IN') || voices[0];
+
+    speechSynthesis.speak(utterance);
+  }
+
+  function pauseTTS() {
+    if (speechSynthesis.speaking && !speechSynthesis.paused) {
+      speechSynthesis.pause();
+    }
+  }
+
+  function resumeTTS() {
+    if (speechSynthesis.paused) {
+      speechSynthesis.resume();
+    }
+  }
+
+  function cancelTTS() {
+    speechSynthesis.cancel();
+  }
+
+  // Ensure voices are loaded
+  window.speechSynthesis.onvoiceschanged = () => {};
+</script>
 </body>
 </html>
