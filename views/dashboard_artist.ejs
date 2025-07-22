@@ -93,13 +93,13 @@
             transition: all var(--transition-speed-medium) var(--easing-function);
             font-family: var(--font-primary);
         }
-        
+
         .back-home-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 30px var(--color-shadow-secondary);
             background: linear-gradient(135deg, var(--color-dark-brown), var(--color-earth-brown));
         }
-        
+
         .back-home-btn::before {
             content: '←';
             font-size: 18px;
@@ -686,7 +686,7 @@
 
 <body>
     <!-- Back to Home Button -->
-    <a href="/index.html" class="back-home-btn">Home</a>
+    <!-- <a href="/index.html" class="back-home-btn">Home</a> -->
 
     <!-- Background Particle Effects -->
     <div class="particle-container">
@@ -762,7 +762,7 @@
         </div>
 
         <!-- Stats Section -->
-        <div class="stats-section">
+        <!-- <div class="stats-section">
             <div class="stat-card">
                 <div class="stat-number">127</div>
                 <div class="stat-label">Artworks</div>
@@ -775,7 +775,7 @@
                 <div class="stat-number">89</div>
                 <div class="stat-label">Sold Pieces</div>
             </div>
-        </div>
+        </div> -->
 
         <!-- Actions Section -->
         <div class="actions-section">
@@ -802,15 +802,24 @@
                     <span class="action-icon">💬</span>
                     <span>Contact Support</span>
                 </button>
+                <button class="action-btn" onclick="window.location.href = '/artist/workshops'">
+                    <span class="action-icon">💬</span>
+                    <span>Add Workshops</span>
+                </button>
+                <button class="action-btn" onclick="window.location.href = '/marketplace'">
+                    <span class="action-icon">💬</span>
+                    <span>Explore marketplace</span>
+                </button>
+
             </div>
         </div>
     </div>
 
     <script>
-          const params = new URLSearchParams(window.location.search);
-    if (params.get('success') === 'true') {
-        alert("✅ Product saved successfully!");
-    }
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('success') === 'true') {
+            alert("✅ Product saved successfully!");
+        }
         function logout() {
             let ans = confirm("Do you want to logout ?");
             if (ans) {

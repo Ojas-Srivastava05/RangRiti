@@ -738,7 +738,7 @@
                     <div class="floating-cart" onclick="window.location.href = '/cart'">
                         <i class="fas fa-shopping-bag cart-icon"></i>
                         <div class="cart-count">
-                            <%= user.cart.length %>
+                            <%= user && user.cart ? user.cart.length : 0 %>
                         </div>
                     </div>
                 </li>

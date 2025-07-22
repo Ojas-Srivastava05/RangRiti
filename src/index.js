@@ -678,18 +678,32 @@ app.get('/dashboard', async (req, res) => {
         res.status(500).send("Server error");
     }
 });
-app.get('/user', (req, res) => {
+app.get('/user', async (req, res) => {
     const user = req.session.user;
     if (!user || user.type !== 'user') {
         return res.status(403).render('error', { message: 'Unauthorized access.' });
     }
-    res.render('marketplace', { user }); // route to marketplace
+
+    try {
+        // Fetch only a few featured products (you can change the filter logic later)
+        const products = await Product.find().sort({ dateCreated: -1 }).limit(6).lean();
+        res.render('marketplace', { user, products });
+    } catch (err) {
+        console.error("Error loading user marketplace:", err);
+        res.status(500).render('error', { message: "Failed to load marketplace." });
+    }
 });
 
-app.get('/marketplace', (req, res) => {
-    res.render('marketplace')
+app.get('/marketplace', async (req, res) => {
+  try {
+    const products = await Product.find().sort({ dateCreated: -1 }).limit(6).lean();
+    const user = req.session?.user || null;
+    res.render('marketplace', { user, products });
+  } catch (err) {
+    console.error("Marketplace error:", err);
+    res.status(500).render('error', { message: "Failed to load marketplace." });
+  }
 });
-
 
 app.get('/catalogue', async (req, res) => {
     try {
@@ -821,17 +835,32 @@ app.post('/api/add-product', upload.array('images'), async (req, res) => {
 });
 
 
-app.get('/product/:id', async (req, res) => {
-    try {
-        const product = await Product.findById(req.params.id).lean();
-        if (!product) return res.status(404).send("Product not found");
+app.get('/product/:productId', async (req, res) => {
+  const productId = req.params.productId;
 
-        const user = req.user || null;
-        res.render('details', { product, user });
-    } catch (error) {
-        console.error("Error loading product:", error);
-        res.status(500).send("Failed to load product details.");
+  try {
+    const product = await Product.findById(productId).lean();
+
+    if (!product) {
+      return res.status(404).render('error', { message: "Product not found." });
     }
+
+    // 🧠 Related Products: Same category, exclude current product
+    const relatedProducts = await Product.find({
+      category: product.category,
+      _id: { $ne: product._id }
+    }).limit(4).lean();
+
+    res.render('details', {
+      product,
+      relatedProducts,
+      user: req.session.user || null
+    });
+
+  } catch (error) {
+    console.error("Error loading product details:", error);
+    res.status(500).render('error', { message: "Failed to load product details." });
+  }
 });
 // --- Registration Endpoints ---
 
@@ -928,9 +957,9 @@ app.post('/api/login', async (req, res) => {
         };
 
         if (userType === 'artist') {
-            return res.status(200).json({ message: 'Login successful', redirect: 'index.html' });
+            return res.status(200).json({ message: 'Login successful', redirect: '/dashboard' });
         } else {
-            return res.status(200).json({ message: 'Login successful', redirect: 'index.html' });
+            return res.status(200).json({ message: 'Login successful', redirect: 'marketplace' });
         }
     } catch (error) {
         console.error("Login error:", error);

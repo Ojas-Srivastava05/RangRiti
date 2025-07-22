@@ -616,9 +616,12 @@
                 <button class="btn btn-continue" onclick="updateCartAndContinue()">
                     <i class="fas fa-arrow-left"></i> Continue Shopping
                 </button>
-                <form action="/buy-now/<%= cartItems[0].productId %>" method="POST"> <button type="submit"
-                        class="btn btn-checkout">Buy Now</button>
-                </form>
+
+                <% if (cartItems && cartItems.length> 0) { %>
+                    <form action="/buy-now/<%= cartItems[0].productId %>" method="POST">
+                        <button type="submit" class="btn btn-checkout">Buy Now</button>
+                    </form>
+                    <% } %>
             </div>
         </section>
     </div>

@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>My Workshops</title>
     
-    <%- include('partials/navbar-styles') %>
     
     <style>
         /* Google Fonts Import for Traditional Look */
@@ -31,6 +30,48 @@
             padding: 0;
             box-sizing: border-box;
         }
+                /* Back to Home Button */
+        .back-home-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, var(--chocolate-brown), var(--rich-brown));
+            color: var(--cream-white);
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 1001;
+            box-shadow: 0 6px 20px rgba(61, 41, 20, 0.3);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            font-family: var(--font-classic);
+            border: 2px solid transparent;
+        }
+        
+        .back-home-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(61, 41, 20, 0.4);
+            background: linear-gradient(135deg, var(--rich-brown), var(--antique-bronze));
+            border-color: var(--royal-gold);
+        }
+        
+        .back-home-btn::before {
+            content: '❮';
+            font-size: 16px;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .back-home-btn:hover::before {
+            transform: translateX(-3px);
+        }
+
 
         body {
             font-family: var(--font-classic);
@@ -326,7 +367,8 @@
     </style>
 </head>
 <body>
-    <%- include('partials/navbar') %>
+    <!-- Back to Home Button -->
+    <a href="/dashboard" class="back-home-btn">Back to Dashboard</a>
 
     <div class="dashboard-container">
         <h1>My Scheduled Workshops</h1>

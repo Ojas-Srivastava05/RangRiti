@@ -24,11 +24,6 @@ const navbarHTML = `
                 <div class="nav-ripple"></div>
             </a>
             
-            <a href="/artist/workshops" class="nav-link" data-text="Workshops">
-                <span class="nav-icon">🎭</span>
-                <span class="nav-text">Workshops</span>
-                <div class="nav-ripple"></div>
-            </a>
             
             <a href="/calendar" class="nav-link" data-text="Calendar">
                 <span class="nav-icon">📅</span>
@@ -82,11 +77,6 @@ const navbarHTML = `
         <!-- Authentication Section -->
         <div class="auth-section">
             <!-- Not logged in state -->
-            <a href="login.html" class="auth-link profile-btn" data-text="Profile">
-                <span class="auth-icon">👤</span>
-                <span class="auth-text">Profile</span>
-                <div class="nav-ripple"></div>
-            </a>
             <a href="login.html" class="auth-link login-btn" data-text="Login">
                 <span class="auth-icon">🔑</span>
                 <span class="auth-text">Login</span>
