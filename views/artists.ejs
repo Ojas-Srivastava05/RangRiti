@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Master Artists - RangRiti</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
+    <%- include('partials/navbar-styles') %>
+
     <!-- ADD NAVBAR CSS -->
     <link rel="stylesheet" href="/css/navbar.css">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Crimson+Text:400,600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Crimson+Text:400,600&family=Playfair+Display:wght@400;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
         /* =================== CSS VARIABLES =================== */
         :root {
@@ -35,7 +40,9 @@
             --font-classic: 'Crimson Text', serif;
         }
 
-        *, *::before, *::after {
+        *,
+        *::before,
+        *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -50,7 +57,7 @@
         /* =================== ENHANCED DYNAMIC BACKGROUND =================== */
         body {
             font-family: var(--font-elegant);
-            background: 
+            background:
                 linear-gradient(45deg, var(--sandalwood-beige) 0%, var(--warm-sandalwood) 25%, var(--deep-sandalwood) 50%, var(--sandalwood-beige) 75%, var(--warm-sandalwood) 100%),
                 radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 80% 20%, rgba(139, 69, 19, 0.08) 0%, transparent 50%),
@@ -65,28 +72,33 @@
         }
 
         @keyframes megaDynamicBackground {
-            0% { 
-                background-position: 0% 50%, 20% 80%, 80% 20%, 40% 40%; 
+            0% {
+                background-position: 0% 50%, 20% 80%, 80% 20%, 40% 40%;
                 filter: hue-rotate(0deg) brightness(1) contrast(1);
             }
-            20% { 
-                background-position: 50% 80%, 40% 60%, 60% 40%, 80% 20%; 
+
+            20% {
+                background-position: 50% 80%, 40% 60%, 60% 40%, 80% 20%;
                 filter: hue-rotate(3deg) brightness(1.02) contrast(1.01);
             }
-            40% { 
-                background-position: 100% 50%, 80% 20%, 20% 80%, 60% 60%; 
+
+            40% {
+                background-position: 100% 50%, 80% 20%, 20% 80%, 60% 60%;
                 filter: hue-rotate(6deg) brightness(1.01) contrast(1.02);
             }
-            60% { 
-                background-position: 80% 20%, 60% 40%, 40% 60%, 20% 80%; 
+
+            60% {
+                background-position: 80% 20%, 60% 40%, 40% 60%, 20% 80%;
                 filter: hue-rotate(4deg) brightness(1.03) contrast(1.01);
             }
-            80% { 
-                background-position: 20% 80%, 20% 80%, 80% 20%, 40% 40%; 
+
+            80% {
+                background-position: 20% 80%, 20% 80%, 80% 20%, 40% 40%;
                 filter: hue-rotate(2deg) brightness(1.01) contrast(1);
             }
-            100% { 
-                background-position: 0% 50%, 20% 80%, 80% 20%, 40% 40%; 
+
+            100% {
+                background-position: 0% 50%, 20% 80%, 80% 20%, 40% 40%;
                 filter: hue-rotate(0deg) brightness(1) contrast(1);
             }
         }
@@ -110,7 +122,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
+            background:
                 conic-gradient(from 0deg at 25% 25%, rgba(255, 215, 0, 0.06) 0deg, transparent 90deg, rgba(139, 69, 19, 0.04) 180deg, transparent 270deg),
                 conic-gradient(from 180deg at 75% 75%, rgba(245, 222, 179, 0.05) 0deg, transparent 120deg, rgba(255, 215, 0, 0.03) 240deg, transparent 360deg),
                 linear-gradient(45deg, rgba(255, 215, 0, 0.02) 0%, transparent 50%, rgba(139, 69, 19, 0.02) 100%);
@@ -118,24 +130,28 @@
         }
 
         @keyframes rotateAndPulse {
-            0% { 
-                transform: rotate(0deg) scale(1); 
+            0% {
+                transform: rotate(0deg) scale(1);
                 opacity: 0.8;
             }
-            25% { 
-                transform: rotate(90deg) scale(1.05); 
+
+            25% {
+                transform: rotate(90deg) scale(1.05);
                 opacity: 0.6;
             }
-            50% { 
-                transform: rotate(180deg) scale(1.1); 
+
+            50% {
+                transform: rotate(180deg) scale(1.1);
                 opacity: 0.9;
             }
-            75% { 
-                transform: rotate(270deg) scale(1.05); 
+
+            75% {
+                transform: rotate(270deg) scale(1.05);
                 opacity: 0.7;
             }
-            100% { 
-                transform: rotate(360deg) scale(1); 
+
+            100% {
+                transform: rotate(360deg) scale(1);
                 opacity: 0.8;
             }
         }
@@ -161,26 +177,32 @@
                 transform: translateY(100vh) rotate(0deg) scale(0.3);
                 opacity: 0;
             }
+
             15% {
                 opacity: 0.7;
                 transform: translateY(85vh) rotate(54deg) scale(0.8);
             }
+
             30% {
                 opacity: 0.9;
                 transform: translateY(70vh) rotate(108deg) scale(1);
             }
+
             50% {
                 opacity: 0.8;
                 transform: translateY(50vh) rotate(180deg) scale(1.1);
             }
+
             70% {
                 opacity: 0.6;
                 transform: translateY(30vh) rotate(252deg) scale(0.9);
             }
+
             85% {
                 opacity: 0.4;
                 transform: translateY(15vh) rotate(306deg) scale(0.6);
             }
+
             100% {
                 transform: translateY(-10vh) rotate(360deg) scale(0.2);
                 opacity: 0;
@@ -188,14 +210,69 @@
         }
 
         /* 8 particles for artist page */
-        .particle:nth-child(1) { left: 8%; animation-delay: -3s; width: 4px; height: 4px; animation-duration: 42s; }
-        .particle:nth-child(2) { left: 18%; animation-delay: -12s; width: 6px; height: 6px; animation-duration: 48s; }
-        .particle:nth-child(3) { left: 28%; animation-delay: -7s; width: 3px; height: 3px; animation-duration: 45s; }
-        .particle:nth-child(4) { left: 38%; animation-delay: -18s; width: 5px; height: 5px; animation-duration: 40s; }
-        .particle:nth-child(5) { left: 58%; animation-delay: -22s; width: 7px; height: 7px; animation-duration: 43s; }
-        .particle:nth-child(6) { left: 68%; animation-delay: -14s; width: 3px; height: 3px; animation-duration: 47s; }
-        .particle:nth-child(7) { left: 78%; animation-delay: -9s; width: 5px; height: 5px; animation-duration: 41s; }
-        .particle:nth-child(8) { left: 88%; animation-delay: -16s; width: 4px; height: 4px; animation-duration: 44s; }
+        .particle:nth-child(1) {
+            left: 8%;
+            animation-delay: -3s;
+            width: 4px;
+            height: 4px;
+            animation-duration: 42s;
+        }
+
+        .particle:nth-child(2) {
+            left: 18%;
+            animation-delay: -12s;
+            width: 6px;
+            height: 6px;
+            animation-duration: 48s;
+        }
+
+        .particle:nth-child(3) {
+            left: 28%;
+            animation-delay: -7s;
+            width: 3px;
+            height: 3px;
+            animation-duration: 45s;
+        }
+
+        .particle:nth-child(4) {
+            left: 38%;
+            animation-delay: -18s;
+            width: 5px;
+            height: 5px;
+            animation-duration: 40s;
+        }
+
+        .particle:nth-child(5) {
+            left: 58%;
+            animation-delay: -22s;
+            width: 7px;
+            height: 7px;
+            animation-duration: 43s;
+        }
+
+        .particle:nth-child(6) {
+            left: 68%;
+            animation-delay: -14s;
+            width: 3px;
+            height: 3px;
+            animation-duration: 47s;
+        }
+
+        .particle:nth-child(7) {
+            left: 78%;
+            animation-delay: -9s;
+            width: 5px;
+            height: 5px;
+            animation-duration: 41s;
+        }
+
+        .particle:nth-child(8) {
+            left: 88%;
+            animation-delay: -16s;
+            width: 4px;
+            height: 4px;
+            animation-duration: 44s;
+        }
 
         /* =================== HERO SECTION =================== */
         .hero-section {
@@ -216,7 +293,7 @@
             font-weight: 900;
             color: var(--chocolate-brown);
             margin-bottom: 1.5rem;
-            text-shadow: 
+            text-shadow:
                 3px 3px 6px rgba(0, 0, 0, 0.15),
                 0 0 30px rgba(255, 215, 0, 0.2);
             line-height: 1.1;
@@ -360,6 +437,7 @@
         .artist-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+            cursor: pointer;
         }
 
         .card-header {
@@ -382,9 +460,17 @@
         }
 
         @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            50% { transform: translateX(100%); }
-            100% { transform: translateX(100%); }
+            0% {
+                transform: translateX(-100%);
+            }
+
+            50% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
         }
 
         .profile-container {
@@ -418,8 +504,13 @@
         }
 
         @keyframes glow {
-            from { box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
-            to { box-shadow: 0 0 30px rgba(255, 215, 0, 0.5); }
+            from {
+                box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            }
+
+            to {
+                box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            }
         }
 
         .artist-name {
@@ -457,7 +548,8 @@
             opacity: 0.8;
         }
 
-        .specialization, .location {
+        .specialization,
+        .location {
             display: flex;
             align-items: center;
             font-size: 1rem;
@@ -466,7 +558,8 @@
             color: var(--rich-brown);
         }
 
-        .specialization i, .location i {
+        .specialization i,
+        .location i {
             color: var(--bronze-gold);
             margin-right: 0.5rem;
             font-size: 1.1rem;
@@ -675,15 +768,21 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Enhanced Gold Particle Background -->
     <div class="background-layers">
         <div class="geometric-overlay"></div>
         <div class="floating-particles particle-container">
             <!-- Main particles for artist page -->
-            <div class="particle"></div><div class="particle"></div><div class="particle"></div>
-            <div class="particle"></div><div class="particle"></div><div class="particle"></div>
-            <div class="particle"></div><div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
         </div>
     </div>
 
@@ -693,7 +792,8 @@
     <section class="hero-section">
         <h1 class="page-title">Master Artists</h1>
         <div class="decorative-divider"></div>
-        <p class="page-subtitle">Celebrating the soul of Indian artistry through generations of traditional craftsmanship</p>
+        <p class="page-subtitle">Celebrating the soul of Indian artistry through generations of traditional
+            craftsmanship</p>
     </section>
 
     <div class="container">
@@ -702,7 +802,8 @@
             <form method="GET" action="/artists" class="filter-group">
                 <label>Search Artists</label>
                 <div class="search-container">
-                    <input type="text" name="search" placeholder="Enter artist name to discover their work..." value="<%= typeof searchQuery !== 'undefined' ? searchQuery : '' %>">
+                    <input type="text" name="search" placeholder="Enter artist name to discover their work..."
+                        value="<%= typeof searchQuery !== 'undefined' ? searchQuery : '' %>">
                     <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
                 </div>
             </form>
@@ -710,15 +811,22 @@
 
         <!-- Artist Grid -->
         <div class="artist-grid">
-            <% artists.forEach(artist => { %>
-                <div class="artist-card">
+            <% artists.forEach(artist=> { %>
+                <div class="artist-card" onclick="window.location.href = '/artists/<%= artist._id %>'">
                     <div class="card-header">
                         <div class="profile-container">
-                            <div class="profile-pic" style="background-image: url('<%= artist.profilePictureUrl %>'); background-size: cover;"></div>
+                            <div class="profile-pic"
+                                style="background-image: url('<%= artist.profilePictureUrl %>'); background-size: cover;">
+                            </div>
                             <div class="profile-frame"></div>
                         </div>
-                        <h2 class="artist-name"><%= artist.firstName %> <%= artist.lastName %></h2>
-                        <div class="artist-stage-name"><%= artist.artistName %></div>
+                        <h2 class="artist-name">
+                            <%= artist.firstName %>
+                                <%= artist.lastName %>
+                        </h2>
+                        <div class="artist-stage-name">
+                            <%= artist.artistName %>
+                        </div>
                     </div>
 
                     <div class="artist-details">
@@ -726,37 +834,47 @@
                             <% if (artist.specialization) { %>
                                 <div class="specialization">
                                     <i class="fas fa-palette"></i>
-                                    <span><%= artist.specialization %></span>
+                                    <span>
+                                        <%= artist.specialization %>
+                                    </span>
                                 </div>
-                            <% } %>
+                                <% } %>
 
-                            <% if (artist.city) { %>
-                                <div class="location">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                    <span><%= artist.city %></span>
-                                </div>
-                            <% } %>
+                                    <% if (artist.city) { %>
+                                        <div class="location">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                            <span>
+                                                <%= artist.city %>
+                                            </span>
+                                        </div>
+                                        <% } %>
                         </div>
 
-                        <p class="artist-bio"><%= artist.bio %></p>
+                        <p class="artist-bio">
+                            <%= artist.bio %>
+                        </p>
 
                         <div class="gallery-preview">
-                            <% artist.artSampleUrls.slice(0, 3).forEach(sample => { %>
-                                <div class="art-sample" style="background-image: url('<%= sample %>'); background-size: cover;"></div>
-                            <% }) %>
+                            <% artist.artSampleUrls.slice(0, 3).forEach(sample=> { %>
+                                <div class="art-sample"
+                                    style="background-image: url('<%= sample %>'); background-size: cover;"></div>
+                                <% }) %>
                         </div>
 
                         <div class="artist-actions">
                             <div class="social-icons">
                                 <% if (artist.instagram) { %>
-                                    <a href="<%= artist.instagram %>" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
-                                <% } %>
-                                <% if (artist.facebook) { %>
-                                    <a href="<%= artist.facebook %>" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                                <% } %>
-                                <% if (artist.twitter) { %>
-                                    <a href="<%= artist.twitter %>" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
-                                <% } %>
+                                    <a href="<%= artist.instagram %>" target="_blank" class="social-icon"><i
+                                            class="fab fa-instagram"></i></a>
+                                    <% } %>
+                                        <% if (artist.facebook) { %>
+                                            <a href="<%= artist.facebook %>" target="_blank" class="social-icon"><i
+                                                    class="fab fa-facebook-f"></i></a>
+                                            <% } %>
+                                                <% if (artist.twitter) { %>
+                                                    <a href="<%= artist.twitter %>" target="_blank"
+                                                        class="social-icon"><i class="fab fa-twitter"></i></a>
+                                                    <% } %>
                             </div>
 
                             <div style="display: flex; gap: 0.8rem;">
@@ -765,17 +883,17 @@
                                         <i class="fas fa-eye"></i>
                                         Portfolio
                                     </a>
-                                <% } %>
+                                    <% } %>
 
-                                <a href="/artists/<%= artist._id %>" class="btn btn-profile">
-                                    <i class="fas fa-user"></i>
-                                    Profile
-                                </a>
+                                        <a href="/artists/<%= artist._id %>" class="btn btn-profile">
+                                            <i class="fas fa-user"></i>
+                                            Profile
+                                        </a>
                             </div>
                         </div>
                     </div>
                 </div>
-            <% }) %>
+                <% }) %>
         </div>
     </div>
 
@@ -784,7 +902,7 @@
 
     <script>
         // Optimized performance loading
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             // GPU acceleration for smoother animations
             document.querySelectorAll('.artist-card, .particle-container').forEach(el => {
                 el.style.transform = 'translateZ(0)';
@@ -818,7 +936,7 @@
 
         // Optimized particle management
         const allParticles = document.querySelectorAll('.particle');
-        
+
         // Pause particles when tab is not visible
         document.addEventListener('visibilitychange', () => {
             const isTabActive = !document.hidden;
@@ -828,8 +946,8 @@
         });
 
         // Intelligent particle management based on device performance
-        const isLowPerformanceDevice = navigator.hardwareConcurrency < 4 || 
-                                       /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        const isLowPerformanceDevice = navigator.hardwareConcurrency < 4 ||
+            /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
         if (isLowPerformanceDevice) {
             // Reduce particles on low-performance devices
@@ -841,4 +959,5 @@
         }
     </script>
 </body>
+
 </html>
