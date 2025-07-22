@@ -411,7 +411,11 @@
     utterance.volume = 1;
 
     const voices = speechSynthesis.getVoices();
-    utterance.voice = voices.find(v => v.lang === 'en-IN') || voices[0];
+
+    // Try different voice options in order of preference
+    utterance.voice = 
+        voices.find(v => v.name.includes('Google UK English Female')) || 
+      voices[0]; // Fallback to first available
 
     speechSynthesis.speak(utterance);
   }
