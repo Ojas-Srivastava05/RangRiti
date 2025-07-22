@@ -4,7 +4,7 @@ const navbarHTML = `
     <div class="nav-container">
         <!-- Logo/Brand with animated glow -->
         <div class="brand-container">
-            <a href="index.html" class="brand-logo">
+            <a href="/index.html" class="brand-logo">
                 <span class="brand-text">RangRiti</span>
                 <div class="brand-glow"></div>
             </a>
@@ -12,7 +12,7 @@ const navbarHTML = `
 
         <!-- Main Navigation Links -->
         <div class="nav-links">
-            <a href="index.html" class="nav-link" data-text="Home">
+            <a href="/index.html" class="nav-link" data-text="Home">
                 <span class="nav-icon">🏠</span>
                 <span class="nav-text">Home</span>
                 <div class="nav-ripple"></div>
@@ -41,19 +41,19 @@ const navbarHTML = `
                 </button>
                 <div class="dropdown-panel">
                     <div class="dropdown-content">
-                        <a href="paintings and traditional styles.html" class="dropdown-item">
+                        <a href="/paintings and traditional styles.html" class="dropdown-item">
                             <span class="dropdown-icon">🎨</span>
                             <span class="dropdown-text">Traditional Painting Styles</span>
                         </a>
-                        <a href="textile_main.html" class="dropdown-item">
+                        <a href="/textile_main.html" class="dropdown-item">
                             <span class="dropdown-icon">🪡</span>
                             <span class="dropdown-text">Textile Arts and Embroidery</span>
                         </a>
-                        <a href="performingarts.html" class="dropdown-item">
+                        <a href="/performingarts.html" class="dropdown-item">
                             <span class="dropdown-icon">🪷</span>
                             <span class="dropdown-text">Performing Arts</span>
                         </a>
-                        <a href="handicrafts_and_sculptures.html" class="dropdown-item">
+                        <a href="/handicrafts_and_sculptures.html" class="dropdown-item">
                             <span class="dropdown-icon">🏺</span>
                             <span class="dropdown-text">Handicrafts and Sculpture</span>
                         </a>
@@ -61,13 +61,13 @@ const navbarHTML = `
                 </div>
             </div>
             
-            <a href="aboutus.html" class="nav-link" data-text="About Us">
+            <a href="/aboutus.html" class="nav-link" data-text="About Us">
                 <span class="nav-icon">👥</span>
                 <span class="nav-text">About Us</span>
                 <div class="nav-ripple"></div>
             </a>
             
-            <a href="connect.html" class="nav-link" data-text="Connect">
+            <a href="/connect.html" class="nav-link" data-text="Connect">
                 <span class="nav-icon">🤝</span>
                 <span class="nav-text">Connect</span>
                 <div class="nav-ripple"></div>
@@ -77,12 +77,12 @@ const navbarHTML = `
         <!-- Authentication Section -->
         <div class="auth-section">
             <!-- Not logged in state -->
-            <a href="login.html" class="auth-link login-btn" data-text="Login">
+            <a href="/login.html" class="auth-link login-btn" data-text="Login">
                 <span class="auth-icon">🔑</span>
                 <span class="auth-text">Login</span>
                 <div class="nav-ripple"></div>
             </a>
-            <a href="register.html" class="auth-link register-btn" data-text="Register">
+            <a href="/register.html" class="auth-link register-btn" data-text="Register">
                 <span class="auth-icon">📝</span>
                 <span class="auth-text">Register</span>
                 <div class="nav-ripple"></div>
