@@ -317,6 +317,12 @@
             }
         });
     </script>
+    <script>
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('alert') === 'loginRequired') {
+    alert('Please log in to view your cart.');
+  }
+</script>
 </body>
 
 </html>

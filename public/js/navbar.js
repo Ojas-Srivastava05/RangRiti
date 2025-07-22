@@ -72,6 +72,12 @@ const navbarHTML = `
                 <span class="nav-text">Connect</span>
                 <div class="nav-ripple"></div>
             </a>
+                        <a href="/marketplace" class="nav-link" data-text="Marketplace">
+                <span class="nav-icon">🛍️</span>
+                <span class="nav-text">Marketplace</span>
+                <div class="nav-ripple"></div>
+            </a>
+
         </div>
 
         <!-- Authentication Section -->

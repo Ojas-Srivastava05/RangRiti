@@ -155,12 +155,14 @@ app.get('/logout', (req, res) => {
 
 app.get('/cart', async (req, res) => {
   try {
-    const user = req.session?.user;
-    if (!user || !user.id) {
-      return res.redirect('/'); // or res.send("Please login to view your cart");
+    const userSession = req.session.user;
+
+    if (!userSession || !userSession.id) {
+      // Flash message could be handled better with middleware
+      return res.redirect('/login.html?alert=loginRequired');
     }
 
-    const fullUser = await User.findById(user.id).populate('cart.productId');
+    const fullUser = await User.findById(userSession.id).populate('cart.productId');
     if (!fullUser) {
       return res.status(404).render('error', { message: "User not found" });
     }
@@ -175,7 +177,7 @@ app.get('/cart', async (req, res) => {
     }));
 
     const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    const shipping = subtotal > 10000 ? 0 : 0; // You can update later
+    const shipping = subtotal > 10000 ? 0 : 0;
     const tax = Math.round(subtotal * 0.1);
     const total = subtotal + shipping + tax;
 

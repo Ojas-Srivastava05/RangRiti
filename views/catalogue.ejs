@@ -905,10 +905,7 @@
                                         <div class="product-actions">
                                             <a href="/product/<%= product._id %>" class="action-button view-details">
                                                 <i class="fas fa-eye"></i> Details
-                                            </a> <button class="action-button add-to-cart"
-                                                data-product-id="<%= product._id %>">
-                                                <i class="fas fa-shopping-bag"></i> Add
-                                            </button>
+                                            </a> <button onclick="addToCart('PRODUCT_ID_HERE')">Add to Cart</button>
                                         </div>
                                     </div>
                         </div>
@@ -1019,7 +1016,32 @@
                 }
             });
         });
+async function addToCart(productId) {
+  try {
+    const response = await fetch('/cart/add', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ productId })
+    });
 
+    const data = await response.json();
+
+    if (response.status === 401) {
+      alert(data.message || 'Please log in first.');
+      window.location.href = '/login.html'; // redirect to login
+    } else if (response.ok) {
+      alert('Item added to cart!');
+    } else {
+      alert(data.message || 'Something went wrong.');
+    }
+
+  } catch (error) {
+    console.error('Add to cart failed:', error);
+    alert('An error occurred. Please try again.');
+  }
+}
 
         fetch('/cart/add', {
             method: 'POST',
