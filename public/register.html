@@ -7,6 +7,7 @@
     <title>Register - RangRiti</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/navbar.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@700&display=swap"
         rel="stylesheet">
@@ -141,95 +142,7 @@
             height: 6px;
         }
 
-        .nav-container {
-            position: fixed;
-            top: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(10px);
-            padding: 15px 20px;
-            border-radius: 50px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            z-index: 1000;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
-            border: 1px solid rgba(255, 215, 0, 0.2);
-        }
-
-        .nav-btn-link {
-            text-decoration: none;
-        }
-
-        .nav-btn {
-            font-family: 'EB Garamond', serif;
-            background: transparent;
-            border: none;
-            color: #FAF3E0;
-            padding: 10px 20px;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            border-radius: 20px;
-        }
-
-        .nav-btn:hover {
-            color: var(--primary-gold);
-            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
-        }
-
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-toggle {
-            cursor: pointer;
-        }
-
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: rgba(0, 0, 0, 0.9);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 10px;
-            padding: 10px 0;
-            display: none;
-            flex-direction: column;
-            min-width: 200px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-            z-index: 1001;
-        }
-
-        .dropdown-item {
-            font-family: 'EB Garamond', serif;
-            color: #FAF3E0;
-            text-decoration: none;
-            padding: 10px 20px;
-            display: block;
-            transition: all 0.3s ease;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-        }
-
-        .dropdown-item:hover {
-            background: rgba(255, 215, 0, 0.2);
-            color: var(--primary-gold);
-        }
-
-        .dropdown:hover .dropdown-menu {
-            display: flex;
-        }
-
-        .dropdown-arrow {
-            font-size: 0.8em;
-            margin-left: 5px;
-            display: inline-block;
-        }
+        
 
         .container {
             width: 100%;
@@ -417,24 +330,6 @@
         <div class="particle"></div>
     </div>
 
-    <nav class="nav-container">
-        <a href="index.html" class="nav-btn-link"><button class="nav-btn">Home</button></a>
-        <a href="artists.html" class="nav-btn-link"><button class="nav-btn">Artists</button></a>
-        <a href="workshops.html" class="nav-btn-link"><button class="nav-btn">Workshops</button></a>
-        <a href="calendar.html" class="nav-btn-link"><button class="nav-btn">Calendar</button></a>
-        <div class="dropdown">
-            <button class="nav-btn dropdown-toggle">Heritage <span class="dropdown-arrow">&#9660;</span></button>
-            <div class="dropdown-menu">
-                <a href="paintings and traditional styles.html" class="dropdown-item">Traditional Painting Styles</a>
-                <a href="textile_main.html" class="dropdown-item">Textile Arts</a>
-                <a href="performingarts.html" class="dropdown-item">Performing Arts</a>
-                <a href="handicrafts_and_sculptures.html" class="dropdown-item">Handicrafts & Sculpture</a>
-            </div>
-        </div>
-        <a href="connect.html" class="nav-btn-link"><button class="nav-btn">Connect</button></a>
-        <a href="login.html" class="nav-btn-link"><button class="nav-btn">Login</button></a>
-        <a href="register.html" class="nav-btn-link"><button class="nav-btn">Register</button></a>
-    </nav>
 
     <div class="container">
         <h1>Join RangRiti</h1>
@@ -543,6 +438,8 @@
             </form>
         </div>
     </div>
+
+    <script src="js/navbar.js"></script>
 
     <script>
         function showForm(formType, element) {
