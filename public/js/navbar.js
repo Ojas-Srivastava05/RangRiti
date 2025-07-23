@@ -67,7 +67,7 @@ const navbarHTML = `
                 <div class="nav-ripple"></div>
             </a>
             
-            <a href="/connect.html" class="nav-link" data-text="Connect">
+            <a href="/connect" class="nav-link" data-text="Connect">
                 <span class="nav-icon">🤝</span>
                 <span class="nav-text">Connect</span>
                 <div class="nav-ripple"></div>

@@ -17,6 +17,7 @@ import multer from 'multer';
 import cloudinaryModule from 'cloudinary';
 import Product from '../models.js/product.models.js'// ✅ your Product schema
 import Order from '../models.js/order.models.js';
+import nodemailer from 'nodemailer'
 const cloudinary = cloudinaryModule.v2;
 
 // Multer setup for image upload
@@ -95,6 +96,122 @@ app.use(async (req, res, next) => {
     }
     next();
 });
+// Setup Nodemailer transporter
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.EMAIL_USER,         // your email (e.g., rangitisvnit@gmail.com)
+    pass: process.env.EMAIL_PASS          // your app password (not normal email password)
+  }
+});
+
+app.post('/contact/feedback', async (req, res) => {
+  const { feedbackText, rating, consent } = req.body;
+
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: 'rangitisvnit@gmail.com',
+    subject: 'New Feedback Received - Rangriti',
+    text: `
+New Feedback Received on Rangriti:
+
+Feedback:
+${feedbackText}
+
+Rating: ${rating || 'No rating provided'}
+
+Consent to feature publicly: ${consent ? 'Yes' : 'No'}
+    `
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    res.redirect('/thank-you'); // redirect or render a success page
+  } catch (error) {
+    console.error('Error sending feedback email:', error);
+    res.status(500).send('Error submitting feedback. Please try again later.');
+  }
+});
+app.post('/contact/artist', async (req, res) => {
+  const { artistId, userEmail, message } = req.body;
+
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: 'rangitisvnit@gmail.com',
+    subject: 'New Artist Connection Request - Rangriti',
+    text: `
+A user wants to connect with an artist:
+
+Artist ID: ${artistId}
+User Email: ${userEmail}
+
+Message:
+${message}
+    `
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    res.redirect('/thank-you');
+  } catch (error) {
+    console.error('Error sending artist connection email:', error);
+    res.status(500).send('Could not send your message. Please try again.');
+  }
+});
+app.post('/contact/general', async (req, res) => {
+  const { name, email, subject, message } = req.body;
+
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: 'rangitisvnit@gmail.com',
+    subject: `New General Inquiry: ${subject}`,
+    text: `
+New Contact Inquiry:
+
+Name: ${name}
+Email: ${email}
+Subject: ${subject}
+
+Message:
+${message}
+    `
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    res.redirect('/thank-you');
+  } catch (error) {
+    console.error('Error sending general inquiry:', error);
+    res.status(500).send('Unable to send your message. Try again later.');
+  }
+});
+app.post('/contact/collaboration', async (req, res) => {
+  const { name, email, collaborationType, message } = req.body;
+
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: 'rangitisvnit@gmail.com',
+    subject: 'New Collaboration Request - Rangriti',
+    text: `
+Collaboration Request:
+
+Name: ${name}
+Email: ${email}
+Type of Collaboration: ${collaborationType}
+
+Message:
+${message}
+    `
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    res.redirect('/thank-you');
+  } catch (error) {
+    console.error('Error sending collaboration email:', error);
+    res.status(500).send('Unable to submit collaboration request. Please try again.');
+  }
+});
 
 // by sunil
 app.get('/artist/edit-profile', async (req, res) => {
@@ -141,6 +258,8 @@ app.post('/artist/edit-profile', async (req, res) => {
     res.status(500).send("Error updating profile");
   }
 });
+
+
 // till this
 
 app.get('/logout', (req, res) => {
@@ -151,6 +270,10 @@ app.get('/logout', (req, res) => {
         res.redirect('index.html');
     });
 });
+
+app.get('/thank-you',(req,res)=>{
+  res.render('thank-you');
+})
 
 
 app.get('/cart', async (req, res) => {
@@ -329,6 +452,15 @@ app.get('/orders', async (req, res) => {
   } catch (err) {
     console.error("Error loading artist orders:", err);
     res.status(500).render('error', { message: "Failed to load orders." });
+  }
+});
+app.get('/connect', async (req, res) => {
+  try {
+    const artists = await Artist.find({}, 'firstName lastName specialization');
+    res.render('connect', { artists }); // ensure 'connect.ejs' is in your views folder
+  } catch (err) {
+    console.error('Error fetching artists:', err);
+    res.status(500).send('Server Error');
   }
 });
 app.get('/artist/gallery', async (req, res) => {

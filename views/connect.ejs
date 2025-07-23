@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect with Rangriti | Traditional Indian Art</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --sandalwood-beige: #f5e9d7;
+            --sandalwood-light: #faf3e6;
+            --terracotta: #a3574f;
+            --maroon: #7a1c1c;
+            --muted-gold: #c0a080;
+            --gold-light: #e6d1a0;
+            --text-dark: #3c2f2d;
+            --shadow: rgba(60, 47, 45, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Merriweather', serif;
+            background-color: var(--sandalwood-light);
+            color: var(--text-dark);
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M20,20 Q40,5 50,30 T80,20" fill="none" stroke="%23d8c4a8" stroke-opacity="0.1" stroke-width="0.5"/></svg>');
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(to bottom, var(--maroon), var(--terracotta));
+            padding: 30px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M20,50 C40,30 60,70 80,50" fill="none" stroke="%23ffffff" stroke-opacity="0.1" stroke-width="1"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: var(--sandalwood-light);
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .page-subtitle {
+            font-size: 1.3rem;
+            color: var(--gold-light);
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        /* Form Section Styles */
+        .form-section {
+            background-color: rgba(255, 255, 255, 0.85);
+            border: 1px solid var(--muted-gold);
+            border-radius: 8px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: 0 5px 15px var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M20,20 Q40,5 50,30 T80,20" fill="none" stroke="%23d8c4a8" stroke-opacity="0.05" stroke-width="0.8"/></svg>');
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            color: var(--maroon);
+            font-size: 2rem;
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--muted-gold);
+            border-radius: 2px;
+        }
+
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -10px;
+        }
+
+        .form-group {
+            flex: 1 1 calc(50% - 20px);
+            margin: 0 10px 20px;
+            min-width: 250px;
+        }
+
+        .form-group.full-width {
+            flex: 1 1 calc(100% - 20px);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--muted-gold);
+            border-radius: 4px;
+            background-color: rgba(245, 233, 215, 0.3);
+            font-family: 'Merriweather', serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--terracotta);
+            box-shadow: 0 0 0 2px rgba(163, 87, 79, 0.2);
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* Button Styles */
+        .btn {
+            background: linear-gradient(to bottom, var(--muted-gold), #b08d57);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 12px 30px;
+            font-family: 'Merriweather', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Feedback Section */
+        .rating {
+            display: flex;
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        .rating i {
+            color: var(--muted-gold);
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .rating i:hover, .rating i.active {
+            color: var(--terracotta);
+            transform: scale(1.1);
+        }
+
+        .consent-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        /* Social Media Section */
+        .social-section {
+            background: linear-gradient(135deg, var(--sandalwood-beige), var(--sandalwood-light));
+            border: 1px solid var(--muted-gold);
+            border-radius: 8px;
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        .social-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(to bottom, #b08d57, #8a6d3f);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--sandalwood-light);
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px) rotate(5deg);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(to bottom, #c0a080, #9e7e56);
+        }
+
+        .newsletter {
+            max-width: 500px;
+            margin: 30px auto 0;
+            display: flex;
+            gap: 10px;
+        }
+
+        .newsletter input {
+            flex: 1;
+            padding: 12px 15px;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background-color: rgba(255, 255, 255, 0.85);
+            border: 1px solid var(--muted-gold);
+            border-radius: 8px;
+            padding: 30px;
+            margin: 40px 0;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 1px dashed var(--muted-gold);
+            padding-bottom: 15px;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-family: 'Playfair Display', serif;
+            color: var(--maroon);
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        .faq-question i {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer.show {
+            max-height: 500px;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(to bottom, var(--maroon), #5a1515);
+            color: var(--sandalwood-light);
+            padding: 40px 0 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-address {
+            font-style: normal;
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+
+        .copyright {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(245, 233, 215, 0.3);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.5rem;
+            }
+            
+            .form-group {
+                flex: 1 1 calc(100% - 20px);
+            }
+            
+            .newsletter {
+                flex-direction: column;
+            }
+            
+            .social-icons {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .page-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .form-section, .social-section, .faq-section {
+                padding: 20px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1 class="page-title">Connect with Rangriti</h1>
+                <p class="page-subtitle">We'd love to hear from you — whether you're an art lover, artist, or partner.</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+<!-- General Contact Form -->
+<section class="form-section">
+    <h2 class="section-title">General Inquiry</h2>
+    <form action="/general-inquiry" method="POST" class="form-row">
+        <div class="form-group">
+            <label for="first-name">First Name</label>
+            <input type="text" id="first-name" name="firstName" placeholder="Enter your first name" required>
+        </div>
+        <div class="form-group">
+            <label for="last-name">Last Name</label>
+            <input type="text" id="last-name" name="lastName" placeholder="Enter your last name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number (Optional)</label>
+            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+        </div>
+        <div class="form-group">
+            <label for="subject">Subject</label>
+            <select id="subject" name="subject" required>
+                <option value="">Select a subject</option>
+                <option value="general">General Inquiry</option>
+                <option value="feedback">Feedback</option>
+                <option value="support">Technical Support</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+        <div class="form-group full-width">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Type your message here..." required></textarea>
+        </div>
+        <button class="btn" type="submit">Send Message</button>
+    </form>
+</section>
+        <!-- Connect with an Artist -->
+<section class="form-section">
+  <h2 class="section-title">Connect with an Artist</h2>
+  <form action="/contact/artist" method="POST" class="form-row">
+    <div class="form-group">
+      <label for="artist-name">Select Artist</label>
+      <select id="artist-name" name="artistName" required>
+        <option value="">Select an artist</option>
+        <% artists.forEach(artist => { %>
+          <option value="<%= artist.firstName + ' ' + artist.lastName %>">
+            <%= artist.firstName + ' ' + artist.lastName %> (<%= artist.specialization %>)
+          </option>
+        <% }) %>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="artist-email">Your Email</label>
+      <input type="email" id="artist-email" name="email" placeholder="Enter your email" required>
+    </div>
+    <div class="form-group full-width">
+      <label for="artist-message">Message to Artist</label>
+      <textarea id="artist-message" name="message" placeholder="Type your message for the artist..." required></textarea>
+    </div>
+    <button class="btn" type="submit">Send Request</button>
+  </form>
+</section>
+
+        <!-- Collaboration/Workshop Request -->
+<section class="form-section">
+  <h2 class="section-title">Collaboration Proposal</h2>
+  <form action="/contact/collaboration" method="POST" class="form-row">
+    <div class="form-group">
+      <label for="collab-name">Your Name</label>
+      <input type="text" id="collab-name" name="name" required>
+    </div>
+    <div class="form-group">
+      <label for="collab-organization">Organization</label>
+      <input type="text" id="collab-organization" name="organization">
+    </div>
+    <div class="form-group">
+      <label for="collab-email">Email</label>
+      <input type="email" id="collab-email" name="email" required>
+    </div>
+    <div class="form-group">
+      <label for="collab-phone">Phone</label>
+      <input type="tel" id="collab-phone" name="phone">
+    </div>
+    <div class="form-group full-width">
+      <label for="collab-message">Proposal Details</label>
+      <textarea id="collab-message" name="message" required></textarea>
+    </div>
+    <button class="btn" type="submit">Submit Proposal</button>
+  </form>
+</section>
+
+        <!-- Feedback Section -->
+<section class="form-section">
+  <h2 class="section-title">Share Your Feedback</h2>
+  <form action="/contact/feedback" method="POST" class="form-row">
+    <div class="form-group full-width">
+      <label for="feedback">What do you think about Rangriti?</label>
+      <textarea id="feedback" name="feedbackText" placeholder="We value your thoughts and suggestions..." required></textarea>
+    </div>
+
+    <div class="form-group full-width">
+      <label>Your Rating (Optional)</label>
+      <div class="rating">
+        <% for(let i = 1; i <= 5; i++) { %>
+          <input type="radio" id="star<%= i %>" name="rating" value="<%= i %>">
+          <label for="star<%= i %>"><i class="far fa-star" data-value="<%= i %>"></i></label>
+        <% } %>
+      </div>
+    </div>
+
+    <div class="consent-group">
+      <input type="checkbox" id="consent" name="consent">
+      <label for="consent">I consent to have my feedback featured on Rangriti</label>
+    </div>
+
+    <button class="btn" type="submit">Send Feedback</button>
+  </form>
+</section>
+
+        <!-- Stay Connected -->
+        <section class="social-section">
+            <h2 class="section-title">Stay Connected</h2>
+            <p>Follow us for daily inspiration, artist stories, and cultural insights</p>
+            
+            <div class="social-icons">
+                <a href="#" class="social-icon">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="fab fa-telegram"></i>
+                </a>
+            </div>
+            
+            <div class="newsletter">
+                <input type="email" placeholder="Enter your email for updates">
+                <button class="btn">Join Rangriti Circle</button>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    How can I become a registered artist with Rangriti?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We welcome traditional Indian artists to join our platform. Please submit your portfolio through our Artist Registration form (available in the Artists section), along with 5-10 high-quality images of your work. Our curation team will review your submission within 7-10 working days.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    How do I attend workshops organized by Rangriti?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>All upcoming workshops are listed on our Workshops page. You can register online by selecting the workshop you're interested in and completing the payment process. We offer both in-person and virtual workshops. Registered participants receive detailed instructions via email 3 days before the workshop date.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    How does the Rangriti marketplace work?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Our marketplace connects art lovers directly with traditional Indian artists. Each artwork is authentic and comes with a certificate of authenticity. You can browse by art form, region, or artist. Purchases support the artists directly, with Rangriti taking a small commission to maintain our platform and support our cultural initiatives.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Do you offer international shipping?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, we ship worldwide. Shipping costs and delivery times vary by destination. All international shipments include insurance and tracking. Please note that customers are responsible for any customs duties or import taxes in their country.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <h3>Rangriti - Reviving Indian Heritage</h3>
+                <p class="footer-address">
+                    24, Heritage Lane, Jaipur, Rajasthan 302001<br>
+                    Email: connect@rangriti.com<br>
+                    Phone: +91 98765 43210
+                </p>
+                <p class="copyright">
+                    © 2023 Rangriti. All rights reserved.<br>
+                    Designed with ❤️ by Rangriti
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Star rating functionality
+        const stars = document.querySelectorAll('.rating i');
+        stars.forEach(star => {
+            star.addEventListener('click', function() {
+                const value = parseInt(this.getAttribute('data-value'));
+                
+                // Reset all stars
+                stars.forEach(s => {
+                    s.classList.remove('fas', 'active');
+                    s.classList.add('far');
+                });
+                
+                // Fill stars up to the clicked one
+                for (let i = 0; i < value; i++) {
+                    stars[i].classList.remove('far');
+                    stars[i].classList.add('fas', 'active');
+                }
+            });
+        });
+
+        // FAQ accordion functionality
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const icon = this.querySelector('i');
+                
+                // Toggle the current FAQ
+                answer.classList.toggle('show');
+                
+                // Rotate the icon
+                if (answer.classList.contains('show')) {
+                    icon.style.transform = 'rotate(180deg)';
+                } else {
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            });
+        });
+
+        // Button hover effect enhancement
+        const buttons = document.querySelectorAll('.btn');
+        buttons.forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.boxShadow = '0 8px 15px rgba(0, 0, 0, 0.2)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+            });
+        });
+    </script>
+</body>
+</html>
