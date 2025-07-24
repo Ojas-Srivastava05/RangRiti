@@ -312,6 +312,63 @@
             color: var(--text-gold);
         }
 
+        .listenBtn {
+            border-radius: 11.5px;
+            color: rgb(167, 148, 148);
+            height: 30px;
+            background-color: #542424b0;
+            border: solid rgba(186, 168, 173, 0.059);
+            box-shadow: #d9d6d4;
+            transition: transform 0.1s, box-shadow 0.1s;
+            margin-bottom: 15px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .listenBtn.pressed {
+            transform: translateY(2px) scale(0.97);
+            box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
+            background-color: #5a2020b0;
+        }
+
+        .listenBtn:hover {
+           transform: translateY(-1px) scale(1.05);
+           box-shadow: 0 6px 24px 0 rgba(255,255,255,0.25);
+        }
+
+        .listenBtn:active {
+            transform: translateY(1px) scale(1);
+            box-shadow: 0 2px 12px 0 rgba(255,255,255,0.25);
+        }
+        .stopBtn {
+            border-radius: 11.5px;
+            color: rgb(167, 148, 148);
+            height: 30px;
+            background-color: #542424b0;
+            border: solid rgba(186, 168, 173, 0.059);
+            box-shadow: #d9d6d4;
+            transition: transform 0.1s, box-shadow 0.1s;
+            margin-bottom: 15px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .stopBtn.pressed {
+            transform: translateY(2px) scale(0.97);
+            box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
+            background-color: #5a2020b0;
+        }
+
+        .stopBtn:hover {
+           transform: translateY(-1px) scale(1.05);
+           box-shadow: 0 6px 24px 0 rgba(255,255,255,0.25);
+        }
+
+        .stopBtn:active {
+            transform: translateY(1px) scale(1);
+            box-shadow: 0 2px 12px 0 rgba(255,255,255,0.25);
+        }
+
         /* --- Footer --- */
         .footer {
             background-color: #0d0600;
@@ -435,6 +492,10 @@
             <h2>The Essence of a Bharatnatyam Recital</h2>
 
             <div id="alarippu-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                    <button class="listenBtn">🔊 Play story</button>
+                    <button class="stopBtn">⏹️ Stop</button>
+                </div>
                 <h1>Alarippu</h1>
                 <p>The term **Alarippu** literally means "flowering" or "blossoming." It is the **opening piece (Nritta)** of a traditional Bharatnatyam performance, serving as a rhythmic invocation to the gods and an offering to the audience. This item is pure dance, devoid of any explicit narrative or emotional expression (bhava).</p>
 
@@ -447,6 +508,10 @@
             </div>
 
             <div id="jatiswaram-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                    <button class="listenBtn">🔊 Play story</button>
+                    <button class="stopBtn">⏹️ Stop</button>
+                </div>
                 <h1>Jatiswaram</h1>
                 <p>The **Jatiswaram** is another significant **Nritta (pure dance)** item in a Bharatnatyam recital, following the Alarippu. It is a harmonious blend of rhythmic patterns (**jatis**) and melodic structures (**swaras**), without any lyrical content or storytelling. This piece is a celebration of rhythm and movement, showcasing the dancer's mastery over intricate footwork and graceful postures.</p>
 
@@ -459,6 +524,10 @@
             </div>
 
             <div id="shabdam-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                    <button class="listenBtn">🔊 Play story</button>
+                    <button class="stopBtn">⏹️ Stop</button>
+                </div>
                 <h1>Shabdam</h1>
                 <p>The **Shabdam** marks a crucial transition in a Bharatnatyam recital; it is typically the **first expressive piece (Nritya)** after the pure dance items (Alarippu and Jatiswaram). The word "Shabdam" means "word" or "sound," and true to its name, this piece introduces **lyrics** and rudimentary storytelling through facial expressions (**bhava**) and hand gestures (**mudras**), alongside pure dance elements.</p>
 
@@ -471,6 +540,10 @@
             </div>
 
             <div id="varnam-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                    <button class="listenBtn">🔊 Play story</button>
+                    <button class="stopBtn">⏹️ Stop</button>
+                </div>
                 <h1>Varnam</h1>
                 <p>The **Varnam** is the **centerpiece and the most expansive item** in a traditional Bharatnatyam recital, often lasting between 30 to 60 minutes. It is a comprehensive demonstration of the dancer's mastery over all aspects of Bharatnatyam, combining both **Nritta (pure dance)** and **Nritya (expressive dance or storytelling)** in equal measure. The word "Varnam" literally means "color," implying that this piece paints a complete picture of the art form.</p>
 
@@ -486,6 +559,10 @@
             </div>
 
             <div id="padam-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                    <button class="listenBtn">🔊 Play story</button>
+                    <button class="stopBtn">⏹️ Stop</button>
+                </div>
                 <h1>Padam</h1>
                 <p>The **Padam** is a quintessential **Nritya (expressive dance)** item in Bharatnatyam, focusing entirely on conveying a specific **mood or emotion (Bhava)**. Unlike the energetic Varnam, Padams are typically **slow, lyrical, and deeply introspective**. They provide the dancer with an opportunity to explore the nuances of human emotion, particularly love (Shringara Bhava) in its various forms – longing, separation, devotion, or quiet yearning.</p>
 
@@ -498,6 +575,10 @@
             </div>
 
             <div id="thillana-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                    <button class="listenBtn">🔊 Play story</button>
+                    <button class="stopBtn">⏹️ Stop</button>
+                </div>
                 <h1>Thillana</h1>
                 <p>The **Thillana** is the **grand finale (Nritta - pure dance)** of a traditional Bharatnatyam recital. It is an exhilarating, fast-paced, and highly rhythmic piece designed to showcase the dancer's agility, precision, and joy, leaving the audience with a vibrant and energetic impression.</p>
 
@@ -517,6 +598,79 @@
         <p>Inspired by the rich heritage of South Indian Classical Dance.</p>
         <p>Contact us at <a href="mailto:info@bharatnatyam.com">info@bharatnatyam.com</a></p>
     </footer>
+<script>
+  let utterance; // make it global so we can pause/resume it
 
+  // Individual story TTS function
+  function speakIndividualStory(storySection) {
+    speechSynthesis.cancel();
+
+    const title = storySection.querySelector("h1")?.innerText || "";
+    const paragraphs = storySection.querySelectorAll("p, h3");
+    let storyText = title + ". ";
+
+    paragraphs.forEach(el => {
+      storyText += el.innerText + " ";
+    });
+
+    utterance = new SpeechSynthesisUtterance(storyText);
+    utterance.rate = 1;
+    utterance.pitch = 1;
+    utterance.volume = 1;
+
+    const voices = speechSynthesis.getVoices();
+
+    // Try different voice options in order of preference
+    utterance.voice = 
+        voices.find(v => v.name.includes('Google UK English Female')) || 
+      voices[0]; // Fallback to first available
+
+    speechSynthesis.speak(utterance);
+  }
+
+  function stopTTS() {
+    speechSynthesis.cancel();
+  }
+
+  // Add event listeners when page loads
+  document.addEventListener('DOMContentLoaded', function() {
+    // Play button listeners
+    document.querySelectorAll(".listenBtn").forEach(button => {
+      button.addEventListener("click", () => {
+        // Only trigger if button has play icon
+        if (button.textContent.includes('🔊')) {
+          // Add pressed effect
+          button.classList.add('pressed');
+          setTimeout(() => button.classList.remove('pressed'), 200);
+
+          // Find the nearest parent div with the class 'detailed-story-section'
+          const storySection = button.closest(".detailed-story-section");
+          if (!storySection) {
+            alert("Story section not found!");
+            return;
+          }
+
+          // Speak only this individual story
+          speakIndividualStory(storySection);
+        }
+      });
+    });
+
+    // Stop button listeners
+    document.querySelectorAll(".stopBtn").forEach(button => {
+      button.addEventListener("click", () => {
+        // Add pressed effect
+        button.classList.add('pressed');
+        setTimeout(() => button.classList.remove('pressed'), 200);
+
+        // Stop the speech
+        stopTTS();
+      });
+    });
+  });
+
+  // Ensure voices are loaded
+  window.speechSynthesis.onvoiceschanged = () => {};
+</script>
 </body>
 </html>
