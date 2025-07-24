@@ -127,6 +127,7 @@
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
+            will-change: transform; /* Prepare for GPU acceleration */
         }
 
         .team-member::before {
@@ -146,7 +147,7 @@
         }
 
         .team-member:hover {
-            transform: translateY(-10px);
+            transform: translate3d(0, -10px, 0); /* Use GPU acceleration */
             box-shadow: 
                 0 20px 40px rgba(139, 69, 19, 0.15),
                 inset 0 1px 0 rgba(255, 255, 255, 0.3);
@@ -182,7 +183,7 @@
         }
 
         .team-member:hover .member-photo {
-            transform: scale(1.05);
+            transform: translate3d(0, 0, 0) scale(1.05); /* GPU acceleration */
             border-color: rgba(255, 215, 0, 0.6);
         }
 
@@ -332,8 +333,12 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
+            0%, 100% { 
+                transform: translate3d(0, 0, 0); /* Use GPU acceleration */
+            }
+            50% { 
+                transform: translate3d(0, -10px, 0); /* Reduced movement */
+            }
         }
 
         /* Responsive Design */
@@ -418,7 +423,7 @@
                     <!-- Replace with actual photo: <img src="path/to/photo1.jpg" alt="Team Member 1"> -->
                     👨‍💻
                 </div>
-                <h3 class="member-name">Team Member 1</h3>
+                <h3 class="member-name">Ojas Srivastava</h3>
                 <p class="member-role">Lead Developer & Co-Founder</p>
                 <p class="member-description">
                     Passionate about bridging technology and tradition, specializing in creating immersive digital experiences.
@@ -444,7 +449,7 @@
                     <!-- Replace with actual photo: <img src="path/to/photo2.jpg" alt="Team Member 2"> -->
                     👩‍🎨
                 </div>
-                <h3 class="member-name">Team Member 2</h3>
+                <h3 class="member-name">Kavya Bhatiya</h3>
                 <p class="member-role">Creative Director & Heritage Specialist</p>
                 <p class="member-description">
                     Expert in traditional Indian art forms with deep understanding of cultural nuances and authentic representation.
@@ -470,7 +475,7 @@
                     <!-- Replace with actual photo: <img src="path/to/photo3.jpg" alt="Team Member 3"> -->
                     👨‍🏫
                 </div>
-                <h3 class="member-name">Team Member 3</h3>
+                <h3 class="member-name">Sunil Jaat</h3>
                 <p class="member-role">Content Strategist & Researcher</p>
                 <p class="member-description">
                     Dedicated researcher with extensive knowledge of Indian cultural practices, curating authentic educational materials.
@@ -496,7 +501,7 @@
                     <!-- Replace with actual photo: <img src="path/to/photo4.jpg" alt="Team Member 4"> -->
                     👩‍💼
                 </div>
-                <h3 class="member-name">Team Member 4</h3>
+                <h3 class="member-name">Meet Jadhav</h3>
                 <p class="member-role">UX Designer & Community Manager</p>
                 <p class="member-description">
                     Focused on creating intuitive user experiences while building our community of artists and culture enthusiasts.
@@ -526,7 +531,117 @@
         </section>
     </div>
 
-    <!-- Add navbar script -->
-    <script src="js/navbar.js"></script>
+    <script>
+    class TeamLightweightReveal {
+        constructor() {
+            this.members = [];
+            this.init();
+        }
+
+        init() {
+            document.addEventListener('DOMContentLoaded', () => {
+                this.setupReveal();
+                this.startReveal();
+            });
+        }
+
+        setupReveal() {
+            const teamGrid = document.querySelector('.team-grid');
+            this.members = Array.from(teamGrid.children);
+            
+            // Initially hide all members - simple opacity only
+            this.members.forEach((member) => {
+                member.style.opacity = '0';
+                member.style.transition = 'opacity 0.6s ease-out';
+            });
+
+            // Create minimal loading overlay
+            this.createMinimalOverlay();
+        }
+
+        createMinimalOverlay() {
+            const loadingContainer = document.createElement('div');
+            loadingContainer.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: #F5DEB3;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+                transition: opacity 0.4s ease-out;
+            `;
+
+            const loadingText = document.createElement('div');
+            loadingText.innerHTML = 'RangRiti Team';
+            loadingText.style.cssText = `
+                font-family: 'Playfair Display', serif;
+                font-size: clamp(2.5rem, 5vw, 4rem);
+                font-weight: 700;
+                color: #6f450e;
+                text-align: center;
+                margin-bottom: 1rem;
+                letter-spacing: 2px;
+            `;
+
+            const subtitle = document.createElement('div');
+            subtitle.style.cssText = `
+                font-family: 'EB Garamond', serif;
+                font-size: 1.1rem;
+                color: #8B4C39;
+                font-style: italic;
+            `;
+            subtitle.textContent = 'Passionate minds behind cultural preservation';
+
+            loadingContainer.appendChild(loadingText);
+            loadingContainer.appendChild(subtitle);
+            
+            document.body.appendChild(loadingContainer);
+            this.loadingContainer = loadingContainer;
+        }
+
+        startReveal() {
+            // Quick 1-second loading, then reveal
+            setTimeout(() => {
+                this.revealTeamMembers();
+            }, 1000);
+        }
+
+        revealTeamMembers() {
+            // Simple fade out of overlay
+            this.loadingContainer.style.opacity = '0';
+            
+            setTimeout(() => {
+                this.loadingContainer.remove();
+            }, 400);
+
+            // Simple fade in of members - no complex animations
+            this.members.forEach((member, index) => {
+                setTimeout(() => {
+                    member.style.opacity = '1';
+                }, index * 100); // Quick 100ms delay between each
+            });
+        }
+    }
+
+    // Initialize the lightweight reveal
+    const teamReveal = new TeamLightweightReveal();
+
+    // Minimal floating elements - much lighter
+    document.addEventListener('DOMContentLoaded', function() {
+        const floatingElements = document.querySelectorAll('.floating-element');
+        floatingElements.forEach((element, index) => {
+            element.style.animationDelay = `${index * 3}s`; // Slower, less frequent
+            element.style.opacity = '0.05'; // Even more subtle
+        });
+    });
+</script>
+
+<!-- Add navbar script -->
+<script src="js/navbar.js"></script>
 </body>
 </html>
