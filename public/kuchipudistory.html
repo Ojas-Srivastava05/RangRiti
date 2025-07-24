@@ -399,6 +399,64 @@
                 font-size: 2rem;
             }
         }
+
+        .listenBtn {
+    border-radius: 11.5px;
+    color: rgb(167, 148, 148);
+    height: 30px;
+    background-color: #542424b0;
+    border: solid rgba(186, 168, 173, 0.059);
+    box-shadow: #d9d6d4;
+    transition: transform 0.1s, box-shadow 0.1s;
+    margin-bottom: 15px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.listenBtn.pressed {
+    transform: translateY(2px) scale(0.97);
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
+    background-color: #5a2020b0;
+}
+
+.listenBtn:hover {
+   transform: translateY(-1px) scale(1.05);
+   box-shadow: 0 6px 24px 0 rgba(255,255,255,0.25);
+}
+
+.listenBtn:active {
+    transform: translateY(1px) scale(1);
+    box-shadow: 0 2px 12px 0 rgba(255,255,255,0.25);
+}
+
+.stopBtn {
+    border-radius: 11.5px;
+    color: rgb(167, 148, 148);
+    height: 30px;
+    background-color: #542424b0;
+    border: solid rgba(186, 168, 173, 0.059);
+    box-shadow: #d9d6d4;
+    transition: transform 0.1s, box-shadow 0.1s;
+    margin-bottom: 15px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.stopBtn.pressed {
+    transform: translateY(2px) scale(0.97);
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
+    background-color: #5a2020b0;
+}
+
+.stopBtn:hover {
+   transform: translateY(-1px) scale(1.05);
+   box-shadow: 0 6px 24px 0 rgba(255,255,255,0.25);
+}
+
+.stopBtn:active {
+    transform: translateY(1px) scale(1);
+    box-shadow: 0 2px 12px 0 rgba(255,255,255,0.25);
+}
     </style>
 </head>
 <body>
@@ -416,6 +474,10 @@
             <h2>Mythology in Motion</h2>
 
             <div id="bhama-kalapam-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>Bhama Kalapam</h1>
                 <p><strong>Bhama Kalapam</strong> is undoubtedly the most iconic and frequently performed Kuchipudi dance-drama, a masterpiece attributed to the revered Siddhendra Yogi from the 17th century. It narrates a charming and emotionally rich episode from the life of Satyabhama, Lord Krishna's proud and beautiful chief queen.</p>
 
@@ -432,6 +494,10 @@
             </div>
 
             <div id="krishna-leela-tarangini-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>Krishna Leela Tarangini</h1>
                 <p><strong>Krishna Leela Tarangini (Waves of Krishna's Playful Deeds)</strong> is a renowned Kuchipudi dance-drama, a magnus opus composed by the saintly poet **Narayana Teertha** in the 17th century. This extensive Sanskrit opera beautifully captures and vividly portrays various episodes from the enchanting life of Lord Krishna, from his miraculous birth to his divine childhood exploits and his romantic encounters with the Gopis.</p>
 
@@ -448,6 +514,10 @@
             </div>
 
             <div id="prahlada-charitam-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>Prahlada Charitam</h1>
                 <p><strong>Prahlada Charitam (The Story of Prahlada)</strong> is a powerful and morally profound Kuchipudi dance-drama derived from the ancient **Bhagavata Purana**. It recounts the iconic tale of the unwavering devotion of a young boy, Prahlada, to Lord Vishnu, despite facing relentless persecution and attempts on his life by his own demonic father, Hiranyakashipu. The narrative culminates in the dramatic appearance of Narasimha, Vishnu's ferocious man-lion avatar, to uphold dharma and protect his devotee.</p>
 
@@ -464,6 +534,10 @@
             </div>
 
             <div id="usha-parinayam-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>Usha Parinayam</h1>
                 <p><strong>Usha Parinayam (The Marriage of Usha)</strong> is a captivating and romantic Kuchipudi dance-drama that narrates the charming love story of Princess Usha, the daughter of the mighty demon king Banasura, and Aniruddha, the grandson of Lord Krishna. This popular piece, drawn from the Bhagavata Purana, is celebrated for its blend of romance, fantasy, divine intervention, and dramatic conflict.</p>
 
@@ -483,6 +557,10 @@
             </div>
 
             <div id="mohini-bhasmasura-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>Mohini Bhasmasura</h1>
                 <p><strong>Mohini Bhasmasura</strong> is a popular and dramatic solo item in Kuchipudi, based on an episode from Hindu mythology, primarily from the Puranas. It recounts the tale of the demon Bhasmasura and Lord Vishnu's enchanting female avatar, Mohini, who tricks the demon into causing his own demise. This piece is renowned for its contrast between the demonic and the divine, and for showcasing the dancer's versatility in portraying two distinct characters.</p>
 
@@ -502,6 +580,10 @@
             </div>
 
             <div id="golla-kalapam-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>Golla Kalapam</h1>
                 <p><strong>Golla Kalapam (The Dialogue of the Milkmaid)</strong> is a unique and deeply philosophical Kuchipudi dance-drama composed by **Bhagavata Kshetrayya** or sometimes attributed to Siddhendra Yogi, though the exact authorship is debated. It stands apart from many other dance-dramas as it doesn't present a linear mythological narrative of gods and demons. Instead, it uses the everyday life and simple observations of a milkmaid (**Gollabhama**) to delve into profound philosophical, spiritual, and social concepts.</p>
 
@@ -529,3 +611,77 @@
 </body>
 </html>
 <script src="js/navbar.js"></script>
+<script>
+  let utterance; // make it global so we can pause/resume it
+
+  // Individual story TTS function
+  function speakIndividualStory(storySection) {
+    speechSynthesis.cancel();
+
+    const title = storySection.querySelector("h1")?.innerText || "";
+    const paragraphs = storySection.querySelectorAll("p, h3");
+    let storyText = title + ". ";
+
+    paragraphs.forEach(el => {
+      storyText += el.innerText + " ";
+    });
+
+    utterance = new SpeechSynthesisUtterance(storyText);
+    utterance.rate = 1;
+    utterance.pitch = 1;
+    utterance.volume = 1;
+
+    const voices = speechSynthesis.getVoices();
+
+    // Try different voice options in order of preference
+    utterance.voice = 
+        voices.find(v => v.name.includes('Google UK English Female')) || 
+      voices[0]; // Fallback to first available
+
+    speechSynthesis.speak(utterance);
+  }
+
+  function stopTTS() {
+    speechSynthesis.cancel();
+  }
+
+  // Add event listeners when page loads
+  document.addEventListener('DOMContentLoaded', function() {
+    // Play button listeners
+    document.querySelectorAll(".listenBtn").forEach(button => {
+      button.addEventListener("click", () => {
+        // Only trigger if button has play icon
+        if (button.textContent.includes('🔊')) {
+          // Add pressed effect
+          button.classList.add('pressed');
+          setTimeout(() => button.classList.remove('pressed'), 200);
+
+          // Find the nearest parent div with the class 'detailed-story-section'
+          const storySection = button.closest(".detailed-story-section");
+          if (!storySection) {
+            alert("Story section not found!");
+            return;
+          }
+
+          // Speak only this individual story
+          speakIndividualStory(storySection);
+        }
+      });
+    });
+
+    // Stop button listeners
+    document.querySelectorAll(".stopBtn").forEach(button => {
+      button.addEventListener("click", () => {
+        // Add pressed effect
+        button.classList.add('pressed');
+        setTimeout(() => button.classList.remove('pressed'), 200);
+
+        // Stop the speech
+        stopTTS();
+      });
+    });
+  });
+
+  // Ensure voices are loaded
+  window.speechSynthesis.onvoiceschanged = () => {};
+</script>

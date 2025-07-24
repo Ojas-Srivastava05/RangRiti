@@ -340,6 +340,65 @@
             text-decoration: underline;
         }
 
+        /* --- Button Styles --- */
+        .listenBtn {
+            border-radius: 11.5px;
+            color: rgb(167, 148, 148);
+            height: 30px;
+            background-color: #542424b0;
+            border: solid rgba(186, 168, 173, 0.059);
+            box-shadow: #d9d6d4;
+            transition: transform 0.1s, box-shadow 0.1s;
+            margin-bottom: 15px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .listenBtn.pressed {
+            transform: translateY(2px) scale(0.97);
+            box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
+            background-color: #5a2020b0;
+        }
+
+        .listenBtn:hover {
+           transform: translateY(-1px) scale(1.05);
+           box-shadow: 0 6px 24px 0 rgba(255,255,255,0.25);
+        }
+
+        .listenBtn:active {
+            transform: translateY(1px) scale(1);
+            box-shadow: 0 2px 12px 0 rgba(255,255,255,0.25);
+        }
+
+        .stopBtn {
+            border-radius: 11.5px;
+            color: rgb(167, 148, 148);
+            height: 30px;
+            background-color: #542424b0;
+            border: solid rgba(186, 168, 173, 0.059);
+            box-shadow: #d9d6d4;
+            transition: transform 0.1s, box-shadow 0.1s;
+            margin-bottom: 15px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .stopBtn.pressed {
+            transform: translateY(2px) scale(0.97);
+            box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
+            background-color: #5a2020b0;
+        }
+
+        .stopBtn:hover {
+           transform: translateY(-1px) scale(1.05);
+           box-shadow: 0 6px 24px 0 rgba(255,255,255,0.25);
+        }
+
+        .stopBtn:active {
+            transform: translateY(1px) scale(1);
+            box-shadow: 0 2px 12px 0 rgba(255,255,255,0.25);
+        }
+
         /* --- Responsive Design --- */
         @media (max-width: 768px) {
             .nav-container {
@@ -422,6 +481,10 @@
             <h2>The Epic Narratives of Kathakali</h2>
 
             <div id="nalacharitam-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>Nalacharitam</h1>
                 <p><strong>Nalacharitam (The Story of Nala)</strong> is arguably the most celebrated and frequently performed Kathakali play, cherished for its profound emotional depth, poetic beauty, and intricate characterizations. Penned by Unnayi Warrier in the 17th century, this Aattakatha (Kathakali play text) spans four days of performance, each day depicting a pivotal phase of the epic love story of King Nala of Nishadha and Princess Damayanti of Vidarbha, as narrated in the Vana Parva of the Mahabharata.</p>
 
@@ -449,6 +512,10 @@
             </div>
 
             <div id="kalyanasougandhikam-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>Kalyanasougandhikam</h1>
                 <p><strong>Kalyanasougandhikam (The Flower of Auspicious Fragrance)</strong> is a lively and popular Kathakali play derived from the Mahabharata, focusing on the powerful Pandava prince Bhima and his humorous yet poignant quest for a rare and fragrant flower for his beloved wife, Draupadi. The play is renowned for its delightful blend of heroic valor, comedic elements, and profound spiritual lessons, especially through the interaction between Bhima and Hanuman.</p>
 
@@ -471,6 +538,10 @@
             </div>
 
             <div id="duryodhana-vadham-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>Duryodhana Vadham</h1>
                 <p><strong>Duryodhana Vadham (The Slaying of Duryodhana)</strong> is one of the most intense and dramatic Kathakali plays, drawn directly from the concluding sections of the Mahabharata. It focuses on the climactic final moments of the Kurukshetra War, particularly the mace duel between the mighty Pandava Bhima and the Kaurava king Duryodhana, culminating in Duryodhana's defeat and death. The play is a powerful exploration of themes of vengeance, justice, dharma (righteousness), and the ultimate triumph of good over evil.</p>
 
@@ -493,6 +564,10 @@
             </div>
 
             <div id="kiratham-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>Kiratham</h1>
                 <p><strong>Kiratham (The Hunter)</strong> is a significant Kathakali play drawn from the 'Kiratarjuniya' section of the Mahabharata. It narrates the pivotal episode where the Pandava prince Arjuna performs severe penance to acquire the powerful divine weapon, the Pasupatastra, from Lord Shiva. The play is renowned for its depiction of rigorous spiritual discipline, divine testing, and a spectacular battle sequence, culminating in Shiva's benevolent revelation.</p>
 
@@ -519,6 +594,10 @@
             </div>
 
             <div id="dakshayagam-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>Dakshayagam</h1>
                 <p><strong>Dakshayagam (The Sacrifice of Daksha)</strong> is a powerful and dramatic Kathakali play based on a pivotal narrative from the Shiva Purana and other Puranic texts. It recounts the story of Daksha Prajapati's arrogant sacrifice, the self-immolation of his daughter Sati (the first consort of Shiva), and Lord Shiva's fierce cosmic dance of destruction (Raudra Tandava) that follows, leading to the creation of the Shakti Peethas and the eventual humbling of the prideful Daksha.</p>
 
@@ -543,6 +622,10 @@
             </div>
 
             <div id="subhadraharanam-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>Subhadraharanam</h1>
                 <p><strong>Subhadraharanam (The Abduction of Subhadra)</strong> is an enchanting and romantic Kathakali play that narrates the captivating story of Arjuna's clever abduction of Subhadra, Lord Krishna's sister and Balarama's half-sister. Derived from the Mahabharata, this play is characterized by its charm, wit, strategic planning, and the divine blessings that pave the way for a beautiful union. It stands apart from many Kathakali plays that focus on warfare or tragedy, offering a lighter, more joyous narrative.</p>
 
@@ -575,5 +658,79 @@
     </footer>
 
 </body>
-</html>
 <script src="js/navbar.js"></script>
+<script>
+  let utterance; // make it global so we can pause/resume it
+
+  // Individual story TTS function
+  function speakIndividualStory(storySection) {
+    speechSynthesis.cancel();
+
+    const title = storySection.querySelector("h1")?.innerText || "";
+    const paragraphs = storySection.querySelectorAll("p, h3");
+    let storyText = title + ". ";
+
+    paragraphs.forEach(el => {
+      storyText += el.innerText + " ";
+    });
+
+    utterance = new SpeechSynthesisUtterance(storyText);
+    utterance.rate = 1;
+    utterance.pitch = 1;
+    utterance.volume = 1;
+
+    const voices = speechSynthesis.getVoices();
+
+    // Try different voice options in order of preference
+    utterance.voice = 
+        voices.find(v => v.name.includes('Google UK English Female')) || 
+      voices[0]; // Fallback to first available
+
+    speechSynthesis.speak(utterance);
+  }
+
+  function stopTTS() {
+    speechSynthesis.cancel();
+  }
+
+  // Add event listeners when page loads
+  document.addEventListener('DOMContentLoaded', function() {
+    // Play button listeners
+    document.querySelectorAll(".listenBtn").forEach(button => {
+      button.addEventListener("click", () => {
+        // Only trigger if button has play icon
+        if (button.textContent.includes('🔊')) {
+          // Add pressed effect
+          button.classList.add('pressed');
+          setTimeout(() => button.classList.remove('pressed'), 200);
+
+          // Find the nearest parent div with the class 'detailed-story-section'
+          const storySection = button.closest(".detailed-story-section");
+          if (!storySection) {
+            alert("Story section not found!");
+            return;
+          }
+
+          // Speak only this individual story
+          speakIndividualStory(storySection);
+        }
+      });
+    });
+
+    // Stop button listeners
+    document.querySelectorAll(".stopBtn").forEach(button => {
+      button.addEventListener("click", () => {
+        // Add pressed effect
+        button.classList.add('pressed');
+        setTimeout(() => button.classList.remove('pressed'), 200);
+
+        // Stop the speech
+        stopTTS();
+      });
+    });
+  });
+
+  // Ensure voices are loaded
+  window.speechSynthesis.onvoiceschanged = () => {};
+</script>
+</html>

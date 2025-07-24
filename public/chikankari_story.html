@@ -285,6 +285,63 @@
             color: var(--primary-gold);
             text-decoration: underline;
         }
+        .listenBtn {
+    border-radius: 11.5px;
+    color: rgb(167, 148, 148);
+    height: 30px;
+    background-color: #542424b0;
+    border: solid rgba(186, 168, 173, 0.059);
+    box-shadow: #d9d6d4;
+    transition: transform 0.1s, box-shadow 0.1s;
+    margin-bottom: 15px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.listenBtn.pressed {
+    transform: translateY(2px) scale(0.97);
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
+    background-color: #5a2020b0;
+}
+
+.listenBtn:hover {
+   transform: translateY(-1px) scale(1.05);
+   box-shadow: 0 6px 24px 0 rgba(255,255,255,0.25);
+}
+
+.listenBtn:active {
+    transform: translateY(1px) scale(1);
+    box-shadow: 0 2px 12px 0 rgba(255,255,255,0.25);
+}
+
+.stopBtn {
+    border-radius: 11.5px;
+    color: rgb(167, 148, 148);
+    height: 30px;
+    background-color: #542424b0;
+    border: solid rgba(186, 168, 173, 0.059);
+    box-shadow: #d9d6d4;
+    transition: transform 0.1s, box-shadow 0.1s;
+    margin-bottom: 15px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.stopBtn.pressed {
+    transform: translateY(2px) scale(0.97);
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
+    background-color: #5a2020b0;
+}
+
+.stopBtn:hover {
+   transform: translateY(-1px) scale(1.05);
+   box-shadow: 0 6px 24px 0 rgba(255,255,255,0.25);
+}
+
+.stopBtn:active {
+    transform: translateY(1px) scale(1);
+    box-shadow: 0 2px 12px 0 rgba(255,255,255,0.25);
+}
         @media (max-width: 768px) {
             .nav-container { flex-wrap: wrap; justify-content: center; top: 15px; padding: 10px 15px; border-radius: 30px; }
             .nav-btn { font-size: 0.8rem; padding: 6px 12px; }
@@ -319,6 +376,10 @@
         <h2>Embroidered Whispers</h2>
 
         <div id="nawabi-legacy-detailed" class="detailed-story-section">
+            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
             <h1>The Nawabi Legacy</h1>
             <p><strong>The Nawabi Legacy</strong> is the origin of Chikankari, flourishing under the patronage of Mughal and Awadhi nobility, who cherished its ethereal beauty and subtlety.</p>
 
@@ -330,6 +391,10 @@
         </div>
 
         <div id="generations-artisans-detailed" class="detailed-story-section">
+            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
             <h1>Generations of Artisans</h1>
             <p><strong>Generations of Artisans</strong> have sustained Chikankari, with families in Lucknow passing down techniques, motifs, and stories through the ages.</p>
 
@@ -341,6 +406,10 @@
         </div>
 
         <div id="motifs-of-chikankari-detailed" class="detailed-story-section">
+            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
             <h1>Motifs of Chikankari</h1>
             <p><strong>Motifs of Chikankari</strong> are inspired by nature and Mughal aesthetics—lotuses, paisleys, vines, and jaali (net) patterns—each rendered with exquisite finesse.</p>
 
@@ -352,6 +421,10 @@
         </div>
 
         <div id="living-heritage-detailed" class="detailed-story-section">
+            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
             <h1>Living Heritage</h1>
             <p><strong>Living Heritage</strong> celebrates the ongoing evolution of Chikankari, blending traditional motifs with modern designs for a new generation.</p>
 
@@ -372,3 +445,77 @@
 </body>
 </html>
 <script src="js/navbar.js"></script>
+<script>
+  let utterance; // make it global so we can pause/resume it
+
+  // Individual story TTS function
+  function speakIndividualStory(storySection) {
+    speechSynthesis.cancel();
+
+    const title = storySection.querySelector("h1")?.innerText || "";
+    const paragraphs = storySection.querySelectorAll("p, h3");
+    let storyText = title + ". ";
+
+    paragraphs.forEach(el => {
+      storyText += el.innerText + " ";
+    });
+
+    utterance = new SpeechSynthesisUtterance(storyText);
+    utterance.rate = 1;
+    utterance.pitch = 1;
+    utterance.volume = 1;
+
+    const voices = speechSynthesis.getVoices();
+
+    // Try different voice options in order of preference
+    utterance.voice = 
+        voices.find(v => v.name.includes('Google UK English Female')) || 
+      voices[0]; // Fallback to first available
+
+    speechSynthesis.speak(utterance);
+  }
+
+  function stopTTS() {
+    speechSynthesis.cancel();
+  }
+
+  // Add event listeners when page loads
+  document.addEventListener('DOMContentLoaded', function() {
+    // Play button listeners
+    document.querySelectorAll(".listenBtn").forEach(button => {
+      button.addEventListener("click", () => {
+        // Only trigger if button has play icon
+        if (button.textContent.includes('🔊')) {
+          // Add pressed effect
+          button.classList.add('pressed');
+          setTimeout(() => button.classList.remove('pressed'), 200);
+
+          // Find the nearest parent div with the class 'detailed-story-section'
+          const storySection = button.closest(".detailed-story-section");
+          if (!storySection) {
+            alert("Story section not found!");
+            return;
+          }
+
+          // Speak only this individual story
+          speakIndividualStory(storySection);
+        }
+      });
+    });
+
+    // Stop button listeners
+    document.querySelectorAll(".stopBtn").forEach(button => {
+      button.addEventListener("click", () => {
+        // Add pressed effect
+        button.classList.add('pressed');
+        setTimeout(() => button.classList.remove('pressed'), 200);
+
+        // Stop the speech
+        stopTTS();
+      });
+    });
+  });
+
+  // Ensure voices are loaded
+  window.speechSynthesis.onvoiceschanged = () => {};
+</script>

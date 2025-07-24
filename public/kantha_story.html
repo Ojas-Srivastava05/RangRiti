@@ -285,6 +285,63 @@
             color: var(--primary-gold);
             text-decoration: underline;
         }
+        .listenBtn {
+    border-radius: 11.5px;
+    color: rgb(167, 148, 148);
+    height: 30px;
+    background-color: #542424b0;
+    border: solid rgba(186, 168, 173, 0.059);
+    box-shadow: #d9d6d4;
+    transition: transform 0.1s, box-shadow 0.1s;
+    margin-bottom: 15px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.listenBtn.pressed {
+    transform: translateY(2px) scale(0.97);
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
+    background-color: #5a2020b0;
+}
+
+.listenBtn:hover {
+   transform: translateY(-1px) scale(1.05);
+   box-shadow: 0 6px 24px 0 rgba(255,255,255,0.25);
+}
+
+.listenBtn:active {
+    transform: translateY(1px) scale(1);
+    box-shadow: 0 2px 12px 0 rgba(255,255,255,0.25);
+}
+
+.stopBtn {
+    border-radius: 11.5px;
+    color: rgb(167, 148, 148);
+    height: 30px;
+    background-color: #542424b0;
+    border: solid rgba(186, 168, 173, 0.059);
+    box-shadow: #d9d6d4;
+    transition: transform 0.1s, box-shadow 0.1s;
+    margin-bottom: 15px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.stopBtn.pressed {
+    transform: translateY(2px) scale(0.97);
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
+    background-color: #5a2020b0;
+}
+
+.stopBtn:hover {
+   transform: translateY(-1px) scale(1.05);
+   box-shadow: 0 6px 24px 0 rgba(255,255,255,0.25);
+}
+
+.stopBtn:active {
+    transform: translateY(1px) scale(1);
+    box-shadow: 0 2px 12px 0 rgba(255,255,255,0.25);
+}
         @media (max-width: 768px) {
             .nav-container { flex-wrap: wrap; justify-content: center; top: 15px; padding: 10px 15px; border-radius: 30px; }
             .nav-btn { font-size: 0.8rem; padding: 6px 12px; }
@@ -319,6 +376,10 @@
         <h2>Layered Narratives</h2>
 
         <div id="quilted-memory-detailed" class="detailed-story-section">
+            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
             <h1>Quilted Memory</h1>
             <p><strong>Quilted Memory</strong> is the essence of Kantha, where old saris and cloths are layered and stitched together, transforming the ordinary into heirlooms of warmth and remembrance.</p>
 
@@ -330,6 +391,10 @@
         </div>
 
         <div id="motifs-of-kantha-detailed" class="detailed-story-section">
+            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
             <h1>Motifs of Kantha</h1>
             <p><strong>Motifs of Kantha</strong> are inspired by daily life, folklore, and dreams—floral vines, fish, birds, and geometric forms fill the cloth with meaning and beauty.</p>
 
@@ -341,6 +406,10 @@
         </div>
 
         <div id="women-artisans-detailed" class="detailed-story-section">
+            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
             <h1>Women Artisans</h1>
             <p><strong>Women Artisans</strong> are the heart of Kantha, sustaining the tradition through generations of skill, patience, and community.</p>
 
@@ -352,6 +421,10 @@
         </div>
 
         <div id="living-tradition-detailed" class="detailed-story-section">
+            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
             <h1>Living Tradition</h1>
             <p><strong>Living Tradition</strong> celebrates the ongoing evolution of Kantha, as artisans reinterpret old motifs and invent new designs for a global audience.</p>
 
@@ -372,3 +445,77 @@
 </body>
 </html>
 <script src="js/navbar.js"></script>
+<script>
+  let utterance; // make it global so we can pause/resume it
+
+  // Individual story TTS function
+  function speakIndividualStory(storySection) {
+    speechSynthesis.cancel();
+
+    const title = storySection.querySelector("h1")?.innerText || "";
+    const paragraphs = storySection.querySelectorAll("p, h3");
+    let storyText = title + ". ";
+
+    paragraphs.forEach(el => {
+      storyText += el.innerText + " ";
+    });
+
+    utterance = new SpeechSynthesisUtterance(storyText);
+    utterance.rate = 1;
+    utterance.pitch = 1;
+    utterance.volume = 1;
+
+    const voices = speechSynthesis.getVoices();
+
+    // Try different voice options in order of preference
+    utterance.voice = 
+        voices.find(v => v.name.includes('Google UK English Female')) || 
+      voices[0]; // Fallback to first available
+
+    speechSynthesis.speak(utterance);
+  }
+
+  function stopTTS() {
+    speechSynthesis.cancel();
+  }
+
+  // Add event listeners when page loads
+  document.addEventListener('DOMContentLoaded', function() {
+    // Play button listeners
+    document.querySelectorAll(".listenBtn").forEach(button => {
+      button.addEventListener("click", () => {
+        // Only trigger if button has play icon
+        if (button.textContent.includes('🔊')) {
+          // Add pressed effect
+          button.classList.add('pressed');
+          setTimeout(() => button.classList.remove('pressed'), 200);
+
+          // Find the nearest parent div with the class 'detailed-story-section'
+          const storySection = button.closest(".detailed-story-section");
+          if (!storySection) {
+            alert("Story section not found!");
+            return;
+          }
+
+          // Speak only this individual story
+          speakIndividualStory(storySection);
+        }
+      });
+    });
+
+    // Stop button listeners
+    document.querySelectorAll(".stopBtn").forEach(button => {
+      button.addEventListener("click", () => {
+        // Add pressed effect
+        button.classList.add('pressed');
+        setTimeout(() => button.classList.remove('pressed'), 200);
+
+        // Stop the speech
+        stopTTS();
+      });
+    });
+  });
+
+  // Ensure voices are loaded
+  window.speechSynthesis.onvoiceschanged = () => {};
+</script>

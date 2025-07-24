@@ -3,74 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yakshagana: Mythical Dramas</title>
-    <link rel="stylesheet" href="css/navbar.css">
+    <title>Blue Pottery: Azure Artistry of Jaipur</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
     <style>
-        /* CSS Variables */
         :root {
-            --yakshagana-gold: #E0B400; /* A vibrant gold for Yakshagana's rich costumes */
+            --yakshagana-gold: #E0B400;
             --text-gold: #FFD700;
             --text-light: rgba(255, 248, 220, 0.9);
-            --dark-background: #251005; /* Deep, earthy brown for the stage backdrop */
-            --card-background: rgba(45, 20, 0, 0.7); /* Slightly lighter, semi-transparent */
-            --border-gold: rgba(255, 215, 0, 0.4);
-            --primary-gold: #FFD700;
+            --dark-background: #251005;
         }
 
-        /* General Body Styles */
         body {
-            margin: 0;
             font-family: 'EB Garamond', serif;
-            background: linear-gradient(to bottom, #3a1f0a, #251005); /* Subtle gradient for depth */
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(45deg, #251005 0%, #3D1A00 50%, #4A1F00 100%);
+            background-attachment: fixed;
             color: var(--text-light);
-            line-height: 1.6;
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.7;
         }
 
-        /* --- Navigation Bar --- */
         .nav-container {
-            position: fixed;
-            top: 30px;
-            left: 50%;
-            transform: translateX(-50%);
             display: flex;
-            gap: 10px;
-            backdrop-filter: blur(20px);
-            background-color: rgba(0, 0, 0, 0.6); /* Slightly darker background for contrast */
-            padding: 15px 25px;
-            border-radius: 50px;
-            border: 1px solid var(--border-gold);
+            justify-content: center;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(37, 16, 5, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
             z-index: 1000;
-            animation: slideDown 1s ease-out;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Enhanced shadow */
+            border-bottom: 2px solid var(--yakshagana-gold);
+            animation: slideDown 0.8s ease-out;
         }
 
         @keyframes slideDown {
-            from { transform: translateX(-50%) translateY(-100px); opacity: 0; }
-            to { transform: translateX(-50%) translateY(0); opacity: 1; }
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         .nav-btn {
-            font-family: 'EB Garamond', serif;
-            background: transparent;
-            color: #FAF3E0; /* Light Ivory for better contrast on dark bg */
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Stronger shadow */
-            border: none;
-            padding: 8px 16px;
+            background: linear-gradient(135deg, rgba(224, 180, 0, 0.1), rgba(255, 215, 0, 0.05));
+            color: var(--text-gold);
+            border: 1px solid rgba(224, 180, 0, 0.3);
+            padding: 12px 30px;
+            margin: 0 15px;
             border-radius: 25px;
-            font-size: 0.9rem;
-            font-weight: 500;
             cursor: pointer;
-            transition: all 0.3s ease;
+            font-family: 'Cinzel Decorative', serif;
+            font-weight: 400;
+            font-size: 16px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
             animation: navBtnFadeIn 1s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
         }
 
         @keyframes navBtnFadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .nav-btn::before {
@@ -81,7 +85,7 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
-            transition: left 0.5s ease;
+            transition: left 0.5s;
         }
 
         .nav-btn:hover::before {
@@ -89,83 +93,65 @@
         }
 
         .nav-btn:hover {
-            background: rgba(255, 215, 0, 0.1); /* Lighter hover background */
-            transform: scale(1.05);
-            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
-            color: var(--text-gold); /* Gold color on hover */
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(224, 180, 0, 0.3);
+            border-color: var(--text-gold);
+            background: linear-gradient(135deg, rgba(224, 180, 0, 0.2), rgba(255, 215, 0, 0.1));
         }
 
-        /* Dropdown styles */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-toggle {
-            cursor: pointer;
-        }
-
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown-toggle { cursor: pointer; }
         .dropdown-menu {
-            position: absolute;
-            top: calc(100% + 10px); /* Position below the button */
-            left: 50%;
-            transform: translateX(-50%); /* Center the dropdown */
-            background: rgba(0, 0, 0, 0.95);
-            border: 1px solid var(--border-gold);
-            border-radius: 10px;
-            padding: 10px 0;
             display: none;
-            flex-direction: column;
+            position: absolute;
+            background: rgba(37, 16, 5, 0.95);
             min-width: 200px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            border-radius: 15px;
+            border: 1px solid rgba(224, 180, 0, 0.3);
+            backdrop-filter: blur(10px);
             z-index: 1001;
-            opacity: 0;
-            transform: translateX(-50%) translateY(20px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 10px;
         }
-
         .dropdown:hover .dropdown-menu {
-            display: flex;
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
-
-        .dropdown-item {
-            font-family: 'EB Garamond', serif;
-            color: #FAF3E0;
-            text-decoration: none;
-            padding: 10px 20px;
             display: block;
+            animation: fadeIn 0.3s ease-out;
+        }
+        .dropdown-item {
+            color: var(--text-light);
+            padding: 12px 20px;
+            text-decoration: none;
+            display: block;
+            font-family: 'EB Garamond', serif;
             transition: all 0.3s ease;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            margin: 5px;
         }
-
         .dropdown-item:hover {
-            background: rgba(255, 215, 0, 0.2);
-            color: var(--primary-gold);
-            padding-left: 25px; /* Slight indent on hover */
+            background: linear-gradient(135deg, rgba(224, 180, 0, 0.2), rgba(255, 215, 0, 0.1));
+            color: var(--text-gold);
+            transform: translateX(5px);
         }
-
         .dropdown-arrow {
-            font-size: 0.8em;
-            margin-left: 5px;
-            display: inline-block;
+            margin-left: 8px;
             transition: transform 0.3s ease;
         }
-
         .dropdown:hover .dropdown-arrow {
             transform: rotate(180deg);
         }
 
-        /* --- Hero Section --- */
         .hero {
-            position: relative;
             height: 100vh;
+            background: linear-gradient(rgba(37, 16, 5, 0.4), rgba(61, 26, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=2000') center/cover;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             text-align: center;
-            color: var(--text-light);
+            position: relative;
             overflow: hidden;
         }
 
@@ -174,11 +160,9 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Yakshagana_at_Dharmasthala.jpg/1280px-Yakshagana_at_Dharmasthala.jpg') no-repeat center center/cover; /* Yakshagana image */
-            filter: grayscale(70%) brightness(40%); /* Desaturate and darken */
-            z-index: -1;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(224, 180, 0, 0.1) 0%, transparent 70%);
             animation: fadeInBackground 2s ease-out;
         }
 
@@ -188,64 +172,77 @@
         }
 
         .hero-content {
-            padding-top: 100px; /* Space for fixed nav */
+            z-index: 2;
             max-width: 800px;
-            animation: fadeIn 1.5s ease-out forwards;
+            padding: 0 2rem;
+            animation: fadeIn 1.5s ease-out 0.5s both;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero h1 {
             font-family: 'Cinzel Decorative', serif;
             font-size: 4.5rem;
+            font-weight: 700;
             color: var(--text-gold);
-            margin-bottom: 20px;
-            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7);
-            letter-spacing: 2px;
-            animation: scaleIn 1.5s ease-out forwards;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+            animation: scaleIn 1s ease-out 1s both;
         }
 
         @keyframes scaleIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         .hero p {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: var(--text-light);
+            line-height: 1.8;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            font-style: italic;
         }
 
-        /* --- Section Styling --- */
         .section {
-            padding: 80px 5%;
-            margin-top: 0; /* No top margin as hero takes full height */
-            position: relative;
-            z-index: 1;
-            background-color: var(--dark-background); /* Ensure consistent background */
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: slideInFromLeft 1s ease-out;
         }
 
         .section h2 {
             font-family: 'Cinzel Decorative', serif;
-            font-size: 3.5rem;
-            color: var(--yakshagana-gold);
+            font-size: 3rem;
+            color: var(--text-gold);
             text-align: center;
-            margin-bottom: 60px;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+            margin-bottom: 3rem;
             position: relative;
-            padding-bottom: 15px;
-            animation: slideInFromLeft 1s ease-out forwards;
-            opacity: 0;
-            transform: translateX(-50px);
+            animation: slideInFromLeft 1s ease-out 0.3s both;
         }
 
         @keyframes slideInFromLeft {
-            from { opacity: 0; transform: translateX(-50px); }
-            to { opacity: 1; transform: translateX(0); }
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         .section h2::after {
@@ -253,81 +250,71 @@
             display: block;
             width: 100px;
             height: 3px;
-            background: linear-gradient(to right, transparent, var(--text-gold), transparent);
-            margin: 15px auto 0;
-            border-radius: 5px;
+            background: linear-gradient(90deg, var(--yakshagana-gold), var(--text-gold));
+            margin: 1rem auto;
+            border-radius: 2px;
         }
 
-        /* --- Detailed Story Sections --- */
         .detailed-story-section {
-            max-width: 900px;
-            margin: 80px auto; /* Margin between detailed stories */
-            padding: 40px;
-            background-color: rgba(0, 0, 0, 0.7); /* Slightly transparent background */
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
-            border: 1px solid var(--border-gold);
-            animation: fadeIn 1s ease-out forwards;
-            line-height: 1.8; /* Adjusted for better readability of detailed text */
+            background: linear-gradient(135deg, rgba(37, 16, 5, 0.8), rgba(61, 26, 0, 0.6));
+            border: 1px solid rgba(224, 180, 0, 0.2);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            animation: fadeIn 1s ease-out;
         }
 
-        .detailed-story-section h1 { /* Using h1 for main story title within this section */
+        .detailed-story-section h1 {
             font-family: 'Cinzel Decorative', serif;
-            font-size: 3.8rem;
+            font-size: 2.5rem;
             color: var(--text-gold);
+            margin-bottom: 2rem;
             text-align: center;
-            margin-bottom: 30px;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
             position: relative;
-            padding-bottom: 15px;
         }
 
         .detailed-story-section h1::after {
             content: '';
             display: block;
-            width: 150px;
-            height: 3px;
-            background: linear-gradient(to right, transparent, var(--text-gold), transparent);
-            margin: 15px auto 0;
-            border-radius: 5px;
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--yakshagana-gold), var(--text-gold));
+            margin: 1rem auto;
+            border-radius: 1px;
         }
 
-        .detailed-story-section h3 { /* Using h3 for subheadings within a detailed story */
-            font-family: 'EB Garamond', serif;
-            font-size: 2.2rem;
+        .detailed-story-section h3 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1.5rem;
             color: var(--yakshagana-gold);
-            margin-top: 40px;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            border-bottom: 1px dashed rgba(255, 215, 0, 0.2);
-            padding-bottom: 10px;
+            margin: 2rem 0 1rem 0;
         }
 
         .detailed-story-section p {
-            font-size: 1.15rem;
-            margin-bottom: 1.5em;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
             text-align: justify;
+            color: var(--text-light);
         }
 
         .detailed-story-section strong {
             color: var(--text-gold);
+            font-weight: 600;
         }
 
-        /* --- Footer --- */
         .footer {
-            background-color: #0d0600;
-            color: rgba(255, 248, 220, 0.7);
+            background: linear-gradient(135deg, rgba(37, 16, 5, 0.95), rgba(61, 26, 0, 0.9));
             text-align: center;
-            padding: 40px 20px;
-            font-size: 0.9rem;
-            border-top: 1px solid rgba(255, 215, 0, 0.2);
-            margin-top: 80px;
+            padding: 2rem;
+            border-top: 2px solid var(--yakshagana-gold);
+            margin-top: 3rem;
         }
 
-        .footer p {
-            margin: 0;
-            padding: 5px 0;
-        }
+        .footer p { margin: 0; padding: 5px 0; }
 
         .footer a {
             color: var(--text-gold);
@@ -336,78 +323,11 @@
         }
 
         .footer a:hover {
-            color: var(--primary-gold);
-            text-decoration: underline;
+            color: var(--yakshagana-gold);
+            text-shadow: 0 0 10px rgba(224, 180, 0, 0.5);
         }
 
-        /* --- Responsive Design --- */
-        @media (max-width: 768px) {
-            .nav-container {
-                flex-wrap: wrap;
-                justify-content: center;
-                top: 15px;
-                padding: 10px 15px;
-                border-radius: 30px;
-            }
-
-            .nav-btn {
-                font-size: 0.8rem;
-                padding: 6px 12px;
-            }
-
-            .hero h1 {
-                font-size: 3rem;
-            }
-
-            .hero p {
-                font-size: 1.2rem;
-            }
-
-            .section h2 {
-                font-size: 2.5rem;
-            }
-
-            .detailed-story-section {
-                padding: 25px;
-                margin: 60px auto;
-            }
-            .detailed-story-section h1 {
-                font-size: 3rem;
-            }
-            .detailed-story-section h3 {
-                font-size: 1.8rem;
-            }
-            .detailed-story-section p {
-                font-size: 1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .nav-container {
-                gap: 5px;
-            }
-            .nav-btn {
-                padding: 5px 8px;
-            }
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            .hero p {
-                font-size: 1rem;
-            }
-            .section h2 {
-                font-size: 2rem;
-            }
-        }
-
-        /* Toggle button pressed state */
-        .listenBtn.active,
-        .listenBtn.pressed {
-            background-color: #5a2020b0;
-            transform: translateY(2px) scale(0.97);
-            box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
-        }
-        .listenBtn{
+        .listenBtn {
             border-radius: 11.5px;
             color: rgb(167, 148, 148);
             height: 30px;
@@ -415,6 +335,9 @@
             border: solid rgba(186, 168, 173, 0.059);
             box-shadow: #d9d6d4;
             transition: transform 0.1s, box-shadow 0.1s;
+            margin-bottom: 15px;
+            padding: 5px 10px;
+            cursor: pointer;
         }
 
         .listenBtn.pressed {
@@ -423,197 +346,244 @@
             background-color: #5a2020b0;
         }
 
-        .listenBtn:hover{
+        .listenBtn:hover {
            transform: translateY(-1px) scale(1.05);
            box-shadow: 0 6px 24px 0 rgba(255,255,255,0.25);
         }
 
-        .listenBtn:active{
-            transform: translateY(1px) scale(01);
+        .listenBtn:active {
+            transform: translateY(1px) scale(1);
             box-shadow: 0 2px 12px 0 rgba(255,255,255,0.25);
+        }
+
+        .stopBtn {
+            border-radius: 11.5px;
+            color: rgb(167, 148, 148);
+            height: 30px;
+            background-color: #542424b0;
+            border: solid rgba(186, 168, 173, 0.059);
+            box-shadow: #d9d6d4;
+            transition: transform 0.1s, box-shadow 0.1s;
+            margin-bottom: 15px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .stopBtn.pressed {
+            transform: translateY(2px) scale(0.97);
+            box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
+            background-color: #5a2020b0;
+        }
+
+        .stopBtn:hover {
+           transform: translateY(-1px) scale(1.05);
+           box-shadow: 0 6px 24px 0 rgba(255,255,255,0.25);
+        }
+
+        .stopBtn:active {
+            transform: translateY(1px) scale(1);
+            box-shadow: 0 2px 12px 0 rgba(255,255,255,0.25);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .section h2 { font-size: 2.5rem; }
+            .detailed-story-section { padding: 2rem; }
+            .detailed-story-section h1 { font-size: 2rem; }
+            .nav-container { padding: 0.5rem 1rem; }
+            .nav-btn { margin: 0 5px; padding: 10px 20px; font-size: 14px; }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 2.5rem; }
+            .section h2 { font-size: 2rem; }
+            .detailed-story-section { padding: 1.5rem; }
+            .detailed-story-section h1 { font-size: 1.8rem; }
+            .nav-btn { margin: 0 3px; padding: 8px 15px; font-size: 12px; }
         }
     </style>
 </head>
 <body>
 
-
-    <main>
-        <section class="hero">
-            <div class="hero-content">
-                <h1>Yakshagana: Karnataka's Epic Night Play</h1>
-                <p>Immerse yourself in vibrant costumes, powerful music, and dramatic tales from Hindu epics and Puranas.</p>
+    <nav class="nav-container">
+        <button class="nav-btn">Artists</button>
+        <button class="nav-btn">Workshops</button>
+        <button class="nav-btn">Calendar</button>
+        <div class="dropdown">
+            <button class="nav-btn dropdown-toggle">Stories <span class="dropdown-arrow">▼</span></button>
+            <div class="dropdown-menu">
+                <a href="#" class="dropdown-item">Bharatanatyam Stories</a>
+                <a href="#" class="dropdown-item">Bidriware Stories</a>
+                <a href="#" class="dropdown-item">Blue Pottery Stories</a>
+                <a href="#" class="dropdown-item">Chikankari Stories</a>
+                <a href="#" class="dropdown-item">Dhokra Art Stories</a>
+                <a href="#" class="dropdown-item">Kalamkari Stories</a>
+                <a href="#" class="dropdown-item">Kantha Stories</a>
+                <a href="#" class="dropdown-item">Kathakali Stories</a>
+                <a href="#" class="dropdown-item">Kuchipudi Stories</a>
+                <a href="#" class="dropdown-item">Madhubani Stories</a>
+                <a href="#" class="dropdown-item">Marble Inlay Stories</a>
+                <a href="#" class="dropdown-item">Mohiniyattam Stories</a>
+                <a href="#" class="dropdown-item">Odissi Stories</a>
+                <a href="#" class="dropdown-item">Patola Stories</a>
+                <a href="#" class="dropdown-item">Phulkari Stories</a>
+                <a href="#" class="dropdown-item">Sandalwood Stories</a>
+                <a href="#" class="dropdown-item">Terracotta Stories</a>
+                <a href="#" class="dropdown-item">Warli Stories</a>
+                <a href="#" class="dropdown-item">Yakshagana Stories</a>
             </div>
-        </section>
+        </div>
+        <button class="nav-btn">Connect</button>
+    </nav>
 
-        <section id="yakshagana-stories-detailed" class="section">
-            <h2>Mythical Dramas</h2>
+<main>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Blue Pottery</h1>
+            <p>Discover the azure artistry of Jaipur's distinctive blue pottery tradition, where Persian techniques meet Rajasthani creativity in a symphony of cobalt blue.</p>
+        </div>
+    </section>
 
-            <div id="mahishasura-mardini-detailed" class="detailed-story-section">
+    <section id="blue-pottery-stories-detailed" class="section">
+        <h2>Ceramic Legends</h2>
+
+        <div id="persian-origins-detailed" class="detailed-story-section">
+            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
                 <button class="listenBtn">🔊 Play story</button>
-
-                <h1>Mahishasura Mardini</h1>
-                <p><strong>Mahishasura Mardini</strong> is one of the most iconic and electrifying Yakshagana presentations, embodying the eternal struggle between good and evil. It vividly portrays the fierce battle between the formidable buffalo demon, Mahishasura, and the supreme divine feminine, Goddess Durga, culminating in her triumphant victory and the restoration of cosmic order.</p>
-
-                <h3>The Reign of Terror and Divine Intervention</h3>
-                <p>The narrative begins with **Mahishasura**, who, through intense penance, obtains a boon from Lord Brahma: he cannot be killed by any male god or demon. Empowered by this boon, Mahishasura becomes incredibly arrogant and tyrannical. He conquers the heavens, defeats the Devas (gods), and establishes his oppressive rule over the three worlds. The universe groans under his tyranny, and the gods are driven from their celestial abodes.</p>
-                <p>Desperate, the gods collectively invoke the Supreme Goddess. From their combined energies, a resplendent and powerful female deity, **Durga (or Chandika)**, manifests. She is depicted with multiple arms, each wielding a divine weapon contributed by various gods – Shiva's trident, Vishnu's discus, Indra's thunderbolt, etc. Her very appearance strikes terror into the hearts of demons and instills hope in the gods.</p>
-
-                <h3>The Epic Battle and Glorious Victory</h3>
-                <p>The core of the Yakshagana performance is the **epic confrontation** between Durga and Mahishasura. The demon, initially dismissive, is taken aback by Durga's might. The battle sequences in Yakshagana are characterized by dynamic footwork, vigorous movements, and powerful expressions, especially for Mahishasura who often portrays various forms he assumes during the fight (buffalo, lion, human, etc.) to evade Durga.</p>
-                <p>Durga, with her divine prowess and unwavering determination, eventually corners Mahishasura. Despite his attempts to transform and escape, she ultimately slays him, often depicted by piercing him with her trident while he is in his buffalo form. Her victory signifies the triumph of righteousness (Dharma) over unrighteousness (Adharma), light over darkness, and the destruction of ego and ignorance.</p>
-                <p>The performance of Mahishasura Mardini in Yakshagana is a spectacle of elaborate costumes, fierce makeup, thunderous drumming, and powerful singing. The character of Mahishasura, with his towering headgear and grotesque makeup, is particularly striking, providing a dramatic foil to the radiant and formidable Goddess Durga. The narrative culminates in joyous celebrations, emphasizing the importance of divine protection and the cyclical nature of good overcoming evil.</p>
+                <button class="stopBtn">⏹️ Stop</button>
             </div>
+            <h1>Persian Origins</h1>
+            <p>The azure artistry of Jaipur's blue pottery traces its roots to the ancient Persian empire, where master craftsmen first discovered the secret of creating pottery without clay. In the 14th century, this revolutionary technique traveled along the Silk Road, carried by Persian artisans seeking new horizons for their craft.</p>
+            
+            <h3>The Clayless Wonder</h3>
+            <p>What makes blue pottery unique is its <strong>lack of clay</strong>. Instead, artisans use a mixture of quartz stone powder, powdered glass, Multani mitti (Fuller's earth), borax, gum, and water. This combination creates a harder, more durable pottery that resonates with a distinctive ring when tapped.</p>
+            
+            <p>The Persian masters who brought this technique to India were fleeing the Mongol invasions. They found refuge in the courts of Indian rulers, where their skills were not only preserved but evolved into something uniquely Indian while maintaining the essence of their Persian heritage.</p>
+        </div>
 
-            <div id="gada-yuddha-detailed" class="detailed-story-section">
+        <div id="jaipur-renaissance-detailed" class="detailed-story-section">
+            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
                 <button class="listenBtn">🔊 Play story</button>
-                <h1>Gada Yuddha</h1>
-                <p><strong>Gada Yuddha (The Mace Fight)</strong> is one of the most popular and dramatically charged episodes from the epic Mahabharata, a cornerstone of the Yakshagana repertoire. This narrative focuses on the climactic and brutal mace duel between the powerful Pandava prince, **Bhima**, and the arrogant Kaurava chieftain, **Duryodhana**, on the eighteenth day of the Kurukshetra War.</p>
-
-                <h3>The Build-Up to the Duel</h3>
-                <p>The Yakshagana narrative typically builds the tension leading to this final encounter. After seventeen days of devastating warfare, the Kaurava army is almost entirely destroyed, and Duryodhana finds himself as the sole surviving leader. Humiliated and defeated, he retreats to a lake, hiding himself. The Pandavas, unable to find him, are eventually guided by Krishna to his hiding spot.</p>
-                <p>Upon finding him, the Pandavas challenge Duryodhana. Krishna reminds Bhima of his vow to break Duryodhana's thighs, a vow taken years ago when Duryodhana insulted Draupadi by exposing her thighs during the dice game. Duryodhana, still full of pride and defiance, agrees to a mace duel, choosing Bhima as his opponent.</p>
-
-                <h3>The Fierce Mace Fight</h3>
-                <p>The mace fight itself is the dramatic heart of the Yakshagana performance. Both Bhima and Duryodhana are expert mace-fighters, trained by the same guru, Balarama. The duel is portrayed with immense intensity, raw power, and aggressive movements, showcasing the physicality and vigor unique to Yakshagana. The drummers provide a furious accompaniment, mirroring the ferocity of the battle.</p>
-                <p>Despite Bhima's strength, Duryodhana's technique and endurance match him. The fight rages on, with neither warrior gaining a decisive advantage. Observing the stalemate and the rules of engagement (striking below the waist was forbidden in mace duels), Krishna subtly signals Bhima by slapping his own thigh, reminding Bhima of his vow. Interpreting this, Bhima, in a moment of intense focus, strikes Duryodhana on his thighs, breaking them.</p>
-
-                <h3>The Aftermath and Moral Dilemma</h3>
-                <p>Duryodhana falls, mortally wounded. His defeat marks the end of the Kurukshetra War. However, Bhima's action of striking below the waist is controversial, as it violates the established rules of mace fighting. This raises a profound moral dilemma – the conflict between adherence to dharma (righteousness) and the necessity of victory. The play often explores these ethical questions through dialogue and the reactions of other characters present, like Balarama, who is enraged by the unfair blow.</p>
-                <p>Gada Yuddha is a powerful Yakshagana presentation that highlights themes of vengeance, adherence to vows, and the complex nature of dharma in warfare. The characters of Bhima and Duryodhana are vividly portrayed, allowing for a compelling display of their respective strengths, flaws, and emotional states, making it a highly engaging and enduring narrative.</p>
+                <button class="stopBtn">⏹️ Stop</button>
             </div>
+            <h1>Jaipur Renaissance</h1>
+            <p>The art of blue pottery found its true home in Jaipur during the reign of Maharaja Ram Singh II in the 19th century. The royal patronage provided not just financial support but also created a cultural environment where this Persian art could flourish and adapt to Indian sensibilities.</p>
+            
+            <h3>Royal Workshop Traditions</h3>
+            <p>In the royal workshops of Jaipur, <strong>Persian techniques merged with Rajasthani aesthetics</strong>. The traditional geometric patterns of Persia began incorporating Indian motifs like peacocks, elephants, and lotus flowers. The characteristic cobalt blue, derived from cobalt oxide, became the signature color of Jaipur pottery.</p>
+            
+            <p>The Maharaja himself took personal interest in the craft, often visiting workshops and encouraging artisans to experiment with new designs. This royal enthusiasm led to the golden age of blue pottery, where pieces were not just functional but considered works of art worthy of royal collections across India and beyond.</p>
+        </div>
 
-            <div id="sudhanva-moksha-detailed" class="detailed-story-section">
+        <div id="firing-secrets-detailed" class="detailed-story-section">
+            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
                 <button class="listenBtn">🔊 Play story</button>
-                <h1>Sudhanva Moksha</h1>
-                <p><strong>Sudhanva Moksha (The Liberation of Sudhanva)</strong> is a captivating Yakshagana narrative that delves into themes of devotion, sacrifice, the power of a devotee, and divine intervention, drawing from episodes related to the Ashwamedha Yaga in the Mahabharata's later sections. It focuses on the extraordinary encounter between Lord Krishna's ardent devotee, **Sudhanva**, and the mighty Pandava warrior, Arjuna.</p>
-
-                <h3>The Ashwamedha Yaga and Challenge</h3>
-                <p>The story unfolds during the Ashwamedha Yaga (horse sacrifice ritual) performed by Emperor Yudhishthira to assert his imperial sovereignty after the Kurukshetra War. According to tradition, a sacrificial horse is set free to roam, and any kingdom through which it passes must either accept Yudhishthira's suzerainty or challenge the horse's passage. If challenged, the accompanying army, led by a formidable warrior like Arjuna, must defeat the challenger.</p>
-                <p>The horse eventually enters the kingdom of Manipura (or some versions say Ratnapura), ruled by the pious **King Sudhanva**. Sudhanva, a devout bhakta (devotee) of Lord Krishna, respects the yaga but also believes in upholding the dharma of his own kingdom. He decides to challenge the horse, leading to a confrontation with Arjuna, the formidable wielder of the Gandiva bow.</p>
-
-                <h3>The Divine Arrow and Krishna's Intervention</h3>
-                <p>The ensuing battle between Sudhanva and Arjuna is fierce. Sudhanva proves to be an incredibly valiant and skilled warrior, matching Arjuna's prowess. As the battle intensifies, Arjuna, unable to defeat Sudhanva, resorts to using a powerful celestial arrow (often a 'Vaishnavastra' or a similar divine weapon). This arrow is capable of piercing any defense.</p>
-                <p>Seeing that his devotee Sudhanva is about to be struck by this powerful weapon, Lord Krishna, who is present as Arjuna's charioteer, subtly intervenes. In a miraculous act, Krishna takes the impact of the divine arrow on himself, absorbing its force onto his own chest (often depicted as a mark of a scar on Krishna's chest in later narratives, known as the 'Sudarshan Chakra Rekha' or similar). This causes the arrow to become harmless to Sudhanva, thus protecting his devotee from certain death.</p>
-
-                <h3>The Realization and Moksha</h3>
-                <p>Both Arjuna and Sudhanva are astonished by this turn of events. They realize the divine intervention. Sudhanva, recognizing Krishna's ultimate supremacy and grace, is overwhelmed with devotion and gratitude. He understands that Krishna has saved him, demonstrating the Lord's unwavering protection for his devotees. In this moment of profound spiritual realization, Sudhanva achieves **moksha (liberation)**, transcending worldly attachments and achieving union with the divine.</p>
-                <p>Yakshagana's portrayal of Sudhanva Moksha beautifully illustrates the unwavering bond between devotee and deity, the subtle ways in which divine will operates, and the ultimate reward of selfless devotion. It is a highly emotional and spiritually uplifting narrative, emphasizing Krishna's role as the protector of his bhaktas.</p>
+                <button class="stopBtn">⏹️ Stop</button>
             </div>
+            <h1>Firing Secrets</h1>
+            <p>The creation of blue pottery involves a carefully guarded firing process that has been passed down through generations. Unlike regular pottery, blue pottery requires <strong>only one firing</strong> at a relatively low temperature of 850-900°C, making it an energy-efficient process.</p>
+            
+            <h3>The Alchemical Process</h3>
+            <p>Before firing, each piece is coated with a special glaze containing <strong>cobalt oxide for the distinctive blue color</strong>, tin oxide for opacity, and lead oxide for shine. The artisan must achieve perfect timing - too little heat and the glaze won't mature, too much and the piece will crack or lose its brilliance.</p>
+            
+            <p>Master potters can judge the perfect firing temperature by the color of the flames and the sound the kiln makes. This intuitive knowledge, developed over decades, cannot be replicated by modern technology and remains the closely guarded secret of traditional blue pottery artisans.</p>
+        </div>
 
-            <div id="panchavati-detailed" class="detailed-story-section">
+        <div id="contemporary-revival-detailed" class="detailed-story-section">
+            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
                 <button class="listenBtn">🔊 Play story</button>
-                <h1>Panchavati</h1>
-                <p><strong>Panchavati</strong> is a poignant and dramatically significant episode from the epic Ramayana, a frequently performed theme in Yakshagana. It focuses on the serene yet fateful period of Lord Rama, Lakshmana, and Sita's exile in the forest of Panchavati, leading to the pivotal event of Sita's abduction by the demon king Ravana.</p>
-
-                <h3>Life in the Serene Forest</h3>
-                <p>The narrative begins with Rama, Sita, and Lakshmana having spent a significant portion of their fourteen-year exile wandering through various forests. They eventually settle in a beautiful and tranquil part of the Dandakaranya forest known as Panchavati (meaning "a grove of five banyan trees"), located on the banks of the Godavari River. Lakshmana, with his devotion, constructs a simple but comfortable hermitage for them.</p>
-                <p>The Yakshagana depiction of this period often emphasizes the idyllic beauty of the forest, the harmonious life of the divine trio, and their peaceful coexistence with nature. However, underlying this serenity is a sense of impending doom, as the story leads towards the tragic events.</p>
-
-                <h3>Surpanakha's Disfigurement and Ravana's Vengeance</h3>
-                <p>The turning point in Panchavati comes with the arrival of **Surpanakha**, the sister of Ravana, the mighty king of Lanka. She encounters Rama and is instantly infatuated with his divine beauty. She tries to woo him, but Rama, being devoted to Sita, rejects her, playfully redirecting her to Lakshmana. Lakshmana, angered by her persistent advances and knowing her demonic nature, disfigures her by cutting off her nose and ears.</p>
-                <p>Humiliated and enraged, Surpanakha rushes to her brother Ravana, recounting her plight and exaggerating Rama and Lakshmana's cruelty, while also extolling Sita's unparalleled beauty. This ignites Ravana's lust and his desire for vengeance against Rama, setting the stage for the abduction.</p>
-
-                <h3>The Golden Deer and Sita's Abduction</h3>
-                <p>Ravana, with the help of his uncle Maricha (who transforms into a beautiful golden deer), devises a plan to abduct Sita. Sita, captivated by the magical golden deer, requests Rama to catch it for her. Rama, sensing foul play but yielding to Sita's plea, goes after the deer. When Rama shoots the deer, Maricha cries out in Rama's voice for Lakshmana's help. Sita, fearing for Rama's safety, compels Lakshmana to go to Rama's aid, despite Lakshmana's reluctance and his instinct that it is a trick. Before leaving, Lakshmana draws a protective line (**Lakshman Rekha**) around the hermitage, warning Sita not to cross it.</p>
-                <p>Once Sita is alone, Ravana appears in the guise of a mendicant. He tricks Sita into crossing the Lakshman Rekha by feigning hunger and seeking alms. As soon as she crosses, Ravana reveals his true form and abducts her, flying away to Lanka on his Pushpaka Vimana. The valiant Jatayu, the king of vultures, tries to stop Ravana but is mortally wounded.</p>
-
-                <h3>Dramatic Portrayals in Yakshagana</h3>
-                <p>The Panchavati episode in Yakshagana allows for powerful character portrayals: Rama's composure, Lakshmana's fierce devotion, Sita's innocence and vulnerability, Surpanakha's comical yet dangerous infatuation, and Ravana's cunning and arrogance. The abduction scene, often marked by heightened emotion and dramatic music, is a key moment in the performance, depicting the profound sorrow and helplessness of Sita, which then propels the narrative towards the great war in Lanka.</p>
+                <button class="stopBtn">⏹️ Stop</button>
             </div>
+            <h1>Contemporary Revival</h1>
+            <p>After declining in the mid-20th century due to industrial competition, blue pottery experienced a remarkable revival in the 1980s. Contemporary artisans began creating not just traditional items but modern decorative pieces, tiles, and art installations that brought this ancient craft into modern homes and spaces.</p>
+            
+            <h3>Innovation Within Tradition</h3>
+            <p>Today's blue pottery artisans respect traditional techniques while embracing innovation. They create <strong>contemporary designs that appeal to modern aesthetics</strong> - from minimalist vases to intricate wall installations. The craft has found new markets in interior design, hospitality, and export industries.</p>
+            
+            <p>Young artisans are also experimenting with new color combinations while maintaining the traditional cobalt blue as the base. This evolution ensures that blue pottery remains relevant while preserving its cultural heritage for future generations.</p>
+        </div>
+    </section>
+</main>
 
-            <div id="krishna-parijata-detailed" class="detailed-story-section">
-                <button class="listenBtn">🔊 Play story</button>
-                <h1>Krishna Parijata</h1>
-                <p><strong>Krishna Parijata</strong> is a delightful and very popular Yakshagana presentation from the Bhagavata Purana, focusing on a light-hearted, romantic, and occasionally humorous tale from the life of Lord Krishna. It beautifully depicts the playful rivalry between Krishna's two prominent wives, **Rukmini** and **Satyabhama**, over the divine **Parijata flower**, showcasing various human emotions like love, jealousy, pride, and reconciliation.</p>
+<footer class="footer">
+    <p>&copy; 2025 Blue Pottery Chronicles. All rights reserved.</p>
+    <p>Celebrating the azure artistry of Jaipur's ceramic heritage.</p>
+    <p>Contact us at <a href="mailto:info@bluepottery.com">info@bluepottery.com</a></p>
+</footer>
 
-                <h3>The Divine Flower and Satyabhama's Pride</h3>
-                <p>The story begins with the celestial sage Narada Muni visiting Dwarka, Krishna's capital. He brings with him a single, exquisite Parijata flower, which blooms in Indra's celestial garden, known for its enchanting fragrance and ability to fulfill desires. Narada presents this flower to Krishna, who, in turn, gives it to his beloved chief queen, **Rukmini**. Rukmini gracefully accepts it, recognizing it as a symbol of Krishna's affection.</p>
-                <p>However, **Satyabhama**, known for her beauty, fierce pride, and somewhat possessive nature towards Krishna, learns about this. She feels deeply slighted and insulted that Krishna gave the celestial flower to Rukmini and not to her. Her jealousy flares, and she confronts Krishna, expressing her anger and demanding not just a flower, but the entire Parijata tree for her garden, to prove his love and commitment to her above all others.</p>
+<script>
+  let utterance; // make it global so we can pause/resume it
 
-                <h3>The Heavenly Quest and Humorous Exchanges</h3>
-                <p>To appease Satyabhama's wounded pride and win back her affection, Krishna, accompanied by Satyabhama, journeys to Indra's heaven. There, Krishna confronts Indra, requesting the Parijata tree. Indra initially refuses, leading to a playful skirmish between them. Krishna ultimately triumphs and uproots the entire Parijata tree, bringing it back to Dwarka.</p>
-                <p>The humor in Yakshagana often shines in the interactions between Krishna, Satyabhama, and Narada. Narada, the divine mischief-maker, plays a key role, subtly fanning Satyabhama's jealousy and then advising her on how to win Krishna back. Satyabhama's dramatic expressions of anger, sulking, and eventual joy are central to her character's portrayal.</p>
+  // Individual story TTS function
+  function speakIndividualStory(storySection) {
+    speechSynthesis.cancel();
 
-                <h3>The Resolution and Symbolism</h3>
-                <p>The Parijata tree is planted in Satyabhama's garden, but in a clever twist, Krishna arranges it such that the flowers fall into Rukmini's neighboring garden. This subtle arrangement ensures that while Satyabhama has the tree, Rukmini still receives the divine flowers, symbolizing her unwavering devotion and inner beauty over external displays.</p>
-                <p>The narrative culminates in the reconciliation between Krishna and Satyabhama, often with Satyabhama performing a gesture of humility (like holding Krishna's feet) to express her remorse and love. Krishna Parijata is cherished in Yakshagana for its delightful blend of divine romance, human emotions, comedic elements, and a subtle philosophical message about humility, true love, and the divine play (leela) of the gods. It offers great scope for vibrant costumes, expressive acting, and lively musical exchanges.</p>
-            </div>
-
-            <div id="abhimanyu-vadha-detailed" class="detailed-story-section">
-                <button class="listenBtn">🔊 Play story</button>
-                <h1>Abhimanyu Vadha</h1>
-                <p><strong>Abhimanyu Vadha (The Slaying of Abhimanyu)</strong> is a deeply tragic and profoundly heroic tale from the epic Mahabharata, and a highly emotional and dramatic presentation in Yakshagana. It recounts the valiant, almost superhuman, fight and ultimate, unfair demise of the young warrior **Abhimanyu**, son of Arjuna and Subhadra, within the impenetrable Chakravyuha formation during the Kurukshetra War.</p>
-
-                <h3>The Chakravyuha Challenge</h3>
-                <p>On the thirteenth day of the Kurukshetra War, the Kaurava commander, Dronacharya, forms the formidable **Chakravyuha** – a multi-layered, rotating, circular military formation designed to trap and destroy enemy forces. Only a few warriors, including Arjuna and Krishna, knew how to penetrate and exit this formation. However, on this day, Arjuna is engaged in battle elsewhere.</p>
-                <p>The Pandavas face a grave crisis. Young **Abhimanyu**, who had learned how to enter the Chakravyuha while still in his mother's womb (overhearing Krishna's narration to Subhadra), bravely steps forward to breach it. He knows how to enter, but tragically, he does not know the method to exit, as Krishna's story was interrupted.</p>
-
-                <h3>Abhimanyu's Valiant Fight</h3>
-                <p>Abhimanyu, a mere sixteen years old, enters the Chakravyuha with incredible courage and skill, single-handedly battling numerous Kaurava and allied warriors. His fight is portrayed with immense vigor and athleticism in Yakshagana, showcasing his formidable martial prowess. He defeats and injures many great warriors, including Dronacharya, Karna, Duryodhana, and others. His youthful valor and determination are a central focus.</p>
-                <p>However, as he penetrates deeper, the Kaurava warriors, frustrated by their inability to defeat him in fair combat, resort to unethical warfare. They jointly attack him, break his chariot, disarm him, and surround him. Karna breaks his bow, and his charioteer and horses are killed. Despite being weaponless and surrounded by many maharathis (great warriors), Abhimanyu continues to fight bravely with a chariot wheel and then with a mace.</p>
-
-                <h3>The Tragic Demise</h3>
-                <p>The culmination of the story is deeply poignant. Overwhelmed by countless warriors attacking him simultaneously and unfairly, Abhimanyu finally falls, fatally wounded. His death is considered one of the most tragic and unrighteous moments of the entire war, leading to intense grief among the Pandavas and a vow of vengeance from Arjuna.</p>
-                <p>Yakshagana's portrayal of Abhimanyu Vadha is a powerful spectacle of heroic struggle and heartbreaking loss. It allows for intense emotional portrayal – Abhimanyu's youthful exuberance and bravery, his desperation in facing an unfair fight, and the eventual sorrow. The dramatic music, vibrant costumes, and powerful movements evoke the tragedy and heroism of this iconic Mahabharata episode, leaving a lasting impact on the audience.</p>
-            </div>
-
-        </section>
-    </main>
-
-    <footer class="footer">
-        <p>&copy; 2025 RangRiti. All rights reserved.</p>
-        <p>Inspired by the vibrant traditions of Karnataka.</p>
-        <p>Contact us at <a href="mailto:info@yakshagana.com">info@yakshagana.com</a></p>
-    </footer>
-
-
-    <script>
-        document.querySelectorAll(".listenBtn").forEach(button => {
-  button.addEventListener("click", async () => {
-    // Find the nearest parent div with the class 'detailed-story-section'
-    const storySection = button.closest(".detailed-story-section");
-    if (!storySection) {
-      alert("Story section not found!");
-      return;
-    }
-
-    // Get the main text you want — for example, the <h1> + first <p>
     const title = storySection.querySelector("h1")?.innerText || "";
-    const paragraphs = storySection.querySelectorAll("p");
+    const paragraphs = storySection.querySelectorAll("p, h3");
     let storyText = title + ". ";
 
-    paragraphs.forEach(p => {
-      storyText += p.innerText + " ";
+    paragraphs.forEach(el => {
+      storyText += el.innerText + " ";
     });
 
-    console.log("Sending story text:", storyText);
+    utterance = new SpeechSynthesisUtterance(storyText);
+    utterance.rate = 1;
+    utterance.pitch = 1;
+    utterance.volume = 1;
 
-    try {
-      const response = await fetch("/api/tts", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ text: storyText }),
+    const voices = speechSynthesis.getVoices();
+
+    // Try different voice options in order of preference
+    utterance.voice = 
+        voices.find(v => v.name.includes('Google UK English Female')) || 
+      voices[0]; // Fallback to first available
+
+    speechSynthesis.speak(utterance);
+  }
+
+  function stopTTS() {
+    speechSynthesis.cancel();
+  }
+
+  // Add event listeners when page loads
+  document.addEventListener('DOMContentLoaded', function() {
+    // Play button listeners
+    document.querySelectorAll(".listenBtn").forEach(button => {
+      button.addEventListener("click", () => {
+        // Only trigger if button has play icon
+        if (button.textContent.includes('🔊')) {
+          // Add pressed effect
+          button.classList.add('pressed');
+          setTimeout(() => button.classList.remove('pressed'), 200);
+
+          // Find the nearest parent div with the class 'detailed-story-section'
+          const storySection = button.closest(".detailed-story-section");
+          if (!storySection) {
+            alert("Story section not found!");
+            return;
+          }
+
+          // Speak only this individual story
+          speakIndividualStory(storySection);
+        }
       });
+    });
 
-      if (!response.ok) {
-        throw new Error("TTS request failed");
-      }
+    // Stop button listeners
+    document.querySelectorAll(".stopBtn").forEach(button => {
+      button.addEventListener("click", () => {
+        // Add pressed effect
+        button.classList.add('pressed');
+        setTimeout(() => button.classList.remove('pressed'), 200);
 
-      const audioBlob = await response.blob();
-      const audioUrl = URL.createObjectURL(audioBlob);
-
-      const audio = new Audio(audioUrl);
-      audio.play();
-    } catch (error) {
-      console.error(error);
-      alert("Error playing story audio");
-    }
+        // Stop the speech
+        stopTTS();
+      });
+    });
   });
-});
 
-    </script>
+  // Ensure voices are loaded
+  window.speechSynthesis.onvoiceschanged = () => {};
+</script>
 </body>
 </html>
-<script src="js/navbar.js"></script>

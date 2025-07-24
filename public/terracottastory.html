@@ -340,7 +340,66 @@
             text-decoration: underline;
         }
 
-        /* --- Responsive Design --- */
+        /* --- Button Styles --- */
+.listenBtn {
+    border-radius: 11.5px;
+    color: rgb(167, 148, 148);
+    height: 30px;
+    background-color: #542424b0;
+    border: solid rgba(186, 168, 173, 0.059);
+    box-shadow: #d9d6d4;
+    transition: transform 0.1s, box-shadow 0.1s;
+    margin-bottom: 15px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.listenBtn.pressed {
+    transform: translateY(2px) scale(0.97);
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
+    background-color: #5a2020b0;
+}
+
+.listenBtn:hover {
+   transform: translateY(-1px) scale(1.05);
+   box-shadow: 0 6px 24px 0 rgba(255,255,255,0.25);
+}
+
+.listenBtn:active {
+    transform: translateY(1px) scale(1);
+    box-shadow: 0 2px 12px 0 rgba(255,255,255,0.25);
+}
+
+.stopBtn {
+    border-radius: 11.5px;
+    color: rgb(167, 148, 148);
+    height: 30px;
+    background-color: #542424b0;
+    border: solid rgba(186, 168, 173, 0.059);
+    box-shadow: #d9d6d4;
+    transition: transform 0.1s, box-shadow 0.1s;
+    margin-bottom: 15px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.stopBtn.pressed {
+    transform: translateY(2px) scale(0.97);
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
+    background-color: #5a2020b0;
+}
+
+.stopBtn:hover {
+   transform: translateY(-1px) scale(1.05);
+   box-shadow: 0 6px 24px 0 rgba(255,255,255,0.25);
+}
+
+.stopBtn:active {
+    transform: translateY(1px) scale(1);
+    box-shadow: 0 2px 12px 0 rgba(255,255,255,0.25);
+}
+
+/* --- Responsive Design --- */
         @media (max-width: 768px) {
             .nav-container {
                 flex-wrap: wrap;
@@ -417,6 +476,10 @@
             <h2>The Essence of a Terracotta Art</h2>
 
             <div id="alarippu-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>The Epic of Ramayana</h1>
                 <p>Terracotta artisans often create intricate reliefs portraying key moments from the Ramayana, each panel narrating tales of dharma, devotion, and divine valor. Among the most celebrated is the Sita Swayamvar, where Rama breaks the mighty bow of Lord Shiva to win Sita’s hand, symbolizing destiny and righteousness.
 <br>
@@ -432,6 +495,10 @@ These terracotta narratives preserve not just mythology, but the soul of Indian 
             </div>
 
             <div id="jatiswaram-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>Krishna's Vrindhavan Leela</h1>
                 <p>In many temples and village shrines, terracotta panels vividly depict the playful and divine deeds of Lord Krishna. These artworks often show him stealing butter from hanging pots, a favorite pastime that earned him the nickname Makhan Chor. With a mischievous smile, Krishna is seen climbing on the backs of his friends to reach the treasures hidden by the gopis.
 <br>
@@ -447,6 +514,10 @@ Placed on temple walls, they remind devotees of Krishna’s playful charm, prote
             </div>
 
             <div id="shabdam-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>Goddess Durga’s Victory <br>over Mahishasura</h1>
                 <p>A highly sacred and symbolic tale, Durga slaying the buffalo demon Mahishasura is a powerful representation of the eternal battle between good and evil. In terracotta art, this epic moment is captured with intense energy and divine grace.
 <br>
@@ -462,6 +533,10 @@ For devotees, every panel is a reminder that no matter how powerful evil may see
             </div>
 
             <div id="varnam-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>The Folk God Dharma Thakur (Bengal)</h1>
                 <p>Worshipped primarily in rural Bengal, Dharma Thakur is a deeply rooted village deity associated with protection, prosperity, and natural harmony. Unlike mainstream gods, he is venerated through localized rituals and folk traditions passed down through generations.
 <br>
@@ -479,6 +554,10 @@ These earthen horses, though simple, stand as eternal sentinels — silent witne
             </div>
 
             <div id="padam-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>Tribal Creation Myths (Santhal and Oraon Tribes)</h1>
                 <p>Among the tribal communities of eastern India, terracotta is more than just clay — it is a sacred vessel of memory. Crafted with reverence, these earthen figures often represent creation myths passed down through generations via oral tradition.
 <br>
@@ -496,6 +575,10 @@ Thus, fired clay becomes not just an art form, but a living scripture, preservin
             </div>
 
             <div id="thillana-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>The Cosmic Dance of Lord Shiva (Nataraja)</h1>
                 <p>In Tamil Nadu and parts of Odisha, terracotta artisans craft powerful depictions of Lord Shiva as Nataraja — the cosmic dancer. With arms gracefully extended and one foot raised mid-step, he performs the Tandava, a dance embodying the rhythm of the universe.
 <br>
@@ -524,3 +607,77 @@ Thus, these terracotta forms stand as dynamic prayers, where divine dance meets 
 </body>
 </html>
 <script src="js/navbar.js"></script>
+<script>
+  let utterance; // make it global so we can pause/resume it
+
+  // Individual story TTS function
+  function speakIndividualStory(storySection) {
+    speechSynthesis.cancel();
+
+    const title = storySection.querySelector("h1")?.innerText || "";
+    const paragraphs = storySection.querySelectorAll("p, h3");
+    let storyText = title + ". ";
+
+    paragraphs.forEach(el => {
+      storyText += el.innerText + " ";
+    });
+
+    utterance = new SpeechSynthesisUtterance(storyText);
+    utterance.rate = 1;
+    utterance.pitch = 1;
+    utterance.volume = 1;
+
+    const voices = speechSynthesis.getVoices();
+
+    // Try different voice options in order of preference
+    utterance.voice = 
+        voices.find(v => v.name.includes('Google UK English Female')) || 
+      voices[0]; // Fallback to first available
+
+    speechSynthesis.speak(utterance);
+  }
+
+  function stopTTS() {
+    speechSynthesis.cancel();
+  }
+
+  // Add event listeners when page loads
+  document.addEventListener('DOMContentLoaded', function() {
+    // Play button listeners
+    document.querySelectorAll(".listenBtn").forEach(button => {
+      button.addEventListener("click", () => {
+        // Only trigger if button has play icon
+        if (button.textContent.includes('🔊')) {
+          // Add pressed effect
+          button.classList.add('pressed');
+          setTimeout(() => button.classList.remove('pressed'), 200);
+
+          // Find the nearest parent div with the class 'detailed-story-section'
+          const storySection = button.closest(".detailed-story-section");
+          if (!storySection) {
+            alert("Story section not found!");
+            return;
+          }
+
+          // Speak only this individual story
+          speakIndividualStory(storySection);
+        }
+      });
+    });
+
+    // Stop button listeners
+    document.querySelectorAll(".stopBtn").forEach(button => {
+      button.addEventListener("click", () => {
+        // Add pressed effect
+        button.classList.add('pressed');
+        setTimeout(() => button.classList.remove('pressed'), 200);
+
+        // Stop the speech
+        stopTTS();
+      });
+    });
+  });
+
+  // Ensure voices are loaded
+  window.speechSynthesis.onvoiceschanged = () => {};
+</script>

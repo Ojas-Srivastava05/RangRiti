@@ -340,7 +340,66 @@
             text-decoration: underline;
         }
 
-        /* --- Responsive Design --- */
+        /* --- Button Styles --- */
+.listenBtn {
+    border-radius: 11.5px;
+    color: rgb(167, 148, 148);
+    height: 30px;
+    background-color: #542424b0;
+    border: solid rgba(186, 168, 173, 0.059);
+    box-shadow: #d9d6d4;
+    transition: transform 0.1s, box-shadow 0.1s;
+    margin-bottom: 15px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.listenBtn.pressed {
+    transform: translateY(2px) scale(0.97);
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
+    background-color: #5a2020b0;
+}
+
+.listenBtn:hover {
+   transform: translateY(-1px) scale(1.05);
+   box-shadow: 0 6px 24px 0 rgba(255,255,255,0.25);
+}
+
+.listenBtn:active {
+    transform: translateY(1px) scale(1);
+    box-shadow: 0 2px 12px 0 rgba(255,255,255,0.25);
+}
+
+.stopBtn {
+    border-radius: 11.5px;
+    color: rgb(167, 148, 148);
+    height: 30px;
+    background-color: #542424b0;
+    border: solid rgba(186, 168, 173, 0.059);
+    box-shadow: #d9d6d4;
+    transition: transform 0.1s, box-shadow 0.1s;
+    margin-bottom: 15px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.stopBtn.pressed {
+    transform: translateY(2px) scale(0.97);
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
+    background-color: #5a2020b0;
+}
+
+.stopBtn:hover {
+   transform: translateY(-1px) scale(1.05);
+   box-shadow: 0 6px 24px 0 rgba(255,255,255,0.25);
+}
+
+.stopBtn:active {
+    transform: translateY(1px) scale(1);
+    box-shadow: 0 2px 12px 0 rgba(255,255,255,0.25);
+}
+
+/* --- Responsive Design --- */
         @media (max-width: 768px) {
             .nav-container {
                 flex-wrap: wrap;
@@ -416,15 +475,23 @@
             <h2>The Essence of a Blue Pottery Art</h2>
 
             <div id="alarippu-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>The Jaipur Revival</h1>
-                <p>Blue Pottery, once a flourishing craft in Jaipur, had almost vanished by the early 20th century. The intricate art, known for its vivid cobalt blue designs and Turkish-Persian influences, struggled to survive due to a lack of patronage and fading interest. However, a significant revival began in the 1950s when a dedicated group of local Jaipur artisans, with the support of art lovers and design experts, took it upon themselves to restore the craft. They carefully studied old patterns, techniques, and materials, determined to preserve its essence.
+                <p>Blue Pottery, once a flourishing craft in Jaipur, had almost vanished by the early 20th century. The intricate art, known for its vivid cobalt blue designs and Turkish-Persian influences, struggled to survive due to a lack of patronage and fading interest. However, a significant revival began in the 1950s when a dedicated group of local Jaipur artisans, with the support of art lovers and design experts, took it upon themselves to restore the craft. They carefully studied old patterns, techniques, and materials, determined to preserve the craft found early homes in the Mughal palaces and, later, among Rajput royals who admired its regal appeal.
 <br>
-While committed to tradition, the revivalists were not afraid to innovate. They introduced new motifs—like birds, animals, and floral themes—and explored practical modern forms such as tiles, plates, vases, and soap dishes. The fragile, low-temperature glaze technique that defines Blue Pottery was preserved, but designs were updated to suit contemporary tastes. This balance of authenticity and creativity helped make the craft relevant again.
-<br>
-Workshops and training centers were established to pass on the skills to younger generations. As interest grew, Blue Pottery once again found its way into local markets, heritage shops, and eventually international art spaces. Today, the distinctive blue and white hues of this pottery grace homes and interiors across the world, symbolizing not just aesthetic charm but a story of revival and resilience. What was once a fading legacy is now a celebrated form of living heritage, thanks to the passion and perseverance of its modern custodians.</p>
-            </div>
+What began as a single gift became a legacy, passed down through generations. Blue Pottery evolved over time, absorbing influences from different regions while retaining its Persian roots. The shimmering blue glaze and delicate patterns became synonymous with refined taste and cultural fusion. Today, that initial act of admiration lives on in every hand-crafted piece—a glowing tribute to the art that once dazzled a Mughal emperor and continues to enchant the world.
+
+</p>
+             </div>
 
             <div id="jatiswaram-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>The Princess’s Plate</h1>
                 <p>Legend has it that a Rajput princess from Udaipur once envisioned a dinner plate unlike any other—one that captured the serene beauty of her homeland. Inspired by the tranquil blue lakes and the blooming lotuses that dotted their surface, she designed a plate adorned with delicate blue lotus motifs. Crafted in the traditional Blue Pottery style, the plate combined royal elegance with natural charm. The design, both graceful and symbolic, quickly captured the admiration of all who saw it.
 <br>
@@ -434,6 +501,10 @@ Over the years, the blue lotus became one of the most iconic patterns in the wor
             </div>
 
             <div id="shabdam-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1> A Potter’s Dream</h1>
                 <p>In the quiet lanes of Jaipur, a village potter named Bhagwan spent his days shaping clay and glazing it with the vibrant hues of Blue Pottery. Though resources were few, his dreams were vast—he longed to see his work displayed beyond the boundaries of his village, across oceans, in grand galleries. For years, he honed his skills, experimenting with new patterns while preserving the traditional techniques passed down through generations. His breakthrough came when he crafted a stunning vase adorned with a majestic blue peacock, its feathers unfurling across the surface with lifelike grace.
 <br>
@@ -445,6 +516,10 @@ A European museum acquired the vase, recognizing its artistic and historical val
              </div>
 
             <div id="varnam-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>The Temple Tiles</h1>
                 <p>Centuries ago, in the hills near Amer, Rajasthan, a serene Jain temple became an unexpected canvas for Blue Pottery. Unlike most temples that used stone or marble, this one adorned its façade with hand-painted, glazed blue tiles—each tile delicately crafted and infused with spiritual meaning. The artisans painted sacred Jain symbols like the swastika, lotus, and kalasha, using deep cobalt blues and earthy whites to convey purity and enlightenment. These tiles weren’t just decorative; they served as visual prayers, telling stories of faith through form and color.
 <br>
@@ -456,6 +531,10 @@ Even today, when the sun strikes the temple walls, the blue tiles glisten with a
             </div>
 
             <div id="padam-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>From Clay to Canvas</h1>
                 <p>During the lockdown, when the world stood still and workshops fell silent, one young Rajasthani artist found a new way to keep tradition alive. Isolated from her studio and unable to access a kiln, she turned to the tools she had at home—brushes, paints, and a blank canvas. Instead of crafting with clay, she began painting Blue Pottery motifs on fabric and canvas, capturing the spirit of the art in an entirely new form. Delicate floral patterns, swirling vines, and iconic cobalt blues flowed from her hands, echoing centuries of heritage.
 <br>
@@ -467,6 +546,10 @@ Her journey became symbolic of how Blue Pottery, though rooted in form, thrives 
             </div>
 
             <div id="thillana-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>The Mughal Artisan's Gift</h1>
                 <p>In the opulent courts of the Mughal Empire, where art and luxury flourished, a moment of inspiration sparked the birth of Blue Pottery in India. A Persian artisan, renowned for his delicate glazing skills, presented the emperor with a breathtaking vase—glazed in vibrant cobalt blue, accented with fine gold detailing. The vase shimmered under the palace lights, its patterns echoing Persian artistry with a hint of divine elegance. The emperor, mesmerized by its brilliance and craftsmanship, declared it a treasure worthy of replication.
 <br>
@@ -487,5 +570,79 @@ What began as a single gift became a legacy, passed down through generations. Bl
     </footer>
 
 </body>
-</html>
 <script src="js/navbar.js"></script>
+<script>
+    let utterance; // make it global so we can pause/resume it
+    
+    // Individual story TTS function
+    function speakIndividualStory(storySection) {
+    speechSynthesis.cancel();
+    
+    const title = storySection.querySelector("h1")?.innerText || "";
+    const paragraphs = storySection.querySelectorAll("p, h3");
+    let storyText = title + ". ";
+
+    paragraphs.forEach(el => {
+      storyText += el.innerText + " ";
+    });
+    
+    utterance = new SpeechSynthesisUtterance(storyText);
+    utterance.rate = 1;
+    utterance.pitch = 1;
+    utterance.volume = 1;
+    
+    const voices = speechSynthesis.getVoices();
+
+    // Try different voice options in order of preference
+    utterance.voice = 
+    voices.find(v => v.name.includes('Google UK English Female')) || 
+      voices[0]; // Fallback to first available
+
+      speechSynthesis.speak(utterance);
+    }
+
+    function stopTTS() {
+        speechSynthesis.cancel();
+    }
+    
+  // Add event listeners when page loads
+  document.addEventListener('DOMContentLoaded', function() {
+      // Play button listeners
+    document.querySelectorAll(".listenBtn").forEach(button => {
+        button.addEventListener("click", () => {
+            // Only trigger if button has play icon
+            if (button.textContent.includes('🔊')) {
+                // Add pressed effect
+                button.classList.add('pressed');
+                setTimeout(() => button.classList.remove('pressed'), 200);
+                
+                // Find the nearest parent div with the class 'detailed-story-section'
+          const storySection = button.closest(".detailed-story-section");
+          if (!storySection) {
+              alert("Story section not found!");
+              return;
+            }
+            
+            // Speak only this individual story
+            speakIndividualStory(storySection);
+        }
+      });
+    });
+    
+    // Stop button listeners
+    document.querySelectorAll(".stopBtn").forEach(button => {
+      button.addEventListener("click", () => {
+        // Add pressed effect
+        button.classList.add('pressed');
+        setTimeout(() => button.classList.remove('pressed'), 200);
+        
+        // Stop the speech
+        stopTTS();
+    });
+    });
+});
+
+// Ensure voices are loaded
+  window.speechSynthesis.onvoiceschanged = () => {};
+</script>
+</html>

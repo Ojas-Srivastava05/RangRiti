@@ -340,7 +340,66 @@
             text-decoration: underline;
         }
 
-        /* --- Responsive Design --- */
+        /* --- Button Styles --- */
+.listenBtn {
+    border-radius: 11.5px;
+    color: rgb(167, 148, 148);
+    height: 30px;
+    background-color: #542424b0;
+    border: solid rgba(186, 168, 173, 0.059);
+    box-shadow: #d9d6d4;
+    transition: transform 0.1s, box-shadow 0.1s;
+    margin-bottom: 15px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.listenBtn.pressed {
+    transform: translateY(2px) scale(0.97);
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
+    background-color: #5a2020b0;
+}
+
+.listenBtn:hover {
+   transform: translateY(-1px) scale(1.05);
+   box-shadow: 0 6px 24px 0 rgba(255,255,255,0.25);
+}
+
+.listenBtn:active {
+    transform: translateY(1px) scale(1);
+    box-shadow: 0 2px 12px 0 rgba(255,255,255,0.25);
+}
+
+.stopBtn {
+    border-radius: 11.5px;
+    color: rgb(167, 148, 148);
+    height: 30px;
+    background-color: #542424b0;
+    border: solid rgba(186, 168, 173, 0.059);
+    box-shadow: #d9d6d4;
+    transition: transform 0.1s, box-shadow 0.1s;
+    margin-bottom: 15px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.stopBtn.pressed {
+    transform: translateY(2px) scale(0.97);
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
+    background-color: #5a2020b0;
+}
+
+.stopBtn:hover {
+   transform: translateY(-1px) scale(1.05);
+   box-shadow: 0 6px 24px 0 rgba(255,255,255,0.25);
+}
+
+.stopBtn:active {
+    transform: translateY(1px) scale(1);
+    box-shadow: 0 2px 12px 0 rgba(255,255,255,0.25);
+}
+
+/* --- Responsive Design --- */
         @media (max-width: 768px) {
             .nav-container {
                 flex-wrap: wrap;
@@ -417,6 +476,10 @@
             <h2>The Essence of a Sandalwood Carving</h2>
 
             <div id="alarippu-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>Krishna's Idol from Sandalwood (Puri Legend)</h1>
                 <p>A revered legend from Puri, Odisha tells of the divine origins of Lord Jagannath’s first idol, believed to have been carved from a sacred sandalwood log. As the story goes, the log mysteriously floated ashore at the confluence of the Mahanadi River and the sea—untouched by decay, radiating a divine fragrance that drew the attention of saints and sages. Recognizing its celestial nature, King Indradyumna was guided by a divine vision to use it for the idol of Lord Jagannath. He prayed for a sculptor worthy of such a sacred task, and his prayers were answered when Vishwakarma, the celestial architect, appeared in disguise.
 <br>
@@ -428,6 +491,10 @@ It is believed that the use of sandalwood was not by chance but divine design—
             </div>
 
             <div id="jatiswaram-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>Goddess Lakshmi's Carved Shrine</h1>
                 <p>In the lush regions of southern India, an enduring belief surrounds a sacred sandalwood shrine crafted in honor of Goddess Lakshmi, the deity of wealth, fortune, and grace. According to local tradition, this intricately carved shrine was made centuries ago by temple artisans using sandalwood harvested under strict spiritual guidelines. Every surface of the shrine was adorned with lotus motifs—symbols of purity, abundance, and the blossoming of inner and outer prosperity. The scent of the sandalwood itself was believed to draw divine energy, making the space around it peaceful and spiritually charged.
 <br>
@@ -437,6 +504,10 @@ These shrines, sometimes passed down for generations, are treated not as mere de
             </div>
 
             <div id="shabdam-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>Sage Agastya’s Ritual Box</h1>
                 <p>Ancient scriptures and temple lore speak of the revered Sage Agastya—one of the wisest sages in Indian mythology—who journeyed across the southern lands carrying with him a sandalwood chest. This chest, according to tradition, held his sacred herbs, prayer items, and rare manuscripts gathered from his travels and spiritual practices. The box was no ordinary container; it was intricately carved from pure sandalwood, with motifs of celestial beings, divine symbols, and flowing vines said to represent the cosmic order.
 <br>
@@ -448,6 +519,10 @@ Over time, the chest became a symbol not just of spiritual discipline, but of th
              </div>
 
             <div id="varnam-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>The Sandalwood Shiva Linga</h1>
                 <p>In the sacred temples of Tamil Nadu, particularly during the scorching summer months, a unique tradition unfolds—rituals centered around a Shiva Linga carved entirely from sandalwood. Unlike the typical stone Lingas found in temples, these are crafted from the fragrant heartwood of sandal trees, chosen for their natural cooling properties and sacred symbolism. Devotees believe that the soothing scent of sandalwood pleases Lord Shiva, the ascetic deity known for his meditative calm and elemental power.
 <br>
@@ -459,6 +534,10 @@ The use of sandalwood is more than symbolic—its cooling effect is thought to b
             </div>
 
             <div id="padam-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>Sandalwood Throne for Lord Rama</h1>
                 <p>A cherished legend from Karnataka tells of a sacred sandalwood throne, crafted not just with skill, but with devotion, for the coronation of Lord Rama in Ayodhya. According to lore, the throne was carved deep in the southern forests by master artisans chosen for their purity of heart and hand. The sandalwood used was said to come from a centuries-old tree that had grown undisturbed, its core rich with divine fragrance. Intricate carvings adorned the throne—symbols of dharma, satya (truth), and lotus motifs representing purity of spirit and royal virtue.
 <br>
@@ -470,6 +549,10 @@ People believed the sandalwood throne carried spiritual energy, not just symboli
             </div>
 
             <div id="thillana-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>The Enlightenment of a Monk</h1>
                 <p>Long ago, a wandering monk journeyed across dense forests and quiet villages in search of inner peace. One evening, weary and burdened by thoughts, he came upon a serene grove where a lone sandalwood tree stood beside a carved wooden figure of the Buddha. The deity, though simple, bore fine details—each line of the carving radiating calm and presence. The monk sat beneath the sandalwood tree, drawn by its gentle fragrance, which seemed to soothe his restless mind and deepen his breath with every passing moment.
 <br>
@@ -490,3 +573,77 @@ Over time, sandalwood became a favored medium for Buddhist sculptures across reg
 </body>
 </html>
 <script src="js/navbar.js"></script>
+<script>
+  let utterance; // make it global so we can pause/resume it
+
+  // Individual story TTS function
+  function speakIndividualStory(storySection) {
+    speechSynthesis.cancel();
+
+    const title = storySection.querySelector("h1")?.innerText || "";
+    const paragraphs = storySection.querySelectorAll("p, h3");
+    let storyText = title + ". ";
+
+    paragraphs.forEach(el => {
+      storyText += el.innerText + " ";
+    });
+
+    utterance = new SpeechSynthesisUtterance(storyText);
+    utterance.rate = 1;
+    utterance.pitch = 1;
+    utterance.volume = 1;
+
+    const voices = speechSynthesis.getVoices();
+
+    // Try different voice options in order of preference
+    utterance.voice = 
+        voices.find(v => v.name.includes('Google UK English Female')) || 
+      voices[0]; // Fallback to first available
+
+    speechSynthesis.speak(utterance);
+  }
+
+  function stopTTS() {
+    speechSynthesis.cancel();
+  }
+
+  // Add event listeners when page loads
+  document.addEventListener('DOMContentLoaded', function() {
+    // Play button listeners
+    document.querySelectorAll(".listenBtn").forEach(button => {
+      button.addEventListener("click", () => {
+        // Only trigger if button has play icon
+        if (button.textContent.includes('🔊')) {
+          // Add pressed effect
+          button.classList.add('pressed');
+          setTimeout(() => button.classList.remove('pressed'), 200);
+
+          // Find the nearest parent div with the class 'detailed-story-section'
+          const storySection = button.closest(".detailed-story-section");
+          if (!storySection) {
+            alert("Story section not found!");
+            return;
+          }
+
+          // Speak only this individual story
+          speakIndividualStory(storySection);
+        }
+      });
+    });
+
+    // Stop button listeners
+    document.querySelectorAll(".stopBtn").forEach(button => {
+      button.addEventListener("click", () => {
+        // Add pressed effect
+        button.classList.add('pressed');
+        setTimeout(() => button.classList.remove('pressed'), 200);
+
+        // Stop the speech
+        stopTTS();
+      });
+    });
+  });
+
+  // Ensure voices are loaded
+  window.speechSynthesis.onvoiceschanged = () => {};
+</script>

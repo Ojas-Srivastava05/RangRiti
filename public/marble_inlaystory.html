@@ -399,6 +399,65 @@
                 font-size: 2rem;
             }
         }
+
+        /* --- Listen and Stop Button Styles --- */
+        .listenBtn {
+            border-radius: 11.5px;
+            color: rgb(167, 148, 148);
+            height: 30px;
+            background-color: #542424b0;
+            border: solid rgba(186, 168, 173, 0.059);
+            box-shadow: #d9d6d4;
+            transition: transform 0.1s, box-shadow 0.1s;
+            margin-bottom: 15px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .listenBtn.pressed {
+            transform: translateY(2px) scale(0.97);
+            box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
+            background-color: #5a2020b0;
+        }
+
+        .listenBtn:hover {
+           transform: translateY(-1px) scale(1.05);
+           box-shadow: 0 6px 24px 0 rgba(255,255,255,0.25);
+        }
+
+        .listenBtn:active {
+            transform: translateY(1px) scale(1);
+            box-shadow: 0 2px 12px 0 rgba(255,255,255,0.25);
+        }
+
+        .stopBtn {
+            border-radius: 11.5px;
+            color: rgb(167, 148, 148);
+            height: 30px;
+            background-color: #542424b0;
+            border: solid rgba(186, 168, 173, 0.059);
+            box-shadow: #d9d6d4;
+            transition: transform 0.1s, box-shadow 0.1s;
+            margin-bottom: 15px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .stopBtn.pressed {
+            transform: translateY(2px) scale(0.97);
+            box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
+            background-color: #5a2020b0;
+        }
+
+        .stopBtn:hover {
+           transform: translateY(-1px) scale(1.05);
+           box-shadow: 0 6px 24px 0 rgba(255,255,255,0.25);
+        }
+
+        .stopBtn:active {
+            transform: translateY(1px) scale(1);
+            box-shadow: 0 2px 12px 0 rgba(255,255,255,0.25);
+        }
     </style>
 </head>
 <body>
@@ -416,6 +475,10 @@
             <h2>The Essence of a Marble Inlay</h2>
 
             <div id="alarippu-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>The Saint and the Stone</h1>
                 <p>In the bustling lanes of Agra, where marble dust danced in the sunlight and artisans toiled over stone, an old tale still lingers—one of divine guidance and quiet miracles. A young boy, newly apprenticed to a marble inlay master, struggled to learn the art. His patterns were uneven, his hands unsure, and his spirit dimmed with each failed attempt. One evening, as he sat beside a Sufi shrine, eyes brimming with frustration, a wandering saint noticed his sorrow. The saint gently touched the boy’s head and whispered a blessing, telling him to trust his hands and listen to his dreams.
 <br>
@@ -427,6 +490,10 @@ His fame grew, but he remained humble, always offering a prayer at the saint’s
             </div>
 
             <div id="jatiswaram-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>The Cursed Jewel Tile</h1>
                 <p>In one of the royal tombs nestled within a Mughal complex, there existed a marble panel unlike any other—set with a rare, glowing ruby at its center. The stone, said to have been chosen by court astrologers, symbolized protection and divine energy. For decades, it sat undisturbed, catching the morning sun and casting a warm red glow across the tomb’s cool white walls. Locals believed it held spiritual significance, guarding the resting soul and blessing those who came in reverence.
 <br>
@@ -436,6 +503,10 @@ When artisans reset the stone into its original place, elders claimed the air fe
             </div>
 
             <div id="shabdam-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>The Eternal Love of the Taj Mahal</h1>
                 <p>Commissioned by Emperor Shah Jahan in the 17th century, the Taj Mahal was built as a timeless tribute to his beloved wife, Mumtaz Mahal. After her passing, he vowed to create a monument unlike any the world had seen—one that would immortalize their love in stone. Rising on the banks of the Yamuna River in Agra, the Taj Mahal became more than just a mausoleum; it became a sacred poem written in white marble. Every element, from its symmetrical domes to its flowing gardens, was designed to reflect harmony, eternity, and divine love.
 <br>
@@ -447,6 +518,10 @@ More than ornamental beauty, the inlays symbolized spiritual ideals—carnelian 
              </div>
 
             <div id="varnam-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>The Secret of the Glow</h1>
                 <p>Legend holds that when the moonlight touches the Taj Mahal, the inlay stones shimmer as if alive, casting a gentle glow that enchants all who behold it. Among these precious stones, the carnelian stands out—its deep orange-red hue capturing and reflecting light like a flickering flame within marble. Mughal artisans, masters of precision, carved each stone with astonishing detail, fitting them seamlessly into the white marble surface as if nature had placed them there. By day, the inlays add vibrant beauty; by night, they seem to awaken, glowing softly under the silver sky.
 <br>
@@ -458,6 +533,10 @@ Visitors who see the monument at night often describe it as otherworldly, as if 
             </div>
 
             <div id="padam-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>The Mughal Artisan’s Oath</h1>
                 <p>It is said that centuries ago, when marble inlay first appeared on Indian soil, it came with whispers of secrecy and sacred duty. Skilled artisans from Persia were invited by emperors to bring their rare craft—Pietra Dura—to life in India. But there was a condition: they were sworn to an oath of silence, vowing to guard the inlay techniques as sacred knowledge. This was no ordinary art—it was believed to be a gift from the heavens, bestowed only upon those deemed worthy of shaping divine and royal spaces.
 <br>
@@ -467,6 +546,10 @@ Because the craft was so revered, it was reserved for the walls of mosques, tomb
             </div>
 
             <div id="thillana-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>Prayer Walls of Fatehpur Sikri</h1>
                 <p>At Fatehpur Sikri, the majestic red sandstone city built by Emperor Akbar, art and faith intertwined in breathtaking harmony. Among its mosques, palaces, and tombs, marble inlay work graced the walls with delicate beauty. Skilled artisans carved into the stone and filled each groove with semi-precious gems and contrasting white marble, forming intricate floral patterns that seemed to bloom from the architecture itself. These flowers weren’t just decoration—they were symbols of eternal prayers, each petal representing a hope etched into history.
 <br>
@@ -489,3 +572,77 @@ Over centuries, these marble blossoms have endured, untouched by time or weather
 </body>
 </html>
 <script src="js/navbar.js"></script>
+<script>
+  let utterance; // make it global so we can pause/resume it
+
+  // Individual story TTS function
+  function speakIndividualStory(storySection) {
+    speechSynthesis.cancel();
+
+    const title = storySection.querySelector("h1")?.innerText || "";
+    const paragraphs = storySection.querySelectorAll("p, h3");
+    let storyText = title + ". ";
+
+    paragraphs.forEach(el => {
+      storyText += el.innerText + " ";
+    });
+
+    utterance = new SpeechSynthesisUtterance(storyText);
+    utterance.rate = 1;
+    utterance.pitch = 1;
+    utterance.volume = 1;
+
+    const voices = speechSynthesis.getVoices();
+
+    // Try different voice options in order of preference
+    utterance.voice = 
+        voices.find(v => v.name.includes('Google UK English Female')) || 
+      voices[0]; // Fallback to first available
+
+    speechSynthesis.speak(utterance);
+  }
+
+  function stopTTS() {
+    speechSynthesis.cancel();
+  }
+
+  // Add event listeners when page loads
+  document.addEventListener('DOMContentLoaded', function() {
+    // Play button listeners
+    document.querySelectorAll(".listenBtn").forEach(button => {
+      button.addEventListener("click", () => {
+        // Only trigger if button has play icon
+        if (button.textContent.includes('🔊')) {
+          // Add pressed effect
+          button.classList.add('pressed');
+          setTimeout(() => button.classList.remove('pressed'), 200);
+
+          // Find the nearest parent div with the class 'detailed-story-section'
+          const storySection = button.closest(".detailed-story-section");
+          if (!storySection) {
+            alert("Story section not found!");
+            return;
+          }
+
+          // Speak only this individual story
+          speakIndividualStory(storySection);
+        }
+      });
+    });
+
+    // Stop button listeners
+    document.querySelectorAll(".stopBtn").forEach(button => {
+      button.addEventListener("click", () => {
+        // Add pressed effect
+        button.classList.add('pressed');
+        setTimeout(() => button.classList.remove('pressed'), 200);
+
+        // Stop the speech
+        stopTTS();
+      });
+    });
+  });
+
+  // Ensure voices are loaded
+  window.speechSynthesis.onvoiceschanged = () => {};
+</script>

@@ -340,6 +340,65 @@
             text-decoration: underline;
         }
 
+        /* --- Button Styles --- */
+        .listenBtn {
+            border-radius: 11.5px;
+            color: rgb(167, 148, 148);
+            height: 30px;
+            background-color: #542424b0;
+            border: solid rgba(186, 168, 173, 0.059);
+            box-shadow: #d9d6d4;
+            transition: transform 0.1s, box-shadow 0.1s;
+            margin-bottom: 15px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .listenBtn.pressed {
+            transform: translateY(2px) scale(0.97);
+            box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
+            background-color: #5a2020b0;
+        }
+
+        .listenBtn:hover {
+           transform: translateY(-1px) scale(1.05);
+           box-shadow: 0 6px 24px 0 rgba(255,255,255,0.25);
+        }
+
+        .listenBtn:active {
+            transform: translateY(1px) scale(1);
+            box-shadow: 0 2px 12px 0 rgba(255,255,255,0.25);
+        }
+
+        .stopBtn {
+            border-radius: 11.5px;
+            color: rgb(167, 148, 148);
+            height: 30px;
+            background-color: #542424b0;
+            border: solid rgba(186, 168, 173, 0.059);
+            box-shadow: #d9d6d4;
+            transition: transform 0.1s, box-shadow 0.1s;
+            margin-bottom: 15px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .stopBtn.pressed {
+            transform: translateY(2px) scale(0.97);
+            box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
+            background-color: #5a2020b0;
+        }
+
+        .stopBtn:hover {
+           transform: translateY(-1px) scale(1.05);
+           box-shadow: 0 6px 24px 0 rgba(255,255,255,0.25);
+        }
+
+        .stopBtn:active {
+            transform: translateY(1px) scale(1);
+            box-shadow: 0 2px 12px 0 rgba(255,255,255,0.25);
+        }
+
         /* --- Responsive Design --- */
         @media (max-width: 768px) {
             .nav-container {
@@ -417,6 +476,10 @@
             <h2>Mythological Tales</h2>
 
             <div id="gita-govinda-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>Gita Govinda</h1>
                 <p><strong>Gita Govinda (Song of the Cowherd)</strong>, the lyrical masterpiece by the 12th-century poet Jayadeva, is arguably the most significant and recurring theme in the Odissi repertoire. Its verses form the spiritual and emotional backbone for countless performances, delving deep into the complex and divine love play between **Radha and Krishna**.</p>
 
@@ -430,6 +493,10 @@
             </div>
 
             <div id="dashavatara-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>Dashavatara</h1>
                 <p>The **Dashavatara (Ten Incarnations)** is a popular and visually dynamic item in Odissi, celebrating the various forms Lord Vishnu assumes to protect the universe from evil and restore dharma. This piece allows the dancer to showcase a remarkable range of characters, expressions, and the unique sculptural postures characteristic of Odissi.</p>
 
@@ -452,6 +519,10 @@
             </div>
 
             <div id="battles-of-durga-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>Battles of Durga</h1>
                 <p>The **Battles of Durga** is a powerful and awe-inspiring theme in Odissi, showcasing the fierce and protective aspect of the divine feminine. These presentations often depict Goddess Durga's valiant encounters and ultimate victories over various formidable demons, most notably **Mahishasura**, symbolizing the triumph of good over evil and the destruction of negative forces.</p>
 
@@ -467,6 +538,10 @@
             </div>
 
             <div id="krishna-leela-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>Krishna Leela</h1>
                 <p><strong>Krishna Leela (The Divine Plays of Krishna)</strong> is a vast and enchanting thematic area in Odissi, similar to its prominence in other classical Indian dance forms. It encompasses various episodes from the life of Lord Krishna, from his mischievous childhood in Vrindavan to his youthful romances and heroic deeds, all imbued with a sense of playfulness, charm, and profound devotion.</p>
 
@@ -493,6 +568,10 @@
             </div>
 
             <div id="ardhanariswara-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>Ardhanariswara</h1>
                 <p><strong>Ardhanariswara</strong> is a profound and unique thematic presentation in Odissi, depicting the composite half-male, half-female form of Lord Shiva and his consort, Goddess Parvati. This iconic representation symbolizes the ultimate union and inseparability of masculine and feminine energies, often referred to as **Purusha (consciousness, male principle)** and **Prakriti (nature, female principle)**, which together constitute the entire cosmos.</p>
 
@@ -510,6 +589,10 @@
             </div>
 
             <div id="shiva-stuti-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>Shiva Stuti</h1>
                 <p><strong>Shiva Stuti (Praise of Lord Shiva)</strong> pieces are fundamental to the Odissi repertoire, reflecting the significant role of Shaivism alongside Vaishnavism in Odisha's rich religious and artistic heritage. These devotional compositions are dedicated to Lord Shiva, the cosmic dancer, destroyer of ignorance, and regenerator, allowing the dancer to explore both his serene and fierce aspects, and his profound mythological attributes.</p>
 
@@ -551,3 +634,77 @@
 </body>
 </html>
 <script src="js/navbar.js"></script>
+<script>
+  let utterance; // make it global so we can pause/resume it
+
+  // Individual story TTS function
+  function speakIndividualStory(storySection) {
+    speechSynthesis.cancel();
+
+    const title = storySection.querySelector("h1")?.innerText || "";
+    const paragraphs = storySection.querySelectorAll("p, h3");
+    let storyText = title + ". ";
+
+    paragraphs.forEach(el => {
+      storyText += el.innerText + " ";
+    });
+
+    utterance = new SpeechSynthesisUtterance(storyText);
+    utterance.rate = 1;
+    utterance.pitch = 1;
+    utterance.volume = 1;
+
+    const voices = speechSynthesis.getVoices();
+
+    // Try different voice options in order of preference
+    utterance.voice = 
+        voices.find(v => v.name.includes('Google UK English Female')) || 
+      voices[0]; // Fallback to first available
+
+    speechSynthesis.speak(utterance);
+  }
+
+  function stopTTS() {
+    speechSynthesis.cancel();
+  }
+
+  // Add event listeners when page loads
+  document.addEventListener('DOMContentLoaded', function() {
+    // Play button listeners
+    document.querySelectorAll(".listenBtn").forEach(button => {
+      button.addEventListener("click", () => {
+        // Only trigger if button has play icon
+        if (button.textContent.includes('🔊')) {
+          // Add pressed effect
+          button.classList.add('pressed');
+          setTimeout(() => button.classList.remove('pressed'), 200);
+
+          // Find the nearest parent div with the class 'detailed-story-section'
+          const storySection = button.closest(".detailed-story-section");
+          if (!storySection) {
+            alert("Story section not found!");
+            return;
+          }
+
+          // Speak only this individual story
+          speakIndividualStory(storySection);
+        }
+      });
+    });
+
+    // Stop button listeners
+    document.querySelectorAll(".stopBtn").forEach(button => {
+      button.addEventListener("click", () => {
+        // Add pressed effect
+        button.classList.add('pressed');
+        setTimeout(() => button.classList.remove('pressed'), 200);
+
+        // Stop the speech
+        stopTTS();
+      });
+    });
+  });
+
+  // Ensure voices are loaded
+  window.speechSynthesis.onvoiceschanged = () => {};
+</script>

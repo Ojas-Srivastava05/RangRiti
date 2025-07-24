@@ -340,7 +340,66 @@
             text-decoration: underline;
         }
 
-        /* --- Responsive Design --- */
+        /* --- Button Styles --- */
+.listenBtn {
+    border-radius: 11.5px;
+    color: rgb(167, 148, 148);
+    height: 30px;
+    background-color: #542424b0;
+    border: solid rgba(186, 168, 173, 0.059);
+    box-shadow: #d9d6d4;
+    transition: transform 0.1s, box-shadow 0.1s;
+    margin-bottom: 15px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.listenBtn.pressed {
+    transform: translateY(2px) scale(0.97);
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
+    background-color: #5a2020b0;
+}
+
+.listenBtn:hover {
+   transform: translateY(-1px) scale(1.05);
+   box-shadow: 0 6px 24px 0 rgba(255,255,255,0.25);
+}
+
+.listenBtn:active {
+    transform: translateY(1px) scale(1);
+    box-shadow: 0 2px 12px 0 rgba(255,255,255,0.25);
+}
+
+.stopBtn {
+    border-radius: 11.5px;
+    color: rgb(167, 148, 148);
+    height: 30px;
+    background-color: #542424b0;
+    border: solid rgba(186, 168, 173, 0.059);
+    box-shadow: #d9d6d4;
+    transition: transform 0.1s, box-shadow 0.1s;
+    margin-bottom: 15px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.stopBtn.pressed {
+    transform: translateY(2px) scale(0.97);
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
+    background-color: #5a2020b0;
+}
+
+.stopBtn:hover {
+   transform: translateY(-1px) scale(1.05);
+   box-shadow: 0 6px 24px 0 rgba(255,255,255,0.25);
+}
+
+.stopBtn:active {
+    transform: translateY(1px) scale(1);
+    box-shadow: 0 2px 12px 0 rgba(255,255,255,0.25);
+}
+
+/* --- Responsive Design --- */
         @media (max-width: 768px) {
             .nav-container {
                 flex-wrap: wrap;
@@ -416,6 +475,10 @@
             <h2>The Essence of a Dhokra Art</h2>
 
             <div id="alarippu-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>The Dancing Girl’s Echo</h1>
                 <p>In the tribal heartland of Bastar, nestled among the forests of Chhattisgarh, lived an old artisan known for his skill in Dhokra metalwork. Every spring, as the sal trees bloomed, he would sit by the fireside and sculpt a graceful figure—a woman mid-dance, her limbs fluid and her posture poised. He believed she was no ordinary creation, but a tribute to the legendary "Dancing Girl" of the Indus Valley Civilization. To him, this ancient muse had never vanished; her spirit simply traveled through time, seeking new hands to shape her.
 <br>
@@ -425,6 +488,10 @@ Villagers gathered to watch the dance take shape in bronze, seeing in it a symbo
             </div>
 
             <div id="jatiswaram-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>The Elephant Guardian</h1>
                 <p>Long ago, in a forested tribal region of central India, a village chief awoke from a vivid and powerful dream. In it, a majestic golden elephant had appeared, shimmering in the moonlight, guarding the village from dark forces and wandering spirits. The elephant stood tall and still, its eyes glowing with a quiet strength, as evil shadows retreated in its presence. The chief, moved by the vision, shared his dream with the village elders, believing it to be a divine sign—a protector sent by the ancestors.
 <br>
@@ -434,6 +501,10 @@ The elephant was placed beside the village shrine, under the shade of an old nee
             </div>
 
             <div id="shabdam-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>The Wedding Lamp</h1>
                 <p>In a quiet village nestled amid the hills, a father once presented his daughter with a Dhokra oil lamp on the eve of her wedding. Handcrafted by local artisans, the lamp was shaped like two graceful peacocks, their necks entwined, symbolizing unity, beauty, and lifelong harmony. The father had chosen it not just for its artistry, but for its meaning—he believed that the glow of the lamp would guide his daughter through a life filled with love and balance. As the sacred fire was lit, the lamp stood beside the couple, its twin flames dancing like blessings in the breeze.
 <br>
@@ -445,6 +516,10 @@ Decades later, as her granddaughter stood ready for her own vows, the same Dhokr
              </div>
 
             <div id="varnam-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>The Forest Drummer</h1>
                 <p>Deep within the ancient forests of central India, tribal lore speaks of a mysterious forest spirit who played drums beneath the moonlit canopy. It is said that his rhythms echoed through the jungle, calming restless beasts and lulling even the fiercest predators into peace. The villagers believed this spirit watched over them, using music to maintain harmony between humans and nature. Over time, the tale became sacred—a symbol of balance, rhythm, and the healing power of sound.
 <br>
@@ -456,6 +531,10 @@ To this day, these brass drummers are created with quiet reverence. Placed in ho
             </div>
 
             <div id="padam-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>The Lost Necklace</h1>
                 <p>Long ago, in a forest kingdom rich with tradition and craft, a tribal queen wore an exquisite Dhokra necklace—handmade by the finest metal artisans in her court. The necklace was a masterpiece of brass, its intricate patterns inspired by river vines, wildflowers, and sacred geometry. One day, while walking along the riverbank, the queen leaned over to touch the water and the necklace slipped from her neck, vanishing into the flowing current. Heartbroken, she believed the treasured heirloom was lost forever.
 <br>
@@ -467,6 +546,10 @@ The artisans, honored by the command, recreated the design with devotion, making
             </div>
 
             <div id="thillana-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>The Bird of Wishes</h1>
                 <p>In a quiet village in Odisha, a lonely child once sat beside his father’s workshop, watching molten metal glow in the furnace. Missing his mother and yearning for comfort, the boy took a lump of beeswax and gently shaped it into a small bird—its wings open, its beak lifted toward the sky. He whispered his hopes into its form and, with innocent faith, asked the gods to hear his silent prayers. Moved by his son’s devotion, the father—a skilled Dhokra artist—decided to cast the fragile wax bird into enduring brass.
 <br>
@@ -489,3 +572,77 @@ Over time, more birds were crafted—each one a symbol of hope, prayer, and chil
 </body>
 </html>
 <script src="js/navbar.js"></script>
+<script>
+  let utterance; // make it global so we can pause/resume it
+
+  // Individual story TTS function
+  function speakIndividualStory(storySection) {
+    speechSynthesis.cancel();
+
+    const title = storySection.querySelector("h1")?.innerText || "";
+    const paragraphs = storySection.querySelectorAll("p, h3");
+    let storyText = title + ". ";
+
+    paragraphs.forEach(el => {
+      storyText += el.innerText + " ";
+    });
+
+    utterance = new SpeechSynthesisUtterance(storyText);
+    utterance.rate = 1;
+    utterance.pitch = 1;
+    utterance.volume = 1;
+
+    const voices = speechSynthesis.getVoices();
+
+    // Try different voice options in order of preference
+    utterance.voice = 
+        voices.find(v => v.name.includes('Google UK English Female')) || 
+      voices[0]; // Fallback to first available
+
+    speechSynthesis.speak(utterance);
+  }
+
+  function stopTTS() {
+    speechSynthesis.cancel();
+  }
+
+  // Add event listeners when page loads
+  document.addEventListener('DOMContentLoaded', function() {
+    // Play button listeners
+    document.querySelectorAll(".listenBtn").forEach(button => {
+      button.addEventListener("click", () => {
+        // Only trigger if button has play icon
+        if (button.textContent.includes('🔊')) {
+          // Add pressed effect
+          button.classList.add('pressed');
+          setTimeout(() => button.classList.remove('pressed'), 200);
+
+          // Find the nearest parent div with the class 'detailed-story-section'
+          const storySection = button.closest(".detailed-story-section");
+          if (!storySection) {
+            alert("Story section not found!");
+            return;
+          }
+
+          // Speak only this individual story
+          speakIndividualStory(storySection);
+        }
+      });
+    });
+
+    // Stop button listeners
+    document.querySelectorAll(".stopBtn").forEach(button => {
+      button.addEventListener("click", () => {
+        // Add pressed effect
+        button.classList.add('pressed');
+        setTimeout(() => button.classList.remove('pressed'), 200);
+
+        // Stop the speech
+        stopTTS();
+      });
+    });
+  });
+
+  // Ensure voices are loaded
+  window.speechSynthesis.onvoiceschanged = () => {};
+</script>
