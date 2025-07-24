@@ -857,8 +857,12 @@ app.get('/catalogue', async (req, res) => {
             maxPrice,
             minRating,
             artist,
-            availability
+            availability,
+            page = 1
         } = req.query;
+
+        const productsPerPage = 12;
+        const currentPage = parseInt(page);
 
         const filter = {};
 
@@ -886,12 +890,34 @@ app.get('/catalogue', async (req, res) => {
             filter.inStock = false;
         }
 
-        const products = await Product.find(filter).lean();
+        const totalProducts = await Product.countDocuments(filter);
+        const totalPages = Math.ceil(totalProducts / productsPerPage);
 
-        // ✅ Define user from req.user or fallback to null
+        const products = await Product.find(filter)
+            .skip((currentPage - 1) * productsPerPage)
+            .limit(productsPerPage)
+            .lean();
+
         const user = req.user || null;
 
-        res.render('catalogue', { products, user }); // ✅ Now safe
+        const queryStringWithoutPage = new URLSearchParams({ ...req.query });
+        queryStringWithoutPage.delete("page");
+
+        // ✅ Fetch all artists with at least one product (optional optimization)
+        const artists = await Artist.find({}).select("artistName").lean();
+
+        res.render('catalogue', {
+            products,
+            user,
+            currentPage,
+            totalPages,
+            queryString: queryStringWithoutPage.toString(),
+            totalProducts,
+            showingCount: products.length,
+            artists, // ✅ send to EJS
+            selectedArtists: artist ? artist.split(',') : []
+        });
+
     } catch (error) {
         console.error("Error loading filtered catalogue:", error);
         res.status(500).send("Failed to load filtered products.");
