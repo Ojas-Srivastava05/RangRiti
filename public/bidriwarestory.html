@@ -339,6 +339,65 @@
             text-decoration: underline;
         }
 
+        /* --- Button Styles --- */
+        .listenBtn {
+            border-radius: 11.5px;
+            color: rgb(167, 148, 148);
+            height: 30px;
+            background-color: #542424b0;
+            border: solid rgba(186, 168, 173, 0.059);
+            box-shadow: #d9d6d4;
+            transition: transform 0.1s, box-shadow 0.1s;
+            margin-bottom: 15px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .listenBtn.pressed {
+            transform: translateY(2px) scale(0.97);
+            box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
+            background-color: #5a2020b0;
+        }
+
+        .listenBtn:hover {
+           transform: translateY(-1px) scale(1.05);
+           box-shadow: 0 6px 24px 0 rgba(255,255,255,0.25);
+        }
+
+        .listenBtn:active {
+            transform: translateY(1px) scale(1);
+            box-shadow: 0 2px 12px 0 rgba(255,255,255,0.25);
+        }
+
+        .stopBtn {
+            border-radius: 11.5px;
+            color: rgb(167, 148, 148);
+            height: 30px;
+            background-color: #542424b0;
+            border: solid rgba(186, 168, 173, 0.059);
+            box-shadow: #d9d6d4;
+            transition: transform 0.1s, box-shadow 0.1s;
+            margin-bottom: 15px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .stopBtn.pressed {
+            transform: translateY(2px) scale(0.97);
+            box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
+            background-color: #5a2020b0;
+        }
+
+        .stopBtn:hover {
+           transform: translateY(-1px) scale(1.05);
+           box-shadow: 0 6px 24px 0 rgba(255,255,255,0.25);
+        }
+
+        .stopBtn:active {
+            transform: translateY(1px) scale(1);
+            box-shadow: 0 2px 12px 0 rgba(255,255,255,0.25);
+        }
+
         /* --- Responsive Design --- */
         @media (max-width: 768px) {
             .nav-container {
@@ -426,15 +485,21 @@
     <main>
         <section class="hero">
             <div class="hero-content">
+                
                 <h1>Bidriware: The Soul of Indian Handicrafts</h1>
                 <p>Journey through the intricate beauty and craftsmanship of Indian Bidriware Artist .</p>
             </div>
         </section>
 
         <section id="bharatnatyam-items-detailed" class="section">
+            
             <h2>The Essence of a Bidriware Art</h2>
 
             <div id="alarippu-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>The Bidar Soil Secret</h1>
                 <p>For centuries, Bidriware has stood out as one of India’s most captivating metal crafts, admired for its elegant silver inlay set against a striking black background. The secret behind this deep black finish lies in a unique process known only to a select group of artisans. Central to this process is a special kind of soil, found exclusively near the moat surrounding the ancient Bidar Fort in Karnataka. This soil is unlike any other—it has remained buried for generations, untouched by sunlight or rain, which preserves its potent chemical properties.
 <br>
@@ -445,6 +510,10 @@ Local legends add a mystical layer to the story. It is believed that the soil's 
             </div>
 
             <div id="jatiswaram-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>Persian Roots, Deccan Soul</h1>
                 <p>When Persian artisans arrived in India in the 14th century, they brought with them sophisticated metalworking and intricate inlay techniques that had flourished in West Asia. These artisans settled in the Deccan region, where they found themselves amidst a rich tradition of Indian craftsmanship. Under the patronage of the Bahmani Sultanate, a fusion of Persian elegance and Indian metal artistry gave birth to a new and distinctive form—Bidriware. The craft took its name from the city of Bidar in present-day Karnataka, which became its cultural and creative hub.
 <br>
@@ -456,6 +525,10 @@ This blending of Persian technique with Indian cultural imagery gave Bidriware a
             </div>
 
             <div id="shabdam-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1> The Nizam’s Bidri Collection</h1>
                 <p>The Nizams of Hyderabad played a monumental role in the flourishing of Bidri art during their reign. As grand patrons of culture and fine craftsmanship, they elevated Bidriware from a regional craft to an art form worthy of royalty. Their sprawling palaces were adorned with hundreds of Bidri items—exquisitely designed trays, ornate jewel boxes, elegant vases, and ceremonial pieces, each reflecting opulence and precision. Many of these artifacts were not just decorative but were specially commissioned for royal events, weddings, and state functions.
 <br>
@@ -465,6 +538,10 @@ The royal endorsement brought prestige to the craft, helping it gain recognition
               </div>
 
             <div id="varnam-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>Craft That Survived Empires</h1>
                 <p>Despite enduring political upheavals and the decline of royal patronage, the resilient spirit of Bidri artisans kept the tradition alive. As kingdoms fell and empires changed, the demand for royal commissions diminished, but the love for the craft persisted. Artisan families, bound by generations of knowledge and pride, continued to pass down their skills from parent to child. With limited resources and fewer patrons, they adapted, innovated, and reimagined their designs to suit changing times.
 <br>
@@ -475,6 +552,10 @@ Artisans now participate in global exhibitions, collaborate with designers, and 
             </div>
 
             <div id="padam-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>A UNESCO Nomination Dream</h1>
                 <p>In recent years, Bidriware has gained renewed recognition on both national and global platforms. Efforts have been made to nominate it for UNESCO’s Intangible Cultural Heritage list, a move that highlights its cultural and historical significance. This recognition has brought much-needed visibility to the artisans of Bidar, who for generations have kept the tradition alive through skill, dedication, and quiet resilience. Their participation in international exhibitions has played a crucial role in reviving interest in this exquisite metal craft.
 <br>
@@ -485,6 +566,10 @@ Collaborations with contemporary designers have also emerged, infusing Bidri art
             </div>
 
             <div id="thillana-detailed" class="detailed-story-section">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <button class="listenBtn">🔊 Play story</button>
+    <button class="stopBtn">⏹️ Stop</button>
+</div>
                 <h1>The Royal Hookah of Aurangzeb</h1>
                 <p>During the Mughal era, Bidriware reached new heights of prestige, particularly under the reign of Emperor Aurangzeb. Historical records mention that he was presented with a grand Bidriware hookah base, masterfully crafted and inlaid with intricate silver Quranic calligraphy. The artisans from Bidar, known for their unmatched skill, had created a piece that embodied both opulence and spiritual reverence. The black metal surface, adorned with sacred verses in gleaming silver, transformed the hookah base into more than a functional item—it became a symbol of royal luxury and artistic devotion.
 <br>
@@ -502,5 +587,79 @@ This royal attention helped elevate Bidriware beyond the Deccan, carrying its re
         <p>Contact us at <a href="mailto:info@bidriware.com">info@bidriware.com</a></p>
     </footer>
 
+    <script>
+  let utterance; // make it global so we can pause/resume it
+
+  // Individual story TTS function
+  function speakIndividualStory(storySection) {
+    speechSynthesis.cancel();
+
+    const title = storySection.querySelector("h1")?.innerText || "";
+    const paragraphs = storySection.querySelectorAll("p, h3");
+    let storyText = title + ". ";
+
+    paragraphs.forEach(el => {
+      storyText += el.innerText + " ";
+    });
+
+    utterance = new SpeechSynthesisUtterance(storyText);
+    utterance.rate = 1;
+    utterance.pitch = 1;
+    utterance.volume = 1;
+
+    const voices = speechSynthesis.getVoices();
+
+    // Try different voice options in order of preference
+    utterance.voice = 
+        voices.find(v => v.name.includes('Google UK English Female')) || 
+      voices[0]; // Fallback to first available
+
+    speechSynthesis.speak(utterance);
+  }
+
+  function stopTTS() {
+    speechSynthesis.cancel();
+  }
+
+  // Add event listeners when page loads
+  document.addEventListener('DOMContentLoaded', function() {
+    // Play button listeners
+    document.querySelectorAll(".listenBtn").forEach(button => {
+      button.addEventListener("click", () => {
+        // Only trigger if button has play icon
+        if (button.textContent.includes('🔊')) {
+          // Add pressed effect
+          button.classList.add('pressed');
+          setTimeout(() => button.classList.remove('pressed'), 200);
+
+          // Find the nearest parent div with the class 'detailed-story-section'
+          const storySection = button.closest(".detailed-story-section");
+          if (!storySection) {
+            alert("Story section not found!");
+            return;
+          }
+
+          // Speak only this individual story
+          speakIndividualStory(storySection);
+        }
+      });
+    });
+
+    // Stop button listeners
+    document.querySelectorAll(".stopBtn").forEach(button => {
+      button.addEventListener("click", () => {
+        // Add pressed effect
+        button.classList.add('pressed');
+        setTimeout(() => button.classList.remove('pressed'), 200);
+
+        // Stop the speech
+        stopTTS();
+      });
+    });
+  });
+
+  // Ensure voices are loaded
+  window.speechSynthesis.onvoiceschanged = () => {};
+</script>
 </body>
 </html>
