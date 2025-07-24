@@ -452,85 +452,53 @@
             transform: translateY(0);
         }
 
-        /* Footer */
-        .footer {
-    background: rgba(0, 0, 0, 0.9);
-    padding: 80px 0 40px;
-    /* margin-top: 100px; */ /* Remove margin-top */
+/* Footer */
+.footer {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.95));
+    color: #F5F5DC;
+    text-align: center;
+    padding: 4rem 2rem 2rem;
+    margin-top: 6rem;
     position: relative;
-    overflow: hidden;
-    /* Add height to fill the remaining space */
-    height: calc(100vh - (4 * 100vh)); /* 100vh - (number of cards * card height) */
 }
 
-        .footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
-            animation: footerGlow 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes footerGlow {
-            0% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
-            100% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.8); }
-        }
-
-        .footer-content {
-            text-align: center;
-        }
-
-        .footer-nav {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-
-        .footer-nav a {
-    font-family: 'EB Garamond', serif;
-    color: #FAF3E0; /* Light Ivory */
-    text-decoration: none;
-    font-weight: 500;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Soft shadow */
-    transition: all 0.3s ease;
-    position: relative;
-    padding: 10px 0;
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--royal-gold), transparent);
 }
 
-        .footer-nav a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 2px;
-            background: var(--primary-gold);
-            transition: width 0.3s ease;
-        }
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-        .footer-nav a:hover::after {
-            width: 100%;
-        }
+.footer-logo {
+    font-family: var(--font-luxury);
+    font-size: 3rem;
+    color: var(--royal-gold);
+    margin-bottom: 1.5rem;
+    font-weight: 900;
+}
 
-        .footer-nav a:hover {
-            color: var(--primary-gold);
-            transform: translateY(-2px);
-        }
-
-        .footer-text {
-    font-family: 'EB Garamond', serif;
+.footer-text {
+    font-family: var(--font-elegant);
     font-size: 1.1rem;
-    color: #4B1E10; /* Deep Brown */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Soft shadow */
-    font-style: italic;
+    opacity: 0.9;
+    margin-bottom: 2.5rem;
 }
 
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 2rem;
+    font-size: 0.9rem;
+    opacity: 0.6;
+}
+        
         /* Responsive design */
         @media (max-width: 768px) {
             .gallery {
@@ -724,7 +692,16 @@
     </div>
 </section>
 </div>
-
+    <!--footer-->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">RangRiti</div>
+            <p class="footer-text">Preserving India's artistic heritage for future generations</p>
+            <div class="footer-bottom">
+                <p>&copy; 2025 RangRiti. All rights reserved. Crafted with passion for Indian arts.</p>
+            </div>
+        </div>
+    </footer>
     <!-- Include navbar JavaScript -->
     <script src="js/navbar.js"></script>
 
