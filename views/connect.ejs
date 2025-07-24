@@ -523,58 +523,52 @@
             padding: 20px;
         }
 
-        /* Enhanced Footer */
-        footer {
-            background: linear-gradient(135deg, var(--chocolate-brown), #2a1a0f);
-            color: var(--cream-white);
-            padding: 60px 0 30px;
-            text-align: center;
-            margin-top: 50px;
-            position: relative;
-            overflow: hidden;
-        }
+        /* Footer */
+.footer {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.95));
+    color: #F5F5DC;
+    text-align: center;
+    padding: 4rem 2rem 2rem;
+    margin-top: 6rem;
+    position: relative;
+}
 
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 30% 20%, rgba(255, 215, 0, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 70% 80%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
-            pointer-events: none;
-        }
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--royal-gold), transparent);
+}
 
-        .footer-content {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-        .footer-content h3 {
-            font-family: var(--font-luxury);
-            font-size: 2rem;
-            color: var(--royal-gold);
-            margin-bottom: 1.5rem;
-        }
+.footer-logo {
+    font-family: var(--font-luxury);
+    font-size: 3rem;
+    color: var(--royal-gold);
+    margin-bottom: 1.5rem;
+    font-weight: 900;
+}
 
-        .footer-address {
-            font-style: normal;
-            margin: 20px 0;
-            line-height: 2;
-            font-size: 1.1rem;
-        }
+.footer-text {
+    font-family: var(--font-elegant);
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin-bottom: 2.5rem;
+}
 
-        .copyright {
-            margin-top: 40px;
-            padding-top: 25px;
-            border-top: 2px solid rgba(218, 165, 32, 0.3);
-            font-size: 0.95rem;
-            opacity: 0.8;
-        }
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 2rem;
+    font-size: 0.9rem;
+    opacity: 0.6;
+}
 
         /* Responsive Design */
         @media (max-width: 768px) {
@@ -839,23 +833,16 @@
         </section>
     </div>
 
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <h3>RangRiti - Reviving Indian Heritage</h3>
-                <p class="footer-address">
-                    24, Heritage Lane, Jaipur, Rajasthan 302001<br>
-                    Email: connect@rangriti.com<br>
-                    Phone: +91 98765 43210
-                </p>
-                <p class="copyright">
-                    © 2024 RangRiti. All rights reserved.<br>
-                    Designed with ❤️ for preserving Indian art heritage
-                </p>
+    <!--footer-->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">RangRiti</div>
+            <p class="footer-text">Preserving India's artistic heritage for future generations</p>
+            <div class="footer-bottom">
+                <p>&copy; 2025 RangRiti. All rights reserved. Crafted with passion for Indian arts.</p>
             </div>
         </div>
     </footer>
-
     <script>
         // Star rating functionality - Enhanced
         const ratingInputs = document.querySelectorAll('.rating input[type="radio"]');
