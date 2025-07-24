@@ -766,6 +766,52 @@
                 transform: translateY(-2px);
             }
         }
+        /* Footer */
+.footer {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.95));
+    color: #F5F5DC;
+    text-align: center;
+    padding: 4rem 2rem 2rem;
+    margin-top: 6rem;
+    position: relative;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--royal-gold), transparent);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-logo {
+    font-family: var(--font-luxury);
+    font-size: 3rem;
+    color: var(--royal-gold);
+    margin-bottom: 1.5rem;
+    font-weight: 900;
+}
+
+.footer-text {
+    font-family: var(--font-elegant);
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin-bottom: 2.5rem;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 2rem;
+    font-size: 0.9rem;
+    opacity: 0.6;
+}
     </style>
 </head>
 
@@ -896,7 +942,16 @@
                 <% }) %>
         </div>
     </div>
-
+    <!--footer-->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">RangRiti</div>
+            <p class="footer-text">Preserving India's artistic heritage for future generations</p>
+            <div class="footer-bottom">
+                <p>&copy; 2025 RangRiti. All rights reserved. Crafted with passion for Indian arts.</p>
+            </div>
+        </div>
+    </footer>
     <!-- LOAD NAVBAR JAVASCRIPT -->
     <script src="/js/navbar.js"></script>
 
