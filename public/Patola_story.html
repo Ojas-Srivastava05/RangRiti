@@ -284,6 +284,62 @@
             color: var(--primary-gold);
             text-decoration: underline;
         }
+        .listenBtn {
+            border-radius: 11.5px;
+            color: rgb(167, 148, 148);
+            height: 30px;
+            background-color: #542424b0;
+            border: solid rgba(186, 168, 173, 0.059);
+            box-shadow: #d9d6d4;
+            transition: transform 0.1s, box-shadow 0.1s;
+            margin-bottom: 15px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .listenBtn.pressed {
+            transform: translateY(2px) scale(0.97);
+            box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
+            background-color: #5a2020b0;
+        }
+
+        .listenBtn:hover {
+           transform: translateY(-1px) scale(1.05);
+           box-shadow: 0 6px 24px 0 rgba(255,255,255,0.25);
+        }
+
+        .listenBtn:active {
+            transform: translateY(1px) scale(1);
+            box-shadow: 0 2px 12px 0 rgba(255,255,255,0.25);
+        }
+        .stopBtn {
+            border-radius: 11.5px;
+            color: rgb(167, 148, 148);
+            height: 30px;
+            background-color: #542424b0;
+            border: solid rgba(186, 168, 173, 0.059);
+            box-shadow: #d9d6d4;
+            transition: transform 0.1s, box-shadow 0.1s;
+            margin-bottom: 15px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .stopBtn.pressed {
+            transform: translateY(2px) scale(0.97);
+            box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
+            background-color: #5a2020b0;
+        }
+
+        .stopBtn:hover {
+           transform: translateY(-1px) scale(1.05);
+           box-shadow: 0 6px 24px 0 rgba(255,255,255,0.25);
+        }
+
+        .stopBtn:active {
+            transform: translateY(1px) scale(1);
+            box-shadow: 0 2px 12px 0 rgba(255,255,255,0.25);
+        }
         @media (max-width: 768px) {
             .nav-container { flex-wrap: wrap; justify-content: center; top: 15px; padding: 10px 15px; border-radius: 30px; }
             .nav-btn { font-size: 0.8rem; padding: 6px 12px; }
@@ -325,12 +381,7 @@
     </nav>
 
 <main>
-<div id="tts-controls" style="position: fixed; top: 20px; right: 20px; z-index: 1000;">
-  <button onclick="speakPatolaStory()">🔊 Listen</button>
-  <button onclick="pauseTTS()">⏸️ Pause</button>
-  <button onclick="resumeTTS()">▶️ Resume</button>
-  <button onclick="cancelTTS()">⏹️ Stop</button>
-</div>    <section class="hero">
+    <section class="hero">
         <div class="hero-content">
             <h1>Patan Patola: Double Ikat Legends</h1>
             <p>Step into the world of Patan, where every silk thread is dyed with precision and woven into a tapestry of geometry, color, and royal legacy.</p>
@@ -341,6 +392,10 @@
         <h2>Woven Marvels</h2>
 
         <div id="double-ikat-detailed" class="detailed-story-section">
+            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                <button class="listenBtn">🔊 Play story</button>
+                <button class="stopBtn">⏹️ Stop</button>
+            </div>
             <h1>The Double Ikat Mastery</h1>
             <p><strong>Double Ikat</strong> is the soul of Patan Patola, a technique where both warp and weft threads are tie-dyed before weaving, resulting in perfectly aligned, reversible patterns.</p>
 
@@ -352,8 +407,12 @@
         </div>
 
         <div id="royal-patronage-detailed" class="detailed-story-section">
+            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                <button class="listenBtn">🔊 Play story</button>
+                <button class="stopBtn">⏹️ Stop</button>
+            </div>
             <h1>Royal Patronage</h1>
-            <p><strong>Royal Patronage</strong> has defined the history of Patola, with the Salvi family of Patan weaving for Gujarat’s Solanki rulers and distant Southeast Asian courts.</p>
+            <p><strong>Royal Patronage</strong> has defined the history of Patola, with the Salvi family of Patan weaving for Gujarat's Solanki rulers and distant Southeast Asian courts.</p>
 
             <h3>Silks for Kings and Temples</h3>
             <p>Patola saris were prized as royal gifts and temple offerings, their vibrant colors and geometric designs signifying wealth, power, and spiritual purity.</p>
@@ -363,17 +422,25 @@
         </div>
 
         <div id="motifs-of-patola-detailed" class="detailed-story-section">
+            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                <button class="listenBtn">🔊 Play story</button>
+                <button class="stopBtn">⏹️ Stop</button>
+            </div>
             <h1>Motifs of Patola</h1>
-            <p><strong>Motifs of Patola</strong> range from elephants, parrots, and flowers to intricate geometric shapes, each with symbolic meaning rooted in Gujarat’s culture.</p>
+            <p><strong>Motifs of Patola</strong> range from elephants, parrots, and flowers to intricate geometric shapes, each with symbolic meaning rooted in Gujarat's culture.</p>
 
             <h3>Geometry and Nature</h3>
-            <p>Designs like the ‘navratna’ (nine gems), ‘phulwadi’ (flower garden), and ‘paan’ (betel leaf) are meticulously rendered, blending mathematical precision with natural inspiration.</p>
+            <p>Designs like the 'navratna' (nine gems), 'phulwadi' (flower garden), and 'paan' (betel leaf) are meticulously rendered, blending mathematical precision with natural inspiration.</p>
 
             <h3>Stories in Silk</h3>
-            <p>Each motif is more than decoration—it is a story of fertility, prosperity, and protection, woven into the very fabric of Patan’s heritage.</p>
+            <p>Each motif is more than decoration—it is a story of fertility, prosperity, and protection, woven into the very fabric of Patan's heritage.</p>
         </div>
 
         <div id="living-heritage-detailed" class="detailed-story-section">
+            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                <button class="listenBtn">🔊 Play story</button>
+                <button class="stopBtn">⏹️ Stop</button>
+            </div>
             <h1>Living Heritage</h1>
             <p><strong>Living Heritage</strong> celebrates the continued tradition of Patola weaving, kept alive by master artisans who guard the secrets of double ikat.</p>
 
@@ -381,7 +448,7 @@
             <p>While rooted in ancient practice, Patola continues to evolve, with new motifs, color palettes, and contemporary uses, ensuring its relevance for the next generation.</p>
 
             <h3>Threads of Eternity</h3>
-            <p>Patan Patola stands as a testament to Gujarat’s artistic genius—a textile that is as enduring as it is exquisite.</p>
+            <p>Patan Patola stands as a testament to Gujarat's artistic genius—a textile that is as enduring as it is exquisite.</p>
         </div>
     </section>
 </main>
@@ -394,18 +461,19 @@
 <script>
   let utterance; // make it global so we can pause/resume it
 
-  function speakPatolaStory() {
-    // Cancel if already speaking
+  // Individual story TTS function
+  function speakIndividualStory(storySection) {
     speechSynthesis.cancel();
 
-    const contentSections = document.querySelectorAll('main h1, main h2, main h3, main p, main strong');
-    let textToRead = '';
-    
-    contentSections.forEach(el => {
-      textToRead += el.innerText + '. ';
+    const title = storySection.querySelector("h1")?.innerText || "";
+    const paragraphs = storySection.querySelectorAll("p, h3");
+    let storyText = title + ". ";
+
+    paragraphs.forEach(el => {
+      storyText += el.innerText + " ";
     });
 
-    utterance = new SpeechSynthesisUtterance(textToRead);
+    utterance = new SpeechSynthesisUtterance(storyText);
     utterance.rate = 1;
     utterance.pitch = 1;
     utterance.volume = 1;
@@ -420,21 +488,46 @@
     speechSynthesis.speak(utterance);
   }
 
-  function pauseTTS() {
-    if (speechSynthesis.speaking && !speechSynthesis.paused) {
-      speechSynthesis.pause();
-    }
-  }
-
-  function resumeTTS() {
-    if (speechSynthesis.paused) {
-      speechSynthesis.resume();
-    }
-  }
-
-  function cancelTTS() {
+  function stopTTS() {
     speechSynthesis.cancel();
   }
+
+  // Add event listeners when page loads
+  document.addEventListener('DOMContentLoaded', function() {
+    // Play button listeners
+    document.querySelectorAll(".listenBtn").forEach(button => {
+      button.addEventListener("click", () => {
+        // Only trigger if button has play icon
+        if (button.textContent.includes('🔊')) {
+          // Add pressed effect
+          button.classList.add('pressed');
+          setTimeout(() => button.classList.remove('pressed'), 200);
+
+          // Find the nearest parent div with the class 'detailed-story-section'
+          const storySection = button.closest(".detailed-story-section");
+          if (!storySection) {
+            alert("Story section not found!");
+            return;
+          }
+
+          // Speak only this individual story
+          speakIndividualStory(storySection);
+        }
+      });
+    });
+
+    // Stop button listeners
+    document.querySelectorAll(".stopBtn").forEach(button => {
+      button.addEventListener("click", () => {
+        // Add pressed effect
+        button.classList.add('pressed');
+        setTimeout(() => button.classList.remove('pressed'), 200);
+
+        // Stop the speech
+        stopTTS();
+      });
+    });
+  });
 
   // Ensure voices are loaded
   window.speechSynthesis.onvoiceschanged = () => {};
