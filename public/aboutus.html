@@ -128,6 +128,7 @@
             position: relative;
             overflow: hidden;
             will-change: transform; /* Prepare for GPU acceleration */
+            cursor: pointer;
         }
 
         .team-member::before {
@@ -157,6 +158,29 @@
             opacity: 1;
         }
 
+        .team-member::after {
+            content: '🔍';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            opacity: 0;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-member:hover::after {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
         .member-photo {
             width: 120px;
             height: 120px;
@@ -173,6 +197,7 @@
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .member-photo img {
@@ -180,6 +205,30 @@
             height: 100%;
             object-fit: cover;
             border-radius: 50%;
+        }
+
+        .member-photo::after {
+            content: '🔍';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: all 0.3s ease;
+            font-size: 1.5rem;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .member-photo:hover::after {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.1);
         }
 
         .team-member:hover .member-photo {
@@ -396,6 +445,253 @@
                 padding: 1.2rem;
             }
         }
+
+        /* Modal Overlay */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Enlarged Card Modal */
+        .modal-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 3rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            text-align: center;
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            position: relative;
+            transform: scale(0.8) translateY(50px);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: scale(1) translateY(0);
+        }
+
+        /* Close Button */
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .close-modal:hover {
+            background: linear-gradient(135deg, #ff5252, #d32f2f);
+            transform: scale(1.1) rotate(90deg);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.5);
+        }
+
+        /* Enlarged Profile Photo */
+        .modal-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, #D4AF37, #B8860B);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #fff;
+            border: 6px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.2),
+                0 0 0 3px rgba(255, 255, 255, 0.8);
+            position: relative;
+            overflow: hidden;
+            animation: modalPhotoGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes modalPhotoGlow {
+            0% { 
+                box-shadow: 
+                    0 15px 35px rgba(0, 0, 0, 0.2),
+                    0 0 0 3px rgba(255, 255, 255, 0.8),
+                    0 0 20px rgba(212, 175, 55, 0.3);
+            }
+            100% { 
+                box-shadow: 
+                    0 20px 45px rgba(0, 0, 0, 0.3),
+                    0 0 0 3px rgba(212, 175, 55, 0.6),
+                    0 0 30px rgba(212, 175, 55, 0.5);
+            }
+        }
+
+        .modal-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        /* Enhanced Modal Content */
+        .modal-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #6f450e;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #6f450e, #8B4C39);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .modal-role {
+            font-size: 1.3rem;
+            color: #8B4C39;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .modal-description {
+            font-size: 1.1rem;
+            color: #5a3825;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .modal-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .modal-skill-tag {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.3));
+            color: #6f450e;
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 2px solid rgba(212, 175, 55, 0.4);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-skill-tag:hover {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.4), rgba(212, 175, 55, 0.5));
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .modal-social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .modal-social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-social-link:hover {
+            transform: translateY(-5px) scale(1.2);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Additional Details Section */
+        .modal-extra-details {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .modal-extra-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #6f450e;
+            margin-bottom: 1rem;
+        }
+
+        .modal-extra-text {
+            font-size: 1rem;
+            color: #5a3825;
+            line-height: 1.5;
+            text-align: left;
+        }
+
+        /* Responsive Modal */
+        @media (max-width: 768px) {
+            .modal-card {
+                padding: 2rem;
+                margin: 20px;
+            }
+
+            .modal-photo {
+                width: 150px;
+                height: 150px;
+                font-size: 3rem;
+            }
+
+            .modal-name {
+                font-size: 2rem;
+            }
+
+            .modal-skills {
+                gap: 0.5rem;
+            }
+
+            .modal-skill-tag {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -421,10 +717,10 @@
             <div class="team-member">
                 <div class="member-photo">
                     <!-- Replace with actual photo: <img src="path/to/photo1.jpg" alt="Team Member 1"> -->
-                    👨‍💻
+                    <img src="../static/IMG_1011.JPG" alt="Team Member 1">
                 </div>
                 <h3 class="member-name">Ojas Srivastava</h3>
-                <p class="member-role">Lead Developer & Co-Founder</p>
+                <p class="member-role">Technical Lead & API Integrator</p>
                 <p class="member-description">
                     Passionate about bridging technology and tradition, specializing in creating immersive digital experiences.
                 </p>
@@ -542,6 +838,7 @@
             document.addEventListener('DOMContentLoaded', () => {
                 this.setupReveal();
                 this.startReveal();
+                this.setupModalFunctionality();
             });
         }
 
@@ -625,6 +922,125 @@
                     member.style.opacity = '1';
                 }, index * 100); // Quick 100ms delay between each
             });
+        }
+
+        setupModalFunctionality() {
+            // Add click listeners to team members and photos
+            this.members.forEach((member, index) => {
+                // Click on entire card
+                member.addEventListener('click', (e) => {
+                    // Prevent double trigger if photo is clicked
+                    if (!e.target.closest('.member-photo')) {
+                        this.openModal(member);
+                    }
+                });
+
+                // Click on photo
+                const photo = member.querySelector('.member-photo');
+                if (photo) {
+                    photo.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        this.openModal(member, true); // true for photo focus
+                    });
+                }
+            });
+        }
+
+        openModal(memberElement, photoFocus = false) {
+            // Extract member data
+            const name = memberElement.querySelector('.member-name').textContent;
+            const role = memberElement.querySelector('.member-role').textContent;
+            const description = memberElement.querySelector('.member-description').textContent;
+            const photo = memberElement.querySelector('.member-photo');
+            const skills = Array.from(memberElement.querySelectorAll('.skill-tag')).map(tag => tag.textContent);
+            const socialLinks = Array.from(memberElement.querySelectorAll('.social-link'));
+
+            // Create modal
+            const modal = document.createElement('div');
+            modal.className = 'modal-overlay';
+            
+            // Get additional details based on member
+            const extraDetails = this.getExtraDetails(name);
+
+            modal.innerHTML = `
+                <div class="modal-card">
+                    <button class="close-modal" onclick="this.closest('.modal-overlay').remove()">×</button>
+                    
+                    <div class="modal-photo">
+                        ${photo.innerHTML}
+                    </div>
+                    
+                    <h2 class="modal-name">${name}</h2>
+                    <p class="modal-role">${role}</p>
+                    <p class="modal-description">${description}</p>
+                    
+                    <div class="modal-skills">
+                        ${skills.map(skill => `<span class="modal-skill-tag">${skill}</span>`).join('')}
+                    </div>
+                    
+                    <div class="modal-social-links">
+                        ${socialLinks.map(link => `
+                            <a href="${link.href}" class="modal-social-link ${link.className.split(' ')[1]}" target="_blank" title="${link.title}">
+                                ${link.innerHTML}
+                            </a>
+                        `).join('')}
+                    </div>
+
+                    ${extraDetails ? `
+                        <div class="modal-extra-details">
+                            <h3 class="modal-extra-title">${extraDetails.title}</h3>
+                            <p class="modal-extra-text">${extraDetails.text}</p>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+
+            document.body.appendChild(modal);
+            
+            // Trigger animation
+            setTimeout(() => {
+                modal.classList.add('active');
+            }, 10);
+
+            // Close on background click
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                    setTimeout(() => modal.remove(), 400);
+                }
+            });
+
+            // Close on escape key
+            const handleEscape = (e) => {
+                if (e.key === 'Escape') {
+                    modal.classList.remove('active');
+                    setTimeout(() => modal.remove(), 400);
+                    document.removeEventListener('keydown', handleEscape);
+                }
+            };
+            document.addEventListener('keydown', handleEscape);
+        }
+
+        getExtraDetails(name) {
+            const details = {
+                'Ojas Srivastava': {
+                    title: 'Vision & Leadership',
+                    text: 'Leading RangRiti with a vision to make Indian cultural heritage accessible to the digital generation. Blending technical expertise with a deep cultural sensibility to craft meaningful and immersive digital experiences.'
+                },
+                'Kavya Bhatiya': {
+                    title: 'Cultural Authenticity',
+                    text: 'Ensures every piece of content on RangRiti maintains cultural authenticity and respect. Her expertise in traditional art forms guides our visual representation and educational content.'
+                },
+                'Sunil Jaat': {
+                    title: 'Knowledge Preservation',
+                    text: 'Dedicated to researching and documenting the rich traditions of Indian culture. His work ensures that every story, technique, and tradition is accurately represented on our platform.'
+                },
+                'Meet Jadhav': {
+                    title: 'Community Building',
+                    text: 'Focused on creating an inclusive community where artists, enthusiasts, and learners can connect. Designs user experiences that make cultural exploration intuitive and engaging.'
+                }
+            };
+            return details[name] || null;
         }
     }
 
