@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect with RangRiti | Traditional Indian Art</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Crimson+Text:400,600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Navbar CSS -->
+    <link rel="stylesheet" href="/css/navbar.css">
+    
+    <style>
+        /* Root Variables - Matching RangRiti Theme */
+        :root {
+            --sandalwood-beige: #F5DEB3;
+            --warm-sandalwood: #E8D5B7;
+            --deep-sandalwood: #DCC49C;
+            --ivory: #FFFFF0;
+            --cream-white: #FAF0E6;
+            --pearl-white: #F8F6F0;
+            --chocolate-brown: #3D2914;
+            --rich-brown: #6B4423;
+            --royal-gold: #DAA520;
+            --amber-gold: #FFBF00;
+            --bronze-gold: #CD7F32;
+            --antique-gold: #CFB53B;
+            --warm-glow: rgba(255, 215, 0, 0.1);
+            --gold-glow: rgba(218, 165, 32, 0.08);
+            --font-luxury: 'Cinzel', serif;
+            --font-elegant: 'Playfair Display', serif;
+            --font-classic: 'Crimson Text', serif;
+        }
+
+        /* Reset and Base Styles */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: var(--font-classic);
+            background: 
+                linear-gradient(45deg, var(--sandalwood-beige) 0%, var(--warm-sandalwood) 25%, var(--deep-sandalwood) 50%, var(--sandalwood-beige) 75%, var(--warm-sandalwood) 100%),
+                radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(139, 69, 19, 0.08) 0%, transparent 50%);
+            background-size: 400% 400%, 100% 100%, 100% 100%;
+            animation: megaDynamicBackground 30s ease infinite;
+            min-height: 100vh;
+            position: relative;
+            color: var(--chocolate-brown);
+            line-height: 1.7;
+        }
+
+        @keyframes megaDynamicBackground {
+            0% { 
+                background-position: 0% 50%, 20% 80%, 80% 20%; 
+                filter: hue-rotate(0deg) brightness(1) contrast(1);
+            }
+            25% { 
+                background-position: 50% 80%, 40% 60%, 60% 40%; 
+                filter: hue-rotate(3deg) brightness(1.02) contrast(1.01);
+            }
+            50% { 
+                background-position: 100% 50%, 80% 20%, 20% 80%; 
+                filter: hue-rotate(6deg) brightness(1.01) contrast(1.02);
+            }
+            75% { 
+                background-position: 80% 20%, 60% 40%, 40% 60%; 
+                filter: hue-rotate(4deg) brightness(1.03) contrast(1.01);
+            }
+            100% { 
+                background-position: 0% 50%, 20% 80%, 80% 20%; 
+                filter: hue-rotate(0deg) brightness(1) contrast(1);
+            }
+        }
+
+        /* Traditional Paper Texture Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 25% 25%, transparent 2px, rgba(139, 69, 19, 0.02) 2px),
+                radial-gradient(circle at 75% 75%, transparent 2px, rgba(139, 69, 19, 0.02) 2px);
+            background-size: 80px 80px;
+            opacity: 0.4;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles - Matching RangRiti Design */
+        .header {
+            background: linear-gradient(135deg, var(--chocolate-brown), var(--rich-brown));
+            padding: 8rem 0 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(255, 215, 0, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-title {
+            font-family: var(--font-luxury);
+            font-size: clamp(3rem, 6vw, 5rem);
+            color: var(--ivory);
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+            text-shadow: 
+                3px 3px 6px rgba(0, 0, 0, 0.4),
+                0 0 30px rgba(255, 215, 0, 0.3);
+            letter-spacing: -0.02em;
+            position: relative;
+        }
+
+        .page-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            width: 150px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--royal-gold), var(--amber-gold), var(--royal-gold));
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .page-subtitle {
+            font-family: var(--font-elegant);
+            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+            color: var(--cream-white);
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 400;
+            font-style: italic;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        /* Form Section Styles - Enhanced with RangRiti Theme */
+        .form-section {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(245, 222, 179, 0.8));
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(218, 165, 32, 0.3);
+            border-radius: 25px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 20px 40px rgba(61, 41, 20, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(139, 69, 19, 0.03) 0%, transparent 40%);
+            pointer-events: none;
+        }
+
+        .section-title {
+            font-family: var(--font-luxury);
+            color: var(--chocolate-brown);
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+            font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--royal-gold), var(--amber-gold));
+            border-radius: 2px;
+        }
+
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -15px;
+        }
+
+        .form-group {
+            flex: 1 1 calc(50% - 30px);
+            margin: 0 15px 25px;
+            min-width: 280px;
+        }
+
+        .form-group.full-width {
+            flex: 1 1 calc(100% - 30px);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--chocolate-brown);
+            font-family: var(--font-elegant);
+            font-size: 1.1rem;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid rgba(218, 165, 32, 0.3);
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(250, 240, 230, 0.7));
+            font-family: var(--font-classic);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            color: var (--chocolate-brown);
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--royal-gold);
+            box-shadow: 0 0 0 3px rgba(218, 165, 32, 0.2);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+            line-height: 1.6;
+        }
+
+        /* Enhanced Button Styles */
+        .btn {
+            background: linear-gradient(135deg, var(--royal-gold), var(--amber-gold));
+            color: white;
+            border: none;
+            border-radius: 15px;
+            padding: 15px 35px;
+            font-family: var(--font-elegant);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(218, 165, 32, 0.3);
+            display: inline-block;
+            margin-top: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(218, 165, 32, 0.4);
+            background: linear-gradient(135deg, var(--bronze-gold), var(--chocolate-brown));
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 5px 15px rgba(218, 165, 32, 0.3);
+        }
+
+        /* Enhanced Rating System */
+        .rating {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            justify-content: center;
+        }
+
+        .rating input[type="radio"] {
+            display: none;
+        }
+
+        .rating label {
+            cursor: pointer;
+            margin-bottom: 0;
+        }
+
+        .rating i {
+            color: rgba(218, 165, 32, 0.3);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .rating i:hover, 
+        .rating i.active,
+        .rating input[type="radio"]:checked ~ label i,
+        .rating input[type="radio"]:checked ~ label ~ label i {
+            color: var(--royal-gold);
+            transform: scale(1.1);
+            text-shadow: 0 0 10px rgba(218, 165, 32, 0.5);
+        }
+
+        .consent-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 215, 0, 0.05);
+            border-radius: 10px;
+            border-left: 4px solid var(--royal-gold);
+        }
+
+        .consent-group input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+        }
+
+        /* Enhanced Social Media Section */
+        .social-section {
+            background: linear-gradient(135deg, var(--chocolate-brown), var(--rich-brown));
+            border: 2px solid var(--royal-gold);
+            border-radius: 25px;
+            padding: 50px 40px;
+            margin: 50px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(255, 215, 0, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .social-section .section-title {
+            color: var(--ivory);
+            position: relative;
+            z-index: 2;
+        }
+
+        .social-section .section-title::after {
+            background: linear-gradient(90deg, var(--amber-gold), var(--royal-gold));
+        }
+
+        .social-section p {
+            color: var(--cream-white);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 40px 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .social-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--royal-gold), var(--amber-gold));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(218, 165, 32, 0.3);
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-8px) rotate(10deg) scale(1.1);
+            box-shadow: 0 15px 35px rgba(218, 165, 32, 0.5);
+            background: linear-gradient(135deg, var(--bronze-gold), var(--chocolate-brown));
+        }
+
+        .newsletter {
+            max-width: 500px;
+            margin: 30px auto 0;
+            display: flex;
+            gap: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .newsletter input {
+            flex: 1;
+            padding: 15px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 12px;
+        }
+
+        .newsletter input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Enhanced FAQ Section */
+        .faq-section {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(245, 222, 179, 0.8));
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(218, 165, 32, 0.3);
+            border-radius: 25px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 20px 40px rgba(61, 41, 20, 0.15);
+        }
+
+        .faq-item {
+            margin-bottom: 25px;
+            border-bottom: 2px dashed rgba(218, 165, 32, 0.3);
+            padding-bottom: 20px;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-family: var(--font-elegant);
+            color: var(--chocolate-brown);
+            font-size: 1.3rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: var(--royal-gold);
+        }
+
+        .faq-question i {
+            transition: transform 0.3s ease;
+            color: var(--royal-gold);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: var(--rich-brown);
+            line-height: 1.8;
+        }
+
+        .faq-answer.show {
+            max-height: 500px;
+            padding: 20px;
+        }
+
+        /* Footer */
+.footer {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.95));
+    color: #F5F5DC;
+    text-align: center;
+    padding: 4rem 2rem 2rem;
+    margin-top: 6rem;
+    position: relative;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--royal-gold), transparent);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-logo {
+    font-family: var(--font-luxury);
+    font-size: 3rem;
+    color: var(--royal-gold);
+    margin-bottom: 1.5rem;
+    font-weight: 900;
+}
+
+.footer-text {
+    font-family: var(--font-elegant);
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin-bottom: 2.5rem;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 2rem;
+    font-size: 0.9rem;
+    opacity: 0.6;
+}
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header {
+                padding: 6rem 0 3rem;
+            }
+            
+            .page-title {
+                font-size: 2.5rem;
+            }
+            
+            .form-group {
+                flex: 1 1 calc(100% - 30px);
+                min-width: auto;
+            }
+            
+            .newsletter {
+                flex-direction: column;
+            }
+            
+            .social-icons {
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+
+            .social-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .page-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .form-section, .social-section, .faq-section {
+                padding: 25px 20px;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="page-title">Connect with RangRiti</h1>
+                <p class="page-subtitle">We'd love to hear from you — whether you're an art lover, artist, or partner.</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- General Contact Form -->
+        <section class="form-section">
+            <h2 class="section-title">General Inquiry</h2>
+            <form action="/general-inquiry" method="POST" class="form-row">
+                <div class="form-group">
+                    <label for="first-name">First Name</label>
+                    <input type="text" id="first-name" name="firstName" placeholder="Enter your first name" required>
+                </div>
+                <div class="form-group">
+                    <label for="last-name">Last Name</label>
+                    <input type="text" id="last-name" name="lastName" placeholder="Enter your last name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number (Optional)</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <select id="subject" name="subject" required>
+                        <option value="">Select a subject</option>
+                        <option value="general">General Inquiry</option>
+                        <option value="feedback">Feedback</option>
+                        <option value="support">Technical Support</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group full-width">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Type your message here..." required></textarea>
+                </div>
+                <button class="btn" type="submit">Send Message</button>
+            </form>
+        </section>
+
+        <!-- Connect with an Artist -->
+        <section class="form-section">
+            <h2 class="section-title">Connect with an Artist</h2>
+            <form action="/contact/artist" method="POST" class="form-row">
+                <div class="form-group">
+                    <label for="artist-name">Select Artist</label>
+                    <select id="artist-name" name="artistName" required>
+                        <option value="">Select an artist</option>
+                        <% if (typeof artists !== 'undefined' && artists.length > 0) { %>
+                            <% artists.forEach(artist => { %>
+                                <option value="<%= artist.firstName + ' ' + artist.lastName %>">
+                                    <%= artist.firstName + ' ' + artist.lastName %> (<%= artist.specialization %>)
+                                </option>
+                            <% }) %>
+                        <% } else { %>
+                            <option value="">No artists available</option>
+                        <% } %>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="artist-email">Your Email</label>
+                    <input type="email" id="artist-email" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group full-width">
+                    <label for="artist-message">Message to Artist</label>
+                    <textarea id="artist-message" name="message" placeholder="Type your message for the artist..." required></textarea>
+                </div>
+                <button class="btn" type="submit">Send Request</button>
+            </form>
+        </section>
+
+        <!-- Collaboration/Workshop Request -->
+        <section class="form-section">
+            <h2 class="section-title">Collaboration Proposal</h2>
+            <form action="/contact/collaboration" method="POST" class="form-row">
+                <div class="form-group">
+                    <label for="collab-name">Your Name</label>
+                    <input type="text" id="collab-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="collab-organization">Organization</label>
+                    <input type="text" id="collab-organization" name="organization">
+                </div>
+                <div class="form-group">
+                    <label for="collab-email">Email</label>
+                    <input type="email" id="collab-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="collab-phone">Phone</label>
+                    <input type="tel" id="collab-phone" name="phone">
+                </div>
+                <div class="form-group full-width">
+                    <label for="collab-message">Proposal Details</label>
+                    <textarea id="collab-message" name="message" required></textarea>
+                </div>
+                <button class="btn" type="submit">Submit Proposal</button>
+            </form>
+        </section>
+
+        <!-- Feedback Section -->
+        <section class="form-section">
+            <h2 class="section-title">Share Your Feedback</h2>
+            <form action="/contact/feedback" method="POST" class="form-row">
+                <div class="form-group full-width">
+                    <label for="feedback">What do you think about RangRiti?</label>
+                    <textarea id="feedback" name="feedbackText" placeholder="We value your thoughts and suggestions..." required></textarea>
+                </div>
+
+                <div class="form-group full-width">
+                    <label>Your Rating (Optional)</label>
+                    <div class="rating">
+                        <% for(let i = 1; i <= 5; i++) { %>
+                            <input type="radio" id="star<%= i %>" name="rating" value="<%= i %>">
+                            <label for="star<%= i %>"><i class="far fa-star" data-value="<%= i %>"></i></label>
+                        <% } %>
+                    </div>
+                </div>
+
+                <div class="consent-group">
+                    <input type="checkbox" id="consent" name="consent">
+                    <label for="consent">I consent to have my feedback featured on RangRiti</label>
+                </div>
+
+                <button class="btn" type="submit">Send Feedback</button>
+            </form>
+        </section>
+
+        <!-- Stay Connected -->
+        <section class="social-section">
+            <h2 class="section-title">Stay Connected</h2>
+            <p>Follow us for daily inspiration, artist stories, and cultural insights</p>
+            
+            <div class="social-icons">
+                <a href="#" class="social-icon">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="fab fa-telegram"></i>
+                </a>
+            </div>
+            
+            <div class="newsletter">
+                <input type="email" placeholder="Enter your email for updates">
+                <button class="btn">Join RangRiti Circle</button>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    How can I become a registered artist with RangRiti?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We welcome traditional Indian artists to join our platform. Please submit your portfolio through our Artist Registration form (available in the Artists section), along with 5-10 high-quality images of your work. Our curation team will review your submission within 7-10 working days.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    How do I attend workshops organized by RangRiti?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>All upcoming workshops are listed on our Workshops page. You can register online by selecting the workshop you're interested in and completing the payment process. We offer both in-person and virtual workshops. Registered participants receive detailed instructions via email 3 days before the workshop date.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    How does the RangRiti marketplace work?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Our marketplace connects art lovers directly with traditional Indian artists. Each artwork is authentic and comes with a certificate of authenticity. You can browse by art form, region, or artist. Purchases support the artists directly, with RangRiti taking a small commission to maintain our platform and support our cultural initiatives.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Do you offer international shipping?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, we ship worldwide. Shipping costs and delivery times vary by destination. All international shipments include insurance and tracking. Please note that customers are responsible for any customs duties or import taxes in their country.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!--footer-->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">RangRiti</div>
+            <p class="footer-text">Preserving India's artistic heritage for future generations</p>
+            <div class="footer-bottom">
+                <p>&copy; 2025 RangRiti. All rights reserved. Crafted with passion for Indian arts.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Star rating functionality - Enhanced
+        const ratingInputs = document.querySelectorAll('.rating input[type="radio"]');
+        const stars = document.querySelectorAll('.rating i');
+        
+        ratingInputs.forEach((input, index) => {
+            input.addEventListener('change', function() {
+                const value = parseInt(this.value);
+                
+                // Reset all stars
+                stars.forEach(star => {
+                    star.classList.remove('fas', 'active');
+                    star.classList.add('far');
+                });
+                
+                // Fill stars up to the selected value
+                for (let i = 0; i < value; i++) {
+                    stars[i].classList.remove('far');
+                    stars[i].classList.add('fas', 'active');
+                }
+            });
+        });
+
+        // Star hover effect
+        stars.forEach((star, index) => {
+            star.addEventListener('mouseenter', function() {
+                // Highlight stars up to the hovered one
+                for (let i = 0; i <= index; i++) {
+                    stars[i].classList.remove('far');
+                    stars[i].classList.add('fas');
+                }
+            });
+        });
+
+        // Reset stars on mouse leave (unless one is selected)
+        document.querySelector('.rating').addEventListener('mouseleave', function() {
+            const selectedInput = document.querySelector('.rating input[type="radio"]:checked');
+            const selectedValue = selectedInput ? parseInt(selectedInput.value) : 0;
+            
+            stars.forEach((star, index) => {
+                if (index < selectedValue) {
+                    star.classList.remove('far');
+                    star.classList.add('fas', 'active');
+                } else {
+                    star.classList.remove('fas', 'active');
+                    star.classList.add('far');
+                }
+            });
+        });
+
+        // FAQ accordion functionality - Enhanced
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const icon = this.querySelector('i');
+                
+                // Close other open FAQs
+                faqQuestions.forEach(otherQuestion => {
+                    if (otherQuestion !== question) {
+                        const otherAnswer = otherQuestion.nextElementSibling;
+                        const otherIcon = otherQuestion.querySelector('i');
+                        otherAnswer.classList.remove('show');
+                        otherIcon.style.transform = 'rotate(0deg)';
+                    }
+                });
+                
+                // Toggle the current FAQ
+                answer.classList.toggle('show');
+                
+                // Rotate the icon
+                if (answer.classList.contains('show')) {
+                    icon.style.transform = 'rotate(180deg)';
+                } else {
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            });
+        });
+
+        // Enhanced form validation and submission
+        const forms = document.querySelectorAll('form');
+        forms.forEach(form => {
+            form.addEventListener('submit', function(e) {
+                const requiredFields = form.querySelectorAll('[required]');
+                let isValid = true;
+                
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        isValid = false;
+                        field.style.borderColor = '#e74c3c';
+                        field.style.boxShadow = '0 0 0 3px rgba(231, 76, 60, 0.2)';
+                    } else {
+                        field.style.borderColor = 'var(--royal-gold)';
+                        field.style.boxShadow = '0 0 0 3px rgba(218, 165, 32, 0.2)';
+                    }
+                });
+                
+                if (!isValid) {
+                    e.preventDefault();
+                    alert('Please fill in all required fields.');
+                }
+            });
+        });
+
+        // Social media links hover effect enhancement
+        const socialIcons = document.querySelectorAll('.social-icon');
+        socialIcons.forEach(icon => {
+            icon.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) rotate(10deg) scale(1.1)';
+            });
+            
+            icon.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) rotate(0deg) scale(1)';
+            });
+        });
+    </script>
+    <script src="/js/navbar.js"></script>
+</body>
+</html>

@@ -307,7 +307,7 @@
         .cta-button {
             display: inline-block;
             background: var(--terracotta);
-            color: white;
+            color: rgb(0, 0, 0);
             padding: 1rem 2rem;
             text-decoration: none;
             font-weight: 500;
@@ -437,19 +437,19 @@
         .product-info h4 {
             font-family: 'Playfair Display', serif;
             font-size: 1.3rem;
-            color: var(--rich-brown);
+            color: white;
             margin-bottom: 0.5rem;
         }
 
         .artist-name {
-            color: var(--terracotta);
+            color: white;
             font-size: 0.9rem;
             margin-bottom: 0.5rem;
         }
 
         .price {
             font-weight: 600;
-            color: var(--dark-brown);
+            color: white;
             font-size: 1.1rem;
             margin-bottom: 1rem;
         }
@@ -513,47 +513,51 @@
         }
 
         /* Footer */
-        footer {
-            background: var(--dark-brown);
-            color: var(--cream);
-            padding: 3rem 2rem 1rem;
-            text-align: center;
-        }
+.footer {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.95));
+    color: #F5F5DC;
+    text-align: center;
+    padding: 4rem 2rem 2rem;
+    margin-top: 6rem;
+    position: relative;
+}
 
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--royal-gold), transparent);
+}
 
-        .footer-section h3 {
-            font-family: 'Playfair Display', serif;
-            color: var(--terracotta);
-            margin-bottom: 1rem;
-        }
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-        .footer-section a {
-            color: var(--cream);
-            text-decoration: none;
-            display: block;
-            margin-bottom: 0.5rem;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-        }
+.footer-logo {
+    font-family: var(--font-luxury);
+    font-size: 3rem;
+    color: var(--royal-gold);
+    margin-bottom: 1.5rem;
+    font-weight: 900;
+}
 
-        .footer-section a:hover {
-            opacity: 1;
-            color: var(--terracotta);
-        }
+.footer-text {
+    font-family: var(--font-elegant);
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin-bottom: 2.5rem;
+}
 
-        .footer-bottom {
-            border-top: 1px solid var(--rich-brown);
-            padding-top: 1rem;
-            opacity: 0.7;
-        }
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 2rem;
+    font-size: 0.9rem;
+    opacity: 0.6;
+}
 
         /* Animations */
         @keyframes fadeInUp {
@@ -606,10 +610,10 @@
         <div class="nav-container">
             <a href="#" class="logo">Rangriti</a>
             <ul class="nav-links">
-                <li><a href="/">Home</a></li>
-                <li><a href="#about">About</a></li>
+                <li><a href="index.html">Home</a></li>
+                <!-- <li><a href="#about">About</a></li> -->
                 <li><a href="/catalogue">Categories</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <!-- <li><a href="#contact">Contact</a></li> -->
                     <li><a href="/dashboard">Artist Dashboard</a></li>
 
                 <li><a href="#logout" onclick="
@@ -631,13 +635,13 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero" id="home" style="background-image: url(/static/marketplace.png); background-size: cover;  filter: brightness(70%);">
-        <div class="hero-content" >
-            <h1 style="color: white; font-weight: 1000;" >Rangriti Bazaar</h1>
-            <p class="hero-tagline" style="color: white;">"Where Hands Craft Soul into Clay, Canvas, and Stone"</p>
-            <a href="/public/catalogue.html" class="cta-button">Explore Marketplace</a>
-        </div>
-    </section>
+    <section class="hero" id="home" style="background-image: url(/static/Marketplacehero.png); background-size: cover; filter: brightness(70%);">
+    <div class="hero-content">
+        <h1 style="color: rgb(255, 255, 255); font-weight: 1000; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">Rangriti Bazaar</h1>
+        <p class="hero-tagline" style="color: rgb(255, 255, 255); font-weight: 1000; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9);">"Where Hands Craft Soul into Clay, Canvas, and Stone"</p>
+        <a href="/catalogue" class="cta-button">Explore Marketplace</a>
+    </div>
+</section>
 
     <!-- Categories Section -->
     <section class="categories" id="categories">
@@ -723,7 +727,7 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer
     <footer>
         <div class="footer-content">
             <div class="footer-section">
@@ -747,6 +751,16 @@
         </div>
         <div class="footer-bottom">
             <p>&copy; 2025 Rangriti Bazaar. Crafted with love for authentic artistry.</p>
+        </div>
+    </footer>-->
+    <!--footer-->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">RangRiti</div>
+            <p class="footer-text">Preserving India's artistic heritage for future generations</p>
+            <div class="footer-bottom">
+                <p>&copy; 2025 RangRiti. All rights reserved. Crafted with passion for Indian arts.</p>
+            </div>
         </div>
     </footer>
 

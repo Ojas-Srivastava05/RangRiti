@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Art Generator - RangRiti</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <style>
+        /* RangRiti Theme Variables */
+        :root {
+            --sandalwood-beige: #F5DEB3;
+            --warm-sandalwood: #E8D5B7;
+            --deep-sandalwood: #DCC49C;
+            --ivory: #FFFFF0;
+            --cream-white: #FAF0E6;
+            --chocolate-brown: #3D2914;
+            --rich-brown: #6B4423;
+            --royal-gold: #DAA520;
+            --amber-gold: #FFBF00;
+            --font-luxury: 'Cinzel', serif;
+            --font-elegant: 'Playfair Display', serif;
+            --font-classic: 'Crimson Text', serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-classic);
+            background: linear-gradient(45deg, var(--sandalwood-beige) 0%, var(--warm-sandalwood) 50%, var(--deep-sandalwood) 100%);
+            min-height: 100vh;
+            color: var(--chocolate-brown);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--chocolate-brown), var(--rich-brown));
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(61, 41, 20, 0.3);
+        }
+
+        .header h1 {
+            font-family: var(--font-luxury);
+            color: var(--ivory);
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            color: var(--cream-white);
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            background: var(--royal-gold);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: var(--amber-gold);
+            transform: translateY(-2px);
+        }
+
+        .main-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .generator-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(245, 222, 179, 0.8));
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(218, 165, 32, 0.3);
+            border-radius: 25px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(61, 41, 20, 0.15);
+            margin-bottom: 2rem;
+        }
+
+        .input-section {
+            margin-bottom: 2rem;
+        }
+
+        .prompt-label {
+            font-family: var(--font-elegant);
+            font-size: 1.3rem;
+            color: var(--chocolate-brown);
+            margin-bottom: 1rem;
+            display: block;
+            font-weight: 600;
+        }
+
+        .prompt-input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--royal-gold);
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-family: var(--font-classic);
+            background: var(--ivory);
+            color: var(--chocolate-brown);
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .prompt-input:focus {
+            outline: none;
+            border-color: var(--amber-gold);
+            box-shadow: 0 0 20px rgba(218, 165, 32, 0.3);
+        }
+
+        .generate-btn {
+            width: 100%;
+            padding: 1.2rem 2rem;
+            background: linear-gradient(135deg, var(--royal-gold), var(--amber-gold));
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: var(--font-elegant);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(218, 165, 32, 0.4);
+        }
+
+        .generate-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--royal-gold);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .result-section {
+            display: none;
+            margin-top: 2rem;
+        }
+
+        .result-section.show {
+            display: block;
+        }
+
+        .generated-image-container {
+            text-align: center;
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .generated-image {
+            max-width: 100%;
+            max-height: 600px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 1.5rem;
+        }
+
+        .image-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .download-btn {
+            background: var(--royal-gold);
+            color: white;
+        }
+
+        .download-btn:hover {
+            background: var(--amber-gold);
+            transform: translateY(-2px);
+        }
+
+        .view-btn {
+            background: var(--chocolate-brown);
+            color: white;
+        }
+
+        .view-btn:hover {
+            background: var(--rich-brown);
+            transform: translateY(-2px);
+        }
+
+        .new-generation-btn {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+        }
+
+        .new-generation-btn:hover {
+            background: linear-gradient(135deg, #20c997, #28a745);
+            transform: translateY(-2px);
+        }
+
+        .prompt-used {
+            background: var(--cream-white);
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--royal-gold);
+            text-align: left;
+            margin-top: 1rem;
+        }
+
+        .prompt-used strong {
+            color: var(--chocolate-brown);
+        }
+
+        .error {
+            background: #ffebee;
+            color: #c62828;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            margin: 1rem 0;
+            border-left: 4px solid #c62828;
+        }
+
+        .example-prompts {
+            margin-top: 1rem;
+        }
+
+        .example-prompts h4 {
+            color: var(--chocolate-brown);
+            margin-bottom: 0.5rem;
+            font-family: var(--font-elegant);
+        }
+
+        .example-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .example-tag {
+            background: var(--royal-gold);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .example-tag:hover {
+            background: var(--amber-gold);
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .main-container {
+                padding: 2rem 1rem;
+            }
+
+            .generator-card {
+                padding: 2rem;
+            }
+
+            .image-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .action-btn {
+                width: 200px;
+                justify-content: center;
+            }
+
+            .back-btn {
+                position: relative;
+                top: auto;
+                left: auto;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="../index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Home
+        </a>
+        <h1>AI Art Generator</h1>
+        <p>Create Traditional Indian Art with AI</p>
+    </header>
+
+    <div class="main-container">
+        <div class="generator-card">
+            <div class="input-section">
+                <label for="prompt-input" class="prompt-label">
+                    <i class="fas fa-palette"></i> Describe your artwork:
+                </label>
+                <textarea 
+                    id="prompt-input" 
+                    class="prompt-input"
+                    placeholder="Describe the traditional Indian artwork you want to create... (e.g., 'A beautiful Madhubani painting with peacocks and lotus flowers')"
+                    maxlength="500"
+                ></textarea>
+                
+                <div class="example-prompts">
+                    <h4>💡 Click for inspiration:</h4>
+                    <div class="example-tags">
+                        <span class="example-tag" onclick="setPrompt('A vibrant Madhubani painting with peacocks dancing around lotus flowers')">Madhubani Peacocks</span>
+                        <span class="example-tag" onclick="setPrompt('Traditional Warli art depicting village life with dancing figures')">Warli Village Life</span>
+                        <span class="example-tag" onclick="setPrompt('Intricate Pattachitra painting showing Lord Krishna with Radha')">Pattachitra Krishna</span>
+                        <span class="example-tag" onclick="setPrompt('Colorful Kalamkari textile pattern with floral motifs and birds')">Kalamkari Florals</span>
+                        <span class="example-tag" onclick="setPrompt('Detailed Rajasthani miniature painting of a royal court scene')">Rajasthani Miniature</span>
+                        <span class="example-tag" onclick="setPrompt('Traditional Kerala mural art depicting Hindu deities')">Kerala Mural</span>
+                    </div>
+                </div>
+            </div>
+
+            <button id="generate-btn" class="generate-btn" onclick="generateImage()">
+                <i class="fas fa-magic"></i> Generate Artwork
+            </button>
+
+            <div id="loading" class="loading">
+                <div class="loading-spinner"></div>
+                <h3>🎨 Creating your masterpiece...</h3>
+                <p>This may take up to 30 seconds. Please wait while our AI crafts your traditional Indian artwork.</p>
+            </div>
+
+            <div id="result" class="result-section">
+                <!-- Generated image will appear here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function setPrompt(promptText) {
+            document.getElementById('prompt-input').value = promptText;
+        }
+
+        async function generateImage() {
+            const prompt = document.getElementById('prompt-input').value.trim();
+            const generateBtn = document.getElementById('generate-btn');
+            const loadingDiv = document.getElementById('loading');
+            const resultDiv = document.getElementById('result');
+            
+            if (!prompt) {
+                alert('Please enter a description for your artwork');
+                return;
+            }
+            
+            try {
+                // Show loading state
+                generateBtn.disabled = true;
+                generateBtn.innerHTML = '⏳ Generating...';
+                loadingDiv.classList.add('show');
+                resultDiv.classList.remove('show');
+                
+                // Update loading message for real-time generation
+                const loadingText = loadingDiv.querySelector('h3');
+                const loadingDesc = loadingDiv.querySelector('p');
+                loadingText.textContent = '🎨 Creating your masterpiece...';
+                loadingDesc.textContent = 'Using FAL AI streaming for real-time generation...';
+                
+                const response = await fetch('/generate-image', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ prompt: prompt })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    console.log('✅ Image generated successfully with FAL AI');
+                    
+                    // Display the image
+                    resultDiv.innerHTML = `
+                        <div class="generated-image-container">
+                            <img src="${data.imageUrl}" alt="Generated artwork" class="generated-image" onload="this.style.opacity=1" style="opacity:0;transition:opacity 0.5s">
+                            <div class="image-actions">
+                                <button onclick="downloadImage('${data.imageUrl}')" class="action-btn download-btn">
+                                    📥 Download Image
+                                </button>
+                                <button onclick="openImageInNewTab('${data.imageUrl}')" class="action-btn view-btn">
+                                    👁️ View Full Size
+                                </button>
+                                <button onclick="generateNewImage()" class="action-btn new-generation-btn">
+                                    ✨ Generate Another
+                                </button>
+                            </div>
+                            <div style="background: #f5f5f5; padding: 1rem; border-radius: 10px; margin-top: 1rem; text-align: left;">
+                                <strong>Your Prompt:</strong> "${data.prompt}"<br>
+                                <small style="color: #666; margin-top: 0.5rem; display: block;">
+                                    Generated with FAL AI • ${data.metadata.service}
+                                    ${data.metadata.seed ? ` • Seed: ${data.metadata.seed}` : ''}
+                                </small>
+                            </div>
+                        </div>
+                    `;
+                    
+                    resultDiv.classList.add('show');
+                    
+                } else {
+                    console.error('❌ Generation failed:', data.error);
+                    resultDiv.innerHTML = `<div class="error">
+                        ⚠️ Error: ${data.error}
+                        <br><small style="margin-top: 0.5rem; display: block; opacity: 0.7;">
+                            ${data.details || 'Please try again with a different prompt.'}
+                        </small>
+                    </div>`;
+                    resultDiv.classList.add('show');
+                }
+                
+            } catch (error) {
+                console.error('🚨 Network error:', error);
+                resultDiv.innerHTML = `<div class="error">
+                    📡 Network error. Please check your connection and try again.
+                    <br><small style="margin-top: 0.5rem; display: block; opacity: 0.7;">
+                        Error: ${error.message}
+                    </small>
+                </div>`;
+                resultDiv.classList.add('show');
+            } finally {
+                // Reset loading state
+                generateBtn.disabled = false;
+                generateBtn.innerHTML = '✨ Generate Artwork';
+                loadingDiv.classList.remove('show');
+            }
+        }
+
+        function downloadImage(imageUrl) {
+            try {
+                const link = document.createElement('a');
+                link.href = `/download-image?url=${encodeURIComponent(imageUrl)}`;
+                link.download = `rangriti-fal-artwork-${Date.now()}.jpg`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                // Show download success message
+                const toast = document.createElement('div');
+                toast.style.cssText = `
+                    position: fixed; top: 20px; right: 20px; z-index: 10000;
+                    background: #4CAF50; color: white; padding: 12px 20px;
+                    border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+                    font-weight: 600; opacity: 0; transition: opacity 0.3s;
+                `;
+                toast.textContent = '✅ Download started!';
+                document.body.appendChild(toast);
+                
+                setTimeout(() => toast.style.opacity = '1', 100);
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    setTimeout(() => document.body.removeChild(toast), 300);
+                }, 3000);
+                
+            } catch (error) {
+                alert('Download failed. Please try right-clicking the image and selecting "Save image as..."');
+            }
+        }
+
+        function openImageInNewTab(imageUrl) {
+            window.open(imageUrl, '_blank');
+        }
+
+        function generateNewImage() {
+            document.getElementById('prompt-input').value = '';
+            document.getElementById('result').classList.remove('show');
+            document.getElementById('prompt-input').focus();
+        }
+
+        // Allow Enter key to generate
+        document.getElementById('prompt-input').addEventListener('keydown', function(event) {
+            if (event.ctrlKey && event.key === 'Enter') {
+                generateImage();
+            }
+        });
+    </script>
+</body>
+</html>
