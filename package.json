@@ -21,6 +21,7 @@
   "homepage": "https://github.com/Ojas-Srivastava05/RangRiti#readme",
   "dependencies": {
     "@clerk/clerk-sdk-node": "^4.13.23",
+    "@fal-ai/client": "^1.6.1",
     "bcrypt": "^6.0.0",
     "bcryptjs": "^3.0.2",
     "body-parser": "^2.2.0",

@@ -13,6 +13,8 @@ import Artist from '../models.js/artist.models.js';
 import Workshop from '../models.js/workshop.models.js'; // Import the new Workshop model
 
 import session from 'express-session';
+// Add this import after your existing imports
+import { fal } from "@fal-ai/client";
 import multer from 'multer';
 import cloudinaryModule from 'cloudinary';
 import Product from '../models.js/product.models.js'// ✅ your Product schema
@@ -33,6 +35,9 @@ const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 dotenv.config({ path: path.join(__dirname, '../.env') });
+fal.config({
+  credentials: process.env.FAL_API_KEY
+});
 
 const port = process.env.PORT || 3000;
 
@@ -43,7 +48,12 @@ app.set('views', path.join(__dirname, '..', 'views'));  // by sunil
 // --- Middleware ---
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors()); // Place this after express.json() and express.urlencoded()
+app.use(cors({
+  origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Cookie']
+})); // Place this after express.json() and express.urlencoded()
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
     api_key: process.env.CLOUDINARY_API_KEY,
@@ -1129,6 +1139,249 @@ app.post("/api/tts", async (req, res) => {
         console.error(error);
         res.status(500).json({ error: "TTS request failed" });
     }
+});
+
+// Add this endpoint before your 404 error handler in index.js
+
+// Replace your existing /generate-image endpoint with this corrected version
+app.post('/generate-image', async (req, res) => {
+    try {
+        const { prompt } = req.body;
+
+        // Validate the prompt
+        if (!prompt || typeof prompt !== 'string' || prompt.trim() === '') {
+            return res.status(400).json({ 
+                success: false, 
+                error: 'A valid prompt is required' 
+            });
+        }
+
+        // Check if API key is loaded
+        const apiKey = process.env.FAL_API_KEY;
+        console.log('🔑 FAL API Key status:', apiKey ? `Loaded (${apiKey.substring(0, 8)}...)` : '❌ NOT LOADED');
+        
+        if (!apiKey) {
+            return res.status(500).json({
+                success: false,
+                error: 'FAL API key not configured. Please contact administrator.',
+                details: 'FAL_API_KEY environment variable is missing'
+            });
+        }
+
+        console.log(`🎨 Generating image with prompt: "${prompt}"`);
+
+        // Enhance prompt for traditional Indian art context
+        const enhancedPrompt = `Traditional Indian art style, ${prompt}, detailed, high quality, cultural heritage, vibrant colors, intricate patterns, masterpiece`;
+
+        console.log('📡 Starting FAL AI generation...');
+
+        try {
+            // Use FAL AI with proper error handling
+            const result = await fal.subscribe("fal-ai/flux/dev", {
+                input: {
+                    prompt: enhancedPrompt,
+                    image_size: "landscape_4_3",
+                    num_inference_steps: 28,
+                    guidance_scale: 3.5,
+                    num_images: 1,
+                    enable_safety_checker: true,
+                    safety_tolerance: "2",
+                    output_format: "jpeg",
+                    output_quality: 90
+                },
+                logs: true,
+                onQueueUpdate: (update) => {
+                    console.log('📊 Queue update:', update.status);
+                    if (update.status === "IN_PROGRESS") {
+                        console.log('⏳ Generation in progress...');
+                    }
+                }
+            });
+
+            console.log('✅ FAL AI result received:', result);
+
+            // Check different possible result structures
+            let imageUrl = null;
+            let seed = null;
+            let timings = null;
+
+            if (result && result.images && result.images.length > 0) {
+                // Standard format: result.images[0].url
+                imageUrl = result.images[0].url;
+                seed = result.seed;
+                timings = result.timings;
+            } else if (result && result.data && result.data.images && result.data.images.length > 0) {
+                // Alternative format: result.data.images[0].url
+                imageUrl = result.data.images[0].url;
+                seed = result.data.seed;
+                timings = result.data.timings;
+            } else if (result && result.image) {
+                // Single image format: result.image
+                imageUrl = result.image;
+                seed = result.seed;
+                timings = result.timings;
+            } else if (result && result.url) {
+                // Direct URL format: result.url
+                imageUrl = result.url;
+                seed = result.seed;
+                timings = result.timings;
+            }
+
+            if (!imageUrl) {
+                console.error('❌ No image URL found in result:', JSON.stringify(result, null, 2));
+                throw new Error('No image generated - unexpected result format');
+            }
+
+            console.log('🎨 Image URL received:', imageUrl);
+
+            // Return success response
+            res.status(200).json({
+                success: true,
+                imageUrl: imageUrl,
+                prompt: prompt.trim(),
+                enhancedPrompt: enhancedPrompt,
+                downloadUrl: imageUrl,
+                metadata: {
+                    generatedAt: new Date().toISOString(),
+                    service: 'FAL AI Flux Dev',
+                    userId: req.session.user?.id || 'anonymous',
+                    seed: seed,
+                    timings: timings
+                }
+            });
+
+        } catch (falError) {
+            console.error('❌ FAL AI Error:', falError);
+            
+            // More specific error handling
+            if (falError.message && falError.message.includes('rate limit')) {
+                throw new Error('Rate limit exceeded. Please wait a moment and try again.');
+            } else if (falError.message && falError.message.includes('quota')) {
+                throw new Error('API quota exceeded. Please check your FAL AI account.');
+            } else if (falError.message && falError.message.includes('unauthorized')) {
+                throw new Error('Invalid API key. Please check your FAL AI credentials.');
+            } else {
+                throw new Error(`FAL AI generation failed: ${falError.message}`);
+            }
+        }
+
+    } catch (error) {
+        console.error('🚨 Image generation error:', error);
+        
+        // Return appropriate error response
+        res.status(500).json({
+            success: false,
+            error: 'Failed to generate image. Please try again later.',
+            details: process.env.NODE_ENV === 'development' ? error.message : 'Image generation service unavailable'
+        });
+    }
+});
+
+// Add server-sent events endpoint for real-time progress (optional)
+app.get('/generate-image-stream/:sessionId', async (req, res) => {
+    const { sessionId } = req.params;
+    const { prompt } = req.query;
+
+    if (!prompt) {
+        return res.status(400).json({ error: 'Prompt is required' });
+    }
+
+    // Set up Server-Sent Events
+    res.writeHead(200, {
+        'Content-Type': 'text/event-stream',
+        'Cache-Control': 'no-cache',
+        'Connection': 'keep-alive',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Cache-Control'
+    });
+
+    try {
+        const enhancedPrompt = `Traditional Indian art style, ${prompt}, detailed, high quality, cultural heritage, vibrant colors, intricate patterns`;
+
+        const stream = await fal.stream("fal-ai/flux/dev", {
+            input: {
+                prompt: enhancedPrompt,
+                image_size: "landscape_4_3",
+                num_inference_steps: 28,
+                guidance_scale: 3.5,
+                num_images: 1,
+                enable_safety_checker: true
+            }
+        });
+
+        // Send progress events to client
+        for await (const event of stream) {
+            if (event.type === 'progress') {
+                res.write(`data: ${JSON.stringify({
+                    type: 'progress',
+                    progress: event.data,
+                    message: `Generating... ${event.data}%`
+                })}\n\n`);
+            } else if (event.type === 'error') {
+                res.write(`data: ${JSON.stringify({
+                    type: 'error',
+                    error: event.data
+                })}\n\n`);
+                break;
+            }
+        }
+
+        // Send final result
+        const result = await stream.done();
+        
+        if (result.data && result.data.images && result.data.images.length > 0) {
+            res.write(`data: ${JSON.stringify({
+                type: 'complete',
+                imageUrl: result.data.images[0].url,
+                prompt: prompt
+            })}\n\n`);
+        }
+
+    } catch (error) {
+        res.write(`data: ${JSON.stringify({
+            type: 'error',
+            error: error.message
+        })}\n\n`);
+    } finally {
+        res.end();
+    }
+});
+
+// Optional: Endpoint to download image directly (if you want a dedicated download route)
+app.get('/download-image', async (req, res) => {
+    try {
+        const { url } = req.query;
+        
+        if (!url) {
+            return res.status(400).json({ error: 'Image URL is required' });
+        }
+        
+        // Fetch the image
+        const imageResponse = await fetch(url);
+        
+        if (!imageResponse.ok) {
+            throw new Error('Failed to fetch image');
+        }
+        
+        // Set headers for download
+        res.setHeader('Content-Type', 'image/png');
+        res.setHeader('Content-Disposition', `attachment; filename="rangriti-artwork-${Date.now()}.png"`);
+        
+        // Pipe the image data to response
+        const imageBuffer = await imageResponse.arrayBuffer();
+        res.send(Buffer.from(imageBuffer));
+        
+    } catch (error) {
+        console.error('Download error:', error);
+        res.status(500).json({ error: 'Failed to download image' });
+    }
+});
+
+// AI Art Generator page
+app.get('/ai-generator', (req, res) => {
+    // Optional: Check if user is logged in
+    
+    res.render('ai-generator');
 });
 
 // 404 - Page Not Found (Keep this AFTER all your routes)
