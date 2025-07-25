@@ -28,134 +28,7 @@
             overflow-x: hidden; /* Prevent horizontal scroll */
         }
 
-        /* --- Navigation Bar --- */
-        .nav-container {
-            position: fixed;
-            top: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-            backdrop-filter: blur(20px);
-            background-color: rgba(0, 0, 0, 0.6); /* Slightly darker background for contrast */
-            padding: 15px 25px;
-            border-radius: 50px;
-            border: 1px solid var(--border-gold);
-            z-index: 1000;
-            animation: slideDown 1s ease-out;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Enhanced shadow */
-        }
-
-        @keyframes slideDown {
-            from { transform: translateX(-50%) translateY(-100px); opacity: 0; }
-            to { transform: translateX(-50%) translateY(0); opacity: 1; }
-        }
-
-        .nav-btn {
-            font-family: 'EB Garamond', serif;
-            background: transparent;
-            color: #FAF3E0; /* Light Ivory for better contrast on dark bg */
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Stronger shadow */
-            border: none;
-            padding: 8px 16px;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            animation: navBtnFadeIn 1s ease-out forwards;
-        }
-
-        @keyframes navBtnFadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .nav-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .nav-btn:hover::before {
-            left: 100%;
-        }
-
-        .nav-btn:hover {
-            background: rgba(255, 215, 0, 0.1); /* Lighter hover background */
-            transform: scale(1.05);
-            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
-            color: var(--text-gold); /* Gold color on hover */
-        }
-
-        /* Dropdown styles */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-toggle {
-            cursor: pointer;
-        }
-
-        .dropdown-menu {
-            position: absolute;
-            top: calc(100% + 10px); /* Position below the button */
-            left: 50%;
-            transform: translateX(-50%); /* Center the dropdown */
-            background: rgba(0, 0, 0, 0.95);
-            border: 1px solid var(--border-gold);
-            border-radius: 10px;
-            padding: 10px 0;
-            display: none;
-            flex-direction: column;
-            min-width: 200px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
-            z-index: 1001;
-            opacity: 0;
-            transform: translateX(-50%) translateY(20px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-
-        .dropdown:hover .dropdown-menu {
-            display: flex;
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
-
-        .dropdown-item {
-            font-family: 'EB Garamond', serif;
-            color: #FAF3E0;
-            text-decoration: none;
-            padding: 10px 20px;
-            display: block;
-            transition: all 0.3s ease;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-        }
-
-        .dropdown-item:hover {
-            background: rgba(255, 215, 0, 0.2);
-            color: var(--primary-gold);
-            padding-left: 25px; /* Slight indent on hover */
-        }
-
-        .dropdown-arrow {
-            font-size: 0.8em;
-            margin-left: 5px;
-            display: inline-block;
-            transition: transform 0.3s ease;
-        }
-
-        .dropdown:hover .dropdown-arrow {
-            transform: rotate(180deg);
-        }
+        /* --- Navigation Bar (REMOVED - Using Yakshagana navbar below) --- */
 
         /* --- Hero Section --- */
         .hero {
@@ -188,7 +61,6 @@
         }
 
         .hero-content {
-            padding-top: 100px; /* Space for fixed nav */
             max-width: 800px;
             animation: fadeIn 1.5s ease-out forwards;
         }
@@ -404,14 +276,14 @@
             .nav-container {
                 flex-wrap: wrap;
                 justify-content: center;
-                top: 15px;
-                padding: 10px 15px;
-                border-radius: 30px;
+                padding: 0.5rem 1rem;
+                border-radius: 0; /* Keep straight corners on mobile */
             }
 
             .nav-btn {
-                font-size: 0.8rem;
-                padding: 6px 12px;
+                font-size: 14px;
+                padding: 10px 20px;
+                margin: 0 5px;
             }
 
             .hero h1 {
@@ -443,10 +315,12 @@
 
         @media (max-width: 480px) {
             .nav-container {
-                gap: 5px;
+                border-radius: 0; /* Keep straight corners */
             }
             .nav-btn {
-                padding: 5px 8px;
+                padding: 8px 15px;
+                font-size: 12px;
+                margin: 0 3px;
             }
             .hero h1 {
                 font-size: 2.5rem;
@@ -458,9 +332,143 @@
                 font-size: 2rem;
             }
         }
+
+        /* === NAVBAR STYLES FROM YAKSHAGANASTORY === */
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(37, 16, 5, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--yakshagana-gold);
+            animation: slideDown 0.8s ease-out;
+            border-radius: 0; /* Remove curves from navbar corners */
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, rgba(224, 180, 0, 0.1), rgba(255, 215, 0, 0.05));
+            color: var(--text-gold);
+            border: 1px solid rgba(224, 180, 0, 0.3);
+            padding: 12px 30px;
+            margin: 0 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Cinzel Decorative', serif;
+            font-weight: 400;
+            font-size: 16px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            animation: navBtnFadeIn 1s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes navBtnFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-btn:hover::before {
+            left: 100%;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(224, 180, 0, 0.3);
+            border-color: var(--text-gold);
+            background: linear-gradient(135deg, rgba(224, 180, 0, 0.2), rgba(255, 215, 0, 0.1));
+        }
+
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown-toggle { cursor: pointer; }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background: rgba(37, 16, 5, 0.95);
+            min-width: 200px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            border-radius: 15px;
+            border: 1px solid rgba(224, 180, 0, 0.3);
+            backdrop-filter: blur(10px);
+            z-index: 1001;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 10px;
+        }
+        .dropdown:hover .dropdown-menu {
+            display: block;
+            animation: fadeIn 0.3s ease-out;
+        }
+        .dropdown-item {
+            color: var(--text-light);
+            padding: 12px 20px;
+            text-decoration: none;
+            display: block;
+            font-family: 'EB Garamond', serif;
+            transition: all 0.3s ease;
+            border-radius: 10px;
+            margin: 5px;
+        }
+        .dropdown-item:hover {
+            background: linear-gradient(135deg, rgba(224, 180, 0, 0.2), rgba(255, 215, 0, 0.1));
+            color: var(--text-gold);
+            transform: translateX(5px);
+        }
+        .dropdown-arrow {
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+        .dropdown:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
     </style>
 </head>
 <body>
+
+    <nav class="nav-container">
+        <button class="nav-btn">Artists</button>
+        <button class="nav-btn">Workshops</button>
+        <button class="nav-btn">Calendar</button>
+        <div class="dropdown">
+            <button class="nav-btn dropdown-toggle">Stories <span class="dropdown-arrow">▼</span></button>
+            <div class="dropdown-menu">
+                <a href="#" class="dropdown-item">Bharatanatyam Stories</a>
+                <a href="#" class="dropdown-item">Blue Pottery Stories</a>
+                <a href="#" class="dropdown-item">Yakshagana Stories</a>
+            </div>
+        </div>
+        <button class="nav-btn">Connect</button>
+    </nav>
 
 <main>
     <section class="hero">
