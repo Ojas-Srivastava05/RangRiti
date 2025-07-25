@@ -5,16 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blue Pottery: Ancient Tales in Motion</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/navbar.css">
     <style>
         /* CSS Variables */
         :root {
-            --bharatnatyam-gold: #CDA434; /* A slightly different gold for Bharatnatyam */
+            --yakshagana-gold: #E0B400;
             --text-gold: #FFD700;
             --text-light: rgba(255, 248, 220, 0.9);
-            --dark-background: #150500; /* Deep, rich brown/black */
-            --card-background: rgba(30, 15, 0, 0.7); /* Slightly lighter, semi-transparent */
-            --border-gold: rgba(255, 215, 0, 0.4);
+            --dark-background: #251005;
+            --card-background: rgba(30, 15, 0, 0.7);
+            --border-gold: rgba(224, 180, 0, 0.3);
             --primary-gold: #FFD700;
         }
 
@@ -22,55 +21,64 @@
         body {
             margin: 0;
             font-family: 'EB Garamond', serif;
-            background: linear-gradient(to bottom, #201000, #150500); /* Subtle gradient for depth */
+            background: linear-gradient(45deg, #251005 0%, #3D1A00 50%, #4A1F00 100%);
+            background-attachment: fixed;
             color: var(--text-light);
-            line-height: 1.6;
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            line-height: 1.7;
+            overflow-x: hidden;
+            min-height: 100vh;
         }
 
         /* --- Navigation Bar --- */
         .nav-container {
-            position: fixed;
-            top: 30px;
-            left: 50%;
-            transform: translateX(-50%);
             display: flex;
-            gap: 10px;
-            backdrop-filter: blur(20px);
-            background-color: rgba(0, 0, 0, 0.6); /* Slightly darker background for contrast */
-            padding: 15px 25px;
-            border-radius: 50px;
-            border: 1px solid var(--border-gold);
+            justify-content: center;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(37, 16, 5, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
             z-index: 1000;
-            animation: slideDown 1s ease-out;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Enhanced shadow */
+            border-bottom: 2px solid var(--yakshagana-gold);
+            animation: slideDown 0.8s ease-out;
         }
 
         @keyframes slideDown {
-            from { transform: translateX(-50%) translateY(-100px); opacity: 0; }
-            to { transform: translateX(-50%) translateY(0); opacity: 1; }
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         .nav-btn {
-            font-family: 'EB Garamond', serif;
-            background: transparent;
-            color: #FAF3E0; /* Light Ivory for better contrast on dark bg */
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Stronger shadow */
-            border: none;
-            padding: 8px 16px;
+            background: linear-gradient(135deg, rgba(224, 180, 0, 0.1), rgba(255, 215, 0, 0.05));
+            color: var(--text-gold);
+            border: 1px solid rgba(224, 180, 0, 0.3);
+            padding: 12px 30px;
+            margin: 0 15px;
             border-radius: 25px;
-            font-size: 0.9rem;
-            font-weight: 500;
             cursor: pointer;
-            transition: all 0.3s ease;
+            font-family: 'Cinzel Decorative', serif;
+            font-weight: 400;
+            font-size: 16px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
             animation: navBtnFadeIn 1s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
         }
 
         @keyframes navBtnFadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .nav-btn::before {
@@ -81,7 +89,7 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
-            transition: left 0.5s ease;
+            transition: left 0.5s;
         }
 
         .nav-btn:hover::before {
@@ -89,83 +97,67 @@
         }
 
         .nav-btn:hover {
-            background: rgba(255, 215, 0, 0.1); /* Lighter hover background */
-            transform: scale(1.05);
-            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
-            color: var(--text-gold); /* Gold color on hover */
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(224, 180, 0, 0.3);
+            border-color: var(--text-gold);
+            background: linear-gradient(135deg, rgba(224, 180, 0, 0.2), rgba(255, 215, 0, 0.1));
         }
 
         /* Dropdown styles */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-toggle {
-            cursor: pointer;
-        }
-
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown-toggle { cursor: pointer; }
         .dropdown-menu {
-            position: absolute;
-            top: calc(100% + 10px); /* Position below the button */
-            left: 50%;
-            transform: translateX(-50%); /* Center the dropdown */
-            background: rgba(0, 0, 0, 0.95);
-            border: 1px solid var(--border-gold);
-            border-radius: 10px;
-            padding: 10px 0;
             display: none;
-            flex-direction: column;
+            position: absolute;
+            background: rgba(37, 16, 5, 0.95);
             min-width: 200px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            border-radius: 15px;
+            border: 1px solid rgba(224, 180, 0, 0.3);
+            backdrop-filter: blur(10px);
             z-index: 1001;
-            opacity: 0;
-            transform: translateX(-50%) translateY(20px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 10px;
         }
-
         .dropdown:hover .dropdown-menu {
-            display: flex;
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
-
-        .dropdown-item {
-            font-family: 'EB Garamond', serif;
-            color: #FAF3E0;
-            text-decoration: none;
-            padding: 10px 20px;
             display: block;
+            animation: fadeIn 0.3s ease-out;
+        }
+        .dropdown-item {
+            color: var(--text-light);
+            padding: 12px 20px;
+            text-decoration: none;
+            display: block;
+            font-family: 'EB Garamond', serif;
             transition: all 0.3s ease;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            margin: 5px;
         }
-
         .dropdown-item:hover {
-            background: rgba(255, 215, 0, 0.2);
-            color: var(--primary-gold);
-            padding-left: 25px; /* Slight indent on hover */
+            background: linear-gradient(135deg, rgba(224, 180, 0, 0.2), rgba(255, 215, 0, 0.1));
+            color: var(--text-gold);
+            transform: translateX(5px);
         }
-
         .dropdown-arrow {
-            font-size: 0.8em;
-            margin-left: 5px;
-            display: inline-block;
+            margin-left: 8px;
             transition: transform 0.3s ease;
         }
-
         .dropdown:hover .dropdown-arrow {
             transform: rotate(180deg);
         }
 
         /* --- Hero Section --- */
         .hero {
-            position: relative;
             height: 100vh;
+            background: linear-gradient(rgba(37, 16, 5, 0.4), rgba(61, 26, 0, 0.6)), 
+                        url('https://upload.wikimedia.org/wikipedia/commons/e/e3/Bharatnatyam_dancer.jpg') center/cover;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             text-align: center;
-            color: var(--text-light);
+            position: relative;
             overflow: hidden;
         }
 
@@ -174,11 +166,9 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://upload.wikimedia.org/wikipedia/commons/e/e3/Bharatnatyam_dancer.jpg') no-repeat center center/cover; /* Bharatnatyam image */
-            filter: grayscale(80%) brightness(40%); /* Desaturate and darken */
-            z-index: -1;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(224, 180, 0, 0.1) 0%, transparent 70%);
             animation: fadeInBackground 2s ease-out;
         }
 
@@ -188,64 +178,78 @@
         }
 
         .hero-content {
-            padding-top: 100px; /* Space for fixed nav */
+            z-index: 2;
             max-width: 800px;
-            animation: fadeIn 1.5s ease-out forwards;
+            padding: 0 2rem;
+            animation: fadeIn 1.5s ease-out 0.5s both;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero h1 {
             font-family: 'Cinzel Decorative', serif;
             font-size: 4.5rem;
+            font-weight: 700;
             color: var(--text-gold);
-            margin-bottom: 20px;
-            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7);
-            letter-spacing: 2px;
-            animation: scaleIn 1.5s ease-out forwards;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+            animation: scaleIn 1s ease-out 1s both;
         }
 
         @keyframes scaleIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         .hero p {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: var(--text-light);
+            line-height: 1.8;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            font-style: italic;
         }
 
         /* --- Section Styling --- */
         .section {
-            padding: 80px 5%;
-            margin-top: 0; /* No top margin as hero takes full height */
-            position: relative;
-            z-index: 1;
-            background-color: var(--dark-background); /* Ensure consistent background */
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: slideInFromLeft 1s ease-out;
         }
 
         .section h2 {
             font-family: 'Cinzel Decorative', serif;
-            font-size: 3.5rem;
-            color: var(--bharatnatyam-gold);
+            font-size: 3rem;
+            color: var(--text-gold);
             text-align: center;
-            margin-bottom: 60px;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+            margin-bottom: 3rem;
             position: relative;
-            padding-bottom: 15px;
-            animation: slideInFromLeft 1s ease-out forwards;
-            opacity: 0;
-            transform: translateX(-50px);
+            animation: slideInFromLeft 1s ease-out 0.3s both;
         }
 
         @keyframes slideInFromLeft {
-            from { opacity: 0; transform: translateX(-50px); }
-            to { opacity: 1; transform: translateX(0); }
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         .section h2::after {
@@ -253,81 +257,73 @@
             display: block;
             width: 100px;
             height: 3px;
-            background: linear-gradient(to right, transparent, var(--text-gold), transparent);
-            margin: 15px auto 0;
-            border-radius: 5px;
+            background: linear-gradient(90deg, var(--yakshagana-gold), var(--text-gold));
+            margin: 1rem auto;
+            border-radius: 2px;
         }
 
         /* --- Detailed Story Sections --- */
         .detailed-story-section {
-            max-width: 900px;
-            margin: 80px auto; /* Margin between detailed stories */
-            padding: 40px;
-            background-color: rgba(0, 0, 0, 0.7); /* Slightly transparent background */
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
-            border: 1px solid var(--border-gold);
-            animation: fadeIn 1s ease-out forwards;
-            line-height: 1.8; /* Adjusted for better readability of detailed text */
+            background: linear-gradient(135deg, rgba(37, 16, 5, 0.8), rgba(61, 26, 0, 0.6));
+            border: 1px solid rgba(224, 180, 0, 0.2);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            animation: fadeIn 1s ease-out;
         }
 
-        .detailed-story-section h1 { /* Using h1 for main story title within this section */
+        .detailed-story-section h1 {
             font-family: 'Cinzel Decorative', serif;
-            font-size: 3.8rem;
+            font-size: 2.5rem;
             color: var(--text-gold);
+            margin-bottom: 2rem;
             text-align: center;
-            margin-bottom: 30px;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
             position: relative;
-            padding-bottom: 15px;
         }
 
         .detailed-story-section h1::after {
             content: '';
             display: block;
-            width: 150px;
-            height: 3px;
-            background: linear-gradient(to right, transparent, var(--text-gold), transparent);
-            margin: 15px auto 0;
-            border-radius: 5px;
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--yakshagana-gold), var(--text-gold));
+            margin: 1rem auto;
+            border-radius: 1px;
         }
 
-        .detailed-story-section h3 { /* Using h3 for subheadings within a detailed story */
-            font-family: 'EB Garamond', serif;
-            font-size: 2.2rem;
-            color: var(--bharatnatyam-gold);
-            margin-top: 40px;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            border-bottom: 1px dashed rgba(255, 215, 0, 0.2);
-            padding-bottom: 10px;
+        .detailed-story-section h3 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1.5rem;
+            color: var(--yakshagana-gold);
+            margin: 2rem 0 1rem 0;
         }
 
         .detailed-story-section p {
-            font-size: 1.15rem;
-            margin-bottom: 1.5em;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
             text-align: justify;
+            color: var(--text-light);
         }
 
         .detailed-story-section strong {
             color: var(--text-gold);
+            font-weight: 600;
         }
 
         /* --- Footer --- */
         .footer {
-            background-color: #0d0600;
-            color: rgba(255, 248, 220, 0.7);
+            background: linear-gradient(135deg, rgba(37, 16, 5, 0.95), rgba(61, 26, 0, 0.9));
             text-align: center;
-            padding: 40px 20px;
-            font-size: 0.9rem;
-            border-top: 1px solid rgba(255, 215, 0, 0.2);
-            margin-top: 80px;
+            padding: 2rem;
+            border-top: 2px solid var(--yakshagana-gold);
+            margin-top: 3rem;
         }
 
-        .footer p {
-            margin: 0;
-            padding: 5px 0;
-        }
+        .footer p { margin: 0; padding: 5px 0; }
 
         .footer a {
             color: var(--text-gold);
@@ -336,132 +332,120 @@
         }
 
         .footer a:hover {
-            color: var(--primary-gold);
-            text-decoration: underline;
+            color: var(--yakshagana-gold);
+            text-shadow: 0 0 10px rgba(224, 180, 0, 0.5);
         }
 
         /* --- Button Styles --- */
-.listenBtn {
-    border-radius: 11.5px;
-    color: rgb(167, 148, 148);
-    height: 30px;
-    background-color: #542424b0;
-    border: solid rgba(186, 168, 173, 0.059);
-    box-shadow: #d9d6d4;
-    transition: transform 0.1s, box-shadow 0.1s;
-    margin-bottom: 15px;
-    padding: 5px 10px;
-    cursor: pointer;
-}
+        .listenBtn {
+            border-radius: 11.5px;
+            color: rgb(167, 148, 148);
+            height: 30px;
+            background-color: #542424b0;
+            border: solid rgba(186, 168, 173, 0.059);
+            box-shadow: #d9d6d4;
+            transition: transform 0.1s, box-shadow 0.1s;
+            margin-bottom: 15px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
 
-.listenBtn.pressed {
-    transform: translateY(2px) scale(0.97);
-    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
-    background-color: #5a2020b0;
-}
+        .listenBtn.pressed {
+            transform: translateY(2px) scale(0.97);
+            box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
+            background-color: #5a2020b0;
+        }
 
-.listenBtn:hover {
-   transform: translateY(-1px) scale(1.05);
-   box-shadow: 0 6px 24px 0 rgba(255,255,255,0.25);
-}
+        .listenBtn:hover {
+           transform: translateY(-1px) scale(1.05);
+           box-shadow: 0 6px 24px 0 rgba(255,255,255,0.25);
+        }
 
-.listenBtn:active {
-    transform: translateY(1px) scale(1);
-    box-shadow: 0 2px 12px 0 rgba(255,255,255,0.25);
-}
+        .listenBtn:active {
+            transform: translateY(1px) scale(1);
+            box-shadow: 0 2px 12px 0 rgba(255,255,255,0.25);
+        }
 
-.stopBtn {
-    border-radius: 11.5px;
-    color: rgb(167, 148, 148);
-    height: 30px;
-    background-color: #542424b0;
-    border: solid rgba(186, 168, 173, 0.059);
-    box-shadow: #d9d6d4;
-    transition: transform 0.1s, box-shadow 0.1s;
-    margin-bottom: 15px;
-    padding: 5px 10px;
-    cursor: pointer;
-}
+        .stopBtn {
+            border-radius: 11.5px;
+            color: rgb(167, 148, 148);
+            height: 30px;
+            background-color: #542424b0;
+            border: solid rgba(186, 168, 173, 0.059);
+            box-shadow: #d9d6d4;
+            transition: transform 0.1s, box-shadow 0.1s;
+            margin-bottom: 15px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
 
-.stopBtn.pressed {
-    transform: translateY(2px) scale(0.97);
-    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
-    background-color: #5a2020b0;
-}
+        .stopBtn.pressed {
+            transform: translateY(2px) scale(0.97);
+            box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
+            background-color: #5a2020b0;
+        }
 
-.stopBtn:hover {
-   transform: translateY(-1px) scale(1.05);
-   box-shadow: 0 6px 24px 0 rgba(255,255,255,0.25);
-}
+        .stopBtn:hover {
+           transform: translateY(-1px) scale(1.05);
+           box-shadow: 0 6px 24px 0 rgba(255,255,255,0.25);
+        }
 
-.stopBtn:active {
-    transform: translateY(1px) scale(1);
-    box-shadow: 0 2px 12px 0 rgba(255,255,255,0.25);
-}
+        .stopBtn:active {
+            transform: translateY(1px) scale(1);
+            box-shadow: 0 2px 12px 0 rgba(255,255,255,0.25);
+        }
 
-/* --- Responsive Design --- */
+        /* --- Responsive Design --- */
         @media (max-width: 768px) {
-            .nav-container {
-                flex-wrap: wrap;
-                justify-content: center;
-                top: 15px;
-                padding: 10px 15px;
-                border-radius: 30px;
-            }
-
-            .nav-btn {
-                font-size: 0.8rem;
-                padding: 6px 12px;
-            }
-
-            .hero h1 {
-                font-size: 3rem;
-            }
-
-            .hero p {
-                font-size: 1.2rem;
-            }
-
-            .section h2 {
-                font-size: 2.5rem;
-            }
-
-            .detailed-story-section {
-                padding: 25px;
-                margin: 60px auto;
-            }
-            .detailed-story-section h1 {
-                font-size: 3rem;
-            }
-            .detailed-story-section h3 {
-                font-size: 1.8rem;
-            }
-            .detailed-story-section p {
-                font-size: 1rem;
-            }
+            .hero h1 { font-size: 3rem; }
+            .section h2 { font-size: 2.5rem; }
+            .detailed-story-section { padding: 2rem; }
+            .detailed-story-section h1 { font-size: 2rem; }
+            .nav-container { padding: 0.5rem 1rem; }
+            .nav-btn { margin: 0 5px; padding: 10px 20px; font-size: 14px; }
         }
 
         @media (max-width: 480px) {
-            .nav-container {
-                gap: 5px;
-            }
-            .nav-btn {
-                padding: 5px 8px;
-            }
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            .hero p {
-                font-size: 1rem;
-            }
-            .section h2 {
-                font-size: 2rem;
-            }
+            .hero h1 { font-size: 2.5rem; }
+            .section h2 { font-size: 2rem; }
+            .detailed-story-section { padding: 1.5rem; }
+            .detailed-story-section h1 { font-size: 1.8rem; }
+            .nav-btn { margin: 0 3px; padding: 8px 15px; font-size: 12px; }
         }
     </style>
 </head>
 <body>
 
+    <nav class="nav-container">
+        <button class="nav-btn">Artists</button>
+        <button class="nav-btn">Workshops</button>
+        <button class="nav-btn">Calendar</button>
+        <div class="dropdown">
+            <button class="nav-btn dropdown-toggle">Stories <span class="dropdown-arrow">▼</span></button>
+            <div class="dropdown-menu">
+                <a href="#" class="dropdown-item">Bharatanatyam Stories</a>
+                <a href="#" class="dropdown-item">Bidriware Stories</a>
+                <a href="#" class="dropdown-item">Blue Pottery Stories</a>
+                <a href="#" class="dropdown-item">Chikankari Stories</a>
+                <a href="#" class="dropdown-item">Dhokra Art Stories</a>
+                <a href="#" class="dropdown-item">Kalamkari Stories</a>
+                <a href="#" class="dropdown-item">Kantha Stories</a>
+                <a href="#" class="dropdown-item">Kathakali Stories</a>
+                <a href="#" class="dropdown-item">Kuchipudi Stories</a>
+                <a href="#" class="dropdown-item">Madhubani Stories</a>
+                <a href="#" class="dropdown-item">Marble Inlay Stories</a>
+                <a href="#" class="dropdown-item">Mohiniyattam Stories</a>
+                <a href="#" class="dropdown-item">Odissi Stories</a>
+                <a href="#" class="dropdown-item">Patola Stories</a>
+                <a href="#" class="dropdown-item">Phulkari Stories</a>
+                <a href="#" class="dropdown-item">Sandalwood Stories</a>
+                <a href="#" class="dropdown-item">Terracotta Stories</a>
+                <a href="#" class="dropdown-item">Warli Stories</a>
+                <a href="#" class="dropdown-item">Yakshagana Stories</a>
+            </div>
+        </div>
+        <button class="nav-btn">Connect</button>
+    </nav>
 
     <main>
         <section class="hero">
@@ -569,15 +553,15 @@ What began as a single gift became a legacy, passed down through generations. Bl
         <p>Contact us at <a href="mailto:info@bluepottery.com">info@bluepottery.com</a></p>
     </footer>
 
+<!-- ...existing JavaScript code... -->
 </body>
-<script src="js/navbar.js"></script>
 <script>
-    let utterance; // make it global so we can pause/resume it
-    
-    // Individual story TTS function
-    function speakIndividualStory(storySection) {
+  let utterance; // make it global so we can pause/resume it
+
+  // Individual story TTS function
+  function speakIndividualStory(storySection) {
     speechSynthesis.cancel();
-    
+
     const title = storySection.querySelector("h1")?.innerText || "";
     const paragraphs = storySection.querySelectorAll("p, h3");
     let storyText = title + ". ";
@@ -585,64 +569,64 @@ What began as a single gift became a legacy, passed down through generations. Bl
     paragraphs.forEach(el => {
       storyText += el.innerText + " ";
     });
-    
+
     utterance = new SpeechSynthesisUtterance(storyText);
     utterance.rate = 1;
     utterance.pitch = 1;
     utterance.volume = 1;
-    
+
     const voices = speechSynthesis.getVoices();
 
     // Try different voice options in order of preference
     utterance.voice = 
-    voices.find(v => v.name.includes('Google UK English Female')) || 
+        voices.find(v => v.name.includes('Google UK English Female')) || 
       voices[0]; // Fallback to first available
 
-      speechSynthesis.speak(utterance);
-    }
+    speechSynthesis.speak(utterance);
+  }
 
-    function stopTTS() {
-        speechSynthesis.cancel();
-    }
-    
+  function stopTTS() {
+    speechSynthesis.cancel();
+  }
+
   // Add event listeners when page loads
   document.addEventListener('DOMContentLoaded', function() {
-      // Play button listeners
+    // Play button listeners
     document.querySelectorAll(".listenBtn").forEach(button => {
-        button.addEventListener("click", () => {
-            // Only trigger if button has play icon
-            if (button.textContent.includes('🔊')) {
-                // Add pressed effect
-                button.classList.add('pressed');
-                setTimeout(() => button.classList.remove('pressed'), 200);
-                
-                // Find the nearest parent div with the class 'detailed-story-section'
+      button.addEventListener("click", () => {
+        // Only trigger if button has play icon
+        if (button.textContent.includes('🔊')) {
+          // Add pressed effect
+          button.classList.add('pressed');
+          setTimeout(() => button.classList.remove('pressed'), 200);
+
+          // Find the nearest parent div with the class 'detailed-story-section'
           const storySection = button.closest(".detailed-story-section");
           if (!storySection) {
-              alert("Story section not found!");
-              return;
-            }
-            
-            // Speak only this individual story
-            speakIndividualStory(storySection);
+            alert("Story section not found!");
+            return;
+          }
+
+          // Speak only this individual story
+          speakIndividualStory(storySection);
         }
       });
     });
-    
+
     // Stop button listeners
     document.querySelectorAll(".stopBtn").forEach(button => {
       button.addEventListener("click", () => {
         // Add pressed effect
         button.classList.add('pressed');
         setTimeout(() => button.classList.remove('pressed'), 200);
-        
+
         // Stop the speech
         stopTTS();
+      });
     });
-    });
-});
+  });
 
-// Ensure voices are loaded
+  // Ensure voices are loaded
   window.speechSynthesis.onvoiceschanged = () => {};
 </script>
 </html>
