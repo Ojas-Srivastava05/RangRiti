@@ -4,32 +4,967 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bharatnatyam: Ancient Tales in Motion</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
-    <style>
-        /* CSS Variables */
-        :root {
-            --yakshagana-gold: #E0B400;
+    <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+
+  <!-- Navbar Styles -->
+  <style>
+    /* Google Fonts Import */
+    @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+
+    /* Root Variables - Matching navbar.css exactly */
+    :root {
+        --nav-bg: rgba(113, 67, 17, 0.12);
+        --nav-glass: rgba(255, 248, 231, 0.08);
+        --nav-border: rgba(218, 165, 32, 0.25);
+        --nav-text: #a99d30;
+        --nav-text-light: rgba(61, 41, 20, 0.8);
+        --nav-hover: #8b6a16;
+        --nav-active: #B8860B;
+        --nav-shadow: rgba(61, 41, 20, 0.15);
+        --nav-glow: rgba(218, 165, 32, 0.3);
+        --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    /* Floating Navbar Container */
+    .floating-navbar {
+  position: fixed;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  border-radius: 40px;         /* keep the rounded look */
+  overflow: visible;           /* allow dropdown to overflow */
+  padding: 2px;                /* acts like outer padding border */
+  background: rgba(255, 215, 0, 0.15);
+  
+  border: 1px solid rgba(255, 215, 0, 0.25);
+}
+
+
+    @keyframes navbarFloat {
+        0% {
+            opacity: 0;
+            transform: translateX(-50%) translateY(-40px) scale(0.9);
+            filter: blur(8px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0) scale(1);
+            filter: blur(0px);
+        }
+    }
+
+    /* Main Navigation Container */
+    .nav-container {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 12px;
+        background: var(--nav-bg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--nav-border);
+        border-radius: 40px;
+        box-shadow: 
+            0 6px 24px var(--nav-shadow),
+            inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        transition: var(--transition-smooth);
+        position: relative;
+        overflow: visible;
+        min-height: 44px; 
+    } 
+    .nav-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(218, 165, 32, 0.08), transparent);
+        transition: left 0.6s ease;
+        border-radius: 40px; /* Match container border radius */
+    }
+
+    .floating-navbar:hover .nav-container::before {
+        left: 100%;
+    }
+
+    .floating-navbar:hover .nav-container {
+        border-color: var(--nav-hover);
+        box-shadow: 
+            0 8px 32px var(--nav-glow),
+            inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    }
+
+    /* Brand Logo */
+    .brand-container {
+        position: relative;
+        margin-right: 12px;
+        overflow: hidden; /* Only hide overflow for brand container */
+        border-radius: 20px;
+    }
+
+    .brand-logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        position: relative;
+        padding: 6px 12px;
+        border-radius: 20px;
+        transition: var(--transition-smooth);
+    }
+
+    .brand-text {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.4em;
+        font-weight: 700;
+        color: var(--nav-text);
+        letter-spacing: 0.5px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+        position: relative;
+        z-index: 2;
+    }
+
+    .brand-glow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: radial-gradient(circle, var(--nav-glow), transparent);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: var(--transition-smooth);
+        z-index: 1;
+    }
+
+    .brand-logo:hover .brand-glow {
+        width: 100%;
+        height: 100%;
+    }
+
+    .brand-logo:hover .brand-text {
+        color: var(--nav-hover);
+        transform: scale(1.02);
+    }
+
+    /* Navigation Links Section */
+    .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        margin-right: 12px;
+    }
+
+    /* Individual Navigation Links */
+    .nav-link, .auth-link {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 7px 12px;
+        color: var(--nav-text);
+        text-decoration: none;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 500;
+        border-radius: 18px;
+        transition: var(--transition-smooth);
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        border: 1px solid transparent;
+        white-space: nowrap;
+        min-height: 32px;
+    }
+
+    .nav-link::before, .auth-link::before {
+        content: attr(data-text);
+        position: absolute;
+        top: -100%;
+        left: 50%;
+        transform: translateX(-50%);
+        color: white;
+        font-weight: 600;
+        font-size: 0.8rem;
+        opacity: 0;
+        transition: var(--transition-bounce);
+        white-space: nowrap;
+    }
+
+    .nav-ripple {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: radial-gradient(circle, var(--nav-glow), transparent);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: var(--transition-smooth);
+        pointer-events: none;
+    }
+
+    .nav-link:hover .nav-ripple, .auth-link:hover .nav-ripple {
+        width: 150%;
+        height: 150%;
+    }
+
+    .nav-link:hover, .auth-link:hover {
+        color: white;
+        background: var(--nav-hover);
+        transform: translateY(-1px) scale(1.02);
+        border-color: var(--nav-active);
+        box-shadow: 0 4px 16px var(--nav-glow);
+    }
+
+    .nav-link:hover::before, .auth-link:hover::before {
+        top: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+
+    .nav-link:hover .nav-text, .auth-link:hover .auth-text,
+    .nav-link:hover .nav-icon, .auth-link:hover .auth-icon {
+        opacity: 0;
+        transform: translateY(50%);
+    }
+
+    .nav-link.active {
+        background: var(--nav-active);
+        color: white;
+        box-shadow: 0 2px 12px var(--nav-glow);
+    }
+
+    /* Navigation Icons and Text */
+    .nav-icon, .auth-icon {
+        font-size: 1em;
+        transition: var(--transition-smooth);
+    }
+
+    .nav-text, .auth-text {
+        transition: var(--transition-smooth);
+        font-weight: 500;
+        font-size: 0.8rem;
+    }
+
+    /* Dropdown Styling - Fixed positioning */
+    .nav-dropdown {
+        position: relative;
+        /* Ensure dropdown container doesn't clip */
+        overflow: visible;
+    }
+
+    .dropdown-trigger {
+        background: none;
+        border: none;
+        overflow: hidden; /* Only hide overflow for the button itself */
+        border-radius: 18px;
+    }
+
+    .dropdown-arrow {
+        font-size: 0.6em;
+        margin-left: 3px;
+        transition: var(--transition-smooth);
+    }
+
+    .nav-dropdown:hover .dropdown-arrow {
+        transform: rotate(180deg);
+    }
+
+    .dropdown-panel {
+        position: absolute;
+        top: calc(100% + 8px); /* Reduced gap to prevent accidental hover loss */
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(40, 20, 0, 0.85); /* lighter and warmer tone */
+  color: var(--text-light); 
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--nav-border);
+        border-radius: 12px;
+        padding: 8px;
+        min-width: 220px; /* Increased min-width */
+        box-shadow: 
+            0 20px 60px rgba(61, 41, 20, 0.2),
+            0 8px 24px rgba(61, 41, 20, 0.15),
+            inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX(-50%) translateY(-8px) scale(0.96);
+        transition: var(--transition-smooth);
+        z-index: 1002; /* Higher z-index to ensure it's above everything */
+        /* Critical: Ensure the dropdown itself doesn't get clipped */
+        overflow: visible;
+    }
+
+    /* Add hover bridge to prevent dropdown from closing */
+    .nav-dropdown::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        height: 12px; /* Bridge the gap */
+        background: transparent;
+        z-index: 1001;
+    }
+
+    .nav-dropdown:hover .dropdown-panel {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0) scale(1);
+    }
+
+    /* Keep dropdown open when hovering the panel itself */
+    .dropdown-panel:hover {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0) scale(1);
+    }
+
+    .dropdown-content {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .dropdown-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 14px; /* Increased padding for better click area */
+        color: var(--nav-text);
+        text-decoration: none;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.85rem; /* Slightly larger font */
+        font-weight: 500;
+        border-radius: 8px;
+        transition: var(--transition-smooth);
+        position: relative;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .dropdown-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, var(--nav-glow), transparent);
+        transition: left 0.4s ease;
+    }
+
+    .dropdown-item:hover::before {
+        left: 100%;
+    }
+
+    .dropdown-item:hover {
+        background: var(--nav-hover);
+        color: white;
+        transform: translateX(4px);
+        box-shadow: 0 3px 12px var(--nav-glow);
+    }
+
+    .dropdown-icon {
+        font-size: 1em;
+        transition: var(--transition-smooth);
+        flex-shrink: 0; /* Prevent icon from shrinking */
+    }
+
+    .dropdown-item:hover .dropdown-icon {
+        transform: scale(1.15) rotate(5deg);
+    }
+
+    .dropdown-text {
+        flex: 1; /* Allow text to take remaining space */
+    }
+
+    /* Authentication Section */
+    .auth-section {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        padding-left: 12px;
+        border-left: 1px solid var(--nav-border);
+    }
+
+    /* Special Authentication Button Styles */
+    .login-btn {
+        background: linear-gradient(135deg, #22C55E, #16A34A);
+        color: white;
+        border-color: #16A34A;
+    }
+
+    .login-btn:hover {
+        background: linear-gradient(135deg, #16A34A, #15803D);
+        box-shadow: 0 4px 16px rgba(34, 197, 94, 0.3);
+    }
+
+    .register-btn {
+        background: linear-gradient(135deg, #3B82F6, #2563EB);
+        color: white;
+        border-color: #2563EB;
+    }
+
+    .register-btn:hover {
+        background: linear-gradient(135deg, #2563EB, #1D4ED8);
+        box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+    }
+
+    .logout-btn {
+        background: linear-gradient(135deg, #EF4444, #DC2626);
+        color: white;
+        border-color: #DC2626;
+    }
+
+    .logout-btn:hover {
+        background: linear-gradient(135deg, #DC2626, #B91C1C);
+        box-shadow: 0 4px 16px rgba(239, 68, 68, 0.3);
+    }
+
+    .profile-btn {
+        background: linear-gradient(135deg, var(--nav-hover), var(--nav-active));
+        color: white;
+        border-color: var(--nav-active);
+    }
+
+    .profile-btn:hover {
+        background: linear-gradient(135deg, var(--nav-active), #8B7355);
+        box-shadow: 0 4px 16px var(--nav-glow);
+    }
+
+    /* Mobile Toggle Button */
+    .mobile-toggle {
+        display: none;
+        flex-direction: column;
+        gap: 3px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 6px;
+        border-radius: 6px;
+        transition: var(--transition-smooth);
+    }
+
+    .hamburger-line {
+        width: 16px;
+        height: 2px;
+        background: var(--nav-text);
+        transition: var(--transition-smooth);
+        border-radius: 1px;
+    }
+
+    .mobile-toggle:hover {
+        background: rgba(218, 165, 32, 0.08);
+    }
+
+    .mobile-toggle.active .hamburger-line:nth-child(1) {
+        transform: rotate(45deg) translate(4px, 4px);
+    }
+
+    .mobile-toggle.active .hamburger-line:nth-child(2) {
+        opacity: 0;
+    }
+
+    .mobile-toggle.active .hamburger-line:nth-child(3) {
+        transform: rotate(-45deg) translate(4px, -4px);
+    }
+
+    /* Mobile Navigation Overlay */
+    .mobile-nav-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(61, 41, 20, 0.96);
+        backdrop-filter: blur(16px);
+        z-index: 999;
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition-smooth);
+    }
+
+    .mobile-nav-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .mobile-nav-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        padding: 30px 20px;
+        position: relative;
+    }
+
+    .mobile-close {
+        position: absolute;
+        top: 25px;
+        right: 25px;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.8rem;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition-smooth);
+    }
+
+    .mobile-close:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: scale(1.05);
+    }
+
+    .mobile-nav-links {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+        .nav-links {
+            gap: 1px;
+        }
+        
+        .nav-link, .auth-link {
+            padding: 6px 10px;
+            font-size: 0.8rem;
+        }
+        
+        .nav-text, .auth-text {
+            font-size: 0.75rem;
+        }
+        
+        .dropdown-panel {
+            min-width: 200px;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .nav-text, .auth-text {
+            display: none;
+        }
+        
+        .nav-link, .auth-link {
+            padding: 8px;
+            min-width: 36px;
+            justify-content: center;
+        }
+        
+        .brand-text {
+            font-size: 1.2em;
+        }
+        
+        .nav-container {
+            padding: 6px 12px;
+        }
+        
+        .dropdown-panel {
+            min-width: 180px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .mobile-toggle {
+            display: flex;
+        }
+        
+        .nav-links, .auth-section {
+            display: none;
+        }
+        
+        .mobile-nav-overlay {
+            display: block;
+        }
+        
+        .nav-container {
+            padding: 8px 12px;
+            min-height: 40px;
+        }
+        
+        .brand-text {
+            font-size: 1.1em;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .floating-navbar {
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            transform: none;
+        }
+        
+        .nav-container {
+            margin: 0 auto;
+            max-width: calc(100vw - 20px);
+        }
+        
+        .brand-text {
+            font-size: 1em;
+        }
+    }
+
+    /* Scroll Effects */
+    .floating-navbar.scrolled .nav-container {
+        background: rgba(61, 41, 20, 0.2);
+        backdrop-filter: blur(24px);
+        border-color: var(--nav-hover);
+        box-shadow: 
+            0 6px 24px rgba(61, 41, 20, 0.25),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    /* Performance Optimizations */
+    .nav-link, .auth-link, .dropdown-item, .brand-logo {
+        will-change: transform, background-color, box-shadow;
+    }
+
+    /* Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+    :root {
+            --yakshagana-gold: #E0B400; /* A vibrant gold for Yakshagana's rich costumes */
             --text-gold: #FFD700;
             --text-light: rgba(255, 248, 220, 0.9);
-            --dark-background: #251005;
-            --card-background: rgba(30, 15, 0, 0.7);
-            --border-gold: rgba(224, 180, 0, 0.3);
+            --dark-background: #251005; /* Deep, earthy brown for the stage backdrop */
+            --card-background: rgba(45, 20, 0, 0.7); /* Slightly lighter, semi-transparent */
+            --border-gold: rgba(255, 215, 0, 0.4);
             --primary-gold: #FFD700;
         }
-
-        /* General Body Styles */
-        body {
-            margin: 0;
-            font-family: 'EB Garamond', serif;
-            background: linear-gradient(45deg, #251005 0%, #3D1A00 50%, #4A1F00 100%);
-            background-attachment: fixed;
+    body {
+      margin: 0;
+      font-family: 'EB Garamond', serif;
+      background: linear-gradient(to bottom, #3a1f0a, #251005);
+      color: var(--text-light);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    /* Keep all your custom Kalamkari styles as they were */
+    /* ... */
+    .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
             color: var(--text-light);
-            line-height: 1.7;
-            overflow-x: hidden;
-            min-height: 100vh;
+            overflow: hidden;
         }
 
-        /* --- Navigation Bar --- */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Yakshagana_at_Dharmasthala.jpg/1280px-Yakshagana_at_Dharmasthala.jpg') no-repeat center center/cover; /* Yakshagana image */
+            filter: grayscale(70%) brightness(40%); /* Desaturate and darken */
+            z-index: -1;
+            animation: fadeInBackground 2s ease-out;
+        }
+
+        @keyframes fadeInBackground {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 4.5rem;
+            color: var(--text-gold);
+            margin-bottom: 20px;
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7);
+            letter-spacing: 2px;
+            animation: scaleIn 1.5s ease-out forwards;
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-style: italic;
+        }
+
+        /* --- Section Styling --- */
+        .section {
+            padding: 80px 5%;
+            margin-top: 0; /* No top margin as hero takes full height */
+            position: relative;
+            z-index: 1;
+            background-color: var(--dark-background); /* Ensure consistent background */
+        }
+
+        .section h2 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 3.5rem;
+            color: var(--yakshagana-gold);
+            text-align: center;
+            margin-bottom: 60px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+            position: relative;
+            padding-bottom: 15px;
+            animation: slideInFromLeft 1s ease-out forwards;
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        @keyframes slideInFromLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .section h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--text-gold), transparent);
+            margin: 15px auto 0;
+            border-radius: 5px;
+        }
+
+        /* --- Detailed Story Sections --- */
+        .detailed-story-section {
+            max-width: 900px;
+            margin: 80px auto; /* Margin between detailed stories */
+            padding: 40px;
+            background-color: rgba(0, 0, 0, 0.7); /* Slightly transparent background */
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--border-gold);
+            animation: fadeIn 1s ease-out forwards;
+            line-height: 1.8; /* Adjusted for better readability of detailed text */
+        }
+
+        .detailed-story-section h1 { /* Using h1 for main story title within this section */
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 3.8rem;
+            color: var(--text-gold);
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .detailed-story-section h1::after {
+            content: '';
+            display: block;
+            width: 150px;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--text-gold), transparent);
+            margin: 15px auto 0;
+            border-radius: 5px;
+        }
+
+        .detailed-story-section h3 { /* Using h3 for subheadings within a detailed story */
+            font-family: 'EB Garamond', serif;
+            font-size: 2.2rem;
+            color: var(--yakshagana-gold);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            border-bottom: 1px dashed rgba(255, 215, 0, 0.2);
+            padding-bottom: 10px;
+        }
+
+        .detailed-story-section p {
+            font-size: 1.15rem;
+            margin-bottom: 1.5em;
+            text-align: justify;
+        }
+
+        .detailed-story-section strong {
+            color: var(--text-gold);
+        }
+
+        /* --- Footer --- */
+        .footer {
+            background-color: #0d0600;
+            color: rgba(255, 248, 220, 0.7);
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            margin-top: 80px;
+        }
+
+        .footer p {
+            margin: 0;
+            padding: 5px 0;
+        }
+
+        .footer a {
+            color: var(--text-gold);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--primary-gold);
+            text-decoration: underline;
+        }
+
+        /* --- Button Styles --- */
+.listenBtn {
+    border-radius: 11.5px;
+    color: rgb(167, 148, 148);
+    height: 30px;
+    background-color: #542424b0;
+    border: solid rgba(186, 168, 173, 0.059);
+    box-shadow: #d9d6d4;
+    transition: transform 0.1s, box-shadow 0.1s;
+    margin-bottom: 15px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.listenBtn.pressed {
+    transform: translateY(2px) scale(0.97);
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
+    background-color: #5a2020b0;
+}
+
+.listenBtn:hover {
+   transform: translateY(-1px) scale(1.05);
+   box-shadow: 0 6px 24px 0 rgba(255,255,255,0.25);
+}
+
+.listenBtn:active {
+    transform: translateY(1px) scale(1);
+    box-shadow: 0 2px 12px 0 rgba(255,255,255,0.25);
+}
+
+.stopBtn {
+    border-radius: 11.5px;
+    color: rgb(167, 148, 148);
+    height: 30px;
+    background-color: #542424b0;
+    border: solid rgba(186, 168, 173, 0.059);
+    box-shadow: #d9d6d4;
+    transition: transform 0.1s, box-shadow 0.1s;
+    margin-bottom: 15px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.stopBtn.pressed {
+    transform: translateY(2px) scale(0.97);
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
+    background-color: #5a2020b0;
+}
+
+.stopBtn:hover {
+   transform: translateY(-1px) scale(1.05);
+   box-shadow: 0 6px 24px 0 rgba(255,255,255,0.25);
+}
+
+.stopBtn:active {
+    transform: translateY(1px) scale(1);
+    box-shadow: 0 2px 12px 0 rgba(255,255,255,0.25);
+}
+
+/* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-wrap: wrap;
+                justify-content: center;
+                padding: 0.5rem 1rem;
+                border-radius: 0; /* Keep straight corners on mobile */
+            }
+
+            .nav-btn {
+                font-size: 14px;
+                padding: 10px 20px;
+                margin: 0 5px;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .section h2 {
+                font-size: 2.5rem;
+            }
+
+            .detailed-story-section {
+                padding: 25px;
+                margin: 60px auto;
+            }
+            .detailed-story-section h1 {
+                font-size: 3rem;
+            }
+            .detailed-story-section h3 {
+                font-size: 1.8rem;
+            }
+            .detailed-story-section p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                border-radius: 0; /* Keep straight corners */
+            }
+            .nav-btn {
+                padding: 8px 15px;
+                font-size: 12px;
+                margin: 0 3px;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .section h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* === NAVBAR STYLES FROM YAKSHAGANASTORY === */
         .nav-container {
             display: flex;
             justify-content: center;
@@ -42,6 +977,7 @@
             z-index: 1000;
             border-bottom: 2px solid var(--yakshagana-gold);
             animation: slideDown 0.8s ease-out;
+            border-radius: 0; /* Remove curves from navbar corners */
         }
 
         @keyframes slideDown {
@@ -103,7 +1039,6 @@
             background: linear-gradient(135deg, rgba(224, 180, 0, 0.2), rgba(255, 215, 0, 0.1));
         }
 
-        /* Dropdown styles */
         .dropdown { position: relative; display: inline-block; }
         .dropdown-toggle { cursor: pointer; }
         .dropdown-menu {
@@ -147,288 +1082,241 @@
         .dropdown:hover .dropdown-arrow {
             transform: rotate(180deg);
         }
+</style>
 
-        /* --- Hero Section --- */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(37, 16, 5, 0.4), rgba(61, 26, 0, 0.6)), 
-                        url('https://upload.wikimedia.org/wikipedia/commons/e/e3/Bharatnatyam_dancer.jpg') center/cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
+<!-- Import navbar functionality from navbar.js -->
+<script src="/js/navbar.js"></script>
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at center, rgba(224, 180, 0, 0.1) 0%, transparent 70%);
-            animation: fadeInBackground 2s ease-out;
-        }
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Re-initialize the navbar functionality for EJS
+        if (typeof initializeNavbar === 'function') {
+            initializeNavbar();
+        } else {
+            // Fallback inline functionality - exactly matching navbar.js
+            const mobileToggle = document.getElementById('mobileToggle');
+            const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+            const mobileClose = document.getElementById('mobileClose');
+            const navbar = document.querySelector('.floating-navbar');
 
-        @keyframes fadeInBackground {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .hero-content {
-            z-index: 2;
-            max-width: 800px;
-            padding: 0 2rem;
-            animation: fadeIn 1.5s ease-out 0.5s both;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
+            // Mobile menu functionality
+            function toggleMobileMenu() {
+                mobileToggle?.classList.toggle('active');
+                mobileNavOverlay?.classList.toggle('active');
+                document.body.style.overflow = mobileNavOverlay?.classList.contains('active') ? 'hidden' : '';
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+
+            mobileToggle?.addEventListener('click', toggleMobileMenu);
+            mobileClose?.addEventListener('click', toggleMobileMenu);
+
+            // Close mobile menu when clicking overlay
+            mobileNavOverlay?.addEventListener('click', function(e) {
+                if (e.target === mobileNavOverlay) {
+                    toggleMobileMenu();
+                }
+            });
+
+            // Scroll effect
+            let scrollTimeout;
+            window.addEventListener('scroll', function() {
+                clearTimeout(scrollTimeout);
+                
+                if (window.scrollY > 50) {
+                    navbar?.classList.add('scrolled');
+                } else {
+                    navbar?.classList.remove('scrolled');
+                }
+            });
+
+            // Active link highlighting
+            const currentPath = window.location.pathname;
+            const navLinks = document.querySelectorAll('.nav-link, .auth-link');
+            
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPath) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Ripple effect on click
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const ripple = this.querySelector('.nav-ripple');
+                    if (ripple) {
+                        ripple.style.width = '200%';
+                        ripple.style.height = '200%';
+                        setTimeout(() => {
+                            ripple.style.width = '0';
+                            ripple.style.height = '0';
+                        }, 250);
+                    }
+                });
+            });
+
+            // Enhanced dropdown functionality - Matching navbar.js exactly
+            const dropdowns = document.querySelectorAll('.nav-dropdown');
+            
+            dropdowns.forEach(dropdown => {
+                const trigger = dropdown.querySelector('.dropdown-trigger');
+                const panel = dropdown.querySelector('.dropdown-panel');
+                let hoverTimeout;
+
+                if (trigger && panel) {
+                    // Show dropdown on hover
+                    dropdown.addEventListener('mouseenter', function() {
+                        clearTimeout(hoverTimeout);
+                        panel.style.opacity = '1';
+                        panel.style.visibility = 'visible';
+                        panel.style.transform = 'translateX(-50%) translateY(0) scale(1)';
+                    });
+
+                    // Hide dropdown when leaving both trigger and panel
+                    dropdown.addEventListener('mouseleave', function() {
+                        hoverTimeout = setTimeout(() => {
+                            panel.style.opacity = '0';
+                            panel.style.visibility = 'hidden';
+                            panel.style.transform = 'translateX(-50%) translateY(-8px) scale(0.96)';
+                        }, 100); // Small delay to allow moving to dropdown
+                    });
+
+                    // Keep dropdown open when hovering the panel
+                    panel.addEventListener('mouseenter', function() {
+                        clearTimeout(hoverTimeout);
+                    });
+                }
+            });
+
+            // Populate mobile navigation - Matching navbar.js implementation
+            const navLinksContainer = document.querySelector('.nav-links');
+            const authSection = document.querySelector('.auth-section');
+            const mobileNavLinks = document.querySelector('.mobile-nav-links');
+
+            if (navLinksContainer && authSection && mobileNavLinks) {
+                const allLinks = [...navLinksContainer.children, ...authSection.children];
+                
+                allLinks.forEach(item => {
+                    if (item.tagName === 'A' || item.classList.contains('nav-dropdown')) {
+                        const mobileItem = item.cloneNode(true);
+                        mobileItem.style.fontSize = '1.1rem';
+                        mobileItem.style.padding = '12px 20px';
+                        mobileItem.style.color = 'white';
+                        mobileItem.style.borderRadius = '12px';
+                        mobileItem.style.minWidth = '180px';
+                        mobileItem.style.textAlign = 'center';
+                        mobileItem.addEventListener('click', toggleMobileMenu);
+                        mobileNavLinks.appendChild(mobileItem);
+                    }
+                });
             }
         }
+    });
+</script>
 
-        .hero h1 {
-            font-family: 'Cinzel Decorative', serif;
-            font-size: 4.5rem;
-            font-weight: 700;
-            color: var(--text-gold);
-            margin-bottom: 1rem;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
-            animation: scaleIn 1s ease-out 1s both;
-        }
-
-        @keyframes scaleIn {
-            from {
-                transform: scale(0.8);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        .hero p {
-            font-size: 1.4rem;
-            color: var(--text-light);
-            line-height: 1.8;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        /* --- Section Styling --- */
-        .section {
-            padding: 4rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            animation: slideInFromLeft 1s ease-out;
-        }
-
-        .section h2 {
-            font-family: 'Cinzel Decorative', serif;
-            font-size: 3rem;
-            color: var(--text-gold);
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-            animation: slideInFromLeft 1s ease-out 0.3s both;
-        }
-
-        @keyframes slideInFromLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .section h2::after {
-            content: '';
-            display: block;
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--yakshagana-gold), var(--text-gold));
-            margin: 1rem auto;
-            border-radius: 2px;
-        }
-
-        /* --- Detailed Story Sections --- */
-        .detailed-story-section {
-            background: linear-gradient(135deg, rgba(37, 16, 5, 0.8), rgba(61, 26, 0, 0.6));
-            border: 1px solid rgba(224, 180, 0, 0.2);
-            border-radius: 20px;
-            padding: 3rem;
-            margin: 3rem 0;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            animation: fadeIn 1s ease-out;
-        }
-
-        .detailed-story-section h1 {
-            font-family: 'Cinzel Decorative', serif;
-            font-size: 2.5rem;
-            color: var(--text-gold);
-            margin-bottom: 2rem;
-            text-align: center;
-            position: relative;
-        }
-
-        .detailed-story-section h1::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 2px;
-            background: linear-gradient(90deg, var(--yakshagana-gold), var(--text-gold));
-            margin: 1rem auto;
-            border-radius: 1px;
-        }
-
-        .detailed-story-section h3 {
-            font-family: 'Cinzel Decorative', serif;
-            font-size: 1.5rem;
-            color: var(--yakshagana-gold);
-            margin: 2rem 0 1rem 0;
-        }
-
-        .detailed-story-section p {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-            text-align: justify;
-            color: var(--text-light);
-        }
-
-        .detailed-story-section strong {
-            color: var(--text-gold);
-            font-weight: 600;
-        }
-
-        .listenBtn {
-            border-radius: 11.5px;
-            color: rgb(167, 148, 148);
-            height: 30px;
-            background-color: #542424b0;
-            border: solid rgba(186, 168, 173, 0.059);
-            box-shadow: #d9d6d4;
-            transition: transform 0.1s, box-shadow 0.1s;
-            margin-bottom: 15px;
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-
-        .listenBtn.pressed {
-            transform: translateY(2px) scale(0.97);
-            box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
-            background-color: #5a2020b0;
-        }
-
-        .listenBtn:hover {
-           transform: translateY(-1px) scale(1.05);
-           box-shadow: 0 6px 24px 0 rgba(255,255,255,0.25);
-        }
-
-        .listenBtn:active {
-            transform: translateY(1px) scale(1);
-            box-shadow: 0 2px 12px 0 rgba(255,255,255,0.25);
-        }
-        
-        .stopBtn {
-            border-radius: 11.5px;
-            color: rgb(167, 148, 148);
-            height: 30px;
-            background-color: #542424b0;
-            border: solid rgba(186, 168, 173, 0.059);
-            box-shadow: #d9d6d4;
-            transition: transform 0.1s, box-shadow 0.1s;
-            margin-bottom: 15px;
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-
-        .stopBtn.pressed {
-            transform: translateY(2px) scale(0.97);
-            box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
-            background-color: #5a2020b0;
-        }
-
-        .stopBtn:hover {
-           transform: translateY(-1px) scale(1.05);
-           box-shadow: 0 6px 24px 0 rgba(255,255,255,0.25);
-        }
-
-        .stopBtn:active {
-            transform: translateY(1px) scale(1);
-            box-shadow: 0 2px 12px 0 rgba(255,255,255,0.25);
-        }
-
-        /* --- Footer --- */
-        .footer {
-            background: linear-gradient(135deg, rgba(37, 16, 5, 0.95), rgba(61, 26, 0, 0.9));
-            text-align: center;
-            padding: 2rem;
-            border-top: 2px solid var(--yakshagana-gold);
-            margin-top: 3rem;
-        }
-
-        .footer p { margin: 0; padding: 5px 0; }
-
-        .footer a {
-            color: var(--text-gold);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer a:hover {
-            color: var(--yakshagana-gold);
-            text-shadow: 0 0 10px rgba(224, 180, 0, 0.5);
-        }
-
-        /* --- Responsive Design --- */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 3rem; }
-            .section h2 { font-size: 2.5rem; }
-            .detailed-story-section { padding: 2rem; }
-            .detailed-story-section h1 { font-size: 2rem; }
-            .nav-container { padding: 0.5rem 1rem; }
-            .nav-btn { margin: 0 5px; padding: 10px 20px; font-size: 14px; }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 { font-size: 2.5rem; }
-            .section h2 { font-size: 2rem; }
-            .detailed-story-section { padding: 1.5rem; }
-            .detailed-story-section h1 { font-size: 1.8rem; }
-            .nav-btn { margin: 0 3px; padding: 8px 15px; font-size: 12px; }
-        }
-    </style>
+  <!-- Custom Page Styles (Kalamkari) -->
+  
 </head>
+
 <body>
 
-    <nav class="nav-container">
-        <button class="nav-btn">Artists</button>
-        <button class="nav-btn">Workshops</button>
-        <button class="nav-btn">Calendar</button>
-        <div class="dropdown">
-            <button class="nav-btn dropdown-toggle">Stories <span class="dropdown-arrow">▼</span></button>
-            <div class="dropdown-menu">
-                <a href="#" class="dropdown-item">Bharatanatyam Stories</a>
-                <a href="#" class="dropdown-item">Blue Pottery Stories</a>
-                <a href="#" class="dropdown-item">Yakshagana Stories</a>
+  <!-- NAVBAR HTML FROM navbar.ejs -->
+  <nav class="floating-navbar">
+    <div class="nav-container">
+      <div class="brand-container">
+        <a href="/" class="brand-logo">
+          <span class="brand-text">RangRiti</span>
+          <div class="brand-glow"></div>
+        </a>
+      </div>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link" data-text="Home">
+          <span class="nav-icon">🏠</span>
+          <span class="nav-text">Home</span>
+          <div class="nav-ripple"></div>
+        </a>
+        <a href="/artists" class="nav-link" data-text="Artists">
+          <span class="nav-icon">👨‍🎨</span>
+          <span class="nav-text">Artists</span>
+          <div class="nav-ripple"></div>
+        </a>
+        <a href="/workshops" class="nav-link" data-text="Workshops">
+          <span class="nav-icon">🎭</span>
+          <span class="nav-text">Workshops</span>
+          <div class="nav-ripple"></div>
+        </a>
+        <a href="/calendar" class="nav-link" data-text="Calendar">
+          <span class="nav-icon">📅</span>
+          <span class="nav-text">Calendar</span>
+          <div class="nav-ripple"></div>
+        </a>
+        <div class="nav-dropdown">
+          <button class="nav-link dropdown-trigger" data-text="Heritage">
+            <span class="nav-icon">🏛️</span>
+            <span class="nav-text">Heritage</span>
+            <span class="dropdown-arrow">▼</span>
+            <div class="nav-ripple"></div>
+          </button>
+          <div class="dropdown-panel">
+            <div class="dropdown-content">
+              <a href="/heritage/paintings" class="dropdown-item">
+                <span class="dropdown-icon">🎨</span>
+                <span class="dropdown-text">Traditional Painting Styles</span>
+              </a>
+              <a href="/heritage/textiles" class="dropdown-item">
+                <span class="dropdown-icon">🪡</span>
+                <span class="dropdown-text">Textile Arts and Embroidery</span>
+              </a>
+              <a href="/heritage/performing" class="dropdown-item">
+                <span class="dropdown-icon">🪷</span>
+                <span class="dropdown-text">Performing Arts</span>
+              </a>
+              <a href="/heritage/handicrafts" class="dropdown-item">
+                <span class="dropdown-icon">🏺</span>
+                <span class="dropdown-text">Handicrafts and Sculpture</span>
+              </a>
             </div>
+          </div>
         </div>
-        <button class="nav-btn">Connect</button>
-    </nav>
+        <a href="/about" class="nav-link" data-text="About Us">
+          <span class="nav-icon">👥</span>
+          <span class="nav-text">About Us</span>
+          <div class="nav-ripple"></div>
+        </a>
+        <a href="/connect" class="nav-link" data-text="Connect">
+          <span class="nav-icon">🤝</span>
+          <span class="nav-text">Connect</span>
+          <div class="nav-ripple"></div>
+        </a>
+      </div>
+      <div class="auth-section">
+        <a href="/login" class="auth-link profile-btn" data-text="Profile">
+          <span class="auth-icon">👤</span>
+          <span class="auth-text">Profile</span>
+          <div class="nav-ripple"></div>
+        </a>
+        <a href="/login" class="auth-link login-btn" data-text="Login">
+          <span class="auth-icon">🔑</span>
+          <span class="auth-text">Login</span>
+          <div class="nav-ripple"></div>
+        </a>
+        <a href="/register" class="auth-link register-btn" data-text="Register">
+          <span class="auth-icon">📝</span>
+          <span class="auth-text">Register</span>
+          <div class="nav-ripple"></div>
+        </a>
+      </div>
+      <button class="mobile-toggle" id="mobileToggle">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+    <div class="mobile-nav-overlay" id="mobileNavOverlay">
+      <div class="mobile-nav-content">
+        <button class="mobile-close" id="mobileClose">✕</button>
+        <div class="mobile-nav-links"></div>
+      </div>
+    </div>
+  </nav>
 
     <main>
         <section class="hero">
