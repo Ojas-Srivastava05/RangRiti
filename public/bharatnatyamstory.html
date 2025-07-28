@@ -1084,8 +1084,7 @@
         }
 </style>
 
-<!-- Import navbar functionality from navbar.js -->
-<script src="/js/navbar.js"></script>
+
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -1219,106 +1218,12 @@
 <body>
 
   <!-- NAVBAR HTML FROM navbar.ejs -->
-  <nav class="floating-navbar">
-    <div class="nav-container">
-      <div class="brand-container">
-        <a href="/" class="brand-logo">
-          <span class="brand-text">RangRiti</span>
-          <div class="brand-glow"></div>
-        </a>
-      </div>
-      <div class="nav-links">
-        <a href="index.html" class="nav-link" data-text="Home">
-          <span class="nav-icon">🏠</span>
-          <span class="nav-text">Home</span>
-          <div class="nav-ripple"></div>
-        </a>
-        <a href="/artists" class="nav-link" data-text="Artists">
-          <span class="nav-icon">👨‍🎨</span>
-          <span class="nav-text">Artists</span>
-          <div class="nav-ripple"></div>
-        </a>
-        <a href="/workshops" class="nav-link" data-text="Workshops">
-          <span class="nav-icon">🎭</span>
-          <span class="nav-text">Workshops</span>
-          <div class="nav-ripple"></div>
-        </a>
-        <a href="/calendar" class="nav-link" data-text="Calendar">
-          <span class="nav-icon">📅</span>
-          <span class="nav-text">Calendar</span>
-          <div class="nav-ripple"></div>
-        </a>
-        <div class="nav-dropdown">
-          <button class="nav-link dropdown-trigger" data-text="Heritage">
-            <span class="nav-icon">🏛️</span>
-            <span class="nav-text">Heritage</span>
-            <span class="dropdown-arrow">▼</span>
-            <div class="nav-ripple"></div>
-          </button>
-          <div class="dropdown-panel">
-            <div class="dropdown-content">
-              <a href="/heritage/paintings" class="dropdown-item">
-                <span class="dropdown-icon">🎨</span>
-                <span class="dropdown-text">Traditional Painting Styles</span>
-              </a>
-              <a href="/heritage/textiles" class="dropdown-item">
-                <span class="dropdown-icon">🪡</span>
-                <span class="dropdown-text">Textile Arts and Embroidery</span>
-              </a>
-              <a href="/heritage/performing" class="dropdown-item">
-                <span class="dropdown-icon">🪷</span>
-                <span class="dropdown-text">Performing Arts</span>
-              </a>
-              <a href="/heritage/handicrafts" class="dropdown-item">
-                <span class="dropdown-icon">🏺</span>
-                <span class="dropdown-text">Handicrafts and Sculpture</span>
-              </a>
-            </div>
-          </div>
-        </div>
-        <a href="/about" class="nav-link" data-text="About Us">
-          <span class="nav-icon">👥</span>
-          <span class="nav-text">About Us</span>
-          <div class="nav-ripple"></div>
-        </a>
-        <a href="/connect" class="nav-link" data-text="Connect">
-          <span class="nav-icon">🤝</span>
-          <span class="nav-text">Connect</span>
-          <div class="nav-ripple"></div>
-        </a>
-      </div>
-      <div class="auth-section">
-        <a href="/login" class="auth-link profile-btn" data-text="Profile">
-          <span class="auth-icon">👤</span>
-          <span class="auth-text">Profile</span>
-          <div class="nav-ripple"></div>
-        </a>
-        <a href="/login" class="auth-link login-btn" data-text="Login">
-          <span class="auth-icon">🔑</span>
-          <span class="auth-text">Login</span>
-          <div class="nav-ripple"></div>
-        </a>
-        <a href="/register" class="auth-link register-btn" data-text="Register">
-          <span class="auth-icon">📝</span>
-          <span class="auth-text">Register</span>
-          <div class="nav-ripple"></div>
-        </a>
-      </div>
-      <button class="mobile-toggle" id="mobileToggle">
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-      </button>
-    </div>
-    <div class="mobile-nav-overlay" id="mobileNavOverlay">
-      <div class="mobile-nav-content">
-        <button class="mobile-close" id="mobileClose">✕</button>
-        <div class="mobile-nav-links"></div>
-      </div>
-    </div>
-  </nav>
+ 
 
     <main>
+        <a href="bharatnatyam.html">
+        <button class="back-button">←Back</button>
+    </a>
         <section class="hero">
             <div class="hero-content">
                 <h1>Bharatnatyam: The Soul of Indian Dance</h1>
@@ -1432,10 +1337,13 @@
     </main>
 
     <footer class="footer">
-        <p>&copy; 2025 RangRiti. All rights reserved.</p>
-        <p>Inspired by the rich heritage of South Indian Classical Dance.</p>
-        <p>Contact us at <a href="mailto:rangritiSVNIT@gmail.com">rangritiSVNIT@gmail.com</a></p>
-
+        <div class="footer-content">
+            <div class="footer-logo">RangRiti</div>
+            <p class="footer-text">Preserving India's artistic heritage for future generations</p>
+            <div class="footer-bottom">
+                <p>&copy; 2025 RangRiti. All rights reserved. Crafted with passion for Indian arts.</p>
+            </div>
+        </div>
     </footer>
 
 <script>
