@@ -25,7 +25,39 @@
         --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     }
+    .back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.7); /* Deep black, semi-transparent */
+    color: var(--text-gold); /* Gold text */
+    border: 1px solid rgba(255, 215, 0, 0.3); /* Softer gold border */
+    border-radius: 8px;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Stronger shadow for depth against black */
+    z-index: 10;
+}
 
+.back-button:hover {
+    background-color: rgba(255, 215, 0, 0.1); /* Subtle gold tint on hover */
+    color: white; /* White text on hover for highlight */
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4); /* Gold glow effect on hover */
+    border-color: var(--text-gold); /* Solid gold border on hover */
+}
+
+.back-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
     /* Floating Navbar Container */
     .floating-navbar {
   position: fixed;
@@ -1084,7 +1116,7 @@
 </style>
 
 <!-- Import navbar functionality from navbar.js -->
-<script src="/js/navbar.js"></script>
+
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
