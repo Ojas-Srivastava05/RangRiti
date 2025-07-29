@@ -120,7 +120,7 @@ app.post('/contact/feedback', async (req, res) => {
 
   const mailOptions = {
     from: process.env.EMAIL_USER,
-    to: 'rangitisvnit@gmail.com',
+    to: 'rangritisvnit@gmail.com',
     subject: 'New Feedback Received - Rangriti',
     text: `
 New Feedback Received on Rangriti:
@@ -147,7 +147,7 @@ app.post('/contact/artist', async (req, res) => {
 
   const mailOptions = {
     from: process.env.EMAIL_USER,
-    to: 'rangitisvnit@gmail.com',
+    to: 'rangritisvnit@gmail.com',
     subject: 'New Artist Connection Request - Rangriti',
     text: `
 A user wants to connect with an artist:
@@ -173,7 +173,7 @@ app.post('/contact/general', async (req, res) => {
 
   const mailOptions = {
     from: process.env.EMAIL_USER,
-    to: 'rangitisvnit@gmail.com',
+    to: 'rangritisvnit@gmail.com',
     subject: `New General Inquiry: ${subject}`,
     text: `
 New Contact Inquiry:
@@ -200,7 +200,7 @@ app.post('/contact/collaboration', async (req, res) => {
 
   const mailOptions = {
     from: process.env.EMAIL_USER,
-    to: 'rangitisvnit@gmail.com',
+    to: 'rangritisvnit@gmail.com',
     subject: 'New Collaboration Request - Rangriti',
     text: `
 Collaboration Request:
