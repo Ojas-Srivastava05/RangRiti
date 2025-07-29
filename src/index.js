@@ -345,7 +345,7 @@ app.post('/cart/add', async (req, res) => {
 
     const user = await User.findById(userSession.id);
     if (!user) {
-      return res.status(404).json({ message: 'User not found' });
+      return res.status(404).json({ message: 'Kindly register as a user to continue' });
     }
 
     const existingItem = user.cart.find(item =>
@@ -806,17 +806,42 @@ app.get("/", (req, res) => {
 
 app.get('/dashboard', async (req, res) => {
     try {
-        const userId = req.session?.user?.id;
-        if (!userId) {
-            return res.redirect('/');
+        const sessionUser = req.session?.user;
+
+        // ✅ 1. Check if logged in
+        if (!sessionUser?.id) {
+            return res.send(`
+                <script>
+                    alert('You must be logged in as an artist to access the dashboard.');
+                    window.location.href = '/login.html';
+                </script>
+            `);
         }
 
-        const artist = await Artist.findById(userId);
+        // ✅ 2. Check if session type is artist
+        if (sessionUser.type !== 'artist') {
+            return res.send(`
+                <script>
+                    alert('Only artists can access this dashboard.');
+                    window.location.href = '/login.html';
+                </script>
+            `);
+        }
+
+        // ✅ 3. Verify the artist exists
+        const artist = await Artist.findById(sessionUser.id);
         if (!artist) {
-            return res.status(404).send("Artist not found");
+            return res.send(`
+                <script>
+                    alert('Artist account not found.');
+                    window.location.href = '/login.html';
+                </script>
+            `);
         }
 
-        res.render('dashboard_artist', { artist });  // ✅ make sure you're passing artist here
+        // ✅ 4. Render dashboard for artists
+        res.render('dashboard_artist', { artist });
+
     } catch (err) {
         console.error("Dashboard render error:", err);
         res.status(500).send("Server error");
@@ -1137,35 +1162,7 @@ app.post('/api/login', async (req, res) => {
     }
 });
 
-// Move TTS route to here - BEFORE the error handlers
-app.post("/api/tts", async (req, res) => {
-    const { text } = req.body;
 
-    if (!text) {
-        return res.status(400).json({ error: "No text provided" });
-    }
-
-    const apiKey = process.env.VOICE_RSS_API_KEY;
-
-    const url = `https://api.voicerss.org/?key=${apiKey}&hl=en-us&v=Mary&r=0&src=${encodeURIComponent(
-        text
-    )}&c=MP3&f=44khz_16bit_stereo`;
-
-    try {
-        const response = await fetch(url);
-        const audioBuffer = await response.arrayBuffer();
-
-        res.set({
-            "Content-Type": "audio/mpeg",
-            "Content-Length": audioBuffer.byteLength,
-        });
-
-        res.send(Buffer.from(audioBuffer));
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "TTS request failed" });
-    }
-});
 
 // Add this endpoint before your 404 error handler in index.js
 
@@ -1447,4 +1444,3 @@ app.use((err, req, res, next) => {
     }
 })();
 
-console.log("Voice RSS API Key:", process.env.VOICE_RSS_API_KEY ? "✓ Loaded" : "✗ Missing");
