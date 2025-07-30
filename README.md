@@ -116,7 +116,7 @@ Your local RangRiti instance should now be running\!
 
 You can explore the live version of RangRiti deployed on Render at:
 
-[**rangriti.onrender.com**](https://www.google.com/search?q=https://rangriti.onrender.com)
+[**rangriti.onrender.com**](https://rangriti.onrender.com)
 
 ```
 ```
