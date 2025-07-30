@@ -1,5 +1,5 @@
 
-````markdown
+
 # 🎨 RangRiti - Preserving India's Artistic Heritage Through Technology
 
 <div align="center">
