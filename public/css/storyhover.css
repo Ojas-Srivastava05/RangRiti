@@ -1,0 +1,117 @@
+/* Styles for the individual story cards */
+.story-card {
+    background-color: #fff; /* White background */
+    border: 1px solid #e0e0e0; /* Light gray border for non-clickable */
+    border-radius: 8px; /* Slightly rounded corners */
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Subtle initial shadow */
+    transition: all 0.3s ease; /* Smooth transition for all hover effects */
+    cursor: default; /* Default cursor for non-clickable cards */
+    display: flex; /* Using flexbox for content alignment */
+    flex-direction: column;
+    justify-content: space-between; /* Pushes content apart */
+    min-height: 180px; /* Ensure consistent height if content varies */
+}
+
+/* Make the specific clickable card visually distinct INITIALLY */
+/* This gives it a subtle hint even before hover */
+.story-card[onclick] {
+    position: relative; /* Needed for absolute positioning of pseudo-element */
+    overflow: hidden; /* Ensures pseudo-element doesn't overflow */
+    border: 2px solid #a8d9ff; /* A slightly more noticeable initial light blue border */
+    box-shadow: 0 0 10px rgba(168, 217, 255, 0.4); /* A soft blue initial glow */
+}
+
+
+/* --- The CORE "EXPRESSIVE" Part: Hover Effects --- */
+.story-card[onclick]:hover {
+    cursor: pointer; /* **ESSENTIAL**: Changes cursor to a hand */
+    background-color: #e6f7ff; /* **VERY NOTICEABLE**: A clear, vibrant light blue background change */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); /* **DRAMATIC**: A much deeper, wider shadow */
+    transform: translateY(-10px) scale(1.03); /* **PRONOUNCED**: Lifts higher and grows slightly larger */
+    border-color: #007bff; /* **STRONG CUE**: A clear, bright blue border on hover */
+}
+
+/* --- The CORE "EXPRESSIVE" Part: Call to Action (CTA) --- */
+.story-card[onclick]:after {
+    content: 'Read Story →'; /* **DIRECT TEXT**: Explicitly tells the user what to do */
+    position: absolute;
+    bottom: 15px; /* Position it clearly at the bottom */
+    right: 15px; /* Position it clearly at the right */
+    font-size: 1.05em; /* Make the text readable */
+    font-weight: bold; /* Make it bold */
+    color: #fff; /* White text for strong contrast */
+    background-color: #007bff; /* **VIBRANT BUTTON**: A bright blue background, making it look like a button */
+    padding: 8px 15px; /* Generous padding for clickability */
+    border-radius: 25px; /* Pill-shaped for a clear button aesthetic */
+    opacity: 0; /* Starts invisible */
+    transform: translateY(15px); /* Starts slightly below the card */
+    transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.2s ease; /* Smooth animation */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow for the button itself */
+    letter-spacing: 0.5px; /* A little spacing for readability */
+}
+
+.story-card[onclick]:hover:after {
+    opacity: 1; /* **CLEAR APPEARANCE**: Becomes fully visible on hover */
+    transform: translateY(0); /* Slides up into its final position */
+    background-color: #0056b3; /* Darker blue on button hover */
+}
+
+/* Focus state for keyboard navigation (important for accessibility) */
+.story-card[onclick]:focus {
+    outline: 3px solid #007bff; /* Thicker blue outline for focus */
+    outline-offset: 3px; /* Space between outline and card */
+    box-shadow: 0 0 0 6px rgba(0, 123, 255, 0.35); /* More pronounced glow effect for focus */
+    cursor: pointer;
+}
+
+/* You might want to style your h3 and p tags inside the card for better readability */
+.story-card h3 {
+    font-size: 1.6em; /* Slightly larger title */
+    margin-bottom: 12px;
+    color: #222; /* Darker title color */
+}
+
+.story-card p {
+    font-size: 1em;
+    color: #555; /* Slightly darker body text */
+    line-height: 1.6;
+    flex-grow: 1; /* Allows paragraph to take available space */
+    /* margin-bottom should be adjusted if the 'Read Story' button is always visible */
+    margin-bottom: 25px; /* Sufficient space if button appears on hover */
+}
+
+/* Basic grid layout for responsiveness */
+.stories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive columns */
+    gap: 30px; /* Space between cards */
+    padding: 20px;
+    max-width: 1200px; /* Max width for the grid */
+    margin: 0 auto; /* Center the grid */
+}
+
+.section {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.section h2 {
+    font-size: 2.8em; /* Larger heading */
+    margin-bottom: 40px;
+    color: #333;
+    text-transform: uppercase; /* Make heading stand out */
+    letter-spacing: 2px;
+}
+
+/* Fade-in animation (assuming you have JS to add 'fade-in' class on scroll) */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px); /* More pronounced initial translate */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Slower, smoother fade */
+}
+
+.fade-in.active {
+    opacity: 1;
+    transform: translateY(0);
+}
