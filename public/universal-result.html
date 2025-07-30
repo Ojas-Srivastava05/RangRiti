@@ -423,6 +423,68 @@
             color: var(--crimson);
         }
 
+        /* Options container and styling */
+        .options-container {
+            margin: 1rem 0;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .option-letter {
+            font-weight: bold;
+            color: var(--deep-gold);
+            min-width: 20px;
+        }
+
+        .option-text {
+            flex: 1;
+            color: var(--deep-brown);
+        }
+
+        .option-icon {
+            font-size: 1.2rem;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .correct-option {
+            background: rgba(80, 200, 120, 0.15);
+            border: 2px solid var(--emerald);
+        }
+
+        .correct-option .option-letter,
+        .correct-option .option-text {
+            color: var(--deep-wood);
+            font-weight: bold;
+        }
+
+        .user-wrong-option {
+            background: rgba(220, 20, 60, 0.15);
+            border: 2px solid var(--crimson);
+        }
+
+        .user-wrong-option .option-letter,
+        .user-wrong-option .option-text {
+            color: var(--deep-wood);
+            font-weight: bold;
+        }
+
+        .answer-summary {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
         /* Action buttons */
         .action-buttons {
             display: flex;
@@ -430,6 +492,11 @@
             gap: 1rem;
             margin-top: 2rem;
             flex-wrap: wrap;
+        }
+
+        .action-buttons:hover{
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
         }
 
         .action-btn {
@@ -445,6 +512,7 @@
             display: inline-block;
             text-align: center;
             min-width: 120px;
+            background: rgba(255, 255, 255, 0.15); /* Default subtle background */
         }
 
         .primary-btn {
@@ -581,24 +649,6 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="nav-container">
-        <a href="index.html" class="nav-btn-link"><button class="nav-btn">Home</button></a>
-        <a href="artists.html" class="nav-btn-link"><button class="nav-btn">Artists</button></a>
-        <a href="workshops.html" class="nav-btn-link"><button class="nav-btn">Workshops</button></a>
-        <a href="calendar.html" class="nav-btn-link"><button class="nav-btn">Calendar</button></a>
-        <div class="dropdown">
-            <button class="nav-btn dropdown-toggle">
-                Heritage <span class="dropdown-arrow">&#9660;</span>
-            </button>
-            <div class="dropdown-menu">
-                <a href="paintings and traditional styles.html" class="dropdown-item">Traditional Painting Styles</a>
-                <a href="textile_main.html" class="dropdown-item">Textile Arts</a>
-                <a href="performingarts.html" class="dropdown-item">Performing Arts</a>
-                <a href="handicrafts_and_sculptures.html" class="dropdown-item">Handicrafts & Sculpture</a>
-            </div>
-        </div>
-        <a href="connect.html" class="nav-btn-link"><button class="nav-btn">Connect</button></a>
-    </nav>
 
     <header class="result-header">
         <div class="header-content">
@@ -631,11 +681,11 @@
                     <div class="stat-label">Percentage Score</div>
                 </div>
             </div>
+        </section>
             <div class="action-buttons">
                 <a href="#" id="retake-quiz" class="action-btn primary-btn">Retake Quiz</a>
                 <a href="index.html" class="action-btn secondary-btn">Go Home</a>
             </div>
-        </section>
 
         <!-- Review Section -->
         <section class="art-card review-section">
@@ -931,21 +981,25 @@
         // Quiz type configurations
         const quizConfigs = {
             'quizResult': {
+                name: 'Cultural Heritage Quiz',
                 title: 'Indian Art & Textile Heritage Quiz',
                 quizPage: 'quiz.html',
                 storageKey: 'quizResult'
             },
             'paintingsQuizResult': {
+                name: 'Paintings Quiz',
                 title: 'Traditional Paintings Quiz',
                 quizPage: 'paintings-quiz.html',
                 storageKey: 'paintingsQuizResult'
             },
             'performingArtsQuizResult': {
+                name: 'Performing Arts Quiz',
                 title: 'Performing Arts Quiz',
                 quizPage: 'performing-arts-quiz.html',
                 storageKey: 'performingArtsQuizResult'
             },
             'handicraftsQuizResult': {
+                name: 'Handicrafts Quiz',
                 title: 'Handicrafts & Sculpture Quiz',
                 quizPage: 'handicrafts-quiz.html',
                 storageKey: 'handicraftsQuizResult'
@@ -958,37 +1012,59 @@
             let quizData = null;
             let quizType = null;
             
-            // Check all possible quiz types
-            for (const [key, config] of Object.entries(quizConfigs)) {
-                const data = localStorage.getItem(key);
+            // 1. Always prefer lastQuizType if available (most recently attempted quiz)
+            const lastQuizType = localStorage.getItem('lastQuizType');
+            if (lastQuizType && quizConfigs[lastQuizType]) {
+                const data = localStorage.getItem(lastQuizType);
                 if (data) {
-                    quizData = JSON.parse(data);
-                    quizType = key;
-                    break;
-                }
-            }
-            
-            // If no quiz data found, check URL parameters for fallback
-            if (!quizData) {
-                const urlParams = new URLSearchParams(window.location.search);
-                const type = urlParams.get('type');
-                if (type && quizConfigs[type]) {
-                    quizType = type;
-                    // Try to load the data again
-                    const data = localStorage.getItem(type);
-                    if (data) {
+                    try {
                         quizData = JSON.parse(data);
+                        quizType = lastQuizType;
+                        console.log(`✅ Loaded quiz data for: ${quizConfigs[lastQuizType].name}`);
+                    } catch (e) {
+                        console.error('Error parsing quiz data:', e);
                     }
                 }
             }
             
-            // Default fallback to main quiz if still no data
+            // 2. Fallback: Check all possible quiz types if lastQuizType failed
             if (!quizData) {
-                quizType = 'quizResult';
-                const data = localStorage.getItem('quizResult');
-                if (data) {
-                    quizData = JSON.parse(data);
+                for (const [key, config] of Object.entries(quizConfigs)) {
+                    const data = localStorage.getItem(key);
+                    if (data) {
+                        try {
+                            quizData = JSON.parse(data);
+                            quizType = key;
+                            console.log(`⚠️ Fallback: Loaded quiz data for: ${config.name}`);
+                            break;
+                        } catch (e) {
+                            console.error(`Error parsing ${key} data:`, e);
+                        }
+                    }
                 }
+            }
+            
+            // 3. URL parameter fallback (for direct navigation)
+            if (!quizData) {
+                const urlParams = new URLSearchParams(window.location.search);
+                const type = urlParams.get('type');
+                if (type && quizConfigs[type]) {
+                    const data = localStorage.getItem(type);
+                    if (data) {
+                        try {
+                            quizData = JSON.parse(data);
+                            quizType = type;
+                            console.log(`🔗 URL parameter: Loaded quiz data for: ${quizConfigs[type].name}`);
+                        } catch (e) {
+                            console.error(`Error parsing ${type} data:`, e);
+                        }
+                    }
+                }
+            }
+            
+            // Log the result
+            if (!quizData) {
+                console.log('❌ No quiz result found in localStorage');
             }
             
             return { quizData, quizType };
@@ -1027,9 +1103,20 @@
             const { quizData, quizType } = loadQuizData();
             
             if (!quizData) {
-                document.getElementById('quiz-type-display').textContent = 'No quiz data found';
+                // Show fallback message when no quiz data is found
+                document.getElementById('quiz-type-display').textContent = 'No quiz result found';
                 document.getElementById('score-display').textContent = '0/0';
-                document.getElementById('performance-message').textContent = 'Please take a quiz first!';
+                document.getElementById('performance-message').textContent = 'Please take a quiz first to see your results here!';
+                
+                // Update summary stats with zeros
+                document.getElementById('total-questions').textContent = '0';
+                document.getElementById('correct-answers').textContent = '0';
+                document.getElementById('incorrect-answers').textContent = '0';
+                document.getElementById('percentage-score').textContent = '0%';
+                
+                // Clear review grid
+                document.getElementById('review-grid').innerHTML = '<p style="text-align: center; color: var(--deep-brown); font-style: italic;">No questions to review. Take a quiz to see detailed results!</p>';
+                
                 return;
             }
             
@@ -1037,7 +1124,7 @@
             const config = quizConfigs[quizType];
             const { correct, percentage, message } = calculateScore(quiz, userAnswers);
             
-            // Update header
+            // Update header with quiz-specific information
             document.getElementById('quiz-type-display').textContent = config.title;
             document.getElementById('score-display').textContent = `${correct}/${quiz.length}`;
             document.getElementById('performance-message').textContent = message;
@@ -1048,10 +1135,25 @@
             document.getElementById('incorrect-answers').textContent = quiz.length - correct;
             document.getElementById('percentage-score').textContent = `${percentage}%`;
             
-            // Update retake button
-            document.getElementById('retake-quiz').href = config.quizPage;
+            // Update retake button to redirect to the correct quiz page
+            const retakeBtn = document.getElementById('retake-quiz');
+            if (retakeBtn) {
+                const lastQuizType = localStorage.getItem('lastQuizType');
+                let quizPage = 'quiz.html'; // fallback
+                
+                if (lastQuizType && quizConfigs[lastQuizType]) {
+                    quizPage = quizConfigs[lastQuizType].quizPage;
+                } else if (quizType && quizConfigs[quizType]) {
+                    quizPage = quizConfigs[quizType].quizPage;
+                }
+                
+                retakeBtn.onclick = function(e) {
+                    e.preventDefault();
+                    window.location.href = quizPage;
+                };
+            }
             
-            // Generate review cards
+            // Generate detailed review cards with all questions and options
             generateReviewCards(quiz, userAnswers);
         }
 
@@ -1062,11 +1164,43 @@
             
             quiz.forEach((question, index) => {
                 const isCorrect = userAnswers[index] === question.ans;
-                const userAnswerText = userAnswers[index] !== null ? question.opts[userAnswers[index]] : 'Not answered';
-                const correctAnswerText = question.opts[question.ans];
+                const userAnswerIndex = userAnswers[index];
+                const correctAnswerIndex = question.ans;
                 
                 const card = document.createElement('div');
                 card.className = `review-card ${isCorrect ? 'correct' : 'incorrect'}`;
+                
+                // Generate all options with proper styling
+                let optionsHTML = '';
+                question.opts.forEach((option, optIndex) => {
+                    let optionClass = 'option-item';
+                    let optionIcon = '';
+                    
+                    // Determine styling for each option
+                    if (optIndex === correctAnswerIndex) {
+                        optionClass += ' correct-option';
+                        optionIcon = '✅';
+                    }
+                    
+                    if (optIndex === userAnswerIndex && optIndex !== correctAnswerIndex) {
+                        optionClass += ' user-wrong-option';
+                        optionIcon = '❌';
+                    }
+                    
+                    if (optIndex === userAnswerIndex && optIndex === correctAnswerIndex) {
+                        optionIcon = '✅';
+                    }
+                    
+                    optionsHTML += `
+                        <div class="${optionClass}">
+                            <span class="option-letter">${String.fromCharCode(65 + optIndex)}.</span>
+                            <span class="option-text">${option}</span>
+                            <span class="option-icon">${optionIcon}</span>
+                        </div>
+                    `;
+                });
+                
+                const userAnswerText = userAnswerIndex !== null ? question.opts[userAnswerIndex] : 'Not answered';
                 
                 card.innerHTML = `
                     <div class="status-icon ${isCorrect ? 'correct' : 'incorrect'}">
@@ -1074,16 +1208,28 @@
                     </div>
                     <div class="question-number">Question ${index + 1}</div>
                     <div class="question-text">${question.q}</div>
-                    <div class="answer-info">
-                        <div class="answer-label">Your Answer:</div>
-                        <div class="answer-text user-answer ${isCorrect ? '' : 'incorrect-answer'}">${userAnswerText}</div>
+                    
+                    <div class="options-container">
+                        <div class="answer-label">Options:</div>
+                        ${optionsHTML}
                     </div>
-                    ${!isCorrect ? `
+                    
+                    <div class="answer-summary">
                         <div class="answer-info">
-                            <div class="answer-label">Correct Answer:</div>
-                            <div class="answer-text correct-answer">${correctAnswerText}</div>
+                            <div class="answer-label">Your Answer:</div>
+                            <div class="answer-text user-answer ${isCorrect ? 'correct-answer' : 'incorrect-answer'}">
+                                <strong>${userAnswerText}</strong>
+                            </div>
                         </div>
-                    ` : ''}
+                        ${!isCorrect ? `
+                            <div class="answer-info">
+                                <div class="answer-label">Correct Answer:</div>
+                                <div class="answer-text correct-answer">
+                                    <strong>${question.opts[correctAnswerIndex]}</strong>
+                                </div>
+                            </div>
+                        ` : ''}
+                    </div>
                 `;
                 
                 reviewGrid.appendChild(card);

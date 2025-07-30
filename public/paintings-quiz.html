@@ -1292,6 +1292,8 @@
                 quiz: quiz,
                 userAnswers: userAnswers
             }));
+            // Set lastQuizType to track the most recently attempted quiz
+            localStorage.setItem('lastQuizType', 'paintingsQuizResult');
             window.location.href = 'universal-result.html';
         }
 
