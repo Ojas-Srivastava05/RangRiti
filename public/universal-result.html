@@ -423,6 +423,17 @@
             color: var(--crimson);
         }
 
+        .status-icon.unanswered {
+            color: var(--sandalwood);
+        }
+
+        .unanswered-text {
+            background: rgba(195, 154, 107, 0.15);
+            border: 1px solid var(--sandalwood);
+            color: var(--deep-brown);
+            font-style: italic;
+        }
+
         /* Options container and styling */
         .options-container {
             margin: 1rem 0;
@@ -1073,17 +1084,23 @@
         // Function to calculate score and generate performance message
         function calculateScore(quiz, userAnswers) {
             let correct = 0;
+            let answered = 0;
             
             quiz.forEach((question, index) => {
-                if (userAnswers[index] === question.ans) {
-                    correct++;
+                if (userAnswers[index] !== null) {
+                    answered++;
+                    if (userAnswers[index] === question.ans) {
+                        correct++;
+                    }
                 }
             });
             
-            const percentage = Math.round((correct / quiz.length) * 100);
+            const percentage = answered > 0 ? Math.round((correct / answered) * 100) : 0;
             let message = '';
             
-            if (percentage >= 90) {
+            if (answered === 0) {
+                message = 'No questions were answered. Please attempt the quiz! 📝';
+            } else if (percentage >= 90) {
                 message = 'Outstanding! You have excellent knowledge of Indian heritage! 🎨';
             } else if (percentage >= 80) {
                 message = 'Great job! You have a good understanding of our cultural traditions! 👏';
@@ -1095,7 +1112,7 @@
                 message = 'There\'s always room to learn more about our rich heritage! 🎯';
             }
             
-            return { correct, percentage, message };
+            return { correct, answered, percentage, message };
         }
 
         // Function to display results
@@ -1122,17 +1139,21 @@
             
             const { quiz, userAnswers } = quizData;
             const config = quizConfigs[quizType];
-            const { correct, percentage, message } = calculateScore(quiz, userAnswers);
+            const { correct, answered, percentage, message } = calculateScore(quiz, userAnswers);
+            
+            // Calculate incorrect answers (only from answered questions)
+            const incorrect = answered - correct;
+            const unanswered = quiz.length - answered;
             
             // Update header with quiz-specific information
             document.getElementById('quiz-type-display').textContent = config.title;
-            document.getElementById('score-display').textContent = `${correct}/${quiz.length}`;
+            document.getElementById('score-display').textContent = `${correct}/${answered > 0 ? answered : quiz.length}`;
             document.getElementById('performance-message').textContent = message;
             
             // Update summary stats
             document.getElementById('total-questions').textContent = quiz.length;
             document.getElementById('correct-answers').textContent = correct;
-            document.getElementById('incorrect-answers').textContent = quiz.length - correct;
+            document.getElementById('incorrect-answers').textContent = incorrect;
             document.getElementById('percentage-score').textContent = `${percentage}%`;
             
             // Update retake button to redirect to the correct quiz page
@@ -1163,12 +1184,18 @@
             reviewGrid.innerHTML = '';
             
             quiz.forEach((question, index) => {
-                const isCorrect = userAnswers[index] === question.ans;
                 const userAnswerIndex = userAnswers[index];
                 const correctAnswerIndex = question.ans;
+                const isAnswered = userAnswerIndex !== null;
+                const isCorrect = isAnswered && userAnswerIndex === correctAnswerIndex;
                 
                 const card = document.createElement('div');
-                card.className = `review-card ${isCorrect ? 'correct' : 'incorrect'}`;
+                // Only add correct/incorrect class if question was answered
+                let cardClass = 'review-card';
+                if (isAnswered) {
+                    cardClass += isCorrect ? ' correct' : ' incorrect';
+                }
+                card.className = cardClass;
                 
                 // Generate all options with proper styling
                 let optionsHTML = '';
@@ -1176,18 +1203,20 @@
                     let optionClass = 'option-item';
                     let optionIcon = '';
                     
-                    // Determine styling for each option
+                    // Always show the correct answer
                     if (optIndex === correctAnswerIndex) {
                         optionClass += ' correct-option';
                         optionIcon = '✅';
                     }
                     
-                    if (optIndex === userAnswerIndex && optIndex !== correctAnswerIndex) {
+                    // Only show user selection styling if question was answered
+                    if (isAnswered && optIndex === userAnswerIndex && optIndex !== correctAnswerIndex) {
                         optionClass += ' user-wrong-option';
                         optionIcon = '❌';
                     }
                     
-                    if (optIndex === userAnswerIndex && optIndex === correctAnswerIndex) {
+                    // If user got it right, don't add wrong styling
+                    if (isAnswered && optIndex === userAnswerIndex && optIndex === correctAnswerIndex) {
                         optionIcon = '✅';
                     }
                     
@@ -1200,11 +1229,25 @@
                     `;
                 });
                 
-                const userAnswerText = userAnswerIndex !== null ? question.opts[userAnswerIndex] : 'Not answered';
+                const userAnswerText = isAnswered ? question.opts[userAnswerIndex] : 'Not answered';
+                
+                // Status icon based on answer status
+                let statusIcon = '';
+                let statusClass = '';
+                if (!isAnswered) {
+                    statusIcon = '❓';
+                    statusClass = 'unanswered';
+                } else if (isCorrect) {
+                    statusIcon = '✅';
+                    statusClass = 'correct';
+                } else {
+                    statusIcon = '❌';
+                    statusClass = 'incorrect';
+                }
                 
                 card.innerHTML = `
-                    <div class="status-icon ${isCorrect ? 'correct' : 'incorrect'}">
-                        ${isCorrect ? '✅' : '❌'}
+                    <div class="status-icon ${statusClass}">
+                        ${statusIcon}
                     </div>
                     <div class="question-number">Question ${index + 1}</div>
                     <div class="question-text">${question.q}</div>
@@ -1217,11 +1260,19 @@
                     <div class="answer-summary">
                         <div class="answer-info">
                             <div class="answer-label">Your Answer:</div>
-                            <div class="answer-text user-answer ${isCorrect ? 'correct-answer' : 'incorrect-answer'}">
+                            <div class="answer-text user-answer ${isAnswered ? (isCorrect ? 'correct-answer' : 'incorrect-answer') : 'unanswered-text'}">
                                 <strong>${userAnswerText}</strong>
                             </div>
                         </div>
-                        ${!isCorrect ? `
+                        ${isAnswered && !isCorrect ? `
+                            <div class="answer-info">
+                                <div class="answer-label">Correct Answer:</div>
+                                <div class="answer-text correct-answer">
+                                    <strong>${question.opts[correctAnswerIndex]}</strong>
+                                </div>
+                            </div>
+                        ` : ''}
+                        ${!isAnswered ? `
                             <div class="answer-info">
                                 <div class="answer-label">Correct Answer:</div>
                                 <div class="answer-text correct-answer">
