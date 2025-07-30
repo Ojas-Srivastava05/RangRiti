@@ -99,6 +99,33 @@
             box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
         }
 
+        /* Back button */
+        .back-button {
+            position: fixed;
+            top: 30px;
+            left: 20px;
+            background: linear-gradient(45deg, var(--sandalwood), var(--deep-wood));
+            color: var(--light-ivory);
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-family: 'EB Garamond', serif;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            z-index: 1001;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            /* gold/earth shadow + golden glow */
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3),
+                        0 0 8px rgba(255, 215, 0, 0.8),
+                        0 0 16px rgba(255, 215, 0, 0.6);
+        }
+
         /* Dropdown styles */
         .dropdown {
             position: relative;
@@ -560,6 +587,28 @@
             font-style: italic;
         }
 
+        /* Main content styles for print */
+        @media print {
+            body {
+                background: none;
+                color: #000;
+            }
+            .container, .sidebar, #question-panel {
+                padding: 0;
+                margin: 0;
+                border: none;
+                border-radius: 0;
+                box-shadow: none;
+                width: 100%;
+            }
+            .art-card {
+                page-break-inside: avoid;
+            }
+            .footer {
+                display: none;
+            }
+        }
+
         /* Responsive design */
         @media (max-width: 900px) {
             .container { 
@@ -616,6 +665,7 @@
     </style>
 </head>
 <body>
+    <button class="back-button" onclick="history.back()">← Back</button>
     <!-- Navigation -->
 
 
