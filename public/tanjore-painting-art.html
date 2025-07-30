@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rangriti - Tanjore Art</title>
-    <link rel="stylesheet" href="./css/storyhover.css"> 
+    <link rel="stylesheet" href="./css/storyhover.css">
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/storyhover.css"> 
     <style>
         :root {
             --sandalwood: #E8D5B7;
@@ -681,7 +682,6 @@
                 <li><a href="#stories">Stories</a></li>
                 <li><a href="#videos">Videos</a></li>
                 <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -725,22 +725,22 @@
 </section>
 
 <!-- Stories Section -->
-<section id="stories" class="section">
+<section id="stories" class="section" title="">
     <h2>Divine Narratives</h2>
     <div class="stories-grid">
-        <div class="story-card fade-in">
+        <div class="story-card fade-in" onclick="window.location.href = 'tanjore-stories.html'">
             <h3>Krishna with Cows</h3>
             <p>A recurring theme in Tanjore paintings, Lord Krishna is shown in vibrant colors playing the flute, surrounded by cows and lush foliage.</p>
         </div>
-        <div class="story-card fade-in">
+        <div class="story-card fade-in" onclick="window.location.href = 'tanjore-stories.html'">
             <h3>Goddess Lakshmi</h3>
             <p>Seated on a lotus with gold ornaments and serene expression, Lakshmi's image symbolizes prosperity and is often worshipped as a household deity.</p>
         </div>
-        <div class="story-card fade-in">
+        <div class="story-card fade-in" onclick="window.location.href = 'tanjore-stories.html'">
             <h3>Shiva Parvati Wedding</h3>
             <p>The divine wedding of Shiva and Parvati is portrayed with intricate detailing, divine guests, and a golden backdrop that radiates devotion.</p>
         </div>
-        <div class="story-card fade-in">
+        <div class="story-card fade-in" onclick="window.location.href = 'tanjore-stories.html'">
             <h3>Dashavatara Panel</h3>
             <p>All ten incarnations of Vishnu are depicted in a single frame, each within an arched shrine-like niche adorned with gold and floral patterns.</p>
         </div>
@@ -1150,11 +1150,13 @@
         document.querySelectorAll('.fade-in').forEach(el => {
             observer.observe(el);
         });
-document.querySelectorAll('.story-card').forEach(self=>{
-            self.addEventListener('click',()=>{
-                window.location.href = '/tanjore-stories.html'
-            })
-        })
+        
+        // Commented out since we're using onclick attributes directly for better hover effects
+        // document.querySelectorAll('.story-card').forEach(self=>{
+        //     self.addEventListener('click',()=>{
+        //         window.location.href = '/tanjore-stories.html'
+        //     })
+        // })
 
         // Lightbox functionality
         // function openLightbox(title, artist, description) {

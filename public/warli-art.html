@@ -676,12 +676,11 @@
         <div class="nav-container">
             <a href="#" class="logo">Rangriti</a>
             <ul class="nav-menu">
-                <li><a href="#home">Home</a></li>
+                <li><a href="/index.html">Home</a></li>
                 <li><a href="#about">About Madhubani</a></li>
                 <li><a href="#stories">Stories</a></li>
                 <li><a href="#videos">Videos</a></li>
                 <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -727,19 +726,19 @@
 <section id="stories" class="section">
     <h2>Echoed Tales</h2>
     <div class="stories-grid">
-        <div class="story-card fade-in">
+        <div class="story-card fade-in" onclick="window.location.href = 'warli-story.html'">
             <h3>Circle of Life</h3>
             <p>Figures dancing in a spiral around the tarpa musician symbolize unity and the cyclic nature of life in Warli tradition.</p>
         </div>
-        <div class="story-card fade-in">
+        <div class="story-card fade-in" onclick="window.location.href = 'warli-story.html'">
             <h3>Harvest Festival</h3>
             <p>Harvest scenes capture the bond between the Warli people and the earth. Women sow seeds while men plow fields, surrounded by cows and birds.</p>
         </div>
-        <div class="story-card fade-in">
+        <div class="story-card fade-in" onclick="window.location.href = 'warli-story.html'">
             <h3>Marriage Rituals</h3>
             <p>Paintings of marriage ceremonies show symbolic union under a sacred square, with rituals that honor ancestors and nature spirits.</p>
         </div>
-        <div class="story-card fade-in">
+        <div class="story-card fade-in" onclick="window.location.href = 'warli-story.html'">
             <h3>The Forest Spirit</h3>
             <p>Many artworks depict the jungle as alive, with trees, animals, and humans interconnected in a silent understanding of coexistence.</p>
         </div>
@@ -1151,11 +1150,13 @@
         document.querySelectorAll('.fade-in').forEach(el => {
             observer.observe(el);
         });
-    document.querySelectorAll('.story-card').forEach(self=>{
-            self.addEventListener('click',()=>{
-                window.location.href = '/warli-story.html'
-            })
-        })
+        
+        // Commented out since we're using onclick attributes directly for better hover effects
+        // document.querySelectorAll('.story-card').forEach(self=>{
+        //     self.addEventListener('click',()=>{
+        //         window.location.href = '/warli-story.html'
+        //     })
+        // })
 
         // Lightbox functionality
         // function openLightbox(title, artist, description) {
